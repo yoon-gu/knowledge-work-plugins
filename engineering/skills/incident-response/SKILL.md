@@ -1,158 +1,158 @@
 ---
 name: incident-response
-description: Run an incident response workflow — triage, communicate, and write postmortem. Trigger with "we have an incident", "production is down", an alert that needs severity assessment, a status update mid-incident, or when writing a blameless postmortem after resolution.
-argument-hint: "<incident description or alert>"
+description: 인시던트 대응 워크플로우를 실행합니다 — 분류, 소통, 사후 분석 작성. "인시던트가 발생했다", "프로덕션이 다운됐다", 심각도 평가가 필요한 알림, 인시던트 진행 중 상태 업데이트, 또는 해결 후 무결책 사후 분석 작성 시 사용합니다.
+argument-hint: "<인시던트 설명 또는 알림>"
 ---
 
 # /incident-response
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 자리 표시자가 보이거나 연결된 도구를 확인해야 하는 경우 [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Manage an incident from detection through postmortem.
+감지부터 사후 분석까지 인시던트를 관리합니다.
 
-## Usage
+## 사용법
 
 ```
 /incident-response $ARGUMENTS
 ```
 
-## Modes
+## 모드
 
 ```
-/incident-response new [description]     # Start a new incident
-/incident-response update [status]       # Post a status update
-/incident-response postmortem            # Generate postmortem from incident data
+/incident-response new [description]     # 새 인시던트 시작
+/incident-response update [status]       # 상태 업데이트 게시
+/incident-response postmortem            # 인시던트 데이터로 사후 분석 생성
 ```
 
-If no mode is specified, ask what phase the incident is in.
+모드가 지정되지 않은 경우, 인시던트가 어느 단계에 있는지 질문합니다.
 
-## How It Works
+## 동작 방식
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    INCIDENT RESPONSE                               │
 ├─────────────────────────────────────────────────────────────────┤
 │  Phase 1: TRIAGE                                                  │
-│  ✓ Assess severity (SEV1-4)                                     │
-│  ✓ Identify affected systems and users                          │
-│  ✓ Assign roles (IC, comms, responders)                         │
+│  ✓ 심각도 평가 (SEV1-4)                                          │
+│  ✓ 영향받은 시스템 및 사용자 파악                                 │
+│  ✓ 역할 배정 (IC, 소통 담당, 대응자)                             │
 │                                                                    │
 │  Phase 2: COMMUNICATE                                              │
-│  ✓ Draft internal status update                                  │
-│  ✓ Draft customer communication (if needed)                     │
-│  ✓ Set up war room and cadence                                   │
+│  ✓ 내부 상태 업데이트 초안 작성                                   │
+│  ✓ 고객 소통 초안 작성 (필요 시)                                  │
+│  ✓ 워룸 및 업데이트 주기 설정                                     │
 │                                                                    │
 │  Phase 3: MITIGATE                                                 │
-│  ✓ Document mitigation steps taken                               │
-│  ✓ Track timeline of events                                      │
-│  ✓ Confirm resolution                                            │
+│  ✓ 취해진 완화 조치 문서화                                        │
+│  ✓ 이벤트 타임라인 추적                                           │
+│  ✓ 해결 확인                                                      │
 │                                                                    │
 │  Phase 4: POSTMORTEM                                               │
-│  ✓ Blameless postmortem document                                 │
-│  ✓ Timeline reconstruction                                       │
-│  ✓ Root cause analysis (5 whys)                                  │
-│  ✓ Action items with owners                                      │
+│  ✓ 무결책 사후 분석 문서                                          │
+│  ✓ 타임라인 재구성                                                │
+│  ✓ 근본 원인 분석 (5 whys)                                       │
+│  ✓ 담당자가 명시된 액션 아이템                                    │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## Severity Classification
+## 심각도 분류
 
-| Level | Criteria | Response Time |
+| 레벨 | 기준 | 대응 시간 |
 |-------|----------|---------------|
-| SEV1 | Service down, all users affected | Immediate, all-hands |
-| SEV2 | Major feature degraded, many users affected | Within 15 min |
-| SEV3 | Minor feature issue, some users affected | Within 1 hour |
-| SEV4 | Cosmetic or low-impact issue | Next business day |
+| SEV1 | 서비스 다운, 모든 사용자 영향 | 즉시, 전원 대응 |
+| SEV2 | 주요 기능 저하, 다수 사용자 영향 | 15분 이내 |
+| SEV3 | 부수적 기능 문제, 일부 사용자 영향 | 1시간 이내 |
+| SEV4 | 미관상 또는 낮은 영향의 문제 | 다음 영업일 |
 
-## Communication Guidance
+## 소통 지침
 
-Provide clear, factual updates at regular cadence. Include: what's happening, who's affected, what we're doing, when the next update is.
+정기적인 주기로 명확하고 사실에 근거한 업데이트를 제공하세요. 포함 내용: 무슨 일이 일어나고 있는지, 누가 영향을 받는지, 무엇을 하고 있는지, 다음 업데이트는 언제인지.
 
-## Output — Status Update
+## 출력 — 상태 업데이트
 
 ```markdown
-## Incident Update: [Title]
+## Incident Update: [제목]
 **Severity:** SEV[1-4] | **Status:** Investigating | Identified | Monitoring | Resolved
-**Impact:** [Who/what is affected]
-**Last Updated:** [Timestamp]
+**Impact:** [영향받는 대상/항목]
+**Last Updated:** [타임스탬프]
 
 ### Current Status
-[What we know now]
+[현재 알고 있는 것]
 
 ### Actions Taken
-- [Action 1]
-- [Action 2]
+- [조치 1]
+- [조치 2]
 
 ### Next Steps
-- [What's happening next and ETA]
+- [다음에 일어날 일과 예상 시간]
 
 ### Timeline
 | Time | Event |
 |------|-------|
-| [HH:MM] | [Event] |
+| [HH:MM] | [이벤트] |
 ```
 
-## Output — Postmortem
+## 출력 — 사후 분석
 
 ```markdown
-## Postmortem: [Incident Title]
-**Date:** [Date] | **Duration:** [X hours] | **Severity:** SEV[X]
-**Authors:** [Names] | **Status:** Draft
+## Postmortem: [인시던트 제목]
+**Date:** [날짜] | **Duration:** [X시간] | **Severity:** SEV[X]
+**Authors:** [이름] | **Status:** Draft
 
 ### Summary
-[2-3 sentence plain-language summary]
+[2-3문장의 평문 요약]
 
 ### Impact
-- [Users affected]
-- [Duration of impact]
-- [Business impact if quantifiable]
+- [영향받은 사용자]
+- [영향 지속 시간]
+- [정량화 가능한 경우 비즈니스 영향]
 
 ### Timeline
 | Time (UTC) | Event |
 |------------|-------|
-| [HH:MM] | [Event] |
+| [HH:MM] | [이벤트] |
 
 ### Root Cause
-[Detailed explanation of what caused the incident]
+[인시던트를 유발한 원인에 대한 상세 설명]
 
 ### 5 Whys
-1. Why did [symptom]? → [Because...]
-2. Why did [cause 1]? → [Because...]
-3. Why did [cause 2]? → [Because...]
-4. Why did [cause 3]? → [Because...]
-5. Why did [cause 4]? → [Root cause]
+1. 왜 [증상]이 발생했는가? → [왜냐하면...]
+2. 왜 [원인 1]이 발생했는가? → [왜냐하면...]
+3. 왜 [원인 2]가 발생했는가? → [왜냐하면...]
+4. 왜 [원인 3]이 발생했는가? → [왜냐하면...]
+5. 왜 [원인 4]가 발생했는가? → [근본 원인]
 
 ### What Went Well
-- [Things that worked]
+- [잘 동작한 것들]
 
 ### What Went Poorly
-- [Things that didn't work]
+- [잘 동작하지 않은 것들]
 
 ### Action Items
 | Action | Owner | Priority | Due Date |
 |--------|-------|----------|----------|
-| [Action] | [Person] | P0/P1/P2 | [Date] |
+| [조치] | [담당자] | P0/P1/P2 | [날짜] |
 
 ### Lessons Learned
-[Key takeaways for the team]
+[팀을 위한 핵심 교훈]
 ```
 
-## If Connectors Available
+## 커넥터 사용 가능 시
 
-If **~~monitoring** is connected:
-- Pull alert details and metrics
-- Show graphs of affected metrics
+**~~monitoring**이 연결된 경우:
+- 알림 상세 정보 및 메트릭 가져오기
+- 영향받은 메트릭의 그래프 표시
 
-If **~~incident management** is connected:
-- Create or update incident in PagerDuty/Opsgenie
-- Page on-call responders
+**~~incident management**가 연결된 경우:
+- PagerDuty/Opsgenie에서 인시던트 생성 또는 업데이트
+- 온콜 대응자에게 페이지 전송
 
-If **~~chat** is connected:
-- Post status updates to incident channel
-- Create war room channel
+**~~chat**이 연결된 경우:
+- 인시던트 채널에 상태 업데이트 게시
+- 워룸 채널 생성
 
-## Tips
+## 팁
 
-1. **Start writing immediately** — Don't wait for complete information. Update as you learn more.
-2. **Keep updates factual** — What we know, what we've done, what's next. No speculation.
-3. **Postmortems are blameless** — Focus on systems and processes, not individuals.
+1. **즉시 기록을 시작하세요** — 완전한 정보를 기다리지 마세요. 알게 되는 대로 업데이트하세요.
+2. **업데이트는 사실에 근거하여 작성하세요** — 알고 있는 것, 한 일, 다음 단계. 추측하지 마세요.
+3. **사후 분석은 무결책으로 진행합니다** — 개인이 아닌 시스템과 프로세스에 집중하세요.

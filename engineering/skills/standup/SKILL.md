@@ -1,75 +1,75 @@
 ---
 name: standup
-description: Generate a standup update from recent activity. Use when preparing for daily standup, summarizing yesterday's commits and PRs and ticket moves, formatting work into yesterday/today/blockers, or structuring a few rough notes into a shareable update.
+description: 최근 활동에서 스탠드업 업데이트를 생성합니다. 일일 스탠드업 준비, 어제의 커밋/PR/티켓 이동 요약, 작업을 어제/오늘/블로커 형식으로 정리, 또는 대략적인 메모를 공유 가능한 업데이트로 구성할 때 사용합니다.
 argument-hint: "[yesterday | today | blockers]"
 ---
 
 # /standup
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 자리 표시자가 보이거나 연결된 도구를 확인해야 하는 경우 [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Generate a standup update by pulling together recent activity across your tools.
+여러 도구에 걸친 최근 활동을 모아 스탠드업 업데이트를 생성합니다.
 
-## How It Works
+## 동작 방식
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                        STANDUP                                    │
 ├─────────────────────────────────────────────────────────────────┤
-│  STANDALONE (always works)                                       │
-│  ✓ Tell me what you worked on and I'll structure it             │
-│  ✓ Format for daily standup (yesterday / today / blockers)      │
-│  ✓ Keep it concise and action-oriented                          │
+│  STANDALONE (항상 동작)                                           │
+│  ✓ 작업한 내용을 알려주시면 구조화해 드립니다                     │
+│  ✓ 일일 스탠드업 형식으로 정리 (어제 / 오늘 / 블로커)            │
+│  ✓ 간결하고 행동 지향적으로 유지                                  │
 ├─────────────────────────────────────────────────────────────────┤
-│  SUPERCHARGED (when you connect your tools)                      │
-│  + Source control: Recent commits and PRs                        │
-│  + Project tracker: Ticket status changes                        │
-│  + Chat: Relevant discussions and decisions                      │
-│  + CI/CD: Build and deploy status                                │
+│  SUPERCHARGED (도구 연결 시)                                      │
+│  + Source control: 최근 커밋 및 PR                               │
+│  + Project tracker: 티켓 상태 변경                               │
+│  + Chat: 관련 토론 및 결정 사항                                   │
+│  + CI/CD: 빌드 및 배포 상태                                      │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## What I Need From You
+## 필요한 정보
 
-**Option A: Let me pull it**
-If your tools are connected, just say `/standup` and I'll gather everything automatically.
+**옵션 A: 자동으로 가져오기**
+도구가 연결되어 있다면 `/standup`만 입력하시면 모든 정보를 자동으로 수집합니다.
 
-**Option B: Tell me what you did**
-"Worked on the auth migration, reviewed 3 PRs, got blocked on the API rate limiting issue."
+**옵션 B: 직접 알려주기**
+"auth 마이그레이션 작업, PR 3개 리뷰, API rate limiting 이슈에서 블로킹됐습니다."
 
-## Output
+## 출력
 
 ```markdown
-## Standup — [Date]
+## Standup — [날짜]
 
 ### Yesterday
-- [Completed item with ticket reference if available]
-- [Completed item]
+- [티켓 참조가 있는 경우 포함한 완료 항목]
+- [완료 항목]
 
 ### Today
-- [Planned item with ticket reference]
-- [Planned item]
+- [티켓 참조가 있는 경우 포함한 계획 항목]
+- [계획 항목]
 
 ### Blockers
-- [Blocker with context and who can help]
+- [맥락 및 도움받을 수 있는 사람이 포함된 블로커]
 ```
 
-## If Connectors Available
+## 커넥터 사용 가능 시
 
-If **~~source control** is connected:
-- Pull recent commits and PRs (opened, reviewed, merged)
-- Summarize code changes at a high level
+**~~source control**이 연결된 경우:
+- 최근 커밋 및 PR(오픈, 리뷰, 병합) 가져오기
+- 코드 변경 사항을 고수준으로 요약
 
-If **~~project tracker** is connected:
-- Pull tickets moved to "in progress" or "done"
-- Show upcoming sprint items
+**~~project tracker**가 연결된 경우:
+- "진행 중" 또는 "완료"로 이동된 티켓 가져오기
+- 다가오는 스프린트 항목 표시
 
-If **~~chat** is connected:
-- Scan for relevant discussions and decisions
-- Flag threads needing your response
+**~~chat**이 연결된 경우:
+- 관련 토론 및 결정 사항 스캔
+- 응답이 필요한 스레드 표시
 
-## Tips
+## 팁
 
-1. **Run it every morning** — Build a habit and never scramble for standup notes.
-2. **Add context** — After I generate, add any nuance about blockers or priorities.
-3. **Share format** — Ask me to format for Slack, email, or your team's standup tool.
+1. **매일 아침 실행하세요** — 습관을 만들면 스탠드업 메모를 위해 허둥댈 필요가 없습니다.
+2. **맥락을 추가하세요** — 생성 후 블로커나 우선순위에 대한 세부 내용을 추가하세요.
+3. **형식을 공유하세요** — Slack, 이메일, 또는 팀 스탠드업 도구 형식으로 포맷해 달라고 요청하세요.

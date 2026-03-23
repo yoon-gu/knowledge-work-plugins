@@ -1,33 +1,33 @@
 ---
 name: testing-strategy
-description: Design test strategies and test plans. Trigger with "how should we test", "test strategy for", "write tests for", "test plan", "what tests do we need", or when the user needs help with testing approaches, coverage, or test architecture.
+description: 테스트 전략 및 테스트 계획을 설계합니다. "어떻게 테스트해야 하나요", "~에 대한 테스트 전략", "~에 대한 테스트 작성", "테스트 계획", "어떤 테스트가 필요한가요", 또는 테스트 접근 방식, 커버리지, 테스트 아키텍처에 대한 도움이 필요할 때 사용합니다.
 ---
 
 # Testing Strategy
 
-Design effective testing strategies balancing coverage, speed, and maintenance.
+커버리지, 속도, 유지보수의 균형을 맞추는 효과적인 테스트 전략을 설계합니다.
 
-## Testing Pyramid
+## 테스트 피라미드
 
 ```
-        /  E2E  \         Few, slow, high confidence
-       / Integration \     Some, medium speed
-      /    Unit Tests  \   Many, fast, focused
+        /  E2E  \         적은 수, 느림, 높은 신뢰도
+       / Integration \     적당한 수, 중간 속도
+      /    Unit Tests  \   많은 수, 빠름, 집중적
 ```
 
-## Strategy by Component Type
+## 컴포넌트 유형별 전략
 
-- **API endpoints**: Unit tests for business logic, integration tests for HTTP layer, contract tests for consumers
-- **Data pipelines**: Input validation, transformation correctness, idempotency tests
-- **Frontend**: Component tests, interaction tests, visual regression, accessibility
-- **Infrastructure**: Smoke tests, chaos engineering, load tests
+- **API 엔드포인트**: 비즈니스 로직에 대한 단위 테스트, HTTP 레이어에 대한 통합 테스트, 소비자에 대한 계약 테스트
+- **데이터 파이프라인**: 입력 검증, 변환 정확성, 멱등성 테스트
+- **프론트엔드**: 컴포넌트 테스트, 상호작용 테스트, 시각적 회귀 테스트, 접근성 테스트
+- **인프라**: 스모크 테스트, 카오스 엔지니어링, 부하 테스트
 
-## What to Cover
+## 커버할 항목
 
-Focus on: business-critical paths, error handling, edge cases, security boundaries, data integrity.
+집중해야 할 것: 비즈니스 핵심 경로, 오류 처리, 엣지 케이스, 보안 경계, 데이터 무결성.
 
-Skip: trivial getters/setters, framework code, one-off scripts.
+생략해도 좋은 것: 사소한 getter/setter, 프레임워크 코드, 일회성 스크립트.
 
-## Output
+## 출력
 
-Produce a test plan with: what to test, test type for each area, coverage targets, and example test cases. Identify gaps in existing coverage.
+다음을 포함한 테스트 계획을 작성합니다: 테스트할 항목, 각 영역에 대한 테스트 유형, 커버리지 목표, 예시 테스트 케이스. 기존 커버리지의 공백을 파악합니다.
