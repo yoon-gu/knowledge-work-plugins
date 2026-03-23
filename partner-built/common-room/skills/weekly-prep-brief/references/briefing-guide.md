@@ -1,33 +1,33 @@
-# Weekly Prep Brief — Structure and Edge Cases
+# Weekly Prep Brief — 구조와 예외 상황
 
-## Briefing Depth Guidelines
+## 브리핑 깊이 가이드라인
 
-Calibrate research depth based on account type:
+계정 유형에 따라 리서치 깊이를 조정합니다:
 
-| Account Type | Depth |
+| 계정 유형 | 깊이 |
 |-------------|-------|
-| Strategic account (large, high ARR) | Full — account + all attendees |
-| Active opportunity (open deal) | Full — with emphasis on deal signals |
-| Renewal within 90 days | Full — with emphasis on risk/health signals |
-| Mid-market customer, routine call | Standard — abbreviated account + key attendee |
-| Small account, quick check-in | Minimal — 3-4 bullets, single attendee |
-| Brand new prospect (first meeting) | Full contact + account — first impressions matter |
+| 전략 계정(대형, 높은 ARR) | 전체 — 계정 + 모든 참석자 |
+| 활성 기회(진행 중인 딜) | 전체 — 딜 신호에 중점 |
+| 90일 이내 갱신 | 전체 — 리스크/건강 신호에 중점 |
+| 미드마켓 고객, 정기 미팅 | 표준 — 축약된 계정 + 핵심 참석자 |
+| 소규모 계정, 짧은 체크인 | 최소 — 3~4개 불릿, 단일 참석자 |
+| 완전히 새로운 잠재 고객(첫 미팅) | 전체 연락처 + 계정 — 첫인상이 중요 |
 
-## Week Overview Priorities
+## 주간 개요 우선순위
 
-Flag these situations prominently at the top of the brief:
+다음 상황은 브리프 상단에 눈에 띄게 표시합니다:
 
-- Trial expiring within 7 days, renewal due within 30 days, or churn risk signals detected
-- Open critical support tickets or unresolved escalations
-- Expansion signals worth raising in the call
-- Executive stakeholder or new champion attending
-- Champion recently changed jobs or competitive signals in the account
-- Recent company funding, product milestone, or strong community advocacy (use as opener)
+- 7일 이내 체험 종료, 30일 이내 갱신, 또는 이탈 위험 신호 감지
+- 긴급 지원 티켓이 열려 있거나 미해결 에스컬레이션이 있음
+- 미팅에서 언급할 만한 확장 신호
+- 임원 이해관계자 또는 새로운 챔피언 참석
+- 챔피언이 최근 직장을 옮겼거나 계정 내 경쟁 신호가 있음
+- 최근 회사 자금 조달, 제품 마일스톤, 또는 강한 커뮤니티 지지(오프닝으로 활용)
 
-## Edge Cases
+## 예외 상황
 
-- **No Common Room data:** Note it explicitly, run external web research, recommend the rep check with their team for offline context.
-- **Multiple meetings with the same company:** Research the account once, share across meetings, differentiate by attendees and objectives.
-- **7+ meetings in a week:** Ask whether to prioritize full research for specific accounts or run abbreviated prep for all; default to full for strategic.
-- **Same-day meeting:** Skip confirmation, produce compressed version (company snapshot + top signals + 1-2 talking points), mark as "[Quick Prep]".
-- **Cancelled meetings:** Exclude silently; if status is unclear, include with "[Status unclear — confirm this meeting is still on.]"
+- **Common Room 데이터 없음:** 이를 명시하고, 외부 웹 리서치를 수행한 뒤, 담당자가 오프라인 맥락은 팀에 확인하도록 권장합니다.
+- **같은 회사의 여러 미팅:** 계정 리서치는 한 번만 수행하고, 미팅별로 참석자와 목적을 구분해 공유합니다.
+- **한 주에 7개 이상 미팅:** 특정 계정만 전체 리서치를 우선할지, 모두 축약형 준비로 갈지 물어봅니다. 전략 계정은 기본적으로 전체를 사용합니다.
+- **당일 미팅:** 확인 절차는 건너뛰고 압축 버전(회사 스냅샷 + 핵심 신호 + 1~2개 대화 포인트)으로 만들며, `"[Quick Prep]"`로 표시합니다.
+- **취소된 미팅:** 조용히 제외합니다. 상태가 불명확하면 `"[Status unclear — confirm this meeting is still on.]"`를 붙여 포함합니다.

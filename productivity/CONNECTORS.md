@@ -1,18 +1,18 @@
-# Connectors
+# 연결 도구
 
-## How tool references work
+## 도구 참조 방식
 
-Plugin files use `~~category` as a placeholder for whatever tool the user connects in that category. For example, `~~project tracker` might mean Asana, Linear, Jira, or any other project tracker with an MCP server.
+플러그인 파일은 `~~category`를 해당 카테고리에 사용자가 연결한 도구의 자리표시자로 사용합니다. 예를 들어 `~~project tracker`는 Asana, Linear, Jira 또는 MCP 서버가 있는 다른 프로젝트 트래커를 의미할 수 있습니다.
 
-Plugins are **tool-agnostic** — they describe workflows in terms of categories (chat, project tracker, knowledge base, etc.) rather than specific products. The `.mcp.json` pre-configures specific MCP servers, but any MCP server in that category works.
+플러그인은 **도구 중립적**입니다. 특정 제품이 아니라 카테고리(chat, project tracker, knowledge base 등) 기준으로 워크플로를 설명합니다. `.mcp.json`은 특정 MCP 서버를 미리 구성하지만, 해당 카테고리의 MCP 서버라면 무엇이든 사용할 수 있습니다.
 
-## Connectors for this plugin
+## 이 플러그인의 연결 도구
 
-| Category | Placeholder | Included servers | Other options |
+| 카테고리 | 자리표시자 | 포함된 서버 | 기타 옵션 |
 |----------|-------------|-----------------|---------------|
 | Chat | `~~chat` | Slack | Microsoft Teams, Discord |
 | Email | `~~email` | Microsoft 365 | — |
 | Calendar | `~~calendar` | Microsoft 365 | — |
 | Knowledge base | `~~knowledge base` | Notion | Confluence, Guru, Coda |
-| Project tracker | `~~project tracker` | Asana, Linear, Atlassian (Jira/Confluence), monday.com, ClickUp | Shortcut, Basecamp, Wrike |
+| Project tracker | `~~project tracker` | Asana, Linear, Atlassian(Jira/Confluence), monday.com, ClickUp | Shortcut, Basecamp, Wrike |
 | Office suite | `~~office suite` | Microsoft 365 | — |

@@ -1,16 +1,16 @@
 ---
-description: Summarize recent activity in a Slack channel
+description: Slack 채널의 최근 활동을 요약합니다
 ---
 
-Given the channel name provided in $ARGUMENTS (strip any leading `#`):
+$ARGUMENTS에 주어진 채널 이름을 바탕으로(`#`가 있으면 제거):
 
-1. Use the `slack_search_channels` tool to find the channel ID for the provided channel name. Strip any leading `#` from the argument before searching.
-2. Use the `slack_read_channel` tool to read recent messages from the channel (default limit of 100 messages).
-3. For any messages that have threads with replies, use `slack_read_thread` to read the thread contents so the summary captures threaded discussions.
-4. Produce a concise summary organized by topic or theme. The summary should include:
-   - An overview of the main topics discussed
-   - Key decisions or action items mentioned
-   - Notable announcements or updates
-   - Active threads and their conclusions (if any)
-5. Keep the summary scannable — use short bullet points grouped by topic. Mention who said what when it's relevant (e.g., decisions, action items).
-6. If the channel has very little recent activity, say so and note the last time a message was posted.
+1. `slack_search_channels` 도구를 사용해 제공된 채널 이름의 채널 ID를 찾습니다. 검색하기 전에 인자 앞의 `#`를 제거합니다.
+2. `slack_read_channel` 도구를 사용해 채널의 최근 메시지를 읽습니다(기본 한도 100개 메시지).
+3. 답글이 있는 스레드 메시지는 `slack_read_thread`로 스레드 내용을 읽어 요약에 스레드 논의가 반영되도록 합니다.
+4. 주제나 테마별로 간결한 요약을 작성합니다. 요약에는 다음이 포함되어야 합니다:
+   - 논의된 주요 주제 개요
+   - 언급된 핵심 결정 사항이나 작업 항목
+   - 눈에 띄는 공지나 업데이트
+   - 활성 스레드와 그 결론(있는 경우)
+5. 요약은 스캔하기 쉽게 유지합니다. 주제별로 짧은 불릿을 사용하고, 관련이 있으면 누가 무엇을 말했는지도 적습니다(예: 결정, 작업 항목).
+6. 최근 활동이 거의 없다면 그렇게 말하고, 마지막 메시지 게시 시점을 함께 언급합니다.

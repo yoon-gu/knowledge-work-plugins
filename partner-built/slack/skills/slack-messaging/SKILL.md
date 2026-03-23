@@ -1,58 +1,58 @@
 ---
 name: slack-messaging
-description: Guidance for composing well-formatted, effective Slack messages using mrkdwn syntax
+description: mrkdwn 문법을 사용해 형식이 잘 갖춰지고 효과적인 Slack 메시지를 작성하는 가이드
 ---
 
-# Slack Messaging Best Practices
+# Slack 메시지 모범 사례
 
-This skill provides guidance for composing well-formatted, effective Slack messages.
+이 스킬은 형식이 잘 갖춰지고 효과적인 Slack 메시지를 작성하는 방법을 안내합니다.
 
-## When to Use
+## 언제 사용하나요
 
-Apply this skill whenever composing, drafting, or helping the user write a Slack message — including when using `slack_send_message`, `slack_send_message_draft`, or `slack_create_canvas`.
+`slack_send_message`, `slack_send_message_draft`, `slack_create_canvas`를 사용할 때를 포함해 Slack 메시지를 작성하거나 초안을 만들거나 사용자가 메시지를 쓰도록 도울 때마다 이 스킬을 적용합니다.
 
-## Slack Formatting (mrkdwn)
+## Slack 서식(mrkdwn)
 
-Slack uses its own markup syntax called **mrkdwn**, which differs from standard Markdown. Always use mrkdwn when composing Slack messages:
+Slack은 표준 Markdown과 다른 **mrkdwn**이라는 자체 마크업 문법을 사용합니다. Slack 메시지를 작성할 때는 항상 mrkdwn을 사용하세요:
 
-| Format | Syntax | Notes |
+| 형식 | 문법 | 참고 |
 |--------|--------|-------|
-| Bold | `*text*` | Single asterisks, NOT double |
-| Italic | `_text_` | Underscores |
-| Strikethrough | `~text~` | Tildes |
-| Code (inline) | `` `code` `` | Backticks |
-| Code block | `` ```code``` `` | Triple backticks |
-| Quote | `> text` | Angle bracket |
-| Link | `<url\|display text>` | Pipe-separated in angle brackets |
-| User mention | `<@U123456>` | User ID in angle brackets |
-| Channel mention | `<#C123456>` | Channel ID in angle brackets |
-| Bulleted list | `- item` or `• item` | Dash or bullet character |
-| Numbered list | `1. item` | Number followed by period |
+| 굵게 | `*text*` | 별표 하나만 사용, 두 개는 사용하지 않음 |
+| 이탤릭 | `_text_` | 밑줄 |
+| 취소선 | `~text~` | 물결표 |
+| 코드(인라인) | `` `code` `` | 백틱 |
+| 코드 블록 | `` ```code``` `` | 백틱 3개 |
+| 인용 | `> text` | 꺾쇠 기호 |
+| 링크 | `<url\|display text>` | 꺾쇠 안에서 파이프로 구분 |
+| 사용자 멘션 | `<@U123456>` | 꺾쇠 안의 사용자 ID |
+| 채널 멘션 | `<#C123456>` | 꺾쇠 안의 채널 ID |
+| 글머리 목록 | `- item` 또는 `• item` | 대시 또는 글머리 기호 |
+| 번호 목록 | `1. item` | 점이 뒤따르는 숫자 |
 
-### Common Mistakes to Avoid
+### 피해야 할 흔한 실수
 
-- Do NOT use `**bold**` (double asterisks) — Slack uses `*bold*` (single asterisks)
-- Do NOT use `## headers` — Slack does not support Markdown headers. Use `*bold text*` on its own line instead.
-- Do NOT use `[text](url)` for links — Slack uses `<url|text>` format
-- Do NOT use `---` for horizontal rules — Slack does not render these
+- `**bold**`(별표 두 개)를 사용하지 마세요. Slack은 `*bold*`(별표 하나)를 사용합니다.
+- `## headers`를 사용하지 마세요. Slack은 Markdown 헤더를 지원하지 않습니다. 대신 독립된 줄에 `*bold text*`를 사용하세요.
+- 링크에 `[text](url)` 형식을 사용하지 마세요. Slack은 `<url|text>` 형식을 사용합니다.
+- 수평선에 `---`를 사용하지 마세요. Slack은 이를 렌더링하지 않습니다.
 
-## Message Structure Guidelines
+## 메시지 구조 가이드
 
-- **Lead with the point.** Put the most important information in the first line. Many people read Slack on mobile or in notifications where only the first line shows.
-- **Keep it short.** Aim for 1-3 short paragraphs. If the message is long, consider using a Canvas instead.
-- **Use line breaks generously.** Walls of text are hard to read. Separate distinct thoughts with blank lines.
-- **Use bullet points for lists.** Anything with 3+ items should be a list, not a run-on sentence.
-- **Bold key information.** Use `*bold*` for names, dates, deadlines, and action items so they stand out when scanning.
+- **핵심을 먼저 말하세요.** 가장 중요한 정보를 첫 줄에 두세요. 많은 사람이 모바일이나 알림에서 Slack을 읽기 때문에 첫 줄만 보이는 경우가 많습니다.
+- **짧게 유지하세요.** 1~3개의 짧은 문단을 목표로 하세요. 메시지가 길면 Canvas를 고려하세요.
+- **줄바꿈을 적극 활용하세요.** 빽빽한 텍스트는 읽기 어렵습니다. 서로 다른 생각은 빈 줄로 구분하세요.
+- **목록에는 글머리표를 사용하세요.** 3개 이상 항목은 문장으로 길게 쓰지 말고 목록으로 정리하세요.
+- **중요 정보는 굵게 표시하세요.** 이름, 날짜, 마감일, 작업 항목에는 `*굵게*`를 사용해 눈에 띄게 만드세요.
 
-## Thread vs. Channel Etiquette
+## 스레드와 채널 예절
 
-- **Reply in threads** when responding to a specific message to keep the main channel clean.
-- **Use `reply_broadcast`** (also post to channel) only when the reply contains information everyone needs to see.
-- **Post in the channel** (not a thread) when starting a new topic, making an announcement, or asking a question to the whole group.
-- **Don't start a new thread** to continue an existing conversation — find and reply to the original message.
+- 특정 메시지에 답할 때는 **스레드로 답글**을 달아 메인 채널을 깔끔하게 유지하세요.
+- 답글에 모두가 봐야 하는 정보가 있을 때만 **`reply_broadcast`**(채널에도 게시)를 사용하세요.
+- 새 주제를 시작하거나, 공지를 하거나, 전체 그룹에 질문할 때는 스레드가 아닌 **채널에 게시**하세요.
+- 기존 대화를 이어가면서 **새 스레드를 시작하지 마세요**. 원본 메시지를 찾아 답글을 다세요.
 
-## Tone and Audience
+## 톤과 대상
 
-- Match the tone to the channel — `#general` is usually more formal than `#random`.
-- Use emoji reactions instead of reply messages for simple acknowledgments (though note: the MCP tools can't add reactions, so suggest the user do this manually if appropriate).
-- When writing announcements, use a clear structure: context, key info, call to action.
+- 채널의 분위기에 맞추세요. `#general`은 보통 `#random`보다 더 격식을 갖춥니다.
+- 간단한 확인에는 답글 대신 이모지 반응을 사용하세요(단, MCP 도구는 반응을 추가할 수 없으므로 필요하면 사용자가 수동으로 하도록 안내하세요).
+- 공지를 작성할 때는 맥락, 핵심 정보, 행동 요청의 순서로 명확하게 구성하세요.

@@ -1,31 +1,31 @@
 ---
-description: Generate a standup update based on your recent Slack activity
+description: 최근 Slack 활동을 바탕으로 스탠드업 업데이트를 생성합니다
 ---
 
-1. Use `slack_read_user_profile` (with no user_id) to get the current user's profile information, including their user ID and display name.
+1. `slack_read_user_profile`를 `user_id` 없이 사용해 현재 사용자의 프로필 정보(사용자 ID와 표시 이름 포함)를 가져옵니다.
 
-2. Search for the user's recent messages using `slack_search_public` with the filter `from:<@USER_ID>` and `after:` set to yesterday's date. This captures messages from the last working day.
+2. `slack_search_public`에 `from:<@USER_ID>` 필터와 어제 날짜로 설정한 `after:`를 사용해 사용자의 최근 메시지를 검색합니다. 이렇게 하면 최근 근무일의 메시지를 잡아낼 수 있습니다.
 
-3. Review the messages found and categorize them into standup themes:
-   - **What I worked on** — Topics, projects, or tasks the user discussed or contributed to
-   - **What I'm working on next** — Any mentions of upcoming work, plans, or follow-ups
-   - **Blockers** — Any questions asked that went unanswered, issues raised, or explicit mentions of being stuck
+3. 찾은 메시지를 검토해 스탠드업 주제로 분류합니다:
+   - **내가 한 일** — 사용자가 논의했거나 기여한 주제, 프로젝트, 작업
+   - **다음에 할 일** — 예정된 작업, 계획, 후속 조치 언급
+   - **막힌 점** — 답을 받지 못한 질문, 제기된 문제, 막혀 있다고 명시한 부분
 
-4. For messages in threads, use `slack_read_thread` to get the full context so you can accurately describe what the user contributed.
+4. 스레드 안의 메시지는 `slack_read_thread`로 전체 맥락을 가져와 사용자의 기여를 정확히 설명합니다.
 
-5. Format the standup as:
+5. 스탠드업 형식은 다음과 같습니다:
    ```
    *Standup for <display name> — <today's date>*
 
    *Done:*
-   - Item 1
-   - Item 2
+   - 항목 1
+   - 항목 2
 
    *Doing:*
-   - Item 1
+   - 항목 1
 
    *Blockers:*
-   - None / Item 1
+   - 없음 / 항목 1
    ```
 
-6. Present the standup to the user for review. They can edit, adjust, or ask you to post it to a specific channel.
+6. 스탠드업을 사용자에게 보여주고 검토받습니다. 사용자는 편집하거나 조정하거나, 특정 채널에 게시해 달라고 요청할 수 있습니다.
