@@ -1,10 +1,10 @@
-# GEO/SRA Data Acquisition
+# GEO/SRA 데이터 수집
 
-Download raw sequencing data from NCBI GEO/SRA and prepare it for nf-core pipelines.
+NCBI GEO/SRA에서 원시 시퀀싱 데이터를 다운로드하고 nf-core 파이프라인을 위해 준비합니다.
 
-**Use this when:** Reanalyzing published datasets, validating findings, or comparing results against public cohorts.
+**다음 경우에 사용하세요.** 게시된 데이터 세트를 재분석하거나, 결과를 검증하거나, 결과를 공개 코호트와 비교하는 경우.
 
-## Table of Contents
+## 목차
 
 - [Workflow Overview](#workflow-overview)
 - [Step 1: Fetch Study Information](#step-1-fetch-study-information)
@@ -19,9 +19,9 @@ Download raw sequencing data from NCBI GEO/SRA and prepare it for nf-core pipeli
 
 ---
 
-## Workflow Overview
+## 워크플로 개요
 
-Example: "Find differentially expressed genes in GSE309891 (drug-treated vs control)"
+예: "GSE309891(약물 처리 대 대조군)에서 차별적으로 발현된 유전자 찾기"
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -94,16 +94,16 @@ Example: "Find differentially expressed genes in GSE309891 (drug-treated vs cont
 
 ---
 
-## Instructions for Claude
+## 클로드를 위한 지침
 
-When assisting users with GEO/SRA data acquisition:
+GEO/SRA 데이터 수집으로 사용자를 지원할 때:
 
-1. **Always fetch study info first** to show the user what data is available
-2. **Ask for confirmation before downloading** - Present the sample groups and sizes, then ask which subset to download using AskUserQuestion
-3. **Suggest appropriate genome and pipeline** based on the organism and data type
-4. **Return to main SKILL.md workflow** after data preparation is complete
+1. **항상 연구 정보를 먼저 가져와** 사용자에게 사용 가능한 데이터를 보여줍니다.
+2. **다운로드하기 전에 확인 요청** - 샘플 그룹과 크기를 제시한 다음 AskUserQuestion을 사용하여 다운로드할 하위 집합을 묻습니다.
+3. 유기체 및 데이터 유형에 따라 **적절한 게놈 및 파이프라인 제안**
+4. 데이터 준비가 완료된 후 **기본 SKILL.md 워크플로**로 돌아갑니다.
 
-Example confirmation question:
+확인 질문 예시:
 ```
 Question: "Which sample group would you like to download?"
 Options:
@@ -114,43 +114,43 @@ Options:
 
 ---
 
-## Step 1: Fetch Study Information
+## 1단계: 연구 정보 가져오기
 
-Get metadata about a GEO study before downloading.
+다운로드하기 전에 GEO 연구에 대한 메타데이터를 얻으세요.
 
 ```bash
 python scripts/sra_geo_fetch.py info <GEO_ID>
 ```
 
-**Example:**
+**예:**
 ```bash
 python scripts/sra_geo_fetch.py info GSE110004
 ```
 
-**Output includes:**
-- Study title and summary
-- Organism (with auto-suggested genome)
-- Number of samples and runs
-- Data types (RNA-Seq, ATAC-seq, etc.)
-- Estimated download size
-- Suggested nf-core pipeline
+**출력에는 다음이 포함됩니다.**
+- 연구 제목 및 요약
+- 유기체(자동 제안 게놈 포함)
+- 샘플 및 실행 횟수
+- 데이터 유형(RNA-Seq, ATAC-seq 등)
+- 예상 다운로드 크기
+- nf-core 파이프라인 추천
 
-**Save info to JSON:**
+**JSON에 정보 저장:**
 ```bash
 python scripts/sra_geo_fetch.py info GSE110004 -o study_info.json
 ```
 
 ---
 
-## Step 2: Review Sample Groups
+## 2단계: 샘플 그룹 검토
 
-View sample groups organized by data type and layout. This is useful for studies with mixed data types.
+데이터 유형 및 레이아웃별로 구성된 샘플 그룹을 봅니다. 이는 혼합된 데이터 유형을 사용하는 연구에 유용합니다.
 
 ```bash
 python scripts/sra_geo_fetch.py groups <GEO_ID>
 ```
 
-**Example output:**
+**예제 출력:**
 ```
 Sample Group          Count Layout     GSM Range                    Est. Size
 --------------------------------------------------------------------------------
@@ -164,7 +164,7 @@ Available groups for --subset option:
   2. "RNA-Seq:SINGLE" - 7 samples (~4.5 GB)
 ```
 
-**List individual runs:**
+**개별 실행 목록:**
 ```bash
 python scripts/sra_geo_fetch.py list <GEO_ID>
 
@@ -172,34 +172,34 @@ python scripts/sra_geo_fetch.py list <GEO_ID>
 python scripts/sra_geo_fetch.py list GSE110004 --filter "RNA-Seq:PAIRED"
 ```
 
-**DECISION POINT:** Review the sample groups. Decide which subset to download if the study has multiple data types.
+**결정 포인트:** 샘플 그룹을 검토합니다. 연구에 여러 데이터 유형이 있는 경우 다운로드할 하위 집합을 결정합니다.
 
 ---
 
-## Step 3: Download FASTQ Files
+## 3단계: FASTQ 파일 다운로드
 
-Download FASTQ files from ENA (faster than SRA).
+ENA에서 FASTQ 파일을 다운로드하세요(SRA보다 빠름).
 
 ```bash
 python scripts/sra_geo_fetch.py download <GEO_ID> -o <OUTPUT_DIR>
 ```
 
-**Options:**
-- `-o, --output`: Output directory (required)
-- `-i, --interactive`: Interactively select sample group to download
-- `-s, --subset`: Filter by data type (e.g., "RNA-Seq:PAIRED")
-- `-p, --parallel`: Parallel downloads (default: 4)
-- `-t, --timeout`: Download timeout in seconds (default: 600)
+**옵션:**
+- `-o, --output`: 출력 디렉터리(필수)
+- `-i, --interactive`: 다운로드할 샘플 그룹을 대화형으로 선택
+- `-s, --subset`: 데이터 유형별로 필터링합니다(예: "RNA-Seq:PAIRED")
+- `-p, --parallel`: 병렬 다운로드 (기본값: 4)
+- `-t, --timeout`: 다운로드 제한 시간(초)(기본값: 600)
 
-### Interactive Mode (Recommended)
+### 대화형 모드(권장)
 
-Use `-i` flag for interactive sample selection when the study has multiple data types:
+연구에 여러 데이터 유형이 있는 경우 대화형 샘플 선택을 위해 `-i` 플래그를 사용합니다.
 
 ```bash
 python scripts/sra_geo_fetch.py download GSE110004 -o ./fastq -i
 ```
 
-**Interactive output:**
+**대화형 출력:**
 ```
 ============================================================
   SELECT SAMPLE GROUP TO DOWNLOAD
@@ -221,9 +221,9 @@ python scripts/sra_geo_fetch.py download GSE110004 -o ./fastq -i
 Enter selection (0-2):
 ```
 
-### Direct Subset Selection
+### 직접 하위 집합 선택
 
-Alternatively, specify the subset directly:
+또는 하위 집합을 직접 지정합니다.
 
 ```bash
 # Download only RNA-Seq paired-end data
@@ -231,13 +231,13 @@ python scripts/sra_geo_fetch.py download GSE110004 -o ./fastq \
     --subset "RNA-Seq:PAIRED" --parallel 6
 ```
 
-**Note:** Downloads automatically skip existing files. Resume interrupted downloads by re-running the command.
+**참고:** 다운로드 시 기존 파일을 자동으로 건너뜁니다. 명령을 다시 실행하여 중단된 다운로드를 재개합니다.
 
 ---
 
-## Step 4: Generate Samplesheet
+## 4단계: 샘플시트 생성
 
-Create a samplesheet compatible with nf-core pipelines.
+nf-core 파이프라인과 호환되는 샘플시트를 만듭니다.
 
 ```bash
 python scripts/sra_geo_fetch.py samplesheet <GEO_ID> \
@@ -245,30 +245,30 @@ python scripts/sra_geo_fetch.py samplesheet <GEO_ID> \
     -o samplesheet.csv
 ```
 
-**Options:**
-- `-f, --fastq-dir`: Directory containing downloaded FASTQ files (required)
-- `-o, --output`: Output samplesheet path (default: samplesheet.csv)
-- `-p, --pipeline`: Target pipeline (auto-detected if not specified)
+**옵션:**
+- `-f, --fastq-dir`: 다운로드한 FASTQ 파일이 포함된 디렉터리(필수)
+- `-o, --output`: 출력 샘플시트 경로 (기본값: Samplesheet.csv)
+- `-p, --pipeline`: 대상 파이프라인(지정되지 않은 경우 자동 감지)
 
-**Example:**
+**예:**
 ```bash
 python scripts/sra_geo_fetch.py samplesheet GSE110004 \
     --fastq-dir ./fastq \
     -o samplesheet.csv
 ```
 
-**Output:** The script will:
-1. Create samplesheet in the format required by the target pipeline
-2. Display suggested genome reference
-3. Show suggested nf-core command
+**출력:** 스크립트는 다음을 수행합니다.
+1. 대상 파이프라인에 필요한 형식으로 샘플시트를 생성합니다.
+2. 제안된 게놈 참조 표시
+3. 제안된 nf-core 명령 표시
 
 ---
 
-## Step 5: Run nf-core Pipeline
+## 5단계: nf-core 파이프라인 실행
 
-After generating the samplesheet, the script provides a suggested command.
+샘플시트를 생성한 후 스크립트는 제안된 명령을 제공합니다.
 
-**Example output:**
+**예제 출력:**
 ```
 Suggested command:
    nextflow run nf-core/rnaseq \
@@ -278,53 +278,53 @@ Suggested command:
        -profile docker
 ```
 
-**DECISION POINT:** Review and confirm:
-1. Is the suggested pipeline correct?
-2. Is the genome reference correct for your organism?
-3. Do you need additional pipeline options?
+**결정 포인트:** 검토 및 확인:
+1. 제안된 파이프라인이 맞나요?
+2. 귀하의 유기체에 대한 게놈 참조가 정확합니까?
+3. 추가 파이프라인 옵션이 필요합니까?
 
-Then return to the main SKILL.md workflow (Step 1: Environment Check) to proceed with pipeline execution.
-
----
-
-## Supported Pipelines
-
-The skill auto-detects appropriate pipelines based on library strategy. Pipelines marked with ★ are fully supported with configs, samplesheet generation, and documentation. Others are suggested but require manual setup following nf-core documentation.
-
-| Library Strategy | Suggested Pipeline | Support |
-|------------------|--------------------|---------|
-| RNA-Seq          | nf-core/rnaseq     | ★ Full  |
-| ATAC-seq         | nf-core/atacseq    | ★ Full  |
-| WGS/WXS          | nf-core/sarek      | ★ Full  |
-| ChIP-seq         | nf-core/chipseq    | Manual  |
-| Bisulfite-Seq    | nf-core/methylseq  | Manual  |
-| miRNA-Seq        | nf-core/smrnaseq   | Manual  |
-| Amplicon         | nf-core/ampliseq   | Manual  |
+그런 다음 기본 SKILL.md 워크플로(1단계: 환경 확인)로 돌아가 파이프라인 실행을 진행합니다.
 
 ---
 
-## Supported Organisms
+## 지원되는 파이프라인
 
-Common organisms with auto-suggested genomes:
+이 기술은 라이브러리 전략에 따라 적절한 파이프라인을 자동 감지합니다. ★로 표시된 파이프라인은 구성, 샘플 시트 생성 및 문서가 완벽하게 지원됩니다. 다른 것들도 제안되지만 nf-core 문서에 따라 수동 설정이 필요합니다.
 
-| Organism | Genome | Notes |
-|----------|--------|-------|
-| Homo sapiens | GRCh38 | Human reference |
-| Mus musculus | GRCm39 | Mouse reference |
-| Saccharomyces cerevisiae | R64-1-1 | Yeast S288C |
-| Drosophila melanogaster | BDGP6 | Fruit fly |
-| Caenorhabditis elegans | WBcel235 | C. elegans |
-| Danio rerio | GRCz11 | Zebrafish |
-| Arabidopsis thaliana | TAIR10 | Arabidopsis |
-| Rattus norvegicus | Rnor_6.0 | Rat |
-
-See `scripts/config/genomes.yaml` for the full list.
+| 도서관 전략 | 제안된 파이프라인 | 지원 |
+|------|---------|---------|
+| RNA-Seq | nf-core/rnaseq | ★ 전체 |
+| ATAC-seq | nf-core/atacseq | ★ 전체 |
+| WGS/WXS | nf-core/sarek | ★ 전체 |
+| 칩-seq | nf-core/칩seq | 매뉴얼 |
+| Bisulfite-Seq | nf-core/메틸seq | 매뉴얼 |
+| miRNA-Seq | nf-core/smrnaseq | 매뉴얼 |
+| 앰플리콘 | nf-core/ampliseq | 매뉴얼 |
 
 ---
 
-## Complete Example
+## 지원되는 유기체
 
-Reanalyze GSE110004 (yeast RNA-seq):
+자동 제안 게놈을 가진 일반적인 유기체:
+
+| 유기체 | 게놈 | 메모 |
+|----------|---------|-------|
+| 호모 사피엔스 | GRCh38 | 인간 참조 |
+| 근육 근육 | GRCM39 | 마우스 참조 |
+| 사카로미세스 세레비지애 | R64-1-1 | 효모 S288C |
+| 초파리 melanogaster | BDGP6 | 초파리 |
+| 예쁜꼬마선충 | WBcel235 | C. 예쁜꼬마선충 |
+| 다니오 레리오 | GRCz11 | 제브라피시 |
+| 애기장대 | TAIR10 | 애기장대 |
+| Rattus norvegicus | Rnor_6.0 | 쥐 |
+
+전체 목록은 `scripts/config/genomes.yaml`을 참조하세요.
+
+---
+
+## 완전한 예
+
+GSE110004(효모 RNA-seq) 재분석:
 
 ```bash
 # 1. Get study info and sample groups
@@ -347,7 +347,7 @@ nextflow run nf-core/rnaseq \
     -profile docker
 ```
 
-### Alternative: Non-interactive Download
+### 대안: 비대화형 다운로드
 
 ```bash
 # Review sample groups first
@@ -362,10 +362,10 @@ python scripts/sra_geo_fetch.py download GSE110004 \
 
 ---
 
-## Troubleshooting
+## 문제 해결
 
-### ENA Download Fails
-If ENA downloads fail, the data may need to be fetched directly from SRA:
+### ENA 다운로드 실패
+ENA 다운로드가 실패하면 SRA에서 직접 데이터를 가져와야 할 수도 있습니다.
 
 ```bash
 # Create SRA tools environment
@@ -376,23 +376,23 @@ conda run -n sra_tools prefetch SRR6357070
 conda run -n sra_tools fasterq-dump SRR6357070 -O ./fastq
 ```
 
-### No SRA Runs Found
-Some GEO datasets only have processed data, not raw sequencing reads. Check:
+### SRA 실행을 찾을 수 없습니다.
+일부 GEO 데이터 세트에는 원시 시퀀싱 읽기가 아닌 처리된 데이터만 있습니다. 확인:
 ```bash
 python scripts/sra_geo_fetch.py info <GEO_ID>
 ```
-If "Runs: 0", the dataset may not have raw data in SRA.
+"실행: 0"인 경우 데이터 세트의 SRA에 원시 데이터가 없을 수 있습니다.
 
-### SuperSeries Support
-GEO SuperSeries (which contain multiple SubSeries) are automatically handled. The tool will:
-1. Detect that a GEO ID is a SuperSeries
-2. Find the linked BioProject accession
-3. Fetch all SRA runs from the BioProject
+### SuperSeries 지원
+GEO SuperSeries(여러 하위 시리즈 포함)는 자동으로 처리됩니다. 도구는 다음을 수행합니다.
+1. GEO ID가 SuperSeries인지 감지
+2. 연결된 BioProject 접속 찾기
+3. BioProject에서 모든 SRA 실행을 가져옵니다.
 
-Example: GSE110004 is a SuperSeries that links to BioProject PRJNA432544.
+예: GSE110004는 BioProject PRJNA432544에 연결되는 SuperSeries입니다.
 
-### Genome Not Recognized
-If the organism is not in the genome mapping, manually specify the genome:
+### 게놈이 인식되지 않음
+유기체가 게놈 매핑에 없으면 수동으로 게놈을 지정합니다.
 ```bash
 # Check available iGenomes
 python scripts/manage_genomes.py list
@@ -403,14 +403,14 @@ nextflow run nf-core/rnaseq --fasta /path/to/genome.fa --gtf /path/to/genes.gtf
 
 ---
 
-## Requirements
+## 요구사항
 
-- Python 3.8+
-- `requests` library (optional but recommended)
-- `pyyaml` library (optional, for genome config)
-- Network access to NCBI and ENA
+- 파이썬 3.8+
+- `requests` 라이브러리(선택 사항이지만 권장됨)
+- `pyyaml` 라이브러리(선택 사항, 게놈 구성용)
+- NCBI 및 ENA에 대한 네트워크 액세스
 
-Install optional dependencies:
+선택적 종속성을 설치합니다.
 ```bash
 pip install requests pyyaml
 ```

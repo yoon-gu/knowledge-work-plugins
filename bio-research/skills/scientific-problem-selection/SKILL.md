@@ -1,159 +1,159 @@
 ---
 name: scientific-problem-selection
-description: This skill should be used when scientists need help with research problem selection, project ideation, troubleshooting stuck projects, or strategic scientific decisions. Use this skill when users ask to pitch a new research idea, work through a project problem, evaluate project risks, plan research strategy, navigate decision trees, or get help choosing what scientific problem to work on. Typical requests include "I have an idea for a project", "I'm stuck on my research", "help me evaluate this project", "what should I work on", or "I need strategic advice about my research".
+description: 이 기술은 과학자들이 연구 문제 선택, 프로젝트 아이디어 구상, 정체된 프로젝트 문제 해결 또는 전략적 과학적 결정에 도움이 필요할 때 사용해야 합니다. 사용자가 새로운 연구 아이디어 제안, 프로젝트 문제 해결, 프로젝트 위험 평가, 연구 전략 계획, 의사 결정 트리 탐색 또는 작업할 과학적 문제 선택에 대한 도움을 요청할 때 이 기술을 사용하세요. 일반적인 요청에는 "프로젝트에 대한 아이디어가 있습니다.", "연구가 막혔습니다.", "이 프로젝트를 평가하는 데 도움을 주세요.", "무엇을 해야 하나요?", "연구에 대한 전략적 조언이 필요합니다." 등이 있습니다.
 ---
 
-# Scientific Problem Selection Skills
+# 과학적 문제 선택 기술
 
-A conversational framework for systematic scientific problem selection based on Fischbach & Walsh's "Problem choice and decision trees in science and engineering" (Cell, 2024).
+Fischbach & Walsh의 "과학 및 공학의 문제 선택 및 의사결정 트리"(Cell, 2024)를 기반으로 하는 체계적인 과학적 문제 선택을 위한 대화 프레임워크입니다.
 
-## Getting Started
+## 시작하기
 
-Present users with three entry points:
+사용자에게 세 가지 진입점을 제공합니다.
 
-**1) Pitch an idea for a new project** — to work it up together
+**1) 새 프로젝트에 대한 아이디어 제시** — 함께 작업하기
 
-**2) Share a problem in a current project** — to troubleshoot together
+**2) 현재 프로젝트의 문제 공유** - 함께 문제를 해결하기 위해
 
-**3) Ask a strategic question** — to navigate the decision tree together
+**3) 전략적인 질문을 던집니다** — 의사결정 트리를 함께 탐색합니다.
 
-This conversational entry meets scientists where they are and establishes a collaborative tone.
-
----
-
-## Option 1: Pitch an Idea
-
-### Initial Prompt
-Ask: **"Tell me the short version of your idea (1-2 sentences)."**
-
-### Response Approach
-After the user shares their idea, return a quick summary (no more than one paragraph) demonstrating understanding. Note the general area of research and rephrase the idea in a way that highlights its kernel—showing alignment and readiness to dive into details.
-
-### Follow-up Prompt
-Then ask for more detail: "Now give me a bit more detail. You might include, however briefly or even say where you are unsure:
-1. What exactly you want to do
-2. How you currently plan to do it
-3. If it works, why will it be a big deal
-4. What you think are the major risks"
-
-### Workflow
-From there, guide the user through the early stages of problem selection and evaluation:
-- **Skill 1: Intuition Pumps** - Refine and strengthen the idea
-- **Skill 2: Risk Assessment** - Identify and manage project risks
-- **Skill 3: Optimization Function** - Define success metrics
-- **Skill 4: Parameter Strategy** - Determine what to fix vs. keep flexible
-
-See `references/01-intuition-pumps.md`, `references/02-risk-assessment.md`, `references/03-optimization-function.md`, and `references/04-parameter-strategy.md` for detailed guidance.
+이 대화 항목은 과학자들이 있는 곳에서 만나 협력적인 분위기를 조성합니다.
 
 ---
 
-## Option 2: Troubleshoot a Problem
+## 옵션 1: 아이디어 제시
 
-### Initial Prompt
-Ask: **"Tell me a short version of your problem (1-2 sentences or whatever is easy)."**
+### 초기 프롬프트
+질문: **"아이디어를 간략하게 설명해주세요(1~2문장)."**
 
-### Response Approach
-After the user shares their problem, return a quick summary (no more than one paragraph) demonstrating understanding. Note the context of the project where the problem occurred and rephrase the problem—highlighting its core essence—so the user knows the situation is understood. Also raise additional questions that seem important to discuss.
+### 대응 접근법
+사용자가 아이디어를 공유한 후 이해를 보여주는 간단한 요약(한 문단 이하)을 반환합니다. 연구의 일반적인 영역을 기록하고 핵심을 강조하는 방식으로 아이디어를 다시 표현하여 세부 사항에 대한 정렬과 준비 상태를 보여줍니다.
 
-### Follow-up Prompt
-Then ask: "Now give me a bit more detail. You might include, however briefly:
-1. The overall goal of your project (if we have not talked about it before)
-2. What exactly went wrong
-3. Your current ideas for fixing it"
+### 후속 메시지
+그런 다음 더 자세한 내용을 요청하세요. "이제 좀 더 자세히 설명해 주세요. 간단하게 포함하거나 확신할 수 없는 부분을 말할 수도 있습니다.
+1. 정확히 하고 싶은 일
+2. 현재 어떻게 할 계획인지
+3. 효과가 있다면 왜 큰 일이 될까요?
+4. 당신이 생각하는 주요 위험은 무엇입니까?
 
-### Workflow
-From there, guide the user through troubleshooting and decision tree navigation:
-- **Skill 5: Decision Tree Navigation** - Plan decision points and navigate between execution and strategic thinking
-- **Skill 4: Parameter Strategy** - Fix one parameter at a time, let others float
-- **Skill 6: Adversity Response** - Frame problems as opportunities for growth
-- **Skill 7: Problem Inversion** - Strategies for navigating around obstacles
+### 작업 흐름
+여기에서 사용자에게 문제 선택 및 평가의 초기 단계를 안내합니다.
+- **스킬 1: 직관 펌프** - 아이디어를 구체화하고 강화합니다.
+- **기술 2: 위험 평가** - 프로젝트 위험 식별 및 관리
+- **기술 3: 최적화 기능** - 성공 지표 정의
+- **기술 4: 매개변수 전략** - 수정할 사항 결정 및 유연성 유지
 
-Always include workarounds that might be useful whether or not the problem can be fixed easily.
-
-See `references/05-decision-tree.md`, `references/06-adversity-planning.md`, `references/07-problem-inversion.md`, and `references/04-parameter-strategy.md` for detailed guidance.
-
----
-
-## Option 3: Ask a Strategic Question
-
-### Initial Prompt
-Ask: **"Tell me the short version of your question (1-2 sentences)."**
-
-### Response Approach
-After the user shares their question, return a quick summary (no more than one paragraph) demonstrating understanding. Note the broader context and rephrase the question—highlighting its crux—to confirm alignment with their thinking.
-
-### Follow-up Prompt
-Then ask: "Now give me a bit more detail. You might include, however briefly:
-1. The setting (i.e., is this about a current or future project)
-2. A bit more detail about what you're thinking"
-
-### Workflow
-From there, draw on the specific modules from the problem choice framework most appropriate to the question:
-- **Skills 1-4** for future project planning (ideation, risk, optimization, parameters)
-- **Skills 5-7** for current project navigation (decision trees, adversity, inversion)
-- **Skill 8** for communication and synthesis
-- **Skill 9** for comprehensive workflow orchestration
-
-See the complete reference materials in the `references/` folder.
+자세한 지침은 `references/01-intuition-pumps.md`, `references/02-risk-assessment.md`, `references/03-optimization-function.md` 및 `references/04-parameter-strategy.md`을 참조하세요.
 
 ---
 
-## Core Framework Concepts
+## 옵션 2: 문제 해결
 
-### The Central Insight
-**Problem Choice >> Execution Quality**
+### 초기 프롬프트
+질문: **"문제에 대한 간단한 버전을 알려주세요(1~2문장 또는 쉬운 내용)."**
 
-Even brilliant execution of a mediocre problem yields incremental impact. Good execution of an important problem yields substantial impact.
+### 대응 접근법
+사용자가 문제를 공유한 후 이해를 보여주는 간단한 요약(한 문단 이하)을 반환합니다. 문제가 발생한 프로젝트의 맥락을 기록하고 문제의 핵심 본질을 강조하여 문제를 다시 표현하여 사용자가 상황이 이해되었음을 알 수 있도록 합니다. 또한 논의해야 할 중요해 보이는 추가 질문도 제기하십시오.
 
-### The Time Paradox
-Scientists typically spend:
-- **Days** choosing a problem
-- **Years** solving it
+### 후속 메시지
+그런 다음 다음과 같이 질문하십시오. "이제 좀 더 자세히 설명해주세요. 간략하게라도 다음을 포함할 수 있습니다.
+1. 프로젝트의 전반적인 목표(이전에 이야기한 적이 없는 경우)
+2. 정확히 무엇이 잘못됐나요?
+3. 문제를 해결하기 위한 현재 아이디어"
 
-This imbalance limits impact. These skills help invest more time choosing wisely.
+### 작업 흐름
+여기에서 사용자에게 문제 해결 및 의사결정 트리 탐색을 안내합니다.
+- **기술 5: 의사결정 트리 탐색** - 의사결정 지점을 계획하고 실행과 전략적 사고 사이를 탐색합니다.
+- **스킬 4: 매개변수 전략** - 한 번에 하나의 매개변수를 수정하고 다른 매개변수는 부동 상태로 두세요.
+- **스킬 6: 역경 대응** - 문제를 성장의 기회로 인식
+- **스킬 7: 문제 반전** - 장애물을 우회하는 전략
 
-### Evaluation Axes
-**For Evaluating Ideas:**
-- **X-axis:** Likelihood of success
-- **Y-axis:** Impact if successful
+문제를 쉽게 해결할 수 있는지 여부에 관계없이 유용할 수 있는 해결 방법을 항상 포함하십시오.
 
-Skills help move ideas rightward (more feasible) and upward (more impactful).
-
-### The Risk Paradox
-- Don't avoid risk—befriend it
-- No risk = incremental work
-- But: Multiple miracles = avoid or refine
-- **Balance:** Understood, quantified, manageable risk
-
-### The Parameter Paradox
-- Too many fixed = brittleness
-- Too few fixed = paralysis
-- **Sweet spot:** Fix ONE meaningful constraint
-
-### The Adversity Principle
-- Crises are inevitable (don't be surprised)
-- Crises are opportune (don't waste them)
-- **Strategy:** Fix problem AND upgrade project simultaneously
+자세한 지침은 `references/05-decision-tree.md`, `references/06-adversity-planning.md`, `references/07-problem-inversion.md` 및 `references/04-parameter-strategy.md`을 참조하세요.
 
 ---
 
-## The 9 Skills Overview
+## 옵션 3: 전략적 질문하기
 
-| Skill | Purpose | Output | Time |
-|-------|---------|--------|------|
-| 1. Intuition Pumps | Generate high-quality research ideas | Problem Ideation Document | ~1 week |
-| 2. Risk Assessment | Identify and manage project risks | Risk Assessment Matrix | 3-5 days |
-| 3. Optimization Function | Define success metrics | Impact Assessment Document | 2-3 days |
-| 4. Parameter Strategy | Decide what to fix vs. keep flexible | Parameter Strategy Document | 2-3 days |
-| 5. Decision Tree Navigation | Plan decision points and altitude dance | Decision Tree Map | 2 days |
-| 6. Adversity Response | Prepare for crises as opportunities | Adversity Playbook | 2 days |
-| 7. Problem Inversion | Navigate around obstacles | Problem Inversion Analysis | 1 day |
-| 8. Integration & Synthesis | Synthesize into coherent plan | Project Communication Package | 3-5 days |
-| 9. Meta-Framework | Orchestrate complete workflow | Complete Project Package | 1-6 weeks |
+### 초기 프롬프트
+질문: **"질문의 짧은 버전(1~2문장)을 알려주세요."**
+
+### 대응 접근법
+사용자가 질문을 공유한 후 이해했음을 보여주는 간단한 요약(한 문단 이하)을 반환합니다. 더 넓은 맥락에 주목하고 질문의 핵심을 강조하여 질문을 바꾸어 그들의 생각과 일치하는지 확인하십시오.
+
+### 후속 메시지
+그런 다음 다음과 같이 질문하십시오. "이제 좀 더 자세히 설명해주세요. 간략하게라도 다음을 포함할 수 있습니다.
+1. 설정(예: 현재 프로젝트에 관한 것입니까, 아니면 미래의 프로젝트에 관한 것입니까?)
+2. 당신이 생각하고 있는 것에 대해 좀 더 자세히 설명해주세요."
+
+### 작업 흐름
+거기에서 질문에 가장 적합한 문제 선택 프레임워크의 특정 모듈을 활용합니다.
+- 향후 프로젝트 계획을 위한 **기술 1-4**(아이디어화, 위험, 최적화, 매개 변수)
+- 현재 프로젝트 탐색을 위한 **기술 5-7**(의사결정 트리, 역경, 반전)
+- **스킬 8** 커뮤니케이션 및 종합
+- 포괄적인 워크플로 조정을 위한 **스킬 9**
+
+`references/` 폴더에서 전체 참조 자료를 확인하세요.
 
 ---
 
-## Skill Workflow
+## 핵심 프레임워크 개념
+
+### 중앙 통찰력
+**문제 선택 >> 실행 품질**
+
+평범한 문제를 훌륭하게 실행하더라도 점진적인 영향을 미칩니다. 중요한 문제를 잘 실행하면 상당한 영향을 미칠 수 있습니다.
+
+### 타임 패러독스
+과학자들은 일반적으로 다음을 지출합니다.
+- **일** 문제 선택
+- **몇 년** 문제 해결
+
+이러한 불균형은 영향을 제한합니다. 이러한 기술은 현명한 선택에 더 많은 시간을 투자하는 데 도움이 됩니다.
+
+### 평가 축
+**아이디어 평가용:**
+- **X축:** 성공 가능성
+- **Y축:** 성공 시 영향
+
+기술은 아이디어를 오른쪽(더 실현 가능) 및 위쪽(더 영향력 있음)으로 이동하는 데 도움이 됩니다.
+
+### 위험 역설
+- 위험을 피하지 말고 친구가 되십시오.
+- 위험 없음 = 증분 작업
+- 하지만: 다수의 기적 = 회피 또는 개선
+- **균형:** 이해되고 정량화되었으며 관리 가능한 위험
+
+### 매개변수 역설
+- 너무 많은 고정 = 취성
+- 너무 적은 수의 고정 = 마비
+- **가장 좋은 점:** 하나의 의미 있는 제약 조건을 수정합니다.
+
+### 역경의 원칙
+- 위기는 피할 수 없습니다(놀라지 마세요)
+- 위기는 기회입니다(낭비하지 마세요)
+- **전략:** 문제 해결과 프로젝트 업그레이드를 동시에 진행
+
+---
+
+## 9가지 기술 개요
+
+| 스킬 | 목적 | 출력 | 시간 |
+|-------|---------|---------|------|
+| 1. 직관 펌프 | 고품질의 연구 아이디어 생성 | 문제 아이디어 문서 | ~1주 |
+| 2. 위험 평가 | 프로젝트 위험 식별 및 관리 | 위험 평가 매트릭스 | 3~5일 |
+| 3. 최적화 기능 | 성공 지표 정의 | 영향 평가 문서 | 2~3일 |
+| 4. 매개변수 전략 | 수정할 사항과 유연성 유지 결정 | 매개변수 전략 문서 | 2~3일 |
+| 5. 의사결정 트리 탐색 | 계획 결정 포인트 및 고도 댄스 | 의사결정 트리 지도 | 2일 |
+| 6. 역경 대응 | 위기를 기회로 대비 | 역경 플레이북 | 2일 |
+| 7. 문제 반전 | 장애물 주위를 탐색 | 문제 반전 분석 | 1일 |
+| 8. 통합 및 합성 | 일관된 계획으로 종합 | 프로젝트 커뮤니케이션 패키지 | 3~5일 |
+| 9. 메타 프레임워크 | 전체 워크플로 조율 | 완전한 프로젝트 패키지 | 1~6주 |
+
+---
+
+## 스킬 작업흐름
 
 ```
 SKILL 1: Intuition Pumps
@@ -186,84 +186,84 @@ SKILL 9: Meta-Skill
 
 ---
 
-## Key Design Principles
+## 주요 디자인 원칙
 
-1. **Conversational Entry** - Meet users where they are with three clear starting points
-2. **Thoughtful Interaction** - Ask clarifying questions; low confidence prompts additional input
-3. **Literature Integration** - Use PubMed searches at strategic points for validation
-4. **Concrete Outputs** - Every skill produces tangible 1-2 page documents
-5. **Building Specificity** - Progressive detail emerges through targeted questions
-6. **Flexibility** - Skills work independently, sequentially, or iteratively
-7. **Scientific Rigor** - Claims about generality and feasibility should be evidence-based
-
----
-
-## Who Should Use These Skills
-
-### Graduate Students (Primary Audience)
-- **When:** Choosing thesis projects, qualifying exams, committee meetings
-- **Focus:** Skills 1-3 (ideation, risk, impact) + Skill 9 (complete workflow)
-- **Timeline:** 2-4 weeks for comprehensive planning
-
-### Postdocs
-- **When:** Starting new position, planning independent projects, fellowship applications
-- **Focus:** All skills, emphasizing independence and risk management
-- **Timeline:** 1-2 weeks intensive planning
-
-### Principal Investigators
-- **When:** New lab, new direction, mentoring trainees, grant cycles
-- **Focus:** Skills 1, 3, 4, 6 (ideation, impact, parameters, adversity)
-- **Timeline:** Ongoing, integrate into lab culture
-
-### Startup Founders
-- **When:** Company inception, pivot decisions, investor pitches
-- **Focus:** Skills 1-4 (ideation through parameters) + Skill 8 (communication)
-- **Timeline:** 1-2 weeks for initial planning, revisit quarterly
+1. **대화 입력** - 세 가지 명확한 시작점을 통해 현재 있는 곳에서 사용자를 만나세요.
+2. **사려 깊은 상호 작용** - 명확한 질문을 하세요. 신뢰도가 낮으면 추가 입력이 필요함
+3. **문헌 통합** - 검증을 위해 전략적 지점에서 PubMed 검색을 사용합니다.
+4. **구체적인 출력** - 모든 기술은 실질적인 1~2페이지 문서를 생성합니다.
+5. **빌딩 특이성** - 타겟 질문을 통해 점진적인 세부 사항이 나타납니다.
+6. **유연성** - 기술은 독립적으로, 순차적으로 또는 반복적으로 작동합니다.
+7. **과학적 엄격함** - 일반성과 타당성에 대한 주장은 증거를 기반으로 해야 합니다.
 
 ---
 
-## Reference Materials
+## 누가 이 기술을 사용해야 할까요?
 
-Detailed skill documentation is available in the `references/` folder:
+### 대학원생(1차 청중)
+- **시기:** 논문과제 선정, 자격시험, 위원회 회의
+- **초점:** 기술 1-3(아이디어, 위험, 영향) + 기술 9(전체 워크플로)
+- **타임라인:** 종합 계획에 2~4주 소요
 
-| File | Content | Search Patterns |
-|------|---------|-----------------|
-| `01-intuition-pumps.md` | Generate research ideas | `Intuition Pump #`, `Trap #`, `Phase [0-9]` |
-| `02-risk-assessment.md` | Risk identification | `Risk.*1-5`, `go/no-go`, `assumption` |
-| `03-optimization-function.md` | Success metrics | `Generality.*Learning`, `optimization`, `impact` |
-| `04-parameter-strategy.md` | Parameter fixation | `fixed.*float`, `constraint`, `parameter` |
-| `05-decision-tree.md` | Decision tree navigation | `altitude`, `Level [0-9]`, `decision` |
-| `06-adversity-planning.md` | Adversity response | `adversity`, `crisis`, `ensemble` |
-| `07-problem-inversion.md` | Problem inversion strategies | `Strategy [0-9]`, `inversion`, `goal` |
-| `08-integration-synthesis.md` | Integration and synthesis | `narrative`, `communication`, `story` |
-| `09-meta-framework.md` | Complete workflow | `Phase`, `workflow`, `orchestrat` |
+### 박사후 연구원
+- **시기:** 새로운 직위 시작, 독립 프로젝트 계획, 펠로우십 신청
+- **초점:** 모든 기술, 독립성과 위험 관리 강조
+- **타임라인:** 1~2주 집중 계획
 
----
+### 주요 조사관
+- **시기:** 새로운 연구실, 새로운 방향, 연수생 멘토링, 보조금 주기
+- **초점:** 기술 1, 3, 4, 6(아이디어화, 영향, 매개변수, 역경)
+- **타임라인:** 진행 중, 연구실 문화에 통합
 
-## Expected Outcomes
-
-### Immediate (After Completing Workflow)
-- Clear project vision
-- Honest risk assessment
-- Contingency plans
-- Communication materials ready
-- Confidence in problem choice
-
-### 6-Month
-- Faster decisions (have framework)
-- Productive adversity handling
-- No existential crises (risks mitigated)
-
-### 2-Year
-- Published results or strong progress
-- Avoided dead-end projects
-- Career aligned with goals
-- **Time well-spent** (ultimate measure)
+### 스타트업 창업자
+- **시기:** 회사 설립, 전환 결정, 투자자 홍보
+- **초점:** 스킬 1~4(매개변수를 통한 아이디어) + 스킬 8(소통)
+- **타임라인:** 초기 계획에 1~2주, 분기별로 재검토
 
 ---
 
-## Foundational Reference
+## 참고자료
 
-**Fischbach, M.A., & Walsh, C.T. (2024).** "Problem choice and decision trees in science and engineering." *Cell*, 187, 1828-1833.
+자세한 기술 문서는 `references/` 폴더에서 확인할 수 있습니다.
 
-Based on course BIOE 395 taught at Stanford University.
+| 파일 | 내용 | 패턴 검색 |
+|------|---------|----|
+| `01-intuition-pumps.md` | 연구 아이디어 생성 | `Intuition Pump #`, `Trap #`, `Phase [0-9]` |
+| `02-risk-assessment.md` | 위험 식별 | `Risk.*1-5`, `go/no-go`, `assumption` |
+| `03-optimization-function.md` | 성공 지표 | `Generality.*Learning`, `optimization`, `impact` |
+| `04-parameter-strategy.md` | 매개변수 고정 | `fixed.*float`, `constraint`, `parameter` |
+| `05-decision-tree.md` | 의사결정 트리 탐색 | `altitude`, `Level [0-9]`, `decision` |
+| `06-adversity-planning.md` | 역경 대응 | `adversity`, `crisis`, `ensemble` |
+| `07-problem-inversion.md` | 문제 반전 전략 | `Strategy [0-9]`, `inversion`, `goal` |
+| `08-integration-synthesis.md` | 통합 및 합성 | `narrative`, `communication`, `story` |
+| `09-meta-framework.md` | 완전한 작업흐름 | `Phase`, `workflow`, `orchestrat` |
+
+---
+
+## 예상 결과
+
+### 즉시(워크플로 완료 후)
+- 명확한 프로젝트 비전
+- 정직한 위험 평가
+- 비상 계획
+- 커뮤니케이션 자료 준비
+- 문제 선택에 대한 자신감
+
+### 6개월
+- 더 빠른 의사결정(프레임워크 보유)
+- 생산적인 역경 처리
+- 실존적 위기 없음(위험 완화)
+
+### 2년
+- 발표된 결과 또는 강력한 진전
+- 막다른 프로젝트를 피함
+- 목표에 맞는 경력
+- **잘 보낸 시간**(궁극적 측정)
+
+---
+
+## 기초 참고자료
+
+**Fischbach, M.A. 및 Walsh, C.T. (2024).** "과학과 공학의 문제 선택 및 의사 결정 트리." *셀*, 187, 1828-1833.
+
+스탠포드 대학에서 가르친 BIOE 395 과정을 기반으로 합니다.

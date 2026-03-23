@@ -1,6 +1,6 @@
-# Installation
+# 설치
 
-## Contents
+## 내용
 - [Quick install](#quick-install)
 - [Docker setup](#docker-setup)
 - [Singularity setup (HPC)](#singularity-setup-hpc)
@@ -8,7 +8,7 @@
 - [Verify installation](#verify-installation)
 - [Common issues](#common-issues)
 
-## Quick install
+## 빠른 설치
 
 ```bash
 # Nextflow
@@ -21,9 +21,9 @@ nextflow -version
 java -version  # Requires 11+
 ```
 
-## Docker setup
+## 도커 설정
 
-### Linux
+### 리눅스
 ```bash
 sudo apt-get update && sudo apt-get install docker.io
 sudo systemctl enable --now docker
@@ -31,15 +31,15 @@ sudo usermod -aG docker $USER
 # Log out and back in
 ```
 
-### macOS
-Download Docker Desktop: https://docker.com/products/docker-desktop
+### 맥OS
+Docker 데스크탑 다운로드: https://docker.com/products/docker-desktop
 
-### Verify
+### 확인
 ```bash
 docker run hello-world
 ```
 
-## Singularity setup (HPC)
+## Singularity 설정(HPC)
 
 ```bash
 # Ubuntu/Debian
@@ -49,47 +49,47 @@ sudo apt-get install singularity-container
 conda install -c conda-forge singularity
 ```
 
-### Configure cache
+### 캐시 구성
 ```bash
 export NXF_SINGULARITY_CACHEDIR="$HOME/.singularity/cache"
 mkdir -p $NXF_SINGULARITY_CACHEDIR
 echo 'export NXF_SINGULARITY_CACHEDIR="$HOME/.singularity/cache"' >> ~/.bashrc
 ```
 
-## nf-core tools (optional)
+## nf-core 도구(선택 사항)
 
 ```bash
 pip install nf-core
 ```
 
-Useful commands:
+유용한 명령:
 ```bash
 nf-core list                    # Available pipelines
 nf-core launch rnaseq           # Interactive parameter selection
 nf-core download rnaseq -r 3.14.0  # Download for offline use
 ```
 
-## Verify installation
+## 설치 확인
 
 ```bash
 nextflow run nf-core/demo -profile test,docker --outdir test_demo
 ls test_demo/
 ```
 
-## Common issues
+## 일반적인 문제
 
-**Java version wrong:**
+**Java 버전이 잘못되었습니다:**
 ```bash
 export JAVA_HOME=/path/to/java11
 ```
 
-**Docker permission denied:**
+**Docker 권한이 거부되었습니다:**
 ```bash
 sudo usermod -aG docker $USER
 # Log out and back in
 ```
 
-**Nextflow not found:**
+**Nextflow를 찾을 수 없습니다:**
 ```bash
 echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc

@@ -1,16 +1,16 @@
-# Multiome Analysis with MultiVI
+# MultiVI를 이용한 멀티옴 분석
 
-This reference covers joint RNA and ATAC-seq analysis from multiome experiments using MultiVI.
+이 참고 자료는 MultiVI를 사용한 멀티옴 실험의 공동 RNA 및 ATAC-seq 분석을 다룹니다.
 
-## Overview
+## 개요
 
-MultiVI is a deep generative model for analyzing multiome data (simultaneous RNA-seq and ATAC-seq from the same cells). It:
-- Learns a joint latent representation across modalities
-- Handles missing modalities (RNA-only or ATAC-only cells)
-- Enables batch correction across experiments
-- Supports imputation of missing modalities
+MultiVI는 멀티옴 데이터(동일한 세포의 RNA-seq 및 ATAC-seq 동시)를 분석하기 위한 심층 생성 모델입니다. 그것:
+- 양식 전반에 걸쳐 공동 잠재 표현을 학습합니다.
+- 누락된 양식 처리(RNA 전용 또는 ATAC 전용 셀)
+- 실험 전반에 걸쳐 일괄 수정이 가능합니다.
+- 누락된 양식의 대치 지원
 
-## Prerequisites
+## 전제 조건
 
 ```python
 import scvi
@@ -21,9 +21,9 @@ import numpy as np
 print(f"scvi-tools version: {scvi.__version__}")
 ```
 
-## Data Formats
+## 데이터 형식
 
-### Option 1: MuData (Recommended)
+### 옵션 1: MuData(권장)
 
 ```python
 # Load multiome data as MuData
@@ -37,7 +37,7 @@ print(f"RNA: {mdata.mod['rna'].shape}")
 print(f"ATAC: {mdata.mod['atac'].shape}")
 ```
 
-### Option 2: Separate AnnData Objects
+### 옵션 2: AnnData 개체 분리
 
 ```python
 # Load separately
@@ -50,7 +50,7 @@ adata_rna = adata_rna[common_cells].copy()
 adata_atac = adata_atac[common_cells].copy()
 ```
 
-## Step 1: Prepare RNA Data
+## 1단계: RNA 데이터 준비
 
 ```python
 # RNA preprocessing (standard scvi-tools pipeline)
@@ -76,7 +76,7 @@ sc.pp.highly_variable_genes(
 adata_rna = adata_rna[:, adata_rna.var['highly_variable']].copy()
 ```
 
-## Step 2: Prepare ATAC Data
+## 2단계: ATAC 데이터 준비
 
 ```python
 # ATAC preprocessing
@@ -98,7 +98,7 @@ if adata_atac.n_vars > 50000:
 adata_atac.layers["counts"] = adata_atac.X.copy()
 ```
 
-## Step 3: Create Combined MuData
+## 3단계: 결합된 MuData 생성
 
 ```python
 # Ensure matching cells
@@ -117,7 +117,7 @@ print(f"RNA features: {mdata.mod['rna'].n_vars}")
 print(f"ATAC features: {mdata.mod['atac'].n_vars}")
 ```
 
-## Step 4: Setup MultiVI
+## 4단계: MultiVI 설정
 
 ```python
 # Setup MuData for MultiVI
@@ -134,7 +134,7 @@ scvi.model.MULTIVI.setup_mudata(
 )
 ```
 
-## Step 5: Train MultiVI
+## 5단계: MultiVI 훈련
 
 ```python
 # Create model
@@ -157,7 +157,7 @@ model.train(
 model.history['elbo_train'].plot()
 ```
 
-## Step 6: Get Joint Representation
+## 6단계: 공동 대표 확보
 
 ```python
 # Latent representation
@@ -175,9 +175,9 @@ sc.tl.leiden(mdata, resolution=1.0)
 sc.pl.umap(mdata, color=['leiden', 'batch'], ncols=2)
 ```
 
-## Step 7: Modality-Specific Analysis
+## 7단계: 양식별 분석
 
-### Impute Missing Modality
+### 누락된 양식 대치
 
 ```python
 # Impute RNA expression for ATAC-only cells
@@ -190,7 +190,7 @@ imputed_rna = model.get_normalized_expression(
 imputed_atac = model.get_accessibility_estimates()
 ```
 
-### Differential Analysis
+### 차별 분석
 
 ```python
 # Differential expression (RNA)
@@ -208,9 +208,9 @@ da_results = model.differential_accessibility(
 )
 ```
 
-## Handling Partial Data
+## 부분 데이터 처리
 
-MultiVI can integrate datasets with only one modality:
+MultiVI는 단 하나의 형식으로 데이터세트를 통합할 수 있습니다:
 
 ```python
 # Dataset 1: Full multiome
@@ -225,7 +225,7 @@ mdata.obs['modality'] = 'paired'  # For cells with both
 # MultiVI handles this automatically during training
 ```
 
-## Complete Pipeline
+## 파이프라인 완성
 
 ```python
 def analyze_multiome(
@@ -335,7 +335,7 @@ mdata, model = analyze_multiome(
 sc.pl.umap(mdata, color=['leiden', 'sample'])
 ```
 
-## Peak-to-Gene Linking
+## 피크-유전자 연결
 
 ```python
 # Link ATAC peaks to genes based on correlation in latent space
@@ -369,16 +369,16 @@ def link_peaks_to_genes(model, mdata, distance_threshold=100000):
     return peak_gene_links
 ```
 
-## Troubleshooting
+## 문제 해결
 
-| Issue | Cause | Solution |
-|-------|-------|----------|
-| Different cell counts | Cells missing in one modality | Use common cells only |
-| Training instability | Imbalanced modalities | Normalize feature counts |
-| Poor clustering | Too few features | Increase n_top_genes/peaks |
-| Memory error | Large ATAC matrix | Reduce peak count, use sparse |
-| Batch dominates | Strong technical effects | Ensure batch_key is set |
+| 이슈 | 원인 | 솔루션 |
+|---------|-------|----------|
+| 다양한 세포 수 | 한 가지 양식에서 세포가 누락됨 | 공통 셀만 사용 |
+| 훈련 불안정 | 불균형 양식 | 기능 수 정규화 |
+| 불량한 클러스터링 | 기능이 너무 적음 | n_top_genes/peaks 증가 |
+| 메모리 오류 | 대형 ATAC 매트릭스 | 피크 수를 줄이고 스파스 사용 |
+| 배치가 지배적 | 강력한 기술적 효과 | Batch_key가 설정되어 있는지 확인 |
 
-## Key References
+## 주요 참고자료
 
-- Ashuach et al. (2023) "MultiVI: deep generative model for the integration of multimodal data"
+- Ashuach 등. (2023) "MultiVI: 다중 모드 데이터 통합을 위한 심층 생성 모델"

@@ -1,16 +1,16 @@
-# scATAC-seq Analysis with PeakVI
+# PeakVI를 사용한 scATAC-seq 분석
 
-This reference covers single-cell ATAC-seq analysis using PeakVI for dimensionality reduction, batch correction, and differential accessibility.
+이 참조 자료는 차원 축소, 일괄 수정 및 차등 접근성을 위해 PeakVI를 사용한 단일 셀 ATAC-seq 분석을 다룹니다.
 
-## Overview
+## 개요
 
-PeakVI is a deep generative model for scATAC-seq data that:
-- Models binary accessibility (peak open/closed)
-- Handles batch effects
-- Provides latent representation for clustering
-- Enables differential accessibility analysis
+PeakVI는 다음과 같은 scATAC-seq 데이터를 위한 심층 생성 모델입니다.
+- 모델 바이너리 접근성(피크 개방/폐쇄)
+- 배치 효과를 처리합니다.
+- 클러스터링을 위한 잠재 표현 제공
+- 차별적 접근성 분석 가능
 
-## Prerequisites
+## 전제 조건
 
 ```python
 import scvi
@@ -21,9 +21,9 @@ import anndata as ad
 print(f"scvi-tools version: {scvi.__version__}")
 ```
 
-## Step 1: Load and Prepare ATAC Data
+## 1단계: ATAC 데이터 로드 및 준비
 
-### From 10x Genomics (Cell Ranger ATAC)
+### 10x Genomics(Cell Ranger ATAC)에서
 
 ```python
 # Peak-cell matrix from fragments
@@ -39,7 +39,7 @@ print(f"Cells: {adata.n_obs}, Peaks: {adata.n_vars}")
 print(f"Sparsity: {1 - adata.X.nnz / (adata.n_obs * adata.n_vars):.2%}")
 ```
 
-### From ArchR/Signac
+### ArchR/Signac에서
 
 ```python
 # Export from ArchR (in R)
@@ -50,7 +50,7 @@ print(f"Sparsity: {1 - adata.X.nnz / (adata.n_obs * adata.n_vars):.2%}")
 # Export peak matrix and metadata
 ```
 
-## Step 2: Quality Control
+## 2단계: 품질 관리
 
 ```python
 # Calculate QC metrics
@@ -72,7 +72,7 @@ sc.pp.filter_genes(adata, min_cells=10)
 print(f"After QC: {adata.shape}")
 ```
 
-### Binarize Data
+### 데이터 이진화
 
 ```python
 # PeakVI works with binary accessibility
@@ -83,11 +83,11 @@ adata.X = (adata.X > 0).astype(np.float32)
 print(f"Unique values: {np.unique(adata.X.data)}")
 ```
 
-## Step 3: Feature Selection
+## 3단계: 기능 선택
 
-Unlike RNA-seq, peak selection for ATAC is less established. Options:
+RNA-seq과 달리 ATAC의 피크 선택은 덜 확립되어 있습니다. 옵션:
 
-### Option A: Most Accessible Peaks
+### 옵션 A: 가장 접근하기 쉬운 봉우리
 
 ```python
 # Select top peaks by accessibility frequency
@@ -97,7 +97,7 @@ top_peaks = np.argsort(peak_accessibility)[-50000:]  # Top 50k peaks
 adata = adata[:, top_peaks].copy()
 ```
 
-### Option B: Variable Peaks
+### 옵션 B: 가변 피크
 
 ```python
 # Select peaks with high variance
@@ -109,7 +109,7 @@ selector.fit(adata.X)
 adata = adata[:, selector.get_support()].copy()
 ```
 
-### Option C: Peaks Near Genes
+### 옵션 C: 유전자 근처의 피크
 
 ```python
 # Keep peaks within promoter regions or gene bodies
@@ -118,7 +118,7 @@ adata = adata[:, selector.get_support()].copy()
 # adata = adata[:, adata.var['near_gene']].copy()
 ```
 
-## Step 4: Add Batch Information
+## 4단계: 배치 정보 추가
 
 ```python
 # Add batch annotation if multiple samples
@@ -127,7 +127,7 @@ adata.obs['batch'] = adata.obs['sample_id']  # Or appropriate column
 print(adata.obs['batch'].value_counts())
 ```
 
-## Step 5: Setup and Train PeakVI
+## 5단계: PeakVI 설정 및 교육
 
 ```python
 # Setup AnnData
@@ -155,7 +155,7 @@ model.train(
 model.history['elbo_train'].plot()
 ```
 
-## Step 6: Get Latent Representation
+## 6단계: 잠재 표현 얻기
 
 ```python
 # Latent space for downstream analysis
@@ -170,7 +170,7 @@ sc.tl.leiden(adata, resolution=0.5)
 sc.pl.umap(adata, color=['leiden', 'batch'], ncols=2)
 ```
 
-## Step 7: Differential Accessibility
+## 7단계: 차별적 접근성
 
 ```python
 # Differential accessibility between clusters
@@ -190,7 +190,7 @@ print(f"Significant DA peaks: {len(da_sig)}")
 print(da_sig.head())
 ```
 
-### DA Between Conditions
+### 조건 간 DA
 
 ```python
 # Compare conditions within cell type
@@ -203,7 +203,7 @@ da_condition = model.differential_accessibility(
 )
 ```
 
-## Step 8: Peak Annotation
+## 8단계: 피크 주석
 
 ```python
 # Annotate peaks with nearest genes
@@ -231,7 +231,7 @@ def parse_peak_names(peak_names):
 peak_bed = parse_peak_names(adata.var_names)
 ```
 
-## Step 9: Motif Analysis
+## 9단계: 모티브 분석
 
 ```python
 # Export significant peaks for motif analysis
@@ -246,7 +246,7 @@ peak_bed_sig.to_csv("significant_peaks.bed", sep='\t', index=False, header=False
 # findMotifsGenome.pl significant_peaks.bed hg38 motif_output/ -size 200
 ```
 
-## Step 10: Gene Activity Scores
+## 10단계: 유전자 활동 점수
 
 ```python
 # Compute gene activity from peak accessibility
@@ -288,7 +288,7 @@ def compute_gene_activity(adata, peak_gene_map):
     return adata_gene
 ```
 
-## Complete Pipeline
+## 파이프라인 완성
 
 ```python
 def analyze_scatac(
@@ -373,9 +373,9 @@ da_results = model.differential_accessibility(
 )
 ```
 
-## Integration with scRNA-seq
+## scRNA-seq과의 통합
 
-For multiome data or separate RNA/ATAC from same cells:
+멀티옴 데이터 또는 동일한 세포에서 RNA/ATAC를 분리하는 경우:
 
 ```python
 # See MultiVI for joint RNA+ATAC analysis
@@ -384,15 +384,15 @@ For multiome data or separate RNA/ATAC from same cells:
 # Transfer labels from RNA to ATAC using shared latent space
 ```
 
-## Troubleshooting
+## 문제 해결
 
-| Issue | Cause | Solution |
-|-------|-------|----------|
-| Training slow | Too many peaks | Subset to top 50k peaks |
-| Poor clustering | Too few informative peaks | Use variable peaks |
-| Batch dominates | Strong technical effects | Ensure batch_key is set |
-| Memory error | Large peak matrix | Use sparse format, reduce peaks |
+| 이슈 | 원인 | 솔루션 |
+|---------|-------|----------|
+| 느린 훈련 | 봉우리가 너무 많습니다 | 상위 50,000개 피크에 대한 하위 집합 |
+| 불량한 클러스터링 | 유익한 피크가 너무 적음 | 가변 피크 사용 |
+| 배치가 지배적 | 강력한 기술적 효과 | Batch_key가 설정되어 있는지 확인 |
+| 메모리 오류 | 대형 피크 매트릭스 | 희소 형식 사용, 피크 감소 |
 
-## Key References
+## 주요 참고자료
 
-- Ashuach et al. (2022) "PeakVI: A deep generative model for single-cell chromatin accessibility analysis"
+- Ashuach 등. (2022) "PeakVI: 단일 세포 염색질 접근성 분석을 위한 심층 생성 모델"

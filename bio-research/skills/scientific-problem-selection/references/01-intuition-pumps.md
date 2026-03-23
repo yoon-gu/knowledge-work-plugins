@@ -1,264 +1,264 @@
-# SKILL: Intuition Pumps for Scientific Problem Ideation
+# 기술: 과학적 문제 아이디어를 위한 직관 펌프
 
-## Overview
-This skill helps scientists generate high-quality research ideas by providing systematic prompts ("intuition pumps") and identifying common ideation traps. Based on the framework that most biological and chemical science projects involve **perturbing a system, measuring it, and analyzing the data**, this skill guides users through structured ideation that can significantly impact how they spend years of their career.
+## 개요
+이 기술은 체계적인 프롬프트("직관 펌프")를 제공하고 일반적인 아이디어 함정을 식별함으로써 과학자들이 고품질 연구 아이디어를 생성하는 데 도움이 됩니다. 대부분의 생물학 및 화학 과학 프로젝트에 **시스템 교란, 측정 및 데이터 분석**이 포함되는 프레임워크를 기반으로 하는 이 기술은 사용자가 수년간의 경력을 보내는 방법에 큰 영향을 미칠 수 있는 구조화된 아이디어를 안내합니다.
 
-## Core Framework
+## 핵심 프레임워크
 
-### The Three Pillars of Scientific Work
-Research advances generally fall into one of these categories, each with two dimensions:
+### 과학 연구의 세 가지 기둥
+연구 발전은 일반적으로 다음 범주 중 하나에 속하며 각 범주에는 두 가지 차원이 있습니다.
 
-**PERTURBATION**
-- *Logic*: Novel ways to manipulate biological systems (e.g., using CRISPR for deep mutational scanning)
-- *Technology*: New tools for manipulation (e.g., developing base editors, creating whole-genome CRISPR libraries)
+**섭동**
+- *논리*: 생물학적 시스템을 조작하는 새로운 방법(예: 심층 돌연변이 스캐닝을 위한 CRISPR 사용)
+- *기술*: 조작을 위한 새로운 도구(예: 기본 편집기 개발, 전체 게놈 CRISPR 라이브러리 생성)
 
-**MEASUREMENT**  
-- *Logic*: Novel applications of existing measurement tools (e.g., using tissue clearing to study liver fibrosis)
-- *Technology*: New measurement capabilities (e.g., developing tissue-clearing techniques, super-resolution microscopy)
+**측정**
+- *논리*: 기존 측정 도구의 새로운 적용(예: 간 섬유증 연구를 위한 조직 청소 사용)
+- *기술*: 새로운 측정 기능(예: 조직 제거 기술 개발, 초고해상도 현미경)
 
-**THEORY/COMPUTATION**
-- *Logic*: Using computational tools to make discoveries (e.g., applying AlphaFold to identify protein functions)
-- *Technology*: Building new algorithms or models (e.g., developing machine learning architectures for biological data)
+**이론/계산**
+- *논리*: 계산 도구를 사용하여 발견(예: AlphaFold를 적용하여 단백질 기능 식별)
+- *기술*: 새로운 알고리즘 또는 모델 구축(예: 생물학적 데이터를 위한 기계 학습 아키텍처 개발)
 
-Understanding which quadrant resonates with the user can help identify their niche and guide ideation.
+어떤 사분면이 사용자와 공감하는지 이해하면 틈새 시장을 식별하고 아이디어를 안내하는 데 도움이 될 수 있습니다.
 
-## The Skill Workflow
+## 스킬 작업 흐름
 
-### Phase 1: Initial Discovery Questions (5-10 minutes)
+### 1단계: 초기 탐색 질문(5~10분)
 
-Before diving into intuition pumps, Claude should gather context by asking the user:
+직관 펌프에 뛰어들기 전에 Claude는 사용자에게 다음을 질문하여 상황을 수집해야 합니다.
 
-1. **What is the user's general research area or field?** (e.g., immunology, synthetic biology, neuroscience, protein engineering)
+1. **사용자의 일반적인 연구 분야 또는 분야는 무엇입니까?** (예: 면역학, 합성생물학, 신경과학, 단백질 공학)
 
-2. **What excites the user most about science?**
-   - Building new tools/technologies?
-   - Discovering fundamental principles?
-   - Solving practical problems?
-   - Understanding dynamic processes?
+2. **과학에서 사용자를 가장 흥분시키는 것은 무엇입니까?**
+   - 새로운 도구/기술을 구축하고 계십니까?
+   - 기본 원리를 발견하는가?
+   - 현실적인 문제를 해결하는가?
+   - 동적 프로세스를 이해하고 계십니까?
 
-3. **What are the user's existing strengths?** (Select all that apply)
-   - Specific techniques (please list)
-   - Computational skills
-   - Access to unique systems/models
-   - Domain expertise in a particular area
+3. **사용자의 기존 강점은 무엇입니까?** (해당 항목 모두 선택)
+   - 특정 기술(기재해 주세요)
+   - 계산 능력
+   - 고유한 시스템/모델에 대한 액세스
+   - 특정 분야의 도메인 전문 지식
 
-4. **Current constraints:**
-   - Time horizon for this project? (months/years)
-   - Resources available?
-   - Must it connect to existing work, or can the user start fresh?
+4. **현재 제약 조건:**
+   - 이 프로젝트의 기간은? (월/년)
+   - 자원이 있나요?
+   - 기존 작업에 연결해야 합니까, 아니면 사용자가 새로 시작할 수 있습니까?
 
-5. **On a scale of 1-5, how would the user rate their current idea?**
-   - Likelihood of success: 1 (very risky) to 5 (highly feasible)
-   - Potential impact: 1 (incremental) to 5 (transformative)
+5. **1~5점 척도에서 사용자는 자신의 현재 아이디어를 어떻게 평가하시겠습니까?**
+   - 성공 가능성: 1(매우 위험함) ~ 5(실행 가능성 높음)
+   - 잠재적 영향: 1(증분) ~ 5(변형)
 
-### Phase 2: Applying Intuition Pumps
+### 2단계: 직관 펌프 적용
 
-Based on the user's responses, Claude should guide them through relevant intuition pumps from this list:
+사용자의 응답을 바탕으로 Claude는 다음 목록에서 관련 직관 펌프를 통해 사용자를 안내해야 합니다.
 
-#### Intuition Pump #1: Make It Systematic
-**Prompt:** Take any one-off perturbation or measurement and make it systematic.
+#### 직관 펌프 #1: 체계적으로 만드세요
+** 프롬프트: ** 일회성 교란이나 측정을 수행하여 체계적으로 만드십시오.
 
-**Examples:**
-- Instead of mutating one enzyme, measure kinetic parameters across an entire enzyme family
-- Instead of one CRISPR mutant → genome-wide screen with transcriptomic readout
-- Instead of imaging one condition → high-throughput imaging across thousands of conditions
+**예:**
+- 하나의 효소를 돌연변이시키는 대신 전체 효소군에 걸쳐 동역학 매개변수를 측정합니다.
+- 하나의 CRISPR 돌연변이 대신 → 전사체 판독이 가능한 게놈 전체 화면
+- 하나의 조건을 이미징하는 대신 → 수천 가지 조건에 걸쳐 높은 처리량의 이미징
 
-**Prompt for User:** What one-off experiment in your field could become a systematic survey?
+**사용자를 위한 프롬프트:** 귀하의 분야에서 체계적인 설문조사가 될 수 있는 일회성 실험은 무엇입니까?
 
-#### Intuition Pump #2: Identify Technology Limitations
-**Prompt:** What are the fundamental limitations of technologies you use? These limitations are opportunities.
+#### 직관 펌프 #2: 기술 한계 식별
+** 프롬프트:** 귀하가 사용하는 기술의 근본적인 한계는 무엇입니까? 이러한 한계는 기회입니다.
 
-**Examples:**
-- Microscopy can't resolve beyond diffraction limit → super-resolution microscopy
-- DNA synthesis can't make complete genomes → develop assembly methods
-- Genetic screens have precise input but imprecise output → develop high-dimensional readouts
-- We do single gene KOs but networks are complex → develop combinatorial perturbation methods
+**예:**
+- 현미경은 회절한계를 넘어서는 분해가 불가능 → 초고해상도 현미경
+- DNA 합성으로는 완전한 게놈을 만들 수 없음 → 조립방법 개발
+- 유전자 스크린은 입력은 정확하지만 출력은 부정확함 → 고차원 판독 개발
+- 단일 유전자 KO를 수행하지만 네트워크가 복잡함 → 조합 교란 방법 개발
 
-**Prompt for User:** What technology limitation frustrates you most? How might you turn that limitation into an opportunity?
+**사용자에게 묻는 메시지:** 어떤 기술 제한으로 인해 가장 좌절감을 느끼시나요? 어떻게 그 한계를 기회로 바꿀 수 있을까요?
 
-#### Intuition Pump #3: The "I Can't Imagine" Test
-**Prompt:** I can't imagine a future in which we don't have ____, but it doesn't exist yet.
+#### 직관 펌프 #3: "상상할 수 없습니다" 테스트
+** 프롬프트:** ____이 없는 미래는 상상할 수 없지만 아직 존재하지도 않습니다.
 
-**Examples:**
-- The ability to design highly efficient enzymes like we design other proteins
-- The ability to deliver genome editing payloads to any cell type in vivo
-- 3D tomographic imaging of live cells at molecular resolution
-- Proteome-scale sequencing with the throughput of RNA-seq
+**예:**
+- 다른 단백질을 설계하는 것과 마찬가지로 고효율의 효소를 설계하는 능력
+- 생체 내 모든 세포 유형에 게놈 편집 페이로드를 전달하는 능력
+- 분자 해상도에서 살아있는 세포의 3D 단층 촬영
+- RNA-seq 처리량을 이용한 Proteome-scale sequencing
 
-**Prompt for User:** What capability seems inevitable but doesn't exist yet in your field?
+**사용자에게 메시지:** 불가피해 보이지만 귀하의 분야에 아직 존재하지 않는 기능은 무엇입니까?
 
-#### Intuition Pump #4: Static vs. Dynamic Understanding
-**Prompt:** We understand biological "parts lists" but rarely understand dynamic processes.
+#### 직관 펌프 #4: 정적 대 동적 이해
+** 프롬프트:** 우리는 생물학적 "부품 목록"을 이해하지만 동적 프로세스를 거의 이해하지 못합니다.
 
-**Key Insight:** Most observations are single-timepoint, single-perturbation format. But biological systems are dynamic—like humans flowing through Grand Central Station or money through financial systems.
+**주요 통찰력:** 대부분의 관찰은 단일 시점, 단일 섭동 형식입니다. 그러나 생물학적 시스템은 역동적입니다. 인간이 그랜드 센트럴 스테이션을 통해 이동하거나 돈이 금융 시스템을 통해 흐르는 것처럼 말입니다.
 
-**Examples:**
-- Understanding growth factor signaling like we understand turning a key in a car engine
-- Time-resolved cell atlases with lineage tracing through entire development
-- Following metabolite flux through pathways in real-time
+**예:**
+- 자동차 엔진의 열쇠를 돌리는 것처럼 성장 인자 신호를 이해합니다.
+- 전체 개발 과정에서 계보 추적이 가능한 시간 해결 세포 지도책
+- 경로를 통한 대사산물 흐름을 실시간으로 추적
 
-**Prompt for User:** What dynamic process in your field do we observe as static snapshots? How might you capture the full temporal or spatial dynamics?
+**사용자에게 묻는 메시지:** 귀하의 분야에서 정적 스냅샷으로 관찰되는 동적 프로세스는 무엇입니까? 전체 시간적 또는 공간적 역학을 어떻게 포착할 수 있습니까?
 
-#### Intuition Pump #5: Pick a New Axis
-**Prompt:** We almost always use time as the x-axis for dynamic processes. What other coordinate could you use?
+#### 직관 펌프 #5: 새로운 축 선택
+** 프롬프트: ** 동적 프로세스의 경우 거의 항상 시간을 x축으로 사용합니다. 어떤 다른 좌표를 사용할 수 있나요?
 
-**Example:** Instead of time, use "infection progression" markers to enable monitoring asynchronous cells
+**예:** 시간 대신 "감염 진행" 마커를 사용하여 비동기 셀 모니터링을 활성화합니다.
 
-**Prompt for User:** What non-temporal coordinate could reveal new biology in your system?
+**사용자를 위한 프롬프트:** 시스템의 새로운 생물학을 드러낼 수 있는 비시간적 좌표는 무엇입니까?
 
-#### Intuition Pump #6: Create a Technology Platform
-**Prompt:** Instead of answering one question, could you build a platform that enables many questions?
+#### 직관 펌프 #6: 기술 플랫폼 만들기
+** 프롬프트:** 하나의 질문에 답하는 대신 많은 질문을 가능하게 하는 플랫폼을 구축할 수 있습니까?
 
-**Examples:**
-- Antibodies for intracellular targets (not just extracellular)
-- AI that predicts perturbations needed to reach desired cell states
-- Universal genome delivery vehicles
+**예:**
+- 세포외 표적뿐만 아니라 세포내 표적을 위한 항체
+- 원하는 세포 상태에 도달하는 데 필요한 교란을 예측하는 AI
+- 범용 게놈 전달 차량
 
-**Prompt for User:** What platform would transform how your field asks questions?
+**사용자를 위한 프롬프트:** 귀하의 분야에서 질문하는 방식을 변화시킬 플랫폼은 무엇입니까?
 
-#### Intuition Pump #7: Dogs That Don't Bark
-**Prompt:** Why doesn't something exist or occur? Absence can be as informative as presence.
+#### 직관 펌프 #7: 짖지 않는 개
+** 프롬프트: ** 왜 무언가가 존재하지 않거나 발생하지 않습니까? 부재는 존재만큼 유익할 수 있습니다.
 
-**Examples:**
-- Why are there no Gram-negative bacteria on human skin?
-- Why do some catalytically inactive enzymes persist through evolution?
-- Why don't certain cell types exist in certain tissues?
+**예:**
+- 인간의 피부에는 왜 그람 음성균이 없나요?
+- 촉매적으로 불활성인 일부 효소가 진화 후에도 지속되는 이유는 무엇입니까?
+- 왜 특정 조직에는 특정 세포 유형이 존재하지 않습니까?
 
-**Prompt for User:** What absence puzzles you in your field?
+**사용자를 위한 프롬프트:** 귀하의 분야에서 어떤 부재가 당신을 당황하게 합니까?
 
-### Phase 3: Avoiding Common Traps
+### 3단계: 일반적인 함정 방지
 
-After generating ideas, we must evaluate them critically. Here are the most common traps:
+아이디어를 낸 후에는 이를 비판적으로 평가해야 합니다. 가장 일반적인 함정은 다음과 같습니다.
 
-#### Trap #1: The Truffle Hound
-**Warning:** Don't become so good at one system or technique that you fail to ask questions of biological import.
+#### 함정 #1: 송로버섯 사냥개
+**경고:** 생물학적 중요성에 대한 질문을 하지 못할 정도로 한 시스템이나 기술에 너무 능숙해지지 마십시오.
 
-**Bad:** "What is the role of p190 RhoGAP in wing development?"  
-**Better:** "How do signaling pathways and cytoskeleton coordinate to control wing development?"
+**나쁜:** "날개 개발에서 p190 RhoGAP의 역할은 무엇입니까?"
+**더 나은 점:** "날개 발달을 제어하기 위해 신호 전달 경로와 세포골격이 어떻게 조정됩니까?"
 
-**Self-Check:** Is the question driven by biological curiosity or by what the user is technically capable of?
+**자가 점검:** 질문이 생물학적 호기심에 의해 유도됩니까, 아니면 사용자가 기술적으로 수행할 수 있는 능력에 의해 유도됩니까?
 
-#### Trap #2: Applying Existing Tool to New System
-**Warning:** "Let's use CRISPR in my organism" can be valuable but risks crowding and incrementalism.
+#### 함정 #2: 기존 도구를 새 시스템에 적용
+**경고:** "내 유기체에 CRISPR를 사용하자"는 가치가 있을 수 있지만 혼잡과 점진주의의 위험이 있습니다.
 
-**When It Works:** The user is enabling a field that truly needs this capability
-**When It Fails:** The tool is already widely applied; the contribution will be incremental
+**작동 시기:** 사용자가 이 기능이 꼭 필요한 필드를 활성화하고 있습니다.
+**실패할 경우:** 이 도구는 이미 널리 적용되어 있습니다. 기여도는 점진적으로 증가할 것입니다
 
-**Self-Check:** Will this tool application open new biological questions, or just extend existing observations? Claude should help the user evaluate this honestly.
+**자가 점검:** 이 도구 응용 프로그램이 새로운 생물학적 질문을 열어줄까요, 아니면 기존 관찰을 확장할까요? Claude는 사용자가 이를 정직하게 평가할 수 있도록 도와야 합니다.
 
-#### Trap #3: Jumping on the First Idea
-**Warning:** Treating ideas with reverence instead of skepticism. Confirmation bias sets in quickly.
+#### 함정 #3: 첫 번째 아이디어에 뛰어들기
+**경고:** 아이디어를 회의적인 태도 대신 존중하는 마음으로 대하십시오. 확증편향이 빠르게 형성됩니다.
 
-**Better Approach:** Users should treat new ideas like leeches trying to steal their time. Look for the warts. Develop several ideas in parallel and comparison shop.
+**더 나은 접근 방식:** 사용자는 새로운 아이디어를 시간을 훔치려는 거머리처럼 다루어야 합니다. 사마귀를 찾아보세요. 병렬 및 비교 상점에서 여러 아이디어를 개발하십시오.
 
-**Self-Check:** Has the user critically evaluated at least 3-5 alternative approaches?
+**자체 점검:** 사용자가 최소 3~5개의 대체 접근 방식을 비판적으로 평가했습니까?
 
-#### Trap #4: Too Many Fixed Parameters
-**Warning:** Fixing too many parameters at the outset creates a poor technique-application match.
+#### 함정 #4: 고정 매개변수가 너무 많습니다.
+**경고:** 처음에 너무 많은 매개변수를 수정하면 기술과 적용이 일치하지 않게 됩니다.
 
-**Example of Over-Constraining:** "I will use spatial transcriptomics to study antigen-presenting cell and T cell interactions in the tumor microenvironment."
-- This fixes: technique (spatial transcriptomics), cell types, and context
-- If any assumption fails, the project fails
+**과도한 제한의 예:** "나는 종양 미세환경에서 항원 제시 세포와 T 세포 상호 작용을 연구하기 위해 공간 전사체학을 사용할 것입니다."
+- 수정 사항: 기술(공간 전사체학), 세포 유형 및 상황
+- 어떤 가정이라도 실패하면 프로젝트는 실패한다
 
-**Self-Check:** Has the user fixed more than 2 parameters before starting?
+**자가 점검:** 사용자가 시작하기 전에 2개 이상의 매개변수를 수정했습니까?
 
-#### Trap #5: Too Few Fixed Parameters
-**Warning:** "I want to do impactful work in cell engineering" → paralysis
+#### 함정 #5: 고정 매개변수가 너무 적음
+**경고:** "세포 공학 분야에서 영향력 있는 작업을 하고 싶습니다." → 마비
 
-**Resolution:** Constraints engender creativity. Fix ONE parameter at a time and let creativity flow.
+**해결책:** 제약은 창의성을 낳습니다. 한 번에 하나의 매개변수를 수정하고 창의성이 흐르도록 하세요.
 
-**Self-Check:** Does the user have at least one concrete constraint to work with?
+**자체 점검:** 사용자가 작업할 구체적인 제약 조건이 하나 이상 있습니까?
 
-### Phase 4: Literature Integration
+### 4단계: 문학 통합
 
-To ensure the idea has appropriate scope and hasn't been thoroughly explored, Claude should ask:
+아이디어의 범위가 적절하고 철저하게 조사되지 않았는지 확인하기 위해 Claude는 다음과 같이 질문해야 합니다.
 
-1. **What are 2-3 key questions or gaps the idea addresses?**
+1. **2~3개의 핵심 질문이나 아이디어가 다루는 공백은 무엇입니까?**
 
-2. **What should be searched in PubMed to:**
-   - Understand the current state of the field?
-   - Identify related approaches?
-   - Find empirical knowledge from adjacent domains that could inform the approach?
+2. **PubMed에서 검색해야 할 내용:**
+   - 현재 현장 상황을 이해하고 있는가?
+   - 관련 접근법을 식별합니까?
+   - 접근 방식을 알릴 수 있는 인접 영역의 경험적 지식을 찾으십니까?
 
-Claude should use PubMed to:
-- Assess how general/specific the problem is
-- Identify relevant methodological advances
-- Find analogous systems or approaches in other fields
-- Determine the degree of competition
+Claude는 PubMed를 사용하여 다음을 수행해야 합니다.
+- 문제가 얼마나 일반적이고 구체적인지 평가합니다.
+- 관련 방법론적 발전 확인
+- 다른 분야에서도 유사한 시스템이나 접근 방식을 찾아보세요.
+- 경쟁 정도를 결정
 
-### Phase 5: Idea Refinement and Output
+### 5단계: 아이디어 개선 및 결과물
 
-After working through intuition pumps, avoiding traps, and reviewing literature, Claude should help the user:
+직관 펌프를 통해 작업하고, 함정을 피하고, 문헌을 검토한 후 Claude는 사용자를 도와야 합니다.
 
-1. **Crystallize the Idea:**
-   - Biological question
-   - Technical approach (perturbation/measurement/theory: logic vs. technology)
-   - What's novel about this angle?
+1. **아이디어를 구체화합니다.**
+   - 생물학적 질문
+   - 기술적 접근(섭동/측정/이론: 논리 대 기술)
+   - 이 각도의 참신한 점은 무엇입니까?
 
-2. **Articulate Fixed vs. Floating Parameters:**
-   - What MUST remain constant in the approach?
-   - What can be flexible if obstacles arise?
+2. **고정 매개변수와 부동 매개변수를 명확하게 설명:**
+   - 접근 방식에서 반드시 일정하게 유지되어야 하는 것은 무엇입니까?
+   - 장애가 발생하면 유연하게 대처할 수 있는 것은 무엇입니까?
 
-3. **Identify Key Assumptions:**
-   - What must be true for this to work?
-   - Which assumptions are about biology vs. technology capabilities?
+3. **주요 가정 식별:**
+   - 이것이 작동하려면 무엇이 참이어야 합니까?
+   - 생물학과 기술 역량에 대한 가정은 무엇입니까?
 
-4. **Sketch Alternative Paths:**
-   - If the primary approach fails, what's Plan B?
-   - Can the project be designed to succeed regardless of outcome?
+4. **대체 경로 스케치:**
+   - 기본 접근 방식이 실패할 경우 플랜 B는 무엇입니까?
+   - 결과에 상관없이 프로젝트가 성공하도록 설계할 수 있는가?
 
-## Output Deliverable
+## 출력 결과물
 
-At the end of this skill, Claude should produce a **2-page Problem Ideation Document** containing:
+이 기술이 끝나면 Claude는 다음을 포함하는 **2페이지 분량의 문제 아이디어 문서**를 작성해야 합니다.
 
-### Page 1: Core Idea
-- **Title:** Concise project name
-- **The Question:** What biological question is being asked?
-- **The Approach:** How will it be answered? (Specify perturbation/measurement/computation: logic vs. technology)
-- **What's Novel:** The unique angle
-- **Why It Matters:** Potential impact (generality × learning, or technology development)
-- **Intuition Pump(s) Used:** Which prompted this idea
+### 1페이지: 핵심 아이디어
+- **제목:** 간결한 프로젝트 이름
+- **질문:** 어떤 생물학적 질문이 제기되고 있나요?
+- **접근 방식:** 어떻게 대답할 것인가? (섭동/측정/계산 지정: 논리 대 기술)
+- **참신한 점:** 독특한 각도
+- **중요한 이유:** 잠재적 영향(일반성 × 학습 또는 기술 개발)
+- **사용된 직관 펌프:** 이 아이디어를 촉발한 것
 
-### Page 2: Critical Analysis
-- **Fixed vs. Floating Parameters:**
-  - Fixed: What must stay constant
-  - Floating: What can adapt
+### 2페이지: 비판적 분석
+- **고정 매개변수와 부동 매개변수:**
+  - 수정됨: 일정하게 유지되어야 하는 사항
+  - 플로팅(Floating): 적응할 수 있는 것
 
-- **Key Assumptions & Risk Assessment:**
-  - Biological assumptions (risk level 1-5)
-  - Technical assumptions (risk level 1-5)
+- **주요 가정 및 위험 평가:**
+  - 생물학적 가정(위험도 1~5)
+  - 기술적 가정(위험 수준 1-5)
 
-- **Traps Avoided:** Which pitfalls were navigated around?
+- **피한 함정:** 어떤 함정을 탐색했습니까?
 
-- **Alternative Approaches:** Plan B and Plan C
+- **대체 접근 방식:** 플랜 B 및 플랜 C
 
-- **Literature Context:**
-  - 3-5 key papers that inform or relate to this work
-  - Degree of competition (low/medium/high)
-  - The user's edge/advantage
+- **문학 맥락:**
+  - 이 작업을 알리거나 관련이 있는 주요 논문 3~5개
+  - 경쟁 정도(낮음/중간/높음)
+  - 사용자의 장점/장점
 
-- **Next Steps:** First 3 concrete experiments or analyses
+- **다음 단계:** 처음 3개의 구체적인 실험 또는 분석
 
-## Key Principles to Remember
+## 기억해야 할 주요 원칙
 
-1. **Reversal of Polarity:** Treat ideas with skepticism, not reverence. Look for flaws before falling in love.
+1. **극성의 역전:** 아이디어를 존경심이 아닌 회의주의로 대하십시오. 사랑에 빠지기 전에 결점을 찾아보세요.
 
-2. **Comparison Shopping:** Develop multiple ideas in parallel. The act of comparison improves decision-making.
+2. **비교 쇼핑:** 여러 아이디어를 동시에 개발합니다. 비교 행위는 의사 결정을 향상시킵니다.
 
-3. **Fix One Parameter at a Time:** Constraints engender creativity, but too many constraints prevent it.
+3. **한 번에 하나의 매개변수 수정:** 제약 조건은 창의성을 낳지만 너무 많은 제약 조건은 창의력을 방해합니다.
 
-4. **Think in Ensembles:** The user is picking a family of possible projects, not a singular path. Flexibility is essential.
+4. **앙상블로 생각:** 사용자는 단일 경로가 아닌 가능한 프로젝트 계열을 선택합니다. 유연성은 필수적입니다.
 
-5. **Balance Logic and Technology:** Novel biology can come from new tools OR clever application of existing tools.
+5. **논리와 기술의 균형:** 새로운 도구 또는 기존 도구의 영리한 적용을 통해 새로운 생물학이 탄생할 수 있습니다.
 
-6. **Systematic Over One-Off:** High-throughput and systematic approaches often reveal more than single observations.
+6. **일회성 이상의 체계적인:** 높은 처리량과 체계적인 접근 방식은 종종 단일 관찰보다 더 많은 것을 드러냅니다.
 
-7. **Dynamic Over Static:** Biological systems are dynamic. How can process be captured rather than snapshot?
+7. **정적보다 동적:** 생물학적 시스템은 동적입니다. 스냅샷이 아닌 프로세스를 어떻게 캡처할 수 있습니까?
 
-## Getting Started
+## 시작하기
 
-When the user is ready, Claude should guide them through the Phase 1 questions to begin the systematic ideation process. The key message: spending extra time on problem choice is the highest-leverage activity in science. A well-chosen problem executed reasonably well will have more impact than a mediocre problem executed brilliantly.
+사용자가 준비되면 Claude는 체계적인 아이디어 프로세스를 시작하기 위해 1단계 질문을 안내해야 합니다. 핵심 메시지: 문제 선택에 추가 시간을 투자하는 것은 과학에서 가장 활용도가 높은 활동입니다. 합리적으로 잘 실행된 잘 선택된 문제는 훌륭하게 실행된 평범한 문제보다 더 큰 영향을 미칠 것입니다.
 
 ---
 
-*This skill is based on the problem choice framework developed by Michael A. Fischbach and Christopher T. Walsh, as described in "Problem choice and decision trees in science and engineering" (Cell, 2024).*
+*이 기술은 "과학과 공학의 문제 선택 및 의사결정 트리"(Cell, 2024)에 설명된 대로 Michael A. Fischbach와 Christopher T. Walsh가 개발한 문제 선택 프레임워크를 기반으로 합니다.*

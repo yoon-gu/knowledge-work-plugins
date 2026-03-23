@@ -1,152 +1,152 @@
-# SKILL 7: Problem Inversion Strategies ("Turn It On Its Head")
+# 스킬 7: 문제 반전 전략("전개")
 
-## Overview
-This skill provides three concrete strategies for navigating around obstacles by reframing problems. When stuck, instead of pushing harder on the current approach, try inverting the problem.
+## 개요
+이 기술은 문제를 재구성하여 장애물 주위를 탐색하기 위한 세 가지 구체적인 전략을 제공합니다. 막히면 현재 접근 방식을 더 강하게 추진하는 대신 문제를 뒤집어 보십시오.
 
-## Core Principle
-**"Turn a problem on its head"**
+## 핵심 원칙
+**"문제를 뒤집어보세요"**
 
-Three powerful strategies:
-1. **Unfix parameters** (covered in Skill 4, applied here in crisis)
-2. **Don't achieve goal A? Achieve comparable goal B**
-3. **"I have the answer; what is the question?"**
+세 가지 강력한 전략:
+1. **매개변수 수정**(스킬 4에서 다루며 위기 시 여기에 적용)
+2. **목표 A를 달성하지 못하셨나요? 비슷한 목표 달성 B**
+3. **"답이 있습니다. 질문이 무엇인가요?"**
 
-## Strategy 1: Unfix Parameters (In Crisis Mode)
+## 전략 1: 매개변수 수정 안 함(위기 모드)
 
-**When to Use:** Run-of-the-mill issues in project execution
+**사용 시기:** 프로젝트 실행 시 발생하는 일상적인 문제
 
-**Approach:** Let a "sacred" fixed parameter float
+**접근법:** "신성한" 고정 매개변수를 띄우세요.
 
-**Example from Lecture:**
-- **Stuck:** Spatial transcriptomics of APC-T cell interactions in tumor microenvironment
-- **All fixed:** Technique, cell types, context
-- **Inversion:**
-  - Unfix technique → What else could measure these interactions?
-  - Unfix cell types → What other interactions matter in tumors?
-  - Unfix context → Where else do APC-T interactions matter?
+**강의의 예:**
+- **고착:** 종양 미세환경에서 APC-T 세포 상호작용의 공간 전사체학
+- **모두 수정됨:** 기술, 셀 유형, 컨텍스트
+- **반전:**
+  - Unfix 기술 → 이러한 상호작용을 측정할 수 있는 다른 방법은 무엇입니까?
+  - 세포 유형 고정 → 종양에서 다른 상호작용이 중요한가요?
+  - 컨텍스트 수정 → APC-T 상호작용이 또 어디에서 중요합니까?
 
-**Your Application:**
-For each fixed parameter in your project:
-- What if this floated?
-- What alternatives exist?
-- Which would be easier/faster/more informative?
+**귀하의 신청서:**
+프로젝트의 각 고정 매개변수에 대해 다음을 수행합니다.
+- 이게 떠다니면 어떡하지?
+- 어떤 대안이 있나요?
+- 어느 것이 더 쉽고 빠르며 더 유익할까요?
 
-## Strategy 2: Comparable Goal Substitution
+## 전략 2: 비슷한 목표 대체
 
-**When to Use:** Existential threats to project (can't achieve original goal)
+**사용 시기:** 프로젝트에 대한 실존적 위협(원래 목표를 달성할 수 없음)
 
-**Approach:** Achieve a different but equally valuable goal
+**접근방식:** 다르지만 똑같이 가치 있는 목표 달성
 
-**Mindset Shift:**
-- **Wrong:** "I failed to do X"
-- **Right:** "The world needs Y instead, which I CAN do"
+**사고방식의 변화:**
+- **잘못됨:** "X를 수행하지 못했습니다."
+- **맞습니다:** "세상은 대신 Y가 필요합니다. 나는 할 수 있습니다."
 
-**Example from Lectures: PROTAC Story**
-- **Goal A (Failed):** Degrade specific therapeutic target
-- **Goal B (Achieved):** Map which kinases ARE degradable
-- **Value:** B is more impactful (general principle + method validation)
-- **Learning:** Target engagement ≠ degradation (important discovery)
+**강의 예시: PROTAC 스토리**
+- **목표 A(실패):** 특정 치료 목표 저하
+- **목표 B(달성됨):** 분해 가능한 키나제 지도
+- **가치:** B가 더 영향력이 있습니다(일반 원칙 + 방법 검증)
+- **학습:** 대상 참여 ≠ 저하(중요한 발견)
 
-**Framework:**
-1. **Original goal:** [What you wanted]
-2. **Why it failed:** [Specific reason]
-3. **What CAN you do with current data/tools:** [Capabilities]
-4. **Comparable goals:**
-   - Option 1: [Different but related goal]
-   - Option 2: [Another alternative]
-   - Option 3: [Yet another]
-5. **Which is most valuable:** [Analysis]
-6. **How to frame it:** [Communication strategy]
+**프레임워크:**
+1. **원래 목표:** [원했던 것]
+2. **실패 이유:** [구체적인 이유]
+3. **현재 데이터/도구로 무엇을 할 수 있습니까?** [기능]
+4. **비교 가능한 목표:**
+   - 옵션 1: [다르지만 관련된 목표]
+   - 옵션 2: [다른 대안]
+   - 옵션 3: [또 다른]
+5. **가장 가치 있는 것은 무엇인가:** [분석]
+6. **프레임 구성 방법:** [커뮤니케이션 전략]
 
-## Strategy 3: Answer Seeking Question
+## 전략 3: 질문에 대한 답변 찾기
 
-**When to Use:** End-of-project challenges (interpretation, framing, application)
+**사용 시기:** 프로젝트 종료 시 과제(해석, 프레이밍, 적용)
 
-**Approach:** You got an answer, but not to your original question. What question DOES your data answer?
+**접근법:** 답변을 얻었지만 원래 질문에 대한 답변은 얻지 못했습니다. 귀하의 데이터는 어떤 질문에 답합니까?
 
-**Mindset Shift:**
-- **Wrong:** "This doesn't answer my question"
-- **Right:** "What interesting question does this answer?"
+**사고방식의 변화:**
+- **잘못됨:** "내 질문에 대한 답변이 아닙니다."
+- **맞습니다:** "이 질문에 대한 답은 무엇입니까?"
 
-**Example from Lectures: Steroid Receptor**
-- **Original Question:** What is THE receptor for this steroid?
-- **Answer Obtained:** Binds multiple receptors at different affinities
-- **Problem:** Can't answer original question (no single receptor)
-- **Inversion:** "What question does this answer?"
-- **New Question:** How does finite receptor pool sense infinite lipids?
-- **Answer:** Combinatorial sensing (pattern = unique "chord")
-- **Impact:** More interesting than intended finding
+**강의 예시: 스테로이드 수용체**
+- **원래 질문:** 이 스테로이드의 수용체는 무엇입니까?
+- **얻은 답:** 서로 다른 친화력으로 여러 수용체를 결합합니다.
+- **문제:** 원래 질문에 답할 수 없습니다(단일 수용체 없음).
+- **역전:** "이 질문에 대한 답은 무엇입니까?"
+- **새로운 질문:** 유한 수용체 풀은 무한 지질을 어떻게 감지합니까?
+- **답변:** 조합 감지(패턴 = 고유한 "코드")
+- **영향:** 의도한 결과보다 더 흥미롭습니다.
 
-**Framework:**
-1. **Original question:** [What you asked]
-2. **Data obtained:** [What you actually found]
-3. **Why it doesn't answer:** [The mismatch]
-4. **What DOES the data show clearly:** [Solid findings]
-5. **What questions could these answer:**
-   - Question 1: [Option]
-   - Question 2: [Option]
-   - Question 3: [Option]
-6. **Which is most interesting:** [Assessment]
-7. **How to reframe paper/project:** [New framing]
+**프레임워크:**
+1. **원래 질문:** [질문하신 내용]
+2. **얻은 데이터:** [실제로 발견한 것]
+3. **응답이 없는 이유:** [불일치]
+4. **데이터가 명확하게 보여주는 것은 무엇입니까?** [확실한 결과]
+5. **어떤 질문에 답할 수 있습니까?**
+   - 질문 1 : [선택]
+   - 질문 2 : [선택]
+   - 질문 3 : [선택]
+6. **가장 흥미로운 점:** [평가]
+7. **종이/프로젝트의 프레임을 바꾸는 방법:** [새 프레임]
 
-## Workflow
+## 작업 흐름
 
-### Phase 1: Identify Your Obstacle
-- **Type:** Technical / Biological / Competitive / Interpretive
-- **Severity:** Run-of-mill / Existential / End-stage
-- **Description:** [What's blocking you]
+### 1단계: 장애물 식별
+- **유형:** 기술/생물학/경쟁/해석
+- **심각도:** 평범한 / 실존적 / 최종 단계
+- **설명:** [당신을 가로막고 있는 것이 무엇인지]
 
-### Phase 2: Select Strategy
+### 2단계: 전략 선택
 
-| Obstacle Type | Recommended Strategy |
-|--------------|---------------------|
-| Technical barrier, mid-project | Strategy 1 (Unfix parameters) |
-| Can't achieve original goal | Strategy 2 (Comparable goal) |
-| Have data, unclear what it means | Strategy 3 (Answer seeking question) |
+| 장애물 유형 | 추천 전략 |
+|---------------|---------|
+| 기술적 장벽, 프로젝트 중간 | 전략 1(매개변수 수정 안 함) |
+| 원래 목표를 달성할 수 없습니다 | 전략 2 (비교 목표) |
+| 데이터가 있지만 의미가 불분명함 | 전략 3(답변 찾기 질문) |
 
-### Phase 3: Apply Strategy
+### 3단계: 전략 적용
 
-Work through the relevant framework above with your specific situation.
+특정 상황에 따라 위의 관련 프레임워크를 통해 작업하세요.
 
-### Phase 4: Evaluate Alternatives
+### 4단계: 대안 평가
 
-For each alternative generated:
-- **Scientific value:** How interesting is this?
-- **Feasibility:** How hard to execute?
-- **Timeline:** How long will it take?
-- **Impact:** How does this compare to original plan?
-- **Your advantage:** Do you still have edge here?
+생성된 각 대안에 대해 다음을 수행합니다.
+- **과학적 가치:** 얼마나 흥미롭나요?
+- **타당성:** 실행하기가 얼마나 어려운가요?
+- **타임라인:** 얼마나 걸리나요?
+- **영향:** 원래 계획과 비교하면 어떤가요?
+- **귀하의 장점:** 여기서 여전히 우위를 점하고 계십니까?
 
-## Output: Problem Inversion Analysis
+## 출력: 문제 반전 분석
 
-**Page 1: Current Situation**
-- **Obstacle:** [Clear description]
-- **Why you're stuck:** [Root cause]
-- **Original plan:** [What you intended]
-- **Current capability:** [What you CAN do]
+**페이지 1: 현재 상황**
+- **장애물:** [명확한 설명]
+- **막히는 이유:** [근본 원인]
+- **원래 계획:** [ 의도한 내용 ]
+- **현재 기능:** [할 수 있는 작업]
 
-**Page 2: Strategy Applications**
+**페이지 2: 전략 적용**
 
-**Strategy 1 (Unfix Parameters):**
-| Fixed Parameter | If This Floated | Alternative Approaches | Assessment |
-|----------------|-----------------|----------------------|------------|
-| [Param 1] | [Consequences] | [Options] | [Value] |
+**전략 1(수정되지 않은 매개변수):**
+| 고정 매개변수 | 이것이 떠 있다면 | 대체 접근법 | 평가 |
+|---|----|---------|------------|
+| [파라미터 1] | [결과] | [옵션] | [값] |
 
-**Strategy 2 (Comparable Goals):**
-| Original Goal | Why It Failed | Comparable Goal | Value Assessment |
-|--------------|---------------|----------------|------------------|
-| [Goal A] | [Reason] | [Goal B] | [Compare impact] |
+**전략 2(비교 가능한 목표):**
+| 원래 목표 | 실패한 이유 | 비교 가능한 목표 | 가치 평가 |
+|---------------|---------------|---|------|
+| [목표 A] | [이유] | [목표B] | [영향비교] |
 
-**Strategy 3 (Answer → Question):**
-- **Data obtained:** [What you have]
-- **Question 1 it could answer:** [Option 1]
-- **Question 2 it could answer:** [Option 2]
-- **Question 3 it could answer:** [Option 3]
-- **Most interesting:** [Selection + reasoning]
+**전략 3(답변 → 질문):**
+- **얻은 데이터:** [당신이 가지고 있는 것]
+- **답변이 가능한 질문 1:** [옵션 1]
+- **답변이 가능한 질문 2:** [옵션 2]
+- **답변이 가능한 질문 3:** [옵션 3]
+- **가장 흥미로운 부분:** [선택 + 추론]
 
-**Page 3: Recommended Path**
-- **Selected strategy:** [1, 2, or 3]
-- **New direction:** [Specific plan]
-- **Why this is better:** [Not just "it works" but "it's more interesting"]
-- **Communication approach:** [How to frame this pivot]
-- **Timeline:** [New schedule]
+**페이지 3: 권장 경로**
+- **선택한 전략:** [1, 2, 3]
+- **새로운 방향:** [구체적인 계획]
+- **이것이 더 나은 이유:** [단지 "효과가 있다"가 아니라 "더 흥미롭습니다"]
+- **커뮤니케이션 접근 방식:** [이 피벗을 구성하는 방법]
+- **타임라인:** [새로운 일정]

@@ -1,27 +1,27 @@
-# scRNA-seq Integration with scVI and scANVI
+# scVI 및 scANVI와 scRNA-seq 통합
 
-This reference covers batch correction and dataset integration using scVI (unsupervised) and scANVI (semi-supervised with cell type labels).
+이 참조 자료에서는 scVI(비지도) 및 scANVI(셀 유형 레이블을 사용한 반지도)를 사용한 일괄 수정 및 데이터 세트 통합을 다룹니다.
 
-## Overview
+## 개요
 
-Single-cell datasets often have batch effects from:
-- Different donors/patients
-- Different experimental batches
-- Different technologies (10x v2 vs v3)
-- Different studies
+단일 셀 데이터 세트에는 다음과 같은 일괄 효과가 있는 경우가 많습니다.
+- 다양한 기증자/환자
+- 다양한 실험 배치
+- 다양한 기술(10x v2 대 v3)
+- 다양한 연구
 
-scVI and scANVI learn a shared latent space where batch effects are removed while biological variation is preserved.
+scVI 및 scANVI는 생물학적 변이가 보존되는 동안 배치 효과가 제거되는 공유 잠재 공간을 학습합니다.
 
-## When to Use Which Model
+## 언제 어떤 모델을 사용해야 하는가
 
-| Model | Use When | Labels Needed |
+| 모델 | 사용 시기 | 필요한 라벨 |
 |-------|----------|---------------|
-| **scVI** | No labels available, exploratory analysis | No |
-| **scANVI** | Have partial/full labels, want better preservation | Yes (partial OK) |
+| **scVI** | 사용 가능한 라벨이 없습니다. 탐색적 분석 | 아니요 |
+| **scANVI** | 부분/전체 라벨이 있고 더 나은 보존을 원함 | 예(일부 OK) |
 
-## scVI Integration Workflow
+## scVI 통합 작업 흐름
 
-### Step 1: Prepare Data
+### 1단계: 데이터 준비
 
 ```python
 import scvi
@@ -47,7 +47,7 @@ if hasattr(adata, 'raw') and adata.raw is not None:
 adata.layers["counts"] = adata.X.copy()
 ```
 
-### Step 2: HVG Selection Across Batches
+### 2단계: 배치 전반에 걸쳐 HVG 선택
 
 ```python
 # Select HVGs considering batch
@@ -63,7 +63,7 @@ sc.pp.highly_variable_genes(
 adata = adata[:, adata.var["highly_variable"]].copy()
 ```
 
-### Step 3: Setup and Train scVI
+### 3단계: scVI 설정 및 교육
 
 ```python
 # Register data with scVI
@@ -93,7 +93,7 @@ model.train(
 model.history["elbo_train"].plot()
 ```
 
-### Step 4: Get Integrated Representation
+### 4단계: 통합 표현 얻기
 
 ```python
 # Get latent representation
@@ -108,7 +108,7 @@ sc.tl.leiden(adata, resolution=1.0)
 sc.pl.umap(adata, color=["batch", "leiden"], ncols=2)
 ```
 
-### Step 5: Save Model
+### 5단계: 모델 저장
 
 ```python
 # Save model for later use
@@ -118,11 +118,11 @@ model.save("scvi_model/")
 model = scvi.model.SCVI.load("scvi_model/", adata=adata)
 ```
 
-## scANVI Integration Workflow
+## scANVI 통합 워크플로
 
-scANVI extends scVI with cell type labels for better biological preservation.
+scANVI는 더 나은 생물학적 보존을 위해 세포 유형 라벨로 scVI를 확장합니다.
 
-### Step 1: Prepare Data with Labels
+### 1단계: 라벨을 사용하여 데이터 준비
 
 ```python
 # Labels should be in adata.obs
@@ -135,7 +135,7 @@ adata.obs["cell_type_scanvi"] = adata.obs["cell_type"].copy()
 # adata.obs.loc[unlabeled_mask, "cell_type_scanvi"] = "Unknown"
 ```
 
-### Step 2: Option A - Train scANVI from Scratch
+### 2단계: 옵션 A - 처음부터 scANVI 교육
 
 ```python
 # Setup for scANVI
@@ -157,7 +157,7 @@ scanvi_model = scvi.model.SCANVI(
 scanvi_model.train(max_epochs=200)
 ```
 
-### Step 2: Option B - Initialize scANVI from scVI (Recommended)
+### 2단계: 옵션 B - scVI에서 scANVI 초기화(권장)
 
 ```python
 # First train scVI
@@ -176,7 +176,7 @@ scanvi_model = scvi.model.SCANVI.from_scvi_model(
 scanvi_model.train(max_epochs=50)
 ```
 
-### Step 3: Get Results
+### 3단계: 결과 얻기
 
 ```python
 # Latent representation
@@ -195,9 +195,9 @@ sc.tl.umap(adata)
 sc.pl.umap(adata, color=["batch", "cell_type", "predicted_cell_type"])
 ```
 
-## Comparing Integration Quality
+## 통합 품질 비교
 
-### Visual Assessment
+### 시각적 평가
 
 ```python
 import matplotlib.pyplot as plt
@@ -221,7 +221,7 @@ sc.pl.umap(adata, color="batch", ax=axes[2], title="After scANVI", show=False)
 plt.tight_layout()
 ```
 
-### Quantitative Metrics (scib)
+### 정량적 측정항목(scib)
 
 ```python
 # pip install scib-metrics
@@ -239,9 +239,9 @@ bm.benchmark()
 bm.plot_results_table()
 ```
 
-## Differential Expression
+## 미분 표현
 
-scVI provides differential expression that accounts for batch effects:
+scVI는 배치 효과를 설명하는 미분 표현을 제공합니다.
 
 ```python
 # DE between groups
@@ -260,7 +260,7 @@ de_sig = de_results[
 print(de_sig.head(20))
 ```
 
-## Advanced: Multiple Categorical Covariates
+## 고급: 다중 범주형 공변량
 
 ```python
 # Include additional covariates beyond batch
@@ -275,9 +275,9 @@ model = scvi.model.SCVI(adata, n_latent=30)
 model.train()
 ```
 
-## Training Tips
+## 훈련 팁
 
-### For Large Datasets (>100k cells)
+### 대규모 데이터 세트의 경우(>100,000개 셀)
 
 ```python
 model.train(
@@ -288,7 +288,7 @@ model.train(
 )
 ```
 
-### For Small Datasets (<10k cells)
+### 소규모 데이터 세트(<10,000셀)의 경우
 
 ```python
 model = scvi.model.SCVI(
@@ -304,7 +304,7 @@ model.train(
 )
 ```
 
-### Monitoring Training
+### 모니터링 교육
 
 ```python
 # Check training curves
@@ -320,7 +320,7 @@ ax.legend()
 # Should see convergence without overfitting
 ```
 
-## Complete Pipeline
+## 파이프라인 완성
 
 ```python
 def integrate_datasets(
@@ -418,12 +418,12 @@ adata_integrated, model = integrate_datasets(
 sc.pl.umap(adata_integrated, color=["batch", "leiden", "cell_type"])
 ```
 
-## Troubleshooting
+## 문제 해결
 
-| Issue | Cause | Solution |
+| 문제 | 원인 | 해결책 |
 |-------|-------|----------|
-| Batches not mixing | Too few shared genes | Use more HVGs, check gene overlap |
-| Over-correction | Biological variation removed | Use scANVI with labels |
-| Training diverges | Learning rate too high | Reduce lr, increase batch_size |
-| NaN loss | Bad data | Check for all-zero cells/genes |
-| Memory error | Too many cells | Reduce batch_size, use GPU |
+| 혼합되지 않는 배치 | 공유 유전자가 너무 적음 | 더 많은 HVG를 사용하고 유전자 중복을 확인하세요. |
+| 과잉교정 | 생물학적 변이가 제거됨 | 레이블과 함께 scANVI 사용 |
+| 훈련은 다양하다 | 학습률이 너무 높음 | lr을 줄이고 배치 크기를 늘립니다. |
+| NaN 손실 | 잘못된 데이터 | 모두 0인 세포/유전자 확인 |
+| 메모리 오류 | 셀이 너무 많습니다. | 배치 크기를 줄이고 GPU를 사용하세요. |

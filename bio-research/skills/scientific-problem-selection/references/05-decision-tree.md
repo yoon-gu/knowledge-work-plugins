@@ -1,85 +1,85 @@
-# SKILL 5: Decision Tree Navigation ("The Altitude Dance")
+# 스킬 5: 의사결정 트리 탐색("고도의 춤")
 
-## Overview
-This skill teaches you to move fluidly between execution (Level 1: getting stuff done) and strategic evaluation (Level 2: critical thinking). Projects rarely unfold linearly—they require frequent course correction. Most trainees should spend MORE time on their project's decision tree.
+## 개요
+이 기술은 실행(레벨 1: 작업 수행)과 전략적 평가(레벨 2: 비판적 사고) 사이를 유연하게 이동하는 방법을 가르쳐줍니다. 프로젝트는 선형적으로 전개되는 경우가 거의 없으며 경로를 자주 수정해야 합니다. 대부분의 훈련생은 프로젝트의 의사결정 트리에 더 많은 시간을 투자해야 합니다.
 
-## Core Principle
-**"Learn the altitude dance"**
+## 핵심 원칙
+**"고도 댄스를 배워보세요"**
 
-Move back and forth frequently between:
-- **Level 1:** Full immersion in experimental details or coding
-- **Level 2:** Step back, clear your head, evaluate as if someone else did the work
+다음 사이에서 자주 앞뒤로 이동하십시오.
+- **레벨 1:** 실험 세부 사항 또는 코딩에 완전히 몰입
+- **레벨 2:** 한 걸음 물러서서 머리를 비우고 마치 다른 사람이 일을 한 것처럼 평가하세요.
 
-These cannot be done simultaneously. The key to navigating a project's decision tree is alternating between these levels deliberately.
+이는 동시에 수행할 수 없습니다. 프로젝트 의사결정 트리를 탐색하는 핵심은 의도적으로 이러한 수준을 번갈아 바꾸는 것입니다.
 
-## Key Concepts
+## 주요 개념
 
-**Why Decision Trees Matter:**
-Once you're in a project, the landscape changes:
-- You've learned from initial experiments
-- New papers have been published
-- Technology has advanced
-- Your assumptions have been tested
+**의사결정 트리가 중요한 이유:**
+프로젝트에 참여하면 풍경이 달라집니다.
+- 초기 실험을 통해 배웠습니다.
+- 새로운 논문이 출판되었습니다.
+- 기술이 발전했어요
+- 귀하의 가정이 테스트되었습니다.
 
-At any decision point, you should rarely follow your plan from 2 years ago—there will be a better alternative.
+어떤 결정 지점에서든 2년 전 계획을 따르는 경우는 거의 없습니다. 더 나은 대안이 있을 것입니다.
 
-**The Altitude Levels:**
-- **Level 1 (Ground Level):** Doing the work, troubleshooting, optimizing
-- **Level 2 (Strategic Altitude):** What did we learn? What should we do next?
-- **Level 3 (Field Altitude):** How does this fit in the broader landscape?
-- **Level 4 (Career Altitude):** Is this the right use of my finite time?
+**고도 수준:**
+- **레벨 1(지상 레벨):** 작업 수행, 문제 해결, 최적화
+- **레벨 2(전략적 고도):** 우리는 무엇을 배웠나요? 다음에는 무엇을 해야 할까요?
+- **레벨 3(현장 고도):** 더 넓은 풍경에 어떻게 적합합니까?
+- **레벨 4(경력고도):** 이것이 나의 유한한 시간을 올바르게 활용하는 것인가?
 
-**Common Failure Modes:**
-1. **Stuck in Level 1:** Troubleshooting endlessly without reassessing the plan
-2. **Only Level 2:** Brilliant strategist but never rolls up sleeves
-3. **No rhythm:** Switching randomly instead of deliberately
+**일반적인 실패 모드:**
+1. **레벨 1에 갇힘:** 계획을 재평가하지 않고 끝없이 문제를 해결함
+2. **레벨 2에만 해당:** 뛰어난 전략가이지만 소매를 걷어붙이지 않습니다.
+3. **리듬 없음:** 고의가 아닌 무작위로 전환
 
-## Workflow
+## 작업 흐름
 
-### Phase 1: Map Your Decision Tree
+### 1단계: 의사결정 트리 매핑
 
-For your project, identify:
-1. **Initial plan:** What was the intended path?
-2. **Branch points:** Where might alternative paths emerge?
-3. **Decision criteria:** What determines which branch to take?
-4. **New information:** What could change the landscape?
+프로젝트에 대해 다음을 식별하십시오.
+1. **초기 계획:** 의도한 경로는 무엇이었나요?
+2. **분기점:** 대체 경로는 어디에서 나타날 수 있습니까?
+3. **결정 기준:** 선택할 분기를 결정하는 것은 무엇입니까?
+4. **새로운 정보:** 풍경을 바꿀 수 있는 것은 무엇입니까?
 
-### Phase 2: Establish Your Rhythm
+### 2단계: 리듬 확립
 
-**Recommended Schedule:**
-- **Daily:** Level 1 work (experiments, coding, analysis)
-- **Weekly:** Level 2 evaluation (1-2 hours, ideally Friday afternoon)
-- **Monthly:** Level 3 field review (read new papers, attend seminars)
-- **Quarterly:** Level 4 career check-in (with mentor)
+**권장 일정:**
+- **일일:** 레벨 1 작업(실험, 코딩, 분석)
+- **주간:** 레벨 2 평가(1~2시간, 이상적으로는 금요일 오후)
+- **월간:** 레벨 3 현장 검토(새 논문 읽기, 세미나 참석)
+- **분기별:** 레벨 4 경력 체크인(멘토와 함께)
 
-**Level 2 Weekly Protocol:**
-1. Clear your head (walk, coffee, change of scene)
-2. Review what happened this week
-3. Ask: What did we learn?
-4. Ask: What should happen next?
-5. Update decision tree
-6. Plan next week's Level 1 work
+**레벨 2 주간 프로토콜:**
+1. 머리를 비우세요(산책, 커피, 장면 전환)
+2. 이번 주에 무슨 일이 일어났는지 복습하세요
+3. 질문하세요. 우리는 무엇을 배웠나요?
+4. 질문하세요: 다음에 무슨 일이 일어나야 할까요?
+5. 의사결정 트리 업데이트
+6. 다음 주의 레벨 1 작업을 계획하세요.
 
-### Phase 3: Decision Points
+### 3단계: 결정 사항
 
-At each major branch point:
+각 주요 분기점에서:
 
-**Example: Genetic Screen Hits Wall**
+**예: 유전자 화면이 벽에 부딪히다**
 
-Instead of endless troubleshooting:
-- **Alternative 1:** Redo computational analysis with larger genome dataset
-- **Alternative 2:** Use AlphaFold models to search for similar folds
-- **Alternative 3:** Print and test larger candidate set (DNA synthesis cheaper now)
+끝없는 문제 해결 대신:
+- **대안 1:** 더 큰 게놈 데이터 세트를 사용하여 계산 분석 다시 실행
+- **대안 2:** AlphaFold 모델을 사용하여 유사한 접힘 검색
+- **대안 3:** 더 큰 후보 세트를 인쇄하고 테스트합니다(이제 DNA 합성이 더 저렴해짐).
 
-**Framework:**
-1. **Acknowledge the stuck point**
-2. **Step to Level 2:** Evaluate with fresh eyes
-3. **Consider: What's newly possible?** (technology, knowledge)
-4. **Generate 3 alternatives**
-5. **Decide:** Troubleshoot more vs. pursue alternative
+**프레임워크:**
+1. **고착된 지점을 확인**
+2. **레벨 2로 단계:** 새로운 시각으로 평가
+3. **고려: 새로 가능한 것은 무엇입니까?** (기술, 지식)
+4. **3가지 대안 생성**
+5. **결정:** 추가 문제 해결과 대안 추구
 
-## Output: Decision Tree Map
-- Visual map of your project's decision points
-- Update frequency schedule
-- Criteria for each branch point
-- Protocol for getting unstuck
+## 출력: 의사결정 트리 맵
+- 프로젝트 결정 지점의 시각적 지도
+- 빈도 일정 업데이트
+- 분기점별 기준
+- 풀기 위한 프로토콜

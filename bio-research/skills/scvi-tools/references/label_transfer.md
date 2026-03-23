@@ -1,32 +1,32 @@
-# Label Transfer and Reference Mapping with scANVI
+# scANVI를 사용한 라벨 전송 및 참조 매핑
 
-This reference covers using scANVI for transferring cell type annotations from a reference atlas to query data.
+이 참조는 참조 아틀라스의 셀 유형 주석을 쿼리 데이터로 전송하기 위해 scANVI를 사용하는 방법을 다룹니다.
 
-## Overview
+## 개요
 
-Reference mapping (also called "label transfer") uses a pre-trained model on annotated reference data to predict cell types in new, unannotated query data. This is faster than re-clustering and more consistent across studies.
+참조 매핑("라벨 전송"이라고도 함)은 주석이 달린 참조 데이터에 대해 사전 학습된 모델을 사용하여 주석이 없는 새 쿼리 데이터에서 세포 유형을 예측합니다. 이는 재클러스터링보다 빠르며 연구 전반에 걸쳐 일관성이 더 높습니다.
 
-scANVI excels at this because it:
-- Jointly embeds reference and query in shared space
-- Transfers labels probabilistically
-- Handles batch effects between reference and query
+scANVI는 다음과 같은 이유로 탁월한 성능을 발휘합니다.
+- 공유 공간에 참조와 쿼리를 공동으로 포함
+- 확률적으로 라벨을 전송합니다.
+- 참조와 쿼리 간의 일괄 효과 처리
 
-## When to Use Reference Mapping
+## 참조 매핑을 사용해야 하는 경우
 
-- Annotating new dataset using existing atlas
-- Consistent annotation across multiple studies
-- Speed: no need to re-cluster and manually annotate
-- Quality: leverage expert-curated reference annotations
+- 기존 아틀라스를 사용하여 새 데이터세트에 주석 달기
+- 여러 연구에 걸쳐 일관된 주석
+- 속도: 다시 클러스터링하고 수동으로 주석을 달 필요가 없습니다.
+- 품질: 전문가가 선별한 참조 주석 활용
 
-## Workflow Options
+## 작업 흐름 옵션
 
-1. **Train new model**: Train scANVI on reference, then map query
-2. **Use pre-trained model**: Load existing model (e.g., from Model Hub)
-3. **scArches**: Extend existing model with query data (preserves reference)
+1. **새 모델 교육**: 참조에 따라 scANVI를 교육한 다음 쿼리 매핑
+2. **사전 훈련된 모델 사용**: 기존 모델 로드(예: 모델 허브에서)
+3. **scArches**: 쿼리 데이터로 기존 모델 확장(참조 유지)
 
-## Option 1: Train scANVI on Reference
+## 옵션 1: 참조에 따라 scANVI 교육
 
-### Step 1: Prepare Reference Data
+### 1단계: 참조 데이터 준비
 
 ```python
 import scvi
@@ -54,7 +54,7 @@ sc.pp.highly_variable_genes(
 adata_ref = adata_ref[:, adata_ref.var["highly_variable"]].copy()
 ```
 
-### Step 2: Train scANVI on Reference
+### 2단계: 참조에 따라 scANVI 교육
 
 ```python
 # First train scVI (unlabeled)
@@ -81,7 +81,7 @@ scanvi_ref.train(max_epochs=50)
 scanvi_ref.save("scanvi_reference_model/")
 ```
 
-### Step 3: Prepare Query Data
+### 3단계: 쿼리 데이터 준비
 
 ```python
 # Load query data
@@ -108,7 +108,7 @@ if missing_genes:
 adata_query.layers["counts"] = adata_query.X.copy()
 ```
 
-### Step 4: Map Query to Reference
+### 4단계: 쿼리를 참조로 매핑
 
 ```python
 # Prepare query data for mapping
@@ -134,7 +134,7 @@ soft_predictions = scanvi_query.predict(soft=True)
 adata_query.obs["prediction_score"] = soft_predictions.max(axis=1)
 ```
 
-### Step 5: Evaluate Predictions
+### 5단계: 예측 평가
 
 ```python
 # Confidence scores
@@ -150,9 +150,9 @@ sc.tl.umap(adata_query)
 sc.pl.umap(adata_query, color=['predicted_cell_type', 'prediction_score'])
 ```
 
-## Option 2: Use Pre-Trained Models
+## 옵션 2: 사전 학습된 모델 사용
 
-### From Model Hub
+### 모델 허브에서
 
 ```python
 # scvi-tools maintains models on HuggingFace
@@ -170,7 +170,7 @@ model_path = hf_hub_download(
 model = scvi.model.SCANVI.load(model_path, adata=adata_query)
 ```
 
-### From Published Atlas
+### 게시된 아틀라스에서
 
 ```python
 # Many atlases provide pre-trained models
@@ -180,9 +180,9 @@ model = scvi.model.SCANVI.load(model_path, adata=adata_query)
 # model = scvi.model.SCANVI.load("atlas_model/", adata=adata_query)
 ```
 
-## Option 3: scArches for Incremental Updates
+## 옵션 3: 증분 업데이트를 위한 scArches
 
-scArches extends a reference model without retraining from scratch:
+scArches는 처음부터 재교육하지 않고 참조 모델을 확장합니다.
 
 ```python
 # Load existing reference model
@@ -202,7 +202,7 @@ scanvi_query.train(
 )
 ```
 
-## Visualize Reference and Query Together
+## 참조와 쿼리를 함께 시각화
 
 ```python
 # Concatenate for joint visualization
@@ -228,9 +228,9 @@ sc.pl.umap(
 )
 ```
 
-## Quality Control for Predictions
+## 예측을 위한 품질 관리
 
-### Confidence Filtering
+### 신뢰도 필터링
 
 ```python
 # Filter predictions by confidence
@@ -243,7 +243,7 @@ print(f"High confidence: {len(high_conf)} ({len(high_conf)/len(adata_query)*100:
 print(f"Low confidence: {len(low_conf)} ({len(low_conf)/len(adata_query)*100:.1f}%)")
 ```
 
-### Marker Validation
+### 마커 검증
 
 ```python
 # Validate predictions with known markers
@@ -262,7 +262,7 @@ for ct, genes in markers.items():
                 print(f"{ct} - {gene}: {expr:.3f}")
 ```
 
-## Complete Pipeline
+## 파이프라인 완성
 
 ```python
 def transfer_labels(
@@ -358,16 +358,16 @@ sc.tl.umap(adata_annotated)
 sc.pl.umap(adata_annotated, color=['predicted_cell_type', 'prediction_score'])
 ```
 
-## Troubleshooting
+## 문제 해결
 
-| Issue | Cause | Solution |
-|-------|-------|----------|
-| Many low-confidence predictions | Query has novel cell types | Manually annotate low-confidence cells |
-| Wrong predictions | Reference doesn't match tissue | Use tissue-appropriate reference |
-| Gene mismatch | Different gene naming | Convert gene IDs |
-| All same prediction | Query too different | Check data quality, try different reference |
+| 이슈 | 원인 | 솔루션 |
+|---------|-------|----------|
+| 신뢰도가 낮은 예측이 많음 | 쿼리에 새로운 셀 유형이 있습니다 | 신뢰도가 낮은 셀에 수동으로 주석 달기 |
+| 잘못된 예측 | 참조가 조직과 일치하지 않습니다 | 조직에 적합한 참조 사용 |
+| 유전자 불일치 | 다른 유전자 명명 | 유전자 ID 변환 |
+| 모두 같은 예측 | 쿼리가 너무 다름 | 데이터 품질을 확인하고 다른 참조를 시도해 보세요 |
 
-## Key References
+## 주요 참고자료
 
-- Xu et al. (2021) "Probabilistic harmonization and annotation of single-cell transcriptomics data with deep generative models"
-- Lotfollahi et al. (2022) "Mapping single-cell data to reference atlases by transfer learning"
+- Xu 외. (2021) "심층 생성 모델을 사용한 단일 세포 전사체학 데이터의 확률적 조화 및 주석"
+- Lotfollahi 외. (2022) "전이 학습을 통해 단일 셀 데이터를 참조 아틀라스에 매핑"

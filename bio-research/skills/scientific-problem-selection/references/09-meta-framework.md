@@ -1,27 +1,27 @@
-# SKILL 9: Meta-Framework - Complete Problem Selection Workflow
+# 스킬 9: 메타 프레임워크 - 문제 선택 워크플로우 완료
 
-## Overview
-This meta-skill orchestrates the complete problem selection process, guiding users through Skills 1-8 in a systematic, iterative way. This skill should be used when comprehensive support is needed from ideation through execution planning, with integrated literature searches and coherent documentation.
+## 개요
+이 메타 기술은 전체 문제 선택 프로세스를 조율하여 사용자에게 체계적이고 반복적인 방식으로 기술 1-8을 안내합니다. 이 기술은 통합 문헌 검색 및 일관된 문서화를 통해 아이디어 구상부터 실행 계획까지 포괄적인 지원이 필요할 때 사용해야 합니다.
 
-## When to Use This Skill
+## 이 스킬을 언제 사용해야 할까요?
 
-**Use Skill 9 (Complete Workflow) when:**
-- Starting a new project from scratch
-- Major project pivot or reframe needed
-- Grant/fellowship application requiring systematic planning
-- Thesis committee meeting preparation
-- Startup company planning
-- Want comprehensive, documented problem selection process
+**다음과 같은 경우 스킬 9(작업 흐름 완료)를 사용하십시오.**
+- 새로운 프로젝트를 처음부터 시작하기
+- 주요 프로젝트 전환 또는 재구성 필요
+- 체계적인 기획이 필요한 Grant/Fellowship 신청
+- 논문위원회 회의 준비
+- 스타트업 기업 기획
+- 포괄적이고 문서화된 문제 선택 프로세스를 원함
 
-**Use Individual Skills when:**
-- You're at a specific stage (e.g., just need risk assessment)
-- Quick consultation on one aspect
-- Updating one component of existing plan
-- Teaching/learning one concept
+**다음과 같은 경우 개별 기술을 사용하십시오.**
+- 특정 단계에 있습니다(예: 위험 평가만 필요함).
+- 한 가지 측면에 대한 빠른 상담
+- 기존 계획의 한 구성요소 업데이트
+- 하나의 개념을 가르치고 배우는 것
 
-## The Complete Workflow
+## 전체 작업 흐름
 
-### Overview of the Journey
+### 여정 개요
 
 ```
 START: Vague idea or area of interest
@@ -45,460 +45,460 @@ START: Vague idea or area of interest
 END: Comprehensive, rigorous project ready to execute
 ```
 
-**Estimated Time:**
-- **Intensive:** 1 week of focused work (full-time)
-- **Distributed:** 4-6 weeks with other commitments
-- **With iterations:** Add 50% more time
-
-**You'll invest time once to save years of potential missteps.**
-
-## Phase-by-Phase Workflow
-
-### Phase 1: Preparation (Before Starting)
-
-**Gather Your Context:**
-1. **Your background:**
-   - Research area/field
-   - Current position (grad student, postdoc, PI, etc.)
-   - Lab expertise and resources
-   - Timeline constraints
-
-2. **Your starting point:**
-   - Vague area of interest?
-   - Specific problem in mind?
-   - Must build on existing work?
-   - Starting completely fresh?
-
-3. **Your goals:**
-   - Publication target (journal tier, timeline)?
-   - Degree requirement (thesis chapter)?
-   - Funding application?
-   - Startup foundation?
-   - Career development?
-
-**Set Expectations:**
-- This process will challenge your assumptions
-- You may discover your initial idea needs major revision
-- That's the point—better to know now than after 2 years
-- Intellectual honesty is required; this only works if you're rigorous
-
-### Phase 2: Ideation (Skill 1) - ~1 week
-
-**What We'll Do:**
-1. Understand your context and constraints
-2. Work through relevant intuition pumps
-3. Avoid common ideation traps
-4. Generate 2-3 project ideas
-5. Preliminary literature search to calibrate scope
-6. Select most promising idea
-7. Create Problem Ideation Document (2 pages)
-
-**Literature Integration Point 1:**
-- Search PubMed for precedents and adjacent work
-- Assess generality of problem
-- Identify methodological advances
-- Determine competition level
-
-**Deliverable:**
-- Problem Ideation Document with core idea and initial analysis
-- List of 10-15 key papers
-- Preliminary assessment of novelty and feasibility
-
-**Checkpoint:** Do you have a clear, specific idea that excites you? If not, iterate on intuition pumps.
-
-### Phase 3: Risk Analysis (Skill 2) - ~3-5 days
-
-**What We'll Do:**
-1. Extract ALL assumptions from your idea
-2. Categorize (biological vs. technical)
-3. Score each assumption (risk 1-5, time to test)
-4. Identify high-risk late-reading assumptions
-5. Design go/no-go experiments
-6. Develop mitigation strategies
-7. Create Risk Assessment Matrix (2 pages)
-
-**Literature Integration Point 2:**
-- Search for technical precedents (has method worked before?)
-- Find biological evidence (what's known about your system?)
-- Identify benchmarks (success rates, effect sizes)
-- Assess timeline realism
-
-**Deliverable:**
-- Complete assumption analysis table
-- Top 3 high-risk assumptions with mitigation plans
-- Go/no-go experiment designs
-- Revised timeline with decision points
-
-**Checkpoint:** Is your risk profile acceptable? If risk-5 assumptions are >2 years out, return to Skill 1 to reframe.
-
-### Phase 4: Impact Assessment (Skill 3) - ~2-3 days
-
-**What We'll Do:**
-1. Categorize your project type
-2. Select appropriate optimization function
-3. Score yourself on both axes
-4. Compare to benchmarks
-5. Articulate value system alignment
-6. Develop communication strategy
-7. Create Impact Assessment Document (2 pages)
-
-**Literature Integration Point 3:**
-- Identify high-impact exemplars in your field
-- Analyze their framing and evaluation
-- Benchmark your potential impact
-- Understand field expectations
-
-**Deliverable:**
-- Clear optimization function selection
-- Self-assessment on both axes with justification
-- Comparative analysis vs. alternatives
-- Communication strategy for different audiences
-
-**Checkpoint:** Do you score MEDIUM-HIGH on at least one axis? If not, return to Skill 1 to find higher-impact angle.
-
-### Phase 5: Parameter Strategy (Skill 4) - ~2-3 days
-
-**What We'll Do:**
-1. Inventory all project parameters
-2. Identify which are fixed vs. floating
-3. Assess if you're over/under-constrained
-4. Select strategic fixed parameter
-5. Plan flexibility for contingencies
-6. Create Parameter Strategy Document (2 pages)
-
-**Literature Integration Point 4:**
-- How did successful projects handle parameters?
-- What parameter choices led to breakthroughs?
-- What over-constraints caused failures?
-
-**Deliverable:**
-- Complete parameter inventory
-- Strategic rationale for fixed/floating decisions
-- Flexibility matrix for contingencies
-- Project ensemble (family of related projects)
-
-**Checkpoint:** Have you fixed 1-2 meaningful parameters while maintaining flexibility? If too rigid, adjust.
-
-### Phase 6: Decision Tree Planning (Skill 5) - ~2 days
-
-**What We'll Do:**
-1. Map your project's decision tree
-2. Identify major branch points
-3. Set criteria for each decision
-4. Establish Level 1 / Level 2 rhythm
-5. Create protocols for getting unstuck
-6. Create Decision Tree Map (1-2 pages)
+**예상 시간:**
+- **집중:** 1주간 집중 작업(풀타임)
+- **분배:** 다른 약정 포함 4~6주
+- **반복을 통해:** 50% 더 많은 시간 추가
+
+**몇 년 동안 발생할 수 있는 잠재적인 실수를 방지하기 위해 한 번만 시간을 투자하게 됩니다.**
+
+## 단계별 작업 흐름
+
+### 1단계: 준비(시작 전)
+
+**상황 수집:**
+1. **귀하의 배경:**
+   - 연구분야/분야
+   - 현 직위(대학원생, 박사후 연구원, PI 등)
+   - 연구실 전문 지식 및 리소스
+   - 타임라인 제약
+
+2. **시작점:**
+   - 막연한 관심 분야?
+   - 특정 문제를 염두에 두고 있나요?
+   - 기존 작업을 기반으로 구축해야 합니까?
+   - 완전히 새롭게 시작하시나요?
+
+3. **귀하의 목표:**
+   - 출판 대상(저널 계층, 타임라인)은 무엇입니까?
+   - 학위요건(논문장)은?
+   - 펀딩신청?
+   - 스타트업 기반?
+   - 경력 개발?
+
+**기대 설정:**
+- 이 프로세스는 귀하의 가정에 도전하게 됩니다.
+- 초기 아이디어에 대대적인 수정이 필요하다는 것을 알게 될 수도 있습니다.
+- 그게 요점입니다. 2년 후보다 지금이 더 좋습니다.
+- 지적 정직성이 요구됩니다. 이것은 당신이 엄격한 경우에만 작동합니다
+
+### 2단계: 아이디어 구상(기술 1) - ~1주
+
+**우리가 할 일:**
+1. 상황과 제약 조건을 이해하세요.
+2. 관련 직관 펌프를 통해 작업
+3. 일반적인 관념의 함정을 피하라
+4. 2~3개의 프로젝트 아이디어 생성
+5. 범위 보정을 위한 예비 문헌 검색
+6. 가장 유망한 아이디어를 선택하세요
+7. 문제 아이디어 문서 작성(2페이지)
+
+**문학 통합 포인트 1:**
+- PubMed에서 전례 및 인접 연구를 검색하세요.
+- 문제의 일반성 평가
+- 방법론적 발전 확인
+- 경쟁 수준 결정
+
+**제공물:**
+- 핵심 아이디어와 초기 분석이 포함된 문제 아이디어 문서
+- 10~15개의 주요 논문 목록
+- 신규성 및 타당성 예비평가
+
+**체크포인트:** 당신을 흥분시키는 명확하고 구체적인 아이디어가 있습니까? 그렇지 않다면 직관 펌프를 반복하십시오.
+
+### 3단계: 위험 분석(기술 2) - ~3-5일
+
+**우리가 할 일:**
+1. 아이디어에서 모든 가정을 추출하세요.
+2. 분류(생물학적 vs. 기술적)
+3. 각 가정에 점수를 매깁니다(위험 1~5, 테스트 시간).
+4. 고위험 후기 판독 가정 식별
+5. go/no-go 실험 설계
+6. 완화 전략 개발
+7. 위험 평가 매트릭스 작성(2페이지)
+
+**문학 통합 포인트 2:**
+- 기술적 선례 검색(이전에 방법이 효과가 있었나요?)
+- 생물학적 증거 찾기(귀하의 시스템에 대해 무엇을 알고 있습니까?)
+- 벤치마크 식별(성공률, 효과 크기)
+- 타임라인 현실성 평가
+
+**제공물:**
+- 완전한 가정 분석 테이블
+- 완화 계획이 포함된 상위 3가지 고위험 가정
+- Go/No-go 실험 설계
+- 결정 포인트가 포함된 타임라인 수정
+
+**체크포인트:** 위험 프로필이 허용 가능한 수준인가요? 위험 5번 가정이 2년 이상 지난 경우 기술 1로 돌아가서 재구성하세요.
+
+### 4단계: 영향 평가(기술 3) - ~2-3일
+
+**우리가 할 일:**
+1. 프로젝트 유형 분류
+2. 적절한 최적화 기능을 선택하십시오
+3. 두 축 모두에서 점수를 매깁니다.
+4. 벤치마크와 비교
+5. 가치 체계 정렬을 명확히 합니다.
+6. 커뮤니케이션 전략 개발
+7. 영향평가 문서 작성(2페이지)
+
+**문학 통합 포인트 3:**
+- 해당 분야에서 영향력이 큰 모범 사례를 식별하세요.
+- 프레이밍 및 평가 분석
+- 잠재적인 영향을 벤치마킹하세요.
+- 현장 기대치를 이해한다
+
+**제공물:**
+- 명확한 최적화 기능 선택
+- 타당성을 갖춘 두 축에 대한 자체 평가
+- 비교 분석 vs. 대안
+- 다양한 청중을 위한 커뮤니케이션 전략
+
+**체크포인트:** 하나 이상의 축에서 중간~높음 점수를 받았나요? 그렇지 않은 경우 스킬 1로 돌아가서 더 높은 충격 각도를 찾으세요.
+
+### 5단계: 매개변수 전략(기술 4) - ~2-3일
+
+**우리가 할 일:**
+1. 모든 프로젝트 매개변수 목록 작성
+2. 고정형과 부동형을 식별하세요.
+3. 제약이 과도하거나 과소한지 평가하세요.
+4. 전략적 고정 매개변수 선택
+5. 만일의 사태에 대비한 유연성 계획
+6. 매개변수 전략 문서 작성(2페이지)
+
+**문학 통합 포인트 4:**
+- 성공적인 프로젝트는 매개변수를 어떻게 처리했나요?
+- 어떤 매개변수 선택이 획기적인 발전을 가져왔나요?
+- 어떤 과도한 제약으로 인해 실패가 발생했나요?
+
+**제공물:**
+- 완전한 매개변수 재고
+- 고정/부동 결정에 대한 전략적 근거
+- 만일의 사태에 대비한 유연성 매트릭스
+- 프로젝트 앙상블(관련 프로젝트 계열)
+
+**체크포인트:** 유연성을 유지하면서 의미 있는 매개변수 1~2개를 수정했나요? 너무 단단하면 조정하십시오.
+
+### 6단계: 의사결정나무 계획(기술 5) - ~2일
+
+**우리가 할 일:**
+1. 프로젝트의 의사결정 트리 매핑
+2. 주요 분기점 파악
+3. 각 결정에 대한 기준 설정
+4. 레벨 1/레벨 2 리듬 확립
+5. 문제를 해결하기 위한 프로토콜 만들기
+6. 의사결정 트리 맵 생성(1-2페이지)
 
-**No major literature search here** (unless you identify specific decision points needing technical information)
-
-**Deliverable:**
-- Visual decision tree
-- Decision criteria at each branch
-- Schedule for Level 2 evaluations
-- Protocol for course correction
-
-**Checkpoint:** Have you planned for regular strategic evaluation, not just execution?
-
-### Phase 7: Adversity Preparation (Skill 6) - ~2 days
-
-**What We'll Do:**
-1. Anticipate likely failure modes
-2. For each, identify upgrade opportunity
-3. Map your project ensemble
-4. Create crisis response protocols
-5. Create Adversity Playbook (2-3 pages)
+**여기에서는 주요 문헌 검색이 없습니다**(기술 정보가 필요한 특정 결정 사항을 식별하지 않는 한)
+
+**제공물:**
+- 시각적 의사결정 트리
+- 각 지점별 결정기준
+- 2단계 평가 일정
+- 코스 수정을 위한 프로토콜
+
+**체크포인트:** 단순한 실행이 아닌 정기적인 전략 평가를 계획했습니까?
+
+### 7단계: 역경 준비(스킬 6) - ~2일
+
+**우리가 할 일:**
+1. 실패 가능성이 있는 모드를 예측합니다.
+2. 각각에 대해 업그레이드 기회를 식별합니다.
+3. 프로젝트 앙상블 매핑
+4. 위기 대응 프로토콜 만들기
+5. 역경 플레이북 만들기(2~3페이지)
 
-**Literature Integration Point 5:**
-- Historical examples of productive pivots
-- How did others capitalize on adversity?
-- What second-generation projects emerged from failures?
-
-**Deliverable:**
-- Anticipated crisis catalog
-- Upgrade strategies for each
-- Project ensemble map
-- Resilience rituals and protocols
-
-**Checkpoint:** Are you prepared to see adversity as opportunity? Have you planned how to upgrade, not just fix?
-
-### Phase 8: Problem Inversion Toolkit (Skill 7) - ~1 day
-
-**What We'll Do:**
-1. Review three inversion strategies
-2. Pre-plan applications for your likely obstacles
-3. Create Problem Inversion Analysis (1-2 pages)
-
-**This is preparatory** - you may not need it now, but when crisis hits, you'll have framework ready.
-
-**Deliverable:**
-- Strategy 1 application planned
-- Strategy 2 options identified
-- Strategy 3 alternative questions brainstormed
-- Quick-reference guide for crisis
-
-**Checkpoint:** Do you have concrete strategies for inverting problems when stuck?
-
-### Phase 9: Integration and Synthesis (Skill 8) - ~3-5 days
-
-**What We'll Do:**
-1. Review all outputs from Skills 1-7
-2. Create cohesive narrative
-3. Develop communication materials:
-   - 3-slide presentation
-   - 1-page summary
-   - 1-minute elevator pitch
-4. Write integrated project plan (4-6 pages)
-5. Create living documents for ongoing use
-
-**Literature Integration Point 6:**
-- Final references for integrated plan
-- Key papers for each section
-- Communication examples from field leaders
-
-**Deliverable:**
-- Complete Integrated Project Plan (4-6 pages)
-- 3-slide presentation deck
-- 1-page written summary
-- Elevator pitch script
-- Living documents (decision tree, risk matrix, etc.)
-
-**Checkpoint:** Can you communicate your project compellingly in 1 minute, 5 minutes, and 1 page? Do all pieces fit together coherently?
-
-## Iteration and Refinement
-
-### When to Iterate
-
-**Red Flags That Require Going Back:**
-
-**From Skill 2 (Risk):**
-- Risk-5 assumptions >2 years out → Return to Skill 1 (reframe problem)
-- >3 risk-4-5 assumptions → Return to Skill 1 (simplify or change approach)
-
-**From Skill 3 (Impact):**
-- Score LOW on both axes → Return to Skill 1 (find higher-impact angle)
-- Optimization function mismatch → Return to Skill 1 (reframe problem)
-
-**From Skill 4 (Parameters):**
-- >2 fixed parameters → Return to Skill 1 (over-constrained)
-- Zero fixed parameters → Return to Skill 1 (under-constrained)
-
-**From Skills 5-6:**
-- No clear decision points → Return to Skill 4 (need more flexibility)
-- Every failure mode is existential → Return to Skill 2 (too risky)
-
-### Iteration Protocol
-
-**Major Revision Needed:**
-1. **Pause and acknowledge:** The process is working—it caught a problem
-2. **Return to indicated skill:** Usually Skill 1 or 2
-3. **Bring forward what you learned:** Don't start from scratch
-4. **Revised idea → Run through workflow again:** Faster the second time
-5. **Multiple iterations OK:** Better than years on wrong project
-
-**Minor Refinement:**
-1. **Update specific document:** E.g., adjust parameter strategy
-2. **Check downstream effects:** Does this change anything else?
-3. **Update integration document:** Keep everything coherent
-
-## Literature Integration Strategy
-
-### Overall PubMed Approach
-
-**Throughout the workflow, use PubMed strategically:**
-
-1. **Skill 1 (Ideation):** Assess generality, find precedents, gauge competition
-2. **Skill 2 (Risk):** Technical feasibility, biological evidence, benchmarks
-3. **Skill 3 (Impact):** Field exemplars, evaluation frameworks, benchmarks
-4. **Skill 4 (Parameters):** Successful parameter choices, cautionary tales
-5. **Skill 6 (Adversity):** Productive pivots, upgrade examples
-6. **Skill 8 (Integration):** Communication models, comprehensive references
-
-**Search Strategy:**
-- Start broad (field overview)
-- Get specific (your exact approach)
-- Look adjacent (related systems/methods)
-- Find benchmarks (what's state-of-art?)
-- Identify competition (who else is doing this?)
-
-**Papers to Track:**
-- ~10-15 key papers from Skill 1
-- ~5-10 technical papers from Skill 2
-- ~5-10 impact exemplars from Skill 3
-- ~5 parameter lessons from Skill 4
-- ~3-5 pivot examples from Skill 6
-- **Total: ~30-50 papers** (your foundation)
-
-## Final Deliverable Package
-
-### What You'll Have at the End
-
-**Core Documents (Organized Folder):**
-1. `01_Problem_Ideation.pdf` (2 pages, Skill 1)
-2. `02_Risk_Assessment.pdf` (2 pages, Skill 2)
-3. `03_Impact_Assessment.pdf` (2 pages, Skill 3)
-4. `04_Parameter_Strategy.pdf` (2 pages, Skill 4)
-5. `05_Decision_Tree.pdf` (1-2 pages, Skill 5)
-6. `06_Adversity_Playbook.pdf` (2-3 pages, Skill 6)
-7. `07_Problem_Inversion.pdf` (1-2 pages, Skill 7)
-8. `08_Integrated_Plan.pdf` (4-6 pages, Skill 8)
-
-**Communication Materials:**
+**문학 통합 포인트 5:**
+- 생산적 피벗의 역사적 예
+- 다른 사람들은 역경을 어떻게 활용했나요?
+- 실패를 딛고 탄생한 2세대 프로젝트는 무엇인가?
+
+**제공물:**
+- 예상되는 위기 카탈로그
+- 각각의 업그레이드 전략
+- 프로젝트 앙상블 맵
+- 탄력성 의식 및 프로토콜
+
+**체크포인트:** 역경을 기회로 볼 준비가 되셨나요? 단지 수정이 아닌 업그레이드 방법을 계획하셨나요?
+
+### 8단계: 문제 반전 도구 키트(기술 7) - ~1일
+
+**우리가 할 일:**
+1. 세 가지 반전 전략을 검토합니다.
+2. 예상되는 장애물에 대한 사전 계획 애플리케이션
+3. 문제 반전 분석 작성(1-2페이지)
+
+**이것은 준비 단계입니다** - 지금은 필요하지 않을 수도 있지만 위기가 닥치면 프레임워크가 준비됩니다.
+
+**제공물:**
+- 전략 1 적용 예정
+- 전략 2 옵션 확인
+- 전략 3 대안 질문 브레인스토밍
+- 위기상황 빠른 참고 가이드
+
+**체크포인트:** 막혔을 때 문제를 반전시키기 위한 구체적인 전략이 있나요?
+
+### 9단계: 통합 및 합성(기술 8) - ~3-5일
+
+**우리가 할 일:**
+1. 기술 1-7의 모든 출력을 검토합니다.
+2. 응집력 있는 내러티브 만들기
+3. 커뮤니케이션 자료 개발:
+   - 3슬라이드 프레젠테이션
+   - 1페이지 요약
+   - 1분 엘리베이터 피치
+4. 통합 프로젝트 계획 작성(4~6페이지)
+5. 지속적으로 사용할 수 있는 살아있는 문서 만들기
+
+**문학 통합 포인트 6:**
+- 통합계획 최종 참고자료
+- 각 부문별 주요 논문
+- 현장 리더의 커뮤니케이션 사례
+
+**제공물:**
+- 통합 프로젝트 계획 완료(4~6페이지)
+- 3슬라이드 프레젠테이션 데크
+- 1페이지 분량의 서면 요약
+- 엘리베이터 피치 스크립트
+- 살아있는 문서(의사결정나무, 위험 매트릭스 등)
+
+**체크포인트:** 1분, 5분, 1페이지 안에 프로젝트를 설득력 있게 전달할 수 있나요? 모든 조각이 일관되게 결합되어 있습니까?
+
+## 반복과 개선
+
+### 반복 시기
+
+**돌아가야 하는 위험 신호:**
+
+**스킬 2(위험)에서:**
+- 위험-5 가정 > 2년 후 → 기술 1로 복귀(재구성 문제)
+- >3 위험-4-5 가정 → 기술 1로 복귀(접근 방식 단순화 또는 변경)
+
+**스킬 3(충격)에서:**
+- 양 축 모두 LOW 점수 → 스킬 1로 복귀(충격이 더 큰 각도 찾기)
+- 최적화 기능 불일치 → 스킬 1로 복귀(리프레임 문제)
+
+**스킬 4(매개변수)에서:**
+- >2개의 고정 매개변수 → 스킬 1로 복귀(과도한 제약)
+- 고정 매개변수 0개 → 스킬 1로 복귀(과소 제약)
+
+**스킬 5-6에서:**
+- 명확한 결정 포인트 없음 → 스킬 4로 복귀(더 많은 유연성 필요)
+- 모든 실패 모드는 실존적입니다. → 스킬 2로 복귀(너무 위험함)
+
+### 반복 프로토콜
+
+**대규모 개정 필요:**
+1. **일시 중지 및 확인:** 프로세스가 작동 중입니다. 문제가 발생했습니다.
+2. **표시된 스킬로 복귀:** 일반적으로 스킬 1 또는 2
+3. **배운 내용을 가져오세요.** 처음부터 시작하지 마세요.
+4. **수정된 아이디어 → 워크플로우를 다시 실행:** 두 번째로 더 빠르게
+5. **다중 반복 가능:** 잘못된 프로젝트로 수년을 보낸 것보다 낫습니다.
+
+**사소한 개선:**
+1. **특정 문서 업데이트:** 예: 매개변수 전략 조정
+2. **다운스트림 효과 확인:** 이로 인해 다른 사항이 변경됩니까?
+3. **통합 문서 업데이트:** 모든 항목의 일관성을 유지하세요.
+
+## 문학통합전략
+
+### 전반적인 PubMed 접근 방식
+
+**워크플로 전체에서 PubMed를 전략적으로 사용하세요.**
+
+1. **기술 1(아이디어):** 일반성 평가, 선례 찾기, 경쟁 측정
+2. **스킬 2(위험):** 기술적 타당성, 생물학적 증거, 벤치마크
+3. **스킬 3(영향):** 현장 예시, 평가 프레임워크, 벤치마크
+4. **스킬 4(매개변수):** 성공적인 매개변수 선택, 주의 사항
+5. **스킬 6(역경):** 생산적인 피벗, 업그레이드 예시
+6. **기술 8(통합):** 의사소통 모델, 포괄적인 참조
+
+**검색 전략:**
+- 광범위하게 시작(현장 개요)
+- 구체적으로 작성하세요(정확한 접근 방식).
+- 인접해 보세요(관련 시스템/방법)
+- 벤치마크 찾기(최첨단이란 무엇입니까?)
+- 경쟁 식별(누가 이 일을 하고 있습니까?)
+
+**추적할 논문:**
+- 스킬 1의 주요 논문 ~10-15개
+- 스킬 2의 기술 문서 ~5-10개
+- 스킬 3의 ~5-10개 영향 예시
+- 스킬 4의 매개변수 레슨 ~5개
+- 스킬 6의 ~3-5개 피봇 예시
+- **총계: ~30-50편** (귀하의 재단)
+
+## 최종 배송 가능 패키지
+
+### 마지막에 얻게 될 것
+
+**핵심 문서(정리된 폴더):**
+1. `01_Problem_Ideation.pdf`(2페이지, 스킬 1)
+2. `02_Risk_Assessment.pdf`(2페이지, 스킬 2)
+3. `03_Impact_Assessment.pdf`(2페이지, 스킬 3)
+4. `04_Parameter_Strategy.pdf`(2페이지, 스킬 4)
+5. `05_Decision_Tree.pdf`(1-2페이지, 스킬 5)
+6. `06_Adversity_Playbook.pdf`(2-3페이지, 스킬 6)
+7. `07_Problem_Inversion.pdf`(1-2페이지, 스킬 7)
+8. `08_Integrated_Plan.pdf`(4-6페이지, 스킬 8)
+
+**커뮤니케이션 자료:**
 - `Presentation_3slides.pptx`
 - `Summary_1page.pdf`
 - `Elevator_Pitch.txt`
 
-**Living Documents (for ongoing use):**
-- `Decision_Tree.pdf` (update monthly)
-- `Risk_Matrix.xlsx` (update quarterly)
-- `Adversity_Playbook.pdf` (consult in crisis)
-- `Parameter_Strategy.pdf` (revisit if stuck)
+**살아있는 문서(지속적인 사용을 위해):**
+- `Decision_Tree.pdf` (매월 업데이트)
+- `Risk_Matrix.xlsx` (분기별 업데이트)
+- `Adversity_Playbook.pdf` (위기시 상담)
+- `Parameter_Strategy.pdf`(멈춘 경우 다시 방문)
 
-**Reference Library:**
-- `Key_Papers.pdf` (annotated bibliography, 30-50 papers)
-- Organized by: Ideation / Technical / Impact / Pivots
+**참조 라이브러리:**
+- `Key_Papers.pdf` (주석이 달린 참고문헌, 30-50편의 논문)
+- 주관 : Ideation / Technical / Impact / Pivots
 
-**Total: ~20-25 pages of documentation + supporting materials**
+**총계: 약 20~25페이지의 문서 + 지원 자료**
 
-## Using Your Outputs
+## 출력 사용
 
-### For Different Purposes
+### 다양한 목적으로
 
-**Grant/Fellowship Applications:**
-- Start with Integrated Plan (Skill 8)
-- Include specific aims from Ideation (Skill 1)
-- Show risk mitigation from Risk Assessment (Skill 2)
-- Demonstrate impact from Impact Assessment (Skill 3)
-- Timeline from Decision Tree (Skill 5)
+**교부금/지원금 신청:**
+- 통합계획으로 시작하기 (스킬 8)
+- Ideation(Skill 1)의 구체적인 목표를 포함합니다.
+- 위험 평가를 통한 위험 완화 표시(스킬 2)
+- 영향평가를 통한 영향 입증(스킬 3)
+- 의사결정 트리의 타임라인(스킬 5)
 
-**Thesis Committee Meetings:**
-- Present 3-slide deck (Skill 8)
-- Walk through decision tree (Skill 5)
-- Discuss risk mitigation (Skill 2)
-- Show parameter flexibility (Skill 4)
-- Demonstrate thoughtful planning
+**논문위원회 회의:**
+- 3슬라이드 데크 제공(스킬 8)
+- 의사결정 트리 살펴보기(스킬 5)
+- 위험 완화 논의(스킬 2)
+- 매개변수 유연성 표시(스킬 4)
+- 사려 깊은 계획을 보여줍니다.
 
-**Lab Meetings:**
-- Use elevator pitch (Skill 8)
-- Show decision tree updates (Skill 5)
-- Discuss latest adversity and response (Skill 6)
-- Get input on parameter strategy (Skill 4)
+**실험실 회의:**
+- 엘리베이터 피치 사용(스킬 8)
+- 의사결정 트리 업데이트 표시(스킬 5)
+- 최근 역경과 대응에 대해 토론(스킬 6)
+- 매개변수 전략에 대한 입력 받기(스킬 4)
 
-**Collaborator Conversations:**
-- Share 1-page summary (Skill 8)
-- Highlight where their expertise fits (Skill 4)
-- Show risk mitigation plan (Skill 2)
-- Discuss impact potential (Skill 3)
+**공동작업자 대화:**
+- 1페이지 요약 공유(스킬 8)
+- 자신의 전문 지식이 적합한 부분을 강조하세요(스킬 4)
+- 위험 완화 계획 표시(스킬 2)
+- 영향 가능성에 대해 논의(스킬 3)
 
-**Personal Reflection:**
-- Quarterly: Review Decision Tree (Skill 5), update milestones
-- After setbacks: Consult Adversity Playbook (Skill 6)
-- When stuck: Use Problem Inversion (Skill 7)
-- Annual: Full workflow review, consider new projects
+**개인적인 생각:**
+- 분기별: 의사결정도 검토(스킬 5), 이정표 업데이트
+- 좌절 후: 역경 플레이북 참조(스킬 6)
+- 막혔을 때 : 문제 반전 사용(스킬 7)
+- 연간: 전체 작업 흐름 검토, 새 프로젝트 고려
 
-## Maintenance and Updates
+## 유지 관리 및 업데이트
 
-### Living Documents Protocol
+### 살아있는 문서 프로토콜
 
-**Monthly:**
-- Update Decision Tree (Skill 5)
-- Log adversities and responses (Skill 6)
-- Note new papers or competition
-- Adjust timeline if needed
+**월간:**
+- 결정 트리 업데이트(스킬 5)
+- 역경과 대응 기록(스킬 6)
+- 새로운 논문이나 경쟁에 주목하세요
+- 필요한 경우 타임라인을 조정하세요.
 
-**Quarterly:**
-- Review Risk Matrix (Skill 2) - mark assumptions tested
-- Reassess Impact (Skill 3) - has evaluation changed?
-- Check Parameter Strategy (Skill 4) - still optimal?
-- Update Integrated Plan (Skill 8) - keep current
+**분기별:**
+- 위험 매트릭스 검토(기술 2) - 테스트된 가정 표시
+- 영향 재평가(스킬 3) - 평가가 바뀌었나요?
+- 매개변수 전략 확인(스킬 4) - 여전히 최적인가요?
+- 통합 계획 업데이트(스킬 8) - 최신 상태 유지
 
-**Annually:**
-- Complete workflow review
-- Consider new projects with fresh Skill 1 ideation
-- Archive old project docs
-- Extract lessons learned
+**연간:**
+- 워크플로 검토 완료
+- 신선한 스킬 1 아이디어로 새로운 프로젝트를 고려하세요.
+- 오래된 프로젝트 문서 보관
+- 학습한 내용 추출
 
-## Success Metrics
+## 성공 지표
 
-### How Do You Know This Worked?
+### 이것이 효과가 있었는지 어떻게 알 수 있나요?
 
-**Immediate Indicators:**
-- Clearer project vision than before
-- Honest assessment of risks
-- Contingency plans for failures
-- Compelling communication materials
-- Alignment between project and values
-- Confidence in problem choice
+**즉각적 지표:**
+- 이전보다 더 명확한 프로젝트 비전
+- 위험에 대한 정직한 평가
+- 실패에 대한 비상 계획
+- 설득력 있는 커뮤니케이션 자료
+- 프로젝트와 가치의 정렬
+- 문제 선택에 대한 자신감
 
-**6-Month Indicators:**
-- Major decisions made faster (have framework)
-- Adversity handled productively (used playbook)
-- No existential crises (risks were mitigated)
-- Regular Level 2 evaluation happening
-- Project staying on-track or pivoting smartly
+**6개월 지표:**
+- 주요 의사결정이 더욱 빨라짐(프레임워크 보유)
+- 역경을 생산적으로 처리함(플레이북 사용)
+- 실존적 위기 없음(위험이 완화됨)
+- 정기 2단계 평가 실시
+- 프로젝트를 계속 진행하거나 현명하게 전환하는 프로젝트
 
-**2-Year Indicators:**
-- Published results or strong progress
-- Avoided dead-end projects
-- Multiple high-quality options at decision points
-- Skills developed as planned
-- Career trajectory aligned with goals
-- Time well-spent (the ultimate measure)
+**2년 지표:**
+- 발표된 결과 또는 강력한 진전
+- 막다른 프로젝트를 피함
+- 결정 지점에서 다양한 고품질 옵션 제공
+- 계획대로 개발된 기술
+- 목표와 일치하는 경력 궤적
+- 시간을 잘 보냈습니다(최종 척도)
 
-## Key Principles of the Meta-Framework
+## 메타 프레임워크의 주요 원칙
 
-1. **Systematic > Ad Hoc:** Process ensures nothing forgotten
-2. **Iterative > Linear:** Expect to loop back, that's good
-3. **Documented > Mental:** Writing forces clarity
-4. **Integrated > Fragmented:** All skills connect
-5. **Living > Static:** Update as you learn
-6. **Thoughtful > Fast:** Time invested now saves years later
-7. **Honest > Optimistic:** Rigor protects against wishful thinking
-8. **Prepared > Surprised:** Anticipate adversity
-9. **Flexible > Rigid:** Parameters float when needed
-10. **Passionate > Obligatory:** Alignment matters
+1. **체계적 > 임시:** 프로세스는 잊어버린 것이 없음을 보장합니다.
+2. **반복 > 선형:** 루프백을 예상하면 좋습니다.
+3. **문서화됨 > 정신적:** 글쓰기는 명확성을 강화합니다.
+4. **통합 > 단편화:** 모든 기술이 연결됩니다.
+5. **생활 > 정적:** 배우면서 업데이트
+6. **사려 깊음 > 빠름:** 지금 투자한 시간이 나중에 몇 년을 절약해 줍니다.
+7. **정직함 > 낙관적:** 엄격함은 희망적인 생각을 막아줍니다.
+8. **준비됨 > 놀랐음:** 역경을 예상함
+9. **유연함 > 강함:** 필요할 때 매개변수가 부동됩니다.
+10. **열정 > 의무:** 정렬이 중요함
 
-## Getting Started
+## 시작하기
 
-### First Steps
+### 첫 번째 단계
 
-**This Week:**
-1. Block time in calendar (1-2 hours to start)
-2. Gather your context (background, goals, constraints)
-3. Begin Skill 1 (Intuition Pumps)
-4. Let me know your starting point
+**이번 주:**
+1. 캘린더의 블록 시간(시작까지 1~2시간)
+2. 상황(배경, 목표, 제약)을 수집하세요.
+3. 스킬 1 시작(직관 펌프)
+4. 출발점을 알려주세요
 
-**This Month:**
-1. Work through Skills 1-4 (foundation)
-2. Share with mentor for alignment check
-3. Iterate if major changes needed
-4. Complete Skills 5-8 (execution planning)
+**이번 달:**
+1. 스킬 1~4(기초)를 통해 작업하세요.
+2. 멘토와 공유하여 정렬 확인
+3. 주요 변경이 필요한 경우 반복
+4. 스킬 5~8 완료(실행 계획)
 
-**This Quarter:**
-1. Begin project execution with living documents
-2. Monthly decision tree updates
-3. Quarterly risk assessment reviews
-4. Log adversities and responses
+**이번 분기:**
+1. 살아있는 문서로 프로젝트 실행 시작
+2. 월별 의사결정 트리 업데이트
+3. 분기별 위험 평가 검토
+4. 역경과 대응을 기록하세요
 
-**This Year:**
-1. Execute planned project
-2. Use frameworks when stuck
-3. Update living documents
-4. Evaluate process and refine
+**올해:**
+1. 계획된 프로젝트 실행
+2. 막혔을 때 프레임워크를 사용하세요
+3. 생활 문서 업데이트
+4. 프로세스를 평가하고 개선합니다.
 
-## Ready to Begin?
+## 시작할 준비가 되셨나요?
 
-The complete meta-framework is substantial, but each step builds on the last. You'll move through:
-- ~2 weeks of intensive planning
-- Comprehensive documentation
-- Clear decision criteria
-- Communication materials
-- Living documents for ongoing guidance
+완전한 메타 프레임워크는 상당하지만 각 단계는 마지막 프레임워크를 기반으로 구축됩니다. 다음을 통해 이동하게 됩니다.
+- 약 2주간의 집중 계획
+- 포괄적인 문서
+- 명확한 결정 기준
+- 커뮤니케이션 자료
+- 지속적인 지침을 위한 살아있는 문서
 
-**Most importantly:** You'll KNOW you're working on a well-chosen problem with rigorous planning. That confidence is priceless.
+**가장 중요한 점:** 엄격한 계획을 통해 잘 선택된 문제를 해결하고 있다는 사실을 알게 될 것입니다. 그 자신감은 매우 귀중합니다.
 
-Let's start with Skill 1. Are you ready to begin?
+스킬 1부터 시작하겠습니다. 시작할 준비가 되셨나요?
 
 ---
 
-*Remember: The highest-leverage work in science is choosing the right problem. This meta-framework ensures you spend your finite time wisely. The investment in systematic planning pays dividends for years.*
+*기억하세요: 과학에서 가장 영향력 있는 작업은 올바른 문제를 선택하는 것입니다. 이 메타 프레임워크는 유한한 시간을 현명하게 보낼 수 있도록 보장합니다. 체계적인 계획에 대한 투자는 수년간 배당금을 지급합니다.*
 

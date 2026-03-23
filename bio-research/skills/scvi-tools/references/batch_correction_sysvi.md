@@ -1,26 +1,26 @@
-# Advanced Batch Correction with sysVI
+# sysVI를 사용한 고급 일괄 수정
 
-This reference covers system-level batch correction using sysVI, designed for integrating data across major technological or study differences.
+이 참조 자료는 주요 기술 또는 연구 차이점에 걸쳐 데이터를 통합하기 위해 설계된 sysVI를 사용한 시스템 수준 배치 수정을 다룹니다.
 
-## Overview
+## 개요
 
-sysVI (System Variational Inference) extends scVI for scenarios where:
-- Batch effects are very strong (different technologies)
-- Standard scVI over-corrects biological signal
-- You need to separate "system" effects from biological variation
+sysVI(시스템 변형 추론)는 다음과 같은 시나리오에 대해 scVI를 확장합니다.
+- 배치 효과가 매우 강함(다른 기술)
+- 표준 scVI는 생물학적 신호를 과도하게 수정합니다.
+- 생물학적 변이와 "시스템" 효과를 분리해야 합니다.
 
-## When to Use sysVI vs scVI
+## sysVI와 scVI를 언제 사용해야 할까요?
 
-| Scenario | Recommended Model |
-|----------|-------------------|
-| Same technology, different samples | scVI |
-| 10x v2 vs 10x v3 | scVI (usually) |
-| 10x vs Smart-seq2 | sysVI |
-| Different sequencing depths | scVI with covariates |
-| Cross-study integration | sysVI |
-| Atlas-scale integration | sysVI |
+| 시나리오 | 추천 모델 |
+|------------|------|
+| 동일한 기술, 다른 샘플 | scVI |
+| 10x v2 대 10x v3 | scVI (보통) |
+| 10x 대 Smart-seq2 | 시스템VI |
+| 다양한 시퀀싱 깊이 | 공변량이 있는 scVI |
+| 연구 간 통합 | 시스템VI |
+| Atlas 규모의 통합 | 시스템VI |
 
-## Prerequisites
+## 전제 조건
 
 ```python
 import scvi
@@ -30,11 +30,11 @@ import numpy as np
 print(f"scvi-tools version: {scvi.__version__}")
 ```
 
-## Understanding sysVI Architecture
+## sysVI 아키텍처 이해
 
-sysVI separates variation into:
-1. **Biological variation**: Cell type, state, trajectory
-2. **System variation**: Technology, study, lab effects
+sysVI는 변형을 다음과 같이 분리합니다.
+1. **생물학적 변이**: 세포 유형, 상태, 궤적
+2. **시스템 변형**: 기술, 연구, 실험실 효과
 
 ```
                     ┌─────────────────┐
@@ -56,9 +56,9 @@ System info ───────►│    Decoder      │
                     Reconstructed counts
 ```
 
-## Basic sysVI Workflow
+## 기본 sysVI 작업 흐름
 
-### Step 1: Prepare Data
+### 1단계: 데이터 준비
 
 ```python
 # Load datasets from different systems
@@ -79,7 +79,7 @@ adata = sc.concat([adata1, adata2])
 adata.layers["counts"] = adata.X.copy()
 ```
 
-### Step 2: HVG Selection
+### 2단계: HVG 선택
 
 ```python
 # Select HVGs considering both batch and system
@@ -96,7 +96,7 @@ sc.pp.highly_variable_genes(
 adata = adata[:, adata.var["highly_variable"]].copy()
 ```
 
-### Step 3: Setup and Train sysVI
+### 3단계: sysVI 설정 및 교육
 
 ```python
 # Setup AnnData
@@ -125,7 +125,7 @@ model = scvi.model.SCVI(
 model.train(max_epochs=300)
 ```
 
-### Step 4: Extract Representations
+### 4단계: 표현 추출
 
 ```python
 # Get latent representation
@@ -140,9 +140,9 @@ sc.tl.leiden(adata)
 sc.pl.umap(adata, color=["system", "leiden", "cell_type"])
 ```
 
-## Alternative: Harmony + scVI
+## 대안: 하모니 + scVI
 
-For cross-system integration, combining methods can work well:
+시스템 간 통합의 경우 방법을 결합하는 것이 효과적일 수 있습니다.
 
 ```python
 import scanpy.external as sce
@@ -157,9 +157,9 @@ sce.pp.harmony_integrate(adata, key="system")
 # Or use Harmony representation directly
 ```
 
-## Alternative: Using Covariates in scVI
+## 대안: scVI에서 공변량 사용
 
-For moderate system effects:
+적당한 시스템 효과의 경우:
 
 ```python
 # Include system as categorical covariate
@@ -174,9 +174,9 @@ model = scvi.model.SCVI(adata, n_latent=30)
 model.train()
 ```
 
-## Alternative: Separate Models + Integration
+## 대안: 별도의 모델 + 통합
 
-For very different systems:
+매우 다른 시스템의 경우:
 
 ```python
 # Train separate models
@@ -196,9 +196,9 @@ adata2.obsm["X_scVI"] = model2.get_latent_representation()
 # ... additional alignment step
 ```
 
-## Evaluating Cross-System Integration
+## 시스템 간 통합 평가
 
-### Visual Assessment
+### 시각적 평가
 
 ```python
 import matplotlib.pyplot as plt
@@ -217,7 +217,7 @@ sc.pl.umap(adata, color="CD3D", ax=axes[2], show=False, title="CD3D Expression")
 plt.tight_layout()
 ```
 
-### Quantitative Metrics
+### 정량적 지표
 
 ```python
 # Using scib-metrics
@@ -237,7 +237,7 @@ bm.benchmark()
 # - Bio conservation (NMI, ARI, ASW_label)
 ```
 
-### LISI Scores
+### LISI 점수
 
 ```python
 # Local Inverse Simpson's Index
@@ -261,9 +261,9 @@ print(f"Batch LISI: {batch_lisi.mean():.3f}")
 print(f"Cell type LISI: {ct_lisi.mean():.3f}")
 ```
 
-## Handling Specific Challenges
+## 특정 과제 처리
 
-### Different Gene Sets
+### 다양한 유전자 세트
 
 ```python
 # Find common genes
@@ -274,7 +274,7 @@ print(f"Common genes: {len(common_genes)}")
 # Or impute missing genes
 ```
 
-### Different Sequencing Depths
+### 다양한 시퀀싱 깊이
 
 ```python
 # Add depth as continuous covariate
@@ -288,7 +288,7 @@ scvi.model.SCVI.setup_anndata(
 )
 ```
 
-### Unbalanced Cell Types
+### 불균형 세포 유형
 
 ```python
 # Check cell type distribution per system
@@ -302,7 +302,7 @@ print(ct_dist)
 # 2. Use scANVI with labels to preserve rare types
 ```
 
-## Complete Pipeline
+## 파이프라인 완성
 
 ```python
 def integrate_cross_system(
@@ -402,16 +402,16 @@ adata_integrated, model = integrate_cross_system(adatas)
 sc.pl.umap(adata_integrated, color=["system", "leiden"])
 ```
 
-## Troubleshooting
+## 문제 해결
 
-| Issue | Cause | Solution |
-|-------|-------|----------|
-| Systems don't mix | Effects too strong | Use more genes, increase n_latent |
-| Over-correction | Model too aggressive | Reduce n_layers, use scANVI |
-| Few common genes | Different platforms | Use gene name mapping |
-| One system dominates | Unbalanced sizes | Subsample larger dataset |
+| 이슈 | 원인 | 솔루션 |
+|---------|-------|----------|
+| 시스템은 혼합되지 않습니다 | 효과가 너무 강함 | 더 많은 유전자를 사용하고 n_latent를 늘리세요 |
+| 과잉교정 | 너무 공격적인 모델 | n_layers를 줄이고 scANVI |
+| 몇 가지 공통 유전자 | 다양한 플랫폼 | 유전자 이름 매핑 사용 |
+| 하나의 시스템이 지배적 | 불균형한 크기 | 더 큰 데이터 세트 서브샘플 |
 
-## Key References
+## 주요 참고자료
 
-- Lopez et al. (2018) "Deep generative modeling for single-cell transcriptomics"
-- Luecken et al. (2022) "Benchmarking atlas-level data integration in single-cell genomics"
+- 로페즈 외. (2018) "단일 세포 전사체학을 위한 심층 생성 모델링"
+- Luecken 외. (2022) "단일 세포 유전체학의 아틀라스 수준 데이터 통합 ​​벤치마킹"
