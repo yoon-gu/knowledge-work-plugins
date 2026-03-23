@@ -1,266 +1,266 @@
 ---
 name: roadmap-update
-description: Update, create, or reprioritize your product roadmap. Use when adding a new initiative and deciding what moves to make room, shifting priorities after new information comes in, moving timelines due to a dependency slip, or building a Now/Next/Later view from scratch.
-argument-hint: "<update description>"
+description: 제품 로드맵을 업데이트, 생성 또는 재우선순위화합니다. 새 이니셔티브를 추가하고 무엇을 밀어낼지 결정할 때, 새 정보가 들어온 후 우선순위를 전환할 때, 종속성 지연으로 타임라인을 이동할 때, 또는 Now/Next/Later 뷰를 처음부터 구축할 때 사용하세요.
+argument-hint: "<업데이트 설명>"
 ---
 
-# Roadmap Update
+# 로드맵 업데이트
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 하는 경우, [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Update, create, or reprioritize a product roadmap.
+제품 로드맵을 업데이트, 생성 또는 재우선순위화합니다.
 
-## Usage
+## 사용법
 
 ```
 /roadmap-update $ARGUMENTS
 ```
 
-## Workflow
+## 워크플로우
 
-### 1. Understand Current State
+### 1. 현재 상태 파악
 
-If **~~project tracker** is connected:
-- Pull current roadmap items with their statuses, assignees, and dates
-- Identify items that are overdue, at risk, or recently completed
-- Surface any items without clear owners or dates
+**~~프로젝트 추적기**가 연결된 경우:
+- 상태, 담당자, 날짜가 포함된 현재 로드맵 항목 가져오기
+- 기한 초과, 위험, 최근 완료된 항목 식별
+- 명확한 담당자나 날짜가 없는 항목 표면화
 
-If no project management tool is connected:
-- Ask the user to describe their current roadmap or paste/upload it
-- Accept any format: list, table, spreadsheet, screenshot, or prose description
+프로젝트 관리 도구가 연결되지 않은 경우:
+- 사용자에게 현재 로드맵을 설명하거나 붙여넣기/업로드하도록 요청
+- 모든 형식 수락: 목록, 테이블, 스프레드시트, 스크린샷, 또는 서술 설명
 
-### 2. Determine the Operation
+### 2. 작업 결정
 
-Ask what the user wants to do:
+사용자가 원하는 것을 질문합니다:
 
-**Add item**: New feature, initiative, or work item to the roadmap
-- Gather: name, description, priority, estimated effort, target timeframe, owner, dependencies
-- Suggest where it fits based on current priorities and capacity
+**항목 추가**: 로드맵에 새 기능, 이니셔티브 또는 작업 항목
+- 수집: 이름, 설명, 우선순위, 예상 노력, 목표 시간대, 담당자, 종속성
+- 현재 우선순위와 가용량을 기반으로 어디에 맞는지 제안
 
-**Update status**: Change status of existing items
-- Options: not started, in progress, at risk, blocked, completed, cut
-- For "at risk" or "blocked": ask for the blocker and mitigation plan
+**상태 업데이트**: 기존 항목의 상태 변경
+- 옵션: 미시작, 진행 중, 위험, 블로킹됨, 완료, 제외
+- "위험" 또는 "블로킹됨"의 경우: 블로커와 완화 계획 질문
 
-**Reprioritize**: Change the order or priority of items
-- Ask what changed (new information, strategy shift, resource change, customer feedback)
-- Apply a prioritization framework if helpful — see **Prioritization Frameworks** below for RICE, MoSCoW, ICE, and value-vs-effort
-- Show before/after comparison
+**재우선순위화**: 항목의 순서 또는 우선순위 변경
+- 무엇이 변했는지 질문 (새 정보, 전략 변화, 리소스 변경, 고객 피드백)
+- 도움이 되면 우선순위 프레임워크 적용 — RICE, MoSCoW, ICE, 가치 대 노력은 아래 **우선순위 프레임워크** 참조
+- 변경 전후 비교 표시
 
-**Move timeline**: Shift dates for items
-- Ask why (scope change, dependency slip, resource constraint)
-- Identify downstream impacts on dependent items
-- Flag items that move past hard deadlines
+**타임라인 이동**: 항목의 날짜 변경
+- 이유 질문 (범위 변경, 종속성 지연, 리소스 제약)
+- 종속 항목에 대한 하류 영향 식별
+- 확정 마감일을 초과하는 항목 표시
 
-**Create new roadmap**: Build a roadmap from scratch
-- Ask about timeframe (quarter, half, year)
-- Ask about format preference (Now/Next/Later, quarterly columns, OKR-aligned) — see **Roadmap Frameworks** below
-- Gather the list of initiatives to include
+**새 로드맵 생성**: 처음부터 로드맵 구축
+- 시간대 질문 (분기, 반기, 연간)
+- 형식 선호도 질문 (Now/Next/Later, 분기별 칼럼, OKR 정렬) — 아래 **로드맵 프레임워크** 참조
+- 포함할 이니셔티브 목록 수집
 
-### 3. Generate Roadmap Summary
+### 3. 로드맵 요약 생성
 
-Produce a roadmap view with:
+다음이 포함된 로드맵 뷰를 생성합니다:
 
-#### Status Overview
-Quick summary: X items in progress, Y completed this period, Z at risk.
+#### 상태 개요
+빠른 요약: X개 항목 진행 중, Y개 이 기간에 완료, Z개 위험.
 
-#### Roadmap Items
-For each item, show:
-- Name and one-line description
-- Status indicator (on track / at risk / blocked / completed / not started)
-- Target timeframe or date
-- Owner
-- Key dependencies
+#### 로드맵 항목
+각 항목에 표시:
+- 이름 및 한 줄 설명
+- 상태 표시 (순조 / 위험 / 블로킹됨 / 완료 / 미시작)
+- 목표 시간대 또는 날짜
+- 담당자
+- 핵심 종속성
 
-Group items by:
-- Timeframe (Now / Next / Later) or quarter, depending on format
-- Or by theme/goal if the user prefers
+다음으로 그룹화:
+- 시간대 (Now / Next / Later) 또는 분기, 형식에 따라
+- 또는 사용자가 선호하면 테마/목표별
 
-#### Risks and Dependencies
-- Items that are blocked or at risk, with details
-- Cross-team dependencies and their status
-- Items approaching hard deadlines
+#### 리스크 및 종속성
+- 블로킹되거나 위험한 항목, 세부 사항
+- 크로스팀 종속성과 상태
+- 확정 마감일에 접근하는 항목
 
-#### Changes This Update
-If this is an update to an existing roadmap, summarize what changed:
-- Items added, removed, or reprioritized
-- Timeline shifts
-- Status changes
+#### 이번 업데이트 변경 사항
+기존 로드맵의 업데이트인 경우, 무엇이 변했는지 요약:
+- 추가, 제거, 재우선순위화된 항목
+- 타임라인 변경
+- 상태 변경
 
-### 4. Follow Up
+### 4. 후속
 
-After generating the roadmap:
-- Offer to format for a specific audience (executive summary, engineering detail, customer-facing)
-- Offer to draft communication about roadmap changes
-- If project management tool is connected, offer to update ticket statuses
+로드맵 생성 후:
+- 특정 대상을 위한 형식 (경영진 요약, 엔지니어링 상세, 고객 대면) 제안
+- 로드맵 변경에 대한 커뮤니케이션 초안 제안
+- 프로젝트 관리 도구가 연결되어 있으면 티켓 상태 업데이트 제안
 
-## Roadmap Frameworks
+## 로드맵 프레임워크
 
 ### Now / Next / Later
-The simplest and often most effective roadmap format:
+가장 간단하고 종종 가장 효과적인 로드맵 형식:
 
-- **Now** (current sprint/month): Committed work. High confidence in scope and timeline. These are the things the team is actively building.
-- **Next** (next 1-3 months): Planned work. Good confidence in what, less confidence in exactly when. Scoped and prioritized but not yet started.
-- **Later** (3-6+ months): Directional. These are strategic bets and opportunities we intend to pursue, but scope and timing are flexible.
+- **Now** (현재 스프린트/월): 커밋된 작업. 범위와 타임라인에 높은 확신. 팀이 적극적으로 만들고 있는 것.
+- **Next** (향후 1-3개월): 계획된 작업. 무엇에 대한 좋은 확신, 정확한 시기에 대한 낮은 확신. 범위가 정해지고 우선순위화되었지만 아직 시작되지 않음.
+- **Later** (3-6개월+): 방향적. 추구할 의도가 있는 전략적 투자와 기회이지만, 범위와 타이밍은 유연.
 
-When to use: Most teams, most of the time. Especially good for communicating externally or to leadership because it avoids false precision on dates.
+사용 시기: 대부분의 팀, 대부분의 경우. 외부나 리더십에 커뮤니케이션할 때 특히 좋음. 날짜에 대한 거짓 정확도를 피함.
 
-### Quarterly Themes
-Organize the roadmap around 2-3 themes per quarter:
+### 분기별 테마
+분기당 2-3개 테마를 중심으로 로드맵을 구성합니다:
 
-- Each theme represents a strategic area of investment (e.g., "Enterprise readiness", "Activation improvements", "Platform extensibility")
-- Under each theme, list the specific initiatives planned
-- Themes should map to company or team OKRs
-- This format makes it easy to explain WHY you are building what you are building
+- 각 테마는 전략적 투자 영역을 나타냄 (예: "엔터프라이즈 준비", "활성화 개선", "플랫폼 확장성")
+- 각 테마 아래 계획된 구체적 이니셔티브 나열
+- 테마는 회사 또는 팀 OKR에 매핑되어야 함
+- 이 형식은 왜 만들고 있는지 설명하기 쉬움
 
-When to use: When you need to show strategic alignment. Good for planning meetings and executive communication.
+사용 시기: 전략적 정렬을 보여야 할 때. 계획 회의와 경영진 커뮤니케이션에 좋음.
 
-### OKR-Aligned Roadmap
-Map roadmap items directly to Objectives and Key Results:
+### OKR 정렬 로드맵
+로드맵 항목을 목표 및 핵심 결과에 직접 매핑합니다:
 
-- Start with the team's OKRs for the period
-- Under each Key Result, list the initiatives that will move that metric
-- Include the expected impact of each initiative on the Key Result
-- This creates clear accountability between what you build and what you measure
+- 기간의 팀 OKR로 시작
+- 각 핵심 결과 아래 해당 지표를 움직일 이니셔티브 나열
+- 각 이니셔티브의 핵심 결과에 대한 예상 영향 포함
+- 만드는 것과 측정하는 것 사이에 명확한 책임 생성
 
-When to use: Organizations that run on OKRs. Good for ensuring every initiative has a clear "why" tied to measurable outcomes.
+사용 시기: OKR로 운영하는 조직. 모든 이니셔티브가 측정 가능한 결과에 연결된 명확한 "왜"를 보장.
 
-### Timeline / Gantt View
-Calendar-based view with items on a timeline:
+### 타임라인 / 간트 뷰
+타임라인에 항목이 있는 캘린더 기반 뷰:
 
-- Shows start dates, end dates, and durations
-- Visualizes parallelism and sequencing
-- Good for identifying resource conflicts
-- Shows dependencies between items
+- 시작 날짜, 종료 날짜, 기간 표시
+- 병렬성과 순서화 시각화
+- 리소스 충돌 식별에 좋음
+- 항목 간 종속성 표시
 
-When to use: Execution planning with engineering. Identifying scheduling conflicts. NOT good for communicating externally (creates false precision expectations).
+사용 시기: 엔지니어링과의 실행 계획. 스케줄 충돌 식별. 외부 커뮤니케이션에는 좋지 않음 (거짓 정확도 기대 생성).
 
-## Prioritization Frameworks
+## 우선순위 프레임워크
 
-### RICE Score
-Score each initiative on four dimensions, then calculate RICE = (Reach x Impact x Confidence) / Effort
+### RICE 점수
+네 가지 차원에서 각 이니셔티브를 점수 매기고, RICE = (도달 x 영향 x 확신) / 노력을 계산합니다
 
-- **Reach**: How many users/customers will this affect in a given time period? Use concrete numbers (e.g., "500 users per quarter").
-- **Impact**: How much will this move the needle for each person reached? Score on a scale: 3 = massive, 2 = high, 1 = medium, 0.5 = low, 0.25 = minimal.
-- **Confidence**: How confident are we in the reach and impact estimates? 100% = high confidence (backed by data), 80% = medium (some evidence), 50% = low (gut feel).
-- **Effort**: How many person-months of work? Include engineering, design, and any other functions.
+- **도달 (Reach)**: 주어진 기간에 몇 명의 사용자/고객에게 영향을 미칠 것인가? 구체적 숫자 사용 (예: "분기당 500명 사용자").
+- **영향 (Impact)**: 도달한 각 사람에게 얼마나 영향을 미칠 것인가? 척도: 3 = 엄청남, 2 = 높음, 1 = 중간, 0.5 = 낮음, 0.25 = 최소.
+- **확신 (Confidence)**: 도달과 영향 추정에 얼마나 확신하는가? 100% = 높은 확신 (데이터 뒷받침), 80% = 중간 (일부 증거), 50% = 낮음 (직감).
+- **노력 (Effort)**: 몇 인월의 작업인가? 엔지니어링, 디자인, 기타 기능 포함.
 
-When to use: When you need a quantitative, defensible prioritization. Good for comparing a large backlog of initiatives. Less good for strategic bets where impact is hard to estimate.
+사용 시기: 정량적이고 방어 가능한 우선순위화가 필요할 때. 대규모 백로그 이니셔티브 비교에 좋음. 영향을 추정하기 어려운 전략적 투자에는 덜 좋음.
 
 ### MoSCoW
-Categorize items into Must have, Should have, Could have, Won't have:
+항목을 Must have, Should have, Could have, Won't have로 분류합니다:
 
-- **Must have**: The roadmap is a failure without these. Non-negotiable commitments.
-- **Should have**: Important and expected, but delivery is viable without them.
-- **Could have**: Desirable but clearly lower priority. Include only if capacity allows.
-- **Won't have**: Explicitly out of scope for this period. Important to list for clarity.
+- **Must have**: 이것 없이는 로드맵이 실패. 협상 불가 커밋.
+- **Should have**: 중요하고 기대되지만, 이것 없이도 전달 가능.
+- **Could have**: 바람직하지만 명확히 낮은 우선순위. 가용량이 허용하는 경우에만 포함.
+- **Won't have**: 이 기간에 명시적으로 범위 밖. 명확성을 위해 나열하는 것이 중요.
 
-When to use: Scoping a release or quarter. Negotiating with stakeholders about what fits. Good for forcing prioritization conversations.
+사용 시기: 릴리스나 분기의 범위 설정. 무엇이 맞는지에 대해 이해관계자와 협상. 우선순위 대화를 강제하는 데 좋음.
 
-### ICE Score
-Simpler than RICE. Score each item 1-10 on three dimensions:
+### ICE 점수
+RICE보다 간단합니다. 세 가지 차원에서 각 항목을 1-10으로 점수 매깁니다:
 
-- **Impact**: How much will this move the target metric?
-- **Confidence**: How confident are we in the impact estimate?
-- **Ease**: How easy is this to implement? (Inverse of effort — higher = easier)
+- **영향 (Impact)**: 대상 지표를 얼마나 움직일 것인가?
+- **확신 (Confidence)**: 영향 추정에 얼마나 확신하는가?
+- **용이성 (Ease)**: 구현이 얼마나 쉬운가? (노력의 역수 — 높을수록 = 더 쉬움)
 
-ICE Score = Impact x Confidence x Ease
+ICE 점수 = Impact x Confidence x Ease
 
-When to use: Quick prioritization of a feature backlog. Good for early-stage products or when you do not have enough data for RICE.
+사용 시기: 기능 백로그의 빠른 우선순위화. 초기 단계 제품이나 RICE를 위한 충분한 데이터가 없을 때 좋음.
 
-### Value vs Effort Matrix
-Plot initiatives on a 2x2 matrix:
+### 가치 대 노력 매트릭스
+2x2 매트릭스에 이니셔티브를 배치합니다:
 
-- **High value, Low effort** (Quick wins): Do these first.
-- **High value, High effort** (Big bets): Plan these carefully. Worth the investment but need proper scoping.
-- **Low value, Low effort** (Fill-ins): Do these when you have spare capacity.
-- **Low value, High effort** (Money pits): Do not do these. Remove from the backlog.
+- **높은 가치, 낮은 노력** (빠른 성과): 먼저 실행.
+- **높은 가치, 높은 노력** (큰 투자): 신중하게 계획. 투자 가치가 있지만 적절한 범위 설정 필요.
+- **낮은 가치, 낮은 노력** (채우기): 여유 가용량이 있을 때 실행.
+- **낮은 가치, 높은 노력** (돈 구덩이): 실행하지 마세요. 백로그에서 제거.
 
-When to use: Visual prioritization in team planning sessions. Good for building shared understanding of tradeoffs.
+사용 시기: 팀 계획 세션에서의 시각적 우선순위화. 트레이드오프에 대한 공유 이해 구축에 좋음.
 
-## Dependency Mapping
+## 종속성 매핑
 
-### Identifying Dependencies
-Look for dependencies across these categories:
+### 종속성 식별
+다음 카테고리에서 종속성을 찾습니다:
 
-- **Technical dependencies**: Feature B requires infrastructure work from Feature A
-- **Team dependencies**: Feature requires work from another team (design, platform, data)
-- **External dependencies**: Waiting on a vendor, partner, or third-party integration
-- **Knowledge dependencies**: Need research or investigation results before starting
-- **Sequential dependencies**: Must ship Feature A before starting Feature B (shared code, user flow)
+- **기술적 종속성**: 기능 B가 기능 A의 인프라 작업을 필요로 함
+- **팀 종속성**: 기능이 다른 팀 (디자인, 플랫폼, 데이터)의 작업을 필요로 함
+- **외부 종속성**: 벤더, 파트너 또는 제3자 연동을 기다림
+- **지식 종속성**: 시작하기 전에 조사 또는 탐구 결과가 필요
+- **순차 종속성**: 기능 B를 시작하기 전에 기능 A를 출시해야 함 (공유 코드, 사용자 플로우)
 
-### Managing Dependencies
-- List all dependencies explicitly in the roadmap
-- Assign an owner to each dependency (who is responsible for resolving it)
-- Set a "need by" date: when does the depending item need this resolved
-- Build buffer around dependencies — they are the highest-risk items on any roadmap
-- Flag dependencies that cross team boundaries early — these require coordination
-- Have a contingency plan: what do you do if the dependency slips?
+### 종속성 관리
+- 로드맵에 모든 종속성을 명시적으로 나열
+- 각 종속성에 담당자 배정 (해결 책임자)
+- "필요 날짜" 설정: 의존하는 항목이 이 해결을 언제까지 필요로 하는지
+- 종속성 주변에 버퍼 구축 — 로드맵에서 가장 높은 리스크 항목
+- 팀 경계를 넘는 종속성을 일찍 표시 — 조정이 필요
+- 대비 계획: 종속성이 지연되면 어떻게 하나?
 
-### Reducing Dependencies
-- Can you build a simpler version that avoids the dependency?
-- Can you parallelize by using an interface contract or mock?
-- Can you sequence differently to move the dependency earlier?
-- Can you absorb the work into your team to remove the cross-team coordination?
+### 종속성 줄이기
+- 종속성을 피하는 더 간단한 버전을 만들 수 있나?
+- 인터페이스 계약이나 목업을 사용하여 병렬화할 수 있나?
+- 종속성을 더 앞으로 옮기도록 다르게 순서를 정할 수 있나?
+- 크로스팀 조정을 제거하기 위해 작업을 팀에 흡수할 수 있나?
 
-## Capacity Planning
+## 가용량 계획
 
-### Estimating Capacity
-- Start with the number of engineers and the time period
-- Subtract known overhead: meetings, on-call rotations, interviews, holidays, PTO
-- A common rule of thumb: engineers spend 60-70% of time on planned feature work
-- Factor in team ramp time for new members
+### 가용량 추정
+- 엔지니어 수와 기간으로 시작
+- 알려진 오버헤드 차감: 회의, 온콜 로테이션, 면접, 공휴일, PTO
+- 일반적인 경험칙: 엔지니어는 계획된 기능 작업에 60-70%의 시간을 보냄
+- 새 멤버의 적응 시간 고려
 
-### Allocating Capacity
-A healthy allocation for most product teams:
+### 가용량 배분
+대부분의 제품팀에 건강한 배분:
 
-- **70% planned features**: Roadmap items that advance strategic goals
-- **20% technical health**: Tech debt, reliability, performance, developer experience
-- **10% unplanned**: Buffer for urgent issues, quick wins, and requests from other teams
+- **70% 계획된 기능**: 전략적 목표를 진전시키는 로드맵 항목
+- **20% 기술 건강**: 기술 부채, 신뢰성, 성능, 개발자 경험
+- **10% 계획 외**: 긴급 이슈, 빠른 성과, 다른 팀의 요청을 위한 버퍼
 
-Adjust ratios based on team context:
-- New product: more feature work, less tech debt
-- Mature product: more tech debt and reliability investment
-- Post-incident: more reliability, less features
-- Rapid growth: more scalability and performance
+팀 맥락에 따라 비율 조정:
+- 새 제품: 더 많은 기능 작업, 더 적은 기술 부채
+- 성숙한 제품: 더 많은 기술 부채와 신뢰성 투자
+- 사고 후: 더 많은 신뢰성, 더 적은 기능
+- 급성장: 더 많은 확장성과 성능
 
-### Capacity vs Ambition
-- If roadmap commitments exceed capacity, something must give
-- Do not solve capacity problems by pretending people can do more — solve by cutting scope
-- When adding to the roadmap, always ask: "What comes off?"
-- Better to commit to fewer things and deliver reliably than to overcommit and disappoint
+### 가용량 대 야망
+- 로드맵 커밋이 가용량을 초과하면 무언가가 양보해야 함
+- 사람들이 더 할 수 있는 척하여 가용량 문제를 해결하지 마세요 — 범위를 줄여서 해결
+- 로드맵에 추가할 때 항상 질문: "무엇이 빠지나?"
+- 더 적은 것에 커밋하고 신뢰성 있게 전달하는 것이 과도하게 커밋하고 실망시키는 것보다 나음
 
-## Communicating Roadmap Changes
+## 로드맵 변경 커뮤니케이션
 
-### When the Roadmap Changes
-Common triggers for roadmap changes:
-- New strategic priority from leadership
-- Customer feedback or research that changes priorities
-- Technical discovery that changes estimates
-- Dependency slip from another team
-- Resource change (team grows or shrinks, key person leaves)
-- Competitive move that requires response
+### 로드맵이 변경될 때
+로드맵 변경의 일반적인 트리거:
+- 리더십의 새 전략적 우선순위
+- 우선순위를 변경하는 고객 피드백 또는 조사
+- 추정을 변경하는 기술적 발견
+- 다른 팀의 종속성 지연
+- 리소스 변경 (팀 성장 또는 축소, 핵심 인원 퇴사)
+- 대응이 필요한 경쟁 움직임
 
-### How to Communicate Changes
-1. **Acknowledge the change**: Be direct about what is changing and why
-2. **Explain the reason**: What new information drove this decision?
-3. **Show the tradeoff**: What was deprioritized to make room? Or what is slipping?
-4. **Show the new plan**: Updated roadmap with the changes reflected
-5. **Acknowledge impact**: Who is affected and how? Stakeholders who were expecting deprioritized items need to hear it directly.
+### 변경 커뮤니케이션 방법
+1. **변경을 인정**: 무엇이 변하고 왜인지 직접적으로
+2. **이유 설명**: 어떤 새 정보가 이 결정을 이끌었는지?
+3. **트레이드오프 표시**: 자리를 만들기 위해 무엇이 우선순위에서 밀렸는지? 또는 무엇이 밀리는지?
+4. **새 계획 표시**: 변경이 반영된 업데이트된 로드맵
+5. **영향 인정**: 누가 영향받고 어떻게? 우선순위에서 밀린 항목을 기대했던 이해관계자에게 직접 알려야 함.
 
-### Avoiding Roadmap Whiplash
-- Do not change the roadmap for every piece of new information. Have a threshold for change.
-- Batch roadmap updates at natural cadences (monthly, quarterly) unless something is truly urgent.
-- Distinguish between "roadmap change" (strategic reprioritization) and "scope adjustment" (normal execution refinement).
-- Track how often the roadmap changes. Frequent changes may signal unclear strategy, not good responsiveness.
+### 로드맵 급변 방지
+- 모든 새 정보에 대해 로드맵을 변경하지 마세요. 변경 임계값을 가지세요.
+- 진정으로 긴급하지 않는 한 자연스러운 주기 (월간, 분기별)에 로드맵 업데이트를 일괄 처리.
+- "로드맵 변경" (전략적 재우선순위화)과 "범위 조정" (정상적인 실행 개선)을 구분.
+- 로드맵이 얼마나 자주 변경되는지 추적. 잦은 변경은 좋은 대응이 아닌 불명확한 전략을 신호할 수 있음.
 
-## Output Format
+## 출력 형식
 
-Use a clear, scannable format. Tables work well for roadmap items. Use text status labels: **Done**, **On Track**, **At Risk**, **Blocked**, **Not Started**.
+명확하고 스캔 가능한 형식을 사용합니다. 로드맵 항목에 테이블이 잘 작동합니다. 텍스트 상태 레이블 사용: **완료**, **순조**, **위험**, **블로킹됨**, **미시작**.
 
-## Tips
+## 팁
 
-- A roadmap is a communication tool, not a project plan. Keep it at the right altitude — themes and outcomes, not tasks.
-- When reprioritizing, always ask what changed. Priority shifts should be driven by new information, not whim.
-- Flag capacity issues early. If the roadmap has more work than the team can handle, say so.
-- Dependencies are the biggest risk to roadmaps. Surface them explicitly.
-- If the user asks to add something, always ask what comes off or moves. Roadmaps are zero-sum against capacity.
+- 로드맵은 프로젝트 계획이 아닌 커뮤니케이션 도구입니다. 적절한 고도에 유지 — 테마와 결과이지 작업이 아닌.
+- 재우선순위화할 때 항상 무엇이 변했는지 질문. 우선순위 변경은 변덕이 아닌 새 정보에 의해 이루어져야.
+- 가용량 문제를 일찍 표시. 로드맵에 팀이 처리할 수 있는 것보다 많은 작업이 있으면 알리세요.
+- 종속성은 로드맵의 가장 큰 리스크. 명시적으로 표면화하세요.
+- 사용자가 무언가를 추가하도록 요청하면, 항상 무엇이 빠지거나 이동하는지 물어보세요. 로드맵은 가용량에 대해 제로섬입니다.

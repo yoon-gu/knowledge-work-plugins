@@ -1,867 +1,367 @@
 ---
 name: create-an-asset
-description: Generate tailored sales assets (landing pages, decks, one-pagers, workflow demos) from your deal context. Describe your prospect, audience, and goal — get a polished, branded asset ready to share with customers.
+description: 거래 맥락에서 맞춤형 영업 자산(랜딩 페이지, 덱, 원페이저, 워크플로우 데모)을 생성합니다. 잠재 고객, 대상, 목표를 설명하면 — 고객에게 공유할 준비가 된 세련된 브랜드 자산을 받으세요.
 ---
 
-# Create an Asset
+# 자산 만들기
 
-Generate custom sales assets tailored to your prospect, audience, and goals. Supports interactive landing pages, presentation decks, executive one-pagers, and workflow/architecture demos.
-
----
-
-## Triggers
-
-Invoke this skill when:
-- User says `/create-an-asset` or `/create-an-asset [CompanyName]`
-- User asks to "create an asset", "build a demo", "make a landing page", "mock up a workflow"
-- User needs a customer-facing deliverable for a sales conversation
+잠재 고객, 대상, 목표에 맞춘 맞춤형 영업 자산을 생성합니다. 인터랙티브 랜딩 페이지, 프레젠테이션 덱, 경영진 원페이저, 워크플로우/아키텍처 데모를 지원합니다.
 
 ---
 
-## Overview
+## 트리거
 
-This skill creates professional sales assets by gathering context about:
-- **(a) The Prospect** — company, contacts, conversations, pain points
-- **(b) The Audience** — who's viewing, what they care about
-- **(c) The Purpose** — goal of the asset, desired next action
-- **(d) The Format** — landing page, deck, one-pager, or workflow demo
-
-The skill then researches, structures, and builds a polished, branded asset ready to share with customers.
+다음의 경우 이 스킬을 호출합니다:
+- 사용자가 `/create-an-asset` 또는 `/create-an-asset [회사명]`을 실행
+- 사용자가 "자산 만들기", "데모 만들기", "랜딩 페이지 만들기", "워크플로우 목업"을 요청
+- 사용자가 영업 대화를 위한 고객 대면 결과물이 필요
 
 ---
 
-## Phase 0: Context Detection & Input Collection
+## 개요
 
-### Step 0.1: Detect Seller Context
+이 스킬은 다음에 대한 맥락을 수집하여 전문적인 영업 자산을 생성합니다:
+- **(a) 잠재 고객** — 회사, 연락처, 대화, 페인 포인트
+- **(b) 대상** — 누가 보는지, 무엇에 관심이 있는지
+- **(c) 목적** — 자산의 목표, 원하는 다음 행동
+- **(d) 형식** — 랜딩 페이지, 덱, 원페이저, 또는 워크플로우 데모
 
-From the user's email domain, identify what company they work for.
+그런 다음 조사하고, 구조화하고, 고객에게 공유할 준비가 된 세련된 브랜드 자산을 구축합니다.
 
-**Actions:**
-1. Extract domain from user's email
-2. Search: `"[domain]" company products services site:linkedin.com OR site:crunchbase.com`
-3. Determine seller context:
+---
 
-| Scenario | Action |
+## 0단계: 맥락 감지 및 입력 수집
+
+### 0.1단계: 판매자 맥락 감지
+
+사용자의 이메일 도메인에서 어떤 회사에서 일하는지 식별합니다.
+
+| 시나리오 | 조치 |
 |----------|--------|
-| **Single-product company** | Auto-populate seller context |
-| **Multi-product company** | Ask: "Which product or solution is this asset for?" |
-| **Consultant/agency/generic domain** | Ask: "What company or product are you representing?" |
-| **Unknown/startup** | Ask: "Briefly, what are you selling?" |
+| **단일 제품 회사** | 판매자 맥락 자동 채우기 |
+| **다중 제품 회사** | 질문: "이 자산은 어떤 제품이나 솔루션을 위한 것인가요?" |
+| **컨설턴트/에이전시/일반 도메인** | 질문: "어떤 회사 또는 제품을 대표하시나요?" |
+| **미확인/스타트업** | 질문: "간략히, 무엇을 판매하시나요?" |
 
-**Store seller context:**
-```yaml
-seller:
-  company: "[Company Name]"
-  product: "[Product/Service]"
-  value_props:
-    - "[Key value prop 1]"
-    - "[Key value prop 2]"
-    - "[Key value prop 3]"
-  differentiators:
-    - "[Differentiator 1]"
-    - "[Differentiator 2]"
-  pricing_model: "[If publicly known]"
-```
+### 0.2단계: 잠재 고객 맥락 수집 (a)
 
-**Persist to knowledge base** for future sessions. On subsequent invocations, confirm: "I have your seller context from last time — still selling [Product] at [Company]?"
+**사용자에게 질문:**
 
----
-
-### Step 0.2: Collect Prospect Context (a)
-
-**Ask the user:**
-
-| Field | Prompt | Required |
+| 필드 | 프롬프트 | 필수 |
 |-------|--------|----------|
-| **Company** | "Which company is this asset for?" | ✓ Yes |
-| **Key contacts** | "Who are the key contacts? (names, roles)" | No |
-| **Deal stage** | "What stage is this deal?" | ✓ Yes |
-| **Pain points** | "What pain points or priorities have they shared?" | No |
-| **Past materials** | "Upload any conversation materials (transcripts, emails, notes, call recordings)" | No |
+| **회사** | "이 자산은 어떤 회사를 위한 것인가요?" | ✓ 예 |
+| **핵심 연락처** | "핵심 연락처는 누구인가요? (이름, 역할)" | 아니오 |
+| **거래 단계** | "이 거래는 어떤 단계인가요?" | ✓ 예 |
+| **페인 포인트** | "어떤 페인 포인트나 우선순위를 공유했나요?" | 아니오 |
+| **과거 자료** | "대화 자료를 업로드해 주세요 (기록, 이메일, 노트, 통화 녹음)" | 아니오 |
 
-**Deal stage options:**
-- Intro / First meeting
-- Discovery
-- Evaluation / Technical review
-- POC / Pilot
-- Negotiation
-- Close
+**거래 단계 옵션:**
+- 소개 / 첫 미팅
+- 발견
+- 평가 / 기술 검토
+- POC / 파일럿
+- 협상
+- 마감
 
----
+### 0.3단계: 대상 맥락 수집 (b)
 
-### Step 0.3: Collect Audience Context (b)
-
-**Ask the user:**
-
-| Field | Prompt | Required |
+| 필드 | 프롬프트 | 필수 |
 |-------|--------|----------|
-| **Audience type** | "Who's viewing this?" | ✓ Yes |
-| **Specific roles** | "Any specific titles to tailor for? (e.g., CTO, VP Engineering, CFO)" | No |
-| **Primary concern** | "What do they care most about?" | ✓ Yes |
-| **Objections** | "Any concerns or objections to address?" | No |
+| **대상 유형** | "누가 보나요?" | ✓ 예 |
+| **구체적 역할** | "맞춤화할 구체적 직함이 있나요? (예: CTO, VP Engineering, CFO)" | 아니오 |
+| **주요 관심** | "가장 관심 있는 것은?" | ✓ 예 |
+| **이의** | "다루어야 할 우려나 이의가 있나요?" | 아니오 |
 
-**Audience type options:**
-- Executive (C-suite, VPs)
-- Technical (Architects, Engineers, Developers)
-- Operations (Ops, IT, Procurement)
-- Mixed / Cross-functional
+**대상 유형 옵션:**
+- 경영진 (C-suite, VP)
+- 기술 (아키텍트, 엔지니어, 개발자)
+- 운영 (Ops, IT, 구매)
+- 혼합 / 크로스펑셔널
 
-**Primary concern options:**
-- ROI / Business impact
-- Technical depth / Architecture
-- Strategic alignment
-- Risk mitigation / Security
-- Implementation / Timeline
+### 0.4단계: 목적 맥락 수집 (c)
 
----
-
-### Step 0.4: Collect Purpose Context (c)
-
-**Ask the user:**
-
-| Field | Prompt | Required |
+| 필드 | 프롬프트 | 필수 |
 |-------|--------|----------|
-| **Goal** | "What's the goal of this asset?" | ✓ Yes |
-| **Desired action** | "What should the viewer do after seeing this?" | ✓ Yes |
+| **목표** | "이 자산의 목표는?" | ✓ 예 |
+| **원하는 행동** | "보고 나서 뷰어가 무엇을 해야 하나요?" | ✓ 예 |
 
-**Goal options:**
-- Intro / First impression
-- Discovery follow-up
-- Technical deep-dive
-- Executive alignment / Business case
-- POC proposal
-- Deal close
+### 0.5단계: 형식 선택 (d)
 
----
+**사용자에게 질문:** "어떤 형식이 가장 좋을까요?"
 
-### Step 0.5: Select Format (d)
-
-**Ask the user:** "What format works best for this?"
-
-| Format | Description | Best For |
+| 형식 | 설명 | 적합한 용도 |
 |--------|-------------|----------|
-| **Interactive landing page** | Multi-tab page with demos, metrics, calculators | Exec alignment, intros, value prop |
-| **Deck-style** | Linear slides, presentation-ready | Formal meetings, large audiences |
-| **One-pager** | Single-scroll executive summary | Leave-behinds, quick summaries |
-| **Workflow / Architecture demo** | Interactive diagram with animated flow | Technical deep-dives, POC demos, integrations |
+| **인터랙티브 랜딩 페이지** | 데모, 지표, 계산기가 포함된 다중 탭 페이지 | 경영진 정렬, 소개, 가치 제안 |
+| **덱 스타일** | 선형 슬라이드, 프레젠테이션 가능 | 공식 미팅, 대규모 대상 |
+| **원페이저** | 단일 스크롤 경영진 요약 | 리브-비하인드, 빠른 요약 |
+| **워크플로우 / 아키텍처 데모** | 애니메이션 플로우가 포함된 인터랙티브 다이어그램 | 기술 심층, POC 데모, 연동 |
 
 ---
 
-### Step 0.6: Format-Specific Inputs
+## 1단계: 조사 (적응형)
 
-#### If "Workflow / Architecture demo" selected:
+### 맥락 풍부도 평가
 
-**First, parse from user's description.** Look for:
-- Systems and components mentioned
-- Data flows described
-- Human interaction points
-- Example scenarios
-
-**Then ask for any gaps:**
-
-| If Missing... | Ask... |
-|---------------|--------|
-| Components unclear | "What systems or components are involved? (databases, APIs, AI, middleware, etc.)" |
-| Flow unclear | "Walk me through the step-by-step flow" |
-| Human touchpoints unclear | "Where does a human interact in this workflow?" |
-| Scenario vague | "What's a concrete example scenario to demo?" |
-| Integration specifics | "Any specific tools or platforms to highlight?" |
-
----
-
-## Phase 1: Research (Adaptive)
-
-### Assess Context Richness
-
-| Level | Indicators | Research Depth |
+| 수준 | 지표 | 조사 깊이 |
 |-------|------------|----------------|
-| **Rich** | Transcripts uploaded, detailed pain points, clear requirements | Light — fill gaps only |
-| **Moderate** | Some context, no transcripts | Medium — company + industry |
-| **Sparse** | Just company name | Deep — full research pass |
+| **풍부** | 기록 업로드, 상세 페인 포인트, 명확한 요구사항 | 가벼움 — 갭만 채우기 |
+| **보통** | 일부 맥락, 기록 없음 | 중간 — 회사 + 산업 |
+| **빈약** | 회사 이름만 | 심층 — 전체 조사 |
 
-### Always Research:
+### 항상 조사:
 
-1. **Prospect basics**
-   - Search: `"[Company]" annual report investor presentation 2025 2026`
-   - Search: `"[Company]" CEO strategy priorities 2025 2026`
-   - Extract: Revenue, employees, key metrics, strategic priorities
-
-2. **Leadership**
-   - Search: `"[Company]" CEO CTO CIO 2025`
-   - Extract: Names, titles, recent quotes on strategy/technology
-
-3. **Brand colors**
-   - Search: `"[Company]" brand guidelines`
-   - Or extract from company website
-   - Store: Primary color, secondary color, accent
-
-### If Moderate/Sparse Context, Also Research:
-
-4. **Industry context**
-   - Search: `"[Industry]" trends challenges 2025 2026`
-   - Extract: Common pain points, market dynamics
-
-5. **Technology landscape**
-   - Search: `"[Company]" technology stack tools platforms`
-   - Extract: Current solutions, potential integration points
-
-6. **Competitive context**
-   - Search: `"[Company]" vs [seller's competitors]`
-   - Extract: Current solutions, switching signals
-
-### If Transcripts/Materials Uploaded:
-
-7. **Conversation analysis**
-   - Extract: Stated pain points, decision criteria, objections, timeline
-   - Identify: Key quotes to reference (use their exact language)
-   - Note: Specific terminology, acronyms, internal project names
+1. **잠재 고객 기본**: 매출, 직원, 핵심 지표, 전략 우선순위
+2. **리더십**: CEO, CTO, CIO 이름, 직함, 전략/기술에 대한 최근 인용
+3. **브랜드 색상**: 회사 웹사이트에서 추출. 1차 색상, 2차 색상, 액센트 저장.
 
 ---
 
-## Phase 2: Structure Decision
+## 2단계: 구조 결정
 
-### Interactive Landing Page
+### 인터랙티브 랜딩 페이지
 
-| Purpose | Recommended Sections |
+| 목적 | 추천 섹션 |
 |---------|---------------------|
-| **Intro** | Company Fit → Solution Overview → Key Use Cases → Why Us → Next Steps |
-| **Discovery follow-up** | Their Priorities → How We Help → Relevant Examples → ROI Framework → Next Steps |
-| **Technical deep-dive** | Architecture → Security & Compliance → Integration → Performance → Support |
-| **Exec alignment** | Strategic Fit → Business Impact → ROI Calculator → Risk Mitigation → Partnership |
-| **POC proposal** | Scope → Success Criteria → Timeline → Team → Investment → Next Steps |
-| **Deal close** | Value Summary → Pricing → Implementation Plan → Terms → Sign-off |
-
-**Audience adjustments:**
-- **Executive**: Lead with business impact, ROI, strategic alignment
-- **Technical**: Lead with architecture, security, integration depth
-- **Operations**: Lead with workflow impact, change management, support
-- **Mixed**: Balance strategic + tactical; use tabs to separate depth levels
+| **소개** | 회사 적합성 → 솔루션 개요 → 핵심 사용 사례 → 왜 우리인지 → 다음 단계 |
+| **발견 후속** | 그들의 우선순위 → 어떻게 도와주는지 → 관련 사례 → ROI 프레임워크 → 다음 단계 |
+| **기술 심층** | 아키텍처 → 보안 & 규정 준수 → 연동 → 성능 → 지원 |
+| **경영진 정렬** | 전략적 적합 → 비즈니스 영향 → ROI 계산기 → 리스크 완화 → 파트너십 |
+| **POC 제안** | 범위 → 성공 기준 → 타임라인 → 팀 → 투자 → 다음 단계 |
+| **거래 마감** | 가치 요약 → 가격 → 구현 계획 → 조건 → 서명 |
 
 ---
 
-### Deck-Style
+### 워크플로우 / 아키텍처 데모
 
-Same sections as landing page, formatted as linear slides:
+**복잡도별 구조:**
 
-```
-1. Title slide (Prospect + Seller logos, partnership framing)
-2. Agenda
-3-N. One section per slide (or 2-3 slides for dense sections)
-N+1. Summary / Key takeaways
-N+2. Next steps / CTA
-N+3. Appendix (optional — detailed specs, pricing, etc.)
-```
-
-**Slide principles:**
-- One key message per slide
-- Visual > text-heavy
-- Use prospect's metrics and language
-- Include speaker notes
-
----
-
-### One-Pager
-
-Condense to single-scroll format:
-
-```
-┌─────────────────────────────────────┐
-│ HERO: "[Prospect Goal] with [Product]" │
-├─────────────────────────────────────┤
-│ KEY POINT 1     │ KEY POINT 2     │ KEY POINT 3     │
-│ [Icon + 2-3     │ [Icon + 2-3     │ [Icon + 2-3     │
-│  sentences]     │  sentences]     │  sentences]     │
-├─────────────────────────────────────┤
-│ PROOF POINT: [Metric, quote, or case study] │
-├─────────────────────────────────────┤
-│ CTA: [Clear next action] │ [Contact info] │
-└─────────────────────────────────────┘
-```
-
----
-
-### Workflow / Architecture Demo
-
-**Structure based on complexity:**
-
-| Complexity | Components | Structure |
+| 복잡도 | 컴포넌트 | 구조 |
 |------------|------------|-----------|
-| **Simple** | 3-5 | Single-view diagram with step annotations |
-| **Medium** | 5-10 | Zoomable canvas with step-by-step walkthrough |
-| **Complex** | 10+ | Multi-layer view (overview → detailed) with guided tour |
+| **간단** | 3-5 | 단계 주석이 포함된 단일 뷰 다이어그램 |
+| **중간** | 5-10 | 단계별 워크스루가 포함된 확대 가능 캔버스 |
+| **복잡** | 10+ | 가이드 투어가 포함된 다중 레이어 뷰 (개요 → 상세) |
 
-**Standard elements:**
+**표준 요소:**
 
-1. **Title bar**: `[Scenario Name] — Powered by [Seller Product]`
-2. **Component nodes**: Visual boxes/icons for each system
-3. **Flow arrows**: Animated connections showing data movement
-4. **Step panel**: Sidebar explaining current step in plain language
-5. **Controls**: Play / Pause / Step Forward / Step Back / Reset
-6. **Annotations**: Callouts for key decision points and value-adds
-7. **Data preview**: Sample payloads or transformations at each step
-
----
-
-## Phase 3: Content Generation
-
-### General Principles
-
-All content should:
-- Reference **specific pain points** from user input or transcripts
-- Use **prospect's language** — their terminology, their stated priorities
-- Map **seller's product** → **prospect's needs** explicitly
-- Include **proof points** where available (case studies, metrics, quotes)
-- Feel **tailored, not templated**
+1. **제목 바**: `[시나리오 이름] — Powered by [판매자 제품]`
+2. **컴포넌트 노드**: 각 시스템에 대한 비주얼 박스/아이콘
+3. **플로우 화살표**: 데이터 이동을 보여주는 애니메이션 연결
+4. **단계 패널**: 현재 단계를 평이한 언어로 설명하는 사이드바
+5. **컨트롤**: 재생 / 일시 정지 / 앞으로 / 뒤로 / 리셋
+6. **주석**: 핵심 결정 포인트와 가치 추가에 대한 콜아웃
+7. **데이터 미리보기**: 각 단계의 샘플 페이로드 또는 변환
 
 ---
 
-### Section Templates
+## 3단계: 콘텐츠 생성
 
-#### Hero / Intro
-```
-Headline: "[Prospect's Goal] with [Seller's Product]"
-Subhead: Tie to their stated priority or top industry challenge
-Metrics: 3-4 key facts about the prospect (shows we did homework)
-```
+### 일반 원칙
 
-#### Their Priorities (if discovery follow-up)
-```
-Reference specific pain points from conversation:
-- Use their exact words where possible
-- Show we listened and understood
-- Connect each to how we help
-```
-
-#### Solution Mapping
-```
-For each pain point:
-├── The challenge (in their words)
-├── How [Product] addresses it
-├── Proof point or example
-└── Outcome / benefit
-```
-
-#### Use Cases / Demos
-```
-3-5 relevant use cases:
-├── Visual mockup or interactive demo
-├── Business impact (quantified if possible)
-├── "How it works" — 3-4 step summary
-└── Relevant to their industry/role
-```
-
-#### ROI / Business Case
-```
-Interactive calculator with:
-├── Inputs relevant to their business (from research)
-│   ├── Number of users/developers
-│   ├── Current costs or time spent
-│   └── Expected improvement %
-├── Outputs:
-│   ├── Annual value / savings
-│   ├── Cost of solution
-│   ├── Net ROI
-│   └── Payback period
-└── Assumptions clearly stated (editable)
-```
-
-#### Why Us / Differentiators
-```
-├── Differentiators vs. alternatives they might consider
-├── Trust, security, compliance positioning
-├── Support and partnership model
-└── Customer proof points (logos, quotes, case studies)
-```
-
-#### Next Steps / CTA
-```
-├── Clear action aligned to Purpose (c)
-├── Specific next step (not vague "let's chat")
-├── Contact information
-├── Suggested timeline
-└── What happens after they take action
-```
+모든 콘텐츠는:
+- 사용자 입력이나 기록의 **구체적 페인 포인트** 참조
+- **잠재 고객의 언어** 사용 — 그들의 용어, 진술된 우선순위
+- **판매자 제품** → **잠재 고객 니즈** 매핑을 명시적으로
+- 가능한 경우 **증거 포인트** 포함 (사례 연구, 지표, 인용구)
+- **맞춤형으로 느껴야, 템플릿이 아닌**
 
 ---
 
-### Workflow Demo Content
+## 4단계: 비주얼 디자인
 
-#### Component Definitions
-
-For each system, define:
-
-```yaml
-component:
-  id: "snowflake"
-  label: "Snowflake Data Warehouse"
-  type: "database"  # database | api | ai | middleware | human | document | output
-  icon: "database"
-  description: "Financial performance data"
-  brand_color: "#29B5E8"
-```
-
-**Component types:**
-- `human` — Person initiating or receiving
-- `document` — PDFs, contracts, files
-- `ai` — AI/ML models, agents
-- `database` — Data stores, warehouses
-- `api` — APIs, services
-- `middleware` — Integration platforms, MCP servers
-- `output` — Dashboards, reports, notifications
-
-#### Flow Steps
-
-For each step, define:
-
-```yaml
-step:
-  number: 1
-  from: "human"
-  to: "claude"
-  action: "Initiates performance review"
-  description: "Sarah, a Brand Analyst at [Prospect], kicks off the quarterly review..."
-  data_example: "Review request: Nike brand, Q4 2025"
-  duration: "~1 second"
-  value_note: "No manual data gathering required"
-```
-
-#### Scenario Narrative
-
-Write a clear, specific walkthrough:
-
-```
-Step 1: Human Trigger
-"Sarah, a Brand Performance Analyst at Centric Brands, needs to review
-Q4 performance for the Nike license agreement. She opens the review
-dashboard and clicks 'Start Review'..."
-
-Step 2: Contract Analysis
-"Claude retrieves the Nike contract PDF and extracts the performance
-obligations: minimum $50M revenue, 12% margin requirement, quarterly
-reporting deadline..."
-
-Step 3: Data Query
-"Claude formulates a query and sends it to Workato DataGenie:
-'Get Q4 2025 revenue and gross margin for Nike brand from Snowflake'..."
-
-Step 4: Results & Synthesis
-"Snowflake returns the data. Claude compares actuals vs. obligations:
-Revenue $52.3M ✓ (exceeded by $2.3M)
-Margin 11.2% ⚠️ (0.8% below threshold)..."
-
-Step 5: Insight Delivery
-"Claude synthesizes findings into an executive summary with
-recommendations: 'Review promotional spend allocation to improve
-margin performance...'"
-```
-
----
-
-## Phase 4: Visual Design
-
-### Color System
+### 색상 시스템
 
 ```css
 :root {
-    /* === Prospect Brand (Primary) === */
-    --brand-primary: #[extracted from research];
-    --brand-secondary: #[extracted];
-    --brand-primary-rgb: [r, g, b]; /* For rgba() usage */
+    /* === 잠재 고객 브랜드 (1차) === */
+    --brand-primary: #[조사에서 추출];
+    --brand-secondary: #[추출];
 
-    /* === Dark Theme Base === */
+    /* === 다크 테마 베이스 === */
     --bg-primary: #0a0d14;
     --bg-elevated: #0f131c;
     --bg-surface: #161b28;
     --bg-hover: #1e2536;
 
-    /* === Text === */
+    /* === 텍스트 === */
     --text-primary: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.7);
     --text-muted: rgba(255, 255, 255, 0.5);
 
-    /* === Accent === */
+    /* === 액센트 === */
     --accent: var(--brand-primary);
-    --accent-hover: var(--brand-secondary);
-    --accent-glow: rgba(var(--brand-primary-rgb), 0.3);
 
-    /* === Status === */
+    /* === 상태 === */
     --success: #10b981;
     --warning: #f59e0b;
     --error: #ef4444;
 }
 ```
 
-### Typography
-
-```css
-/* Primary: Clean, professional sans-serif */
-font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-
-/* Headings */
-h1: 2.5rem, font-weight: 700
-h2: 1.75rem, font-weight: 600
-h3: 1.25rem, font-weight: 600
-
-/* Body */
-body: 1rem, font-weight: 400, line-height: 1.6
-
-/* Captions/Labels */
-small: 0.875rem, font-weight: 500
-```
-
-### Visual Elements
-
-**Cards:**
-- Background: `var(--bg-surface)`
-- Border: 1px solid rgba(255,255,255,0.1)
-- Border-radius: 12px
-- Box-shadow: subtle, layered
-- Hover: slight elevation, border glow
-
-**Buttons:**
-- Primary: `var(--accent)` background, white text
-- Secondary: transparent, accent border
-- Hover: brightness increase, subtle scale
-
-**Animations:**
-- Transitions: 200-300ms ease
-- Tab switches: fade + slide
-- Hover states: smooth, not jarring
-- Loading: subtle pulse or skeleton
-
-### Workflow Demo Specific
-
-**Component Nodes:**
-```css
-.node {
-    background: var(--bg-surface);
-    border: 2px solid var(--brand-primary);
-    border-radius: 12px;
-    padding: 16px;
-    min-width: 140px;
-}
-
-.node.active {
-    box-shadow: 0 0 20px var(--accent-glow);
-    border-color: var(--accent);
-}
-
-.node.human {
-    border-color: #f59e0b; /* Warm color for humans */
-}
-
-.node.ai {
-    background: linear-gradient(135deg, var(--bg-surface), var(--bg-elevated));
-    border-color: var(--accent);
-}
-```
-
-**Flow Arrows:**
-```css
-.arrow {
-    stroke: var(--text-muted);
-    stroke-width: 2;
-    fill: none;
-    marker-end: url(#arrowhead);
-}
-
-.arrow.active {
-    stroke: var(--accent);
-    stroke-dasharray: 8 4;
-    animation: flowDash 1s linear infinite;
-}
-```
-
-**Canvas:**
-```css
-.canvas {
-    background:
-        radial-gradient(circle at center, var(--bg-elevated) 0%, var(--bg-primary) 100%),
-        url("data:image/svg+xml,..."); /* Subtle grid pattern */
-    overflow: auto;
-}
-```
-
 ---
 
-## Phase 5: Clarifying Questions (REQUIRED)
+## 5단계: 명확화 질문 (필수)
 
-**Before building any asset, always ask clarifying questions.** This ensures alignment and prevents wasted effort.
+**자산을 구축하기 전에 항상 명확화 질문을 합니다.** 정렬을 보장하고 낭비된 노력을 방지합니다.
 
-### Step 5.1: Summarize Understanding
+### 5.1단계: 이해 요약
 
-First, show the user what you understood:
+먼저 사용자에게 이해한 것을 보여줍니다:
 
 ```
-"Here's what I'm planning to build:
+"구축 계획은 다음과 같습니다:
 
-**Asset**: [Format] for [Prospect Company]
-**Audience**: [Audience type] — specifically [roles if known]
-**Goal**: [Purpose] → driving toward [desired action]
-**Key themes**: [2-3 main points to emphasize]
+**자산**: [형식] [잠재 고객 회사]용
+**대상**: [대상 유형] — 구체적으로 [역할 알려진 경우]
+**목표**: [목적] → [원하는 행동] 유도
+**핵심 테마**: [강조할 2-3가지 주요 포인트]
 
-[For workflow demos, also show:]
-**Components**: [List of systems]
-**Flow**: [Step 1] → [Step 2] → [Step 3] → ...
+[워크플로우 데모인 경우, 또한 표시:]
+**컴포넌트**: [시스템 목록]
+**플로우**: [단계 1] → [단계 2] → [단계 3] → ...
 ```
 
-### Step 5.2: Ask Standard Questions (ALL formats)
+### 5.2단계: 표준 질문 (모든 형식)
 
-| Question | Why |
+| 질문 | 이유 |
 |----------|-----|
-| "Does this match your vision?" | Confirm understanding |
-| "What's the ONE thing this must nail to succeed?" | Focus on priority |
-| "Tone preference? (Bold & confident / Consultative / Technical & precise)" | Style alignment |
-| "Focused and concise, or comprehensive?" | Scope calibration |
+| "비전에 맞나요?" | 이해 확인 |
+| "성공하려면 꼭 맞춰야 할 한 가지는?" | 우선순위에 집중 |
+| "톤 선호? (대담 & 자신감 / 컨설팅 / 기술적 & 정확)" | 스타일 정렬 |
+| "집중적이고 간결, 아니면 포괄적?" | 범위 조정 |
 
-### Step 5.3: Ask Format-Specific Questions
+### 5.3단계: 형식별 질문
 
-#### Interactive Landing Page:
-- "Which sections matter most for this audience?"
-- "Any specific demos or use cases to highlight?"
-- "Should I include an ROI calculator?"
-- "Any competitor positioning to address?"
-
-#### Deck-Style:
-- "How long is the presentation? (helps with slide count)"
-- "Presenting live, or a leave-behind?"
-- "Any specific flow or narrative arc in mind?"
-
-#### One-Pager:
-- "What's the single most important message?"
-- "Any specific proof point or stat to feature?"
-- "Will this be printed or digital?"
-
-#### Workflow / Architecture Demo:
-- "Let me confirm the components: [list]. Anything missing?"
-- "Here's the flow I understood: [steps]. Correct?"
-- "Should the demo show realistic sample data, or keep it abstract?"
-- "Any integration details to highlight or downplay?"
-- "Should viewers be able to click through steps, or auto-play?"
-
-### Step 5.4: Confirm and Proceed
-
-After user responds:
-
-```
-"Got it. I have what I need. Building your [format] now..."
-```
-
-Or, if still unclear:
-
-```
-"One more quick question: [specific follow-up]"
-```
-
-**Max 2 rounds of questions.** If still ambiguous, make a reasonable choice and note: "I went with X — easy to adjust if you prefer Y."
+**최대 2회 질문.** 여전히 모호하면 합리적 선택을 하고 참고: "X로 진행했습니다 — Y를 선호하시면 쉽게 조정 가능합니다."
 
 ---
 
-## Phase 6: Build & Deliver
+## 6단계: 구축 및 전달
 
-### Build the Asset
+### 자산 구축
 
-Following all specifications above:
-1. Generate structure based on Phase 2
-2. Create content based on Phase 3
-3. Apply visual design based on Phase 4
-4. Ensure all interactive elements work
-5. Test responsiveness (if applicable)
+위의 모든 사양을 따릅니다:
+1. 2단계 기반 구조 생성
+2. 3단계 기반 콘텐츠 생성
+3. 4단계 기반 비주얼 디자인 적용
+4. 모든 인터랙티브 요소 작동 확인
+5. 반응성 테스트 (해당하는 경우)
 
-### Output Format
+### 출력 형식
 
-**All formats**: Self-contained HTML file
-- All CSS inline or in `<style>` tags
-- All JS inline or in `<script>` tags
-- No external dependencies (except Google Fonts)
-- Single file for easy sharing
+**모든 형식**: 자체 완결 HTML 파일
+- 모든 CSS가 인라인 또는 `<style>` 태그
+- 모든 JS가 인라인 또는 `<script>` 태그
+- 외부 종속성 없음 (Google Fonts 제외)
+- 쉬운 공유를 위한 단일 파일
 
-**File naming**: `[ProspectName]-[format]-[date].html`
-- Example: `CentricBrands-workflow-demo-2026-01-28.html`
+**파일 명명**: `[잠재고객명]-[형식]-[날짜].html`
 
-### Delivery Message
+### 전달 메시지
 
 ```markdown
-## ✓ Asset Created: [Prospect Name]
+## ✓ 자산 생성: [잠재 고객명]
 
-[View your asset](computer:///path/to/file.html)
-
----
-
-**Summary**
-- **Format**: [Interactive Page / Deck / One-Pager / Workflow Demo]
-- **Audience**: [Type and roles]
-- **Purpose**: [Goal] → [Desired action]
-- **Sections/Steps**: [Count and list]
+[자산 보기](computer:///path/to/file.html)
 
 ---
 
-**Deployment Options**
-
-To share this with your customer:
-- **Static hosting**: Upload to Netlify, Vercel, GitHub Pages, AWS S3, or any static host
-- **Password protection**: Most hosts offer this (e.g., Netlify site protection)
-- **Direct share**: Send the HTML file directly — it's fully self-contained
-- **Embed**: The file can be iframed into other pages if needed
+**요약**
+- **형식**: [인터랙티브 페이지 / 덱 / 원페이저 / 워크플로우 데모]
+- **대상**: [유형 및 역할]
+- **목적**: [목표] → [원하는 행동]
+- **섹션/단계**: [개수 및 목록]
 
 ---
 
-**Customization**
+**배포 옵션**
 
-Let me know if you'd like to:
-- Adjust colors or styling
-- Add, remove, or reorder sections
-- Refine any messaging or copy
-- Change the flow or architecture (for workflow demos)
-- Add more interactive elements
-- Export as PDF or static images
+고객과 공유하려면:
+- **정적 호스팅**: Netlify, Vercel, GitHub Pages, AWS S3 또는 모든 정적 호스트에 업로드
+- **비밀번호 보호**: 대부분의 호스트가 제공 (예: Netlify 사이트 보호)
+- **직접 공유**: HTML 파일을 직접 전송 — 완전히 자체 완결
+- **임베드**: 필요하면 다른 페이지에 iframe으로 포함 가능
+
+---
+
+**맞춤화**
+
+다음을 원하시면 알려주세요:
+- 색상이나 스타일 조정
+- 섹션 추가, 제거, 재정렬
+- 메시징이나 카피 다듬기
+- 플로우나 아키텍처 변경 (워크플로우 데모)
+- 더 많은 인터랙티브 요소 추가
+- PDF나 정적 이미지로 내보내기
 ```
 
 ---
 
-## Phase 7: Iteration Support
+## 7단계: 반복 지원
 
-After delivery, be ready to iterate:
+전달 후 반복 준비:
 
-| User Request | Action |
+| 사용자 요청 | 조치 |
 |--------------|--------|
-| "Change the colors" | Regenerate with new palette, keep content |
-| "Add a section on X" | Insert new section, maintain flow |
-| "Make it shorter" | Condense, prioritize key points |
-| "The flow is wrong" | Rebuild architecture based on correction |
-| "Use our brand instead" | Switch from prospect brand to seller brand |
-| "Add more detail on step 3" | Expand that section specifically |
-| "Can I get this as a PDF?" | Provide print-optimized version |
+| "색상 변경" | 새 팔레트로 재생성, 콘텐츠 유지 |
+| "X에 대한 섹션 추가" | 새 섹션 삽입, 플로우 유지 |
+| "더 짧게" | 압축, 핵심 포인트 우선 |
+| "플로우가 잘못됐어요" | 수정을 기반으로 아키텍처 재구축 |
+| "우리 브랜드로 대신" | 잠재 고객 브랜드에서 판매자 브랜드로 전환 |
+| "3단계에 더 상세하게" | 해당 섹션만 확장 |
+| "PDF로 받을 수 있나요?" | 인쇄 최적화 버전 제공 |
 
-**Remember**: Default to prospect's brand colors, but seller can adjust to their own brand or a neutral palette after initial build.
-
----
-
-## Quality Checklist
-
-Before delivering, verify:
-
-### Content
-- [ ] Prospect company name spelled correctly throughout
-- [ ] Leadership names are current (not outdated)
-- [ ] Pain points accurately reflect input/transcripts
-- [ ] Seller's product accurately represented
-- [ ] No placeholder text remaining
-- [ ] Proof points are accurate and sourced
-
-### Visual
-- [ ] Brand colors applied correctly
-- [ ] All text readable (contrast)
-- [ ] Animations smooth, not distracting
-- [ ] Mobile responsive (if interactive page)
-- [ ] Dark theme looks polished
-
-### Functional
-- [ ] All tabs/sections load correctly
-- [ ] Interactive elements work (calculators, demos)
-- [ ] Workflow steps animate properly (if applicable)
-- [ ] Navigation is intuitive
-- [ ] CTA is clear and clickable
-
-### Professional
-- [ ] Tone matches audience
-- [ ] Appropriate level of detail for purpose
-- [ ] No typos or grammatical errors
-- [ ] Feels tailored, not templated
+**기억**: 기본값은 잠재 고객 브랜드 색상이지만, 초기 구축 후 자체 브랜드나 중립 팔레트로 조정 가능.
 
 ---
 
-## Examples
+## 품질 체크리스트
 
-### Example 1: Executive Landing Page
+전달 전 확인:
 
-**Input:**
-- Prospect: Acme Corp (manufacturing)
-- Audience: C-suite
-- Purpose: Exec alignment after discovery
-- Format: Interactive landing page
+### 콘텐츠
+- [ ] 잠재 고객 회사명이 전체적으로 올바르게 표기
+- [ ] 리더십 이름이 현재 것 (오래되지 않은)
+- [ ] 페인 포인트가 입력/기록을 정확히 반영
+- [ ] 판매자 제품이 정확히 표현됨
+- [ ] 플레이스홀더 텍스트가 남아있지 않음
+- [ ] 증거 포인트가 정확하고 출처 있음
 
-**Output structure:**
-```
-[Tabs]
-Strategic Fit | Business Impact | ROI Calculator | Security & Trust | Next Steps
+### 비주얼
+- [ ] 브랜드 색상이 올바르게 적용됨
+- [ ] 모든 텍스트가 읽기 쉬움 (대비)
+- [ ] 애니메이션이 부드럽고 산만하지 않음
+- [ ] 모바일 반응형 (인터랙티브 페이지인 경우)
+- [ ] 다크 테마가 세련되게 보임
 
-[Strategic Fit tab]
-- Acme's stated priorities (from discovery call)
-- How [Product] aligns
-- Relevant manufacturing customers
-```
+### 기능
+- [ ] 모든 탭/섹션이 올바르게 로드됨
+- [ ] 인터랙티브 요소가 작동 (계산기, 데모)
+- [ ] 워크플로우 단계가 올바르게 애니메이션됨 (해당하면)
+- [ ] 내비게이션이 직관적
+- [ ] CTA가 명확하고 클릭 가능
 
-### Example 2: Technical Workflow Demo
-
-**Input:**
-- Prospect: Centric Brands
-- Audience: IT architects
-- Purpose: POC proposal
-- Format: Workflow demo
-- Components: Claude, Workato DataGenie, Snowflake, PDF contracts
-
-**Output structure:**
-```
-[Interactive canvas with 5 nodes]
-Human → Claude → PDF Contracts → Workato → Snowflake
-         ↓
-    [Results back to Human]
-
-[Step-by-step walkthrough with sample data]
-[Controls: Play | Pause | Step | Reset]
-```
-
-### Example 3: Sales One-Pager
-
-**Input:**
-- Prospect: TechStart Inc
-- Audience: VP Engineering
-- Purpose: Leave-behind after first meeting
-- Format: One-pager
-
-**Output structure:**
-```
-Hero: "Accelerate TechStart's Product Velocity"
-Point 1: [Dev productivity]
-Point 2: [Code quality]
-Point 3: [Time to market]
-Proof: "Similar companies saw 40% faster releases"
-CTA: "Schedule technical deep-dive"
-```
+### 전문성
+- [ ] 톤이 대상에 맞음
+- [ ] 목적에 적절한 상세 수준
+- [ ] 오타나 문법 오류 없음
+- [ ] 맞춤형으로 느껴지고, 템플릿이 아닌
 
 ---
 
-## Appendix: Component Icons
+## 부록: 브랜드 색상 폴백
 
-For workflow demos, use these icon mappings:
+브랜드 색상을 추출할 수 없는 경우:
 
-| Type | Icon | Example |
-|------|------|---------|
-| human | 👤 or person SVG | User, Analyst, Admin |
-| document | 📄 or file SVG | PDF, Contract, Report |
-| ai | 🤖 or brain SVG | Claude, AI Agent |
-| database | 🗄️ or cylinder SVG | Snowflake, Postgres |
-| api | 🔌 or plug SVG | REST API, GraphQL |
-| middleware | ⚡ or hub SVG | Workato, MCP Server |
-| output | 📊 or screen SVG | Dashboard, Report |
-
----
-
-## Appendix: Brand Color Fallbacks
-
-If brand colors cannot be extracted:
-
-| Industry | Primary | Secondary |
+| 산업 | 1차 | 2차 |
 |----------|---------|-----------|
-| Technology | #2563eb | #7c3aed |
-| Finance | #0f172a | #3b82f6 |
-| Healthcare | #0891b2 | #06b6d4 |
-| Manufacturing | #ea580c | #f97316 |
-| Retail | #db2777 | #ec4899 |
-| Energy | #16a34a | #22c55e |
-| Default | #3b82f6 | #8b5cf6 |
+| 기술 | #2563eb | #7c3aed |
+| 금융 | #0f172a | #3b82f6 |
+| 헬스케어 | #0891b2 | #06b6d4 |
+| 제조 | #ea580c | #f97316 |
+| 소매 | #db2777 | #ec4899 |
+| 에너지 | #16a34a | #22c55e |
+| 기본 | #3b82f6 | #8b5cf6 |
 
 ---
 
-*Skill created for generalized sales asset generation. Works for any seller, any product, any prospect.*
+*범용 영업 자산 생성을 위한 스킬. 모든 판매자, 모든 제품, 모든 잠재 고객에 작동합니다.*

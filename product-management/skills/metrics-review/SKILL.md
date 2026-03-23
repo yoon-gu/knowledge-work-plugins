@@ -1,388 +1,388 @@
 ---
 name: metrics-review
-description: Review and analyze product metrics with trend analysis and actionable insights. Use when running a weekly, monthly, or quarterly metrics review, investigating a sudden spike or drop, comparing performance against targets, or turning raw numbers into a scorecard with recommended actions.
-argument-hint: "<time period or metric focus>"
+description: 트렌드 분석과 실행 가능한 인사이트를 포함한 제품 지표를 검토하고 분석합니다. 주간, 월간, 분기별 지표 리뷰를 실행할 때, 갑작스러운 급등이나 급락을 조사할 때, 목표 대비 성과를 비교할 때, 또는 원시 수치를 추천 조치가 포함된 스코어카드로 전환할 때 사용하세요.
+argument-hint: "<기간 또는 지표 초점>"
 ---
 
-# Metrics Review
+# 지표 리뷰
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 하는 경우, [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Review and analyze product metrics, identify trends, and surface actionable insights.
+제품 지표를 검토하고 분석하며, 트렌드를 식별하고, 실행 가능한 인사이트를 도출합니다.
 
-## Usage
+## 사용법
 
 ```
 /metrics-review $ARGUMENTS
 ```
 
-## Workflow
+## 워크플로우
 
-### 1. Gather Metrics Data
+### 1. 지표 데이터 수집
 
-If **~~product analytics** is connected:
-- Pull key product metrics for the relevant time period
-- Get comparison data (previous period, same period last year, targets)
-- Pull segment breakdowns if available
+**~~제품 분석**이 연결된 경우:
+- 관련 기간의 핵심 제품 지표 가져오기
+- 비교 데이터 가져오기 (이전 기간, 전년 동기, 목표)
+- 이용 가능한 경우 세그먼트 분석 가져오기
 
-If no analytics tool is connected, ask the user to provide:
-- The metrics and their values (paste a table, screenshot, or describe)
-- Comparison data (previous period, targets)
-- Any context on recent changes (launches, incidents, seasonality)
+분석 도구가 연결되지 않은 경우, 사용자에게 다음을 요청합니다:
+- 지표와 값 (테이블 붙여넣기, 스크린샷, 또는 설명)
+- 비교 데이터 (이전 기간, 목표)
+- 최근 변경에 대한 맥락 (출시, 사고, 시즌성)
 
-Ask the user:
-- What time period to review? (last week, last month, last quarter)
-- What metrics to focus on? Or should we review the full product metrics suite?
-- Are there specific targets or goals to compare against?
-- Any known events that might explain changes (launches, outages, marketing campaigns, seasonality)?
+사용자에게 질문합니다:
+- 어떤 기간을 검토할 것인가? (지난주, 지난달, 지난 분기)
+- 어떤 지표에 초점을 맞출 것인가? 아니면 전체 제품 지표 모음을 검토할 것인가?
+- 비교할 구체적인 목표나 기준이 있는가?
+- 변화를 설명할 수 있는 알려진 이벤트가 있는가 (출시, 장애, 마케팅 캠페인, 시즌성)?
 
-### 2. Organize the Metrics
+### 2. 지표 구성
 
-Structure the review using a metrics hierarchy: North Star metric at the top, L1 health indicators (acquisition, activation, engagement, retention, revenue, satisfaction), and L2 diagnostic metrics for drill-down. See **Product Metrics Hierarchy** below for full definitions.
+지표 계층을 사용하여 검토를 구성합니다: 최상위에 North Star 지표, L1 건강 지표 (획득, 활성화, 참여, 유지, 매출, 만족도), 심층 분석을 위한 L2 진단 지표. 전체 정의는 아래 **제품 지표 계층**을 참조하세요.
 
-If the user has not defined their metrics hierarchy, help them identify their North Star and key L1 metrics before proceeding.
+사용자가 지표 계층을 정의하지 않은 경우, 진행하기 전에 North Star과 핵심 L1 지표를 식별하도록 돕습니다.
 
-### 3. Analyze Trends
+### 3. 트렌드 분석
 
-For each key metric:
-- **Current value**: What is the metric today?
-- **Trend**: Up, down, or flat compared to previous period? Over what timeframe?
-- **vs Target**: How does it compare to the goal or target?
-- **Rate of change**: Is the trend accelerating or decelerating?
-- **Anomalies**: Any sudden changes, spikes, or drops?
+각 핵심 지표에 대해:
+- **현재 값**: 오늘의 지표는?
+- **트렌드**: 이전 기간 대비 상승, 하락, 보합? 어떤 기간에 걸쳐?
+- **목표 대비**: 기준이나 목표와 어떻게 비교되는가?
+- **변화율**: 트렌드가 가속 또는 감속 중인가?
+- **이상치**: 갑작스러운 변화, 급등, 급락이 있는가?
 
-Identify correlations:
-- Do changes in one metric correlate with changes in another?
-- Are there leading indicators that predict lagging metric changes?
-- Do segment breakdowns reveal that an aggregate trend is driven by a specific cohort?
+상관관계를 식별합니다:
+- 하나의 지표 변화가 다른 지표의 변화와 상관관계가 있는가?
+- 지연 지표 변화를 예측하는 선행 지표가 있는가?
+- 세그먼트 분석이 집계 트렌드가 특정 코호트에 의해 주도되고 있음을 드러내는가?
 
-### 4. Generate the Review
+### 4. 리뷰 생성
 
-#### Summary
-2-3 sentences: overall product health, most notable changes, key callout.
+#### 요약
+2-3문장: 전체 제품 건강, 가장 주목할 만한 변화, 핵심 콜아웃.
 
-#### Metric Scorecard
-Table format for quick scanning:
+#### 지표 스코어카드
+빠른 스캔을 위한 테이블 형식:
 
-| Metric | Current | Previous | Change | Target | Status |
+| 지표 | 현재 | 이전 | 변동 | 목표 | 상태 |
 |--------|---------|----------|--------|--------|--------|
-| [Metric] | [Value] | [Value] | [+/- %] | [Target] | [On track / At risk / Miss] |
+| [지표] | [값] | [값] | [+/- %] | [목표] | [순조 / 위험 / 미달] |
 
-#### Trend Analysis
-For each metric worth discussing:
-- What happened and how significant is the change
-- Why it likely happened (attribution based on known events, correlated metrics, segment analysis)
-- Whether this is a one-time event or a sustained trend
+#### 트렌드 분석
+논의할 가치가 있는 각 지표에 대해:
+- 무슨 일이 있었고 변화가 얼마나 의미 있는가
+- 왜 일어났을 가능성이 있는가 (알려진 이벤트, 상관 지표, 세그먼트 분석을 기반으로 한 귀속)
+- 일회성 이벤트인지 지속적 트렌드인지
 
-#### Bright Spots
-What is going well:
-- Metrics beating targets
-- Positive trends to sustain
-- Segments or features showing strong performance
+#### 밝은 점
+잘 되고 있는 것:
+- 목표를 초과하는 지표
+- 유지할 긍정적 트렌드
+- 강한 성과를 보이는 세그먼트 또는 기능
 
-#### Areas of Concern
-What needs attention:
-- Metrics missing targets or trending negatively
-- Early warning signals before they become problems
-- Metrics where we lack visibility or understanding
+#### 우려 영역
+주의가 필요한 것:
+- 목표를 놓치거나 부정적으로 추세하는 지표
+- 문제가 되기 전의 초기 경고 신호
+- 가시성이나 이해가 부족한 지표
 
-#### Recommended Actions
-Specific next steps based on the analysis:
-- Investigations to run (dig deeper into a concerning trend)
-- Experiments to launch (test hypotheses about what could improve a metric)
-- Investments to make (double down on what is working)
-- Alerts to set (monitor a metric more closely)
+#### 추천 조치
+분석을 기반으로 한 구체적인 다음 단계:
+- 실행할 조사 (우려스러운 트렌드에 대해 더 깊이 파기)
+- 시작할 실험 (지표를 개선할 수 있는 가설 테스트)
+- 할 투자 (잘 되고 있는 것에 배로 투자)
+- 설정할 알림 (지표를 더 면밀히 모니터링)
 
-#### Context and Caveats
-- Known data quality issues
-- Events that affect comparability (outages, holidays, launches)
-- Metrics we should be tracking but are not yet
+#### 맥락 및 주의사항
+- 알려진 데이터 품질 문제
+- 비교 가능성에 영향을 미치는 이벤트 (장애, 공휴일, 출시)
+- 추적해야 하지만 아직 추적하지 않는 지표
 
-### 5. Follow Up
+### 5. 후속
 
-After generating the review:
-- Ask if any metric needs deeper investigation
-- Offer to create a dashboard spec for ongoing monitoring
-- Offer to draft experiment proposals for areas of concern
-- Offer to set up a metrics review template for recurring use
+리뷰 생성 후:
+- 특정 지표에 대한 심층 조사가 필요한지 질문
+- 지속적 모니터링을 위한 대시보드 사양 작성 제안
+- 우려 영역에 대한 실험 제안서 초안 제안
+- 반복 사용을 위한 지표 리뷰 템플릿 설정 제안
 
-## Product Metrics Hierarchy
+## 제품 지표 계층
 
-### North Star Metric
-The single metric that best captures the core value your product delivers to users. It should be:
+### North Star 지표
+제품이 사용자에게 전달하는 핵심 가치를 가장 잘 포착하는 단일 지표. 다음이어야 합니다:
 
-- **Value-aligned**: Moves when users get more value from the product
-- **Leading**: Predicts long-term business success (revenue, retention)
-- **Actionable**: The product team can influence it through their work
-- **Understandable**: Everyone in the company can understand what it means and why it matters
+- **가치 정렬**: 사용자가 제품에서 더 많은 가치를 얻을 때 움직임
+- **선행**: 장기 비즈니스 성공 (매출, 유지)을 예측
+- **실행 가능**: 제품팀이 작업을 통해 영향을 미칠 수 있음
+- **이해 가능**: 회사의 모든 사람이 의미와 중요성을 이해할 수 있음
 
-**Examples by product type**:
-- Collaboration tool: Weekly active teams with 3+ members contributing
-- Marketplace: Weekly transactions completed
-- SaaS platform: Weekly active users completing core workflow
-- Content platform: Weekly engaged reading/viewing time
-- Developer tool: Weekly deployments using the tool
+**제품 유형별 예시**:
+- 협업 도구: 3명 이상 기여하는 주간 활성 팀
+- 마켓플레이스: 주간 완료 거래
+- SaaS 플랫폼: 핵심 워크플로우를 완료하는 주간 활성 사용자
+- 콘텐츠 플랫폼: 주간 참여 읽기/시청 시간
+- 개발자 도구: 도구를 사용한 주간 배포
 
-### L1 Metrics (Health Indicators)
-The 5-7 metrics that together paint a complete picture of product health. These map to the key stages of the user lifecycle:
+### L1 지표 (건강 지표)
+함께 제품 건강의 완전한 그림을 그리는 5-7개 지표. 사용자 라이프사이클의 주요 단계에 매핑됩니다:
 
-**Acquisition**: Are new users finding the product?
-- New signups or trial starts (volume and trend)
-- Signup conversion rate (visitors to signups)
-- Channel mix (where are new users coming from)
-- Cost per acquisition (for paid channels)
+**획득**: 새 사용자가 제품을 찾고 있는가?
+- 새 가입 또는 트라이얼 시작 (볼륨 및 트렌드)
+- 가입 전환율 (방문자에서 가입으로)
+- 채널 믹스 (새 사용자가 어디서 오는가)
+- 획득당 비용 (유료 채널의 경우)
 
-**Activation**: Are new users reaching the value moment?
-- Activation rate: % of new users who complete the key action that predicts retention
-- Time to activate: how long from signup to activation
-- Setup completion rate: % who complete onboarding steps
-- First value moment: when users first experience the core product value
+**활성화**: 새 사용자가 가치 순간에 도달하고 있는가?
+- 활성화율: 유지를 예측하는 핵심 행동을 완료한 새 사용자 %
+- 활성화까지 시간: 가입에서 활성화까지 소요 시간
+- 설정 완료율: 온보딩 단계를 완료한 %
+- 첫 가치 순간: 사용자가 처음으로 핵심 제품 가치를 경험하는 시점
 
-**Engagement**: Are active users getting value?
-- DAU / WAU / MAU: active users at different timeframes
-- DAU/MAU ratio (stickiness): what fraction of monthly users come back daily
-- Core action frequency: how often users do the thing that matters most
-- Session depth: how much users do per session
-- Feature adoption: % of users using key features
+**참여**: 활성 사용자가 가치를 얻고 있는가?
+- DAU / WAU / MAU: 다양한 시간대의 활성 사용자
+- DAU/MAU 비율 (점착성): 월간 사용자 중 매일 돌아오는 비율
+- 핵심 행동 빈도: 가장 중요한 행동을 얼마나 자주 하는가
+- 세션 깊이: 세션당 사용자가 얼마나 하는가
+- 기능 채택: 핵심 기능을 사용하는 사용자 %
 
-**Retention**: Are users coming back?
-- D1, D7, D30 retention: % of users who return after 1 day, 7 days, 30 days
-- Cohort retention curves: how retention evolves for each signup cohort
-- Churn rate: % of users or revenue lost per period
-- Resurrection rate: % of churned users who come back
+**유지**: 사용자가 돌아오고 있는가?
+- D1, D7, D30 유지: 1일, 7일, 30일 후 돌아오는 사용자 %
+- 코호트 유지 곡선: 각 가입 코호트의 유지가 어떻게 진화하는지
+- 이탈률: 기간당 손실된 사용자 또는 매출 %
+- 부활률: 이탈한 사용자 중 돌아온 %
 
-**Monetization**: Is value translating to revenue?
-- Conversion rate: free to paid (for freemium)
-- MRR / ARR: monthly or annual recurring revenue
-- ARPU / ARPA: average revenue per user or account
-- Expansion revenue: revenue growth from existing customers
-- Net revenue retention: revenue retention including expansion and contraction
+**수익화**: 가치가 매출로 전환되고 있는가?
+- 전환율: 무료에서 유료로 (프리미엄 모델의 경우)
+- MRR / ARR: 월간 또는 연간 반복 매출
+- ARPU / ARPA: 사용자 또는 계정당 평균 매출
+- 확장 매출: 기존 고객의 매출 성장
+- 순 매출 유지: 확장과 축소를 포함한 매출 유지
 
-**Satisfaction**: How do users feel about the product?
-- NPS: Net Promoter Score
-- CSAT: Customer Satisfaction Score
-- Support ticket volume and resolution time
-- App store ratings and review sentiment
+**만족도**: 사용자가 제품에 대해 어떻게 느끼는가?
+- NPS: 순 추천 점수
+- CSAT: 고객 만족 점수
+- 지원 티켓 수 및 해결 시간
+- 앱 스토어 평점 및 리뷰 감정
 
-### L2 Metrics (Diagnostic)
-Detailed metrics used to investigate changes in L1 metrics:
+### L2 지표 (진단)
+L1 지표의 변화를 조사하는 데 사용되는 상세 지표:
 
-- Funnel conversion at each step
-- Feature-level usage and adoption
-- Segment-specific breakdowns (by plan, company size, geography, user role)
-- Performance metrics (page load time, error rate, API latency)
-- Content-specific engagement (which features, pages, or content types drive engagement)
+- 각 단계의 퍼널 전환
+- 기능 수준 사용 및 채택
+- 세그먼트별 분석 (플랜, 회사 규모, 지역, 사용자 역할별)
+- 성능 지표 (페이지 로드 시간, 오류율, API 지연)
+- 콘텐츠별 참여 (어떤 기능, 페이지 또는 콘텐츠 유형이 참여를 유도하는지)
 
-## Common Product Metrics
+## 일반적인 제품 지표
 
 ### DAU / WAU / MAU
-**What they measure**: Unique users who perform a qualifying action in a day, week, or month.
+**측정 대상**: 하루, 주, 월 내에 자격 있는 행동을 수행한 고유 사용자.
 
-**Key decisions**:
-- What counts as "active"? A login? A page view? A core action? Define this carefully — different definitions tell different stories.
-- Which timeframe matters most? DAU for daily-use products (messaging, email). WAU for weekly-use products (project management). MAU for less frequent products (tax software, travel booking).
+**주요 결정**:
+- "활성"이란 무엇인가? 로그인? 페이지뷰? 핵심 행동? 신중하게 정의하세요 — 다른 정의는 다른 이야기를 합니다.
+- 가장 중요한 시간대는? 매일 사용 제품 (메시징, 이메일)은 DAU. 주간 사용 제품 (프로젝트 관리)은 WAU. 덜 빈번한 제품 (세금 소프트웨어, 여행 예약)은 MAU.
 
-**How to use them**:
-- DAU/MAU ratio (stickiness): values above 0.5 indicate a daily habit. Below 0.2 suggests infrequent usage.
-- Trend matters more than absolute number. Is active usage growing, flat, or declining?
-- Segment by user type. Power users and casual users behave very differently.
+**사용 방법**:
+- DAU/MAU 비율 (점착성): 0.5 이상은 매일 습관을 나타냄. 0.2 미만은 비빈번 사용을 시사.
+- 절대 수보다 트렌드가 중요. 활성 사용이 성장, 보합, 감소 중인가?
+- 사용자 유형별로 세분화. 파워 사용자와 캐주얼 사용자는 매우 다르게 행동.
 
-### Retention
-**What it measures**: Of users who started in period X, what % are still active in period Y?
+### 유지
+**측정 대상**: 기간 X에 시작한 사용자 중 기간 Y에 여전히 활성인 비율.
 
-**Common retention timeframes**:
-- D1 (next day): Was the first experience good enough to come back?
-- D7 (one week): Did the user establish a habit?
-- D30 (one month): Is the user retained long-term?
-- D90 (three months): Is this a durable user?
+**일반적인 유지 시간대**:
+- D1 (다음 날): 첫 경험이 돌아올 만큼 좋았는가?
+- D7 (일주일): 사용자가 습관을 형성했는가?
+- D30 (한 달): 사용자가 장기 유지되는가?
+- D90 (세 달): 지속적인 사용자인가?
 
-**How to use retention**:
-- Plot retention curves by cohort. Look for: initial drop-off (activation problem), steady decline (engagement problem), or flattening (good — you have a stable retained base).
-- Compare cohorts over time. Are newer cohorts retaining better than older ones? That means product improvements are working.
-- Segment retention by activation behavior. Users who completed onboarding vs those who did not. Users who used feature X vs those who did not.
+**유지 사용 방법**:
+- 코호트별 유지 곡선을 플롯. 확인할 것: 초기 이탈 (활성화 문제), 꾸준한 감소 (참여 문제), 평탄화 (좋음 — 안정적인 유지 기반 있음).
+- 시간에 따른 코호트 비교. 새 코호트가 이전 코호트보다 더 잘 유지되는가? 그렇다면 제품 개선이 효과가 있는 것.
+- 활성화 행동별로 유지를 세분화. 온보딩을 완료한 사용자 vs 그렇지 않은 사용자. 기능 X를 사용한 사용자 vs 그렇지 않은 사용자.
 
-### Conversion
-**What it measures**: % of users who move from one stage to the next.
+### 전환
+**측정 대상**: 한 단계에서 다음 단계로 이동하는 사용자 %.
 
-**Common conversion funnels**:
-- Visitor to signup
-- Signup to activation (key value moment)
-- Free to paid (trial conversion)
-- Trial to paid subscription
-- Monthly to annual plan
+**일반적인 전환 퍼널**:
+- 방문자에서 가입으로
+- 가입에서 활성화 (핵심 가치 순간)로
+- 무료에서 유료로 (트라이얼 전환)
+- 트라이얼에서 유료 구독으로
+- 월간에서 연간 플랜으로
 
-**How to use conversion**:
-- Map the full funnel and measure conversion at each step
-- Identify the biggest drop-off points — these are your highest-leverage improvement opportunities
-- Segment conversion by source, plan, user type. Different segments convert very differently.
-- Track conversion over time. Is it improving as you iterate on the experience?
+**전환 사용 방법**:
+- 전체 퍼널을 매핑하고 각 단계의 전환을 측정
+- 가장 큰 이탈 지점 식별 — 가장 높은 레버리지 개선 기회
+- 소스, 플랜, 사용자 유형별로 전환 세분화. 다른 세그먼트는 매우 다르게 전환.
+- 시간에 따른 전환 추적. 경험을 반복하면서 개선되고 있는가?
 
-### Activation
-**What it measures**: % of new users who reach the moment where they first experience the product's core value.
+### 활성화
+**측정 대상**: 제품의 핵심 가치를 처음 경험하는 순간에 도달한 새 사용자 %.
 
-**Defining activation**:
-- Look at retained users vs churned users. What actions did retained users take that churned users did not?
-- The activation event should be strongly predictive of long-term retention
-- It should be achievable within the first session or first few days
-- Examples: created first project, invited a teammate, completed first workflow, connected an integration
+**활성화 정의**:
+- 유지된 사용자 vs 이탈한 사용자를 비교. 유지된 사용자가 이탈한 사용자가 하지 않은 어떤 행동을 취했는가?
+- 활성화 이벤트는 장기 유지를 강하게 예측해야 함
+- 첫 세션 또는 첫 며칠 내에 달성 가능해야 함
+- 예: 첫 프로젝트 생성, 팀원 초대, 첫 워크플로우 완료, 연동 연결
 
-**How to use activation**:
-- Track activation rate for every signup cohort
-- Measure time to activate — faster is almost always better
-- Build onboarding flows that guide users to the activation moment
-- A/B test activation flows and measure impact on retention, not just activation rate
+**활성화 사용 방법**:
+- 모든 가입 코호트에 대해 활성화율 추적
+- 활성화까지의 시간 측정 — 빠를수록 거의 항상 좋음
+- 사용자를 활성화 순간으로 안내하는 온보딩 플로우 구축
+- 활성화 플로우를 A/B 테스트하고 활성화율이 아닌 유지에 대한 영향 측정
 
-## Goal Setting Frameworks
+## 목표 설정 프레임워크
 
-### OKRs (Objectives and Key Results)
+### OKR (목표 및 핵심 결과)
 
-**Objectives**: Qualitative, aspirational goals that describe what you want to achieve.
-- Inspiring and memorable
-- Time-bound (quarterly or annually)
-- Directional, not metric-specific
+**목표 (Objectives)**: 달성하고자 하는 것을 설명하는 정성적, 야심적 목표.
+- 영감을 주고 기억에 남는
+- 시간 제한 (분기 또는 연간)
+- 방향적, 지표 특정적이지 않은
 
-**Key Results**: Quantitative measures that tell you if you achieved the objective.
-- Specific and measurable
-- Time-bound with a clear target
-- Outcome-based, not output-based
-- 2-4 Key Results per Objective
+**핵심 결과 (Key Results)**: 목표 달성 여부를 알려주는 정량적 척도.
+- 구체적이고 측정 가능
+- 명확한 목표가 있는 시간 제한
+- 산출물이 아닌 결과 기반
+- 목표당 2-4개 핵심 결과
 
-**Example**:
+**예시**:
 ```
-Objective: Make our product indispensable for daily workflows
+목표: 우리 제품을 일상 워크플로우에 없어서는 안 될 것으로 만들기
 
-Key Results:
-- Increase DAU/MAU ratio from 0.35 to 0.50
-- Increase D30 retention for new users from 40% to 55%
-- 3 core workflows with >80% task completion rate
+핵심 결과:
+- DAU/MAU 비율을 0.35에서 0.50으로 증가
+- 신규 사용자의 D30 유지를 40%에서 55%로 증가
+- 80% 이상의 작업 완료율을 가진 3개 핵심 워크플로우
 ```
 
-### OKR Best Practices
-- Set OKRs that are ambitious but achievable. 70% completion is the target for stretch OKRs.
-- Key Results should measure outcomes (user behavior, business results), not outputs (features shipped, tasks completed).
-- Do not have too many OKRs. 2-3 objectives with 2-4 KRs each is plenty.
-- OKRs should be uncomfortable. If you are confident you will hit all of them, they are not ambitious enough.
-- Review OKRs at mid-period. Adjust effort allocation if some KRs are clearly off track.
-- Grade OKRs honestly at end of period. 0.0-0.3 = missed, 0.4-0.6 = progress, 0.7-1.0 = achieved.
+### OKR 모범 사례
+- 야심적이지만 달성 가능한 OKR을 설정. 스트레치 OKR의 목표 달성률은 70%.
+- 핵심 결과는 산출물 (출시한 기능, 완료한 작업)이 아닌 결과 (사용자 행동, 비즈니스 결과)를 측정해야.
+- OKR이 너무 많으면 안 됨. 2-3개 목표에 각 2-4개 KR이면 충분.
+- OKR은 불편해야. 모두 달성할 자신이 있다면 충분히 야심적이지 않은 것.
+- 중간 기간에 OKR을 검토. 일부 KR이 명확히 미달이면 노력 배분 조정.
+- 기간 종료 시 OKR을 솔직하게 채점. 0.0-0.3 = 미달, 0.4-0.6 = 진전, 0.7-1.0 = 달성.
 
-### Setting Metric Targets
-- **Baseline**: What is the current value? You need a reliable baseline before setting a target.
-- **Benchmark**: What do comparable products achieve? Industry benchmarks provide context.
-- **Trajectory**: What is the current trend? If the metric is already improving at 5% per month, a 6% target is not ambitious.
-- **Effort**: How much investment are you putting behind this? Bigger bets warrant more ambitious targets.
-- **Confidence**: How confident are you in hitting the target? Set a "commit" (high confidence) and a "stretch" (ambitious).
+### 지표 목표 설정
+- **기준선**: 현재 값은? 목표 설정 전에 신뢰할 수 있는 기준선이 필요.
+- **벤치마크**: 비교 가능한 제품이 달성하는 것은? 산업 벤치마크가 맥락을 제공.
+- **궤적**: 현재 트렌드는? 지표가 이미 월 5%씩 개선되고 있다면, 6% 목표는 야심적이지 않음.
+- **노력**: 얼마나 투자하고 있는가? 큰 투자는 더 야심적인 목표를 정당화.
+- **확신**: 목표 달성에 대한 확신은? "커밋" (높은 확신)과 "스트레치" (야심적)을 설정.
 
-## Metric Review Cadences
+## 지표 리뷰 주기
 
-### Weekly Metrics Check
-**Purpose**: Catch issues quickly, monitor experiments, stay in touch with product health.
-**Duration**: 15-30 minutes.
-**Attendees**: Product manager, maybe engineering lead.
+### 주간 지표 점검
+**목적**: 문제를 빠르게 포착, 실험 모니터링, 제품 건강 상태 파악.
+**시간**: 15-30분.
+**참석자**: PM, 가능하면 엔지니어링 리드.
 
-**What to review**:
-- North Star metric: current value, week-over-week change
-- Key L1 metrics: any notable movements
-- Active experiments: results and statistical significance
-- Anomalies: any unexpected spikes or drops
-- Alerts: anything that triggered a monitoring alert
+**검토 내용**:
+- North Star 지표: 현재 값, 주간 대비 변화
+- 핵심 L1 지표: 주목할 만한 움직임
+- 활성 실험: 결과 및 통계적 유의성
+- 이상치: 예상치 못한 급등이나 급락
+- 알림: 모니터링 알림을 트리거한 것
 
-**Action**: If something looks off, investigate. Otherwise, note it and move on.
+**조치**: 이상이 보이면 조사. 그렇지 않으면 기록하고 넘어감.
 
-### Monthly Metrics Review
-**Purpose**: Deeper analysis of trends, progress against goals, strategic implications.
-**Duration**: 30-60 minutes.
-**Attendees**: Product team, key stakeholders.
+### 월간 지표 리뷰
+**목적**: 트렌드 심층 분석, 목표 대비 진행, 전략적 시사점.
+**시간**: 30-60분.
+**참석자**: 제품팀, 핵심 이해관계자.
 
-**What to review**:
-- Full L1 metric scorecard with month-over-month trends
-- Progress against quarterly OKR targets
-- Cohort analysis: are newer cohorts performing better?
-- Feature adoption: how are recent launches performing?
-- Segment analysis: any divergence between user segments?
+**검토 내용**:
+- 월간 대비 트렌드가 포함된 전체 L1 지표 스코어카드
+- 분기 OKR 목표 대비 진행
+- 코호트 분석: 새 코호트가 더 나은 성과를 보이는가?
+- 기능 채택: 최근 출시 성과는?
+- 세그먼트 분석: 사용자 세그먼트 간 차이가 있는가?
 
-**Action**: Identify 1-3 areas to investigate or invest in. Update priorities if metrics reveal new information.
+**조치**: 조사하거나 투자할 1-3개 영역 식별. 지표가 새 정보를 드러내면 우선순위 업데이트.
 
-### Quarterly Business Review
-**Purpose**: Strategic assessment of product performance, goal-setting for next quarter.
-**Duration**: 60-90 minutes.
-**Attendees**: Product, engineering, design, leadership.
+### 분기 비즈니스 리뷰
+**목적**: 제품 성과의 전략적 평가, 다음 분기 목표 설정.
+**시간**: 60-90분.
+**참석자**: 제품, 엔지니어링, 디자인, 리더십.
 
-**What to review**:
-- OKR scoring for the quarter
-- Trend analysis for all L1 metrics over the quarter
-- Year-over-year comparisons
-- Competitive context: market changes and competitor movements
-- What worked and what did not
+**검토 내용**:
+- 분기 OKR 채점
+- 분기에 걸친 모든 L1 지표의 트렌드 분석
+- 전년 대비 비교
+- 경쟁 맥락: 시장 변화 및 경쟁사 움직임
+- 잘된 것과 그렇지 않은 것
 
-**Action**: Set OKRs for next quarter. Adjust product strategy based on what the data shows.
+**조치**: 다음 분기 OKR 설정. 데이터가 보여주는 것에 따라 제품 전략 조정.
 
-## Dashboard Design Principles
+## 대시보드 설계 원칙
 
-### Effective Product Dashboards
-A good dashboard answers the question "How is the product doing?" at a glance.
+### 효과적인 제품 대시보드
+좋은 대시보드는 "제품이 어떻게 되고 있나?"라는 질문에 한눈에 답합니다.
 
-**Principles**:
+**원칙**:
 
-1. **Start with the question, not the data**. What decisions does this dashboard support? Design backwards from the decision.
+1. **데이터가 아닌 질문으로 시작**. 이 대시보드가 어떤 결정을 지원하는가? 결정에서 역으로 설계.
 
-2. **Hierarchy of information**. The most important metric should be the most visually prominent. North Star at the top, L1 metrics next, L2 metrics available on drill-down.
+2. **정보 계층**. 가장 중요한 지표가 시각적으로 가장 두드러져야. 최상위에 North Star, 다음에 L1 지표, 드릴다운에 L2 지표.
 
-3. **Context over numbers**. A number without context is meaningless. Always show: current value, comparison (previous period, target, benchmark), trend direction.
+3. **수치보다 맥락**. 맥락 없는 수치는 무의미. 항상 표시: 현재 값, 비교 (이전 기간, 목표, 벤치마크), 트렌드 방향.
 
-4. **Fewer metrics, more insight**. A dashboard with 50 metrics helps no one. Focus on 5-10 that matter. Put everything else in a detailed report.
+4. **더 적은 지표, 더 많은 인사이트**. 50개 지표가 있는 대시보드는 아무에게도 도움이 안 됨. 중요한 5-10개에 집중. 나머지는 상세 보고서에.
 
-5. **Consistent time periods**. Use the same time period for all metrics on a dashboard. Mixing daily and monthly metrics creates confusion.
+5. **일관된 기간**. 대시보드의 모든 지표에 같은 기간 사용. 일간과 월간 지표를 혼합하면 혼란을 야기.
 
-6. **Visual status indicators**. Use color to indicate health at a glance:
-   - Green: on track or improving
-   - Yellow: needs attention or flat
-   - Red: off track or declining
+6. **시각적 상태 표시**. 색상으로 건강 상태를 한눈에 표시:
+   - 녹색: 순조 또는 개선 중
+   - 노란색: 주의 필요 또는 보합
+   - 빨간색: 미달 또는 하락
 
-7. **Actionability**. Every metric on the dashboard should be something the team can influence. If you cannot act on it, it does not belong on the product dashboard.
+7. **실행 가능성**. 대시보드의 모든 지표는 팀이 영향을 미칠 수 있는 것이어야. 행동할 수 없으면 제품 대시보드에 속하지 않음.
 
-### Dashboard Layout
+### 대시보드 레이아웃
 
-**Top row**: North Star metric with trend line and target.
+**첫째 행**: North Star 지표 + 트렌드 라인 및 목표.
 
-**Second row**: L1 metrics scorecard — current value, change, target, status for each key metric.
+**둘째 행**: L1 지표 스코어카드 — 각 핵심 지표의 현재 값, 변동, 목표, 상태.
 
-**Third row**: Key funnels or conversion metrics — visual funnel showing drop-off at each stage.
+**셋째 행**: 핵심 퍼널 또는 전환 지표 — 각 단계의 이탈을 보여주는 시각적 퍼널.
 
-**Fourth row**: Recent experiments and launches — active A/B tests, recent feature launches with early metrics.
+**넷째 행**: 최근 실험 및 출시 — 활성 A/B 테스트, 초기 지표가 포함된 최근 기능 출시.
 
-**Bottom / drill-down**: L2 metrics, segment breakdowns, and detailed time series for investigation.
+**하단 / 드릴다운**: L2 지표, 세그먼트 분석, 조사를 위한 상세 시계열.
 
-### Dashboard Anti-Patterns
-- **Vanity metrics**: Metrics that always go up but do not indicate health (total signups ever, total page views)
-- **Too many metrics**: Dashboards that require scrolling to see. If it does not fit on one screen, cut metrics.
-- **No comparison**: Raw numbers without context (current value with no previous period or target)
-- **Stale dashboards**: Metrics that have not been updated or reviewed in months
-- **Output dashboards**: Measuring team activity (tickets closed, PRs merged) instead of user and business outcomes
-- **One dashboard for all audiences**: Executives, PMs, and engineers need different views. One size does not fit all.
+### 대시보드 안티패턴
+- **허영 지표**: 항상 올라가지만 건강을 나타내지 않는 지표 (총 가입 수, 총 페이지뷰)
+- **너무 많은 지표**: 스크롤해야 하는 대시보드. 한 화면에 안 들어오면 지표를 줄이세요.
+- **비교 없음**: 맥락 없는 원시 수치 (현재 값만 있고 이전 기간이나 목표 없음)
+- **오래된 대시보드**: 수개월간 업데이트되거나 검토되지 않은 지표
+- **산출물 대시보드**: 사용자와 비즈니스 결과 대신 팀 활동 (종료된 티켓, 머지된 PR) 측정
+- **모든 대상을 위한 하나의 대시보드**: 경영진, PM, 엔지니어는 다른 뷰가 필요. 하나로 모든 것을 맞출 수 없음.
 
-### Alerting
-Set alerts for metrics that require immediate attention:
+### 알림
+즉각적인 주의가 필요한 지표에 대해 알림을 설정합니다:
 
-- **Threshold alerts**: Metric drops below or rises above a critical threshold (error rate > 1%, conversion < 5%)
-- **Trend alerts**: Metric shows sustained decline over multiple days/weeks
-- **Anomaly alerts**: Metric deviates significantly from expected range
+- **임계값 알림**: 지표가 중요 임계값 아래로 떨어지거나 위로 올라갈 때 (오류율 > 1%, 전환 < 5%)
+- **트렌드 알림**: 지표가 여러 일/주에 걸쳐 지속적 하락을 보일 때
+- **이상치 알림**: 지표가 예상 범위에서 크게 벗어날 때
 
-**Alert hygiene**:
-- Every alert should be actionable. If you cannot do anything about it, do not alert on it.
-- Review and tune alerts regularly. Too many false positives and people ignore all alerts.
-- Define an owner for each alert. Who responds when it fires?
-- Set appropriate severity levels. Not everything is P0.
+**알림 위생**:
+- 모든 알림은 실행 가능해야. 아무것도 할 수 없다면 알림하지 마세요.
+- 정기적으로 알림을 검토하고 조정. 너무 많은 거짓 양성은 모든 알림을 무시하게 함.
+- 각 알림에 담당자를 정의. 발생 시 누가 대응하는가?
+- 적절한 심각도 수준을 설정. 모든 것이 P0는 아님.
 
-## Output Format
+## 출력 형식
 
-Use tables for the scorecard. Use clear status indicators. Keep the summary tight — the reader should get the essential story in 30 seconds.
+스코어카드에 테이블 사용. 명확한 상태 표시 사용. 요약을 간결하게 유지 — 독자가 30초 안에 핵심을 파악할 수 있어야.
 
-## Tips
+## 팁
 
-- Start with the "so what" — what is the most important thing in this metrics review? Lead with that.
-- Absolute numbers without context are useless. Always show comparisons (vs previous period, vs target, vs benchmark).
-- Be careful about attribution. Correlation is not causation. If a metric moved, acknowledge uncertainty about why.
-- Segment analysis often reveals that an aggregate metric masks important differences. A flat overall number might hide one segment growing and another shrinking.
-- Not all metric movements matter. Small fluctuations are noise. Focus attention on meaningful changes.
-- If a metric is missing its target, do not just report the miss — recommend what to do about it.
-- Metrics reviews should drive decisions. If the review does not lead to at least one action, it was not useful.
+- "그래서 뭐"로 시작 — 이 지표 리뷰에서 가장 중요한 것은? 그것으로 시작.
+- 맥락 없는 절대 수치는 쓸모없음. 항상 비교를 보여주세요 (이전 기간, 목표, 벤치마크 대비).
+- 귀속에 주의. 상관관계는 인과관계가 아님. 지표가 움직였다면 이유에 대한 불확실성을 인정.
+- 세그먼트 분석은 집계 지표가 중요한 차이를 숨기고 있음을 종종 드러냄. 전체적으로 보합인 수치가 하나의 세그먼트는 성장하고 다른 하나는 축소하는 것을 숨길 수 있음.
+- 모든 지표 움직임이 중요한 것은 아님. 작은 변동은 노이즈. 의미 있는 변화에 주의를 집중.
+- 지표가 목표를 놓치면 단순히 미달을 보고하지 말고 — 대응 방안을 추천.
+- 지표 리뷰는 결정을 유도해야. 리뷰가 최소 하나의 조치로 이어지지 않으면 유용하지 않았던 것.

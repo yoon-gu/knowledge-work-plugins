@@ -1,312 +1,174 @@
 ---
 name: synthesize-research
-description: Synthesize user research from interviews, surveys, and feedback into structured insights. Use when you have a pile of interview notes, survey responses, or support tickets to make sense of, need to extract themes and rank findings by frequency and impact, or want to turn raw feedback into roadmap recommendations.
-argument-hint: "<research topic or question>"
+description: 인터뷰, 설문, 피드백에서 사용자 연구를 구조화된 인사이트로 종합합니다. 인터뷰 노트, 설문 응답, 지원 티켓 더미를 정리해야 할 때, 빈도와 영향별로 테마를 추출하고 순위를 매겨야 할 때, 또는 원시 피드백을 로드맵 추천으로 전환하고 싶을 때 사용하세요.
+argument-hint: "<연구 주제 또는 질문>"
 ---
 
-# Synthesize Research
+# 연구 종합
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 하는 경우, [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Synthesize user research from multiple sources into structured insights and recommendations.
+여러 소스에서 사용자 연구를 구조화된 인사이트와 추천으로 종합합니다.
 
-## Usage
+## 사용법
 
 ```
 /synthesize-research $ARGUMENTS
 ```
 
-## Workflow
-
-### 1. Gather Research Inputs
-
-Accept research from any combination of:
-- **Pasted text**: Interview notes, transcripts, survey responses, feedback
-- **Uploaded files**: Research documents, spreadsheets, recordings summaries
-- **~~knowledge base** (if connected): Search for research documents, interview notes, survey results
-- **~~user feedback** (if connected): Pull recent support tickets, feature requests, bug reports
-- **~~product analytics** (if connected): Pull usage data, funnel metrics, behavioral data
-- **~~meeting transcription** (if connected): Pull interview recordings, meeting summaries, and discussion notes
-
-Ask the user what they have:
-- What type of research? (interviews, surveys, usability tests, analytics, support tickets, sales call notes)
-- How many sources / participants?
-- Is there a specific question or hypothesis they are investigating?
-- What decisions will this research inform?
-
-### 2. Process the Research
-
-For each source, extract:
-- **Key observations**: What did users say, do, or experience?
-- **Quotes**: Verbatim quotes that illustrate important points
-- **Behaviors**: What users actually did (vs what they said they do)
-- **Pain points**: Frustrations, workarounds, and unmet needs
-- **Positive signals**: What works well, moments of delight
-- **Context**: User segment, use case, experience level
-
-### 3. Identify Themes and Patterns
-
-Apply thematic analysis — see **Research Synthesis Methodology** below for detailed guidance on thematic analysis, affinity mapping, and triangulation techniques.
-
-Group observations into themes, count frequency across participants, and assess impact severity. Note contradictions and surprises.
-
-Create a priority matrix:
-- **High frequency + High impact**: Top priority findings
-- **Low frequency + High impact**: Important for specific segments
-- **High frequency + Low impact**: Quality-of-life improvements
-- **Low frequency + Low impact**: Note but deprioritize
-
-### 4. Generate the Synthesis
-
-Produce a structured research synthesis:
-
-#### Research Overview
-- Methodology: what types of research, how many participants/sources
-- Research question(s): what we set out to learn
-- Timeframe: when the research was conducted
-
-#### Key Findings
-For each major finding (aim for 5-8):
-- **Finding statement**: One clear sentence describing the insight
-- **Evidence**: Supporting quotes, data points, or observations (with source attribution)
-- **Frequency**: How many participants/sources support this finding
-- **Impact**: How significantly this affects the user experience or business
-- **Confidence level**: High (strong evidence), Medium (suggestive), Low (early signal)
-
-Order findings by priority (frequency x impact).
-
-#### User Segments / Personas
-If the research reveals distinct user segments:
-- Segment name and description
-- Key characteristics and behaviors
-- Unique needs and pain points
-- Size estimate if data is available
-
-#### Opportunity Areas
-Based on the findings, identify opportunity areas:
-- What user needs are unmet or underserved
-- Where do current solutions fall short
-- What new capabilities would unlock value
-- Prioritized by potential impact
-
-#### Recommendations
-Specific, actionable recommendations:
-- What to build, change, or investigate further
-- Tied back to specific findings
-- Prioritized by impact and feasibility
-
-#### Open Questions
-What the research did not answer:
-- Gaps in understanding
-- Areas needing further investigation
-- Suggested follow-up research methods
-
-### 5. Review and Extend
-
-After generating the synthesis:
-- Ask if any findings need more detail or different framing
-- Offer to generate specific artifacts: persona documents, opportunity maps, research presentations
-- Offer to create follow-up research plans for open questions
-- Offer to draft product implications (how findings should influence the roadmap)
-
-## Research Synthesis Methodology
-
-### Thematic Analysis
-The core method for synthesizing qualitative research:
-
-1. **Familiarization**: Read through all the data. Get a feel for the overall landscape before coding anything.
-2. **Initial coding**: Go through the data systematically. Tag each observation, quote, or data point with descriptive codes. Be generous with codes — it is easier to merge than to split later.
-3. **Theme development**: Group related codes into candidate themes. A theme captures something important about the data in relation to the research question.
-4. **Theme review**: Check themes against the data. Does each theme have sufficient evidence? Are themes distinct from each other? Do they tell a coherent story?
-5. **Theme refinement**: Define and name each theme clearly. Write a 1-2 sentence description of what each theme captures.
-6. **Report**: Write up the themes as findings with supporting evidence.
-
-### Affinity Mapping
-A collaborative method for grouping observations:
-
-1. **Capture observations**: Write each distinct observation, quote, or data point as a separate note
-2. **Cluster**: Group related notes together based on similarity. Do not pre-define categories — let them emerge from the data.
-3. **Label clusters**: Give each cluster a descriptive name that captures the common thread
-4. **Organize clusters**: Arrange clusters into higher-level groups if patterns emerge
-5. **Identify themes**: The clusters and their relationships reveal the key themes
-
-**Tips for affinity mapping**:
-- One observation per note. Do not combine multiple insights.
-- Move notes between clusters freely. The first grouping is rarely the best.
-- If a cluster gets too large, it probably contains multiple themes. Split it.
-- Outliers are interesting. Do not force every observation into a cluster.
-- The process of grouping is as valuable as the output. It builds shared understanding.
-
-### Triangulation
-Strengthen findings by combining multiple data sources:
-
-- **Methodological triangulation**: Same question, different methods (interviews + survey + analytics)
-- **Source triangulation**: Same method, different participants or segments
-- **Temporal triangulation**: Same observation at different points in time
-
-A finding supported by multiple sources and methods is much stronger than one supported by a single source. When sources disagree, that is interesting — it may reveal different user segments or contexts.
-
-## Interview Note Analysis
-
-### Extracting Insights from Interview Notes
-For each interview, identify:
-
-**Observations**: What did the participant describe doing, experiencing, or feeling?
-- Distinguish between behaviors (what they do) and attitudes (what they think/feel)
-- Note context: when, where, with whom, how often
-- Flag workarounds — these are unmet needs in disguise
-
-**Direct quotes**: Verbatim statements that powerfully illustrate a point
-- Good quotes are specific and vivid, not generic
-- Attribute to participant type, not name: "Enterprise admin, 200-person team" not "Sarah"
-- A quote is evidence, not a finding. The finding is your interpretation of what the quote means.
-
-**Behaviors vs stated preferences**: What people DO often differs from what they SAY they want
-- Behavioral observations are stronger evidence than stated preferences
-- If a participant says "I want feature X" but their workflow shows they never use similar features, note the contradiction
-- Look for revealed preferences through actual behavior
-
-**Signals of intensity**: How much does this matter to the participant?
-- Emotional language: frustration, excitement, resignation
-- Frequency: how often do they encounter this issue
-- Workarounds: how much effort do they expend working around the problem
-- Impact: what is the consequence when things go wrong
-
-### Cross-Interview Analysis
-After processing individual interviews:
-- Look for patterns: which observations appear across multiple participants?
-- Note frequency: how many participants mentioned each theme?
-- Identify segments: do different types of users have different patterns?
-- Surface contradictions: where do participants disagree? This often reveals meaningful segments.
-- Find surprises: what challenged your prior assumptions?
-
-## Survey Data Interpretation
-
-### Quantitative Survey Analysis
-- **Response rate**: How representative is the sample? Low response rates may introduce bias.
-- **Distribution**: Look at the shape of responses, not just averages. A bimodal distribution (lots of 1s and 5s) tells a different story than a normal distribution (lots of 3s).
-- **Segmentation**: Break down responses by user segment. Aggregates can mask important differences.
-- **Statistical significance**: For small samples, be cautious about drawing conclusions from small differences.
-- **Benchmark comparison**: How do scores compare to industry benchmarks or previous surveys?
-
-### Open-Ended Survey Response Analysis
-- Treat open-ended responses like mini interview notes
-- Code each response with themes
-- Count frequency of themes across responses
-- Pull representative quotes for each theme
-- Look for themes that appear in open-ended responses but not in structured questions — these are things you did not think to ask about
-
-### Common Survey Analysis Mistakes
-- Reporting averages without distributions. A 3.5 average could mean everyone is lukewarm or half love it and half hate it.
-- Ignoring non-response bias. The people who did not respond may be systematically different.
-- Over-interpreting small differences. A 0.1 point change in NPS is noise, not signal.
-- Treating Likert scales as interval data. The difference between "Strongly Agree" and "Agree" is not necessarily the same as between "Agree" and "Neutral."
-- Confusing correlation with causation in cross-tabulations.
-
-## Combining Qualitative and Quantitative Insights
-
-### The Qual-Quant Feedback Loop
-- **Qualitative first**: Interviews and observation reveal WHAT is happening and WHY. They generate hypotheses.
-- **Quantitative validation**: Surveys and analytics reveal HOW MUCH and HOW MANY. They test hypotheses at scale.
-- **Qualitative deep-dive**: Return to qualitative methods to understand unexpected quantitative findings.
-
-### Integration Strategies
-- Use quantitative data to prioritize qualitative findings. A theme from interviews is more important if usage data shows it affects many users.
-- Use qualitative data to explain quantitative anomalies. A drop in retention is a number; interviews reveal it is because of a confusing onboarding change.
-- Present combined evidence: "47% of surveyed users report difficulty with X (survey), and interviews reveal this is because Y (qualitative finding)."
-
-### When Sources Disagree
-- Quantitative and qualitative sources may tell different stories. This is signal, not error.
-- Check if the disagreement is due to different populations being measured
-- Check if stated preferences (survey) differ from actual behavior (analytics)
-- Check if the quantitative question captured what you think it captured
-- Report the disagreement honestly and investigate further rather than choosing one source
-
-## Persona Development from Research
-
-### Building Evidence-Based Personas
-Personas should emerge from research data, not imagination:
-
-1. **Identify behavioral patterns**: Look for clusters of similar behaviors, goals, and contexts across participants
-2. **Define distinguishing variables**: What dimensions differentiate one cluster from another? (e.g., company size, technical skill, usage frequency, primary use case)
-3. **Create persona profiles**: For each behavioral cluster:
-   - Name and brief description
-   - Key behaviors and goals
-   - Pain points and needs
-   - Context (role, company, tools used)
-   - Representative quotes
-4. **Validate with data**: Can you size each persona segment using quantitative data?
-
-### Persona Template
-```
-[Persona Name] — [One-line description]
-
-Who they are:
-- Role, company type/size, experience level
-- How they found/started using the product
-
-What they are trying to accomplish:
-- Primary goals and jobs to be done
-- How they measure success
-
-How they use the product:
-- Frequency and depth of usage
-- Key workflows and features used
-- Tools they use alongside this product
-
-Key pain points:
-- Top 3 frustrations or unmet needs
-- Workarounds they have developed
-
-What they value:
-- What matters most in a solution
-- What would make them switch or churn
-
-Representative quotes:
-- 2-3 verbatim quotes that capture this persona's perspective
-```
-
-### Common Persona Mistakes
-- Demographic personas: defining by age/gender/location instead of behavior. Behavior predicts product needs better than demographics.
-- Too many personas: 3-5 is the sweet spot. More than that and they are not actionable.
-- Fictional personas: made up based on assumptions rather than research data.
-- Static personas: never updated as the product and market evolve.
-- Personas without implications: a persona that does not change any product decisions is not useful.
-
-## Opportunity Sizing
-
-### Estimating Opportunity Size
-For each research finding or opportunity area, estimate:
-
-- **Addressable users**: How many users could benefit from addressing this? Use product analytics, survey data, or market data to estimate.
-- **Frequency**: How often do affected users encounter this issue? (Daily, weekly, monthly, one-time)
-- **Severity**: How much does this issue impact users when it occurs? (Blocker, significant friction, minor annoyance)
-- **Willingness to pay**: Would addressing this drive upgrades, retention, or new customer acquisition?
-
-### Opportunity Scoring
-Score opportunities on a simple matrix:
-
-- **Impact**: (Users affected) x (Frequency) x (Severity) = impact score
-- **Evidence strength**: How confident are we in the finding? (Multiple sources > single source, behavioral data > stated preferences)
-- **Strategic alignment**: Does this opportunity align with company strategy and product vision?
-- **Feasibility**: Can we realistically address this? (Technical feasibility, resource availability, time to impact)
-
-### Presenting Opportunity Sizing
-- Be transparent about assumptions and confidence levels
-- Show the math: "Based on support ticket volume, approximately 2,000 users per month encounter this issue. Interview data suggests 60% of them consider it a significant blocker."
-- Use ranges rather than false precision: "This affects 1,500-2,500 users monthly" not "This affects 2,137 users monthly"
-- Compare opportunities against each other to create a relative ranking, not just absolute scores
-
-## Output Format
-
-Use clear headers and structured formatting. Each finding should stand on its own — a reader should be able to read any single finding and understand it without reading the rest.
-
-## Tips
-
-- Let the data speak. Do not force findings into a predetermined narrative.
-- Distinguish between what users say and what they do. Behavioral data is stronger than stated preferences.
-- Quotes are powerful evidence. Include them generously, with attribution to participant type (not name).
-- Be explicit about confidence levels. A finding from 2 interviews is a hypothesis, not a conclusion.
-- Contradictions in the data are interesting, not inconvenient. They often reveal distinct user segments.
-- Recommendations should be specific enough to act on. "Improve onboarding" is not actionable. "Add a progress indicator to the setup flow" is.
-- Resist the temptation to synthesize too many themes. 5-8 strong findings are better than 20 weak ones.
+## 워크플로우
+
+### 1. 연구 입력 수집
+
+다음의 모든 조합에서 연구를 수락합니다:
+- **붙여넣은 텍스트**: 인터뷰 노트, 기록, 설문 응답, 피드백
+- **업로드된 파일**: 연구 문서, 스프레드시트, 녹음 요약
+- **~~지식 베이스** (연결된 경우): 연구 문서, 인터뷰 노트, 설문 결과 검색
+- **~~사용자 피드백** (연결된 경우): 최근 지원 티켓, 기능 요청, 버그 보고 가져오기
+- **~~제품 분석** (연결된 경우): 사용 데이터, 퍼널 지표, 행동 데이터 가져오기
+- **~~회의 기록** (연결된 경우): 인터뷰 녹음, 회의 요약, 토론 노트 가져오기
+
+사용자에게 무엇을 가지고 있는지 질문합니다:
+- 어떤 유형의 연구인가? (인터뷰, 설문, 사용성 테스트, 분석, 지원 티켓, 영업 통화 노트)
+- 몇 개의 소스 / 참가자?
+- 조사하는 구체적 질문이나 가설이 있는가?
+- 이 연구가 어떤 결정에 참고될 것인가?
+
+### 2. 연구 처리
+
+각 소스에서 추출합니다:
+- **핵심 관찰**: 사용자가 무엇을 말했거나, 했거나, 경험했는가?
+- **인용구**: 중요한 포인트를 보여주는 그대로의 인용
+- **행동**: 사용자가 실제로 한 것 (말한 것 vs 한 것)
+- **페인 포인트**: 좌절, 우회 방법, 충족되지 않은 니즈
+- **긍정 신호**: 잘 작동하는 것, 기쁨의 순간
+- **맥락**: 사용자 세그먼트, 사용 사례, 경험 수준
+
+### 3. 테마와 패턴 식별
+
+주제 분석을 적용합니다 — 주제 분석, 친화도 매핑, 삼각 측량 기법에 대한 상세 안내는 아래 **연구 종합 방법론**을 참조하세요.
+
+관찰을 테마로 그룹화하고, 참가자 간 빈도를 세고, 영향 심각도를 평가합니다. 모순과 놀라움을 기록합니다.
+
+우선순위 매트릭스를 생성합니다:
+- **높은 빈도 + 높은 영향**: 최우선 발견
+- **낮은 빈도 + 높은 영향**: 특정 세그먼트에 중요
+- **높은 빈도 + 낮은 영향**: 삶의 질 개선
+- **낮은 빈도 + 낮은 영향**: 기록하지만 우선순위 낮춤
+
+### 4. 종합 생성
+
+구조화된 연구 종합을 생성합니다:
+
+#### 연구 개요
+- 방법론: 어떤 유형의 연구, 몇 명의 참가자/소스
+- 연구 질문: 배우려고 한 것
+- 기간: 연구가 수행된 시기
+
+#### 주요 발견
+각 주요 발견에 대해 (5-8개 목표):
+- **발견 진술**: 인사이트를 설명하는 명확한 한 문장
+- **증거**: 지원하는 인용구, 데이터 포인트, 관찰 (소스 귀속 포함)
+- **빈도**: 몇 명의 참가자/소스가 이 발견을 지지하는지
+- **영향**: 사용자 경험 또는 비즈니스에 얼마나 크게 영향을 미치는지
+- **확신 수준**: 높음 (강한 증거), 중간 (시사적), 낮음 (초기 신호)
+
+우선순위 (빈도 x 영향)별로 발견을 정렬합니다.
+
+#### 사용자 세그먼트 / 페르소나
+연구가 뚜렷한 사용자 세그먼트를 드러내면:
+- 세그먼트 이름 및 설명
+- 핵심 특성 및 행동
+- 고유한 니즈 및 페인 포인트
+- 데이터가 있으면 규모 추정
+
+#### 기회 영역
+발견을 기반으로 기회 영역을 식별합니다:
+- 충족되지 않거나 서비스 부족한 사용자 니즈는 무엇인가
+- 현재 솔루션이 부족한 곳은 어디인가
+- 가치를 해제할 새로운 역량은 무엇인가
+- 잠재적 영향별로 우선순위화
+
+#### 추천
+구체적이고 실행 가능한 추천:
+- 만들거나, 변경하거나, 추가 조사할 것
+- 구체적 발견에 연결
+- 영향과 실현 가능성별로 우선순위화
+
+#### 열린 질문
+연구가 답하지 못한 것:
+- 이해의 갭
+- 추가 조사가 필요한 영역
+- 제안된 후속 연구 방법
+
+### 5. 검토 및 확장
+
+종합 생성 후:
+- 더 상세하거나 다른 프레이밍이 필요한 발견이 있는지 질문
+- 구체적 산출물 생성 제안: 페르소나 문서, 기회 맵, 연구 프레젠테이션
+- 열린 질문에 대한 후속 연구 계획 생성 제안
+- 제품 시사점 초안 제안 (발견이 로드맵에 어떻게 영향을 미쳐야 하는지)
+
+## 연구 종합 방법론
+
+### 주제 분석
+정성적 연구를 종합하는 핵심 방법:
+
+1. **친숙화**: 모든 데이터를 읽어봅니다. 코딩하기 전에 전체 환경에 대한 감을 얻으세요.
+2. **초기 코딩**: 데이터를 체계적으로 검토합니다. 각 관찰, 인용구, 데이터 포인트에 설명적 코드를 태그합니다. 코드에 관대하세요 — 나중에 합치는 것이 나누는 것보다 쉽습니다.
+3. **테마 개발**: 관련 코드를 후보 테마로 그룹화합니다. 테마는 연구 질문과 관련하여 데이터에서 중요한 것을 포착합니다.
+4. **테마 검토**: 데이터에 대해 테마를 확인합니다. 각 테마에 충분한 증거가 있는가? 테마가 서로 구별되는가? 일관된 이야기를 하는가?
+5. **테마 정제**: 각 테마를 명확하게 정의하고 명명합니다. 각 테마가 포착하는 것에 대해 1-2문장 설명을 작성합니다.
+6. **보고**: 지원 증거와 함께 발견으로 테마를 작성합니다.
+
+### 친화도 매핑
+관찰을 그룹화하는 협력적 방법:
+
+1. **관찰 포착**: 각 구별되는 관찰, 인용구, 데이터 포인트를 별도 노트로 작성
+2. **클러스터링**: 유사성을 기반으로 관련 노트를 그룹화. 카테고리를 미리 정의하지 마세요 — 데이터에서 나오게 하세요.
+3. **클러스터 레이블링**: 각 클러스터에 공통 스레드를 포착하는 설명적 이름 부여
+4. **클러스터 조직**: 패턴이 나타나면 클러스터를 더 높은 수준 그룹으로 배치
+5. **테마 식별**: 클러스터와 그 관계가 핵심 테마를 드러냄
+
+### 삼각 측량
+여러 데이터 소스를 결합하여 발견을 강화합니다:
+
+- **방법론적 삼각 측량**: 같은 질문, 다른 방법 (인터뷰 + 설문 + 분석)
+- **소스 삼각 측량**: 같은 방법, 다른 참가자 또는 세그먼트
+- **시간적 삼각 측량**: 다른 시점의 같은 관찰
+
+여러 소스와 방법에 의해 지원되는 발견은 단일 소스보다 훨씬 강합니다. 소스가 동의하지 않을 때 흥미롭습니다 — 다른 사용자 세그먼트나 맥락을 드러낼 수 있습니다.
+
+## 인터뷰 노트 분석
+
+### 인터뷰 노트에서 인사이트 추출
+각 인터뷰에서 식별합니다:
+
+**관찰**: 참가자가 무엇을 하거나, 경험하거나, 느꼈다고 설명했는가?
+- 행동 (하는 것)과 태도 (생각/느끼는 것)를 구분
+- 맥락 기록: 언제, 어디서, 누구와, 얼마나 자주
+- 우회 방법을 표시 — 변장한 충족되지 않은 니즈
+
+**직접 인용**: 중요한 포인트를 강력하게 보여주는 그대로의 진술
+- 좋은 인용은 구체적이고 생생, 일반적이지 않음
+- 이름이 아닌 참가자 유형으로 귀속: "엔터프라이즈 관리자, 200명 팀"이지 "김소연"이 아닌
+- 인용은 증거이지 발견이 아닌. 발견은 인용이 의미하는 것에 대한 해석.
+
+**행동 vs 진술된 선호**: 사람들이 하는 것은 종종 원한다고 말하는 것과 다름
+- 행동적 관찰이 진술된 선호보다 더 강한 증거
+- 참가자가 "기능 X를 원합니다"라고 말하지만 워크플로우가 유사 기능을 사용하지 않는다면, 모순을 기록
+- 실제 행동을 통한 드러난 선호를 찾기
+
+## 출력 형식
+
+명확한 헤더와 구조화된 서식을 사용합니다. 각 발견은 독립적이어야 — 독자가 나머지를 읽지 않고도 단일 발견을 읽고 이해할 수 있어야.
+
+## 팁
+
+- 데이터가 말하게 하세요. 발견을 미리 정해진 내러티브에 강제하지 마세요.
+- 사용자가 말하는 것과 하는 것을 구분하세요. 행동 데이터가 진술된 선호보다 강합니다.
+- 인용은 강력한 증거입니다. 참가자 유형 (이름이 아닌)으로의 귀속과 함께 넉넉히 포함하세요.
+- 확신 수준에 명시적이세요. 2개 인터뷰에서의 발견은 가설이지 결론이 아닌.
+- 데이터의 모순은 불편이 아닌 흥미로움. 종종 뚜렷한 사용자 세그먼트를 드러냄.
+- 추천은 실행할 수 있을 만큼 구체적이어야. "온보딩 개선"은 실행 가능하지 않음. "설정 플로우에 진행 표시기 추가"는 실행 가능.
+- 너무 많은 테마를 종합하려는 유혹에 저항하세요. 5-8개 강한 발견이 20개 약한 것보다 나음.

@@ -1,134 +1,134 @@
 ---
 name: build-dashboard
-description: Build an interactive HTML dashboard with charts, filters, and tables. Use when creating an executive overview with KPI cards, turning query results into a shareable self-contained report, building a team monitoring snapshot, or needing multiple charts with filters in one browser-openable file.
-argument-hint: "<description> [data source]"
+description: 차트, 필터, 테이블이 포함된 인터랙티브 HTML 대시보드를 빌드합니다. KPI 카드가 포함된 경영진 개요를 만들거나, 쿼리 결과를 공유 가능한 독립형 보고서로 변환하거나, 팀 모니터링 스냅샷을 구축하거나, 브라우저에서 열 수 있는 하나의 파일에 필터가 포함된 여러 차트가 필요할 때 사용합니다.
+argument-hint: "<설명> [데이터 소스]"
 ---
 
-# /build-dashboard - Build Interactive Dashboards
+# /build-dashboard - 인터랙티브 대시보드 빌드
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 할 경우 [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Build a self-contained interactive HTML dashboard with charts, filters, tables, and professional styling. Opens directly in a browser -- no server or dependencies required.
+차트, 필터, 테이블 및 전문적인 스타일링이 포함된 독립형 인터랙티브 HTML 대시보드를 빌드합니다. 서버나 의존성 없이 브라우저에서 직접 열 수 있습니다.
 
-## Usage
+## 사용법
 
 ```
-/build-dashboard <description of dashboard> [data source]
+/build-dashboard <대시보드 설명> [데이터 소스]
 ```
 
-## Workflow
+## 워크플로우
 
-### 1. Understand the Dashboard Requirements
+### 1. 대시보드 요구사항 파악
 
-Determine:
+결정 사항:
 
-- **Purpose**: Executive overview, operational monitoring, deep-dive analysis, team reporting
-- **Audience**: Who will use this dashboard?
-- **Key metrics**: What numbers matter most?
-- **Dimensions**: What should users be able to filter or slice by?
-- **Data source**: Live query, pasted data, CSV file, or sample data
+- **목적**: 경영진 개요, 운영 모니터링, 심층 분석, 팀 보고
+- **대상**: 누가 이 대시보드를 사용할 것인가?
+- **핵심 지표**: 가장 중요한 수치는 무엇인가?
+- **차원**: 사용자가 필터링하거나 분할할 수 있어야 하는 항목은?
+- **데이터 소스**: 라이브 쿼리, 붙여넣기 데이터, CSV 파일 또는 샘플 데이터
 
-### 2. Gather the Data
+### 2. 데이터 수집
 
-**If data warehouse is connected:**
-1. Query the necessary data
-2. Embed the results as JSON within the HTML file
+**데이터 웨어하우스가 연결된 경우:**
+1. 필요한 데이터를 쿼리
+2. 결과를 HTML 파일 내에 JSON으로 포함
 
-**If data is pasted or uploaded:**
-1. Parse and clean the data
-2. Embed as JSON in the dashboard
+**데이터가 붙여넣기 또는 업로드된 경우:**
+1. 데이터를 파싱하고 정리
+2. 대시보드에 JSON으로 포함
 
-**If working from a description without data:**
-1. Create a realistic sample dataset matching the described schema
-2. Note in the dashboard that it uses sample data
-3. Provide instructions for swapping in real data
+**데이터 없이 설명만으로 작업하는 경우:**
+1. 설명된 스키마와 일치하는 현실적인 샘플 데이터셋 생성
+2. 대시보드에 샘플 데이터를 사용한다고 표기
+3. 실제 데이터로 교체하는 방법에 대한 지침 제공
 
-### 3. Design the Dashboard Layout
+### 3. 대시보드 레이아웃 설계
 
-Follow a standard dashboard layout pattern:
+표준 대시보드 레이아웃 패턴을 따릅니다:
 
 ```
 ┌──────────────────────────────────────────────────┐
-│  Dashboard Title                    [Filters ▼]  │
+│  대시보드 제목                      [필터 ▼]  │
 ├────────────┬────────────┬────────────┬───────────┤
-│  KPI Card  │  KPI Card  │  KPI Card  │ KPI Card  │
+│  KPI 카드  │  KPI 카드  │  KPI 카드  │ KPI 카드  │
 ├────────────┴────────────┼────────────┴───────────┤
 │                         │                        │
-│    Primary Chart        │   Secondary Chart      │
-│    (largest area)       │                        │
+│    주요 차트            │   보조 차트            │
+│    (가장 큰 영역)       │                        │
 │                         │                        │
 ├─────────────────────────┴────────────────────────┤
 │                                                  │
-│    Detail Table (sortable, scrollable)           │
+│    상세 테이블 (정렬 가능, 스크롤 가능)           │
 │                                                  │
 └──────────────────────────────────────────────────┘
 ```
 
-**Adapt the layout to the content:**
-- 2-4 KPI cards at the top for headline numbers
-- 1-3 charts in the middle section for trends and breakdowns
-- Optional detail table at the bottom for drill-down data
-- Filters in the header or sidebar depending on complexity
+**콘텐츠에 맞게 레이아웃을 조정합니다:**
+- 상단에 2-4개의 KPI 카드로 핵심 수치 표시
+- 중간 섹션에 1-3개의 차트로 추세와 분석
+- 하단에 드릴다운 데이터를 위한 선택적 상세 테이블
+- 복잡도에 따라 헤더 또는 사이드바에 필터
 
-### 4. Build the HTML Dashboard
+### 4. HTML 대시보드 빌드
 
-Generate a single self-contained HTML file using the base template below. The file includes:
+아래 기본 템플릿을 사용하여 단일 독립형 HTML 파일을 생성합니다. 파일에 포함되는 내용:
 
-**Structure (HTML):**
-- Semantic HTML5 layout
-- Responsive grid using CSS Grid or Flexbox
-- Filter controls (dropdowns, date pickers, toggles)
-- KPI cards with values and labels
-- Chart containers
-- Data table with sortable headers
+**구조 (HTML):**
+- 시맨틱 HTML5 레이아웃
+- CSS Grid 또는 Flexbox를 사용한 반응형 그리드
+- 필터 컨트롤 (드롭다운, 날짜 선택기, 토글)
+- 값과 레이블이 있는 KPI 카드
+- 차트 컨테이너
+- 정렬 가능한 헤더가 있는 데이터 테이블
 
-**Styling (CSS):**
-- Professional color scheme (clean whites, grays, with accent colors for data)
-- Card-based layout with subtle shadows
-- Consistent typography (system fonts for fast loading)
-- Responsive design that works on different screen sizes
-- Print-friendly styles
+**스타일링 (CSS):**
+- 전문적인 색상 체계 (깔끔한 흰색, 회색, 데이터를 위한 강조 색상)
+- 미묘한 그림자가 있는 카드 기반 레이아웃
+- 일관된 타이포그래피 (빠른 로딩을 위한 시스템 폰트)
+- 다양한 화면 크기에서 작동하는 반응형 디자인
+- 인쇄 친화적 스타일
 
-**Interactivity (JavaScript):**
-- Chart.js for interactive charts (included via CDN)
-- Filter dropdowns that update all charts and tables simultaneously
-- Sortable table columns
-- Hover tooltips on charts
-- Number formatting (commas, currency, percentages)
+**인터랙티비티 (JavaScript):**
+- 인터랙티브 차트를 위한 Chart.js (CDN을 통해 포함)
+- 모든 차트와 테이블을 동시에 업데이트하는 필터 드롭다운
+- 정렬 가능한 테이블 컬럼
+- 차트의 호버 툴팁
+- 숫자 서식 (쉼표, 통화, 백분율)
 
-**Data (embedded JSON):**
-- All data embedded directly in the HTML as JavaScript variables
-- No external data fetches required
-- Dashboard works completely offline
+**데이터 (내장 JSON):**
+- 모든 데이터가 JavaScript 변수로 HTML에 직접 내장
+- 외부 데이터 가져오기 필요 없음
+- 대시보드가 완전히 오프라인으로 작동
 
-### 5. Implement Chart Types
+### 5. 차트 유형 구현
 
-Use Chart.js for all charts. Common dashboard chart patterns:
+모든 차트에 Chart.js를 사용합니다. 일반적인 대시보드 차트 패턴:
 
-- **Line chart**: Time series trends
-- **Bar chart**: Category comparisons
-- **Doughnut chart**: Composition (when <6 categories)
-- **Stacked bar**: Composition over time
-- **Mixed (bar + line)**: Volume with rate overlay
+- **꺾은선 차트**: 시계열 추세
+- **막대 차트**: 카테고리 비교
+- **도넛 차트**: 구성 (<6개 카테고리인 경우)
+- **누적 막대**: 시간에 따른 구성
+- **혼합 (막대 + 꺾은선)**: 비율 오버레이가 있는 볼륨
 
-Use the Chart.js integration patterns below for each chart type.
+각 차트 유형에 대해 아래의 Chart.js 통합 패턴을 사용합니다.
 
-### 6. Add Interactivity
+### 6. 인터랙티비티 추가
 
-Use the filter and interactivity implementation patterns below for dropdown filters, date range filters, combined filter logic, sortable tables, and chart updates.
+드롭다운 필터, 날짜 범위 필터, 결합 필터 로직, 정렬 가능한 테이블 및 차트 업데이트를 위해 아래의 필터 및 인터랙티비티 구현 패턴을 사용합니다.
 
-### 7. Save and Open
+### 7. 저장 및 열기
 
-1. Save the dashboard as an HTML file with a descriptive name (e.g., `sales_dashboard.html`)
-2. Open it in the user's default browser
-3. Confirm it renders correctly
-4. Provide instructions for updating data or customizing
+1. 대시보드를 설명적인 이름으로 HTML 파일로 저장 (예: `sales_dashboard.html`)
+2. 사용자의 기본 브라우저에서 열기
+3. 올바르게 렌더링되는지 확인
+4. 데이터 업데이트 또는 커스터마이징 방법에 대한 지침 제공
 
 ---
 
-## Base Template
+## 기본 템플릿
 
-Every dashboard follows this structure:
+모든 대시보드는 이 구조를 따릅니다:
 
 ```html
 <!DOCTYPE html>
@@ -140,7 +140,7 @@ Every dashboard follows this structure:
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1" integrity="sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0" integrity="sha384-cVMg8E3QFwTvGCDuK+ET4PD341jF3W8nO1auiXfuZNQkzbUUiBGLsIQUE+b1mxws" crossorigin="anonymous"></script>
     <style>
-        /* Dashboard styles go here */
+        /* 대시보드 스타일은 여기에 */
     </style>
 </head>
 <body>
@@ -148,20 +148,20 @@ Every dashboard follows this structure:
         <header class="dashboard-header">
             <h1>Dashboard Title</h1>
             <div class="filters">
-                <!-- Filter controls -->
+                <!-- 필터 컨트롤 -->
             </div>
         </header>
 
         <section class="kpi-row">
-            <!-- KPI cards -->
+            <!-- KPI 카드 -->
         </section>
 
         <section class="chart-row">
-            <!-- Chart containers -->
+            <!-- 차트 컨테이너 -->
         </section>
 
         <section class="table-section">
-            <!-- Data table -->
+            <!-- 데이터 테이블 -->
         </section>
 
         <footer class="dashboard-footer">
@@ -170,10 +170,10 @@ Every dashboard follows this structure:
     </div>
 
     <script>
-        // Embedded data
+        // 내장 데이터
         const DATA = [];
 
-        // Dashboard logic
+        // 대시보드 로직
         class Dashboard {
             constructor(data) {
                 this.rawData = data;
@@ -190,17 +190,17 @@ Every dashboard follows this structure:
             }
 
             applyFilters() {
-                // Filter logic
+                // 필터 로직
                 this.filteredData = this.rawData.filter(row => {
-                    // Apply each active filter
-                    return true; // placeholder
+                    // 각 활성 필터 적용
+                    return true; // 플레이스홀더
                 });
                 this.renderKPIs();
                 this.updateCharts();
                 this.renderTable();
             }
 
-            // ... methods for each section
+            // ... 각 섹션에 대한 메서드
         }
 
         const dashboard = new Dashboard(DATA);
@@ -209,7 +209,7 @@ Every dashboard follows this structure:
 </html>
 ```
 
-## KPI Card Pattern
+## KPI 카드 패턴
 
 ```html
 <div class="kpi-card">
@@ -224,10 +224,10 @@ function renderKPI(elementId, value, previousValue, format = 'number') {
     const el = document.getElementById(elementId);
     const changeEl = document.getElementById(elementId + '-change');
 
-    // Format the value
+    // 값 서식 지정
     el.textContent = formatValue(value, format);
 
-    // Calculate and display change
+    // 변화율 계산 및 표시
     if (previousValue && previousValue !== 0) {
         const pctChange = ((value - previousValue) / previousValue) * 100;
         const sign = pctChange >= 0 ? '+' : '';
@@ -254,9 +254,9 @@ function formatValue(value, format) {
 }
 ```
 
-## Chart.js Integration
+## Chart.js 통합
 
-### Chart Container Pattern
+### 차트 컨테이너 패턴
 
 ```html
 <div class="chart-container">
@@ -265,7 +265,7 @@ function formatValue(value, format) {
 </div>
 ```
 
-### Line Chart
+### 꺾은선 차트
 
 ```javascript
 function createLineChart(canvasId, labels, datasets) {
@@ -324,7 +324,7 @@ function createLineChart(canvasId, labels, datasets) {
 }
 ```
 
-### Bar Chart
+### 막대 차트
 
 ```javascript
 function createBarChart(canvasId, labels, data, options = {}) {
@@ -383,7 +383,7 @@ function createBarChart(canvasId, labels, data, options = {}) {
 }
 ```
 
-### Doughnut Chart
+### 도넛 차트
 
 ```javascript
 function createDoughnutChart(canvasId, labels, data) {
@@ -423,14 +423,14 @@ function createDoughnutChart(canvasId, labels, data) {
 }
 ```
 
-### Updating Charts on Filter Change
+### 필터 변경 시 차트 업데이트
 
 ```javascript
 function updateChart(chart, newLabels, newData) {
     chart.data.labels = newLabels;
 
     if (Array.isArray(newData[0])) {
-        // Multiple datasets
+        // 다중 데이터셋
         newData.forEach((data, i) => {
             chart.data.datasets[i].data = data;
         });
@@ -438,13 +438,13 @@ function updateChart(chart, newLabels, newData) {
         chart.data.datasets[0].data = newData;
     }
 
-    chart.update('none'); // 'none' disables animation for instant update
+    chart.update('none'); // 'none'은 즉시 업데이트를 위해 애니메이션을 비활성화
 }
 ```
 
-## Filter and Interactivity Implementation
+## 필터 및 인터랙티비티 구현
 
-### Dropdown Filter
+### 드롭다운 필터
 
 ```html
 <div class="filter-group">
@@ -460,7 +460,7 @@ function populateFilter(selectId, data, field) {
     const select = document.getElementById(selectId);
     const values = [...new Set(data.map(d => d[field]))].sort();
 
-    // Keep the "All" option, add unique values
+    // "전체" 옵션 유지, 고유값 추가
     values.forEach(val => {
         const option = document.createElement('option');
         option.value = val;
@@ -475,7 +475,7 @@ function getFilterValue(selectId) {
 }
 ```
 
-### Date Range Filter
+### 날짜 범위 필터
 
 ```html
 <div class="filter-group">
@@ -497,7 +497,7 @@ function filterByDateRange(data, dateField, startDate, endDate) {
 }
 ```
 
-### Combined Filter Logic
+### 결합 필터 로직
 
 ```javascript
 applyFilters() {
@@ -520,7 +520,7 @@ applyFilters() {
 }
 ```
 
-### Sortable Table
+### 정렬 가능한 테이블
 
 ```javascript
 function renderTable(containerId, data, columns) {
@@ -531,7 +531,7 @@ function renderTable(containerId, data, columns) {
     function render(sortedData) {
         let html = '<table class="data-table">';
 
-        // Header
+        // 헤더
         html += '<thead><tr>';
         columns.forEach(col => {
             const arrow = sortCol === col.field
@@ -541,7 +541,7 @@ function renderTable(containerId, data, columns) {
         });
         html += '</tr></thead>';
 
-        // Body
+        // 본문
         html += '<tbody>';
         sortedData.forEach(row => {
             html += '<tr>';
@@ -575,23 +575,23 @@ function renderTable(containerId, data, columns) {
 }
 ```
 
-## CSS Styling for Dashboards
+## 대시보드 CSS 스타일링
 
-### Color System
+### 색상 시스템
 
 ```css
 :root {
-    /* Background layers */
+    /* 배경 레이어 */
     --bg-primary: #f8f9fa;
     --bg-card: #ffffff;
     --bg-header: #1a1a2e;
 
-    /* Text */
+    /* 텍스트 */
     --text-primary: #212529;
     --text-secondary: #6c757d;
     --text-on-dark: #ffffff;
 
-    /* Accent colors for data */
+    /* 데이터용 강조 색상 */
     --color-1: #4C72B0;
     --color-2: #DD8452;
     --color-3: #55A868;
@@ -599,18 +599,18 @@ function renderTable(containerId, data, columns) {
     --color-5: #8172B3;
     --color-6: #937860;
 
-    /* Status colors */
+    /* 상태 색상 */
     --positive: #28a745;
     --negative: #dc3545;
     --neutral: #6c757d;
 
-    /* Spacing */
+    /* 간격 */
     --gap: 16px;
     --radius: 8px;
 }
 ```
 
-### Layout
+### 레이아웃
 
 ```css
 * {
@@ -651,7 +651,7 @@ body {
 }
 ```
 
-### KPI Cards
+### KPI 카드
 
 ```css
 .kpi-row {
@@ -692,7 +692,7 @@ body {
 .kpi-change.negative { color: var(--negative); }
 ```
 
-### Chart Containers
+### 차트 컨테이너
 
 ```css
 .chart-row {
@@ -721,7 +721,7 @@ body {
 }
 ```
 
-### Filters
+### 필터
 
 ```css
 .filters {
@@ -758,7 +758,7 @@ body {
 }
 ```
 
-### Data Table
+### 데이터 테이블
 
 ```css
 .table-section {
@@ -807,7 +807,7 @@ body {
 }
 ```
 
-### Responsive Design
+### 반응형 디자인
 
 ```css
 @media (max-width: 768px) {
@@ -839,35 +839,35 @@ body {
 }
 ```
 
-## Performance Considerations for Large Datasets
+## 대규모 데이터셋의 성능 고려사항
 
-### Data Size Guidelines
+### 데이터 크기 가이드라인
 
-| Data Size | Approach |
+| 데이터 크기 | 접근 방식 |
 |---|---|
-| <1,000 rows | Embed directly in HTML. Full interactivity. |
-| 1,000 - 10,000 rows | Embed in HTML. May need to pre-aggregate for charts. |
-| 10,000 - 100,000 rows | Pre-aggregate server-side. Embed only aggregated data. |
-| >100,000 rows | Not suitable for client-side dashboard. Use a BI tool or paginate. |
+| <1,000행 | HTML에 직접 포함. 완전한 인터랙티비티. |
+| 1,000 - 10,000행 | HTML에 포함. 차트를 위해 사전 집계가 필요할 수 있음. |
+| 10,000 - 100,000행 | 서버 측에서 사전 집계. 집계된 데이터만 포함. |
+| >100,000행 | 클라이언트 측 대시보드에 적합하지 않음. BI 도구 사용 또는 페이지네이션. |
 
-### Pre-Aggregation Pattern
+### 사전 집계 패턴
 
-Instead of embedding raw data and aggregating in the browser:
+원시 데이터를 포함하고 브라우저에서 집계하는 대신:
 
 ```javascript
-// DON'T: embed 50,000 raw rows
+// 하지 마세요: 50,000개의 원시 행 포함
 const RAW_DATA = [/* 50,000 rows */];
 
-// DO: pre-aggregate before embedding
+// 이렇게 하세요: 포함 전에 사전 집계
 const CHART_DATA = {
     monthly_revenue: [
         { month: '2024-01', revenue: 150000, orders: 1200 },
         { month: '2024-02', revenue: 165000, orders: 1350 },
-        // ... 12 rows instead of 50,000
+        // ... 50,000개 대신 12개 행
     ],
     top_products: [
         { product: 'Widget A', revenue: 45000 },
-        // ... 10 rows
+        // ... 10개 행
     ],
     kpis: {
         total_revenue: 1980000,
@@ -877,48 +877,48 @@ const CHART_DATA = {
 };
 ```
 
-### Chart Performance
+### 차트 성능
 
-- Limit line charts to <500 data points per series (downsample if needed)
-- Limit bar charts to <50 categories
-- For scatter plots, cap at 1,000 points (use sampling for larger datasets)
-- Disable animations for dashboards with many charts: `animation: false` in Chart.js options
-- Use `Chart.update('none')` instead of `Chart.update()` for filter-triggered updates
+- 꺾은선 차트는 시리즈당 <500 데이터 포인트로 제한 (필요시 다운샘플링)
+- 막대 차트는 <50 카테고리로 제한
+- 산점도는 1,000포인트로 제한 (더 큰 데이터셋에는 샘플링 사용)
+- 많은 차트가 있는 대시보드에서 애니메이션 비활성화: Chart.js 옵션에서 `animation: false`
+- 필터 트리거 업데이트에는 `Chart.update()` 대신 `Chart.update('none')` 사용
 
-### DOM Performance
+### DOM 성능
 
-- Limit data tables to 100-200 visible rows. Add pagination for more.
-- Use `requestAnimationFrame` for coordinated chart updates
-- Avoid rebuilding the entire DOM on filter change -- update only changed elements
+- 데이터 테이블을 100-200개의 표시 행으로 제한. 더 많으면 페이지네이션 추가.
+- 조정된 차트 업데이트에 `requestAnimationFrame` 사용
+- 필터 변경 시 전체 DOM을 재구축하지 않음 -- 변경된 요소만 업데이트
 
 ```javascript
-// Efficient table pagination
+// 효율적인 테이블 페이지네이션
 function renderTablePage(data, page, pageSize = 50) {
     const start = page * pageSize;
     const end = Math.min(start + pageSize, data.length);
     const pageData = data.slice(start, end);
-    // Render only pageData
-    // Show pagination controls: "Showing 1-50 of 2,340"
+    // pageData만 렌더링
+    // 페이지네이션 컨트롤 표시: "1-50 of 2,340 표시 중"
 }
 ```
 
-## Examples
+## 예시
 
 ```
-/build-dashboard Monthly sales dashboard with revenue trend, top products, and regional breakdown. Data is in the orders table.
-```
-
-```
-/build-dashboard Here's our support ticket data [pastes CSV]. Build a dashboard showing volume by priority, response time trends, and resolution rates.
+/build-dashboard 월별 매출 대시보드. 매출 추세, 상위 제품, 지역별 분석 포함. 데이터는 orders 테이블에 있음.
 ```
 
 ```
-/build-dashboard Create a template executive dashboard for a SaaS company showing MRR, churn, new customers, and NPS. Use sample data.
+/build-dashboard 여기 지원 티켓 데이터가 있습니다 [CSV 붙여넣기]. 우선순위별 볼륨, 응답 시간 추세, 해결율을 보여주는 대시보드를 만들어주세요.
 ```
 
-## Tips
+```
+/build-dashboard MRR, 이탈률, 신규 고객, NPS를 보여주는 SaaS 회사용 경영진 대시보드 템플릿을 만들어주세요. 샘플 데이터를 사용하세요.
+```
 
-- Dashboards are fully self-contained HTML files -- share them with anyone by sending the file
-- For real-time dashboards, consider connecting to a BI tool instead. These dashboards are point-in-time snapshots
-- Request "dark mode" or "presentation mode" for different styling
-- You can request a specific color scheme to match your brand
+## 팁
+
+- 대시보드는 완전히 독립형 HTML 파일입니다 -- 파일을 보내서 누구와도 공유 가능
+- 실시간 대시보드의 경우 BI 도구에 연결하는 것을 고려하세요. 이 대시보드는 특정 시점의 스냅샷입니다
+- 다른 스타일링을 위해 "다크 모드" 또는 "프레젠테이션 모드"를 요청할 수 있습니다
+- 브랜드에 맞는 특정 색상 체계를 요청할 수 있습니다

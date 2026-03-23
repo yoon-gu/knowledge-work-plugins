@@ -1,122 +1,122 @@
 ---
 name: statistical-analysis
-description: Apply statistical methods including descriptive stats, trend analysis, outlier detection, and hypothesis testing. Use when analyzing distributions, testing for significance, detecting anomalies, computing correlations, or interpreting statistical results.
+description: 기술 통계, 추세 분석, 이상치 탐지, 가설 검정을 포함한 통계 방법을 적용합니다. 분포 분석, 유의성 검정, 이상 탐지, 상관관계 계산 또는 통계 결과 해석 시 사용합니다.
 user-invocable: false
 ---
 
-# Statistical Analysis Skill
+# 통계 분석 스킬
 
-Descriptive statistics, trend analysis, outlier detection, hypothesis testing, and guidance on when to be cautious about statistical claims.
+기술 통계, 추세 분석, 이상치 탐지, 가설 검정 및 통계적 주장에 주의해야 할 때에 대한 안내입니다.
 
-## Descriptive Statistics Methodology
+## 기술 통계 방법론
 
-### Central Tendency
+### 중심 경향
 
-Choose the right measure of center based on the data:
+데이터에 따라 적절한 중심 측도를 선택합니다:
 
-| Situation | Use | Why |
+| 상황 | 사용 | 이유 |
 |---|---|---|
-| Symmetric distribution, no outliers | Mean | Most efficient estimator |
-| Skewed distribution | Median | Robust to outliers |
-| Categorical or ordinal data | Mode | Only option for non-numeric |
-| Highly skewed with outliers (e.g., revenue per user) | Median + mean | Report both; the gap shows skew |
+| 대칭 분포, 이상치 없음 | 평균 | 가장 효율적인 추정량 |
+| 비대칭 분포 | 중앙값 | 이상치에 강건 |
+| 범주형 또는 순서형 데이터 | 최빈값 | 비숫자형의 유일한 옵션 |
+| 이상치가 있는 고도 비대칭 (예: 사용자당 매출) | 중앙값 + 평균 | 둘 다 보고; 차이가 편향을 보여줌 |
 
-**Always report mean and median together for business metrics.** If they diverge significantly, the data is skewed and the mean alone is misleading.
+**비즈니스 지표의 경우 항상 평균과 중앙값을 함께 보고합니다.** 둘이 크게 다르면 데이터가 편향되어 있고 평균만으로는 오해를 줄 수 있습니다.
 
-### Spread and Variability
+### 산포도와 변동성
 
-- **Standard deviation**: How far values typically fall from the mean. Use with normally distributed data.
-- **Interquartile range (IQR)**: Distance from p25 to p75. Robust to outliers. Use with skewed data.
-- **Coefficient of variation (CV)**: StdDev / Mean. Use to compare variability across metrics with different scales.
-- **Range**: Max minus min. Sensitive to outliers but gives a quick sense of data extent.
+- **표준 편차**: 값이 평균에서 얼마나 떨어져 있는지. 정규 분포 데이터에 사용.
+- **사분위 범위(IQR)**: p25에서 p75까지의 거리. 이상치에 강건. 편향된 데이터에 사용.
+- **변동 계수(CV)**: 표준편차 / 평균. 다른 스케일의 지표 간 변동성 비교에 사용.
+- **범위**: 최대값 - 최소값. 이상치에 민감하지만 데이터 범위를 빠르게 파악 가능.
 
-### Percentiles for Business Context
+### 비즈니스 맥락을 위한 백분위수
 
-Report key percentiles to tell a richer story than mean alone:
+평균만보다 더 풍부한 이야기를 전달하기 위해 핵심 백분위수를 보고합니다:
 
 ```
-p1:   Bottom 1% (floor / minimum typical value)
-p5:   Low end of normal range
-p25:  First quartile
-p50:  Median (typical user)
-p75:  Third quartile
-p90:  Top 10% / power users
-p95:  High end of normal range
-p99:  Top 1% / extreme users
+p1:   하위 1% (바닥 / 최소 일반적 값)
+p5:   정상 범위의 하한
+p25:  제1사분위수
+p50:  중앙값 (일반적인 사용자)
+p75:  제3사분위수
+p90:  상위 10% / 파워 유저
+p95:  정상 범위의 상한
+p99:  상위 1% / 극단 사용자
 ```
 
-**Example narrative**: "The median session duration is 4.2 minutes, but the top 10% of users spend over 22 minutes per session, pulling the mean up to 7.8 minutes."
+**서술 예시**: "중앙 세션 시간은 4.2분이지만, 상위 10%의 사용자는 세션당 22분 이상을 소비하여 평균을 7.8분으로 끌어올립니다."
 
-### Describing Distributions
+### 분포 기술
 
-Characterize every numeric distribution you analyze:
+분석하는 모든 숫자 분포를 특성화합니다:
 
-- **Shape**: Normal, right-skewed, left-skewed, bimodal, uniform, heavy-tailed
-- **Center**: Mean and median (and the gap between them)
-- **Spread**: Standard deviation or IQR
-- **Outliers**: How many and how extreme
-- **Bounds**: Is there a natural floor (zero) or ceiling (100%)?
+- **형태**: 정규, 오른쪽 편향, 왼쪽 편향, 이중 분포, 균등, 무거운 꼬리
+- **중심**: 평균과 중앙값 (그리고 둘 사이의 차이)
+- **산포**: 표준 편차 또는 IQR
+- **이상치**: 몇 개이고 얼마나 극단적인지
+- **경계**: 자연적인 하한(0) 또는 상한(100%)이 있는지
 
-## Trend Analysis and Forecasting
+## 추세 분석 및 예측
 
-### Identifying Trends
+### 추세 식별
 
-**Moving averages** to smooth noise:
+**이동 평균**으로 노이즈를 평활화:
 ```python
-# 7-day moving average (good for daily data with weekly seasonality)
+# 7일 이동 평균 (주별 계절성이 있는 일별 데이터에 적합)
 df['ma_7d'] = df['metric'].rolling(window=7, min_periods=1).mean()
 
-# 28-day moving average (smooths weekly AND monthly patterns)
+# 28일 이동 평균 (주별 및 월별 패턴 모두 평활화)
 df['ma_28d'] = df['metric'].rolling(window=28, min_periods=1).mean()
 ```
 
-**Period-over-period comparison**:
-- Week-over-week (WoW): Compare to same day last week
-- Month-over-month (MoM): Compare to same month prior
-- Year-over-year (YoY): Gold standard for seasonal businesses
-- Same-day-last-year: Compare specific calendar day
+**기간 대비 비교**:
+- 주간(WoW): 지난주 같은 요일과 비교
+- 월간(MoM): 이전 같은 달과 비교
+- 연간(YoY): 계절적 비즈니스의 표준
+- 작년 같은 날: 특정 달력 날짜 비교
 
-**Growth rates**:
+**성장률**:
 ```
-Simple growth: (current - previous) / previous
-CAGR: (ending / beginning) ^ (1 / years) - 1
-Log growth: ln(current / previous)  -- better for volatile series
+단순 성장: (현재 - 이전) / 이전
+CAGR: (종료 / 시작) ^ (1 / 년수) - 1
+로그 성장: ln(현재 / 이전)  -- 변동성이 큰 시리즈에 적합
 ```
 
-### Seasonality Detection
+### 계절성 탐지
 
-Check for periodic patterns:
-1. Plot the raw time series -- visual inspection first
-2. Compute day-of-week averages: is there a clear weekly pattern?
-3. Compute month-of-year averages: is there an annual cycle?
-4. When comparing periods, always use YoY or same-period comparisons to avoid conflating trend with seasonality
+주기적 패턴을 확인합니다:
+1. 원시 시계열을 플로팅 -- 시각적 검사 우선
+2. 요일별 평균 계산: 명확한 주별 패턴이 있는가?
+3. 월별 평균 계산: 연간 주기가 있는가?
+4. 기간을 비교할 때, 추세와 계절성을 혼동하지 않도록 항상 YoY 또는 같은 기간 비교 사용
 
-### Forecasting (Simple Methods)
+### 예측 (간단한 방법)
 
-For business analysts (not data scientists), use straightforward methods:
+비즈니스 분석가(데이터 과학자가 아닌)를 위해, 직관적인 방법을 사용합니다:
 
-- **Naive forecast**: Tomorrow = today. Use as a baseline.
-- **Seasonal naive**: Tomorrow = same day last week/year.
-- **Linear trend**: Fit a line to historical data. Only for clearly linear trends.
-- **Moving average forecast**: Use trailing average as the forecast.
+- **나이브 예측**: 내일 = 오늘. 기준선으로 사용.
+- **계절적 나이브**: 내일 = 지난주/작년 같은 날.
+- **선형 추세**: 이력 데이터에 직선 피팅. 명확히 선형인 추세에만.
+- **이동 평균 예측**: 후행 평균을 예측값으로 사용.
 
-**Always communicate uncertainty**. Provide a range, not a point estimate:
-- "We expect 10K-12K signups next month based on the 3-month trend"
-- NOT "We will get exactly 11,234 signups next month"
+**항상 불확실성을 전달합니다**. 점 추정이 아닌 범위를 제공합니다:
+- "3개월 추세를 기반으로 다음 달 가입자 수가 10K-12K일 것으로 예상합니다"
+- 이렇게 하면 안 됨: "다음 달 정확히 11,234건의 가입이 있을 것입니다"
 
-**When to escalate to a data scientist**: Non-linear trends, multiple seasonalities, external factors (marketing spend, holidays), or when forecast accuracy matters for resource allocation.
+**데이터 과학자에게 에스컬레이션해야 할 때**: 비선형 추세, 다중 계절성, 외부 요인(마케팅 지출, 공휴일), 또는 예측 정확도가 리소스 할당에 중요한 경우.
 
-## Outlier and Anomaly Detection
+## 이상치 및 이상 탐지
 
-### Statistical Methods
+### 통계적 방법
 
-**Z-score method** (for normally distributed data):
+**Z-score 방법** (정규 분포 데이터의 경우):
 ```python
 z_scores = (df['value'] - df['value'].mean()) / df['value'].std()
-outliers = df[abs(z_scores) > 3]  # More than 3 standard deviations
+outliers = df[abs(z_scores) > 3]  # 3 표준 편차 이상
 ```
 
-**IQR method** (robust to non-normal distributions):
+**IQR 방법** (비정규 분포에 강건):
 ```python
 Q1 = df['value'].quantile(0.25)
 Q3 = df['value'].quantile(0.75)
@@ -126,120 +126,120 @@ upper_bound = Q3 + 1.5 * IQR
 outliers = df[(df['value'] < lower_bound) | (df['value'] > upper_bound)]
 ```
 
-**Percentile method** (simplest):
+**백분위 방법** (가장 간단):
 ```python
 outliers = df[(df['value'] < df['value'].quantile(0.01)) |
               (df['value'] > df['value'].quantile(0.99))]
 ```
 
-### Handling Outliers
+### 이상치 처리
 
-Do NOT automatically remove outliers. Instead:
+이상치를 자동으로 제거하지 마세요. 대신:
 
-1. **Investigate**: Is this a data error, a genuine extreme value, or a different population?
-2. **Data errors**: Fix or remove (e.g., negative ages, timestamps in year 1970)
-3. **Genuine extremes**: Keep them but consider using robust statistics (median instead of mean)
-4. **Different population**: Segment them out for separate analysis (e.g., enterprise vs. SMB customers)
+1. **조사**: 이것이 데이터 오류인지, 진정한 극단값인지, 다른 모집단인지?
+2. **데이터 오류**: 수정 또는 제거 (예: 음수 나이, 1970년 타임스탬프)
+3. **진정한 극단값**: 유지하되 강건한 통계 사용 고려 (평균 대신 중앙값)
+4. **다른 모집단**: 별도 분석을 위해 세그먼트 분리 (예: 엔터프라이즈 vs SMB 고객)
 
-**Report what you did**: "We excluded 47 records (0.3%) with transaction amounts >$50K, which represent bulk enterprise orders analyzed separately."
+**수행한 작업을 보고합니다**: "별도로 분석되는 대규모 엔터프라이즈 주문을 나타내는 거래 금액 >$50K인 47건의 레코드(0.3%)를 제외했습니다."
 
-### Time Series Anomaly Detection
+### 시계열 이상 탐지
 
-For detecting unusual values in a time series:
+시계열에서 비정상적인 값을 탐지하려면:
 
-1. Compute expected value (moving average or same-period-last-year)
-2. Compute deviation from expected
-3. Flag deviations beyond a threshold (typically 2-3 standard deviations of the residuals)
-4. Distinguish between point anomalies (single unusual value) and change points (sustained shift)
+1. 기대값 계산 (이동 평균 또는 작년 같은 기간)
+2. 기대값으로부터의 편차 계산
+3. 임계값을 넘는 편차 플래깅 (일반적으로 잔차의 2-3 표준 편차)
+4. 점 이상(단일 비정상 값)과 변화점(지속적 변화)을 구분
 
-## Hypothesis Testing Basics
+## 가설 검정 기초
 
-### When to Use
+### 사용 시기
 
-Use hypothesis testing when you need to determine whether an observed difference is likely real or could be due to random chance. Common scenarios:
+관찰된 차이가 실제일 가능성이 있는지 아니면 우연에 의한 것일 수 있는지 판단해야 할 때 가설 검정을 사용합니다. 일반적인 시나리오:
 
-- A/B test results: Is variant B actually better than A?
-- Before/after comparison: Did the product change actually move the metric?
-- Segment comparison: Do enterprise customers really have higher retention?
+- A/B 테스트 결과: 변형 B가 실제로 A보다 나은가?
+- 전/후 비교: 제품 변경이 실제로 지표를 이동시켰는가?
+- 세그먼트 비교: 엔터프라이즈 고객이 정말로 더 높은 리텐션을 가지는가?
 
-### The Framework
+### 프레임워크
 
-1. **Null hypothesis (H0)**: There is no difference (the default assumption)
-2. **Alternative hypothesis (H1)**: There is a difference
-3. **Choose significance level (alpha)**: Typically 0.05 (5% chance of false positive)
-4. **Compute test statistic and p-value**
-5. **Interpret**: If p < alpha, reject H0 (evidence of a real difference)
+1. **귀무가설(H0)**: 차이가 없다 (기본 가정)
+2. **대립가설(H1)**: 차이가 있다
+3. **유의수준(alpha) 선택**: 일반적으로 0.05 (거짓 양성 5% 확률)
+4. **검정 통계량과 p-value 계산**
+5. **해석**: p < alpha이면, H0 기각 (실제 차이의 증거)
 
-### Common Tests
+### 일반적인 검정
 
-| Scenario | Test | When to Use |
+| 시나리오 | 검정 | 사용 시기 |
 |---|---|---|
-| Compare two group means | t-test (independent) | Normal data, two groups |
-| Compare two group proportions | z-test for proportions | Conversion rates, binary outcomes |
-| Compare paired measurements | Paired t-test | Before/after on same entities |
-| Compare 3+ group means | ANOVA | Multiple segments or variants |
-| Non-normal data, two groups | Mann-Whitney U test | Skewed metrics, ordinal data |
-| Association between categories | Chi-squared test | Two categorical variables |
+| 두 그룹 평균 비교 | t-검정 (독립) | 정규 데이터, 두 그룹 |
+| 두 그룹 비율 비교 | 비율에 대한 z-검정 | 전환율, 이진 결과 |
+| 쌍 측정 비교 | 대응 t-검정 | 같은 엔티티의 전/후 |
+| 3개 이상 그룹 평균 비교 | ANOVA | 다중 세그먼트 또는 변형 |
+| 비정규 데이터, 두 그룹 | Mann-Whitney U 검정 | 편향된 지표, 순서형 데이터 |
+| 범주 간 연관성 | 카이제곱 검정 | 두 범주형 변수 |
 
-### Practical Significance vs. Statistical Significance
+### 실용적 유의성 vs 통계적 유의성
 
-**Statistical significance** means the difference is unlikely due to chance.
+**통계적 유의성**은 차이가 우연에 의한 것일 가능성이 낮다는 것을 의미합니다.
 
-**Practical significance** means the difference is large enough to matter for business decisions.
+**실용적 유의성**은 차이가 비즈니스 의사결정에 중요할 만큼 크다는 것을 의미합니다.
 
-A difference can be statistically significant but practically meaningless (common with large samples). Always report:
-- **Effect size**: How big is the difference? (e.g., "Variant B improved conversion by 0.3 percentage points")
-- **Confidence interval**: What's the range of plausible true effects?
-- **Business impact**: What does this translate to in revenue, users, or other business terms?
+차이가 통계적으로 유의하지만 실용적으로는 무의미할 수 있습니다 (큰 샘플에서 흔함). 항상 보고합니다:
+- **효과 크기**: 차이가 얼마나 큰가? (예: "변형 B가 전환율을 0.3 퍼센트 포인트 개선했습니다")
+- **신뢰 구간**: 타당한 진정한 효과의 범위는?
+- **비즈니스 영향**: 이것이 매출, 사용자 또는 기타 비즈니스 용어로 어떻게 번역되는가?
 
-### Sample Size Considerations
+### 표본 크기 고려사항
 
-- Small samples produce unreliable results, even with significant p-values
-- Rule of thumb for proportions: Need at least 30 events per group for basic reliability
-- For detecting small effects (e.g., 1% conversion rate change), you may need thousands of observations per group
-- If your sample is small, say so: "With only 200 observations per group, we have limited power to detect effects smaller than X%"
+- 작은 표본은 유의한 p-value가 있더라도 신뢰할 수 없는 결과를 생산
+- 비율에 대한 경험 법칙: 기본적인 신뢰성을 위해 그룹당 최소 30개 이벤트 필요
+- 작은 효과(예: 1% 전환율 변화)를 탐지하려면 그룹당 수천 건의 관찰이 필요할 수 있음
+- 표본이 작으면 이를 언급: "그룹당 200건의 관찰만으로는 X% 미만의 효과를 탐지할 검정력이 제한적입니다"
 
-## When to Be Cautious About Statistical Claims
+## 통계적 주장에 주의해야 할 때
 
-### Correlation Is Not Causation
+### 상관관계는 인과관계가 아님
 
-When you find a correlation, explicitly consider:
-- **Reverse causation**: Maybe B causes A, not A causes B
-- **Confounding variables**: Maybe C causes both A and B
-- **Coincidence**: With enough variables, spurious correlations are inevitable
+상관관계를 발견했을 때, 다음을 명시적으로 고려합니다:
+- **역인과관계**: 아마도 A가 B를 일으키는 것이 아니라 B가 A를 일으킬 수 있음
+- **교란 변수**: 아마도 C가 A와 B 모두를 일으킬 수 있음
+- **우연의 일치**: 변수가 충분히 많으면 허위 상관관계는 불가피
 
-**What you can say**: "Users who use feature X have 30% higher retention"
-**What you cannot say without more evidence**: "Feature X causes 30% higher retention"
+**말할 수 있는 것**: "기능 X를 사용하는 사용자는 30% 더 높은 리텐션을 보입니다"
+**더 많은 증거 없이 말할 수 없는 것**: "기능 X가 30% 더 높은 리텐션을 유발합니다"
 
-### Multiple Comparisons Problem
+### 다중 비교 문제
 
-When you test many hypotheses, some will be "significant" by chance:
-- Testing 20 metrics at p=0.05 means ~1 will be falsely significant
-- If you looked at many segments before finding one that's different, note that
-- Adjust for multiple comparisons with Bonferroni correction (divide alpha by number of tests) or report how many tests were run
+많은 가설을 검정하면, 일부는 우연히 "유의"하게 됩니다:
+- p=0.05에서 20개 지표를 검정하면 ~1개가 거짓으로 유의하게 됨
+- 차이가 나는 세그먼트를 찾기 전에 많은 세그먼트를 본 경우 이를 명시
+- 본페로니 보정(alpha를 검정 수로 나누기)으로 다중 비교 조정하거나 실행한 검정 수를 보고
 
-### Simpson's Paradox
+### 심슨의 역설
 
-A trend in aggregated data can reverse when data is segmented:
-- Always check whether the conclusion holds across key segments
-- Example: Overall conversion goes up, but conversion goes down in every segment -- because the mix shifted toward a higher-converting segment
+집계된 데이터의 추세가 데이터를 세분화하면 역전될 수 있습니다:
+- 핵심 세그먼트에서 결론이 유지되는지 항상 확인
+- 예: 전체 전환율은 올라가지만, 모든 세그먼트에서 전환율이 내려감 -- 더 높은 전환율의 세그먼트로 믹스가 이동했기 때문
 
-### Survivorship Bias
+### 생존자 편향
 
-You can only analyze entities that "survived" to be in your dataset:
-- Analyzing active users ignores those who churned
-- Analyzing successful companies ignores those that failed
-- Always ask: "Who is missing from this dataset, and would their inclusion change the conclusion?"
+데이터셋에 "생존한" 엔티티만 분석할 수 있습니다:
+- 활성 사용자 분석은 이탈한 사용자를 무시
+- 성공한 회사 분석은 실패한 회사를 무시
+- 항상 묻기: "이 데이터셋에서 누가 빠져 있고, 그들의 포함이 결론을 바꿀 것인가?"
 
-### Ecological Fallacy
+### 생태학적 오류
 
-Aggregate trends may not apply to individuals:
-- "Countries with higher X have higher Y" does NOT mean "individuals with higher X have higher Y"
-- Be careful about applying group-level findings to individual cases
+집계 추세는 개인에게 적용되지 않을 수 있습니다:
+- "X가 높은 국가는 Y가 높다"는 "X가 높은 개인은 Y가 높다"를 의미하지 않음
+- 그룹 수준 발견을 개별 사례에 적용하는 것에 주의
 
-### Anchoring on Specific Numbers
+### 특정 수치에 대한 고정
 
-Be wary of false precision:
-- "Churn will be 4.73% next quarter" implies more certainty than is warranted
-- Prefer ranges: "We expect churn between 4-6% based on historical patterns"
-- Round appropriately: "About 5%" is often more honest than "4.73%"
+거짓 정밀도에 주의합니다:
+- "다음 분기 이탈률은 4.73%가 될 것"은 보장된 것보다 더 많은 확실성을 암시
+- 범위를 선호: "이력 패턴을 기반으로 이탈률이 4-6% 사이일 것으로 예상"
+- 적절하게 반올림: "약 5%"가 종종 "4.73%"보다 더 정직

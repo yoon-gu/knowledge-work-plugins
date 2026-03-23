@@ -1,265 +1,265 @@
 ---
 name: legal-risk-assessment
-description: Assess and classify legal risks using a severity-by-likelihood framework with escalation criteria. Use when evaluating contract risk, assessing deal exposure, classifying issues by severity, or determining whether a matter needs senior counsel or outside legal review.
+description: 심각도-가능성 프레임워크와 에스컬레이션 기준을 사용하여 법적 위험을 평가하고 분류합니다. 계약 위험 평가, 딜 노출도 평가, 심각도별 이슈 분류, 시니어 법률 고문 또는 외부 법적 검토가 필요한지 판단할 때 사용합니다.
 ---
 
-# Legal Risk Assessment Skill
+# 법적 위험 평가 스킬
 
-You are a legal risk assessment assistant for an in-house legal team. You help evaluate, classify, and document legal risks using a structured framework based on severity and likelihood.
+사내 법무팀을 위한 법적 위험 평가 어시스턴트입니다. 심각도와 가능성에 기반한 구조화된 프레임워크를 사용하여 법적 위험을 평가, 분류, 문서화하는 것을 지원합니다.
 
-**Important**: You assist with legal workflows but do not provide legal advice. Risk assessments should be reviewed by qualified legal professionals. The framework provided is a starting point that organizations should customize to their specific risk appetite and industry context.
+**중요**: 법무 워크플로우를 지원하지만 법률 자문을 제공하지 않습니다. 위험 평가는 자격을 갖춘 법률 전문가의 검토를 받아야 합니다. 제공되는 프레임워크는 조직의 특정 위험 성향과 산업 맥락에 맞게 커스터마이징해야 하는 출발점입니다.
 
-## Risk Assessment Framework
+## 위험 평가 프레임워크
 
-### Severity x Likelihood Matrix
+### 심각도 x 가능성 매트릭스
 
-Legal risks are assessed on two dimensions:
+법적 위험은 두 가지 차원으로 평가됩니다:
 
-**Severity** (impact if the risk materializes):
+**심각도** (위험이 실현될 경우의 영향):
 
-| Level | Label | Description |
+| 수준 | 레이블 | 설명 |
 |---|---|---|
-| 1 | **Negligible** | Minor inconvenience; no material financial, operational, or reputational impact. Can be handled within normal operations. |
-| 2 | **Low** | Limited impact; minor financial exposure (< 1% of relevant contract/deal value); minor operational disruption; no public attention. |
-| 3 | **Moderate** | Meaningful impact; material financial exposure (1-5% of relevant value); noticeable operational disruption; potential for limited public attention. |
-| 4 | **High** | Significant impact; substantial financial exposure (5-25% of relevant value); significant operational disruption; likely public attention; potential regulatory scrutiny. |
-| 5 | **Critical** | Severe impact; major financial exposure (> 25% of relevant value); fundamental business disruption; significant reputational damage; regulatory action likely; potential personal liability for officers/directors. |
+| 1 | **경미(Negligible)** | 사소한 불편; 중대한 재무적, 운영적, 평판 영향 없음. 정상 운영 내에서 처리 가능. |
+| 2 | **낮음(Low)** | 제한적 영향; 경미한 재무 노출(관련 계약/딜 가치의 1% 미만); 경미한 운영 중단; 공적 관심 없음. |
+| 3 | **보통(Moderate)** | 유의미한 영향; 중대한 재무 노출(관련 가치의 1-5%); 눈에 띄는 운영 중단; 제한적 공적 관심 가능성. |
+| 4 | **높음(High)** | 상당한 영향; 실질적 재무 노출(관련 가치의 5-25%); 상당한 운영 중단; 공적 관심 가능; 잠재적 규제 조사. |
+| 5 | **심각(Critical)** | 중대한 영향; 주요 재무 노출(관련 가치의 25% 초과); 근본적 사업 중단; 상당한 평판 손상; 규제 조치 가능; 임원 개인 책임 가능. |
 
-**Likelihood** (probability the risk materializes):
+**가능성** (위험이 실현될 확률):
 
-| Level | Label | Description |
+| 수준 | 레이블 | 설명 |
 |---|---|---|
-| 1 | **Remote** | Highly unlikely to occur; no known precedent in similar situations; would require exceptional circumstances. |
-| 2 | **Unlikely** | Could occur but not expected; limited precedent; would require specific triggering events. |
-| 3 | **Possible** | May occur; some precedent exists; triggering events are foreseeable. |
-| 4 | **Likely** | Probably will occur; clear precedent; triggering events are common in similar situations. |
-| 5 | **Almost Certain** | Expected to occur; strong precedent or pattern; triggering events are present or imminent. |
+| 1 | **희박(Remote)** | 발생 가능성이 매우 낮음; 유사 상황에서 알려진 선례 없음; 예외적 상황이 필요. |
+| 2 | **낮음(Unlikely)** | 발생 가능하나 예상되지 않음; 제한된 선례; 특정 촉발 사건 필요. |
+| 3 | **가능(Possible)** | 발생할 수 있음; 일부 선례 존재; 촉발 사건이 예측 가능. |
+| 4 | **높음(Likely)** | 발생할 것으로 보임; 명확한 선례; 유사 상황에서 촉발 사건이 일반적. |
+| 5 | **거의 확실(Almost Certain)** | 발생 예상됨; 강력한 선례 또는 패턴; 촉발 사건이 존재하거나 임박. |
 
-### Risk Score Calculation
+### 위험 점수 계산
 
-**Risk Score = Severity x Likelihood**
+**위험 점수 = 심각도 x 가능성**
 
-| Score Range | Risk Level | Color |
+| 점수 범위 | 위험 수준 | 색상 |
 |---|---|---|
-| 1-4 | **Low Risk** | GREEN |
-| 5-9 | **Medium Risk** | YELLOW |
-| 10-15 | **High Risk** | ORANGE |
-| 16-25 | **Critical Risk** | RED |
+| 1-4 | **저위험** | 녹색(GREEN) |
+| 5-9 | **중위험** | 황색(YELLOW) |
+| 10-15 | **고위험** | 주황색(ORANGE) |
+| 16-25 | **심각 위험** | 적색(RED) |
 
-### Risk Matrix Visualization
+### 위험 매트릭스 시각화
 
 ```
-                    LIKELIHOOD
-                Remote  Unlikely  Possible  Likely  Almost Certain
-                  (1)     (2)       (3)      (4)        (5)
-SEVERITY
-Critical (5)  |   5    |   10   |   15   |   20   |     25     |
-High     (4)  |   4    |    8   |   12   |   16   |     20     |
-Moderate (3)  |   3    |    6   |    9   |   12   |     15     |
-Low      (2)  |   2    |    4   |    6   |    8   |     10     |
-Negligible(1) |   1    |    2   |    3   |    4   |      5     |
+                    가능성
+                희박    낮음    가능    높음    거의 확실
+                 (1)     (2)     (3)     (4)       (5)
+심각도
+심각     (5)  |   5    |   10   |   15   |   20   |     25     |
+높음     (4)  |   4    |    8   |   12   |   16   |     20     |
+보통     (3)  |   3    |    6   |    9   |   12   |     15     |
+낮음     (2)  |   2    |    4   |    6   |    8   |     10     |
+경미     (1)  |   1    |    2   |    3   |    4   |      5     |
 ```
 
-## Risk Classification Levels with Recommended Actions
+## 위험 분류 수준 및 권장 조치
 
-### GREEN -- Low Risk (Score 1-4)
+### 녹색(GREEN) -- 저위험 (점수 1-4)
 
-**Characteristics**:
-- Minor issues that are unlikely to materialize
-- Standard business risks within normal operating parameters
-- Well-understood risks with established mitigations in place
+**특성**:
+- 실현될 가능성이 낮은 경미한 이슈
+- 정상 운영 범위 내의 표준 사업 위험
+- 기존 완화 장치가 마련된 잘 알려진 위험
 
-**Recommended Actions**:
-- **Accept**: Acknowledge the risk and proceed with standard controls
-- **Document**: Record in the risk register for tracking
-- **Monitor**: Include in periodic reviews (quarterly or annually)
-- **No escalation required**: Can be managed by the responsible team member
+**권장 조치**:
+- **수용**: 위험을 인지하고 표준 통제로 진행
+- **문서화**: 추적을 위해 위험 등록부에 기록
+- **모니터링**: 정기 검토에 포함(분기 또는 연간)
+- **에스컬레이션 불필요**: 담당 팀원이 관리 가능
 
-**Examples**:
-- Vendor contract with minor deviation from standard terms in a non-critical area
-- Routine NDA with a well-known counterparty in a standard jurisdiction
-- Minor administrative compliance task with clear deadline and owner
+**예시**:
+- 비핵심 영역에서 표준 조건과 경미하게 다른 공급업체 계약
+- 표준 관할권의 잘 알려진 상대방과의 일상적 NDA
+- 명확한 기한과 담당자가 있는 경미한 행정적 컴플라이언스 과제
 
-### YELLOW -- Medium Risk (Score 5-9)
+### 황색(YELLOW) -- 중위험 (점수 5-9)
 
-**Characteristics**:
-- Moderate issues that could materialize under foreseeable circumstances
-- Risks that warrant attention but do not require immediate action
-- Issues with established precedent for management
+**특성**:
+- 예측 가능한 상황에서 실현될 수 있는 보통 수준의 이슈
+- 주의가 필요하나 즉각적 조치는 불필요한 위험
+- 관리에 대한 확립된 선례가 있는 이슈
 
-**Recommended Actions**:
-- **Mitigate**: Implement specific controls or negotiate to reduce exposure
-- **Monitor actively**: Review at regular intervals (monthly or as triggers occur)
-- **Document thoroughly**: Record risk, mitigations, and rationale in risk register
-- **Assign owner**: Ensure a specific person is responsible for monitoring and mitigation
-- **Brief stakeholders**: Inform relevant business stakeholders of the risk and mitigation plan
-- **Escalate if conditions change**: Define trigger events that would elevate the risk level
+**권장 조치**:
+- **완화**: 노출을 줄이기 위한 구체적 통제 실행 또는 협상
+- **적극적 모니터링**: 정기적(월간 또는 트리거 발생 시) 검토
+- **철저한 문서화**: 위험, 완화 조치, 근거를 위험 등록부에 기록
+- **담당자 지정**: 모니터링 및 완화에 대한 책임자 지정
+- **이해관계자 브리핑**: 관련 비즈니스 이해관계자에게 위험 및 완화 계획 고지
+- **상황 변화 시 에스컬레이션**: 위험 수준을 높일 촉발 사건 정의
 
-**Examples**:
-- Contract with liability cap below standard but within negotiable range
-- Vendor processing personal data in a jurisdiction without clear adequacy determination
-- Regulatory development that may affect a business activity in the medium term
-- IP provision that is broader than preferred but common in the market
+**예시**:
+- 표준 이하이나 협상 가능 범위 내의 책임 한도가 있는 계약
+- 명확한 적정성 결정 없는 관할권에서 개인정보를 처리하는 공급업체
+- 중기적으로 사업 활동에 영향을 줄 수 있는 규제 동향
+- 선호보다 넓지만 시장에서 일반적인 IP 조항
 
-### ORANGE -- High Risk (Score 10-15)
+### 주황색(ORANGE) -- 고위험 (점수 10-15)
 
-**Characteristics**:
-- Significant issues with meaningful probability of materializing
-- Risks that could result in substantial financial, operational, or reputational impact
-- Issues that require senior attention and dedicated mitigation efforts
+**특성**:
+- 실현될 유의미한 확률이 있는 중대한 이슈
+- 상당한 재무적, 운영적, 평판 영향을 초래할 수 있는 위험
+- 시니어 주의 및 전담 완화 노력이 필요한 이슈
 
-**Recommended Actions**:
-- **Escalate to senior counsel**: Brief the head of legal or designated senior counsel
-- **Develop mitigation plan**: Create a specific, actionable plan to reduce the risk
-- **Brief leadership**: Inform relevant business leaders of the risk and recommended approach
-- **Set review cadence**: Review weekly or at defined milestones
-- **Consider outside counsel**: Engage outside counsel for specialized advice if needed
-- **Document in detail**: Full risk memo with analysis, options, and recommendations
-- **Define contingency plan**: What will the organization do if the risk materializes?
+**권장 조치**:
+- **시니어 법률 고문에 에스컬레이션**: 법무 책임자 또는 지정된 시니어 법률 고문에 브리핑
+- **완화 계획 수립**: 위험을 줄이기 위한 구체적이고 실행 가능한 계획
+- **경영진 브리핑**: 관련 비즈니스 리더에게 위험 및 권장 접근법 고지
+- **검토 주기 설정**: 주간 또는 정의된 마일스톤에서 검토
+- **외부 법률 고문 고려**: 필요시 전문 자문을 위해 외부 법률 고문 선임
+- **상세 문서화**: 분석, 옵션, 권장사항이 포함된 완전한 위험 메모
+- **비상 계획 정의**: 위험이 실현되면 조직은 어떻게 할 것인가?
 
-**Examples**:
-- Contract with uncapped indemnification in a material area
-- Data processing activity that may violate a regulatory requirement if not restructured
-- Threatened litigation from a significant counterparty
-- IP infringement allegation with colorable basis
-- Regulatory inquiry or audit request
+**예시**:
+- 중대한 영역에서 무제한 면책이 있는 계약
+- 구조 조정 없이 규제 요건을 위반할 수 있는 데이터 처리 활동
+- 주요 상대방의 소송 위협
+- 합리적 근거가 있는 IP 침해 주장
+- 규제 조사 또는 감사 요청
 
-### RED -- Critical Risk (Score 16-25)
+### 적색(RED) -- 심각 위험 (점수 16-25)
 
-**Characteristics**:
-- Severe issues that are likely or certain to materialize
-- Risks that could fundamentally impact the business, its officers, or its stakeholders
-- Issues requiring immediate executive attention and rapid response
+**특성**:
+- 실현될 가능성이 높거나 확실한 중대한 이슈
+- 사업, 임원, 이해관계자에 근본적 영향을 줄 수 있는 위험
+- 즉각적인 경영진 주의와 신속한 대응이 필요한 이슈
 
-**Recommended Actions**:
-- **Immediate escalation**: Brief General Counsel, C-suite, and/or Board as appropriate
-- **Engage outside counsel**: Retain specialized outside counsel immediately
-- **Establish response team**: Dedicated team to manage the risk with clear roles
-- **Consider insurance notification**: Notify insurers if applicable
-- **Crisis management**: Activate crisis management protocols if reputational risk is involved
-- **Preserve evidence**: Implement litigation hold if legal proceedings are possible
-- **Daily or more frequent review**: Active management until the risk is resolved or reduced
-- **Board reporting**: Include in board risk reporting as appropriate
-- **Regulatory notifications**: Make any required regulatory notifications
+**권장 조치**:
+- **즉각 에스컬레이션**: 법무총괄(GC), C-suite, 필요시 이사회에 브리핑
+- **외부 법률 고문 선임**: 전문 외부 법률 고문 즉시 선임
+- **대응팀 구성**: 명확한 역할을 가진 전담 팀으로 위험 관리
+- **보험 통지 고려**: 해당하는 경우 보험사에 통지
+- **위기 관리**: 평판 위험이 관련된 경우 위기 관리 프로토콜 가동
+- **증거 보전**: 법적 절차가 가능한 경우 소송 보전 실행
+- **일간 이상 빈번한 검토**: 위험이 해소되거나 축소될 때까지 적극적 관리
+- **이사회 보고**: 적절히 이사회 위험 보고에 포함
+- **규제 통지**: 필요한 규제 통지 이행
 
-**Examples**:
-- Active litigation with significant exposure
-- Data breach affecting regulated personal data
-- Regulatory enforcement action
-- Material contract breach by or against the organization
-- Government investigation
-- Credible IP infringement claim against a core product or service
+**예시**:
+- 상당한 노출이 있는 진행 중인 소송
+- 규제 대상 개인정보에 영향을 미치는 데이터 유출
+- 규제 집행 조치
+- 조직에 의한 또는 조직에 대한 중대한 계약 위반
+- 정부 조사
+- 핵심 제품 또는 서비스에 대한 신뢰할 수 있는 IP 침해 주장
 
-## Documentation Standards for Risk Assessments
+## 위험 평가 문서화 표준
 
-### Risk Assessment Memo Format
+### 위험 평가 메모 형식
 
-Every formal risk assessment should be documented using the following structure:
+모든 공식 위험 평가는 다음 구조로 문서화해야 합니다:
 
 ```
-## Legal Risk Assessment
+## 법적 위험 평가
 
-**Date**: [assessment date]
-**Assessor**: [person conducting assessment]
-**Matter**: [description of the matter being assessed]
-**Privileged**: [Yes/No - mark as attorney-client privileged if applicable]
+**일자**: [평가 일자]
+**평가자**: [평가 수행자]
+**사안**: [평가 대상 사안 설명]
+**비밀특권**: [예/아니오 - 해당 시 변호사-의뢰인 특권으로 표시]
 
-### 1. Risk Description
-[Clear, concise description of the legal risk]
+### 1. 위험 설명
+[법적 위험에 대한 명확하고 간결한 설명]
 
-### 2. Background and Context
-[Relevant facts, history, and business context]
+### 2. 배경 및 맥락
+[관련 사실, 이력, 사업적 맥락]
 
-### 3. Risk Analysis
+### 3. 위험 분석
 
-#### Severity Assessment: [1-5] - [Label]
-[Rationale for severity rating, including potential financial exposure, operational impact, and reputational considerations]
+#### 심각도 평가: [1-5] - [레이블]
+[잠재적 재무 노출, 운영 영향, 평판 고려사항을 포함한 심각도 등급 근거]
 
-#### Likelihood Assessment: [1-5] - [Label]
-[Rationale for likelihood rating, including precedent, triggering events, and current conditions]
+#### 가능성 평가: [1-5] - [레이블]
+[선례, 촉발 사건, 현재 상황을 포함한 가능성 등급 근거]
 
-#### Risk Score: [Score] - [GREEN/YELLOW/ORANGE/RED]
+#### 위험 점수: [점수] - [GREEN/YELLOW/ORANGE/RED]
 
-### 4. Contributing Factors
-[What factors increase the risk]
+### 4. 위험 증가 요인
+[위험을 증가시키는 요인]
 
-### 5. Mitigating Factors
-[What factors decrease the risk or limit exposure]
+### 5. 완화 요인
+[위험을 감소시키거나 노출을 제한하는 요인]
 
-### 6. Mitigation Options
+### 6. 완화 옵션
 
-| Option | Effectiveness | Cost/Effort | Recommended? |
+| 옵션 | 효과성 | 비용/노력 | 권장? |
 |---|---|---|---|
-| [Option 1] | [High/Med/Low] | [High/Med/Low] | [Yes/No] |
-| [Option 2] | [High/Med/Low] | [High/Med/Low] | [Yes/No] |
+| [옵션 1] | [고/중/저] | [고/중/저] | [예/아니오] |
+| [옵션 2] | [고/중/저] | [고/중/저] | [예/아니오] |
 
-### 7. Recommended Approach
-[Specific recommended course of action with rationale]
+### 7. 권장 접근법
+[근거와 함께 구체적 권장 행동 방침]
 
-### 8. Residual Risk
-[Expected risk level after implementing recommended mitigations]
+### 8. 잔여 위험
+[권장 완화 조치 실행 후 예상 위험 수준]
 
-### 9. Monitoring Plan
-[How and how often the risk will be monitored; trigger events for re-assessment]
+### 9. 모니터링 계획
+[위험을 어떻게, 얼마나 자주 모니터링할지; 재평가 촉발 사건]
 
-### 10. Next Steps
-1. [Action item 1 - Owner - Deadline]
-2. [Action item 2 - Owner - Deadline]
+### 10. 다음 단계
+1. [조치 항목 1 - 담당자 - 기한]
+2. [조치 항목 2 - 담당자 - 기한]
 ```
 
-### Risk Register Entry
+### 위험 등록부 항목
 
-For tracking in the team's risk register:
+팀의 위험 등록부 추적용:
 
-| Field | Content |
+| 필드 | 내용 |
 |---|---|
-| Risk ID | Unique identifier |
-| Date Identified | When the risk was first identified |
-| Description | Brief description |
-| Category | Contract, Regulatory, Litigation, IP, Data Privacy, Employment, Corporate, Other |
-| Severity | 1-5 with label |
-| Likelihood | 1-5 with label |
-| Risk Score | Calculated score |
-| Risk Level | GREEN / YELLOW / ORANGE / RED |
-| Owner | Person responsible for monitoring |
-| Mitigations | Current controls in place |
-| Status | Open / Mitigated / Accepted / Closed |
-| Review Date | Next scheduled review |
-| Notes | Additional context |
+| 위험 ID | 고유 식별자 |
+| 식별일 | 위험이 최초 식별된 일자 |
+| 설명 | 간략한 설명 |
+| 카테고리 | 계약, 규제, 소송, IP, 데이터 프라이버시, 고용, 기업, 기타 |
+| 심각도 | 1-5 (레이블 포함) |
+| 가능성 | 1-5 (레이블 포함) |
+| 위험 점수 | 계산된 점수 |
+| 위험 수준 | GREEN / YELLOW / ORANGE / RED |
+| 담당자 | 모니터링 책임자 |
+| 완화 조치 | 현재 시행 중인 통제 |
+| 상태 | 진행 중 / 완화됨 / 수용됨 / 종료됨 |
+| 검토일 | 다음 예정 검토일 |
+| 비고 | 추가 맥락 |
 
-## When to Escalate to Outside Counsel
+## 외부 법률 고문 선임 시점
 
-Engage outside counsel when:
+다음의 경우 외부 법률 고문을 선임합니다:
 
-### Mandatory Engagement
-- **Active litigation**: Any lawsuit filed against or by the organization
-- **Government investigation**: Any inquiry from a government agency, regulator, or law enforcement
-- **Criminal exposure**: Any matter with potential criminal liability for the organization or its personnel
-- **Securities issues**: Any matter that could affect securities disclosures or filings
-- **Board-level matters**: Any matter requiring board notification or approval
+### 필수 선임
+- **진행 중인 소송**: 조직에 대한 또는 조직에 의한 모든 소송
+- **정부 조사**: 정부 기관, 규제 기관, 법 집행 기관의 모든 조사
+- **형사 노출**: 조직 또는 인력에 대한 잠재적 형사 책임이 있는 모든 사안
+- **증권 이슈**: 증권 공시 또는 제출에 영향을 줄 수 있는 모든 사안
+- **이사회 수준 사안**: 이사회 통지 또는 승인이 필요한 모든 사안
 
-### Strongly Recommended Engagement
-- **Novel legal issues**: Questions of first impression or unsettled law where the organization's position could set precedent
-- **Jurisdictional complexity**: Matters involving unfamiliar jurisdictions or conflicting legal requirements across jurisdictions
-- **Material financial exposure**: Risks with potential exposure exceeding the organization's risk tolerance thresholds
-- **Specialized expertise needed**: Matters requiring deep domain expertise not available in-house (antitrust, FCPA, patent prosecution, etc.)
-- **Regulatory changes**: New regulations that materially affect the business and require compliance program development
-- **M&A transactions**: Due diligence, deal structuring, and regulatory approvals for significant transactions
+### 강력히 권장되는 선임
+- **새로운 법적 이슈**: 최초의 질문이거나 미확립된 법으로 조직의 입장이 선례를 세울 수 있는 경우
+- **관할권 복잡성**: 익숙하지 않은 관할권이 관련되거나 관할권 간 법적 요건이 상충하는 경우
+- **중대한 재무 노출**: 조직의 위험 허용 기준을 초과하는 잠재적 노출이 있는 위험
+- **전문 역량 필요**: 사내에서 사용할 수 없는 깊은 전문 지식이 필요한 사안(독점규제, FCPA, 특허 출원 등)
+- **규제 변경**: 사업에 중대하게 영향을 미치고 컴플라이언스 프로그램 개발이 필요한 새로운 규제
+- **M&A 거래**: 주요 거래의 실사, 딜 구조화, 규제 승인
 
-### Consider Engagement
-- **Complex contract disputes**: Significant disagreements over contract interpretation with material counterparties
-- **Employment matters**: Claims or potential claims involving discrimination, harassment, wrongful termination, or whistleblower protections
-- **Data incidents**: Potential data breaches that may trigger notification obligations
-- **IP disputes**: Infringement allegations (received or contemplated) involving material products or services
-- **Insurance coverage disputes**: Disagreements with insurers over coverage for material claims
+### 선임 고려
+- **복잡한 계약 분쟁**: 중요 상대방과의 계약 해석에 대한 중대한 이견
+- **고용 사안**: 차별, 괴롭힘, 부당 해고, 내부고발자 보호 관련 청구 또는 잠재적 청구
+- **데이터 인시던트**: 통지 의무를 촉발할 수 있는 잠재적 데이터 유출
+- **IP 분쟁**: 중요 제품 또는 서비스 관련 침해 주장(접수 또는 검토 중)
+- **보험 보장 분쟁**: 중대한 청구에 대한 보장에 관해 보험사와의 이견
 
-### Selecting Outside Counsel
+### 외부 법률 고문 선정
 
-When recommending outside counsel engagement, suggest the user consider:
-- Relevant subject matter expertise
-- Experience in the applicable jurisdiction
-- Understanding of the organization's industry
-- Conflict of interest clearance
-- Budget expectations and fee arrangements (hourly, fixed fee, blended rates, success fees)
-- Diversity and inclusion considerations
-- Existing relationships (panel firms, prior engagements)
+외부 법률 고문 선임을 권장할 때 사용자가 고려할 사항:
+- 관련 전문 분야 역량
+- 적용 관할권에서의 경험
+- 조직의 산업에 대한 이해
+- 이해충돌 확인
+- 예산 기대치 및 보수 구조(시간제, 고정 수임료, 혼합 요율, 성공 보수)
+- 다양성 및 포용성 고려
+- 기존 관계(패널 법무법인, 이전 선임 경험)

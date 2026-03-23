@@ -1,323 +1,323 @@
-# SKILL 2: Risk Assessment and Assumption Analysis
+# 스킬 2: 위험 평가 및 가정 분석
 
-## Overview
-This skill helps scientists systematically identify, quantify, and manage project risk through rigorous assumption analysis. The goal is not to eliminate risk—risk-free projects tend to be incremental—but to name it, quantify it, and work steadily to chip away at it. This skill builds directly on the Problem Ideation Document from Skill 1.
+## 개요
+이 스킬은 과학자들이 엄격한 가정 분석을 통해 프로젝트 위험을 체계적으로 식별, 정량화 및 관리할 수 있도록 돕습니다. 목표는 위험을 제거하는 것이 아닙니다—위험이 없는 프로젝트는 점진적인 경향이 있습니다—이름을 붙이고, 정량화하고, 꾸준히 줄여나가는 것입니다. 이 스킬은 스킬 1의 문제 아이디어 발상 문서를 기반으로 합니다.
 
-## Core Principle
+## 핵심 원칙
 
-**"Don't avoid risk; befriend it."**
+**"위험을 피하지 말고 친해지세요."**
 
-The most important concept in problem choice is the two-axis evaluation:
-- **X-axis:** Likelihood of success
-- **Y-axis:** Impact if successful
+문제 선택에서 가장 중요한 개념은 두 축 평가입니다:
+- **X축:** 성공 가능성
+- **Y축:** 성공 시 영향력
 
-This skill focuses on the X-axis, helping users move their project rightward through systematic risk analysis.
+이 스킬은 X축에 초점을 맞추어, 체계적인 위험 분석을 통해 사용자의 프로젝트를 오른쪽으로 이동시키는 데 도움을 줍니다.
 
-## Why This Matters
+## 왜 중요한가
 
-A project with a high-risk assumption that won't read out for >2 years is problematic. One that requires multiple miracles to succeed should be avoided or refined. The human tendency is to stay in a safe local space, work laterally, and put off facing existential risks—like an ostrich burying its head in the sand. This skill helps users face risk head-on.
+2년 이상 결과가 나오지 않는 고위험 가정이 있는 프로젝트는 문제가 있습니다. 성공하기 위해 여러 기적이 필요한 프로젝트는 피하거나 정제해야 합니다. 인간의 경향은 안전한 로컬 공간에 머물며, 횡적으로 작업하고, 존재적 위험에 직면하는 것을 미루는 것입니다—마치 타조가 모래에 머리를 묻는 것처럼. 이 스킬은 사용자가 위험에 정면으로 맞서도록 돕습니다.
 
-## The Skill Workflow
+## 스킬 워크플로우
 
-### Phase 1: Extract Project Assumptions (10-15 minutes)
+### 단계 1: 프로젝트 가정 추출 (10-15분)
 
-First, Claude should gather information about the user's project from Skill 1:
+먼저, Claude는 스킬 1에서 사용자의 프로젝트에 대한 정보를 수집해야 합니다:
 
-1. **Project Summary** (from Skill 1):
-   - The biological question
-   - The technical approach
-   - What's novel about it
+1. **프로젝트 요약** (스킬 1에서):
+   - 생물학적 질문
+   - 기술적 접근법
+   - 새로운 점은 무엇인가
 
-2. **Project Horizon:**
-   - How long is this project expected to take? (months/years)
-   - What is the user's role? (graduate student, postdoc, PI, startup founder)
+2. **프로젝트 기간:**
+   - 이 프로젝트는 얼마나 걸릴 것으로 예상되는가? (월/년)
+   - 사용자의 역할은? (대학원생, 포스닥, PI, 스타트업 창업자)
 
-3. **Initial Risk Sense:**
-   - What keeps the user up at night about this project?
-   - What's the scariest assumption?
+3. **초기 위험 감지:**
+   - 이 프로젝트에 대해 밤에 잠들지 못하게 하는 것은 무엇인가?
+   - 가장 무서운 가정은 무엇인가?
 
-### Phase 2: Comprehensive Assumption Listing
+### 단계 2: 포괄적인 가정 목록 작성
 
-Claude should work with the user to list EVERY assumption the project makes from inception through conclusion. Assumptions fall into two categories:
+Claude는 사용자와 함께 프로젝트가 시작부터 결론까지 가지는 모든 가정을 나열해야 합니다. 가정은 두 가지 범주로 나뉩니다:
 
-#### Type A: Assumptions About Biological Reality
-These are facts about the world that either are or aren't true. They won't change during the project.
+#### 유형 A: 생물학적 현실에 대한 가정
+이것들은 세계에 대한 사실로, 참이거나 거짓입니다. 프로젝트 기간 동안 변하지 않습니다.
 
-**Examples:**
-- New cell types exist beyond what's currently known
-- A particular gene regulates the process being studied
-- Two proteins physically interact
-- A pathway functions in the organism of interest
-- The biological effect size is detectable
+**예시:**
+- 현재 알려진 것 이상의 새로운 세포 유형이 존재함
+- 특정 유전자가 연구 중인 과정을 조절함
+- 두 단백질이 물리적으로 상호작용함
+- 경로가 관심 대상 생물에서 기능함
+- 생물학적 효과 크기가 감지 가능함
 
-#### Type B: Assumptions About Technical Capability
-These are about whether technology can do what's needed. These CAN change during the project as methods improve.
+#### 유형 B: 기술적 역량에 대한 가정
+이것들은 기술이 필요한 것을 할 수 있는지에 관한 것입니다. 방법이 개선됨에 따라 프로젝트 기간 동안 변할 수 있습니다.
 
-**Examples:**
-- A specific cell type can be isolated
-- Sequencing will generate high-quality data
-- An assay has sufficient throughput
-- Computational analysis can distinguish signal from noise
-- Gene editing will work in the system
+**예시:**
+- 특정 세포 유형을 분리할 수 있음
+- 시퀀싱이 고품질 데이터를 생성할 것임
+- 분석법이 충분한 처리량을 가짐
+- 계산 분석이 신호와 노이즈를 구별할 수 있음
+- 유전자 편집이 시스템에서 작동할 것임
 
-**Claude should ask:**
-1. What must be true about the biology for this to work?
-2. What must the technology be able to do?
-3. What about the experimental design—what assumptions are built in?
-4. What about the analysis—can it deliver what's needed?
-5. If everything works, can the findings be validated?
-6. Will the findings be interpretable and meaningful?
+**Claude가 물어야 할 것:**
+1. 이것이 작동하려면 생물학에 대해 무엇이 사실이어야 하는가?
+2. 기술이 무엇을 할 수 있어야 하는가?
+3. 실험 설계에 대해서는—어떤 가정이 내재되어 있는가?
+4. 분석에 대해서는—필요한 것을 전달할 수 있는가?
+5. 모든 것이 작동하면, 결과를 검증할 수 있는가?
+6. 결과가 해석 가능하고 의미 있을 것인가?
 
-### Phase 3: Risk Scoring (The Assumption Analysis Table)
+### 단계 3: 위험 점수 매기기 (가정 분석표)
 
-For each assumption, Claude should help the user assign two scores:
+각 가정에 대해, Claude는 사용자가 두 가지 점수를 매기도록 도와야 합니다:
 
-#### Risk Level (1-5 scale):
-- **1** = Very likely to be true/work (>90% confidence)
-- **2** = Likely (70-90% confidence)
-- **3** = Uncertain (40-70% confidence)
-- **4** = Unlikely (10-40% confidence)
-- **5** = Very unlikely (<10% confidence)
+#### 위험 수준 (1-5 척도):
+- **1** = 사실일/작동할 가능성이 매우 높음 (>90% 확신)
+- **2** = 가능성이 높음 (70-90% 확신)
+- **3** = 불확실 (40-70% 확신)
+- **4** = 가능성이 낮음 (10-40% 확신)
+- **5** = 가능성이 매우 낮음 (<10% 확신)
 
-#### Time to Test (months):
-How long before the user will know if this assumption is valid?
+#### 검증 소요 시간 (월):
+사용자가 이 가정이 유효한지 알기까지 얼마나 걸리는가?
 
-**Critical Rules:**
-1. Be brutally honest—try to convince oneself of being WRONG, not right
-2. Distinguish between biological vs. technical assumptions
-3. Consider whether technical assumptions might improve over time
-4. Note which assumptions depend on earlier assumptions succeeding
+**중요한 규칙:**
+1. 잔인할 정도로 정직하세요—자신이 틀렸다고 설득하려고 노력하세요, 맞다고가 아니라
+2. 생물학적 가정과 기술적 가정을 구분하세요
+3. 기술적 가정이 시간이 지남에 따라 개선될 수 있는지 고려하세요
+4. 어떤 가정이 이전 가정의 성공에 의존하는지 기록하세요
 
-### Phase 4: Risk Profile Evaluation
+### 단계 4: 위험 프로파일 평가
 
-Once the complete table is ready, Claude should analyze the risk profile:
+완전한 표가 준비되면, Claude는 위험 프로파일을 분석해야 합니다:
 
-#### Red Flags to Identify:
-1. **The Late High-Risk Problem:** Risk level 4-5 assumption that won't read out until >18 months
-2. **The Multiple Miracles:** More than 2-3 assumptions with risk level 4-5
-3. **The Dependency Chain:** High-risk assumptions stacked in sequence
-4. **The Ostrich Pattern:** Starting with low-risk work while avoiding the high-risk tests
+#### 식별할 위험 신호:
+1. **늦은 고위험 문제:** 18개월 이상 결과가 나오지 않는 위험 수준 4-5 가정
+2. **다중 기적:** 위험 수준 4-5인 가정이 2-3개 이상
+3. **의존성 체인:** 순차적으로 쌓인 고위험 가정
+4. **타조 패턴:** 고위험 테스트를 피하면서 저위험 작업부터 시작
 
-#### Green Lights:
-1. **Early Go/No-Go:** Highest-risk assumption testable in <6 months
-2. **Multiple Candidates:** Project can succeed with several different outcomes
-3. **Graceful Degradation:** If assumption X fails, assumption Y provides alternative path
-4. **Risk Distribution:** High-risk assumptions balanced across timeline
+#### 청신호:
+1. **조기 Go/No-Go:** 최고위험 가정을 6개월 이내에 테스트 가능
+2. **다중 후보:** 여러 다른 결과로 프로젝트가 성공할 수 있음
+3. **우아한 퇴화:** 가정 X가 실패하면, 가정 Y가 대안 경로 제공
+4. **위험 분산:** 고위험 가정이 타임라인 전체에 균형 있게 분포
 
-**Rule of Thumb:** If you have a risk level 5 assumption three years out, pick another project.
+**경험법칙:** 3년 후에 위험 수준 5인 가정이 있다면, 다른 프로젝트를 선택하세요.
 
-### Phase 5: Risk Mitigation Strategies
+### 단계 5: 위험 완화 전략
 
-For each high-risk assumption (level 4-5), Claude should help develop mitigation strategies:
+각 고위험 가정 (수준 4-5)에 대해, Claude는 완화 전략 개발을 도와야 합니다:
 
-#### Strategy 1: Move High-Risk Tests Earlier
-**Question:** Can a quicker, cruder test be designed that answers most of what's needed?
+#### 전략 1: 고위험 테스트를 앞당기기
+**질문:** 필요한 것의 대부분을 답하는 더 빠르고 조잡한 테스트를 설계할 수 있는가?
 
-**Example:** Instead of waiting 2 years to validate a new cell type exists, consider:
-- Using existing markers as a proxy
-- Testing in a simpler model system first
-- Using computational predictions to increase confidence
+**예시:** 새로운 세포 유형이 존재하는지 검증하기 위해 2년을 기다리는 대신 다음을 고려:
+- 기존 마커를 대리 지표로 사용
+- 더 간단한 모델 시스템에서 먼저 테스트
+- 확신을 높이기 위해 계산 예측 사용
 
-#### Strategy 2: Multiple Candidates Approach
-**Question:** Can multiple candidates be tested in parallel to increase likelihood of success?
+#### 전략 2: 다중 후보 접근법
+**질문:** 성공 가능성을 높이기 위해 여러 후보를 병행 테스트할 수 있는가?
 
-**Example:** Instead of:
-- Testing one kinase → Test a panel of 10 kinases
-- Building one engineered organism → Build and test a library
-- Pursuing one therapeutic target → Pursue 3 related targets
+**예시:** 대신:
+- 하나의 키나아제 테스트 → 10개 키나아제 패널 테스트
+- 하나의 엔지니어링 생물 구축 → 라이브러리 구축 및 테스트
+- 하나의 치료 표적 추구 → 3개의 관련 표적 추구
 
-#### Strategy 3: Reframe the Question
-**Question:** Can the project scope be adjusted to reduce critical assumptions while maintaining impact?
+#### 전략 3: 질문 재구성
+**질문:** 핵심 가정을 줄이면서도 영향력을 유지하도록 프로젝트 범위를 조정할 수 있는가?
 
-**Example from lecture:**
-- **Original:** Identify NEW enteroendocrine cell types (high risk: they may not exist)
-- **Reframed:** Better characterize KNOWN but incompletely understood cell types (lower risk)
+**강의의 예시:**
+- **원래:** 새로운 장내분비 세포 유형 식별 (고위험: 존재하지 않을 수 있음)
+- **재구성:** 알려져 있지만 불완전하게 이해된 세포 유형을 더 잘 특성화 (더 낮은 위험)
 
-#### Strategy 4: Change the System
-**Question:** Is there a different biological system with similar scientific value but lower technical risk?
+#### 전략 4: 시스템 변경
+**질문:** 유사한 과학적 가치를 가지지만 기술적 위험이 더 낮은 다른 생물학적 시스템이 있는가?
 
-**Example from lecture:**
-- **Original:** Intestinal epithelium (hard to manipulate genetically)
-- **Alternative:** Liver (easier genetic manipulation options exist)
+**강의의 예시:**
+- **원래:** 장 상피 (유전적 조작이 어려움)
+- **대안:** 간 (더 쉬운 유전적 조작 옵션 존재)
 
-#### Strategy 5: Add Complementary Approaches
-**Question:** Can a parallel approach be added that de-risks the main assumption?
+#### 전략 5: 보완적 접근법 추가
+**질문:** 주요 가정의 위험을 줄이는 병행 접근법을 추가할 수 있는가?
 
-**Example from lecture:**
-- Add spatial transcriptomics to scRNA-seq
-- This provides biogeographic context and validates cell type existence earlier
+**강의의 예시:**
+- scRNA-seq에 공간 전사체학 추가
+- 이는 생물지리학적 맥락을 제공하고 세포 유형 존재를 더 일찍 검증
 
-### Phase 6: Go/No-Go Experiment Design
+### 단계 6: Go/No-Go 실험 설계
 
-For the top 3 highest-risk assumptions, Claude should help design the critical go/no-go experiments:
+상위 3개 최고위험 가정에 대해, Claude는 핵심 go/no-go 실험 설계를 도와야 합니다:
 
-**For each, specify:**
-1. **The Question:** Exactly what is being tested?
-2. **The Experiment:** Most direct test possible (even if crude)
-3. **Success Criteria:** What result means "go"?
-4. **Failure Response:** What result means "pivot" or "stop"?
-5. **Timeline:** How soon can this be run?
-6. **Resources:** What is needed?
+**각각에 대해 명시:**
+1. **질문:** 정확히 무엇을 테스트하는가?
+2. **실험:** 가능한 가장 직접적인 테스트 (조잡하더라도)
+3. **성공 기준:** 어떤 결과가 "진행"을 의미하는가?
+4. **실패 대응:** 어떤 결과가 "전환" 또는 "중단"을 의미하는가?
+5. **타임라인:** 얼마나 빨리 실행할 수 있는가?
+6. **자원:** 무엇이 필요한가?
 
-**Key Principle:** Cut right to the critical go/no-go experiment. Don't just start with easy stuff—the risk points aren't going away.
+**핵심 원칙:** 핵심 go/no-go 실험으로 바로 가세요. 쉬운 것부터 시작하지 마세요—위험 지점은 사라지지 않습니다.
 
-### Phase 7: Literature Validation
+### 단계 7: 문헌 검증
 
-Claude should search PubMed to help calibrate risk assessments:
+Claude는 위험 평가를 보정하기 위해 PubMed를 검색해야 합니다:
 
-**Search for:**
-1. **Precedents:** Has anyone done something similar? (Reduces technical risk)
-2. **Biological Evidence:** What's known about the system? (Informs biological risk)
-3. **Technical Benchmarks:** How well do the methods work in practice?
-4. **Adjacent Successes:** Has anyone solved related problems?
+**검색할 것:**
+1. **선례:** 누군가 비슷한 것을 한 적이 있는가? (기술적 위험 감소)
+2. **생물학적 증거:** 시스템에 대해 무엇이 알려져 있는가? (생물학적 위험 정보 제공)
+3. **기술적 벤치마크:** 방법이 실제로 얼마나 잘 작동하는가?
+4. **인접한 성공:** 누군가 관련 문제를 해결한 적이 있는가?
 
-**Questions to ask the user:**
-- What specific searches would help calibrate risk?
-- Are there particular papers that informed the assumptions?
-- Are there technical benchmarks to look up?
+**사용자에게 물어볼 질문:**
+- 위험을 보정하는 데 도움이 되는 구체적인 검색은 무엇인가?
+- 가정에 정보를 제공한 특정 논문이 있는가?
+- 찾아볼 기술적 벤치마크가 있는가?
 
-### Phase 8: Revised Project Plan
+### 단계 8: 수정된 프로젝트 계획
 
-Based on the risk analysis, Claude should help create a revised plan:
+위험 분석을 기반으로, Claude는 수정된 계획 작성을 도와야 합니다:
 
-#### Option A: De-Risk the Current Plan
-- Reorder experiments to test high-risk assumptions early
-- Add complementary approaches
-- Design multiple-candidate strategies
+#### 옵션 A: 현재 계획의 위험 감소
+- 고위험 가정을 일찍 테스트하도록 실험 순서 변경
+- 보완적 접근법 추가
+- 다중 후보 전략 설계
 
-#### Option B: Reframe the Project
-- Adjust scope while maintaining impact
-- Change biological system
-- Modify technical approach
+#### 옵션 B: 프로젝트 재구성
+- 영향력을 유지하면서 범위 조정
+- 생물학적 시스템 변경
+- 기술적 접근법 수정
 
-#### Option C: Pick a Different Project
-Sometimes the honest answer is: "This has too many miracles." That's valuable to know BEFORE investing years.
+#### 옵션 C: 다른 프로젝트 선택
+때로 정직한 답은: "이것은 기적이 너무 많습니다." 이를 수년을 투자하기 전에 아는 것은 가치가 있습니다.
 
-## Output Deliverable
+## 결과물
 
-Claude should produce a **2-page Risk Assessment Document**:
+Claude는 **2페이지 위험 평가 문서**를 작성해야 합니다:
 
-### Page 1: Assumption Analysis Table
+### 1페이지: 가정 분석표
 
-| Assumption | Type* | Risk† | Time‡ | Notes |
-|------------|-------|-------|-------|-------|
-| [Assumption 1] | Bio/Tech | 1-5 | X mo | [Rationale for score] |
-| [Assumption 2] | Bio/Tech | 1-5 | X mo | [Rationale for score] |
+| 가정 | 유형* | 위험† | 시간‡ | 비고 |
+|------|-------|-------|-------|------|
+| [가정 1] | 생물/기술 | 1-5 | X개월 | [점수 근거] |
+| [가정 2] | 생물/기술 | 1-5 | X개월 | [점수 근거] |
 | ... | ... | ... | ... | ... |
 
-*Bio = Biological reality, Tech = Technical capability  
-†Risk: 1=very likely to 5=very unlikely  
-‡Time to test in months
+*생물 = 생물학적 현실, 기술 = 기술적 역량
+†위험: 1=매우 가능성 높음 ~ 5=매우 가능성 낮음
+‡테스트 소요 시간 (월)
 
-#### Risk Profile Summary:
-- **Total Assumptions:** X
-- **High Risk (4-5):** X assumptions
-- **Late High Risk (>18mo):** X assumptions
-- **Critical Path:** [Identify the chain of dependent assumptions]
-- **Overall Assessment:** [Green/Yellow/Red light with explanation]
+#### 위험 프로파일 요약:
+- **총 가정 수:** X
+- **고위험 (4-5):** X개 가정
+- **늦은 고위험 (>18개월):** X개 가정
+- **핵심 경로:** [의존적 가정의 체인 식별]
+- **전체 평가:** [청신호/황색신호/적신호 및 설명]
 
-### Page 2: Risk Mitigation Plan
+### 2페이지: 위험 완화 계획
 
-#### Top 3 High-Risk Assumptions:
-For each:
-1. **The Assumption:** [Stated clearly]
-2. **Current Risk Level & Timeline:** X (risk) at Y months
-3. **Why This Risk Exists:** [Explanation]
-4. **Mitigation Strategy:** [From Strategies 1-5 above]
-5. **Go/No-Go Experiment:**
-   - Experiment design
-   - Success criteria
-   - Timeline
-   - What you'll do if it fails
+#### 상위 3개 고위험 가정:
+각각에 대해:
+1. **가정:** [명확하게 기술]
+2. **현재 위험 수준 및 타임라인:** X (위험) Y개월 시점
+3. **이 위험이 존재하는 이유:** [설명]
+4. **완화 전략:** [위의 전략 1-5에서]
+5. **Go/No-Go 실험:**
+   - 실험 설계
+   - 성공 기준
+   - 타임라인
+   - 실패 시 대응
 
-#### Revised Project Timeline:
+#### 수정된 프로젝트 타임라인:
 ```
-Month 0-6:   [Early go/no-go experiments]
-Month 6-12:  [Based on go/no-go results]
-Month 12-18: [...]
-Month 18+:   [...]
+0-6개월:   [초기 go/no-go 실험]
+6-12개월:  [go/no-go 결과에 기반]
+12-18개월: [...]
+18개월+:   [...]
 ```
 
-#### Contingency Plans:
-- **If assumption X fails:** [Plan B]
-- **If assumption Y fails:** [Plan C]
-- **Multiple success paths:** [How project can succeed different ways]
+#### 비상 계획:
+- **가정 X가 실패하면:** [플랜 B]
+- **가정 Y가 실패하면:** [플랜 C]
+- **다중 성공 경로:** [프로젝트가 다른 방식으로 성공할 수 있는 방법]
 
-#### Decision Points:
-- **Month X:** Evaluate [assumptions A, B] → Go/Pivot/Stop decision
-- **Month Y:** Evaluate [assumptions C, D] → Go/Pivot/Stop decision
+#### 의사결정 시점:
+- **X개월:** [가정 A, B] 평가 → 진행/전환/중단 결정
+- **Y개월:** [가정 C, D] 평가 → 진행/전환/중단 결정
 
-## Practical Examples
+## 실용적 예시
 
-### Example 1: ScRNA-Seq for Enteroendocrine Cells
+### 예시 1: 장내분비 세포를 위한 ScRNA-Seq
 
-**High-Risk Assumptions Identified:**
-1. "New cell types can be validated experimentally" (Risk 5, 24 months)
-2. "Knockout will yield biologically relevant phenotype" (Risk 5, 30 months)
+**식별된 고위험 가정:**
+1. "새로운 세포 유형을 실험적으로 검증할 수 있음" (위험 5, 24개월)
+2. "녹아웃이 생물학적으로 관련 있는 표현형을 산출할 것" (위험 5, 30개월)
 
-**Problem:** Two risk-5 assumptions at 24+ months = RED FLAG
+**문제:** 24개월 이상에서 위험-5 가정 두 개 = 적신호
 
-**Mitigation Applied:**
-- Reframe to study known but poorly characterized cells (reduces Risk 5→3)
-- Switch to liver instead of intestine (improves validation timeline: 30→18 months)
-- Add spatial transcriptomics (provides earlier validation checkpoint at 16 months)
+**적용된 완화:**
+- 알려져 있지만 불완전하게 특성화된 세포 연구로 재구성 (위험 5→3 감소)
+- 장 대신 간으로 전환 (검증 타임라인 개선: 30→18개월)
+- 공간 전사체학 추가 (16개월에 더 이른 검증 체크포인트 제공)
 
-### Example 2: Bacterial Therapy for Chronic Kidney Disease
+### 예시 2: 만성 신장 질환을 위한 박테리아 치료
 
-**High-Risk Assumption Identified:**
-"Key uremic toxins leading to effects can be determined" (Risk 4, unknown timeline)
+**식별된 고위험 가정:**
+"효과를 유발하는 주요 요독 독소를 결정할 수 있음" (위험 4, 미정 타임라인)
 
-**Problem:** Critical assumption with unclear path to resolution
+**문제:** 해결 경로가 불분명한 핵심 가정
 
-**Mitigation Applied:**
-- Focus on known lead toxins (IS and PCS) rather than discovering new ones
-- Add parallel track: test multiple toxin candidates
-- Design study where learning toxin identity IS the outcome (multiple success paths)
+**적용된 완화:**
+- 새로운 독소 발견보다 알려진 리드 독소 (IS와 PCS)에 집중
+- 병행 트랙 추가: 여러 독소 후보 테스트
+- 독소 정체를 알아내는 것 자체가 결과인 연구 설계 (다중 성공 경로)
 
-## Key Principles to Remember
+## 기억해야 할 핵심 원칙
 
-1. **Try to Convince Yourself You're Wrong:** The goal is critical evaluation, not confirmation bias.
+1. **자신이 틀렸다고 설득하려고 노력하세요:** 목표는 확증 편향이 아닌 비판적 평가입니다.
 
-2. **Ignore Everything But Key Risk Points:** Don't get distracted by easy tasks. The high-risk assumptions aren't going away.
+2. **핵심 위험 지점만 신경 쓰세요:** 쉬운 작업에 주의를 빼앗기지 마세요. 고위험 가정은 사라지지 않습니다.
 
-3. **Early and Often:** Design go/no-go experiments at the earliest feasible moment.
+3. **일찍 그리고 자주:** 가능한 가장 이른 시점에 go/no-go 실험을 설계하세요.
 
-4. **Be Candid About Risk:** When presenting ideas, acknowledging risk makes your case MORE convincing, not less.
+4. **위험에 대해 솔직하세요:** 아이디어를 발표할 때, 위험을 인정하는 것이 설득력을 높이지, 낮추지 않습니다.
 
-5. **No Risk, No Interest:** The goal isn't zero risk—it's understood, quantified, manageable risk.
+5. **위험 없으면 관심 없음:** 목표는 제로 위험이 아닙니다—이해되고, 정량화되고, 관리 가능한 위험입니다.
 
-6. **Risk Can Change:** Technical assumptions may improve as methods advance. Build this into your planning.
+6. **위험은 변할 수 있음:** 기술적 가정은 방법이 발전함에 따라 개선될 수 있습니다. 이를 계획에 반영하세요.
 
-7. **Compare Risk Profiles:** Evaluate multiple projects in parallel to compare risk profiles and make better choices.
+7. **위험 프로파일 비교:** 여러 프로젝트를 병행 평가하여 위험 프로파일을 비교하고 더 나은 선택을 하세요.
 
-8. **Watch for the Ostrich Pattern:** Are you avoiding the scary experiment? That's human nature, but a critical failure mode.
+8. **타조 패턴을 주시하세요:** 무서운 실험을 피하고 있는가? 그것은 인간의 본성이지만, 치명적인 실패 모드입니다.
 
-## Warning Signs
+## 경고 신호
 
-**Warning signs include:**
-- Risk level 5 assumptions >2 years out
-- More than 3 assumptions at risk level 4-5
-- Highest-risk assumptions at the END of the timeline
-- Rationalizing why high-risk assumptions will "probably work out"
-- Planning to "start with the easy stuff" while avoiding risk tests
-- Inability to articulate clear go/no-go criteria
+**경고 신호 포함:**
+- 2년 이상인 위험 수준 5 가정
+- 위험 수준 4-5인 가정이 3개 이상
+- 타임라인 끝에 있는 최고위험 가정
+- 고위험 가정이 "아마 괜찮을 것이다"라고 합리화
+- 위험 테스트를 피하면서 "쉬운 것부터 시작" 계획
+- 명확한 go/no-go 기준을 명시하지 못함
 
-**Good shape indicators:**
-- Highest-risk tests happen in first 6 months
-- Multiple paths to success exist
-- Clear plans for what to do if key assumptions fail
-- Risk is distributed across the timeline
-- Testing assumptions, not confirming hopes
+**좋은 상태 지표:**
+- 최고위험 테스트가 처음 6개월 내에 발생
+- 성공으로의 다중 경로가 존재
+- 핵심 가정이 실패할 경우의 명확한 계획
+- 타임라인 전체에 위험이 분산
+- 희망을 확인하는 것이 아닌 가정을 테스트
 
-## Getting Started
+## 시작하기
 
-Claude should begin with Phase 1 by asking for:
-1. The project summary from Skill 1
-2. Project timeline expectations
-3. What concerns the user most about this project
+Claude는 다음을 요청하며 단계 1을 시작해야 합니다:
+1. 스킬 1에서의 프로젝트 요약
+2. 프로젝트 타임라인 기대
+3. 이 프로젝트에 대해 가장 우려하는 점
 
-Together, Claude and the user will build a rigorous risk assessment that dramatically improves the likelihood of success by helping avoid years of work on projects with insurmountable obstacles.
+Claude와 사용자가 함께 엄격한 위험 평가를 구축하면, 극복 불가능한 장애물이 있는 프로젝트에 수년을 투자하는 것을 피함으로써 성공 가능성을 극적으로 향상시킬 것입니다.
 
 ---
 
-*Remember: Spending time on risk analysis is the most valuable investment a scientist can make. A well-understood risk profile enables moving forward with confidence or pivoting with clarity—both are valuable outcomes.*
+*기억하세요: 위험 분석에 시간을 투자하는 것은 과학자가 할 수 있는 가장 가치 있는 투자입니다. 잘 이해된 위험 프로파일은 확신을 가지고 전진하거나 명확하게 전환할 수 있게 해줍니다—둘 다 가치 있는 결과입니다.*

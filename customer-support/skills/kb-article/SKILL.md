@@ -1,351 +1,198 @@
 ---
 name: kb-article
-description: Draft a knowledge base article from a resolved issue or common question. Use when a ticket resolution is worth documenting for self-service, the same question keeps coming up, a workaround needs to be published, or a known issue should be communicated to customers.
-argument-hint: "<resolved issue or ticket>"
+description: 해결된 이슈나 자주 묻는 질문에서 지식 베이스 문서를 초안합니다. 티켓 해결이 셀프 서비스를 위해 문서화할 가치가 있을 때, 같은 질문이 계속 올 때, 우회 방법을 게시해야 할 때, 또는 알려진 이슈를 고객에게 전달해야 할 때 사용하세요.
+argument-hint: "<해결된 이슈 또는 티켓>"
 ---
 
 # /kb-article
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 하는 경우, [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Draft a publish-ready knowledge base article from a resolved support issue, common question, or documented workaround. Structures the content for searchability and self-service.
+해결된 지원 이슈, 자주 묻는 질문, 또는 문서화된 우회 방법에서 게시 가능한 지식 베이스 문서를 초안합니다. 검색 가능성과 셀프 서비스를 위해 콘텐츠를 구조화합니다.
 
-## Usage
-
-```
-/kb-article <resolved issue, ticket reference, or topic description>
-```
-
-Examples:
-- `/kb-article How to configure SSO with Okta — resolved this for 3 customers last month`
-- `/kb-article Ticket #4521 — customer couldn't export data over 10k rows`
-- `/kb-article Common question: how to set up webhook notifications`
-- `/kb-article Known issue: dashboard charts not loading on Safari 16`
-
-## Workflow
-
-### 1. Understand the Source Material
-
-Parse the input to identify:
-
-- **What was the problem?** The original issue, question, or error
-- **What was the solution?** The resolution, workaround, or answer
-- **Who does this affect?** User type, plan level, or configuration
-- **How common is this?** One-off or recurring issue
-- **What article type fits best?** How-to, troubleshooting, FAQ, known issue, or reference (see article types below)
-
-If a ticket reference is provided, look up the full context:
-
-- **~~support platform**: Pull the ticket thread, resolution, and any internal notes
-- **~~knowledge base**: Check if a similar article already exists (update vs. create new)
-- **~~project tracker**: Check if there's a related bug or feature request
-
-### 2. Draft the Article
-
-Using the article structure, formatting standards, and searchability best practices below:
-
-- Follow the template for the chosen article type (how-to, troubleshooting, FAQ, known issue, or reference)
-- Apply the searchability best practices: customer-language title, plain-language opening sentence, exact error messages, common synonyms
-- Keep it scannable: headers, numbered steps, short paragraphs
-
-### 3. Generate the Article
-
-Present the draft with metadata:
+## 사용법
 
 ```
-## KB Article Draft
+/kb-article <해결된 이슈, 티켓 참조, 또는 주제 설명>
+```
 
-**Title:** [Article title]
-**Type:** [How-to / Troubleshooting / FAQ / Known Issue / Reference]
-**Category:** [Product area or topic]
-**Tags:** [Searchable tags]
-**Audience:** [All users / Admins / Developers / Specific plan]
+예시:
+- `/kb-article Okta로 SSO 구성하는 방법 — 지난달 3명의 고객에게 해결`
+- `/kb-article 티켓 #4521 — 고객이 10k 행 이상 데이터를 내보낼 수 없었음`
+- `/kb-article 자주 묻는 질문: 웹훅 알림을 설정하는 방법`
+- `/kb-article 알려진 이슈: Safari 16에서 대시보드 차트가 로드되지 않음`
+
+## 워크플로우
+
+### 1. 소스 자료 이해
+
+입력을 파싱하여 식별합니다:
+
+- **문제가 무엇이었나?** 원래 이슈, 질문, 오류
+- **해결책이 무엇이었나?** 해결, 우회 방법, 답변
+- **누가 영향받나?** 사용자 유형, 플랜 수준, 구성
+- **얼마나 흔한가?** 일회성 또는 반복 이슈
+- **가장 맞는 문서 유형은?** 방법 설명, 문제 해결, FAQ, 알려진 이슈, 참조 (아래 문서 유형 참조)
+
+### 2. 문서 초안
+
+아래 문서 구조, 서식 표준, 검색 가능성 모범 사례를 사용합니다:
+
+- 선택한 문서 유형 템플릿 따르기 (방법 설명, 문제 해결, FAQ, 알려진 이슈, 참조)
+- 검색 가능성 모범 사례 적용: 고객 언어 제목, 평이한 언어 첫 문장, 정확한 오류 메시지, 일반 동의어
+- 스캔 가능하게 유지: 헤더, 번호 매긴 단계, 짧은 문단
+
+### 3. 문서 생성
+
+메타데이터가 포함된 초안을 제시합니다.
+
+### 4. 다음 단계 제안
+
+문서 생성 후:
+- "~~지식 베이스에 유사한 문서가 이미 있는지 확인할까요?"
+- "다른 대상을 위해 기술적 깊이를 조정할까요?"
+- "보완 문서를 초안할까요 (예: 이 문제 해결 가이드와 함께할 방법 설명)?"
+- "추가 기술적 세부가 포함된 내부 전용 버전을 만들까요?"
 
 ---
 
-[Full article content — using the appropriate template below]
+## 문서 구조 및 서식 표준
 
----
+### 보편적 문서 요소
 
-### Publishing Notes
-- **Source:** [Ticket #, customer conversation, or internal discussion]
-- **Existing articles to update:** [If this overlaps with existing content]
-- **Review needed from:** [SME or team if technical accuracy needs verification]
-- **Suggested review date:** [When to revisit for accuracy]
-```
+모든 KB 문서에 포함:
 
-### 4. Offer Next Steps
+1. **제목**: 명확하고, 검색 가능하고, 결과나 문제를 설명 (내부 전문 용어 아닌)
+2. **개요**: 이 문서가 무엇을 다루고 누구를 위한지 1-2문장 설명
+3. **본문**: 문서 유형에 적합한 구조화된 콘텐츠
+4. **관련 문서**: 관련 보완 콘텐츠 링크
+5. **메타데이터**: 카테고리, 태그, 대상, 마지막 업데이트 날짜
 
-After generating the article:
-- "Want me to check if a similar article already exists in your ~~knowledge base?"
-- "Should I adjust the technical depth for a different audience?"
-- "Want me to draft a companion article (e.g., a how-to to go with this troubleshooting guide)?"
-- "Should I create an internal-only version with additional technical detail?"
+### 서식 규칙
 
----
+- **헤더 (H2, H3)** 사용하여 스캔 가능한 섹션으로 나누기
+- **번호 목록** 순차적 단계에 사용
+- **불릿 목록** 비순차 항목에 사용
+- **굵게** UI 요소 이름, 핵심 용어, 강조에 사용
+- **코드 블록** 명령어, API 호출, 오류 메시지, 구성 값에 사용
+- **테이블** 비교, 옵션, 참조 데이터에 사용
+- **콜아웃/참고** 경고, 팁, 중요 주의사항에 사용
+- **문단 짧게** — 최대 2-4문장
+- **섹션당 하나의 아이디어** — 한 섹션이 두 주제를 다루면 분할
 
-## Article Structure and Formatting Standards
+## 검색 가능성을 위한 작성
 
-### Universal Article Elements
+### 제목 모범 사례
 
-Every KB article should include:
-
-1. **Title**: Clear, searchable, describes the outcome or problem (not internal jargon)
-2. **Overview**: 1-2 sentences explaining what this article covers and who it's for
-3. **Body**: Structured content appropriate to the article type
-4. **Related articles**: Links to relevant companion content
-5. **Metadata**: Category, tags, audience, last updated date
-
-### Formatting Rules
-
-- **Use headers (H2, H3)** to break content into scannable sections
-- **Use numbered lists** for sequential steps
-- **Use bullet lists** for non-sequential items
-- **Use bold** for UI element names, key terms, and emphasis
-- **Use code blocks** for commands, API calls, error messages, and configuration values
-- **Use tables** for comparisons, options, or reference data
-- **Use callouts/notes** for warnings, tips, and important caveats
-- **Keep paragraphs short** — 2-4 sentences max
-- **One idea per section** — if a section covers two topics, split it
-
-## Writing for Searchability
-
-Articles are useless if customers can't find them. Optimize every article for search:
-
-### Title Best Practices
-
-| Good Title | Bad Title | Why |
+| 좋은 제목 | 나쁜 제목 | 이유 |
 |------------|-----------|-----|
-| "How to configure SSO with Okta" | "SSO Setup" | Specific, includes the tool name customers search for |
-| "Fix: Dashboard shows blank page" | "Dashboard Issue" | Includes the symptom customers experience |
-| "API rate limits and quotas" | "API Information" | Includes the specific terms customers search for |
-| "Error: 'Connection refused' when importing data" | "Import Problems" | Includes the exact error message |
+| "Okta로 SSO 구성하는 방법" | "SSO 설정" | 구체적, 고객이 검색하는 도구 이름 포함 |
+| "수정: 대시보드가 빈 페이지를 표시" | "대시보드 문제" | 고객이 경험하는 증상 포함 |
+| "API 속도 제한 및 할당" | "API 정보" | 고객이 검색하는 구체적 용어 포함 |
+| "오류: 데이터 가져오기 시 '연결 거부'" | "가져오기 문제" | 정확한 오류 메시지 포함 |
 
-### Keyword Optimization
+### 첫 문장 공식
 
-- **Include exact error messages** — customers copy-paste error text into search
-- **Use customer language**, not internal terminology — "can't log in" not "authentication failure"
-- **Include common synonyms** — "delete/remove", "dashboard/home page", "export/download"
-- **Add alternate phrasings** — address the same issue from different angles in the overview
-- **Tag with product areas** — make sure category and tags match how customers think about the product
+모든 문서를 문제나 작업을 평이한 언어로 재진술하는 문장으로 시작:
 
-### Opening Sentence Formula
+- **방법 설명**: "이 가이드는 [X를 달성하는] 방법을 보여줍니다."
+- **문제 해결**: "[증상]이 보이면, 이 문서가 수정 방법을 설명합니다."
+- **FAQ**: "[고객 언어로의 질문]? 답변은 다음과 같습니다."
+- **알려진 이슈**: "일부 사용자가 [증상]을 경험하고 있습니다. 알고 있는 것과 우회 방법은 다음과 같습니다."
 
-Start every article with a sentence that restates the problem or task in plain language:
+## 문서 유형 템플릿
 
-- **How-to**: "This guide shows you how to [accomplish X]."
-- **Troubleshooting**: "If you're seeing [symptom], this article explains how to fix it."
-- **FAQ**: "[Question in the customer's words]? Here's the answer."
-- **Known issue**: "Some users are experiencing [symptom]. Here's what we know and how to work around it."
+### 방법 설명
 
-## Article Type Templates
-
-### How-to Articles
-
-**Purpose**: Step-by-step instructions for accomplishing a task.
-
-**Structure**:
 ```
-# How to [accomplish task]
+# [작업 달성] 방법
 
-[Overview — what this guide covers and when you'd use it]
+[개요 — 이 가이드가 다루는 것과 사용 시기]
 
-## Prerequisites
-- [What's needed before starting]
+## 사전 요구 사항
+- [시작 전 필요한 것]
 
-## Steps
-### 1. [Action]
-[Instruction with specific details]
+## 단계
+### 1. [행동]
+[구체적 세부가 포함된 지침]
 
-### 2. [Action]
-[Instruction]
+### 2. [행동]
+[지침]
 
-## Verify It Worked
-[How to confirm success]
+## 작동 확인
+[성공 확인 방법]
 
-## Common Issues
-- [Issue]: [Fix]
+## 일반적 문제
+- [문제]: [수정]
 
-## Related Articles
-- [Links]
+## 관련 문서
+- [링크]
 ```
 
-**Best practices**:
-- Start each step with a verb
-- Include the specific path: "Go to Settings > Integrations > API Keys"
-- Mention what the user should see after each step ("You should see a green confirmation banner")
-- Test the steps yourself or verify with a recent ticket resolution
+### 문제 해결
 
-### Troubleshooting Articles
-
-**Purpose**: Diagnose and resolve a specific problem.
-
-**Structure**:
 ```
-# [Problem description — what the user sees]
+# [문제 설명 — 사용자가 보는 것]
 
-## Symptoms
-- [What the user observes]
+## 증상
+- [사용자가 관찰하는 것]
 
-## Cause
-[Why this happens — brief, non-jargon explanation]
+## 원인
+[왜 이런 일이 발생하는지 — 간략하고 비전문적 설명]
 
-## Solution
-### Option 1: [Primary fix]
-[Steps]
+## 해결
+### 방법 1: [주요 수정]
+[단계]
 
-### Option 2: [Alternative if Option 1 doesn't work]
-[Steps]
+### 방법 2: [방법 1이 작동하지 않으면 대안]
+[단계]
 
-## Prevention
-[How to avoid this in the future]
+## 예방
+[향후 이를 피하는 방법]
 
-## Still Having Issues?
-[How to get help]
+## 여전히 문제가 있나요?
+[도움 받는 방법]
 ```
 
-**Best practices**:
-- Lead with symptoms, not causes — customers search for what they see
-- Provide multiple solutions when possible (most likely fix first)
-- Include a "Still having issues?" section that points to support
-- If the root cause is complex, keep the customer-facing explanation simple
+### 알려진 이슈
 
-### FAQ Articles
-
-**Purpose**: Quick answer to a common question.
-
-**Structure**:
 ```
-# [Question — in the customer's words]
+# [알려진 이슈]: [간략한 설명]
 
-[Direct answer — 1-3 sentences]
+**상태:** [조사 중 / 우회 방법 가능 / 수정 진행 중 / 해결됨]
+**영향:** [누구/무엇이 영향받는지]
+**마지막 업데이트:** [날짜]
 
-## Details
-[Additional context, nuance, or explanation if needed]
+## 증상
+[사용자가 경험하는 것]
 
-## Related Questions
-- [Link to related FAQ]
-- [Link to related FAQ]
+## 우회 방법
+[이슈를 우회하는 단계, 또는 "우회 방법 없음"]
+
+## 수정 타임라인
+[예상 수정 날짜 또는 현재 상태]
+
+## 업데이트
+- [날짜]: [업데이트]
 ```
 
-**Best practices**:
-- Answer the question in the first sentence
-- Keep it concise — if the answer needs a walkthrough, it's a how-to, not an FAQ
-- Group related FAQs and link between them
+## 검토 및 유지보수 주기
 
-### Known Issue Articles
-
-**Purpose**: Document a known bug or limitation with a workaround.
-
-**Structure**:
-```
-# [Known Issue]: [Brief description]
-
-**Status:** [Investigating / Workaround Available / Fix In Progress / Resolved]
-**Affected:** [Who/what is affected]
-**Last updated:** [Date]
-
-## Symptoms
-[What users experience]
-
-## Workaround
-[Steps to work around the issue, or "No workaround available"]
-
-## Fix Timeline
-[Expected fix date or current status]
-
-## Updates
-- [Date]: [Update]
-```
-
-**Best practices**:
-- Keep the status current — nothing erodes trust faster than a stale known issue article
-- Update the article when the fix ships and mark as resolved
-- If resolved, keep the article live for 30 days for customers still searching the old symptoms
-
-## Review and Maintenance Cadence
-
-Knowledge bases decay without maintenance. Follow this schedule:
-
-| Activity | Frequency | Who |
+| 활동 | 빈도 | 담당 |
 |----------|-----------|-----|
-| **New article review** | Before publishing | Peer review + SME for technical content |
-| **Accuracy audit** | Quarterly | Support team reviews top-traffic articles |
-| **Stale content check** | Monthly | Flag articles not updated in 6+ months |
-| **Known issue updates** | Weekly | Update status on all open known issues |
-| **Analytics review** | Monthly | Check which articles have low helpfulness ratings or high bounce rates |
-| **Gap analysis** | Quarterly | Identify top ticket topics without KB articles |
+| **신규 문서 검토** | 게시 전 | 동료 검토 + 기술 콘텐츠 SME |
+| **정확성 감사** | 분기별 | 지원팀이 최다 트래픽 문서 검토 |
+| **오래된 콘텐츠 확인** | 월간 | 6개월+ 업데이트되지 않은 문서 표시 |
+| **알려진 이슈 업데이트** | 주간 | 모든 오픈 알려진 이슈 상태 업데이트 |
+| **분석 검토** | 월간 | 낮은 도움 평점이나 높은 이탈률 문서 확인 |
+| **갭 분석** | 분기별 | KB 문서 없는 최다 티켓 주제 식별 |
 
-### Article Lifecycle
+## KB 작성 모범 사례
 
-1. **Draft**: Written, needs review
-2. **Published**: Live and available to customers
-3. **Needs update**: Flagged for revision (product change, feedback, or age)
-4. **Archived**: No longer relevant but preserved for reference
-5. **Retired**: Removed from the knowledge base
-
-### When to Update vs. Create New
-
-**Update existing** when:
-- The product changed and steps need refreshing
-- The article is mostly right but missing a detail
-- Feedback indicates customers are confused by a specific section
-- A better workaround or solution was found
-
-**Create new** when:
-- A new feature or product area needs documentation
-- A resolved ticket reveals a gap — no article exists for this topic
-- The existing article covers too many topics and should be split
-- A different audience needs the same information explained differently
-
-## Linking and Categorization Taxonomy
-
-### Category Structure
-
-Organize articles into a hierarchy that matches how customers think:
-
-```
-Getting Started
-├── Account setup
-├── First-time configuration
-└── Quick start guides
-
-Features & How-tos
-├── [Feature area 1]
-├── [Feature area 2]
-└── [Feature area 3]
-
-Integrations
-├── [Integration 1]
-├── [Integration 2]
-└── API reference
-
-Troubleshooting
-├── Common errors
-├── Performance issues
-└── Known issues
-
-Billing & Account
-├── Plans and pricing
-├── Billing questions
-└── Account management
-```
-
-### Linking Best Practices
-
-- **Link from troubleshooting to how-to**: "For setup instructions, see [How to configure X]"
-- **Link from how-to to troubleshooting**: "If you encounter errors, see [Troubleshooting X]"
-- **Link from FAQ to detailed articles**: "For a full walkthrough, see [Guide to X]"
-- **Link from known issues to workarounds**: Keep the chain from problem to solution short
-- **Use relative links** within the KB — they survive restructuring better than absolute URLs
-- **Avoid circular links** — if A links to B, B shouldn't link back to A unless both are genuinely useful entry points
-
-## KB Writing Best Practices
-
-1. Write for the customer who is frustrated and searching for an answer — be clear, direct, and helpful
-2. Every article should be findable through search using the words a customer would type
-3. Test your articles — follow the steps yourself or have someone unfamiliar with the topic follow them
-4. Keep articles focused — one problem, one solution. Split if an article is growing too long
-5. Maintain aggressively — a wrong article is worse than no article
-6. Track what's missing — every ticket that could have been a KB article is a content gap
-7. Measure impact — articles that don't get traffic or don't reduce tickets need to be improved or retired
+1. 좌절하고 답을 찾는 고객을 위해 작성하세요 — 명확하고, 직접적이고, 도움이 되도록
+2. 모든 문서는 고객이 입력할 단어로 검색을 통해 찾을 수 있어야
+3. 문서를 테스트하세요 — 단계를 직접 따라가거나 주제에 익숙하지 않은 사람이 따라가게 하세요
+4. 문서를 집중적으로 유지 — 하나의 문제, 하나의 솔루션. 문서가 너무 길어지면 분할
+5. 적극적으로 유지관리 — 잘못된 문서는 없는 것보다 나쁨
+6. 누락된 것을 추적 — KB 문서가 될 수 있었던 모든 티켓은 콘텐츠 갭
+7. 영향을 측정 — 트래픽이 없거나 티켓을 줄이지 않는 문서는 개선하거나 퇴역 필요

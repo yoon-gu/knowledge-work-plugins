@@ -1,25 +1,25 @@
-# Reference Mapping with scArches
+# scArches를 사용한 참조 매핑
 
-This reference covers using scArches for mapping query data to pre-trained reference models without retraining from scratch.
+이 참조 문서는 처음부터 재훈련하지 않고 사전 훈련된 참조 모델에 쿼리 데이터를 매핑하기 위한 scArches 사용 방법을 다룹니다.
 
-## Overview
+## 개요
 
-scArches (single-cell architecture surgery) enables:
-- Mapping new data to existing reference atlases
-- Extending models with new batches/studies
-- Transfer learning without full retraining
-- Preserving reference structure while integrating query
+scArches(single-cell architecture surgery)는 다음을 가능하게 합니다:
+- 기존 참조 아틀라스에 새 데이터 매핑
+- 새로운 배치/연구로 모델 확장
+- 전체 재훈련 없이 전이 학습
+- 쿼리를 통합하면서 참조 구조 보존
 
-## When to Use scArches
+## scArches 사용 시기
 
-| Scenario | Approach |
+| 시나리오 | 접근 방식 |
 |----------|----------|
-| Map query to existing atlas | scArches query mapping |
-| Extend atlas with new data | scArches model surgery |
-| No pre-trained model available | Train scANVI from scratch |
-| Query very different from reference | Consider retraining |
+| 기존 아틀라스에 쿼리 매핑 | scArches 쿼리 매핑 |
+| 새 데이터로 아틀라스 확장 | scArches 모델 수술 |
+| 사전 훈련된 모델이 없는 경우 | scANVI를 처음부터 훈련 |
+| 쿼리가 참조와 매우 다른 경우 | 재훈련 고려 |
 
-## Prerequisites
+## 사전 요구 사항
 
 ```python
 import scvi
@@ -29,210 +29,210 @@ import numpy as np
 print(f"scvi-tools version: {scvi.__version__}")
 ```
 
-## Workflow 1: Map Query to Pre-Trained Reference
+## 워크플로우 1: 사전 훈련된 참조에 쿼리 매핑
 
-### Step 1: Load Pre-Trained Reference Model
+### 1단계: 사전 훈련된 참조 모델 로드
 
 ```python
-# Load saved reference model
-# The model must have been trained with scvi-tools
+# 저장된 참조 모델 로드
+# 모델은 scvi-tools로 훈련되어 있어야 합니다
 reference_model = scvi.model.SCVI.load("reference_model/")
 
-# Or load scANVI for label transfer
+# 또는 라벨 전이를 위한 scANVI 로드
 reference_model = scvi.model.SCANVI.load("reference_scanvi_model/")
 
-# Check model info
+# 모델 정보 확인
 print(f"Model type: {type(reference_model)}")
 print(f"Training data shape: {reference_model.adata.shape}")
 ```
 
-### Step 2: Prepare Query Data
+### 2단계: 쿼리 데이터 준비
 
 ```python
-# Load query data
+# 쿼리 데이터 로드
 adata_query = sc.read_h5ad("query_data.h5ad")
 
-# CRITICAL: Match genes to reference
+# 중요: 유전자를 참조와 일치시키기
 reference_genes = reference_model.adata.var_names
 query_genes = adata_query.var_names
 
-# Check overlap
+# 겹침 확인
 common_genes = reference_genes.intersection(query_genes)
 print(f"Reference genes: {len(reference_genes)}")
 print(f"Query genes: {len(query_genes)}")
 print(f"Overlap: {len(common_genes)}")
 
-# Subset query to reference genes
+# 참조 유전자로 쿼리 서브셋
 adata_query = adata_query[:, reference_genes].copy()
 
-# Handle missing genes (filled with zeros automatically by prepare_query_anndata)
+# 누락된 유전자 처리 (prepare_query_anndata에 의해 자동으로 0으로 채워짐)
 ```
 
-### Step 3: Prepare Query AnnData
+### 3단계: 쿼리 AnnData 준비
 
 ```python
-# Store raw counts
+# 원시 카운트 저장
 adata_query.layers["counts"] = adata_query.X.copy()
 
-# Prepare query for mapping
-# This aligns the query data structure to match the reference
+# 매핑을 위한 쿼리 준비
+# 이것은 참조와 일치하도록 쿼리 데이터 구조를 정렬합니다
 scvi.model.SCVI.prepare_query_anndata(adata_query, reference_model)
 ```
 
-### Step 4: Create Query Model
+### 4단계: 쿼리 모델 생성
 
 ```python
-# Create query model from reference
-# This initializes with reference weights
+# 참조로부터 쿼리 모델 생성
+# 참조 가중치로 초기화됩니다
 query_model = scvi.model.SCVI.load_query_data(
     adata_query,
     reference_model
 )
 
-# The query model inherits:
-# - Reference architecture
-# - Reference encoder weights (frozen by default)
-# - Decoder is fine-tuned for query
+# 쿼리 모델은 다음을 상속합니다:
+# - 참조 아키텍처
+# - 참조 인코더 가중치 (기본적으로 고정)
+# - 디코더는 쿼리에 맞게 미세 조정
 ```
 
-### Step 5: Fine-Tune on Query
+### 5단계: 쿼리에 대한 미세 조정
 
 ```python
-# Fine-tune the query model
-# This adjusts decoder weights for query-specific effects
+# 쿼리 모델 미세 조정
+# 쿼리 특이적 효과에 대해 디코더 가중치를 조정합니다
 query_model.train(
     max_epochs=200,
     plan_kwargs={
-        "weight_decay": 0.0  # Less regularization for fine-tuning
+        "weight_decay": 0.0  # 미세 조정을 위한 적은 정규화
     }
 )
 
-# Check training
+# 훈련 확인
 query_model.history['elbo_train'].plot()
 ```
 
-### Step 6: Get Query Representation
+### 6단계: 쿼리 표현 획득
 
 ```python
-# Get latent representation
-# Query cells are embedded in same space as reference
+# 잠재 표현 획득
+# 쿼리 세포는 참조와 동일한 공간에 임베딩됩니다
 adata_query.obsm["X_scVI"] = query_model.get_latent_representation()
 
-# Visualize
+# 시각화
 sc.pp.neighbors(adata_query, use_rep="X_scVI")
 sc.tl.umap(adata_query)
 sc.pl.umap(adata_query, color=['cell_type', 'batch'])
 ```
 
-## Workflow 2: scANVI Query Mapping with Label Transfer
+## 워크플로우 2: 라벨 전이를 사용한 scANVI 쿼리 매핑
 
-For transferring cell type labels from reference to query:
+참조에서 쿼리로 세포 유형 라벨을 전이하는 경우:
 
-### Step 1: Load scANVI Reference
+### 1단계: scANVI 참조 로드
 
 ```python
-# Reference must be scANVI model (trained with labels)
+# 참조는 scANVI 모델이어야 합니다 (라벨로 훈련됨)
 reference_scanvi = scvi.model.SCANVI.load("scanvi_reference/")
 
-# Check available labels
+# 사용 가능한 라벨 확인
 print("Reference cell types:")
 print(reference_scanvi.adata.obs['cell_type'].value_counts())
 ```
 
-### Step 2: Prepare and Map Query
+### 2단계: 쿼리 준비 및 매핑
 
 ```python
-# Prepare query
+# 쿼리 준비
 adata_query.layers["counts"] = adata_query.X.copy()
 adata_query = adata_query[:, reference_scanvi.adata.var_names].copy()
 
 scvi.model.SCANVI.prepare_query_anndata(adata_query, reference_scanvi)
 
-# Create query model
+# 쿼리 모델 생성
 query_scanvi = scvi.model.SCANVI.load_query_data(
     adata_query,
     reference_scanvi
 )
 
-# Fine-tune
+# 미세 조정
 query_scanvi.train(
     max_epochs=100,
     plan_kwargs={"weight_decay": 0.0}
 )
 ```
 
-### Step 3: Get Predictions
+### 3단계: 예측 결과 획득
 
 ```python
-# Predict cell types
+# 세포 유형 예측
 predictions = query_scanvi.predict()
 adata_query.obs["predicted_cell_type"] = predictions
 
-# Get prediction probabilities
+# 예측 확률 획득
 soft_predictions = query_scanvi.predict(soft=True)
 adata_query.obs["prediction_confidence"] = soft_predictions.max(axis=1)
 
-# Latent representation
+# 잠재 표현
 adata_query.obsm["X_scANVI"] = query_scanvi.get_latent_representation()
 
-# Visualize predictions
+# 예측 시각화
 sc.pp.neighbors(adata_query, use_rep="X_scANVI")
 sc.tl.umap(adata_query)
 sc.pl.umap(adata_query, color=['predicted_cell_type', 'prediction_confidence'])
 ```
 
-### Step 4: Evaluate Predictions
+### 4단계: 예측 평가
 
 ```python
-# Distribution of predictions
+# 예측 분포
 print(adata_query.obs['predicted_cell_type'].value_counts())
 
-# Confidence statistics
+# 신뢰도 통계
 print(f"Mean confidence: {adata_query.obs['prediction_confidence'].mean():.3f}")
 print(f"Low confidence (<0.5): {(adata_query.obs['prediction_confidence'] < 0.5).sum()}")
 
-# Filter low-confidence predictions
+# 낮은 신뢰도 예측 필터링
 high_conf = adata_query[adata_query.obs['prediction_confidence'] >= 0.7].copy()
 print(f"High confidence cells: {len(high_conf)} ({len(high_conf)/len(adata_query)*100:.1f}%)")
 ```
 
-## Workflow 3: Model Surgery (Extending Reference)
+## 워크플로우 3: 모델 수술 (참조 확장)
 
-Extend an existing reference model with new data:
+기존 참조 모델을 새 데이터로 확장:
 
-### Step 1: Freeze Reference Layers
+### 1단계: 참조 레이어 고정
 
 ```python
-# Load reference model
+# 참조 모델 로드
 reference_model = scvi.model.SCVI.load("reference_model/")
 
-# Get reference representation (before surgery)
+# 참조 표현 획득 (수술 전)
 adata_ref = reference_model.adata
 adata_ref.obsm["X_scVI_before"] = reference_model.get_latent_representation()
 ```
 
-### Step 2: Prepare Combined Data
+### 2단계: 결합 데이터 준비
 
 ```python
-# Add batch information
+# 배치 정보 추가
 adata_ref.obs["dataset"] = "reference"
 adata_query.obs["dataset"] = "query"
 
-# Combine
+# 결합
 adata_combined = sc.concat([adata_ref, adata_query])
 adata_combined.layers["counts"] = adata_combined.X.copy()
 ```
 
-### Step 3: Surgery Approach
+### 3단계: 수술 접근 방식
 
 ```python
-# Option A: Use load_query_data (recommended)
+# 옵션 A: load_query_data 사용 (권장)
 scvi.model.SCVI.prepare_query_anndata(adata_query, reference_model)
 extended_model = scvi.model.SCVI.load_query_data(adata_query, reference_model)
 extended_model.train(max_epochs=200)
 
-# Option B: Retrain with combined data (if query is large)
-# This doesn't preserve reference exactly but may give better results
+# 옵션 B: 결합 데이터로 재훈련 (쿼리가 큰 경우)
+# 참조를 정확히 보존하지는 않지만 더 나은 결과를 줄 수 있습니다
 scvi.model.SCVI.setup_anndata(
     adata_combined,
     layer="counts",
@@ -242,25 +242,25 @@ new_model = scvi.model.SCVI(adata_combined, n_latent=30)
 new_model.train(max_epochs=200)
 ```
 
-## Joint Visualization
+## 공동 시각화
 
-Visualize reference and query together:
+참조와 쿼리를 함께 시각화:
 
 ```python
-# Get latent representations
+# 잠재 표현 획득
 adata_ref.obsm["X_scVI"] = reference_model.get_latent_representation()
 adata_query.obsm["X_scVI"] = query_model.get_latent_representation()
 
-# Combine for visualization
+# 시각화를 위해 결합
 adata_ref.obs["source"] = "reference"
 adata_query.obs["source"] = "query"
 adata_combined = sc.concat([adata_ref, adata_query])
 
-# Compute joint UMAP
+# 공동 UMAP 계산
 sc.pp.neighbors(adata_combined, use_rep="X_scVI")
 sc.tl.umap(adata_combined)
 
-# Visualize
+# 시각화
 import matplotlib.pyplot as plt
 fig, axes = plt.subplots(1, 3, figsize=(15, 4))
 
@@ -271,38 +271,38 @@ sc.pl.umap(adata_combined, color="batch", ax=axes[2], show=False, title="Batch")
 plt.tight_layout()
 ```
 
-## Using Public Atlas Models
+## 공개 아틀라스 모델 사용
 
-### From HuggingFace Model Hub
+### HuggingFace Model Hub에서
 
 ```python
 from huggingface_hub import hf_hub_download
 
-# Download model files
+# 모델 파일 다운로드
 model_dir = hf_hub_download(
-    repo_id="scvi-tools/model-name",  # Replace with actual repo
+    repo_id="scvi-tools/model-name",  # 실제 리포로 교체
     filename="model.pt",
     local_dir="./downloaded_model/"
 )
 
-# Load model
+# 모델 로드
 atlas_model = scvi.model.SCANVI.load(model_dir)
 ```
 
-### From CellxGene
+### CellxGene에서
 
 ```python
-# Many CellxGene datasets provide pre-trained models
-# Check dataset documentation for model availability
+# 많은 CellxGene 데이터셋이 사전 훈련된 모델을 제공합니다
+# 모델 가용성에 대해서는 데이터셋 문서를 확인하세요
 # https://cellxgene.cziscience.com/
 
-# Example workflow:
-# 1. Download reference dataset and model
-# 2. Load model: model = scvi.model.SCANVI.load("cellxgene_model/")
-# 3. Map your query data using steps above
+# 예시 워크플로우:
+# 1. 참조 데이터셋과 모델 다운로드
+# 2. 모델 로드: model = scvi.model.SCANVI.load("cellxgene_model/")
+# 3. 위의 단계를 사용하여 쿼리 데이터 매핑
 ```
 
-## Complete Pipeline
+## 전체 파이프라인
 
 ```python
 def map_query_to_reference(
@@ -313,28 +313,28 @@ def map_query_to_reference(
     confidence_threshold=0.5
 ):
     """
-    Map query data to pre-trained reference model.
+    쿼리 데이터를 사전 훈련된 참조 모델에 매핑합니다.
 
     Parameters
     ----------
     adata_query : AnnData
-        Query data with raw counts
+        원시 카운트가 포함된 쿼리 데이터
     reference_model_path : str
-        Path to saved reference model
+        저장된 참조 모델 경로
     model_type : str
-        "scvi" or "scanvi"
+        "scvi" 또는 "scanvi"
     max_epochs : int
-        Fine-tuning epochs
+        미세 조정 에포크 수
     confidence_threshold : float
-        Minimum prediction confidence (for scANVI)
+        최소 예측 신뢰도 (scANVI용)
 
     Returns
     -------
-    Mapped AnnData with predictions (if scANVI)
+    예측이 포함된 매핑된 AnnData (scANVI인 경우)
     """
     import scvi
 
-    # Load reference
+    # 참조 로드
     if model_type == "scanvi":
         reference_model = scvi.model.SCANVI.load(reference_model_path)
         ModelClass = scvi.model.SCANVI
@@ -342,22 +342,22 @@ def map_query_to_reference(
         reference_model = scvi.model.SCVI.load(reference_model_path)
         ModelClass = scvi.model.SCVI
 
-    # Prepare query
+    # 쿼리 준비
     adata_query = adata_query.copy()
     adata_query = adata_query[:, reference_model.adata.var_names].copy()
     adata_query.layers["counts"] = adata_query.X.copy()
 
-    # Map query
+    # 쿼리 매핑
     ModelClass.prepare_query_anndata(adata_query, reference_model)
     query_model = ModelClass.load_query_data(adata_query, reference_model)
 
-    # Fine-tune
+    # 미세 조정
     query_model.train(
         max_epochs=max_epochs,
         plan_kwargs={"weight_decay": 0.0}
     )
 
-    # Get results
+    # 결과 획득
     rep_key = "X_scANVI" if model_type == "scanvi" else "X_scVI"
     adata_query.obsm[rep_key] = query_model.get_latent_representation()
 
@@ -367,35 +367,35 @@ def map_query_to_reference(
         adata_query.obs["prediction_confidence"] = soft.max(axis=1)
         adata_query.obs["confident"] = adata_query.obs["prediction_confidence"] >= confidence_threshold
 
-    # Compute UMAP
+    # UMAP 계산
     sc.pp.neighbors(adata_query, use_rep=rep_key)
     sc.tl.umap(adata_query)
 
     return adata_query, query_model
 
 
-# Usage
+# 사용법
 adata_mapped, model = map_query_to_reference(
     adata_query,
     "reference_scanvi_model/",
     model_type="scanvi"
 )
 
-# Visualize
+# 시각화
 sc.pl.umap(adata_mapped, color=['predicted_cell_type', 'prediction_confidence'])
 ```
 
-## Troubleshooting
+## 문제 해결
 
-| Issue | Cause | Solution |
+| 문제 | 원인 | 해결 방법 |
 |-------|-------|----------|
-| Gene mismatch | Different gene naming | Convert gene IDs (Ensembl ↔ Symbol) |
-| Many low-confidence | Query has novel types | Manually annotate low-confidence cells |
-| Poor mapping | Query too different | Consider retraining with combined data |
-| Memory error | Large query | Process in batches |
-| Version mismatch | Different scvi-tools version | Use same version as reference training |
+| 유전자 불일치 | 다른 유전자 명명 방식 | 유전자 ID 변환 (Ensembl ↔ Symbol) |
+| 낮은 신뢰도가 많음 | 쿼리에 새로운 유형이 있음 | 낮은 신뢰도 세포를 수동으로 주석 달기 |
+| 매핑 품질 저하 | 쿼리가 너무 다름 | 결합 데이터로 재훈련 고려 |
+| 메모리 오류 | 큰 쿼리 | 배치 단위로 처리 |
+| 버전 불일치 | 다른 scvi-tools 버전 | 참조 훈련과 동일한 버전 사용 |
 
-## Key References
+## 주요 참고 문헌
 
 - Lotfollahi et al. (2022) "Mapping single-cell data to reference atlases by transfer learning"
 - Xu et al. (2021) "Probabilistic harmonization and annotation of single-cell transcriptomics data with deep generative models"

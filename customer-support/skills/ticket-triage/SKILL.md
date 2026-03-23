@@ -1,275 +1,247 @@
 ---
 name: ticket-triage
-description: Triage and prioritize a support ticket or customer issue. Use when a new ticket comes in and needs categorization, assigning P1-P4 priority, deciding which team should handle it, or checking whether it's a duplicate or known issue before routing.
-argument-hint: "<ticket or issue description>"
+description: 지원 티켓이나 고객 이슈를 분류하고 우선순위화합니다. 새 티켓이 들어와 분류가 필요할 때, P1-P4 우선순위를 배정할 때, 어떤 팀이 처리해야 할지 결정할 때, 또는 라우팅 전에 중복이나 알려진 이슈인지 확인할 때 사용하세요.
+argument-hint: "<티켓 또는 이슈 설명>"
 ---
 
 # /ticket-triage
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 하는 경우, [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Categorize, prioritize, and route an incoming support ticket or customer issue. Produces a structured triage assessment with a suggested initial response.
+들어오는 지원 티켓이나 고객 이슈를 분류, 우선순위화, 라우팅합니다. 초기 응답 제안이 포함된 구조화된 분류 평가를 생성합니다.
 
-## Usage
-
-```
-/ticket-triage <ticket text, customer message, or issue description>
-```
-
-Examples:
-- `/ticket-triage Customer says their dashboard has been showing a blank page since this morning`
-- `/ticket-triage "I was charged twice for my subscription this month"`
-- `/ticket-triage User can't connect their SSO — getting a 403 error on the callback URL`
-- `/ticket-triage Feature request: they want to export reports as PDF`
-
-## Workflow
-
-### 1. Parse the Issue
-
-Read the input and extract:
-
-- **Core problem**: What is the customer actually experiencing?
-- **Symptoms**: What specific behavior or error are they seeing?
-- **Customer context**: Who is this? Any account details, plan level, or history available?
-- **Urgency signals**: Are they blocked? Is this production? How many users affected?
-- **Emotional state**: Frustrated, confused, matter-of-fact, escalating?
-
-### 2. Categorize and Prioritize
-
-Using the category taxonomy and priority framework below:
-
-- Assign a **primary category** (bug, how-to, feature request, billing, account, integration, security, data, performance) and an optional secondary category
-- Assign a **priority** (P1–P4) based on impact and urgency
-- Identify the **product area** the issue maps to
-
-### 3. Check for Duplicates and Known Issues
-
-Before routing, check available sources:
-
-- **~~support platform**: Search for similar open or recently resolved tickets
-- **~~knowledge base**: Check for known issues or existing documentation
-- **~~project tracker**: Check if there's an existing bug report or feature request
-
-Apply the duplicate detection process below.
-
-### 4. Determine Routing
-
-Using the routing rules below, recommend which team or queue should handle this based on category and complexity.
-
-### 5. Generate Triage Output
+## 사용법
 
 ```
-## Triage: [One-line issue summary]
-
-**Category:** [Primary] / [Secondary if applicable]
-**Priority:** [P1-P4] — [Brief justification]
-**Product area:** [Area/team]
-
-### Issue Summary
-[2-3 sentence summary of what the customer is experiencing]
-
-### Key Details
-- **Customer:** [Name/account if known]
-- **Impact:** [Who and what is affected]
-- **Workaround:** [Available / Not available / Unknown]
-- **Related tickets:** [Links to similar issues if found]
-- **Known issue:** [Yes — link / No / Checking]
-
-### Routing Recommendation
-**Route to:** [Team or queue]
-**Why:** [Brief reasoning]
-
-### Suggested Initial Response
-[Draft first response to the customer — acknowledge the issue,
-set expectations, provide workaround if available.
-Use the auto-response templates below as a starting point.]
-
-### Internal Notes
-- [Any additional context for the agent picking this up]
-- [Reproduction hints if it's a bug]
-- [Escalation triggers to watch for]
+/ticket-triage <티켓 텍스트, 고객 메시지, 또는 이슈 설명>
 ```
 
-### 6. Offer Next Steps
+예시:
+- `/ticket-triage 고객이 오늘 아침부터 대시보드가 빈 페이지를 보여준다고 합니다`
+- `/ticket-triage "이번 달 구독이 두 번 청구되었습니다"`
+- `/ticket-triage 사용자가 SSO를 연결할 수 없음 — 콜백 URL에서 403 오류`
+- `/ticket-triage 기능 요청: 보고서를 PDF로 내보내고 싶어 합니다`
 
-After presenting the triage:
-- "Want me to draft a full response to the customer?"
-- "Should I search for more context on this issue?"
-- "Want me to check if this is a known bug in the tracker?"
-- "Should I escalate this? I can package it with /customer-escalation."
+## 워크플로우
+
+### 1. 이슈 파싱
+
+입력을 읽고 추출합니다:
+
+- **핵심 문제**: 고객이 실제로 경험하고 있는 것은?
+- **증상**: 어떤 구체적 동작이나 오류를 보고 있는가?
+- **고객 맥락**: 누구인가? 계정 정보, 플랜 수준, 이력이 있는가?
+- **긴급성 신호**: 블로킹되었는가? 프로덕션인가? 몇 명이 영향받는가?
+- **감정 상태**: 좌절, 혼란, 사실적, 에스컬레이션 중?
+
+### 2. 분류 및 우선순위화
+
+아래 카테고리 분류 체계와 우선순위 프레임워크를 사용합니다:
+
+- **1차 카테고리** (버그, 사용법, 기능 요청, 결제, 계정, 연동, 보안, 데이터, 성능) 및 선택적 2차 카테고리 배정
+- 영향과 긴급성에 따른 **우선순위** (P1-P4) 배정
+- 이슈가 매핑되는 **제품 영역** 식별
+
+### 3. 중복 및 알려진 이슈 확인
+
+라우팅 전에 가용 소스를 확인합니다:
+
+- **~~지원 플랫폼**: 유사한 오픈 또는 최근 해결된 티켓 검색
+- **~~지식 베이스**: 알려진 이슈 또는 기존 문서 확인
+- **~~프로젝트 추적기**: 기존 버그 보고 또는 기능 요청 확인
+
+### 4. 라우팅 결정
+
+아래 라우팅 규칙을 사용하여 카테고리와 복잡도에 따라 어떤 팀이나 큐가 처리해야 하는지 추천합니다.
+
+### 5. 분류 출력 생성
+
+```
+## 분류: [한 줄 이슈 요약]
+
+**카테고리:** [1차] / [해당 시 2차]
+**우선순위:** [P1-P4] — [간략한 근거]
+**제품 영역:** [영역/팀]
+
+### 이슈 요약
+[고객이 경험하고 있는 것에 대한 2-3문장 요약]
+
+### 핵심 세부 사항
+- **고객:** [알려진 경우 이름/계정]
+- **영향:** [누구와 무엇이 영향받는지]
+- **우회 방법:** [가능 / 불가능 / 미확인]
+- **관련 티켓:** [발견된 경우 유사 이슈 링크]
+- **알려진 이슈:** [예 — 링크 / 아니오 / 확인 중]
+
+### 라우팅 추천
+**라우팅 대상:** [팀 또는 큐]
+**이유:** [간략한 근거]
+
+### 초기 응답 제안
+[고객에 대한 첫 응답 초안 — 이슈를 인정하고,
+기대를 설정하고, 가능하면 우회 방법 제공.
+아래 자동 응답 템플릿을 시작점으로 사용.]
+
+### 내부 참고
+- [이것을 인계받는 담당자를 위한 추가 맥락]
+- [버그인 경우 재현 힌트]
+- [주시할 에스컬레이션 트리거]
+```
+
+### 6. 다음 단계 제안
+
+분류를 제시한 후:
+- "고객에 대한 전체 응답을 초안해 드릴까요?"
+- "이 이슈에 대한 더 많은 맥락을 검색할까요?"
+- "추적기에서 알려진 버그인지 확인할까요?"
+- "에스컬레이션할까요? /customer-escalation으로 패키징할 수 있습니다."
 
 ---
 
-## Category Taxonomy
+## 카테고리 분류 체계
 
-Assign every ticket a **primary category** and optionally a **secondary category**:
+모든 티켓에 **1차 카테고리**와 선택적으로 **2차 카테고리**를 배정합니다:
 
-| Category | Description | Signal Words |
+| 카테고리 | 설명 | 신호 단어 |
 |----------|-------------|-------------|
-| **Bug** | Product is behaving incorrectly or unexpectedly | Error, broken, crash, not working, unexpected, wrong, failing |
-| **How-to** | Customer needs guidance on using the product | How do I, can I, where is, setting up, configure, help with |
-| **Feature request** | Customer wants a capability that doesn't exist | Would be great if, wish I could, any plans to, requesting |
-| **Billing** | Payment, subscription, invoice, or pricing issues | Charge, invoice, payment, subscription, refund, upgrade, downgrade |
-| **Account** | Account access, permissions, settings, or user management | Login, password, access, permission, SSO, locked out, can't sign in |
-| **Integration** | Issues connecting to third-party tools or APIs | API, webhook, integration, connect, OAuth, sync, third-party |
-| **Security** | Security concerns, data access, or compliance questions | Data breach, unauthorized, compliance, GDPR, SOC 2, vulnerability |
-| **Data** | Data quality, migration, import/export issues | Missing data, export, import, migration, incorrect data, duplicates |
-| **Performance** | Speed, reliability, or availability issues | Slow, timeout, latency, down, unavailable, degraded |
+| **버그** | 제품이 잘못되거나 예상치 못하게 동작 | 오류, 고장, 크래시, 작동 안 함, 예상치 못한, 잘못된, 실패 |
+| **사용법** | 제품 사용에 대한 안내 필요 | 어떻게, 할 수 있나, 어디에, 설정, 구성, 도움 |
+| **기능 요청** | 존재하지 않는 역량을 원함 | 좋겠다, 할 수 있으면, 계획 있나, 요청 |
+| **결제** | 결제, 구독, 인보이스, 가격 문제 | 청구, 인보이스, 결제, 구독, 환불, 업그레이드, 다운그레이드 |
+| **계정** | 계정 접근, 권한, 설정, 사용자 관리 | 로그인, 비밀번호, 접근, 권한, SSO, 잠김, 로그인 불가 |
+| **연동** | 제3자 도구나 API 연결 문제 | API, 웹훅, 연동, 연결, OAuth, 동기화, 제3자 |
+| **보안** | 보안 우려, 데이터 접근, 규정 준수 질문 | 데이터 유출, 무단, 규정 준수, GDPR, SOC 2, 취약점 |
+| **데이터** | 데이터 품질, 마이그레이션, 가져오기/내보내기 문제 | 누락 데이터, 내보내기, 가져오기, 마이그레이션, 잘못된 데이터, 중복 |
+| **성능** | 속도, 신뢰성, 가용성 문제 | 느림, 타임아웃, 지연, 다운, 이용 불가, 저하 |
 
-### Category Determination Tips
+### 카테고리 결정 팁
 
-- If the customer reports **both** a bug and a feature request, the bug is primary
-- If they can't log in due to a bug, category is **Bug** (not Account) — root cause drives the category
-- "It used to work and now it doesn't" = **Bug**
-- "I want it to work differently" = **Feature request**
-- "How do I make it work?" = **How-to**
-- When in doubt, lean toward **Bug** — it's better to investigate than dismiss
+- 고객이 버그와 기능 요청을 **모두** 보고하면 버그가 1차
+- 버그로 인해 로그인이 안 되면 카테고리는 **버그** (계정이 아닌) — 근본 원인이 카테고리를 결정
+- "예전에 됐는데 이제 안 돼" = **버그**
+- "다르게 작동하면 좋겠어" = **기능 요청**
+- "어떻게 작동하게 하나요?" = **사용법**
+- 확실하지 않으면 **버그** 쪽으로 — 무시하는 것보다 조사하는 것이 나음
 
-## Priority Framework
+## 우선순위 프레임워크
 
-### P1 — Critical
-**Criteria:** Production system down, data loss or corruption, security breach, all or most users affected.
+### P1 — 심각
+**기준:** 프로덕션 시스템 다운, 데이터 손실 또는 손상, 보안 침해, 모든 또는 대부분의 사용자 영향.
 
-- The customer cannot use the product at all
-- Data is being lost, corrupted, or exposed
-- A security incident is in progress
-- The issue is worsening or expanding in scope
+- 고객이 제품을 전혀 사용할 수 없음
+- 데이터가 손실, 손상 또는 노출되고 있음
+- 보안 사고가 진행 중
+- 이슈가 악화되거나 범위가 확대 중
 
-**SLA expectation:** Respond within 1 hour. Continuous work until resolved or mitigated. Updates every 1-2 hours.
+**SLA 기대:** 1시간 이내 응답. 해결 또는 완화까지 지속 작업. 1-2시간마다 업데이트.
 
-### P2 — High
-**Criteria:** Major feature broken, significant workflow blocked, many users affected, no workaround.
+### P2 — 높음
+**기준:** 주요 기능 고장, 중요한 워크플로우 차단, 많은 사용자 영향, 우회 방법 없음.
 
-- A core workflow is broken but the product is partially usable
-- Multiple users are affected or a key account is impacted
-- The issue is blocking time-sensitive work
-- No reasonable workaround exists
+- 핵심 워크플로우가 고장났지만 제품은 부분적으로 사용 가능
+- 여러 사용자가 영향받거나 핵심 계정이 영향
+- 시간에 민감한 작업을 차단
+- 합리적인 우회 방법이 없음
 
-**SLA expectation:** Respond within 4 hours. Active investigation same day. Updates every 4 hours.
+**SLA 기대:** 4시간 이내 응답. 당일 적극적 조사. 4시간마다 업데이트.
 
-### P3 — Medium
-**Criteria:** Feature partially broken, workaround available, single user or small team affected.
+### P3 — 중간
+**기준:** 기능이 부분적으로 고장, 우회 방법 가능, 단일 사용자 또는 소규모 팀 영향.
 
-- A feature isn't working correctly but a workaround exists
-- The issue is inconvenient but not blocking critical work
-- A single user or small team is affected
-- The customer is not escalating urgently
+- 기능이 올바르게 작동하지 않지만 우회 방법 존재
+- 이슈가 불편하지만 중요한 작업을 차단하지 않음
+- 단일 사용자 또는 소규모 팀이 영향
+- 고객이 긴급하게 에스컬레이션하지 않음
 
-**SLA expectation:** Respond within 1 business day. Resolution or update within 3 business days.
+**SLA 기대:** 1 영업일 이내 응답. 3 영업일 이내 해결 또는 업데이트.
 
-### P4 — Low
-**Criteria:** Minor inconvenience, cosmetic issue, general question, feature request.
+### P4 — 낮음
+**기준:** 사소한 불편, 외관 문제, 일반 질문, 기능 요청.
 
-- Cosmetic or UI issues that don't affect functionality
-- Feature requests and enhancement ideas
-- General questions or how-to inquiries
-- Issues with simple, documented solutions
+- 기능에 영향을 미치지 않는 외관이나 UI 문제
+- 기능 요청 및 개선 아이디어
+- 일반 질문이나 사용법 문의
+- 간단하고 문서화된 솔루션이 있는 문제
 
-**SLA expectation:** Respond within 2 business days. Resolution at normal pace.
+**SLA 기대:** 2 영업일 이내 응답. 정상 속도로 해결.
 
-### Priority Escalation Triggers
+### 우선순위 에스컬레이션 트리거
 
-Automatically bump priority up when:
-- Customer has been waiting longer than the SLA allows
-- Multiple customers report the same issue (pattern detected)
-- The customer explicitly escalates or mentions executive involvement
-- A workaround that was in place stops working
-- The issue expands in scope (more users, more data, new symptoms)
+다음의 경우 자동으로 우선순위를 상향합니다:
+- 고객이 SLA보다 오래 기다리고 있음
+- 같은 이슈를 여러 고객이 보고 (패턴 감지)
+- 고객이 명시적으로 에스컬레이션하거나 경영진 관여를 언급
+- 제공 중이던 우회 방법이 작동을 멈춤
+- 이슈의 범위가 확대 (더 많은 사용자, 더 많은 데이터, 새 증상)
 
-## Routing Rules
+## 라우팅 규칙
 
-Route tickets based on category and complexity:
+카테고리와 복잡도에 따라 티켓을 라우팅합니다:
 
-| Route to | When |
+| 라우팅 대상 | 경우 |
 |----------|------|
-| **Tier 1 (frontline support)** | How-to questions, known issues with documented solutions, billing inquiries, password resets |
-| **Tier 2 (senior support)** | Bugs requiring investigation, complex configuration, integration troubleshooting, account issues |
-| **Engineering** | Confirmed bugs needing code fixes, infrastructure issues, performance degradation |
-| **Product** | Feature requests with significant demand, design decisions, workflow gaps |
-| **Security** | Data access concerns, vulnerability reports, compliance questions |
-| **Billing/Finance** | Refund requests, contract disputes, complex billing adjustments |
+| **1선 (프론트라인 지원)** | 사용법 질문, 문서화된 솔루션이 있는 알려진 이슈, 결제 문의, 비밀번호 리셋 |
+| **2선 (시니어 지원)** | 조사가 필요한 버그, 복잡한 구성, 연동 문제 해결, 계정 이슈 |
+| **엔지니어링** | 코드 수정이 필요한 확인된 버그, 인프라 문제, 성능 저하 |
+| **제품** | 상당한 수요가 있는 기능 요청, 디자인 결정, 워크플로우 갭 |
+| **보안** | 데이터 접근 우려, 취약점 보고, 규정 준수 질문 |
+| **결제/재무** | 환불 요청, 계약 분쟁, 복잡한 청구 조정 |
 
-## Duplicate Detection
+## 자동 응답 템플릿 (카테고리별)
 
-Before creating a new ticket or routing, check for duplicates:
-
-1. **Search by symptom**: Look for tickets with similar error messages or descriptions
-2. **Search by customer**: Check if this customer has an open ticket for the same issue
-3. **Search by product area**: Look for recent tickets in the same feature area
-4. **Check known issues**: Compare against documented known issues
-
-**If a duplicate is found:**
-- Link the new ticket to the existing one
-- Notify the customer that this is a known issue being tracked
-- Add any new information from the new report to the existing ticket
-- Bump priority if the new report adds urgency (more customers affected, etc.)
-
-## Auto-Response Templates by Category
-
-### Bug — Initial Response
+### 버그 — 초기 응답
 ```
-Thank you for reporting this. I can see how [specific impact]
-would be disruptive for your work.
+이것을 보고해 주셔서 감사합니다. [구체적 영향]이 작업에
+지장을 주고 있는 것을 이해합니다.
 
-I've logged this as a [priority] issue and our team is
-investigating. [If workaround exists: "In the meantime, you
-can [workaround]."]
+이 문제를 [우선순위] 이슈로 등록하고 엔지니어링 팀이
+조사 중입니다. [우회 방법이 있으면: "그동안 [우회 방법]을
+사용하실 수 있습니다."]
 
-I'll update you within [SLA timeframe] with what we find.
+[SLA 시간] 이내에 발견한 것을 업데이트해 드리겠습니다.
 ```
 
-### How-to — Initial Response
+### 사용법 — 초기 응답
 ```
-Great question! [Direct answer or link to documentation]
+좋은 질문입니다! [직접 답변 또는 문서 링크]
 
-[If more complex: "Let me walk you through the steps:"]
-[Steps or guidance]
+[더 복잡한 경우: "단계를 안내해 드리겠습니다:"]
+[단계 또는 안내]
 
-Let me know if that helps, or if you have any follow-up
-questions.
-```
-
-### Feature Request — Initial Response
-```
-Thank you for this suggestion — I can see why [capability]
-would be valuable for your workflow.
-
-I've documented this and shared it with our product team.
-While I can't commit to a specific timeline, your feedback
-directly informs our roadmap priorities.
-
-[If alternative exists: "In the meantime, you might find
-[alternative] helpful for achieving something similar."]
+도움이 되었는지 또는 추가 질문이 있으시면 알려주세요.
 ```
 
-### Billing — Initial Response
+### 기능 요청 — 초기 응답
 ```
-I understand billing issues need prompt attention. Let me
-look into this for you.
+이 제안을 해주셔서 감사합니다 — [역량]이 워크플로우에
+가치가 있을 것이라는 점을 이해합니다.
 
-[If straightforward: resolution details]
-[If complex: "I'm reviewing your account now and will have
-an answer for you within [timeframe]."]
-```
+이것을 문서화하고 제품팀과 공유했습니다.
+구체적 타임라인을 약속할 수는 없지만, 피드백이
+로드맵 우선순위에 직접 반영됩니다.
 
-### Security — Initial Response
-```
-Thank you for flagging this — we take security concerns
-seriously and are reviewing this immediately.
-
-I've escalated this to our security team for investigation.
-We'll follow up with you within [timeframe] with our findings.
-
-[If action is needed: "In the meantime, we recommend
-[protective action]."]
+[대안이 있으면: "그동안 유사한 것을 달성하는 데
+[대안]이 도움이 될 수 있습니다."]
 ```
 
-## Triage Best Practices
+### 보안 — 초기 응답
+```
+이것을 알려주셔서 감사합니다 — 보안 우려를
+심각하게 받아들이며 즉시 검토하고 있습니다.
 
-1. Read the full ticket before categorizing — context in later messages often changes the assessment
-2. Categorize by **root cause**, not just the symptom described
-3. When in doubt on priority, err on the side of higher — it's easier to de-escalate than to recover from a missed SLA
-4. Always check for duplicates and known issues before routing
-5. Write internal notes that help the next person pick up context quickly
-6. Include what you've already checked or ruled out to avoid duplicate investigation
-7. Flag patterns — if you're seeing the same issue repeatedly, escalate the pattern even if individual tickets are low priority
+보안팀에 조사를 위해 에스컬레이션했습니다.
+[시간] 이내에 발견 사항을 후속 조치하겠습니다.
+
+[조치가 필요한 경우: "그동안 [보호 조치]를
+추천드립니다."]
+```
+
+## 분류 모범 사례
+
+1. 분류하기 전에 전체 티켓을 읽으세요 — 이후 메시지의 맥락이 종종 평가를 변경합니다
+2. 설명된 증상만이 아닌 **근본 원인**으로 분류하세요
+3. 우선순위가 불확실하면 높은 쪽으로 기울이세요 — 놓친 SLA에서 회복하는 것보다 하향하는 것이 더 쉬움
+4. 라우팅 전에 항상 중복과 알려진 이슈를 확인하세요
+5. 다음 사람이 빠르게 맥락을 파악할 수 있는 내부 참고를 작성하세요
+6. 중복 조사를 피하기 위해 이미 확인하거나 배제한 것을 포함하세요
+7. 패턴을 표시하세요 — 같은 이슈가 반복적으로 보이면 개별 티켓이 낮은 우선순위여도 패턴을 에스컬레이션하세요

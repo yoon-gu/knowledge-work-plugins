@@ -1,131 +1,131 @@
 ---
 name: journal-entry
-description: Prepare journal entries with proper debits, credits, and supporting detail. Use when booking month-end accruals (AP, payroll, prepaid), recording depreciation or amortization, posting revenue recognition or deferred revenue adjustments, or documenting an entry for audit review.
+description: 적절한 차변, 대변 및 증빙 세부사항이 포함된 분개를 작성합니다. 월말 미지급(AP, 급여, 선급) 계상, 감가상각 또는 상각 기록, 수익 인식 또는 이연수익 조정 전기, 감사 검토를 위한 분개 문서화 시 사용합니다.
 argument-hint: "<entry type> [period]"
 ---
 
-# Journal Entry Preparation
+# 분개 작성
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 있거나 연결된 도구를 확인하려면 [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-**Important**: This command assists with journal entry workflows but does not provide financial advice. All entries should be reviewed by qualified financial professionals before posting.
+**중요**: 이 명령은 분개 워크플로우를 지원하지만 재무 자문을 제공하지 않습니다. 모든 분개는 전기 전에 자격을 갖춘 재무 전문가의 검토를 받아야 합니다.
 
-Prepare journal entries with proper debits, credits, supporting detail, and review documentation.
+적절한 차변, 대변, 증빙 세부사항, 검토 문서가 포함된 분개를 작성합니다.
 
-## Usage
+## 사용법
 
 ```
 /je <type> <period>
 ```
 
-### Arguments
+### 인수
 
-- `type` — The journal entry type. One of:
-  - `ap-accrual` — Accounts payable accruals for goods/services received but not yet invoiced
-  - `fixed-assets` — Depreciation and amortization entries for fixed assets and intangibles
-  - `prepaid` — Amortization of prepaid expenses (insurance, software, rent, etc.)
-  - `payroll` — Payroll accruals including salaries, benefits, taxes, and bonus accruals
-  - `revenue` — Revenue recognition entries including deferred revenue adjustments
-- `period` — The accounting period (e.g., `2024-12`, `2024-Q4`, `2024`)
+- `type` — 분개 유형. 다음 중 하나:
+  - `ap-accrual` — 재화/용역 수령 후 미청구 매입채무 미지급
+  - `fixed-assets` — 유형자산 및 무형자산에 대한 감가상각비 및 상각비 분개
+  - `prepaid` — 선급비용 상각(보험, 소프트웨어, 임차료 등)
+  - `payroll` — 급여, 복리후생, 세금, 상여 미지급을 포함한 급여 미지급
+  - `revenue` — 이연수익 조정을 포함한 수익 인식 분개
+- `period` — 회계기간 (예: `2024-12`, `2024-Q4`, `2024`)
 
-## Workflow
+## 워크플로우
 
-### 1. Gather Source Data
+### 1. 원천 데이터 수집
 
-If ~~erp or ~~data warehouse is connected:
-- Pull the trial balance for the specified period
-- Pull subledger detail for the relevant accounts
-- Pull prior period entries of the same type for reference
-- Identify the current GL balances for affected accounts
+~~erp 또는 ~~data warehouse가 연결된 경우:
+- 지정된 기간의 시산표 추출
+- 관련 계정의 보조원장 세부사항 추출
+- 참조용 전기 동일 유형 분개 추출
+- 영향 받는 계정의 현재 GL 잔액 식별
 
-If no data source is connected:
-> Connect ~~erp or ~~data warehouse to pull GL data automatically. You can also paste trial balance data or upload a spreadsheet.
+데이터 소스가 연결되지 않은 경우:
+> ~~erp 또는 ~~data warehouse를 연결하여 GL 데이터를 자동으로 가져올 수 있습니다. 시산표 데이터를 붙여넣거나 스프레드시트를 업로드할 수도 있습니다.
 
-Prompt the user to provide:
-- Trial balance or GL balances for affected accounts
-- Subledger detail or supporting schedules
-- Prior period entries for reference (optional)
+사용자에게 다음 제공을 요청합니다:
+- 영향 받는 계정의 시산표 또는 GL 잔액
+- 보조원장 세부사항 또는 보조 스케줄
+- 참조용 전기 분개 (선택사항)
 
-### 2. Calculate the Entry
+### 2. 분개 계산
 
-Based on the JE type:
+분개 유형에 따라:
 
-**AP Accrual:**
-- Identify goods/services received but not invoiced by period end
-- Calculate accrual amounts from PO receipts, contracts, or estimates
-- Debit: Expense accounts (or asset accounts for capitalizable items)
-- Credit: Accrued liabilities
+**AP 미지급:**
+- 기말까지 수령했으나 미청구된 재화/용역 식별
+- PO 입고, 계약, 추정에서 미지급 금액 계산
+- 차변: 비용 계정 (또는 자본화 가능 항목의 경우 자산 계정)
+- 대변: 미지급비용
 
-**Fixed Assets:**
-- Pull the fixed asset register or depreciation schedule
-- Calculate period depreciation by asset class and method (straight-line, declining balance, units of production)
-- Debit: Depreciation expense (by department/cost center)
-- Credit: Accumulated depreciation
+**유형자산:**
+- 유형자산 대장 또는 감가상각 스케줄 추출
+- 자산 분류 및 방법별(정액법, 체감잔액법, 생산량 비례법) 기간 감가상각 계산
+- 차변: 감가상각비 (부서/코스트센터별)
+- 대변: 감가상각누계액
 
-**Prepaid:**
-- Pull the prepaid amortization schedule
-- Calculate the period amortization for each prepaid item
-- Debit: Expense accounts (by type — insurance, software, rent, etc.)
-- Credit: Prepaid expense accounts
+**선급:**
+- 선급비용 상각 스케줄 추출
+- 각 선급 항목의 기간 상각액 계산
+- 차변: 비용 계정 (유형별 — 보험, 소프트웨어, 임차료 등)
+- 대변: 선급비용 계정
 
-**Payroll:**
-- Calculate accrued salaries for days worked but not yet paid
-- Calculate accrued benefits (health, retirement contributions, PTO)
-- Calculate employer payroll tax accruals
-- Calculate bonus accruals (if applicable, based on plan terms)
-- Debit: Salary expense, benefits expense, payroll tax expense
-- Credit: Accrued payroll, accrued benefits, accrued payroll taxes
+**급여:**
+- 근무했으나 아직 미지급된 일수에 대한 미지급 급여 계산
+- 미지급 복리후생(건강보험, 퇴직기여금, 유급휴가) 계산
+- 사용자 부담 급여세 미지급 계산
+- 상여 미지급 계산(해당 시, 플랜 조건 기반)
+- 차변: 급여비용, 복리후생비, 급여세비용
+- 대변: 미지급급여, 미지급복리후생비, 미지급급여세
 
-**Revenue:**
-- Review contracts and performance obligations
-- Calculate revenue to recognize based on delivery/performance
-- Adjust deferred revenue balances
-- Debit: Deferred revenue (or accounts receivable)
-- Credit: Revenue accounts (by stream/category)
+**수익:**
+- 계약 및 이행 의무 검토
+- 인도/이행 기준 인식할 수익 계산
+- 이연수익 잔액 조정
+- 차변: 이연수익 (또는 매출채권)
+- 대변: 수익 계정 (스트림/카테고리별)
 
-### 3. Generate the Journal Entry
+### 3. 분개 생성
 
-Present the entry in standard format:
+표준 형식으로 분개를 표시합니다:
 
 ```
-Journal Entry: [Type] — [Period]
-Prepared by: [User]
-Date: [Period end date]
+Journal Entry: [유형] — [기간]
+Prepared by: [사용자]
+Date: [기말일]
 
 | Line | Account Code | Account Name | Debit | Credit | Department | Memo |
 |------|-------------|--------------|-------|--------|------------|------|
-| 1    | XXXX        | [Name]       | X,XXX |        | [Dept]     | [Detail] |
-| 2    | XXXX        | [Name]       |       | X,XXX  | [Dept]     | [Detail] |
-|      |             | **Total**    | X,XXX | X,XXX  |            |      |
+| 1    | XXXX        | [이름]       | X,XXX |        | [부서]     | [세부사항] |
+| 2    | XXXX        | [이름]       |       | X,XXX  | [부서]     | [세부사항] |
+|      |             | **합계**     | X,XXX | X,XXX  |            |      |
 
-Supporting Detail:
-- [Calculation basis and assumptions]
-- [Reference to supporting schedule or documentation]
+증빙 세부사항:
+- [계산 근거 및 가정]
+- [보조 스케줄 또는 문서 참조]
 
-Reversal: [Yes/No — if yes, specify reversal date]
+역분개: [예/아니오 — 예인 경우 역분개 일자 명시]
 ```
 
-### 4. Review Checklist
+### 4. 검토 체크리스트
 
-Before finalizing, verify:
+최종 확인 전 검증:
 
-- [ ] Debits equal credits
-- [ ] Correct accounting period
-- [ ] Account codes are valid and map to the right GL accounts
-- [ ] Amounts are calculated correctly with supporting detail
-- [ ] Memo/description is clear and specific enough for audit
-- [ ] Department/cost center coding is correct
-- [ ] Entry is consistent with prior period treatment
-- [ ] Reversal flag is set appropriately (accruals should auto-reverse)
-- [ ] Supporting documentation is referenced or attached
-- [ ] Entry is within the user's approval authority
-- [ ] No unusual or out-of-pattern amounts that need investigation
+- [ ] 차변과 대변이 일치
+- [ ] 올바른 회계기간
+- [ ] 계정 코드가 유효하고 올바른 GL 계정에 매핑
+- [ ] 금액이 증빙 세부사항과 함께 정확히 계산
+- [ ] 메모/설명이 감사에 충분히 명확하고 구체적
+- [ ] 부서/코스트센터 코딩이 정확
+- [ ] 분개가 전기 처리와 일관
+- [ ] 역분개 플래그가 적절히 설정(미지급은 자동 역분개 필요)
+- [ ] 증빙 서류가 참조되거나 첨부
+- [ ] 분개가 사용자의 승인 권한 내
+- [ ] 조사가 필요한 비정상적이거나 패턴에서 벗어난 금액 없음
 
-### 5. Output
+### 5. 산출물
 
-Provide:
-1. The formatted journal entry
-2. Supporting calculations
-3. Comparison to prior period entry of the same type (if available)
-4. Any items flagged for review or follow-up
-5. Instructions for posting (manual entry or upload format for the user's ERP)
+다음을 제공합니다:
+1. 형식화된 분개
+2. 보조 계산
+3. 전기 동일 유형 분개와의 비교 (가능한 경우)
+4. 검토 또는 후속 조치가 필요한 플래그 항목
+5. 전기 지침(수동 입력 또는 사용자 ERP용 업로드 형식)

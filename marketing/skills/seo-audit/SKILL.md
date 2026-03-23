@@ -1,190 +1,190 @@
 ---
 name: seo-audit
-description: Run a comprehensive SEO audit — keyword research, on-page analysis, content gaps, technical checks, and competitor comparison. Use when assessing a site's SEO health, when finding keyword opportunities and content gaps competitors own, or when you need a prioritized action plan split into quick wins and strategic investments.
-argument-hint: "<url or topic> [audit type]"
+description: 포괄적인 SEO 감사를 실행합니다 — 키워드 조사, 온페이지 분석, 콘텐츠 갭, 기술적 점검, 경쟁사 비교. 사이트의 SEO 건강을 평가할 때, 경쟁사가 소유한 키워드 기회와 콘텐츠 갭을 찾을 때, 또는 빠른 성과와 전략적 투자로 분류된 우선순위 실행 계획이 필요할 때 사용하세요.
+argument-hint: "<url 또는 주제> [감사 유형]"
 ---
 
 # /seo-audit
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 하는 경우, [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Audit a website's SEO health, research keyword opportunities, identify content gaps, and benchmark against competitors. Produces a prioritized action plan a marketer can execute immediately.
+웹사이트의 SEO 건강을 감사하고, 키워드 기회를 조사하고, 콘텐츠 갭을 식별하고, 경쟁사와 벤치마킹합니다. 마케터가 즉시 실행할 수 있는 우선순위 실행 계획을 생성합니다.
 
-## Trigger
+## 트리거
 
-User runs `/seo-audit` or asks for an SEO audit, keyword research, content gap analysis, technical SEO check, or competitor SEO comparison.
+사용자가 `/seo-audit`를 실행하거나 SEO 감사, 키워드 조사, 콘텐츠 갭 분석, 기술적 SEO 점검, 경쟁사 SEO 비교를 요청합니다.
 
-## Inputs
+## 입력
 
-Gather the following from the user. If not provided, ask before proceeding:
+사용자로부터 다음을 수집합니다. 제공되지 않으면 진행하기 전에 질문합니다:
 
-1. **URL or domain** — the site to audit, or a topic/keyword if running in keyword research mode
+1. **URL 또는 도메인** — 감사할 사이트, 또는 키워드 조사 모드에서 실행하는 경우 주제/키워드
 
-2. **Audit type** — one of:
-   - **Full site audit** — end-to-end SEO review covering all sections below
-   - **Keyword research** — identify keyword opportunities for a topic or domain
-   - **Content gap analysis** — find topics competitors rank for that you don't
-   - **Technical SEO check** — crawlability, speed, structured data, and infrastructure issues
-   - **Competitor SEO comparison** — head-to-head SEO benchmarking against specific competitors
+2. **감사 유형** — 다음 중 하나:
+   - **전체 사이트 감사** — 아래 모든 섹션을 다루는 종합 SEO 검토
+   - **키워드 조사** — 주제 또는 도메인에 대한 키워드 기회 식별
+   - **콘텐츠 갭 분석** — 경쟁사가 순위에 있지만 당사가 없는 주제 찾기
+   - **기술적 SEO 점검** — 크롤링 가능성, 속도, 구조화 데이터, 인프라 문제
+   - **경쟁사 SEO 비교** — 특정 경쟁사와의 SEO 벤치마킹
 
-   If not specified, default to **full site audit**.
+   지정되지 않으면 **전체 사이트 감사**를 기본으로 합니다.
 
-3. **Target keywords or topics** (optional) — specific keywords the user is already targeting or wants to rank for
+3. **타겟 키워드 또는 주제** (선택 사항) — 사용자가 이미 타겟하거나 순위를 원하는 특정 키워드
 
-4. **Competitors** (optional) — domains or companies to compare against. If not provided and the audit type requires competitor data, use web search to identify 2-3 likely competitors based on the user's domain and keyword space.
+4. **경쟁사** (선택 사항) — 비교할 도메인 또는 회사. 제공되지 않고 감사 유형이 경쟁사 데이터를 필요로 하는 경우, 웹 검색을 사용하여 사용자의 도메인과 키워드 공간을 기반으로 2-3개의 경쟁사를 식별합니다.
 
-## Process
+## 프로세스
 
-### 1. Keyword Research
+### 1. 키워드 조사
 
-Research keywords related to the user's domain, topic, or target keywords.
+사용자의 도메인, 주제 또는 타겟 키워드와 관련된 키워드를 조사합니다.
 
-**If ~~SEO tools are connected:**
-- Pull keyword data, search volume, keyword difficulty scores, and ranking positions automatically
-- Identify keywords the site currently ranks for and where it's gaining or losing ground
+**~~SEO 도구가 연결된 경우:**
+- 키워드 데이터, 검색량, 키워드 난이도 점수, 순위 위치를 자동으로 가져옵니다
+- 사이트가 현재 순위에 있는 키워드와 상승/하락 중인 곳을 식별합니다
 
-**If ~~product analytics are connected:**
-- Cross-reference keyword targets with actual organic traffic data to validate which keywords are driving visits and conversions
+**~~제품 분석이 연결된 경우:**
+- 키워드 타겟을 실제 오가닉 트래픽 데이터와 교차 참조하여 어떤 키워드가 방문과 전환을 유도하는지 검증합니다
 
-**If tools are not connected:**
-- Use web search to research the keyword landscape
-- Note: "For more precise volume and difficulty data, connect an SEO tool like Ahrefs or Semrush via MCP. The audit will auto-populate with ranking data."
+**도구가 연결되지 않은 경우:**
+- 웹 검색을 사용하여 키워드 환경을 조사합니다
+- 참고: "더 정확한 볼륨과 난이도 데이터를 위해 MCP를 통해 Ahrefs 또는 Semrush와 같은 SEO 도구를 연결하세요. 감사가 순위 데이터로 자동 채워집니다."
 
-For each keyword opportunity, assess:
-- **Primary keywords** — high-intent terms directly tied to the user's product or service
-- **Secondary keywords** — supporting terms and variations
-- **Search volume signals** — relative demand (high, medium, low) based on available data
-- **Keyword difficulty** — how competitive the term is (easy, moderate, hard)
-- **Long-tail opportunities** — specific, lower-competition phrases with clear intent
-- **Question-based keywords** — "how to", "what is", "why does" queries that mirror People Also Ask results
-- **Intent classification** — informational, navigational, commercial, or transactional
+각 키워드 기회에 대해 평가합니다:
+- **주요 키워드** — 사용자의 제품 또는 서비스와 직접 연결된 높은 의도 용어
+- **보조 키워드** — 지원 용어 및 변형
+- **검색량 신호** — 이용 가능한 데이터를 기반으로 한 상대적 수요 (높음, 중간, 낮음)
+- **키워드 난이도** — 용어의 경쟁 정도 (쉬움, 보통, 어려움)
+- **롱테일 기회** — 명확한 의도가 있는 구체적이고 경쟁이 낮은 구문
+- **질문 기반 키워드** — "방법", "무엇", "왜" 쿼리 (People Also Ask 결과 반영)
+- **의도 분류** — 정보성, 탐색성, 상업적 또는 거래적
 
-### 2. On-Page SEO Audit
+### 2. 온페이지 SEO 감사
 
-For each key page (homepage, top landing pages, recent blog posts), evaluate:
+각 핵심 페이지 (홈페이지, 주요 랜딩 페이지, 최근 블로그 포스트)에 대해 평가합니다:
 
-- **Title tags** — present, unique, within 50-60 characters, includes target keyword
-- **Meta descriptions** — present, compelling, within 150-160 characters, includes a call to action
-- **H1 tags** — exactly one per page, includes primary keyword
-- **H2/H3 structure** — logical hierarchy, uses secondary keywords where natural
-- **Keyword usage** — primary keyword appears in the first 100 words, used naturally throughout, not over-stuffed
-- **Internal linking** — pages link to related content, orphan pages identified, anchor text is descriptive
-- **Image alt text** — all images have descriptive alt attributes, keywords included where relevant
-- **URL structure** — clean, readable, includes keywords, no excessive parameters or depth
+- **타이틀 태그** — 존재, 고유성, 50-60자 이내, 타겟 키워드 포함
+- **메타 설명** — 존재, 매력적, 150-160자 이내, 행동 촉구 포함
+- **H1 태그** — 페이지당 정확히 하나, 주요 키워드 포함
+- **H2/H3 구조** — 논리적 계층, 자연스러운 곳에 보조 키워드 사용
+- **키워드 사용** — 첫 100단어에 주요 키워드, 전체에 자연스럽게 사용, 과도 삽입 없음
+- **내부 링크** — 관련 콘텐츠에 링크, 고아 페이지 식별, 앵커 텍스트가 설명적
+- **이미지 대체 텍스트** — 모든 이미지에 설명적 alt 속성, 관련 있는 곳에 키워드 포함
+- **URL 구조** — 깨끗하고, 읽기 쉽고, 키워드 포함, 과도한 매개변수나 깊이 없음
 
-### 3. Content Gap Analysis
+### 3. 콘텐츠 갭 분석
 
-Identify what's missing from the user's content strategy:
+사용자의 콘텐츠 전략에서 누락된 것을 식별합니다:
 
-- **Competitor topic coverage** — topics and keywords competitors rank for that the user's site does not cover
-- **Content freshness** — pages that haven't been updated in 12+ months and may be losing rankings
-- **Thin content** — pages with insufficient depth to rank (under 300 words for informational queries, lacking substance)
-- **Missing content types** — formats competitors use that the user doesn't (guides, comparison pages, glossaries, tools, templates)
-- **Funnel gaps** — missing content at specific buyer journey stages (awareness, consideration, decision)
-- **Topic clusters** — opportunities to build pillar pages with supporting content
+- **경쟁사 주제 커버리지** — 경쟁사가 순위에 있지만 사용자 사이트에서 다루지 않는 주제와 키워드
+- **콘텐츠 신선도** — 12개월 이상 업데이트되지 않아 순위를 잃고 있을 수 있는 페이지
+- **얇은 콘텐츠** — 순위를 매기기에 깊이가 부족한 페이지 (정보성 쿼리에 300단어 미만, 실질 부족)
+- **누락된 콘텐츠 유형** — 경쟁사가 사용하지만 사용자가 사용하지 않는 형식 (가이드, 비교 페이지, 용어집, 도구, 템플릿)
+- **퍼널 갭** — 특정 구매 여정 단계 (인지, 고려, 결정)에서 누락된 콘텐츠
+- **토픽 클러스터** — 지원 콘텐츠가 포함된 필라 페이지를 구축할 기회
 
-### 4. Technical SEO Checklist
+### 4. 기술적 SEO 체크리스트
 
-Evaluate technical foundations that affect crawlability and rankings:
+크롤링 가능성과 순위에 영향을 미치는 기술적 기반을 평가합니다:
 
-- **Page speed** — identify slow-loading pages and likely causes (large images, render-blocking scripts, excessive redirects)
-- **Mobile-friendliness** — responsive design, tap targets, font sizes, viewport configuration
-- **Structured data** — opportunities for schema markup (FAQ, HowTo, Product, Article, Organization, Breadcrumb)
-- **Crawlability** — robots.txt configuration, XML sitemap presence and accuracy, canonical tags, noindex/nofollow usage
-- **Broken links** — internal and external 404s, redirect chains
-- **HTTPS** — secure connection, mixed content issues
-- **Core Web Vitals signals** — LCP, FID/INP, CLS indicators based on observable page behavior
-- **Indexation** — pages that should be indexed but may not be, duplicate content risks
+- **페이지 속도** — 느린 로딩 페이지와 원인 식별 (큰 이미지, 렌더링 차단 스크립트, 과도한 리다이렉트)
+- **모바일 친화성** — 반응형 디자인, 탭 타겟, 글꼴 크기, 뷰포트 구성
+- **구조화 데이터** — 스키마 마크업 기회 (FAQ, HowTo, Product, Article, Organization, Breadcrumb)
+- **크롤링 가능성** — robots.txt 구성, XML 사이트맵 존재 및 정확성, canonical 태그, noindex/nofollow 사용
+- **깨진 링크** — 내부 및 외부 404, 리다이렉트 체인
+- **HTTPS** — 보안 연결, 혼합 콘텐츠 문제
+- **Core Web Vitals 신호** — 관찰 가능한 페이지 동작 기반 LCP, FID/INP, CLS 지표
+- **인덱싱** — 인덱싱되어야 하지만 되지 않을 수 있는 페이지, 중복 콘텐츠 리스크
 
-### 5. Competitor SEO Comparison
+### 5. 경쟁사 SEO 비교
 
-For each competitor, compare:
+각 경쟁사에 대해 비교합니다:
 
-- **Keyword overlap** — keywords both sites rank for, and where each site ranks higher
-- **Keyword gaps** — terms the competitor ranks for that the user does not
-- **Domain authority signals** — relative site strength based on backlink profiles, referring domains, and content depth
-- **Content depth** — average content length, topic coverage breadth, publishing frequency
-- **Backlink profile observations** — types of sites linking to competitors, link-worthy content they've produced
-- **SERP feature ownership** — which competitor appears in featured snippets, People Also Ask, image packs, or knowledge panels
-- **Technical advantages** — site speed differences, mobile experience, structured data usage
+- **키워드 겹침** — 두 사이트가 순위에 있는 키워드, 각 사이트가 더 높은 순위인 곳
+- **키워드 갭** — 경쟁사가 순위에 있지만 사용자가 없는 용어
+- **도메인 권위 신호** — 백링크 프로필, 참조 도메인, 콘텐츠 깊이 기반 상대적 사이트 강도
+- **콘텐츠 깊이** — 평균 콘텐츠 길이, 주제 커버리지 폭, 게시 빈도
+- **백링크 프로필 관찰** — 경쟁사에 링크하는 사이트 유형, 그들이 생산한 링크 가치 있는 콘텐츠
+- **SERP 기능 소유** — 추천 스니펫, People Also Ask, 이미지 팩 또는 지식 패널에 나타나는 경쟁사
+- **기술적 이점** — 사이트 속도 차이, 모바일 경험, 구조화 데이터 사용
 
-## Output
+## 출력
 
-### Executive Summary
+### 요약
 
-Open with a 3-5 sentence summary of overall SEO health. Highlight:
-- The site's biggest strength
-- The top 3 priorities that will have the most impact
-- An overall assessment: strong foundation, needs work, or critical issues
+전체 SEO 건강에 대한 3-5문장 요약으로 시작합니다. 강조 사항:
+- 사이트의 가장 큰 강점
+- 가장 큰 영향을 미칠 상위 3개 우선순위
+- 전체 평가: 강한 기반, 작업 필요 또는 심각한 문제
 
-### Keyword Opportunity Table
+### 키워드 기회 테이블
 
-| Keyword | Est. Difficulty | Opportunity Score | Current Ranking | Intent | Recommended Content Type |
+| 키워드 | 추정 난이도 | 기회 점수 | 현재 순위 | 의도 | 추천 콘텐츠 유형 |
 |---------|----------------|-------------------|-----------------|--------|--------------------------|
 
-Opportunity score: high, medium, or low — based on the combination of search demand, difficulty, and relevance to the user's business.
+기회 점수: 높음, 중간 또는 낮음 — 검색 수요, 난이도, 사용자 비즈니스와의 관련성의 조합 기반.
 
-Include 15-25 keyword opportunities, sorted by opportunity score.
+기회 점수 순으로 정렬된 15-25개 키워드 기회를 포함합니다.
 
-### On-Page Issues Table
+### 온페이지 문제 테이블
 
-| Page | Issue | Severity | Recommended Fix |
+| 페이지 | 문제 | 심각도 | 추천 수정 |
 |------|-------|----------|-----------------|
 
-Severity levels:
-- **Critical** — directly hurting rankings or preventing indexation
-- **High** — significant impact on SEO performance
-- **Medium** — best practice violation, moderate impact
-- **Low** — minor optimization opportunity
+심각도 수준:
+- **심각** — 순위에 직접 악영향을 미치거나 인덱싱을 방해
+- **높음** — SEO 성과에 상당한 영향
+- **중간** — 모범 사례 위반, 중간 영향
+- **낮음** — 사소한 최적화 기회
 
-### Content Gap Recommendations
+### 콘텐츠 갭 추천
 
-For each content gap identified, provide:
-- **Topic or keyword** to target
-- **Why it matters** — search demand, competitor coverage, funnel stage
-- **Recommended format** — blog post, landing page, guide, comparison page, etc.
-- **Priority** — high, medium, or low
-- **Estimated effort** — quick win (1-2 hours), moderate (half day), substantial (multi-day)
+식별된 각 콘텐츠 갭에 대해 제공합니다:
+- **타겟할 주제 또는 키워드**
+- **중요한 이유** — 검색 수요, 경쟁사 커버리지, 퍼널 단계
+- **추천 형식** — 블로그 포스트, 랜딩 페이지, 가이드, 비교 페이지 등
+- **우선순위** — 높음, 중간 또는 낮음
+- **예상 노력** — 빠른 성과 (1-2시간), 보통 (반나절), 상당한 (며칠)
 
-### Technical SEO Checklist
+### 기술적 SEO 체크리스트
 
-| Check | Status | Details |
+| 점검 | 상태 | 세부 사항 |
 |-------|--------|---------|
 
-Status: Pass, Fail, or Warning.
+상태: 통과, 실패 또는 경고.
 
-### Competitor Comparison Summary
+### 경쟁사 비교 요약
 
-| Dimension | Your Site | Competitor A | Competitor B | Winner |
+| 차원 | 당사 사이트 | 경쟁사 A | 경쟁사 B | 승자 |
 |-----------|-----------|--------------|--------------|--------|
 
-Include rows for: keyword count, content depth, publishing frequency, backlink signals, technical score, SERP feature presence.
+포함 행: 키워드 수, 콘텐츠 깊이, 게시 빈도, 백링크 신호, 기술 점수, SERP 기능 존재.
 
-### Prioritized Action Plan
+### 우선순위 실행 계획
 
-Split recommendations into two categories:
+추천을 두 카테고리로 분류합니다:
 
-**Quick Wins (do this week):**
-- Actions that take under 2 hours and have immediate impact
-- Examples: fix title tags, add meta descriptions, fix broken links, add alt text
+**빠른 성과 (이번 주에 실행):**
+- 2시간 미만이 걸리고 즉각적인 영향이 있는 조치
+- 예: 타이틀 태그 수정, 메타 설명 추가, 깨진 링크 수정, 대체 텍스트 추가
 
-**Strategic Investments (plan for this quarter):**
-- Actions that require more effort but drive long-term growth
-- Examples: build a topic cluster, create a pillar page, launch a link-building campaign, overhaul site structure
+**전략적 투자 (이번 분기에 계획):**
+- 더 많은 노력이 필요하지만 장기 성장을 유도하는 조치
+- 예: 토픽 클러스터 구축, 필라 페이지 작성, 링크 빌딩 캠페인 출시, 사이트 구조 개편
 
-For each action item, include:
-- What to do (specific and concrete)
-- Expected impact (high, medium, low)
-- Effort estimate
-- Dependencies (if any)
+각 실행 항목에 포함:
+- 무엇을 할지 (구체적이고 구체적)
+- 예상 영향 (높음, 중간, 낮음)
+- 노력 추정
+- 종속성 (있는 경우)
 
-## Follow-Up
+## 후속
 
-After presenting the audit, ask:
+감사를 제시한 후 질문합니다:
 
-"Would you like me to:
-- Draft content briefs for the top keyword opportunities?
-- Create optimized title tags and meta descriptions for your key pages?
-- Build a content calendar based on the gap analysis?
-- Dive deeper into any specific section of the audit?
-- Run this same analysis for a different competitor or domain?"
+"다음 중 어떤 것을 원하시나요:
+- 상위 키워드 기회에 대한 콘텐츠 브리프 초안 작성?
+- 핵심 페이지에 대한 최적화된 타이틀 태그와 메타 설명 작성?
+- 갭 분석을 기반으로 한 콘텐츠 캘린더 구축?
+- 감사의 특정 섹션에 대해 더 깊이 파고들기?
+- 다른 경쟁사나 도메인에 대해 동일한 분석 실행?"

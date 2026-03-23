@@ -1,325 +1,325 @@
 ---
 name: explore-data
-description: Profile and explore a dataset to understand its shape, quality, and patterns. Use when encountering a new table or file, checking null rates and column distributions, spotting data quality issues like duplicates or suspicious values, or deciding which dimensions and metrics to analyze.
-argument-hint: "<table or file>"
+description: 데이터셋의 형태, 품질 및 패턴을 이해하기 위해 프로파일링하고 탐색합니다. 새로운 테이블이나 파일을 처음 만났을 때, null 비율과 컬럼 분포를 확인할 때, 중복이나 의심스러운 값과 같은 데이터 품질 문제를 발견할 때, 또는 분석할 차원과 지표를 결정할 때 사용합니다.
+argument-hint: "<테이블 또는 파일>"
 ---
 
-# /explore-data - Profile and Explore a Dataset
+# /explore-data - 데이터셋 프로파일링 및 탐색
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 할 경우 [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Generate a comprehensive data profile for a table or uploaded file. Understand its shape, quality, and patterns before diving into analysis.
+테이블이나 업로드된 파일에 대한 포괄적인 데이터 프로파일을 생성합니다. 분석에 본격적으로 들어가기 전에 데이터의 형태, 품질 및 패턴을 이해합니다.
 
-## Usage
+## 사용법
 
 ```
-/explore-data <table_name or file>
+/explore-data <테이블_이름 또는 파일>
 ```
 
-## Workflow
+## 워크플로우
 
-### 1. Access the Data
+### 1. 데이터 접근
 
-**If a data warehouse MCP server is connected:**
+**데이터 웨어하우스 MCP 서버가 연결된 경우:**
 
-1. Resolve the table name (handle schema prefixes, suggest matches if ambiguous)
-2. Query table metadata: column names, types, descriptions if available
-3. Run profiling queries against the live data
+1. 테이블 이름 확인 (스키마 접두사 처리, 모호한 경우 일치 후보 제안)
+2. 테이블 메타데이터 쿼리: 컬럼 이름, 타입, 가능한 경우 설명
+3. 라이브 데이터에 대해 프로파일링 쿼리 실행
 
-**If a file is provided (CSV, Excel, Parquet, JSON):**
+**파일이 제공된 경우 (CSV, Excel, Parquet, JSON):**
 
-1. Read the file and load into a working dataset
-2. Infer column types from the data
+1. 파일을 읽고 작업 데이터셋으로 로드
+2. 데이터에서 컬럼 타입 추론
 
-**If neither:**
+**둘 다 없는 경우:**
 
-1. Ask the user to provide a table name (with their warehouse connected) or upload a file
-2. If they describe a table schema, provide guidance on what profiling queries to run
+1. 사용자에게 테이블 이름 제공(웨어하우스 연결 필요) 또는 파일 업로드 요청
+2. 테이블 스키마를 설명하는 경우, 실행할 프로파일링 쿼리에 대한 가이드 제공
 
-### 2. Understand Structure
+### 2. 구조 이해
 
-Before analyzing any data, understand its structure:
+데이터를 분석하기 전에 구조를 이해합니다:
 
-**Table-level questions:**
-- How many rows and columns?
-- What is the grain (one row per what)?
-- What is the primary key? Is it unique?
-- When was the data last updated?
-- How far back does the data go?
+**테이블 수준 질문:**
+- 몇 개의 행과 컬럼이 있는가?
+- 단위(grain)는 무엇인가 (무엇당 한 행)?
+- 기본 키는 무엇인가? 고유한가?
+- 데이터가 마지막으로 업데이트된 시기는?
+- 데이터가 얼마나 과거까지 소급되는가?
 
-**Column classification** — categorize each column as one of:
-- **Identifier**: Unique keys, foreign keys, entity IDs
-- **Dimension**: Categorical attributes for grouping/filtering (status, type, region, category)
-- **Metric**: Quantitative values for measurement (revenue, count, duration, score)
-- **Temporal**: Dates and timestamps (created_at, updated_at, event_date)
-- **Text**: Free-form text fields (description, notes, name)
-- **Boolean**: True/false flags
-- **Structural**: JSON, arrays, nested structures
+**컬럼 분류** — 각 컬럼을 다음 중 하나로 분류:
+- **식별자**: 고유 키, 외래 키, 엔티티 ID
+- **차원**: 그룹화/필터링을 위한 범주형 속성 (상태, 유형, 지역, 카테고리)
+- **지표**: 측정을 위한 정량적 값 (매출, 카운트, 기간, 점수)
+- **시간**: 날짜와 타임스탬프 (created_at, updated_at, event_date)
+- **텍스트**: 자유 형식 텍스트 필드 (설명, 메모, 이름)
+- **불리언**: True/false 플래그
+- **구조적**: JSON, 배열, 중첩 구조
 
-### 3. Generate Data Profile
+### 3. 데이터 프로파일 생성
 
-Run the following profiling checks:
+다음 프로파일링 검사를 실행합니다:
 
-**Table-level metrics:**
-- Total row count
-- Column count and types breakdown
-- Approximate table size (if available from metadata)
-- Date range coverage (min/max of date columns)
+**테이블 수준 지표:**
+- 총 행 수
+- 컬럼 수와 타입 분류
+- 근사 테이블 크기 (메타데이터에서 가능한 경우)
+- 날짜 범위 커버리지 (날짜 컬럼의 min/max)
 
-**All columns:**
-- Null count and null rate
-- Distinct count and cardinality ratio (distinct / total)
-- Most common values (top 5-10 with frequencies)
-- Least common values (bottom 5 to spot anomalies)
+**모든 컬럼:**
+- Null 수와 null 비율
+- 고유값 수와 카디널리티 비율 (고유값 / 전체)
+- 가장 흔한 값 (상위 5-10개, 빈도 포함)
+- 가장 드문 값 (하위 5개, 이상 탐지용)
 
-**Numeric columns (metrics):**
+**숫자 컬럼 (지표):**
 ```
 min, max, mean, median (p50)
-standard deviation
-percentiles: p1, p5, p25, p75, p95, p99
-zero count
-negative count (if unexpected)
+표준 편차
+백분위수: p1, p5, p25, p75, p95, p99
+0의 수
+음수 수 (예상치 못한 경우)
 ```
 
-**String columns (dimensions, text):**
+**문자열 컬럼 (차원, 텍스트):**
 ```
-min length, max length, avg length
-empty string count
-pattern analysis (do values follow a format?)
-case consistency (all upper, all lower, mixed?)
-leading/trailing whitespace count
-```
-
-**Date/timestamp columns:**
-```
-min date, max date
-null dates
-future dates (if unexpected)
-distribution by month/week
-gaps in time series
+최소 길이, 최대 길이, 평균 길이
+빈 문자열 수
+패턴 분석 (값이 특정 형식을 따르는가?)
+대소문자 일관성 (모두 대문자, 모두 소문자, 혼합?)
+앞/뒤 공백 수
 ```
 
-**Boolean columns:**
+**날짜/타임스탬프 컬럼:**
 ```
-true count, false count, null count
-true rate
+최소 날짜, 최대 날짜
+null 날짜
+미래 날짜 (예상치 못한 경우)
+월/주별 분포
+시계열 갭
 ```
 
-**Present the profile as a clean summary table**, grouped by column type (dimensions, metrics, dates, IDs).
+**불리언 컬럼:**
+```
+true 수, false 수, null 수
+true 비율
+```
 
-### 4. Identify Data Quality Issues
+**컬럼 타입(차원, 지표, 날짜, ID)별로 그룹화하여 프로파일을 깔끔한 요약 테이블로 제시합니다.**
 
-Apply the quality assessment framework below. Flag potential problems:
+### 4. 데이터 품질 문제 식별
 
-- **High null rates**: Columns with >5% nulls (warn), >20% nulls (alert)
-- **Low cardinality surprises**: Columns that should be high-cardinality but aren't (e.g., a "user_id" with only 50 distinct values)
-- **High cardinality surprises**: Columns that should be categorical but have too many distinct values
-- **Suspicious values**: Negative amounts where only positive expected, future dates in historical data, obviously placeholder values (e.g., "N/A", "TBD", "test", "999999")
-- **Duplicate detection**: Check if there's a natural key and whether it has duplicates
-- **Distribution skew**: Extremely skewed numeric distributions that could affect averages
-- **Encoding issues**: Mixed case in categorical fields, trailing whitespace, inconsistent formats
+아래 품질 평가 프레임워크를 적용합니다. 잠재적 문제 플래깅:
 
-### 5. Discover Relationships and Patterns
+- **높은 null 비율**: >5% null인 컬럼 (경고), >20% null (주의)
+- **낮은 카디널리티 놀라움**: 높은 카디널리티여야 하는데 아닌 컬럼 (예: 고유값이 50개뿐인 "user_id")
+- **높은 카디널리티 놀라움**: 범주형이어야 하는데 고유값이 너무 많은 컬럼
+- **의심스러운 값**: 양수만 예상되는데 음수, 이력 데이터에 미래 날짜, 명백한 플레이스홀더 값 (예: "N/A", "TBD", "test", "999999")
+- **중복 탐지**: 자연 키가 있는지, 중복이 있는지 확인
+- **분포 편향**: 평균에 영향을 줄 수 있는 극도로 편향된 숫자 분포
+- **인코딩 문제**: 범주형 필드의 대소문자 혼합, 후행 공백, 일관되지 않은 형식
 
-After profiling individual columns:
+### 5. 관계 및 패턴 발견
 
-- **Foreign key candidates**: ID columns that might link to other tables
-- **Hierarchies**: Columns that form natural drill-down paths (country > state > city)
-- **Correlations**: Numeric columns that move together
-- **Derived columns**: Columns that appear to be computed from others
-- **Redundant columns**: Columns with identical or near-identical information
+개별 컬럼 프로파일링 후:
 
-### 6. Suggest Interesting Dimensions and Metrics
+- **외래 키 후보**: 다른 테이블과 링크될 수 있는 ID 컬럼
+- **계층 구조**: 자연스러운 드릴다운 경로를 형성하는 컬럼 (국가 > 시/도 > 도시)
+- **상관관계**: 함께 움직이는 숫자 컬럼
+- **파생 컬럼**: 다른 컬럼에서 계산된 것으로 보이는 컬럼
+- **중복 컬럼**: 동일하거나 거의 동일한 정보를 가진 컬럼
 
-Based on the column profile, recommend:
+### 6. 유용한 차원과 지표 제안
 
-- **Best dimension columns** for slicing data (categorical columns with reasonable cardinality, 3-50 values)
-- **Key metric columns** for measurement (numeric columns with meaningful distributions)
-- **Time columns** suitable for trend analysis
-- **Natural groupings** or hierarchies apparent in the data
-- **Potential join keys** linking to other tables (ID columns, foreign keys)
+컬럼 프로파일을 기반으로 추천합니다:
 
-### 7. Recommend Follow-Up Analyses
+- **최적 차원 컬럼**: 데이터를 슬라이싱하기에 좋은 컬럼 (합리적인 카디널리티를 가진 범주형 컬럼, 3-50개 값)
+- **핵심 지표 컬럼**: 측정에 적합한 컬럼 (의미 있는 분포를 가진 숫자 컬럼)
+- **시간 컬럼**: 추세 분석에 적합한 컬럼
+- **자연 그룹화**: 데이터에서 나타나는 그룹화 또는 계층 구조
+- **잠재적 조인 키**: 다른 테이블과 연결하는 컬럼 (ID 컬럼, 외래 키)
 
-Suggest 3-5 specific analyses the user could run next:
+### 7. 후속 분석 추천
 
-- "Trend analysis on [metric] by [time_column] grouped by [dimension]"
-- "Distribution deep-dive on [skewed_column] to understand outliers"
-- "Data quality investigation on [problematic_column]"
-- "Correlation analysis between [metric_a] and [metric_b]"
-- "Cohort analysis using [date_column] and [status_column]"
+사용자가 다음에 실행할 수 있는 3-5개의 구체적 분석을 제안합니다:
 
-## Output Format
+- "[dimension]별로 그룹화한 [time_column]에 따른 [metric] 추세 분석"
+- "이상치를 이해하기 위한 [skewed_column] 분포 심층 분석"
+- "[problematic_column]에 대한 데이터 품질 조사"
+- "[metric_a]와 [metric_b] 간 상관관계 분석"
+- "[date_column]과 [status_column]을 사용한 코호트 분석"
+
+## 출력 형식
 
 ```
-## Data Profile: [table_name]
+## 데이터 프로파일: [table_name]
 
-### Overview
-- Rows: 2,340,891
-- Columns: 23 (8 dimensions, 6 metrics, 4 dates, 5 IDs)
-- Date range: 2021-03-15 to 2024-01-22
+### 개요
+- 행: 2,340,891
+- 컬럼: 23 (차원 8, 지표 6, 날짜 4, ID 5)
+- 날짜 범위: 2021-03-15 ~ 2024-01-22
 
-### Column Details
-[summary table]
+### 컬럼 세부 정보
+[요약 테이블]
 
-### Data Quality Issues
-[flagged issues with severity]
+### 데이터 품질 문제
+[심각도와 함께 플래깅된 문제]
 
-### Recommended Explorations
-[numbered list of suggested follow-up analyses]
+### 추천 탐색
+[번호가 매겨진 후속 분석 제안 목록]
 ```
 
 ---
 
-## Quality Assessment Framework
+## 품질 평가 프레임워크
 
-### Completeness Score
+### 완전성 점수
 
-Rate each column:
-- **Complete** (>99% non-null): Green
-- **Mostly complete** (95-99%): Yellow -- investigate the nulls
-- **Incomplete** (80-95%): Orange -- understand why and whether it matters
-- **Sparse** (<80%): Red -- may not be usable without imputation
+각 컬럼 평가:
+- **완전** (>99% 비null): 녹색
+- **대부분 완전** (95-99%): 노란색 -- null 조사 필요
+- **불완전** (80-95%): 주황색 -- 이유와 중요성 이해 필요
+- **희소** (<80%): 빨간색 -- 대체 없이는 사용 불가능할 수 있음
 
-### Consistency Checks
+### 일관성 검사
 
-Look for:
-- **Value format inconsistency**: Same concept represented differently ("USA", "US", "United States", "us")
-- **Type inconsistency**: Numbers stored as strings, dates in various formats
-- **Referential integrity**: Foreign keys that don't match any parent record
-- **Business rule violations**: Negative quantities, end dates before start dates, percentages > 100
-- **Cross-column consistency**: Status = "completed" but completed_at is null
+다음을 확인합니다:
+- **값 형식 불일치**: 같은 개념이 다르게 표현됨 ("USA", "US", "United States", "us")
+- **타입 불일치**: 문자열로 저장된 숫자, 다양한 형식의 날짜
+- **참조 무결성**: 부모 레코드와 일치하지 않는 외래 키
+- **비즈니스 규칙 위반**: 음수 수량, 시작 날짜보다 빠른 종료 날짜, 100%를 초과하는 백분율
+- **교차 컬럼 일관성**: 상태 = "completed"인데 completed_at이 null
 
-### Accuracy Indicators
+### 정확성 지표
 
-Red flags that suggest accuracy issues:
-- **Placeholder values**: 0, -1, 999999, "N/A", "TBD", "test", "xxx"
-- **Default values**: Suspiciously high frequency of a single value
-- **Stale data**: Updated_at shows no recent changes in an active system
-- **Impossible values**: Ages > 150, dates in the far future, negative durations
-- **Round number bias**: All values ending in 0 or 5 (suggests estimation, not measurement)
+정확성 문제를 시사하는 경고 신호:
+- **플레이스홀더 값**: 0, -1, 999999, "N/A", "TBD", "test", "xxx"
+- **기본값**: 단일 값의 의심스러운 높은 빈도
+- **오래된 데이터**: 활성 시스템에서 updated_at에 최근 변경이 없음
+- **불가능한 값**: 150세 초과, 먼 미래의 날짜, 음수 기간
+- **반올림 편향**: 모든 값이 0 또는 5로 끝남 (측정이 아닌 추정을 시사)
 
-### Timeliness Assessment
+### 적시성 평가
 
-- When was the table last updated?
-- What is the expected update frequency?
-- Is there a lag between event time and load time?
-- Are there gaps in the time series?
+- 테이블이 마지막으로 업데이트된 시기는?
+- 예상 업데이트 빈도는?
+- 이벤트 시간과 로드 시간 사이의 지연이 있는가?
+- 시계열에 갭이 있는가?
 
-## Pattern Discovery Techniques
+## 패턴 발견 기법
 
-### Distribution Analysis
+### 분포 분석
 
-For numeric columns, characterize the distribution:
-- **Normal**: Mean and median are close, bell-shaped
-- **Skewed right**: Long tail of high values (common for revenue, session duration)
-- **Skewed left**: Long tail of low values (less common)
-- **Bimodal**: Two peaks (suggests two distinct populations)
-- **Power law**: Few very large values, many small ones (common for user activity)
-- **Uniform**: Roughly equal frequency across range (often synthetic or random)
+숫자 컬럼의 분포를 특성화합니다:
+- **정규**: 평균과 중앙값이 가까움, 종 모양
+- **오른쪽 편향**: 높은 값의 긴 꼬리 (매출, 세션 시간에 흔함)
+- **왼쪽 편향**: 낮은 값의 긴 꼬리 (덜 흔함)
+- **이중 분포(Bimodal)**: 두 개의 봉우리 (두 개의 뚜렷한 집단을 시사)
+- **멱법칙**: 매우 큰 값이 소수, 작은 값이 다수 (사용자 활동에 흔함)
+- **균등**: 범위 전체에 걸쳐 대략 동일한 빈도 (종종 합성적이거나 무작위)
 
-### Temporal Patterns
+### 시간 패턴
 
-For time series data, look for:
-- **Trend**: Sustained upward or downward movement
-- **Seasonality**: Repeating patterns (weekly, monthly, quarterly, annual)
-- **Day-of-week effects**: Weekday vs. weekend differences
-- **Holiday effects**: Drops or spikes around known holidays
-- **Change points**: Sudden shifts in level or trend
-- **Anomalies**: Individual data points that break the pattern
+시계열 데이터에서 다음을 찾습니다:
+- **추세**: 지속적인 상승 또는 하락 움직임
+- **계절성**: 반복 패턴 (주별, 월별, 분기별, 연간)
+- **요일 효과**: 평일 vs 주말 차이
+- **공휴일 효과**: 알려진 공휴일 전후의 하락 또는 급증
+- **변화점**: 수준이나 추세의 갑작스러운 변화
+- **이상치**: 패턴을 깨는 개별 데이터 포인트
 
-### Segmentation Discovery
+### 세그먼테이션 발견
 
-Identify natural segments by:
-- Finding categorical columns with 3-20 distinct values
-- Comparing metric distributions across segment values
-- Looking for segments with significantly different behavior
-- Testing whether segments are homogeneous or contain sub-segments
+자연스러운 세그먼트를 다음과 같이 식별합니다:
+- 3-20개 고유값을 가진 범주형 컬럼 찾기
+- 세그먼트 값별 지표 분포 비교
+- 유의하게 다른 행동을 가진 세그먼트 찾기
+- 세그먼트가 동질적인지 하위 세그먼트를 포함하는지 테스트
 
-### Correlation Exploration
+### 상관관계 탐색
 
-Between numeric columns:
-- Compute correlation matrix for all metric pairs
-- Flag strong correlations (|r| > 0.7) for investigation
-- Note: Correlation does not imply causation -- flag this explicitly
-- Check for non-linear relationships (e.g., quadratic, logarithmic)
+숫자 컬럼 간:
+- 모든 지표 쌍에 대한 상관관계 행렬 계산
+- 강한 상관관계 (|r| > 0.7) 플래깅하여 조사
+- 참고: 상관관계는 인과관계를 의미하지 않음 -- 이를 명시적으로 표기
+- 비선형 관계 확인 (예: 이차, 로그)
 
-## Schema Understanding and Documentation
+## 스키마 이해 및 문서화
 
-### Schema Documentation Template
+### 스키마 문서화 템플릿
 
-When documenting a dataset for team use:
+팀 사용을 위해 데이터셋을 문서화할 때:
 
 ```markdown
-## Table: [schema.table_name]
+## 테이블: [schema.table_name]
 
-**Description**: [What this table represents]
-**Grain**: [One row per...]
-**Primary Key**: [column(s)]
-**Row Count**: [approximate, with date]
-**Update Frequency**: [real-time / hourly / daily / weekly]
-**Owner**: [team or person responsible]
+**설명**: [이 테이블이 나타내는 것]
+**단위(Grain)**: [무엇당 한 행...]
+**기본 키**: [컬럼]
+**행 수**: [근사치, 날짜 포함]
+**업데이트 빈도**: [실시간 / 시간별 / 일별 / 주별]
+**소유자**: [담당 팀 또는 사람]
 
-### Key Columns
+### 주요 컬럼
 
-| Column | Type | Description | Example Values | Notes |
+| 컬럼 | 타입 | 설명 | 예시 값 | 비고 |
 |--------|------|-------------|----------------|-------|
-| user_id | STRING | Unique user identifier | "usr_abc123" | FK to users.id |
-| event_type | STRING | Type of event | "click", "view", "purchase" | 15 distinct values |
-| revenue | DECIMAL | Transaction revenue in USD | 29.99, 149.00 | Null for non-purchase events |
-| created_at | TIMESTAMP | When the event occurred | 2024-01-15 14:23:01 | Partitioned on this column |
+| user_id | STRING | 고유 사용자 식별자 | "usr_abc123" | users.id FK |
+| event_type | STRING | 이벤트 유형 | "click", "view", "purchase" | 15개 고유값 |
+| revenue | DECIMAL | USD 거래 매출 | 29.99, 149.00 | 비구매 이벤트의 경우 Null |
+| created_at | TIMESTAMP | 이벤트 발생 시점 | 2024-01-15 14:23:01 | 이 컬럼으로 파티션됨 |
 
-### Relationships
-- Joins to `users` on `user_id`
-- Joins to `products` on `product_id`
-- Parent of `event_details` (1:many on event_id)
+### 관계
+- `user_id`로 `users`와 조인
+- `product_id`로 `products`와 조인
+- `event_details`의 부모 (event_id로 1:다수)
 
-### Known Issues
-- [List any known data quality issues]
-- [Note any gotchas for analysts]
+### 알려진 문제
+- [알려진 데이터 품질 문제 목록]
+- [분석가를 위한 주의사항]
 
-### Common Query Patterns
-- [Typical use cases for this table]
+### 일반적인 쿼리 패턴
+- [이 테이블의 일반적인 사용 사례]
 ```
 
-### Schema Exploration Queries
+### 스키마 탐색 쿼리
 
-When connected to a data warehouse, use these patterns to discover schema:
+데이터 웨어하우스에 연결된 경우, 다음 패턴으로 스키마를 발견합니다:
 
 ```sql
--- List all tables in a schema (PostgreSQL)
+-- 스키마의 모든 테이블 나열 (PostgreSQL)
 SELECT table_name, table_type
 FROM information_schema.tables
 WHERE table_schema = 'public'
 ORDER BY table_name;
 
--- Column details (PostgreSQL)
+-- 컬럼 세부 정보 (PostgreSQL)
 SELECT column_name, data_type, is_nullable, column_default
 FROM information_schema.columns
 WHERE table_name = 'my_table'
 ORDER BY ordinal_position;
 
--- Table sizes (PostgreSQL)
+-- 테이블 크기 (PostgreSQL)
 SELECT relname, pg_size_pretty(pg_total_relation_size(relid))
 FROM pg_catalog.pg_statio_user_tables
 ORDER BY pg_total_relation_size(relid) DESC;
 
--- Row counts for all tables (general pattern)
--- Run per-table: SELECT COUNT(*) FROM table_name
+-- 모든 테이블의 행 수 (일반 패턴)
+-- 테이블별 실행: SELECT COUNT(*) FROM table_name
 ```
 
-### Lineage and Dependencies
+### 계보 및 종속성
 
-When exploring an unfamiliar data environment:
+익숙하지 않은 데이터 환경을 탐색할 때:
 
-1. Start with the "output" tables (what reports or dashboards consume)
-2. Trace upstream: What tables feed into them?
-3. Identify raw/staging/mart layers
-4. Map the transformation chain from raw data to analytical tables
-5. Note where data is enriched, filtered, or aggregated
+1. "출력" 테이블부터 시작 (보고서나 대시보드가 소비하는 것)
+2. 상위 추적: 어떤 테이블이 이것을 공급하는가?
+3. raw/staging/mart 레이어 식별
+4. 원시 데이터에서 분석 테이블까지의 변환 체인 매핑
+5. 데이터가 보강, 필터링 또는 집계되는 곳 표기
 
-## Tips
+## 팁
 
-- For very large tables (100M+ rows), profiling queries use sampling by default -- mention if you need exact counts
-- If exploring a new dataset for the first time, this command gives you the lay of the land before writing specific queries
-- The quality flags are heuristic -- not every flag is a real problem, but each is worth a quick look
+- 매우 큰 테이블(1억+ 행)의 경우, 프로파일링 쿼리가 기본적으로 샘플링을 사용합니다 -- 정확한 수치가 필요하면 언급하세요
+- 새로운 데이터셋을 처음 탐색하는 경우, 이 명령이 특정 쿼리를 작성하기 전에 전체적인 파악을 도와줍니다
+- 품질 플래그는 경험적입니다 -- 모든 플래그가 실제 문제는 아니지만, 각각 빠르게 확인할 가치가 있습니다

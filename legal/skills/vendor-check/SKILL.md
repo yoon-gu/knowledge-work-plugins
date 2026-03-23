@@ -1,159 +1,159 @@
 ---
 name: vendor-check
-description: Check the status of existing agreements with a vendor across all connected systems — CLM, CRM, email, and document storage — with gap analysis and upcoming deadlines. Use when onboarding or renewing a vendor, when you need a consolidated view of what's signed and what's missing (MSA, DPA, SOW), or when checking for approaching expirations and surviving obligations.
+description: 연결된 모든 시스템(CLM, CRM, 이메일, 문서 스토리지)에서 공급업체와의 기존 계약 상태를 확인하고 공백 분석 및 다가오는 마감일을 제공합니다. 공급업체 온보딩 또는 갱신 시, 서명된 것과 누락된 것(MSA, DPA, SOW)에 대한 통합 뷰가 필요할 때, 또는 다가오는 만료 및 존속 의무를 확인할 때 사용합니다.
 argument-hint: "[vendor name]"
 ---
 
-# /vendor-check -- Vendor Agreement Status
+# /vendor-check -- 공급업체 계약 상태
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 있거나 연결된 도구를 확인하려면 [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Check the status of existing agreements with a vendor across all connected systems. Provides a consolidated view of the legal relationship.
+연결된 모든 시스템에서 공급업체와의 기존 계약 상태를 확인합니다. 법적 관계의 통합 뷰를 제공합니다.
 
-**Important**: This command assists with legal workflows but does not provide legal advice. Agreement status reports should be verified against original documents by qualified legal professionals.
+**중요**: 이 명령은 법무 워크플로우를 지원하지만 법률 자문을 제공하지 않습니다. 계약 상태 보고서는 자격을 갖춘 법률 전문가가 원본 문서와 대조하여 확인해야 합니다.
 
-## Invocation
+## 호출
 
 ```
 /vendor-check [vendor name]
 ```
 
-If no vendor name is provided, prompt the user to specify which vendor to check.
+공급업체 이름이 제공되지 않은 경우 사용자에게 확인할 공급업체를 지정하도록 요청합니다.
 
-## Workflow
+## 워크플로우
 
-### Step 1: Identify the Vendor
+### 단계 1: 공급업체 식별
 
-Accept the vendor name from the user. Handle common variations:
-- Full legal name vs. trade name (e.g., "Alphabet Inc." vs. "Google")
-- Abbreviations (e.g., "AWS" vs. "Amazon Web Services")
-- Parent/subsidiary relationships
+사용자로부터 공급업체 이름을 수신합니다. 일반적인 변형을 처리합니다:
+- 정식 법인명 vs 상호명(예: "Alphabet Inc." vs "Google")
+- 약어(예: "AWS" vs "Amazon Web Services")
+- 모자 관계
 
-Ask the user to clarify if the vendor name is ambiguous.
+공급업체 이름이 모호한 경우 사용자에게 명확히 요청합니다.
 
-### Step 2: Search Connected Systems
+### 단계 2: 연결된 시스템 검색
 
-Search for the vendor across all available connected systems, in priority order:
+사용 가능한 모든 연결된 시스템에서 우선순위에 따라 공급업체를 검색합니다:
 
-#### CLM (Contract Lifecycle Management) -- If Connected
-Search for all contracts involving the vendor:
-- Active agreements
-- Expired agreements (last 3 years)
-- Agreements in negotiation or pending signature
-- Amendments and addenda
+#### CLM (계약 수명주기 관리) -- 연결된 경우
+공급업체 관련 모든 계약 검색:
+- 유효한 계약
+- 만료된 계약(최근 3년)
+- 협상 중 또는 서명 대기 중인 계약
+- 수정안 및 부록
 
-#### CRM -- If Connected
-Search for the vendor/account record:
-- Account status and relationship type
-- Associated opportunities or deals
-- Contact information for vendor's legal/contracts team
+#### CRM -- 연결된 경우
+공급업체/계정 기록 검색:
+- 계정 상태 및 관계 유형
+- 연관된 기회 또는 딜
+- 공급업체의 법무/계약 팀 연락처
 
-#### Email -- If Connected
-Search for recent relevant correspondence:
-- Contract-related emails (last 6 months)
-- NDA or agreement attachments
-- Negotiation threads
+#### 이메일 -- 연결된 경우
+최근 관련 서신 검색:
+- 계약 관련 이메일(최근 6개월)
+- NDA 또는 계약 첨부파일
+- 협상 스레드
 
-#### Documents (e.g., Box, Egnyte, SharePoint) -- If Connected
-Search for:
-- Executed agreements
-- Redlines and drafts
-- Due diligence materials
+#### 문서 (예: Box, Egnyte, SharePoint) -- 연결된 경우
+검색 대상:
+- 체결된 계약
+- 수정안 및 초안
+- 실사 자료
 
-#### Chat (e.g., Slack, Teams) -- If Connected
-Search for recent mentions:
-- Contract requests involving this vendor
-- Legal questions about the vendor
-- Relevant team discussions (last 3 months)
+#### 채팅 (예: Slack, Teams) -- 연결된 경우
+최근 언급 검색:
+- 이 공급업체 관련 계약 요청
+- 공급업체에 관한 법적 질문
+- 관련 팀 논의(최근 3개월)
 
-### Step 3: Compile Agreement Status
+### 단계 3: 계약 상태 편집
 
-For each agreement found, report:
+발견된 각 계약에 대해 보고:
 
-| Field | Details |
+| 필드 | 세부사항 |
 |-------|---------|
-| **Agreement Type** | NDA, MSA, SOW, DPA, SLA, License Agreement, etc. |
-| **Status** | Active, Expired, In Negotiation, Pending Signature |
-| **Effective Date** | When the agreement started |
-| **Expiration Date** | When it expires or renews |
-| **Auto-Renewal** | Yes/No, with renewal term and notice period |
-| **Key Terms** | Liability cap, governing law, termination provisions |
-| **Amendments** | Any amendments or addenda on file |
+| **계약 유형** | NDA, MSA, SOW, DPA, SLA, 라이선스 계약 등 |
+| **상태** | 유효, 만료, 협상 중, 서명 대기 중 |
+| **시행일** | 계약이 시작된 시점 |
+| **만료일** | 만료 또는 갱신 시점 |
+| **자동 갱신** | 예/아니오, 갱신 기간 및 통지 기간 포함 |
+| **주요 조건** | 책임 한도, 준거법, 해지 조항 |
+| **수정안** | 기록된 수정안 또는 부록 |
 
-### Step 4: Gap Analysis
+### 단계 4: 공백 분석
 
-Identify what agreements exist and what might be missing:
-
-```
-## Agreement Coverage
-
-[CHECK] NDA -- [status]
-[CHECK/MISSING] MSA -- [status or "Not found"]
-[CHECK/MISSING] DPA -- [status or "Not found"]
-[CHECK/MISSING] SOW(s) -- [status or "Not found"]
-[CHECK/MISSING] SLA -- [status or "Not found"]
-[CHECK/MISSING] Insurance Certificate -- [status or "Not found"]
-```
-
-Flag any gaps that may be needed based on the relationship type (e.g., if there is an MSA but no DPA and the vendor handles personal data).
-
-### Step 5: Generate Report
-
-Output a consolidated report:
+어떤 계약이 존재하고 무엇이 누락되었는지 식별합니다:
 
 ```
-## Vendor Agreement Status: [Vendor Name]
+## 계약 포괄 범위
 
-**Search Date**: [today's date]
-**Sources Checked**: [list of systems searched]
-**Sources Unavailable**: [list of systems not connected, if any]
-
-## Relationship Overview
-
-**Vendor**: [full legal name]
-**Relationship Type**: [vendor/partner/customer/etc.]
-**CRM Status**: [if available]
-
-## Agreement Summary
-
-### [Agreement Type 1] -- [Status]
-- **Effective**: [date]
-- **Expires**: [date] ([auto-renews / does not auto-renew])
-- **Key Terms**: [summary of material terms]
-- **Location**: [where the executed copy is stored]
-
-### [Agreement Type 2] -- [Status]
-[etc.]
-
-## Gap Analysis
-
-[What's in place vs. what may be needed]
-
-## Upcoming Actions
-
-- [Any approaching expirations or renewal deadlines]
-- [Required agreements not yet in place]
-- [Amendments or updates that may be needed]
-
-## Notes
-
-[Any relevant context from email/chat searches]
+[확인] NDA -- [상태]
+[확인/누락] MSA -- [상태 또는 "미발견"]
+[확인/누락] DPA -- [상태 또는 "미발견"]
+[확인/누락] SOW(s) -- [상태 또는 "미발견"]
+[확인/누락] SLA -- [상태 또는 "미발견"]
+[확인/누락] 보험 증명서 -- [상태 또는 "미발견"]
 ```
 
-### Step 6: Handle Missing Sources
+관계 유형에 따라 필요할 수 있는 공백을 플래그합니다(예: MSA는 있으나 공급업체가 개인정보를 처리하는데 DPA가 없는 경우).
 
-If key systems are not connected via MCP:
+### 단계 5: 보고서 생성
 
-- **No CLM**: Note that no CLM is connected. Suggest the user check their CLM manually. Report what was found in other systems.
-- **No CRM**: Skip CRM context. Note the gap.
-- **No Email**: Note that email was not searched. Suggest the user search their email for "[vendor name] agreement" or "[vendor name] NDA".
-- **No Documents**: Note that document storage was not searched.
+통합 보고서를 출력합니다:
 
-Always clearly state which sources were checked and which were not, so the user knows the completeness of the report.
+```
+## 공급업체 계약 상태: [공급업체 이름]
 
-## Notes
+**검색일**: [오늘 날짜]
+**검색된 소스**: [검색된 시스템 목록]
+**사용 불가 소스**: [연결되지 않은 시스템 목록, 있는 경우]
 
-- If no agreements are found in any connected system, report that clearly and ask the user if they have agreements stored elsewhere
-- For vendor groups (e.g., a vendor with multiple subsidiaries), ask whether the user wants to check a specific entity or the entire group
-- Flag any agreements that are expired but may still have surviving obligations (confidentiality, indemnification, etc.)
-- If an agreement is approaching expiration (within 90 days), highlight this prominently
+## 관계 개요
+
+**공급업체**: [정식 법인명]
+**관계 유형**: [공급업체/파트너/고객/등]
+**CRM 상태**: [가능한 경우]
+
+## 계약 요약
+
+### [계약 유형 1] -- [상태]
+- **시행일**: [날짜]
+- **만료일**: [날짜] ([자동 갱신 / 자동 갱신 없음])
+- **주요 조건**: [중요 조건 요약]
+- **위치**: [체결 사본 저장 위치]
+
+### [계약 유형 2] -- [상태]
+[등]
+
+## 공백 분석
+
+[마련된 것 vs 필요할 수 있는 것]
+
+## 다가오는 조치
+
+- [다가오는 만료 또는 갱신 마감일]
+- [아직 마련되지 않은 필요한 계약]
+- [필요할 수 있는 수정안 또는 업데이트]
+
+## 참고사항
+
+[이메일/채팅 검색에서의 관련 맥락]
+```
+
+### 단계 6: 누락된 소스 처리
+
+MCP를 통해 핵심 시스템이 연결되지 않은 경우:
+
+- **CLM 없음**: CLM이 연결되지 않았음을 명시. 사용자에게 CLM을 수동으로 확인하도록 제안. 다른 시스템에서 발견된 내용 보고.
+- **CRM 없음**: CRM 맥락 생략. 공백 명시.
+- **이메일 없음**: 이메일이 검색되지 않았음을 명시. 사용자에게 "[공급업체명] agreement" 또는 "[공급업체명] NDA"로 이메일 검색 제안.
+- **문서 없음**: 문서 스토리지가 검색되지 않았음을 명시.
+
+항상 어떤 소스가 검색되었고 어떤 소스가 검색되지 않았는지를 명확히 명시하여 사용자가 보고서의 완전성을 알 수 있도록 합니다.
+
+## 참고사항
+
+- 연결된 어떤 시스템에서도 계약이 발견되지 않은 경우 이를 명확히 보고하고 사용자에게 다른 곳에 계약이 저장되어 있는지 질문합니다
+- 공급업체 그룹(예: 복수 자회사가 있는 공급업체)의 경우 특정 법인을 확인하는지 전체 그룹을 확인하는지 질문합니다
+- 만료되었으나 존속 의무(비밀유지, 면책 등)가 있을 수 있는 계약을 플래그합니다
+- 계약이 만료에 근접한 경우(90일 이내) 이를 눈에 띄게 강조합니다
