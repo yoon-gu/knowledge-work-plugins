@@ -6,185 +6,185 @@ argument-hint: "[audit | document | extend] <component or system>"
 
 # /design-system
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 낯선 플레이스홀더가 보이거나 연결된 도구를 확인해야 할 경우 [CONNECTORS.md](../../CONNECTORS.md)를 참고하세요.
 
-Manage your design system — audit for consistency, document components, or design new patterns.
+디자인 시스템을 관리합니다 — 일관성 감사, 컴포넌트 문서화, 또는 새 패턴 설계.
 
-## Usage
+## 사용법
 
 ```
-/design-system audit                    # Full system audit
-/design-system document [component]     # Document a component
-/design-system extend [pattern]         # Design a new component or pattern
+/design-system audit                    # 전체 시스템 감사
+/design-system document [component]     # 컴포넌트 문서화
+/design-system extend [pattern]         # 새 컴포넌트 또는 패턴 설계
 ```
 
-## Components of a Design System
+## 디자인 시스템의 구성 요소
 
-### Design Tokens
-Atomic values that define the visual language:
-- Colors (brand, semantic, neutral)
-- Typography (scale, weights, line heights)
-- Spacing (scale, component padding)
-- Borders (radius, width)
-- Shadows (elevation levels)
-- Motion (durations, easings)
+### 디자인 토큰
+시각적 언어를 정의하는 원자 값:
+- 색상 (브랜드, 시맨틱, 중립)
+- 타이포그래피 (스케일, 굵기, 줄 높이)
+- 간격 (스케일, 컴포넌트 패딩)
+- 테두리 (반지름, 너비)
+- 그림자 (높이 레벨)
+- 모션 (지속 시간, easing)
 
-### Components
-Reusable UI elements with defined:
-- Variants (primary, secondary, ghost)
-- States (default, hover, active, disabled, loading, error)
-- Sizes (sm, md, lg)
-- Behavior (interactions, animations)
-- Accessibility (ARIA, keyboard)
+### 컴포넌트
+정의된 속성을 가진 재사용 가능한 UI 요소:
+- 변형 (primary, secondary, ghost)
+- 상태 (default, hover, active, disabled, loading, error)
+- 크기 (sm, md, lg)
+- 동작 (인터랙션, 애니메이션)
+- 접근성 (ARIA, 키보드)
 
-### Patterns
-Common UI solutions combining components:
-- Forms (input groups, validation, submission)
-- Navigation (sidebar, tabs, breadcrumbs)
-- Data display (tables, cards, lists)
-- Feedback (toasts, modals, inline messages)
+### 패턴
+컴포넌트를 결합한 일반적인 UI 솔루션:
+- 폼 (입력 그룹, 유효성 검사, 제출)
+- 내비게이션 (사이드바, 탭, 브레드크럼)
+- 데이터 표시 (테이블, 카드, 목록)
+- 피드백 (토스트, 모달, 인라인 메시지)
 
-## Principles
+## 원칙
 
-1. **Consistency over creativity** — The system exists so teams don't reinvent the wheel
-2. **Flexibility within constraints** — Components should be composable, not rigid
-3. **Document everything** — If it's not documented, it doesn't exist
-4. **Version and migrate** — Breaking changes need migration paths
+1. **창의성보다 일관성** — 시스템은 팀이 바퀴를 재발명하지 않도록 존재합니다
+2. **제약 안에서의 유연성** — 컴포넌트는 경직되지 않고 조합 가능해야 합니다
+3. **모든 것을 문서화** — 문서화되지 않은 것은 존재하지 않는 것입니다
+4. **버전 관리와 마이그레이션** — 파괴적 변경에는 마이그레이션 경로가 필요합니다
 
-## Output — Audit
+## 출력 — 감사
 
 ```markdown
 ## Design System Audit
 
-### Summary
-**Components reviewed:** [X] | **Issues found:** [X] | **Score:** [X/100]
+### 요약
+**검토된 컴포넌트:** [X] | **발견된 이슈:** [X] | **점수:** [X/100]
 
-### Naming Consistency
-| Issue | Components | Recommendation |
+### 네이밍 일관성
+| 이슈 | 컴포넌트 | 권고사항 |
 |-------|------------|----------------|
-| [Inconsistent naming] | [List] | [Standard to adopt] |
+| [일관성 없는 네이밍] | [목록] | [채택할 표준] |
 
-### Token Coverage
-| Category | Defined | Hardcoded Values Found |
+### 토큰 커버리지
+| 카테고리 | 정의됨 | 하드코딩된 값 발견 |
 |----------|---------|----------------------|
-| Colors | [X] | [X] instances of hardcoded hex |
-| Spacing | [X] | [X] instances of arbitrary values |
-| Typography | [X] | [X] instances of custom fonts/sizes |
+| 색상 | [X] | [X]개의 하드코딩된 hex 인스턴스 |
+| 간격 | [X] | [X]개의 임의 값 인스턴스 |
+| 타이포그래피 | [X] | [X]개의 커스텀 폰트/크기 인스턴스 |
 
-### Component Completeness
-| Component | States | Variants | Docs | Score |
+### 컴포넌트 완성도
+| 컴포넌트 | 상태 | 변형 | 문서 | 점수 |
 |-----------|--------|----------|------|-------|
 | Button | ✅ | ✅ | ⚠️ | 8/10 |
 | Input | ✅ | ⚠️ | ❌ | 5/10 |
 
-### Priority Actions
-1. [Most impactful improvement]
-2. [Second priority]
-3. [Third priority]
+### 우선 조치 사항
+1. [가장 영향력 있는 개선]
+2. [두 번째 우선순위]
+3. [세 번째 우선순위]
 ```
 
-## Output — Document
+## 출력 — 문서화
 
 ```markdown
-## Component: [Name]
+## Component: [이름]
 
-### Description
-[What this component is and when to use it]
+### 설명
+[이 컴포넌트가 무엇인지, 언제 사용하는지]
 
-### Variants
-| Variant | Use When |
+### 변형
+| 변형 | 사용 시기 |
 |---------|----------|
-| [Primary] | [Main actions] |
-| [Secondary] | [Supporting actions] |
+| [Primary] | [주요 액션] |
+| [Secondary] | [보조 액션] |
 
 ### Props / Properties
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
 | [prop] | [type] | [default] | [description] |
 
-### States
-| State | Visual | Behavior |
+### 상태
+| 상태 | 시각적 표현 | 동작 |
 |-------|--------|----------|
-| Default | [description] | — |
-| Hover | [description] | [interaction] |
-| Active | [description] | [interaction] |
-| Disabled | [description] | Non-interactive |
-| Loading | [description] | [animation] |
+| Default | [설명] | — |
+| Hover | [설명] | [인터랙션] |
+| Active | [설명] | [인터랙션] |
+| Disabled | [설명] | 비인터랙티브 |
+| Loading | [설명] | [애니메이션] |
 
-### Accessibility
-- **Role**: [ARIA role]
-- **Keyboard**: [Tab, Enter, Escape behavior]
-- **Screen reader**: [Announced as...]
+### 접근성
+- **역할**: [ARIA role]
+- **키보드**: [Tab, Enter, Escape 동작]
+- **스크린 리더**: [읽히는 내용...]
 
-### Do's and Don'ts
-| ✅ Do | ❌ Don't |
+### 권장 사항 및 금지 사항
+| ✅ 해야 할 것 | ❌ 하지 말아야 할 것 |
 |------|---------|
-| [Best practice] | [Anti-pattern] |
+| [모범 사례] | [안티 패턴] |
 
-### Code Example
-[Framework-appropriate code snippet]
+### 코드 예시
+[프레임워크에 적합한 코드 스니펫]
 ```
 
-## Output — Extend
+## 출력 — 확장
 
 ```markdown
-## New Component: [Name]
+## New Component: [이름]
 
-### Problem
-[What user need or gap this component addresses]
+### 문제
+[이 컴포넌트가 해결하는 사용자 니즈 또는 공백]
 
-### Existing Patterns
-| Related Component | Similarity | Why It's Not Enough |
+### 기존 패턴
+| 관련 컴포넌트 | 유사점 | 부족한 이유 |
 |-------------------|-----------|---------------------|
-| [Component] | [What's shared] | [What's missing] |
+| [컴포넌트] | [공유하는 것] | [부족한 것] |
 
-### Proposed Design
+### 제안된 디자인
 
 #### API / Props
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
 | [prop] | [type] | [default] | [description] |
 
-#### Variants
-| Variant | Use When | Visual |
+#### 변형
+| 변형 | 사용 시기 | 시각적 표현 |
 |---------|----------|--------|
-| [Variant] | [Scenario] | [Description] |
+| [변형] | [시나리오] | [설명] |
 
-#### States
-| State | Behavior | Notes |
+#### 상태
+| 상태 | 동작 | 노트 |
 |-------|----------|-------|
-| Default | [Description] | — |
-| Hover | [Description] | [Interaction] |
-| Disabled | [Description] | Non-interactive |
-| Loading | [Description] | [Animation] |
+| Default | [설명] | — |
+| Hover | [설명] | [인터랙션] |
+| Disabled | [설명] | 비인터랙티브 |
+| Loading | [설명] | [애니메이션] |
 
-#### Tokens Used
-- Colors: [Which tokens]
-- Spacing: [Which tokens]
-- Typography: [Which tokens]
+#### 사용된 토큰
+- 색상: [어떤 토큰]
+- 간격: [어떤 토큰]
+- 타이포그래피: [어떤 토큰]
 
-### Accessibility
-- **Role**: [ARIA role]
-- **Keyboard**: [Expected interactions]
-- **Screen reader**: [Announced as...]
+### 접근성
+- **역할**: [ARIA role]
+- **키보드**: [예상되는 인터랙션]
+- **스크린 리더**: [읽히는 내용...]
 
-### Open Questions
-- [Decision that needs design review]
-- [Edge case to resolve]
+### 미결 사항
+- [디자인 검토가 필요한 결정]
+- [해결해야 할 엣지 케이스]
 ```
 
-## If Connectors Available
+## 커넥터를 사용할 수 있는 경우
 
-If **~~design tool** is connected:
-- Audit components directly in Figma — check naming, variants, and token usage
-- Pull component properties and layer structure for documentation
+**~~design tool**이 연결된 경우:
+- Figma에서 직접 컴포넌트 감사 — 네이밍, 변형, 토큰 사용 확인
+- 문서화를 위해 컴포넌트 속성 및 레이어 구조 가져오기
 
-If **~~knowledge base** is connected:
-- Search for existing component documentation and usage guidelines
-- Publish updated documentation to your wiki
+**~~knowledge base**가 연결된 경우:
+- 기존 컴포넌트 문서 및 사용 가이드라인 검색
+- 업데이트된 문서를 위키에 게시
 
-## Tips
+## 팁
 
-1. **Start with an audit** — Know where you are before deciding where to go.
-2. **Document as you build** — It's easier to document a component while designing it.
-3. **Prioritize coverage over perfection** — 80% of components documented beats 100% of 10 components.
+1. **감사부터 시작하세요** — 어디로 갈지 결정하기 전에 현재 위치를 파악하세요.
+2. **구축하면서 문서화하세요** — 컴포넌트를 설계하는 동안 문서화하는 것이 더 쉽습니다.
+3. **완벽함보다 커버리지를 우선시하세요** — 10개 컴포넌트의 100% 문서화보다 80%의 컴포넌트 문서화가 낫습니다.

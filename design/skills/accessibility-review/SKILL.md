@@ -6,123 +6,123 @@ argument-hint: "<Figma URL, URL, or description>"
 
 # /accessibility-review
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 낯선 플레이스홀더가 보이거나 연결된 도구를 확인해야 할 경우 [CONNECTORS.md](../../CONNECTORS.md)를 참고하세요.
 
-Audit a design or page for WCAG 2.1 AA accessibility compliance.
+WCAG 2.1 AA 접근성 준수 여부에 대해 디자인 또는 페이지를 감사합니다.
 
-## Usage
+## 사용법
 
 ```
 /accessibility-review $ARGUMENTS
 ```
 
-Audit for accessibility: @$1
+접근성 감사: @$1
 
-## WCAG 2.1 AA Quick Reference
+## WCAG 2.1 AA 빠른 참조
 
-### Perceivable
-- **1.1.1** Non-text content has alt text
-- **1.3.1** Info and structure conveyed semantically
-- **1.4.3** Contrast ratio >= 4.5:1 (normal text), >= 3:1 (large text)
-- **1.4.11** Non-text contrast >= 3:1 (UI components, graphics)
+### 인식 가능 (Perceivable)
+- **1.1.1** 비텍스트 콘텐츠에 대체 텍스트 제공
+- **1.3.1** 정보와 구조를 의미론적으로 전달
+- **1.4.3** 대비율 >= 4.5:1 (일반 텍스트), >= 3:1 (큰 텍스트)
+- **1.4.11** 비텍스트 대비 >= 3:1 (UI 컴포넌트, 그래픽)
 
-### Operable
-- **2.1.1** All functionality available via keyboard
-- **2.4.3** Logical focus order
-- **2.4.7** Visible focus indicator
-- **2.5.5** Touch target >= 44x44 CSS pixels
+### 운용 가능 (Operable)
+- **2.1.1** 모든 기능을 키보드로 사용 가능
+- **2.4.3** 논리적인 포커스 순서
+- **2.4.7** 가시적인 포커스 표시기
+- **2.5.5** 터치 타겟 >= 44x44 CSS 픽셀
 
-### Understandable
-- **3.2.1** Predictable on focus (no unexpected changes)
-- **3.3.1** Error identification (describe the error)
-- **3.3.2** Labels or instructions for inputs
+### 이해 가능 (Understandable)
+- **3.2.1** 포커스 시 예측 가능한 동작 (예기치 않은 변화 없음)
+- **3.3.1** 오류 식별 (오류 설명)
+- **3.3.2** 입력 필드에 레이블 또는 안내 제공
 
-### Robust
-- **4.1.2** Name, role, value for all UI components
+### 견고성 (Robust)
+- **4.1.2** 모든 UI 컴포넌트에 이름, 역할, 값 제공
 
-## Common Issues
+## 일반적인 문제점
 
-1. Insufficient color contrast
-2. Missing form labels
-3. No keyboard access to interactive elements
-4. Missing alt text on meaningful images
-5. Focus traps in modals
-6. Missing ARIA landmarks
-7. Auto-playing media without controls
-8. Time limits without extension options
+1. 불충분한 색상 대비
+2. 누락된 폼 레이블
+3. 인터랙티브 요소에 키보드 접근 불가
+4. 의미 있는 이미지에 대체 텍스트 누락
+5. 모달에서 포커스 트랩
+6. ARIA 랜드마크 누락
+7. 제어 기능 없이 자동 재생되는 미디어
+8. 연장 옵션 없는 시간 제한
 
-## Testing Approach
+## 테스트 접근 방식
 
-1. Automated scan (catches ~30% of issues)
-2. Keyboard-only navigation
-3. Screen reader testing (VoiceOver, NVDA)
-4. Color contrast verification
-5. Zoom to 200% — does layout break?
+1. 자동화 스캔 (약 30%의 문제 감지)
+2. 키보드만으로 내비게이션
+3. 스크린 리더 테스트 (VoiceOver, NVDA)
+4. 색상 대비 검증
+5. 200%로 확대 — 레이아웃이 무너지나요?
 
-## Output
+## 출력
 
 ```markdown
-## Accessibility Audit: [Design/Page Name]
-**Standard:** WCAG 2.1 AA | **Date:** [Date]
+## Accessibility Audit: [디자인/페이지 이름]
+**기준:** WCAG 2.1 AA | **날짜:** [날짜]
 
-### Summary
-**Issues found:** [X] | **Critical:** [X] | **Major:** [X] | **Minor:** [X]
+### 요약
+**발견된 이슈:** [X] | **심각:** [X] | **주요:** [X] | **경미:** [X]
 
-### Findings
+### 발견 사항
 
-#### Perceivable
-| # | Issue | WCAG Criterion | Severity | Recommendation |
+#### 인식 가능 (Perceivable)
+| # | 이슈 | WCAG 기준 | 심각도 | 권고사항 |
 |---|-------|---------------|----------|----------------|
-| 1 | [Issue] | [1.4.3 Contrast] | 🔴 Critical | [Fix] |
+| 1 | [이슈] | [1.4.3 대비] | 🔴 심각 | [수정 방법] |
 
-#### Operable
-| # | Issue | WCAG Criterion | Severity | Recommendation |
+#### 운용 가능 (Operable)
+| # | 이슈 | WCAG 기준 | 심각도 | 권고사항 |
 |---|-------|---------------|----------|----------------|
-| 1 | [Issue] | [2.1.1 Keyboard] | 🟡 Major | [Fix] |
+| 1 | [이슈] | [2.1.1 키보드] | 🟡 주요 | [수정 방법] |
 
-#### Understandable
-| # | Issue | WCAG Criterion | Severity | Recommendation |
+#### 이해 가능 (Understandable)
+| # | 이슈 | WCAG 기준 | 심각도 | 권고사항 |
 |---|-------|---------------|----------|----------------|
-| 1 | [Issue] | [3.3.2 Labels] | 🟢 Minor | [Fix] |
+| 1 | [이슈] | [3.3.2 레이블] | 🟢 경미 | [수정 방법] |
 
-#### Robust
-| # | Issue | WCAG Criterion | Severity | Recommendation |
+#### 견고성 (Robust)
+| # | 이슈 | WCAG 기준 | 심각도 | 권고사항 |
 |---|-------|---------------|----------|----------------|
-| 1 | [Issue] | [4.1.2 Name, Role, Value] | 🟡 Major | [Fix] |
+| 1 | [이슈] | [4.1.2 이름, 역할, 값] | 🟡 주요 | [수정 방법] |
 
-### Color Contrast Check
-| Element | Foreground | Background | Ratio | Required | Pass? |
+### 색상 대비 확인
+| 요소 | 전경색 | 배경색 | 비율 | 요구치 | 통과 여부 |
 |---------|-----------|------------|-------|----------|-------|
-| [Body text] | [color] | [color] | [X]:1 | 4.5:1 | ✅/❌ |
+| [본문 텍스트] | [색상] | [색상] | [X]:1 | 4.5:1 | ✅/❌ |
 
-### Keyboard Navigation
-| Element | Tab Order | Enter/Space | Escape | Arrow Keys |
+### 키보드 내비게이션
+| 요소 | 탭 순서 | Enter/Space | Escape | 방향키 |
 |---------|-----------|-------------|--------|------------|
-| [Element] | [Order] | [Behavior] | [Behavior] | [Behavior] |
+| [요소] | [순서] | [동작] | [동작] | [동작] |
 
-### Screen Reader
-| Element | Announced As | Issue |
+### 스크린 리더
+| 요소 | 읽히는 내용 | 이슈 |
 |---------|-------------|-------|
-| [Element] | [What SR says] | [Problem if any] |
+| [요소] | [스크린 리더가 말하는 내용] | [문제점 (있는 경우)] |
 
-### Priority Fixes
-1. **[Critical fix]** — Affects [who] and blocks [what]
-2. **[Major fix]** — Improves [what] for [who]
-3. **[Minor fix]** — Nice to have
+### 우선 수정 사항
+1. **[심각한 수정]** — [누구에게 영향을 미치고 무엇을 차단하는가]
+2. **[주요 수정]** — [누구를 위해 무엇을 개선하는가]
+3. **[경미한 수정]** — 있으면 좋은 것
 ```
 
-## If Connectors Available
+## 커넥터를 사용할 수 있는 경우
 
-If **~~design tool** is connected:
-- Inspect color values, font sizes, and touch targets directly from Figma
-- Check component ARIA roles and keyboard behavior in the design spec
+**~~design tool**이 연결된 경우:
+- Figma에서 직접 색상 값, 폰트 크기, 터치 타겟 검사
+- 디자인 명세에서 컴포넌트 ARIA 역할과 키보드 동작 확인
 
-If **~~project tracker** is connected:
-- Create tickets for each accessibility finding with severity and WCAG criterion
-- Link findings to existing accessibility remediation epics
+**~~project tracker**가 연결된 경우:
+- 심각도 및 WCAG 기준이 포함된 각 접근성 발견 사항에 대한 티켓 생성
+- 기존 접근성 개선 에픽에 발견 사항 연결
 
-## Tips
+## 팁
 
-1. **Start with contrast and keyboard** — These catch the most common and impactful issues.
-2. **Test with real assistive technology** — My audit is a great start, but manual testing with VoiceOver/NVDA catches things I can't.
-3. **Prioritize by impact** — Fix issues that block users first, polish later.
+1. **대비와 키보드부터 시작하세요** — 가장 일반적이고 영향력 있는 문제를 잡을 수 있습니다.
+2. **실제 보조 기술로 테스트하세요** — 이 감사는 좋은 출발점이지만, VoiceOver/NVDA로 직접 테스트하면 놓칠 수 있는 것들을 잡을 수 있습니다.
+3. **영향도 기준으로 우선순위를 정하세요** — 사용자를 차단하는 이슈를 먼저 수정하고, 마무리는 나중에 하세요.

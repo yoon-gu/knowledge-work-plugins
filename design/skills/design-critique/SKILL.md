@@ -6,113 +6,113 @@ argument-hint: "<Figma URL, screenshot, or description>"
 
 # /design-critique
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 낯선 플레이스홀더가 보이거나 연결된 도구를 확인해야 할 경우 [CONNECTORS.md](../../CONNECTORS.md)를 참고하세요.
 
-Get structured design feedback across multiple dimensions.
+여러 차원에 걸쳐 구조화된 디자인 피드백을 받습니다.
 
-## Usage
+## 사용법
 
 ```
 /design-critique $ARGUMENTS
 ```
 
-Review the design: @$1
+디자인 검토: @$1
 
-If a Figma URL is provided, pull the design from Figma. If a file is referenced, read it. Otherwise, ask the user to describe or share their design.
+Figma URL이 제공된 경우 Figma에서 디자인을 가져옵니다. 파일이 참조된 경우 파일을 읽습니다. 그렇지 않으면 사용자에게 디자인을 설명하거나 공유해 달라고 요청합니다.
 
-## What I Need From You
+## 필요한 정보
 
-- **The design**: Figma URL, screenshot, or detailed description
-- **Context**: What is this? Who is it for? What stage (exploration, refinement, final)?
-- **Focus** (optional): "Focus on mobile" or "Focus on the onboarding flow"
+- **디자인**: Figma URL, 스크린샷, 또는 상세 설명
+- **컨텍스트**: 이것은 무엇인가요? 대상 사용자는 누구인가요? 어떤 단계인가요 (탐색, 정제, 최종)?
+- **초점** (선택): "모바일에 집중" 또는 "온보딩 플로우에 집중"
 
-## Critique Framework
+## 비평 프레임워크
 
-### 1. First Impression (2 seconds)
-- What draws the eye first? Is that correct?
-- What's the emotional reaction?
-- Is the purpose immediately clear?
+### 1. 첫인상 (2초)
+- 시선이 먼저 어디에 가나요? 그것이 맞나요?
+- 감정적 반응은 어떤가요?
+- 목적이 즉시 명확한가요?
 
-### 2. Usability
-- Can the user accomplish their goal?
-- Is the navigation intuitive?
-- Are interactive elements obvious?
-- Are there unnecessary steps?
+### 2. 사용성
+- 사용자가 목표를 달성할 수 있나요?
+- 내비게이션이 직관적인가요?
+- 인터랙티브 요소가 명확한가요?
+- 불필요한 단계가 있나요?
 
-### 3. Visual Hierarchy
-- Is there a clear reading order?
-- Are the right elements emphasized?
-- Is whitespace used effectively?
-- Is typography creating the right hierarchy?
+### 3. 시각적 계층 구조
+- 명확한 읽기 순서가 있나요?
+- 적절한 요소가 강조되고 있나요?
+- 여백이 효과적으로 사용되고 있나요?
+- 타이포그래피가 올바른 계층 구조를 만들고 있나요?
 
-### 4. Consistency
-- Does it follow the design system?
-- Are spacing, colors, and typography consistent?
-- Do similar elements behave similarly?
+### 4. 일관성
+- 디자인 시스템을 따르고 있나요?
+- 간격, 색상, 타이포그래피가 일관적인가요?
+- 유사한 요소들이 유사하게 동작하나요?
 
-### 5. Accessibility
-- Color contrast ratios
-- Touch target sizes
-- Text readability
-- Alternative text for images
+### 5. 접근성
+- 색상 대비 비율
+- 터치 타겟 크기
+- 텍스트 가독성
+- 이미지 대체 텍스트
 
-## How to Give Feedback
+## 피드백 방식
 
-- **Be specific**: "The CTA competes with the navigation" not "the layout is confusing"
-- **Explain why**: Connect feedback to design principles or user needs
-- **Suggest alternatives**: Don't just identify problems, propose solutions
-- **Acknowledge what works**: Good feedback includes positive observations
-- **Match the stage**: Early exploration gets different feedback than final polish
+- **구체적으로**: "레이아웃이 혼란스럽다"가 아닌 "CTA가 내비게이션과 경쟁하고 있다"
+- **이유 설명**: 피드백을 디자인 원칙이나 사용자 니즈와 연결
+- **대안 제시**: 문제를 식별하는 데 그치지 않고 해결책 제안
+- **잘 된 점 인정**: 좋은 피드백에는 긍정적인 관찰도 포함됨
+- **단계에 맞추기**: 초기 탐색 단계와 최종 마무리 단계는 다른 피드백이 필요
 
-## Output
+## 출력
 
 ```markdown
-## Design Critique: [Design Name]
+## Design Critique: [디자인 이름]
 
-### Overall Impression
-[1-2 sentence first reaction — what works, what's the biggest opportunity]
+### 전체 인상
+[1-2문장의 첫 반응 — 잘 된 점, 가장 큰 개선 기회]
 
-### Usability
-| Finding | Severity | Recommendation |
+### 사용성
+| 발견 사항 | 심각도 | 권고사항 |
 |---------|----------|----------------|
-| [Issue] | 🔴 Critical / 🟡 Moderate / 🟢 Minor | [Fix] |
+| [이슈] | 🔴 심각 / 🟡 중간 / 🟢 경미 | [수정 방법] |
 
-### Visual Hierarchy
-- **What draws the eye first**: [Element] — [Is this correct?]
-- **Reading flow**: [How does the eye move through the layout?]
-- **Emphasis**: [Are the right things emphasized?]
+### 시각적 계층 구조
+- **시선이 먼저 가는 곳**: [요소] — [이것이 맞는가?]
+- **읽기 흐름**: [레이아웃에서 시선이 어떻게 이동하는가?]
+- **강조**: [올바른 요소들이 강조되고 있는가?]
 
-### Consistency
-| Element | Issue | Recommendation |
+### 일관성
+| 요소 | 이슈 | 권고사항 |
 |---------|-------|----------------|
-| [Typography/spacing/color] | [Inconsistency] | [Fix] |
+| [타이포그래피/간격/색상] | [불일치] | [수정 방법] |
 
-### Accessibility
-- **Color contrast**: [Pass/fail for key text]
-- **Touch targets**: [Adequate size?]
-- **Text readability**: [Font size, line height]
+### 접근성
+- **색상 대비**: [주요 텍스트 통과/실패]
+- **터치 타겟**: [적절한 크기인가?]
+- **텍스트 가독성**: [폰트 크기, 줄 높이]
 
-### What Works Well
-- [Positive observation 1]
-- [Positive observation 2]
+### 잘 된 점
+- [긍정적 관찰 1]
+- [긍정적 관찰 2]
 
-### Priority Recommendations
-1. **[Most impactful change]** — [Why and how]
-2. **[Second priority]** — [Why and how]
-3. **[Third priority]** — [Why and how]
+### 우선 권고사항
+1. **[가장 영향력 있는 변경]** — [이유와 방법]
+2. **[두 번째 우선순위]** — [이유와 방법]
+3. **[세 번째 우선순위]** — [이유와 방법]
 ```
 
-## If Connectors Available
+## 커넥터를 사용할 수 있는 경우
 
-If **~~design tool** is connected:
-- Pull the design directly from Figma and inspect components, tokens, and layers
-- Compare against the existing design system for consistency
+**~~design tool**이 연결된 경우:
+- Figma에서 직접 디자인을 가져와 컴포넌트, 토큰, 레이어 검사
+- 일관성 확인을 위해 기존 디자인 시스템과 비교
 
-If **~~user feedback** is connected:
-- Cross-reference design decisions with recent user feedback and support tickets
+**~~user feedback**이 연결된 경우:
+- 최근 사용자 피드백 및 지원 티켓과 디자인 결정 사항을 교차 참조
 
-## Tips
+## 팁
 
-1. **Share the context** — "This is a checkout flow for a B2B SaaS" helps me give relevant feedback.
-2. **Specify your stage** — Early exploration gets different feedback than final polish.
-3. **Ask me to focus** — "Just look at the navigation" gives you more depth on one area.
+1. **컨텍스트를 공유하세요** — "이것은 B2B SaaS의 결제 플로우입니다"와 같은 정보가 관련성 있는 피드백을 제공하는 데 도움이 됩니다.
+2. **단계를 명시하세요** — 초기 탐색 단계와 최종 마무리 단계는 다른 피드백이 필요합니다.
+3. **초점을 요청하세요** — "내비게이션만 봐주세요"라고 하면 한 영역에 대해 더 깊이 있는 내용을 얻을 수 있습니다.

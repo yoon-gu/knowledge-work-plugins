@@ -1,116 +1,116 @@
 # Design Plugin
 
-A design productivity plugin primarily designed for [Cowork](https://claude.com/product/cowork), Anthropic's agentic desktop application — though it also works in Claude Code. Helps with design critique, system management, UX writing, accessibility, research synthesis, and developer handoff. Works with any design team — standalone with your input, supercharged when you connect Figma and other tools.
+주로 Anthropic의 에이전트 데스크톱 애플리케이션인 [Cowork](https://claude.com/product/cowork)을 위해 설계된 디자인 생산성 플러그인으로, Claude Code에서도 동작합니다. 디자인 피드백, 시스템 관리, UX 라이팅, 접근성, 리서치 합성, 개발자 핸드오프를 지원합니다. 모든 디자인 팀에서 사용할 수 있으며 — 사용자의 입력만으로도 단독으로 작동하고, Figma 및 기타 도구를 연결하면 더욱 강력해집니다.
 
-## Installation
+## 설치
 
 ```bash
 claude plugins add knowledge-work-plugins/design
 ```
 
-## Commands
+## 명령어
 
-Explicit workflows you invoke with a slash command:
+슬래시 명령어로 실행하는 명시적 워크플로우:
 
-| Command | Description |
+| 명령어 | 설명 |
 |---|---|
-| `/critique` | Get structured design feedback — usability, visual hierarchy, accessibility, and consistency |
-| `/design-system` | Audit, document, or extend your design system — components, tokens, patterns |
-| `/handoff` | Generate developer handoff specs — measurements, tokens, states, interactions, and edge cases |
-| `/ux-copy` | Write or review UX copy — microcopy, error messages, empty states, onboarding flows |
-| `/accessibility` | Run an accessibility audit — WCAG compliance, color contrast, screen reader, and keyboard navigation |
-| `/research-synthesis` | Synthesize user research — interviews, surveys, usability tests into actionable insights |
+| `/critique` | 구조화된 디자인 피드백 받기 — 사용성, 시각적 계층 구조, 접근성, 일관성 |
+| `/design-system` | 디자인 시스템 감사, 문서화 또는 확장 — 컴포넌트, 토큰, 패턴 |
+| `/handoff` | 개발자 핸드오프 명세서 생성 — 측정값, 토큰, 상태, 인터랙션, 엣지 케이스 |
+| `/ux-copy` | UX 카피 작성 또는 검토 — 마이크로카피, 오류 메시지, 빈 상태, 온보딩 플로우 |
+| `/accessibility` | 접근성 감사 실행 — WCAG 준수, 색상 대비, 스크린 리더, 키보드 내비게이션 |
+| `/research-synthesis` | 사용자 리서치 합성 — 인터뷰, 설문조사, 사용성 테스트를 실행 가능한 인사이트로 정리 |
 
-All commands work **standalone** (describe your design or paste screenshots) and get **supercharged** with MCP connectors.
+모든 명령어는 **단독으로** 작동하며(디자인 설명 또는 스크린샷 공유), MCP 커넥터를 통해 **더욱 강력해집니다**.
 
-## Skills
+## 스킬
 
-Domain knowledge Claude uses automatically when relevant:
+Claude가 관련 상황에서 자동으로 활용하는 도메인 지식:
 
-| Skill | Description |
+| 스킬 | 설명 |
 |---|---|
-| `design-critique` | Evaluate designs for usability, visual hierarchy, consistency, and adherence to design principles |
-| `design-system-management` | Manage design tokens, component libraries, and pattern documentation |
-| `ux-writing` | Write effective microcopy — clear, concise, consistent, and brand-aligned |
-| `accessibility-review` | Audit designs and code for WCAG 2.1 AA compliance |
-| `user-research` | Plan, conduct, and synthesize user research — interviews, surveys, usability testing |
-| `design-handoff` | Create comprehensive developer handoff documentation from designs |
+| `design-critique` | 사용성, 시각적 계층 구조, 일관성, 디자인 원칙 준수 여부 평가 |
+| `design-system-management` | 디자인 토큰, 컴포넌트 라이브러리, 패턴 문서 관리 |
+| `ux-writing` | 효과적인 마이크로카피 작성 — 명확하고, 간결하며, 일관성 있고, 브랜드에 맞게 |
+| `accessibility-review` | WCAG 2.1 AA 준수 여부에 대한 디자인 및 코드 감사 |
+| `user-research` | 사용자 리서치 계획, 수행, 합성 — 인터뷰, 설문조사, 사용성 테스트 |
+| `design-handoff` | 디자인에서 개발자 핸드오프 문서 포괄적으로 작성 |
 
-## Example Workflows
+## 예시 워크플로우
 
-### Getting Design Feedback
+### 디자인 피드백 받기
 
 ```
 /critique
 ```
 
-Share a Figma link, screenshot, or describe your design. Get structured feedback on usability, visual hierarchy, consistency, and accessibility.
+Figma 링크, 스크린샷 공유 또는 디자인 설명. 사용성, 시각적 계층 구조, 일관성, 접근성에 대한 구조화된 피드백을 받습니다.
 
-### Auditing Your Design System
+### 디자인 시스템 감사
 
 ```
 /design-system audit
 ```
 
-I'll review your component library for consistency, completeness, and naming conventions. Get a report with specific improvement recommendations.
+컴포넌트 라이브러리의 일관성, 완전성, 네이밍 컨벤션을 검토합니다. 구체적인 개선 권고사항이 포함된 보고서를 받습니다.
 
-### Writing UX Copy
+### UX 카피 작성
 
 ```
 /ux-copy error messages for payment flow
 ```
 
-Get context-appropriate copy with tone guidance, alternatives, and localization notes.
+톤 가이드, 대안, 현지화 노트가 포함된 문맥에 맞는 카피를 받습니다.
 
-### Developer Handoff
+### 개발자 핸드오프
 
 ```
 /handoff
 ```
 
-Share a Figma link and get a complete spec: measurements, design tokens, component states, interaction notes, and edge cases.
+Figma 링크를 공유하고 완전한 명세서를 받습니다: 측정값, 디자인 토큰, 컴포넌트 상태, 인터랙션 노트, 엣지 케이스.
 
-### Accessibility Check
+### 접근성 검사
 
 ```
 /accessibility
 ```
 
-Share a design or URL. Get a WCAG 2.1 AA compliance report with specific issues, severity, and remediation steps.
+디자인 또는 URL을 공유합니다. WCAG 2.1 AA 준수 보고서와 구체적인 이슈, 심각도, 해결 방법을 받습니다.
 
-### Synthesizing Research
+### 리서치 합성
 
 ```
 /research-synthesis
 ```
 
-Upload interview transcripts, survey results, or usability test notes. Get themes, insights, and prioritized recommendations.
+인터뷰 트랜스크립트, 설문 결과, 또는 사용성 테스트 노트를 업로드합니다. 주제, 인사이트, 우선순위가 정해진 권고사항을 받습니다.
 
-## Standalone + Supercharged
+## 단독 사용 + 강화된 사용
 
-Every command and skill works without any integrations:
+모든 명령어와 스킬은 통합 없이도 작동합니다:
 
-| What You Can Do | Standalone | Supercharged With |
+| 가능한 작업 | 단독 사용 | 강화: 연결 도구 |
 |-----------------|------------|-------------------|
-| Design critique | Describe or screenshot | Figma MCP (pull designs directly) |
-| Design system | Describe your system | Figma MCP (audit component library) |
-| Handoff specs | Describe or screenshot | Figma MCP (exact measurements, tokens) |
-| UX copy | Describe the context | Knowledge base (brand voice guidelines) |
-| Accessibility | Describe or screenshot | Figma MCP, analytics for real usage data |
-| Research synthesis | Paste transcripts | User feedback tools (pull raw data) |
+| 디자인 피드백 | 설명 또는 스크린샷 | Figma MCP (디자인 직접 가져오기) |
+| 디자인 시스템 | 시스템 설명 | Figma MCP (컴포넌트 라이브러리 감사) |
+| 핸드오프 명세서 | 설명 또는 스크린샷 | Figma MCP (정확한 측정값, 토큰) |
+| UX 카피 | 컨텍스트 설명 | 지식 베이스 (브랜드 보이스 가이드라인) |
+| 접근성 | 설명 또는 스크린샷 | Figma MCP, 실제 사용 데이터를 위한 분석 |
+| 리서치 합성 | 트랜스크립트 붙여넣기 | 사용자 피드백 도구 (원시 데이터 가져오기) |
 
-## MCP Integrations
+## MCP 통합
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](CONNECTORS.md).
+> 낯선 플레이스홀더가 보이거나 연결된 도구를 확인해야 할 경우 [CONNECTORS.md](CONNECTORS.md)를 참고하세요.
 
-Connect your tools for a richer experience:
+더 풍부한 경험을 위해 도구를 연결하세요:
 
-| Category | Examples | What It Enables |
+| 카테고리 | 예시 | 활성화되는 기능 |
 |---|---|---|
-| **Design tool** | Figma | Pull designs, inspect components, access design tokens |
-| **User feedback** | Intercom, Productboard | Raw feedback, feature requests, NPS data |
-| **Project tracker** | Linear, Asana, Jira | Link designs to tickets, track implementation |
-| **Knowledge base** | Notion | Brand guidelines, design principles, research repository |
-| **Product analytics** | Amplitude, Mixpanel | Usage data for research synthesis and design decisions |
+| **디자인 도구** | Figma | 디자인 가져오기, 컴포넌트 검사, 디자인 토큰 접근 |
+| **사용자 피드백** | Intercom, Productboard | 원시 피드백, 기능 요청, NPS 데이터 |
+| **프로젝트 트래커** | Linear, Asana, Jira | 디자인을 티켓에 연결, 구현 추적 |
+| **지식 베이스** | Notion | 브랜드 가이드라인, 디자인 원칙, 리서치 저장소 |
+| **제품 분석** | Amplitude, Mixpanel | 리서치 합성 및 디자인 결정을 위한 사용 데이터 |
 
-See [CONNECTORS.md](CONNECTORS.md) for the full list of supported integrations.
+지원되는 통합의 전체 목록은 [CONNECTORS.md](CONNECTORS.md)를 참고하세요.
