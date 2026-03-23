@@ -1,99 +1,99 @@
 ---
 name: prospect
-description: "Build targeted account or contact lists using Common Room's Prospector. Triggers on 'find companies that match [criteria]', 'build a prospect list', 'find contacts at [type of company]', 'show me companies hiring [role]', or any list-building request."
+description: "Common Room의 Prospector를 사용하여 타겟 계정 또는 연락처 목록을 구축합니다. '[기준]에 맞는 회사 찾기', '잠재 고객 목록 만들기', '[유형의 회사]에서 연락처 찾기', '[역할] 채용하는 회사 보여줘', 또는 기타 목록 구축 요청에서 트리거됩니다."
 ---
 
-# Prospecting
+# 잠재 고객 발굴
 
-Build targeted account and contact lists using Common Room's Prospector. Supports iterative refinement through natural conversation, intent-based discovery, and both net-new prospecting and signal-based queries against existing accounts.
+Common Room의 Prospector를 사용하여 타겟 계정 및 연락처 목록을 구축합니다. 자연스러운 대화를 통한 반복적 세분화, 의도 기반 발견, 신규 잠재 고객 발굴과 기존 계정에 대한 신호 기반 쿼리를 모두 지원합니다.
 
-## Critical Distinction: Two Object Types
+## 핵심 구분: 두 가지 객체 유형
 
-Common Room's Prospector operates against two fundamentally different object types. Always clarify which one is in play before running a query:
+Common Room의 Prospector는 근본적으로 다른 두 가지 객체 유형에 대해 작동합니다. 쿼리를 실행하기 전에 항상 어떤 것이 해당하는지 명확히 합니다:
 
-**`ProspectorOrganization`** — Companies **not yet in Common Room**
-- Net-new companies that match specified criteria
-- Available fields are firmographic only: name, domain, size, industry, capital raised, annual revenue, location
-- Fewer filter options — no signal-based filters, no scores, no activity history
-- Use when: building a brand-new target list, territory planning, top-of-funnel expansion
+**`ProspectorOrganization`** — Common Room에 **아직 없는** 회사
+- 지정된 기준에 맞는 순수 신규 회사
+- 사용 가능한 필드는 기업 정보만: 이름, 도메인, 규모, 산업, 조달 자본, 연매출, 위치
+- 필터 옵션이 적음 — 신호 기반 필터, 점수, 활동 이력 없음
+- 사용 시점: 새로운 타겟 목록 구축, 테리토리 계획, 톱 오브 퍼널 확장
 
-**`Organization`** (in Common Room) — Companies **already in your CR workspace**
-- Full signal data available: product usage, community activity, CRM fields, scores, custom fields
-- Much richer filter set — includes signal-based, score-based, segment-based, and firmographic filters
-- Use when: finding warm accounts to prioritize, identifying expansion candidates, surfacing intent signals within existing pipeline
+**`Organization`** (Common Room 내) — **이미 CR 워크스페이스에 있는** 회사
+- 전체 신호 데이터 사용 가능: 제품 사용, 커뮤니티 활동, CRM 필드, 점수, 사용자 정의 필드
+- 훨씬 풍부한 필터 세트 — 신호 기반, 점수 기반, 세그먼트 기반, 기업 정보 필터 포함
+- 사용 시점: 따뜻한 계정 우선순위 지정, 확장 후보 식별, 기존 파이프라인 내 의도 신호 발견
 
-When a user's request could apply to both (e.g., "Show companies hiring AI engineers this month"), clarify:
-> "Are you looking for net-new companies not yet in Common Room, or filtering accounts already in your workspace?"
+사용자의 요청이 양쪽 모두 적용될 수 있는 경우 (예: "이번 달 AI 엔지니어를 채용하는 회사 보여줘"), 명확히 합니다:
+> "Common Room에 아직 없는 신규 회사를 찾으시는 건가요, 아니면 이미 워크스페이스에 있는 계정을 필터링하시는 건가요?"
 
-The catalog should make this distinction explicit so the LLM can select the right Prospector endpoint.
+카탈로그는 이 구분을 명시적으로 만들어 LLM이 올바른 Prospector 엔드포인트를 선택할 수 있도록 해야 합니다.
 
-## Step 0: Load User Context (Me)
+## 0단계: 사용자 컨텍스트(Me) 로드
 
-Fetch the `Me` object to get the user's segments. When prospecting against `Organization` records (accounts already in CR), default to filtering within "My Segments" unless the user asks for a broader search.
+`Me` 객체를 가져와 사용자의 세그먼트를 가져옵니다. `Organization` 레코드(이미 CR에 있는 계정)에 대해 잠재 고객을 발굴할 때, 사용자가 더 넓은 검색을 요청하지 않는 한 기본적으로 "내 세그먼트" 내에서 필터링합니다.
 
-## Step 1: Gather Targeting Criteria
+## 1단계: 타겟팅 기준 수집
 
-If criteria are already provided, proceed. Otherwise ask:
+기준이 이미 제공되었으면 진행합니다. 그렇지 않으면 묻습니다:
 
-> "What kind of accounts or contacts are you looking for? For example: company size, industry, job titles, signals like recent product activity or community engagement, geographic region, or specific intent signals like recent funding or job postings."
+> "어떤 종류의 계정이나 연락처를 찾으시나요? 예를 들어: 회사 규모, 산업, 직함, 최근 제품 활동이나 커뮤니티 참여 같은 신호, 지역, 최근 펀딩이나 채용 같은 특정 의도 신호 등."
 
-Use the Common Room object catalog to see available filters for each object type. The key distinction:
-- **ProspectorOrganization** — firmographic and technographic filters only (industry, size, geography, funding, tech stack)
-- **Organization** — all firmographic filters plus signal-based, score-based, segment-based, and CRM filters
+Common Room 객체 카탈로그를 사용하여 각 객체 유형에 사용 가능한 필터를 확인합니다. 핵심 구분:
+- **ProspectorOrganization** — 기업 정보 및 기술 정보 필터만 (산업, 규모, 지역, 펀딩, 기술 스택)
+- **Organization** — 모든 기업 정보 필터 + 신호 기반, 점수 기반, 세그먼트 기반, CRM 필터
 
-**Lookalike search:** If the user asks to "find companies like [X]", first look up the reference company in Common Room (or via web search if not in CR). Extract its key attributes — industry, employee range, tech stack, funding stage, geography — and propose those as filter criteria. Present the derived criteria to the user for confirmation before running the search, since lookalike targeting works best when the user can refine which attributes matter most.
+**유사 검색:** 사용자가 "[X]와 비슷한 회사 찾아줘"라고 요청하면, 먼저 Common Room에서 참조 회사를 조회합니다 (CR에 없으면 웹 검색). 핵심 속성을 추출합니다 — 산업, 직원 범위, 기술 스택, 펀딩 단계, 지역 — 그리고 이를 필터 기준으로 제안합니다. 검색 실행 전에 도출된 기준을 사용자에게 확인 요청합니다. 유사 타겟팅은 사용자가 어떤 속성이 가장 중요한지 세분화할 때 가장 잘 작동합니다.
 
-## Step 2: Support Iterative Refinement
+## 2단계: 반복적 세분화 지원
 
-Prospecting is conversational. Support multi-turn refinement naturally:
+잠재 고객 발굴은 대화형입니다. 자연스럽게 다중 턴 세분화를 지원합니다:
 
-1. Run initial query with provided criteria
-2. If results are large (50+), summarize and offer: "I found [N] results. Want to narrow by [suggested filter]?"
-3. If results are too few (< 5), suggest: "Only [N] results with those filters — I can broaden by relaxing [specific criterion]."
-4. Apply each refinement as a follow-up query, not a new search from scratch
+1. 제공된 기준으로 초기 쿼리 실행
+2. 결과가 큰 경우 (50+), 요약하고 제안: "[N]개 결과를 찾았습니다. [제안 필터]로 범위를 좁히시겠습니까?"
+3. 결과가 너무 적으면 (5 미만), 제안: "해당 필터로 [N]개 결과만 있습니다 — [특정 기준]을 완화하면 넓힐 수 있습니다."
+4. 각 세분화를 처음부터 새로운 검색이 아닌 후속 쿼리로 적용
 
-Example flow:
-- Rep: "Find cybersecurity companies in California." → 500 results
-- Rep: "Only show ones over 300 employees using AWS." → 47 results
-- Rep: "Focus on the ones with recent hiring activity." → 12 results ✓
+예시 흐름:
+- 담당자: "캘리포니아의 사이버보안 회사 찾아줘." → 500개 결과
+- 담당자: "AWS를 사용하는 300명 이상만 보여줘." → 47개 결과
+- 담당자: "최근 채용 활동이 있는 것에 집중." → 12개 결과
 
-## Step 3: Run the Query and Present Results
+## 3단계: 쿼리 실행 및 결과 제시
 
-Execute the Prospector query with confirmed criteria. Sort by signal strength or fit score where available (not alphabetically).
+확인된 기준으로 Prospector 쿼리를 실행합니다. 가능한 경우 신호 강도 또는 적합 점수 순으로 정렬 (알파벳순이 아님).
 
-**For `ProspectorOrganization` (net-new) results:**
+**`ProspectorOrganization` (신규) 결과:**
 
-| Company | Domain | Industry | Size | Capital Raised | Revenue | Location |
-|---------|--------|----------|------|---------------|---------|----------|
+| 회사 | 도메인 | 산업 | 규모 | 조달 자본 | 매출 | 위치 |
+|------|--------|------|------|----------|------|------|
 
-**For `Organization` (in CR) results:**
+**`Organization` (CR 내) 결과:**
 
-| Company | Industry | Size | Top Signal | Signal Date | Score | CRM Stage |
-|---------|----------|------|-----------|-------------|-------|-----------|
+| 회사 | 산업 | 규모 | 상위 신호 | 신호 날짜 | 점수 | CRM 단계 |
+|------|------|------|----------|----------|------|---------|
 
-Flag any results where data is thin or the most recent signal is older than 90 days.
+데이터가 부족하거나 가장 최근 신호가 90일 이상 지난 결과를 표시합니다.
 
-## Step 3.5: Enrich Net-New Results with Web Search
+## 3.5단계: 신규 결과에 웹 검색으로 보강
 
-For `ProspectorOrganization` results (net-new companies not in CR), run a quick web search on the top 3–5 companies to add context beyond firmographics. CR has no behavioral signals for these companies, so web search fills the gap — look for recent funding, product launches, leadership changes, or news coverage. Include findings as brief annotations next to each company in the results.
+`ProspectorOrganization` 결과 (CR에 없는 신규 회사)의 경우, 상위 3-5개 회사에 대해 빠른 웹 검색을 실행하여 기업 정보 이상의 컨텍스트를 추가합니다. CR은 이 회사들에 대한 행동 신호가 없으므로 웹 검색이 공백을 채웁니다 — 최근 펀딩, 제품 출시, 리더십 변경, 뉴스 보도를 찾습니다. 결과에 각 회사 옆에 간략한 주석으로 포함합니다.
 
-## Step 4: Offer Next Steps
+## 4단계: 다음 단계 제안
 
-- "Want me to draft outreach for the top 3–5 prospects?"
-- "Should I run a full account brief on any of these?"
-- "Want to refine the criteria or add another filter?"
-- "I can format this as a CSV if you'd like to export it."
-- "For any net-new companies here, I can add them to Common Room for enrichment." *(future capability)*
+- "상위 3-5개 잠재 고객에 대해 아웃리치 초안을 작성할까요?"
+- "이들 중 하나에 대해 전체 계정 브리핑을 실행할까요?"
+- "기준을 세분화하거나 다른 필터를 추가하시겠습니까?"
+- "CSV로 포맷하여 내보내시겠습니까?"
+- "여기의 신규 회사 중 Common Room에 추가하여 보강할 수 있습니다." *(향후 기능)*
 
-## Quality Standards
+## 품질 기준
 
-- Always confirm which object type (ProspectorOrg vs Organization) before running the query
-- Default to "My Segments" when querying Organization records, unless user specifies otherwise
-- Support iterative refinement — treat each follow-up as a filter adjustment, not a fresh start
-- Never mix result fields from ProspectorOrganization and Organization in the same list
-- Fewer high-quality results beat a long unqualified list
-- **Only show data the query returned** — leave blank or "—" for missing fields, don't invent values
+- 쿼리를 실행하기 전에 항상 어떤 객체 유형 (ProspectorOrg vs Organization)인지 확인
+- Organization 레코드를 쿼리할 때 사용자가 달리 지정하지 않는 한 "내 세그먼트"로 기본 설정
+- 반복적 세분화 지원 — 각 후속 조치를 새로 시작이 아닌 필터 조정으로 처리
+- 같은 목록에서 ProspectorOrganization과 Organization의 결과 필드를 혼합하지 않기
+- 긴 비검증 목록보다 적은 수의 고품질 결과
+- **쿼리가 반환한 데이터만 표시** — 누락된 필드는 비우거나 "—"로 표시, 값을 지어내지 않기
 
-## Reference Files
+## 참조 파일
 
-- **`references/prospect-guide.md`** — filter types, signal-based sorting, object type distinctions, and list-building strategies
+- **`references/prospect-guide.md`** — 필터 유형, 신호 기반 정렬, 객체 유형 구분, 목록 구축 전략

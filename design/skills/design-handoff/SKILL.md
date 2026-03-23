@@ -6,126 +6,131 @@ argument-hint: "<Figma URL or design description>"
 
 # /design-handoff
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 낯선 플레이스홀더가 보이거나 연결된 도구를 확인해야 할 경우 [CONNECTORS.md](../../CONNECTORS.md)를 참고하세요.
 
-Generate comprehensive developer handoff documentation from a design.
+디자인에서 개발자 핸드오프 문서를 포괄적으로 생성합니다.
 
-## Usage
+## 사용법
 
 ```
 /design-handoff $ARGUMENTS
 ```
 
-Generate handoff specs for: @$1
+다음에 대한 핸드오프 명세서를 생성합니다: @$1
 
-If a Figma URL is provided, pull the design from Figma. Otherwise, work from the provided description or screenshot.
+Figma URL이 제공된 경우 Figma에서 디자인을 가져옵니다. 그렇지 않으면 제공된 설명이나 스크린샷을 기반으로 작업합니다.
 
-## What to Include
+## 포함해야 할 항목
 
-### Visual Specifications
-- Exact measurements (padding, margins, widths)
-- Design token references (colors, typography, spacing)
-- Responsive breakpoints and behavior
-- Component variants and states
+### 시각적 명세
 
-### Interaction Specifications
-- Click/tap behavior
-- Hover states
-- Transitions and animations (duration, easing)
-- Gesture support (swipe, pinch, long-press)
+- 정확한 측정값 (padding, margins, widths)
+- 디자인 토큰 참조 (색상, 타이포그래피, 간격)
+- 반응형 중단점 및 동작 방식
+- 컴포넌트 변형 및 상태
 
-### Content Specifications
-- Character limits
-- Truncation behavior
-- Empty states
-- Loading states
-- Error states
+### 인터랙션 명세
 
-### Edge Cases
-- Minimum/maximum content
-- International text (longer strings)
-- Slow connections
-- Missing data
+- 클릭/탭 동작
+- 호버 상태
+- 전환 및 애니메이션 (지속 시간, easing)
+- 제스처 지원 (swipe, pinch, long-press)
 
-### Accessibility
-- Focus order
-- ARIA labels and roles
-- Keyboard interactions
-- Screen reader announcements
+### 콘텐츠 명세
 
-## Principles
+- 글자 수 제한
+- 텍스트 잘림 동작
+- 빈 상태
+- 로딩 상태
+- 오류 상태
 
-1. **Don't assume** — If it's not specified, the developer will guess. Specify everything.
-2. **Use tokens, not values** — Reference `spacing-md` not `16px`.
-3. **Show all states** — Default, hover, active, disabled, loading, error, empty.
-4. **Describe the why** — "This collapses on mobile because users primarily use one-handed" helps developers make good judgment calls.
+### 엣지 케이스
 
-## Output
+- 최소/최대 콘텐츠
+- 국제화 텍스트 (긴 문자열)
+- 느린 연결
+- 누락된 데이터
+
+### 접근성
+
+- 포커스 순서
+- ARIA 레이블 및 역할
+- 키보드 인터랙션
+- 스크린 리더 알림
+
+## 원칙
+
+1. **추측하지 않기** — 명시되지 않으면 개발자가 임의로 처리합니다. 모든 것을 명세화하세요.
+2. **값이 아닌 토큰 사용** — `16px`이 아닌 `spacing-md`를 참조하세요.
+3. **모든 상태 표시** — Default, hover, active, disabled, loading, error, empty.
+4. **이유 설명** — "사용자가 주로 한 손을 사용하기 때문에 모바일에서 접힙니다"는 설명은 개발자가 올바른 판단을 내리는 데 도움이 됩니다.
+
+## 출력
 
 ```markdown
-## Handoff Spec: [Feature/Screen Name]
+## Handoff Spec: [기능/화면 이름]
 
-### Overview
-[What this screen/feature does, user context]
+### 개요
+[이 화면/기능이 하는 일, 사용자 컨텍스트]
 
-### Layout
-[Grid system, breakpoints, responsive behavior]
+### 레이아웃
+[그리드 시스템, 중단점, 반응형 동작]
 
-### Design Tokens Used
-| Token | Value | Usage |
+### 사용된 디자인 토큰
+| 토큰 | 값 | 사용처 |
 |-------|-------|-------|
-| `color-primary` | #[hex] | CTA buttons, links |
-| `spacing-md` | [X]px | Between sections |
-| `font-heading-lg` | [size/weight/family] | Page title |
+| `color-primary` | #[hex] | CTA 버튼, 링크 |
+| `spacing-md` | [X]px | 섹션 사이 |
+| `font-heading-lg` | [size/weight/family] | 페이지 제목 |
 
-### Components
-| Component | Variant | Props | Notes |
+### 컴포넌트
+| 컴포넌트 | 변형 | Props | 노트 |
 |-----------|---------|-------|-------|
-| [Component] | [Variant] | [Props] | [Special behavior] |
+| [컴포넌트] | [변형] | [Props] | [특수 동작] |
 
-### States and Interactions
-| Element | State | Behavior |
+### 상태 및 인터랙션
+| 요소 | 상태 | 동작 |
 |---------|-------|----------|
-| [CTA Button] | Hover | [Background darken 10%] |
-| [CTA Button] | Loading | [Spinner, disabled] |
-| [Form] | Error | [Red border, error message below] |
+| [CTA Button] | Hover | [배경 10% 어둡게] |
+| [CTA Button] | Loading | [스피너, 비활성화] |
+| [Form] | Error | [빨간 테두리, 아래 오류 메시지] |
 
-### Responsive Behavior
-| Breakpoint | Changes |
+### 반응형 동작
+| 중단점 | 변경 사항 |
 |------------|---------|
-| Desktop (>1024px) | [Default layout] |
-| Tablet (768-1024px) | [What changes] |
-| Mobile (<768px) | [What changes] |
+| Desktop (>1024px) | [기본 레이아웃] |
+| Tablet (768-1024px) | [변경 사항] |
+| Mobile (<768px) | [변경 사항] |
 
-### Edge Cases
-- **Empty state**: [What to show when no data]
-- **Long text**: [Truncation rules]
-- **Loading**: [Skeleton or spinner]
-- **Error**: [Error state appearance]
+### 엣지 케이스
+- **빈 상태**: [데이터가 없을 때 표시할 내용]
+- **긴 텍스트**: [텍스트 잘림 규칙]
+- **로딩**: [스켈레톤 또는 스피너]
+- **오류**: [오류 상태 모양]
 
-### Animation / Motion
-| Element | Trigger | Animation | Duration | Easing |
+### 애니메이션 / 모션
+| 요소 | 트리거 | 애니메이션 | 지속 시간 | Easing |
 |---------|---------|-----------|----------|--------|
-| [Element] | [Trigger] | [Description] | [ms] | [easing] |
+| [요소] | [트리거] | [설명] | [ms] | [easing] |
 
-### Accessibility Notes
-- [Focus order]
-- [ARIA labels needed]
-- [Keyboard interactions]
+### 접근성 노트
+- [포커스 순서]
+- [필요한 ARIA 레이블]
+- [키보드 인터랙션]
 ```
 
-## If Connectors Available
+## 커넥터를 사용할 수 있는 경우
 
-If **~~design tool** is connected:
-- Pull exact measurements, tokens, and component specs from Figma
-- Export assets and generate a complete spec sheet
+**~~design tool**이 연결된 경우:
+- Figma에서 정확한 측정값, 토큰, 컴포넌트 명세 가져오기
+- 에셋 내보내기 및 전체 명세서 생성
 
-If **~~project tracker** is connected:
-- Link the handoff to the implementation ticket
-- Create sub-tasks for each section of the spec
+**~~project tracker**가 연결된 경우:
+- 핸드오프를 구현 티켓에 연결
+- 명세서의 각 섹션에 대한 하위 작업 생성
 
-## Tips
+## 팁
 
-1. **Share the Figma link** — I can pull exact measurements, tokens, and component info.
-2. **Mention edge cases** — "What happens with 100 items?" helps me spec boundary conditions.
-3. **Specify the tech stack** — "We use React + Tailwind" helps me give relevant implementation notes.
+1. **Figma 링크 공유** — 정확한 측정값, 토큰, 컴포넌트 정보를 가져올 수 있습니다.
+2. **엣지 케이스 언급** — "100개 항목이 있으면 어떻게 되나요?"는 경계 조건 명세에 도움이 됩니다.
+3. **기술 스택 명시** — "React + Tailwind를 사용합니다"는 관련 구현 노트 제공에 도움이 됩니다.

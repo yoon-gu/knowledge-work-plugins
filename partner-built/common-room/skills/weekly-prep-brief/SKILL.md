@@ -1,126 +1,126 @@
 ---
 name: weekly-prep-brief
-description: "Generate a comprehensive weekly briefing for all external calls in the next 7 days. Triggers on 'weekly prep brief', 'prepare my week', 'what calls do I have this week', 'Monday prep', or any weekly planning request."
+description: "향후 7일간의 모든 외부 통화에 대한 포괄적인 주간 브리핑을 생성합니다. '주간 준비 브리핑', '이번 주 준비해줘', '이번 주 어떤 통화가 있어', '월요일 준비', 또는 기타 주간 계획 요청에서 트리거됩니다."
 ---
 
-# Weekly Prep Brief
+# 주간 준비 브리핑
 
-Generate a single comprehensive weekly briefing that covers every external customer or prospect call in the next 7 days, with per-meeting account and contact research from Common Room.
+향후 7일간의 모든 외부 고객 또는 잠재 고객 통화를 커버하는 단일 포괄적 주간 브리핑을 생성하며, Common Room의 미팅별 계정 및 연락처 조사가 포함됩니다.
 
-## Briefing Process
+## 브리핑 프로세스
 
-### Step 1: Get the Week's External Meetings
+### 1단계: 이번 주의 외부 미팅 가져오기
 
-**Option A — Calendar connected:**
-Use the `~~calendar` connector to fetch all meetings scheduled in the next 7 days (or a user-specified range). Filter to keep only external meetings — those with attendees from outside your organization. Discard internal-only meetings, one-on-ones with colleagues, and recurring internal syncs.
+**옵션 A — 캘린더 연결됨:**
+`~~calendar` 커넥터를 사용하여 향후 7일간 (또는 사용자 지정 범위) 예정된 모든 미팅을 가져옵니다. 외부 미팅만 유지하도록 필터링 — 조직 외부의 참석자가 있는 미팅. 내부 전용 미팅, 동료와의 1:1, 반복 내부 싱크는 제외합니다.
 
-Identify for each external meeting:
-- Company name
-- Meeting date and time
-- External attendee names and email addresses
+각 외부 미팅에 대해 식별:
+- 회사 이름
+- 미팅 날짜 및 시간
+- 외부 참석자 이름 및 이메일 주소
 
-**Option B — No calendar connected:**
-Ask the user: "To build your weekly prep brief, I'll need your upcoming external calls. Please list them: company name, date/time, and attendee names."
+**옵션 B — 캘린더 미연결:**
+사용자에게 묻습니다: "주간 준비 브리핑을 작성하려면 예정된 외부 통화가 필요합니다. 목록을 알려주세요: 회사 이름, 날짜/시간, 참석자 이름."
 
-Accept freeform input and parse it into a structured list before proceeding.
+자유 형식 입력을 받아 진행 전에 구조화된 목록으로 파싱합니다.
 
-### Step 2: Confirm the Meeting List
+### 2단계: 미팅 목록 확인
 
-Present the identified meetings to the user for confirmation before beginning research:
+조사 시작 전에 식별된 미팅을 사용자에게 확인합니다:
 
-> "Here are the external calls I found for this week. Let me know if anything's missing or should be excluded:
-> - [Company] — [Day], [Time] — [Attendees]
+> "이번 주에 찾은 외부 통화입니다. 빠진 것이나 제외할 것이 있으면 알려주세요:
+> - [회사] — [요일], [시간] — [참석자]
 > - ..."
 
-This prevents wasted research on cancelled or incorrect meetings.
+취소되었거나 잘못된 미팅에 대한 낭비된 조사를 방지합니다.
 
-### Step 3: Research Each Meeting
+### 3단계: 각 미팅 조사
 
-For each confirmed external meeting, run in parallel where possible:
-1. **Account research** — full account snapshot using the account-research skill
-2. **Contact research** — profile for each external attendee using the contact-research skill
+확인된 각 외부 미팅에 대해 가능한 경우 병렬로 실행:
+1. **계정 조사** — account-research 스킬을 사용한 전체 계정 스냅샷
+2. **연락처 조사** — contact-research 스킬을 사용한 각 외부 참석자 프로필
 
-Common Room data is the primary source. After CR research, run a quick **recency check** for each company — this is supplementary, not primary:
-- Search `"[company name]" news` scoped to the last 7 days
-- For executive attendees, search their name for recent public posts or interviews
-- Only include findings that are genuinely noteworthy (funding, leadership changes, major press). Don't pad the brief with generic news.
+Common Room 데이터가 주요 소스입니다. CR 조사 후 각 회사에 대해 빠른 **최신성 확인**을 실행 — 이것은 보충적이지 주요가 아닙니다:
+- `"[회사 이름]" news` 최근 7일로 범위 지정
+- 임원 참석자의 경우 최근 공개 게시물이나 인터뷰 검색
+- 진정으로 주목할 만한 사항(펀딩, 리더십 변경, 주요 언론)만 포함. 일반 뉴스로 브리핑을 채우지 마세요.
 
-Depth calibration:
-- For high-priority accounts (large accounts, open opportunities, renewal risk), produce full depth research
-- For lower-priority or short meetings, produce abbreviated snapshots (3–4 bullets each)
+깊이 조정:
+- 높은 우선순위 계정 (대규모 계정, 오픈 기회, 갱신 위험)은 전체 깊이 조사
+- 낮은 우선순위 또는 짧은 미팅은 간략한 스냅샷 (각 3-4개 항목)
 
-### Step 4: Synthesize the Weekly Brief
+### 4단계: 주간 브리핑 합성
 
-Compile all per-meeting research into a single structured document, sorted by meeting date/time.
+모든 미팅별 조사를 미팅 날짜/시간 순으로 정렬된 단일 구조화된 문서로 컴파일합니다.
 
-Open with a brief week-level overview that flags:
-- Any accounts with urgent signals (at-risk, trial expiring, expansion opportunity)
-- Any meetings that need special preparation or executive involvement
-- Total external call count and estimated time commitment
+다음을 표시하는 간략한 주 수준 개요로 시작:
+- 긴급 신호가 있는 계정 (위험, 트라이얼 만료, 확장 기회)
+- 특별한 준비나 임원 참여가 필요한 미팅
+- 총 외부 통화 수 및 예상 시간 투입
 
-## Output Format
+## 출력 형식
 
 ```
-# Weekly Prep Brief — Week of [Date]
+# 주간 준비 브리핑 — [날짜] 주
 
-## Week Overview
-[2–4 bullets: key themes, flagged priorities, call count]
+## 주간 개요
+[2-4개 항목: 핵심 테마, 표시된 우선순위, 통화 수]
 
 ---
 
-## [Monday / Tuesday / etc.]
+## [월요일/화요일/등]
 
-### [Company Name] — [Time]
-**Attendees:** [Names and titles]
-**Meeting type:** [Discovery / QBR / Renewal / Expansion / etc. — inferred if possible]
+### [회사명] — [시간]
+**참석자:** [이름 및 직함]
+**미팅 유형:** [탐색/QBR/갱신/확장/등 — 가능하면 추론]
 
-**Company Snapshot**
-[4–5 bullets: account status, top signals, recent activity]
+**회사 스냅샷**
+[4-5개 항목: 계정 상태, 상위 신호, 최근 활동]
 
-**Attendee Profiles**
-- **[Name]** ([Title]): [2–3 bullets on their signals, persona, conversation angle]
-- [Repeat per attendee]
+**참석자 프로필**
+- **[이름]** ([직함]): [신호, 페르소나, 대화 앵글에 대한 2-3개 항목]
+- [참석자별 반복]
 
-**Top Signals This Week**
-[2–3 most relevant signals for this specific call]
+**이번 주 상위 신호**
+[이 특정 통화에 가장 관련된 2-3개 신호]
 
-**This Week's News** [If notable news found]
-[Only genuinely noteworthy findings — funding, leadership changes, major press]
+**이번 주 뉴스** [주목할 만한 뉴스가 있는 경우]
+[진정으로 주목할 만한 사항만 — 펀딩, 리더십 변경, 주요 언론]
 
-**Recommended Objectives**
-[1–2 sentences: what to accomplish in this meeting]
+**권장 목표**
+[1-2문장: 이 미팅에서 달성할 것]
 
 ---
 
-[Repeat per meeting, sorted by date/time]
+[미팅별 반복, 날짜/시간순]
 ```
 
-## When a Meeting Has Sparse Data
+## 미팅의 데이터가 부족한 경우
 
-If Common Room returns limited data for a particular meeting's account or attendees, use a compressed format for that meeting instead of the full template:
+Common Room이 특정 미팅의 계정이나 참석자에 대해 제한된 데이터를 반환하면, 전체 템플릿 대신 압축 형식을 사용합니다:
 
 ```
-### [Company Name] — [Time] ⚠️ Limited Data
-**Attendees:** [Names and titles if known]
-**Data available:** [What Common Room actually returned]
+### [회사명] — [시간] 제한된 데이터
+**참석자:** [알려진 경우 이름 및 직함]
+**가용한 데이터:** [Common Room이 실제로 반환한 것]
 
-**Web Search Results**
-[Findings from web search — company news, attendee LinkedIn profiles]
+**웹 검색 결과**
+[웹 검색 결과 — 회사 뉴스, 참석자 LinkedIn 프로필]
 
-**Note:** Common Room has limited data on this account. The rep may want to check directly in CR or gather context from colleagues before this call.
+**참고:** Common Room에 이 계정에 대한 데이터가 제한적입니다. 담당자가 이 통화 전에 CR에서 직접 확인하거나 동료로부터 컨텍스트를 수집하는 것이 좋습니다.
 ```
 
-Do not generate a full meeting prep section (company snapshot, signal highlights, talking points, recommended objectives) from sparse data. A short honest section is more useful than a fabricated full one.
+부족한 데이터에서 전체 미팅 준비 섹션 (회사 스냅샷, 신호 하이라이트, 토킹 포인트, 권장 목표)을 생성하지 마세요. 짧고 정직한 섹션이 지어낸 전체 섹션보다 유용합니다.
 
-## Quality Standards
+## 품질 기준
 
-- Keep each meeting section scannable — reps read these in the morning, often on mobile
-- Always sort by date/time ascending
-- Flag urgent situations prominently (risk, trial expiration, open opps) — don't bury them
-- If a meeting has very thin Common Room data, use the sparse-data format above — never fill the full template with guesses
-- Total brief should be readable in 10–15 minutes for a week with 4–6 meetings
-- **Every fact must come from a tool call** — no invented deal context, activity, or signals
+- 각 미팅 섹션을 쉽게 훑어볼 수 있도록 유지 — 담당자는 아침에, 종종 모바일로 읽습니다
+- 항상 날짜/시간 오름차순 정렬
+- 긴급 상황을 눈에 띄게 표시 (위험, 트라이얼 만료, 오픈 기회) — 묻히지 않게
+- Common Room 데이터가 매우 부족한 미팅은 위의 데이터 부족 형식 사용 — 추측으로 전체 템플릿을 채우지 않기
+- 4-6개 미팅인 주에 대해 총 브리핑은 10-15분 안에 읽을 수 있어야 함
+- **모든 사실은 도구 호출에서 와야 함** — 지어낸 거래 컨텍스트, 활동, 신호 없음
 
-## Reference Files
+## 참조 파일
 
-- **`references/briefing-guide.md`** — guidelines for structuring briefings, prioritization logic, and how to handle edge cases (cancelled meetings, new accounts with no data, etc.)
+- **`references/briefing-guide.md`** — 브리핑 구조화 지침, 우선순위 로직, 에지 케이스 처리 방법 (취소된 미팅, 데이터 없는 신규 계정 등)

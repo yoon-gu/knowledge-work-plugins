@@ -1,44 +1,44 @@
 ---
 name: data-visualization
-description: Create effective data visualizations with Python (matplotlib, seaborn, plotly). Use when building charts, choosing the right chart type for a dataset, creating publication-quality figures, or applying design principles like accessibility and color theory.
+description: Python(matplotlib, seaborn, plotly)을 사용하여 효과적인 데이터 시각화를 만듭니다. 차트를 만들거나, 데이터셋에 적합한 차트 유형을 선택하거나, 출판 품질의 그림을 만들거나, 접근성 및 색상 이론과 같은 디자인 원칙을 적용할 때 사용합니다.
 user-invocable: false
 ---
 
-# Data Visualization Skill
+# 데이터 시각화 스킬
 
-Chart selection guidance, Python visualization code patterns, design principles, and accessibility considerations for creating effective data visualizations.
+효과적인 데이터 시각화 생성을 위한 차트 선택 가이드, Python 시각화 코드 패턴, 디자인 원칙 및 접근성 고려사항입니다.
 
-## Chart Selection Guide
+## 차트 선택 가이드
 
-### Choose by Data Relationship
+### 데이터 관계별 선택
 
-| What You're Showing | Best Chart | Alternatives |
+| 표현하려는 것 | 최적 차트 | 대안 |
 |---|---|---|
-| **Trend over time** | Line chart | Area chart (if showing cumulative or composition) |
-| **Comparison across categories** | Vertical bar chart | Horizontal bar (many categories), lollipop chart |
-| **Ranking** | Horizontal bar chart | Dot plot, slope chart (comparing two periods) |
-| **Part-to-whole composition** | Stacked bar chart | Treemap (hierarchical), waffle chart |
-| **Composition over time** | Stacked area chart | 100% stacked bar (for proportion focus) |
-| **Distribution** | Histogram | Box plot (comparing groups), violin plot, strip plot |
-| **Correlation (2 variables)** | Scatter plot | Bubble chart (add 3rd variable as size) |
-| **Correlation (many variables)** | Heatmap (correlation matrix) | Pair plot |
-| **Geographic patterns** | Choropleth map | Bubble map, hex map |
-| **Flow / process** | Sankey diagram | Funnel chart (sequential stages) |
-| **Relationship network** | Network graph | Chord diagram |
-| **Performance vs. target** | Bullet chart | Gauge (single KPI only) |
-| **Multiple KPIs at once** | Small multiples | Dashboard with separate charts |
+| **시간에 따른 추세** | 꺾은선 차트 | 면적 차트 (누적 또는 구성을 보여줄 때) |
+| **카테고리 간 비교** | 세로 막대 차트 | 가로 막대 (카테고리가 많을 때), 롤리팝 차트 |
+| **순위** | 가로 막대 차트 | 점 그림, 기울기 차트 (두 기간 비교) |
+| **전체 대비 부분 구성** | 누적 막대 차트 | 트리맵 (계층적), 와플 차트 |
+| **시간에 따른 구성** | 누적 면적 차트 | 100% 누적 막대 (비율 중심) |
+| **분포** | 히스토그램 | 상자 그림(box plot, 그룹 비교), 바이올린 플롯, 스트립 플롯 |
+| **상관관계 (2개 변수)** | 산점도 | 버블 차트 (크기로 3번째 변수 추가) |
+| **상관관계 (여러 변수)** | 히트맵 (상관관계 행렬) | 페어 플롯 |
+| **지리적 패턴** | 코로플레스 맵 | 버블 맵, 헥스 맵 |
+| **흐름 / 프로세스** | Sankey 다이어그램 | 깔때기 차트 (순차적 단계) |
+| **관계 네트워크** | 네트워크 그래프 | 코드 다이어그램 |
+| **목표 대비 성과** | 불릿 차트 | 게이지 (단일 KPI만) |
+| **동시에 여러 KPI** | 스몰 멀티플 | 별도 차트가 있는 대시보드 |
 
-### When NOT to Use Certain Charts
+### 특정 차트를 사용하지 말아야 할 때
 
-- **Pie charts**: Avoid unless <6 categories and exact proportions matter less than rough comparison. Humans are bad at comparing angles. Use bar charts instead.
-- **3D charts**: Never. They distort perception and add no information.
-- **Dual-axis charts**: Use cautiously. They can mislead by implying correlation. Clearly label both axes if used.
-- **Stacked bar (many categories)**: Hard to compare middle segments. Use small multiples or grouped bars instead.
-- **Donut charts**: Slightly better than pie charts but same fundamental issues. Use for single KPI display at most.
+- **파이 차트**: <6개 카테고리이고 정확한 비율보다 대략적인 비교가 더 중요한 경우가 아니면 지양. 인간은 각도 비교를 잘 못함. 막대 차트를 대신 사용.
+- **3D 차트**: 절대 사용 금지. 인식을 왜곡하고 정보를 추가하지 않음.
+- **이중 축 차트**: 주의해서 사용. 상관관계를 암시하여 오해를 줄 수 있음. 사용 시 양쪽 축을 명확히 레이블링.
+- **누적 막대 (카테고리 많음)**: 중간 세그먼트를 비교하기 어려움. 스몰 멀티플이나 그룹 막대를 대신 사용.
+- **도넛 차트**: 파이 차트보다 약간 나으나 같은 근본적 문제. 단일 KPI 표시에만 사용.
 
-## Python Visualization Code Patterns
+## Python 시각화 코드 패턴
 
-### Setup and Style
+### 설정 및 스타일
 
 ```python
 import matplotlib.pyplot as plt
@@ -47,7 +47,7 @@ import seaborn as sns
 import pandas as pd
 import numpy as np
 
-# Professional style setup
+# 전문적 스타일 설정
 plt.style.use('seaborn-v0_8-whitegrid')
 plt.rcParams.update({
     'figure.figsize': (10, 6),
@@ -62,13 +62,13 @@ plt.rcParams.update({
     'figure.titlesize': 16,
 })
 
-# Colorblind-friendly palettes
+# 색맹 친화적 팔레트
 PALETTE_CATEGORICAL = ['#4C72B0', '#DD8452', '#55A868', '#C44E52', '#8172B3', '#937860']
 PALETTE_SEQUENTIAL = 'YlOrRd'
 PALETTE_DIVERGING = 'RdBu_r'
 ```
 
-### Line Chart (Time Series)
+### 꺾은선 차트 (시계열)
 
 ```python
 fig, ax = plt.subplots(figsize=(10, 6))
@@ -76,38 +76,38 @@ fig, ax = plt.subplots(figsize=(10, 6))
 for label, group in df.groupby('category'):
     ax.plot(group['date'], group['value'], label=label, linewidth=2)
 
-ax.set_title('Metric Trend by Category', fontweight='bold')
-ax.set_xlabel('Date')
-ax.set_ylabel('Value')
+ax.set_title('카테고리별 지표 추세', fontweight='bold')
+ax.set_xlabel('날짜')
+ax.set_ylabel('값')
 ax.legend(loc='upper left', frameon=True)
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 
-# Format dates on x-axis
+# x축 날짜 서식
 fig.autofmt_xdate()
 
 plt.tight_layout()
 plt.savefig('trend_chart.png', dpi=150, bbox_inches='tight')
 ```
 
-### Bar Chart (Comparison)
+### 막대 차트 (비교)
 
 ```python
 fig, ax = plt.subplots(figsize=(10, 6))
 
-# Sort by value for easy reading
+# 읽기 쉽도록 값 기준 정렬
 df_sorted = df.sort_values('metric', ascending=True)
 
 bars = ax.barh(df_sorted['category'], df_sorted['metric'], color=PALETTE_CATEGORICAL[0])
 
-# Add value labels
+# 값 레이블 추가
 for bar in bars:
     width = bar.get_width()
     ax.text(width + 0.5, bar.get_y() + bar.get_height()/2,
             f'{width:,.0f}', ha='left', va='center', fontsize=10)
 
-ax.set_title('Metric by Category (Ranked)', fontweight='bold')
-ax.set_xlabel('Metric Value')
+ax.set_title('카테고리별 지표 (순위)', fontweight='bold')
+ax.set_xlabel('지표 값')
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 
@@ -115,22 +115,22 @@ plt.tight_layout()
 plt.savefig('bar_chart.png', dpi=150, bbox_inches='tight')
 ```
 
-### Histogram (Distribution)
+### 히스토그램 (분포)
 
 ```python
 fig, ax = plt.subplots(figsize=(10, 6))
 
 ax.hist(df['value'], bins=30, color=PALETTE_CATEGORICAL[0], edgecolor='white', alpha=0.8)
 
-# Add mean and median lines
+# 평균 및 중앙값 선 추가
 mean_val = df['value'].mean()
 median_val = df['value'].median()
-ax.axvline(mean_val, color='red', linestyle='--', linewidth=1.5, label=f'Mean: {mean_val:,.1f}')
-ax.axvline(median_val, color='green', linestyle='--', linewidth=1.5, label=f'Median: {median_val:,.1f}')
+ax.axvline(mean_val, color='red', linestyle='--', linewidth=1.5, label=f'평균: {mean_val:,.1f}')
+ax.axvline(median_val, color='green', linestyle='--', linewidth=1.5, label=f'중앙값: {median_val:,.1f}')
 
-ax.set_title('Distribution of Values', fontweight='bold')
-ax.set_xlabel('Value')
-ax.set_ylabel('Frequency')
+ax.set_title('값의 분포', fontweight='bold')
+ax.set_xlabel('값')
+ax.set_ylabel('빈도')
 ax.legend()
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
@@ -139,26 +139,26 @@ plt.tight_layout()
 plt.savefig('histogram.png', dpi=150, bbox_inches='tight')
 ```
 
-### Heatmap
+### 히트맵
 
 ```python
 fig, ax = plt.subplots(figsize=(10, 8))
 
-# Pivot data for heatmap format
+# 히트맵 형식으로 데이터 피벗
 pivot = df.pivot_table(index='row_dim', columns='col_dim', values='metric', aggfunc='sum')
 
 sns.heatmap(pivot, annot=True, fmt=',.0f', cmap='YlOrRd',
-            linewidths=0.5, ax=ax, cbar_kws={'label': 'Metric Value'})
+            linewidths=0.5, ax=ax, cbar_kws={'label': '지표 값'})
 
-ax.set_title('Metric by Row Dimension and Column Dimension', fontweight='bold')
-ax.set_xlabel('Column Dimension')
-ax.set_ylabel('Row Dimension')
+ax.set_title('행 차원 및 열 차원별 지표', fontweight='bold')
+ax.set_xlabel('열 차원')
+ax.set_ylabel('행 차원')
 
 plt.tight_layout()
 plt.savefig('heatmap.png', dpi=150, bbox_inches='tight')
 ```
 
-### Small Multiples
+### 스몰 멀티플
 
 ```python
 categories = df['category'].unique()
@@ -177,20 +177,20 @@ for i, cat in enumerate(categories):
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
 
-# Hide empty subplots
+# 빈 서브플롯 숨기기
 for j in range(i+1, len(axes)):
     axes[j].set_visible(False)
 
-fig.suptitle('Trends by Category', fontsize=14, fontweight='bold', y=1.02)
+fig.suptitle('카테고리별 추세', fontsize=14, fontweight='bold', y=1.02)
 plt.tight_layout()
 plt.savefig('small_multiples.png', dpi=150, bbox_inches='tight')
 ```
 
-### Number Formatting Helpers
+### 숫자 서식 도우미
 
 ```python
 def format_number(val, format_type='number'):
-    """Format numbers for chart labels."""
+    """차트 레이블용 숫자 서식 지정."""
     if format_type == 'currency':
         if abs(val) >= 1e9:
             return f'${val/1e9:.1f}B'
@@ -213,93 +213,93 @@ def format_number(val, format_type='number'):
             return f'{val:,.0f}'
     return str(val)
 
-# Usage with axis formatter
+# 축 서식 지정기와 함께 사용
 ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, p: format_number(x, 'currency')))
 ```
 
-### Interactive Charts with Plotly
+### Plotly를 사용한 인터랙티브 차트
 
 ```python
 import plotly.express as px
 import plotly.graph_objects as go
 
-# Simple interactive line chart
+# 간단한 인터랙티브 꺾은선 차트
 fig = px.line(df, x='date', y='value', color='category',
-              title='Interactive Metric Trend',
-              labels={'value': 'Metric Value', 'date': 'Date'})
+              title='인터랙티브 지표 추세',
+              labels={'value': '지표 값', 'date': '날짜'})
 fig.update_layout(hovermode='x unified')
 fig.write_html('interactive_chart.html')
 fig.show()
 
-# Interactive scatter with hover data
+# 호버 데이터가 있는 인터랙티브 산점도
 fig = px.scatter(df, x='metric_a', y='metric_b', color='category',
                  size='size_metric', hover_data=['name', 'detail_field'],
-                 title='Correlation Analysis')
+                 title='상관관계 분석')
 fig.show()
 ```
 
-## Design Principles
+## 디자인 원칙
 
-### Color
+### 색상
 
-- **Use color purposefully**: Color should encode data, not decorate
-- **Highlight the story**: Use a bright accent color for the key insight; grey everything else
-- **Sequential data**: Use a single-hue gradient (light to dark) for ordered values
-- **Diverging data**: Use a two-hue gradient with neutral midpoint for data with a meaningful center
-- **Categorical data**: Use distinct hues, maximum 6-8 before it gets confusing
-- **Avoid red/green only**: 8% of men are red-green colorblind. Use blue/orange as primary pair
+- **색상을 목적 있게 사용**: 색상은 데이터를 인코딩해야 하며 장식이 아님
+- **핵심을 강조**: 핵심 인사이트에 밝은 강조 색상을 사용하고 나머지는 회색 처리
+- **순차적 데이터**: 순서가 있는 값에는 단일 색조 그라디언트(밝은 것에서 어두운 것) 사용
+- **발산 데이터**: 의미 있는 중심이 있는 데이터에는 중립 중간점이 있는 두 색조 그라디언트 사용
+- **범주형 데이터**: 뚜렷한 색조 사용, 6-8개를 초과하면 혼란스러워짐
+- **빨강/녹색만 사용 지양**: 남성의 8%가 적록색맹. 기본 쌍으로 파랑/주황 사용
 
-### Typography
+### 타이포그래피
 
-- **Title states the insight**: "Revenue grew 23% YoY" beats "Revenue by Month"
-- **Subtitle adds context**: Date range, filters applied, data source
-- **Axis labels are readable**: Never rotated 90 degrees if avoidable. Shorten or wrap instead
-- **Data labels add precision**: Use on key points, not every single bar
-- **Annotation highlights**: Call out specific points with text annotations
+- **제목은 인사이트를 설명**: "매출 YoY 23% 성장"이 "월별 매출"보다 좋음
+- **부제목은 맥락 추가**: 날짜 범위, 적용된 필터, 데이터 소스
+- **축 레이블은 읽기 쉽게**: 가능하면 90도 회전하지 않기. 줄이거나 줄바꿈
+- **데이터 레이블은 정밀도 추가**: 핵심 포인트에 사용, 모든 막대에는 아님
+- **주석으로 강조**: 특정 포인트를 텍스트 주석으로 호출
 
-### Layout
+### 레이아웃
 
-- **Reduce chart junk**: Remove gridlines, borders, backgrounds that don't carry information
-- **Sort meaningfully**: Categories sorted by value (not alphabetically) unless there's a natural order (months, stages)
-- **Appropriate aspect ratio**: Time series wider than tall (3:1 to 2:1); comparisons can be squarer
-- **White space is good**: Don't cram charts together. Give each visualization room to breathe
+- **차트 잡음 줄이기**: 정보를 전달하지 않는 격자선, 테두리, 배경 제거
+- **의미 있게 정렬**: 자연스러운 순서(월, 단계)가 없다면 값 기준 정렬 (알파벳이 아님)
+- **적절한 가로세로 비율**: 시계열은 넓게(3:1에서 2:1); 비교는 더 정사각형에 가깝게
+- **여백은 좋은 것**: 차트를 빽빽하게 채우지 않기. 각 시각화에 숨 쉴 공간 제공
 
-### Accuracy
+### 정확성
 
-- **Bar charts start at zero**: Always. A bar from 95 to 100 exaggerates a 5% difference
-- **Line charts can have non-zero baselines**: When the range of variation is meaningful
-- **Consistent scales across panels**: When comparing multiple charts, use the same axis range
-- **Show uncertainty**: Error bars, confidence intervals, or ranges when data is uncertain
-- **Label your axes**: Never make the reader guess what the numbers mean
+- **막대 차트는 0부터 시작**: 항상. 95에서 100까지의 막대는 5% 차이를 과장
+- **꺾은선 차트는 0이 아닌 기준선 가능**: 변동 범위가 의미 있을 때
+- **패널 간 일관된 스케일**: 여러 차트를 비교할 때 동일한 축 범위 사용
+- **불확실성 표시**: 데이터가 불확실할 때 오차 막대, 신뢰 구간 또는 범위 표시
+- **축 레이블 표시**: 독자가 숫자의 의미를 추측하게 만들지 않기
 
-## Accessibility Considerations
+## 접근성 고려사항
 
-### Color Blindness
+### 색맹
 
-- Never rely on color alone to distinguish data series
-- Add pattern fills, different line styles (solid, dashed, dotted), or direct labels
-- Test with a colorblind simulator (e.g., Coblis, Sim Daltonism)
-- Use the colorblind-friendly palette: `sns.color_palette("colorblind")`
+- 데이터 시리즈를 구분하기 위해 색상에만 의존하지 않기
+- 패턴 채우기, 다른 선 스타일(실선, 점선, 파선) 또는 직접 레이블 추가
+- 색맹 시뮬레이터로 테스트 (예: Coblis, Sim Daltonism)
+- 색맹 친화적 팔레트 사용: `sns.color_palette("colorblind")`
 
-### Screen Readers
+### 스크린 리더
 
-- Include alt text describing the chart's key finding
-- Provide a data table alternative alongside the visualization
-- Use semantic titles and labels
+- 차트의 핵심 발견을 설명하는 alt 텍스트 포함
+- 시각화와 함께 데이터 테이블 대안 제공
+- 시맨틱 제목과 레이블 사용
 
-### General Accessibility
+### 일반 접근성
 
-- Sufficient contrast between data elements and background
-- Text size minimum 10pt for labels, 12pt for titles
-- Avoid conveying information only through spatial position (add labels)
-- Consider printing: does the chart work in black and white?
+- 데이터 요소와 배경 간 충분한 대비
+- 레이블 최소 10pt, 제목 최소 12pt의 텍스트 크기
+- 공간적 위치만으로 정보를 전달하지 않기 (레이블 추가)
+- 인쇄 고려: 차트가 흑백으로도 작동하는지?
 
-### Accessibility Checklist
+### 접근성 체크리스트
 
-Before sharing a visualization:
-- [ ] Chart works without color (patterns, labels, or line styles differentiate series)
-- [ ] Text is readable at standard zoom level
-- [ ] Title describes the insight, not just the data
-- [ ] Axes are labeled with units
-- [ ] Legend is clear and positioned without obscuring data
-- [ ] Data source and date range are noted
+시각화를 공유하기 전에:
+- [ ] 차트가 색상 없이도 작동 (패턴, 레이블 또는 선 스타일이 시리즈를 구분)
+- [ ] 표준 확대 수준에서 텍스트가 읽기 쉬움
+- [ ] 제목이 단순한 데이터가 아닌 인사이트를 설명
+- [ ] 축에 단위가 레이블링됨
+- [ ] 범례가 명확하고 데이터를 가리지 않게 배치
+- [ ] 데이터 소스와 날짜 범위가 표기됨

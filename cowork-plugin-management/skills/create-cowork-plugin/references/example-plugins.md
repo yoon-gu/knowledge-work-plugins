@@ -1,12 +1,12 @@
-# Example Plugins
+# 플러그인 예시
 
-Three complete plugin structures at different complexity levels. Use these as templates when implementing in Phase 4.
+다양한 복잡도 수준의 세 가지 완전한 플러그인 구조입니다. Phase 4에서 구현할 때 이를 템플릿으로 사용하세요.
 
-## Minimal Plugin: Single Skill
+## 최소 플러그인: 단일 스킬
 
-A simple plugin with one skill and no other components.
+하나의 스킬만 있고 다른 컴포넌트가 없는 간단한 플러그인입니다.
 
-### Structure
+### 구조
 
 ```
 meeting-notes/
@@ -57,11 +57,11 @@ Write the notes to a new file named after the transcript with `-notes` appended.
 
 ---
 
-## Standard Plugin: Skills + MCP
+## 표준 플러그인: Skills + MCP
 
-A plugin that combines domain knowledge, user-initiated actions, and external service integration.
+도메인 지식, 사용자 주도 작업 및 외부 서비스 통합을 결합한 플러그인입니다.
 
-### Structure
+### 구조
 
 ```
 code-quality/
@@ -156,28 +156,28 @@ metadata:
 ```
 
 ```markdown
-# Coding Standards
+# 코딩 표준
 
-Project coding standards and conventions for consistent, high-quality code.
+일관되고 고품질의 코드를 위한 프로젝트 코딩 표준 및 규칙입니다.
 
-## Core Rules
+## 핵심 규칙
 
-- Use camelCase for variables and functions
-- Use PascalCase for classes and types
-- Prefer const over let; avoid var
-- Maximum line length: 100 characters
-- Use explicit return types on all exported functions
+- 변수와 함수에는 camelCase 사용
+- 클래스와 타입에는 PascalCase 사용
+- let보다 const 선호; var 사용 금지
+- 최대 줄 길이: 100자
+- 모든 내보낸 함수에 명시적 반환 타입 사용
 
-## Import Order
+## Import 순서
 
-1. External packages
-2. Internal packages (aliased with @/)
-3. Relative imports
-4. Type-only imports last
+1. 외부 패키지
+2. 내부 패키지 (@/로 별칭)
+3. 상대 import
+4. 타입 전용 import은 마지막에
 
-## Additional Resources
+## 추가 리소스
 
-- **`references/style-rules.md`** — complete style rules by language
+- **`references/style-rules.md`** — 언어별 완전한 스타일 규칙
 ```
 
 ### .mcp.json
@@ -195,11 +195,11 @@ Project coding standards and conventions for consistent, high-quality code.
 
 ---
 
-## Full-Featured Plugin: All Component Types
+## 완전한 기능의 플러그인: 모든 컴포넌트 유형
 
-A plugin using skills, agents, hooks, and MCP integration with tool-agnostic connectors.
+skills, agents, hooks 및 도구 비의존적 커넥터가 포함된 MCP 통합을 사용하는 플러그인입니다.
 
-### Structure
+### 구조
 
 ```
 engineering-workflow/
@@ -316,14 +316,14 @@ Followed by a brief rationale for the top 5 priorities.
 ```markdown
 # Connectors
 
-## How tool references work
+## 도구 참조 방식
 
 Plugin files use `~~category` as a placeholder for whatever tool the user
 connects in that category. Plugins are tool-agnostic.
 
-## Connectors for this plugin
+## 이 플러그인의 커넥터
 
-| Category        | Placeholder         | Included servers | Other options       |
+| 카테고리        | 플레이스홀더         | 포함된 서버 | 기타 옵션       |
 | --------------- | ------------------- | ---------------- | ------------------- |
 | Project tracker | `~~project tracker` | Linear           | Asana, Jira, Monday |
 | Chat            | `~~chat`            | Slack            | Microsoft Teams     |

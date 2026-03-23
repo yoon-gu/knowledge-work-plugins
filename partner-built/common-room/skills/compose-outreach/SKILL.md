@@ -1,135 +1,135 @@
 ---
 name: compose-outreach
-description: "Generate personalized outreach messages using Common Room signals. Triggers on 'draft outreach to [person]', 'write an email to [name]', 'compose a message for [contact]', or any outreach drafting request."
+description: "Common Room 신호를 사용하여 개인화된 아웃리치 메시지를 생성합니다. '[사람]에게 아웃리치 초안', '[이름]에게 이메일 작성', '[연락처]에게 메시지 작성', 또는 기타 아웃리치 작성 요청에서 트리거됩니다."
 ---
 
-# Compose Outreach
+# 아웃리치 작성
 
-Generate three personalized outreach formats — email, call script, and LinkedIn message — grounded in Common Room signals for a specific company or contact.
+특정 회사 또는 연락처에 대한 Common Room 신호를 기반으로 세 가지 개인화된 아웃리치 형식 — 이메일, 통화 스크립트, LinkedIn 메시지 — 을 생성합니다.
 
-## Outreach Process
+## 아웃리치 프로세스
 
-### Step 1: Look Up the Target
+### 1단계: 대상 조회
 
-Use Common Room MCP tools to find and retrieve data for the target (company and/or specific contact). Pull:
-- Recent product activity and engagement signals
-- Community activity (posts, questions, reactions)
-- 3rd-party intent signals (job postings, news, funding)
-- Relationship history (prior contact, meetings, email opens)
+Common Room MCP 도구를 사용하여 대상(회사 및/또는 특정 연락처)의 데이터를 찾고 조회합니다. 가져올 것:
+- 최근 제품 활동 및 참여 신호
+- 커뮤니티 활동 (게시글, 질문, 반응)
+- 3rd-party 의도 신호 (채용, 뉴스, 펀딩)
+- 관계 이력 (이전 연락, 미팅, 이메일 오픈)
 
-If the user specified a person, run contact-level research. If only a company was given, identify the best contact to target based on title, engagement, and role.
+사용자가 사람을 지정한 경우 연락처 수준 조사를 실행합니다. 회사만 제공된 경우 직함, 참여도, 역할을 기반으로 최적의 연락 대상을 식별합니다.
 
-### Step 2: Web Search for External Hooks (If CR Signals Are Thin)
+### 2단계: 외부 훅을 위한 웹 검색 (CR 신호가 부족한 경우)
 
-If CR returned strong signals (recent activity, engagement, product usage), those should drive personalization — skip web search. If CR signals are thin or the prospect has little CR activity, run a web search for external hooks:
+CR이 강력한 신호를 반환한 경우 (최근 활동, 참여, 제품 사용) 이것이 개인화를 주도해야 합니다 — 웹 검색 건너뛰기. CR 신호가 부족하거나 잠재 고객의 CR 활동이 적으면 외부 훅을 위한 웹 검색을 실행합니다:
 
-**What to search:**
-- `"[company name]" funding OR acquisition OR launch OR announcement` — last 30 days
-- `"[contact full name]" "[company name]"` — look for recent articles, interviews, LinkedIn posts, or conference talks
+**검색할 것:**
+- `"[회사 이름]" funding OR acquisition OR launch OR announcement` — 최근 30일
+- `"[연락처 전체 이름]" "[회사 이름]"` — 최근 기사, 인터뷰, LinkedIn 게시글, 컨퍼런스 발표 찾기
 
-**Prioritize external hooks that are:**
-- Very recent (< 2 weeks) — the prospect is likely still thinking about it
-- Publicly visible — they know you could have seen it
-- Change-signaling — growth, new role, new product, new market
+**우선시할 외부 훅:**
+- 매우 최근 (2주 미만) — 잠재 고객이 여전히 이에 대해 생각하고 있을 가능성
+- 공개적으로 보이는 것 — 당신이 볼 수 있었다는 것을 알고 있음
+- 변화를 나타내는 것 — 성장, 새 역할, 새 제품, 새 시장
 
-If the user explicitly asks for web search or external hooks, run it regardless of CR signal richness.
+사용자가 명시적으로 웹 검색이나 외부 훅을 요청하면 CR 신호 풍부도에 관계없이 실행합니다.
 
-### Step 3: Spark Enrichment (If Available)
+### 3단계: Spark 보강 (사용 가능한 경우)
 
-If Spark is available, run enrichment on the target contact to get persona classification, background, and influence signals. Use this to calibrate tone and message angle.
+Spark가 사용 가능하면 대상 연락처에 대해 보강을 실행하여 페르소나 분류, 배경, 영향력 신호를 가져옵니다. 이를 사용하여 톤과 메시지 각도를 조정합니다.
 
-### Step 4: Identify the Best Hooks
+### 4단계: 최적의 훅 식별
 
-From the signal data, identify the 1–3 strongest personalization hooks. Rank by:
-1. **Recency** — happened in the last 7–14 days
-2. **Specificity** — a concrete action they took, not a general trend
-3. **Relevance** — connects directly to a value your product delivers
+신호 데이터에서 1-3개의 가장 강력한 개인화 훅을 식별합니다. 순위 기준:
+1. **최신성** — 최근 7-14일 이내에 발생
+2. **구체성** — 일반적 트렌드가 아닌 그들이 취한 구체적 행동
+3. **관련성** — 제품이 제공하는 가치와 직접 연결
 
-Good hooks: posted a question in the community about X, just hired 5 engineers, recently started using [feature], company just raised Series B, trial nearing expiration, champion just changed jobs.
+좋은 훅: 커뮤니티에서 X에 대한 질문 게시, 방금 엔지니어 5명 채용, 최근 [기능] 사용 시작, 회사가 방금 Series B 라운드 마감, 트라이얼 만료 임박, 챔피언 이직.
 
-Bad hooks: "I noticed you're a customer" or generic industry trends.
+나쁜 훅: "고객이시네요" 또는 일반적 산업 트렌드.
 
-### Step 5: Generate All Three Formats
+### 5단계: 세 가지 형식 모두 생성
 
-Use the strongest hooks to write all three formats. Each format has different constraints and conventions — follow the format-specific guidelines in `references/outreach-formats-guide.md`.
+가장 강력한 훅을 사용하여 세 가지 형식 모두를 작성합니다. 각 형식에는 다른 제약과 관례가 있습니다 — `references/outreach-formats-guide.md`의 형식별 가이드라인을 따릅니다.
 
-Always produce all three, clearly labeled.
+항상 세 가지 모두를 작성하고 명확히 라벨링합니다.
 
-When the user's company context is available (see `references/my-company-context.md`), ground the value bridge and pitch in the user's specific product and positioning.
+사용자의 회사 컨텍스트가 사용 가능한 경우 (`references/my-company-context.md` 참조), 가치 연결과 피치를 사용자의 특정 제품과 포지셔닝에 기반합니다.
 
-### Step 6: Annotate Your Choices
+### 6단계: 선택 사항에 주석 달기
 
-After the three drafts, include a brief note (2–4 sentences) explaining:
-- Which signals were used and why they were chosen
-- Any assumptions made (e.g., inferred call objective)
-- Alternative angles if the primary hook doesn't land
+세 가지 초안 후, 다음을 설명하는 간략한 메모 (2-4문장)를 포함합니다:
+- 어떤 신호가 사용되었고 왜 선택되었는지
+- 가정 사항 (예: 추론된 통화 목표)
+- 주요 훅이 맞지 않을 경우의 대안 각도
 
-## Output Format
+## 출력 형식
 
 ```
-## Outreach for [Name / Company]
+## [이름/회사]에 대한 아웃리치
 
-### 📧 Email
+### 이메일
 
-**Subject:** [Subject line]
+**제목:** [제목]
 
-[Email body — 3–5 sentences]
-
----
-
-### 📞 Call Script
-
-**Opening:**
-[Opening line — conversational, 1–2 sentences]
-
-**Value Bridge:**
-[Why you're calling and why now — 2–3 sentences tied to a signal]
-
-**Ask:**
-[Single, low-friction ask — e.g., 15-minute call, specific question]
+[이메일 본문 — 3-5문장]
 
 ---
 
-### 💼 LinkedIn Message
+### 통화 스크립트
 
-[Under 300 characters. Warm, personal, no pitch.]
+**오프닝:**
+[오프닝 라인 — 대화체, 1-2문장]
+
+**가치 연결:**
+[왜 전화했는지와 왜 지금인지 — 신호와 연결된 2-3문장]
+
+**요청:**
+[단일, 부담 없는 요청 — 예: 15분 통화, 구체적 질문]
 
 ---
 
-### Signal Notes
-[2–4 sentences: which signals were used, why, and any alternative angles]
+### LinkedIn 메시지
+
+[300자 이하. 따뜻하고, 개인적, 피치 없음.]
+
+---
+
+### 신호 메모
+[2-4문장: 어떤 신호가 사용되었는지, 왜, 대안 각도]
 ```
 
-## When Signal Data Is Sparse
+## 신호 데이터가 부족한 경우
 
-If Common Room returns minimal data on the target (e.g., just name, title, tags — no activity, no scores, no Spark):
+Common Room이 대상에 대해 최소한의 데이터만 반환하는 경우 (예: 이름, 직함, 태그만 — 활동 없음, 점수 없음, Spark 없음):
 
-1. **Do not draft outreach from thin air.** Outreach grounded in fabricated signals is worse than no outreach.
-2. **Run web search first** — this becomes your primary personalization source. Look for recent news, LinkedIn posts, conference talks, company announcements.
-3. **If web search also returns little**, present what you have honestly and ask the user for context:
+1. **허공에서 아웃리치를 작성하지 마세요.** 지어낸 신호에 기반한 아웃리치는 아웃리치 없는 것보다 나쁩니다.
+2. **먼저 웹 검색 실행** — 이것이 주요 개인화 소스가 됩니다. 최근 뉴스, LinkedIn 게시글, 컨퍼런스 발표, 회사 공지를 찾습니다.
+3. **웹 검색도 결과가 적으면**, 가진 것을 정직하게 제시하고 사용자에게 컨텍스트를 요청합니다:
 
 ```
-## Outreach for [Name / Company] — Limited Data
+## [이름/회사]에 대한 아웃리치 — 제한된 데이터
 
-**What I found:**
-[Only the real data from CR and web search]
+**발견된 내용:**
+[CR 및 웹 검색의 실제 데이터만]
 
-**I don't have enough signal to draft personalized outreach yet.** To write something strong, I'd need:
-- Recent activity or engagement signals
-- Context you have from prior conversations
-- A specific reason for reaching out now
+**개인화된 아웃리치를 작성할 충분한 신호가 없습니다.** 강력한 메시지를 작성하려면 다음이 필요합니다:
+- 최근 활동 또는 참여 신호
+- 이전 대화에서 가진 컨텍스트
+- 지금 연락하는 구체적 이유
 
-Can you share any of the above?
+위의 내용을 공유해 주시겠습니까?
 ```
 
-## Quality Standards
+## 품질 기준
 
-- Every message must reference something specific — generic outreach is not acceptable output
-- Match tone to context: warm and conversational for inbound/community signals; more formal for cold/executive outreach
-- The LinkedIn message must be under 300 characters — no exceptions
-- The call script must be speakable naturally — read it aloud mentally to check rhythm
-- **Never fabricate signals** — only reference data retrieved from Common Room or web search
+- 모든 메시지는 구체적인 내용을 참조해야 함 — 일반적 아웃리치는 허용되지 않는 출력
+- 맥락에 맞게 톤 매칭: 인바운드/커뮤니티 신호에는 따뜻하고 대화체; 콜드/임원 아웃리치에는 더 격식 있게
+- LinkedIn 메시지는 반드시 300자 이하 — 예외 없음
+- 통화 스크립트는 자연스럽게 말할 수 있어야 함 — 리듬 확인을 위해 머리속으로 소리 내어 읽기
+- **신호를 지어내지 않기** — Common Room 또는 웹 검색에서 조회된 데이터만 참조
 
-## Reference Files
+## 참조 파일
 
-- **`references/outreach-formats-guide.md`** — detailed format rules, examples, and tone guidelines for each channel
+- **`references/outreach-formats-guide.md`** — 각 채널의 상세 형식 규칙, 예시, 톤 가이드라인

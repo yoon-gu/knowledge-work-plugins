@@ -6,11 +6,11 @@ user-invocable: false
 
 # Knowledge Synthesis
 
-The last mile of enterprise search. Takes raw results from multiple sources and produces a coherent, trustworthy answer.
+엔터프라이즈 검색의 마지막 단계입니다. 여러 소스의 원시 결과를 받아 일관되고 신뢰할 수 있는 답변을 생성합니다.
 
-## The Goal
+## 목표
 
-Transform this:
+다음을:
 ```
 ~~chat result: "Sarah said in #eng: 'let's go with REST, GraphQL is overkill for our use case'"
 ~~email result: "Subject: API Decision — Sarah's email confirming REST approach with rationale"
@@ -18,12 +18,12 @@ Transform this:
 ~~project tracker result: "Task: Finalize API approach — marked complete by Sarah"
 ```
 
-Into this:
+다음으로 변환합니다:
 ```
-The team decided to go with REST over GraphQL for the API redesign. Sarah made the
-call, noting that GraphQL was overkill for the current use case. This was discussed
-in #engineering on Tuesday, confirmed via email Wednesday, and the design doc has
-been updated to reflect the decision. The related ~~project tracker task is marked complete.
+팀은 API 재설계에 GraphQL 대신 REST를 사용하기로 결정했습니다. Sarah가 결정을 내렸으며,
+GraphQL은 현재 사용 사례에 비해 과도하다고 지적했습니다. 이 내용은 화요일 #engineering에서
+논의되었고, 수요일에 이메일로 확인되었으며, 설계 문서가 해당 결정을 반영하여 업데이트되었습니다.
+관련 ~~project tracker 태스크가 완료로 표시되어 있습니다.
 
 Sources:
 - ~~chat: #engineering thread (Jan 14)
@@ -32,227 +32,227 @@ Sources:
 - ~~project tracker: "Finalize API approach" (completed Jan 15)
 ```
 
-## Deduplication
+## 중복 제거
 
-### Cross-Source Deduplication
+### 크로스 소스 중복 제거
 
-The same information often appears in multiple places. Identify and merge duplicates:
+동일한 정보가 여러 곳에 나타나는 경우가 많습니다. 중복을 파악하고 병합합니다:
 
-**Signals that results are about the same thing:**
-- Same or very similar text content
-- Same author/sender
-- Timestamps within a short window (same day or adjacent days)
-- References to the same entity (project name, document, decision)
-- One source references another ("as discussed in ~~chat", "per the email", "see the doc")
+**결과가 같은 내용임을 나타내는 신호:**
+- 동일하거나 매우 유사한 텍스트 내용
+- 동일한 작성자/발신자
+- 짧은 기간 내의 타임스탬프 (같은 날 또는 인접한 날)
+- 동일한 엔티티 참조 (프로젝트 이름, 문서, 결정)
+- 한 소스가 다른 소스를 참조 ("~~chat에서 논의된 대로", "이메일에 따르면", "문서 참조")
 
-**How to merge:**
-- Combine into a single narrative item
-- Cite all sources where it appeared
-- Use the most complete version as the primary text
-- Add unique details from each source
+**병합 방법:**
+- 단일 서사 항목으로 결합
+- 나타난 모든 소스 인용
+- 가장 완전한 버전을 주요 텍스트로 사용
+- 각 소스의 고유한 세부 사항 추가
 
-### Deduplication Priority
+### 중복 제거 우선순위
 
-When the same information exists in multiple sources, prefer:
+동일한 정보가 여러 소스에 있는 경우 다음을 선호합니다:
 ```
-1. The most complete version (fullest context)
-2. The most authoritative source (official doc > chat)
-3. The most recent version (latest update wins for evolving info)
-```
-
-### What NOT to Deduplicate
-
-Keep as separate items when:
-- The same topic is discussed but with different conclusions
-- Different people express different viewpoints
-- The information evolved meaningfully between sources (v1 vs v2 of a decision)
-- Different time periods are represented
-
-## Citation and Source Attribution
-
-Every claim in the synthesized answer must be attributable to a source.
-
-### Attribution Format
-
-Inline for direct references:
-```
-Sarah confirmed the REST approach in her email on Wednesday.
-The design doc was updated to reflect this (~~cloud storage: "API Design Doc v3").
+1. 가장 완전한 버전 (가장 풍부한 맥락)
+2. 가장 권위 있는 소스 (공식 문서 > 채팅)
+3. 가장 최신 버전 (진화하는 정보에는 최신 업데이트 우선)
 ```
 
-Source list at the end for completeness:
+### 중복 제거하지 않을 경우
+
+다음의 경우 별도 항목으로 유지합니다:
+- 동일한 주제가 논의되었지만 다른 결론이 나온 경우
+- 다른 사람들이 다른 관점을 표현하는 경우
+- 소스 간에 정보가 의미 있게 발전한 경우 (결정의 v1 vs v2)
+- 다른 시간 기간을 나타내는 경우
+
+## 인용 및 소스 출처 표시
+
+종합된 답변의 모든 주장은 소스로 귀속되어야 합니다.
+
+### 출처 표시 형식
+
+직접 참조를 위한 인라인 방식:
+```
+Sarah가 수요일 이메일에서 REST 접근 방식을 확인했습니다.
+설계 문서가 이를 반영하여 업데이트되었습니다 (~~cloud storage: "API Design Doc v3").
+```
+
+완전성을 위한 목록 방식:
 ```
 Sources:
-- ~~chat: #engineering discussion (Jan 14) — initial decision thread
-- ~~email: "API Decision" from Sarah Chen (Jan 15) — formal confirmation
-- ~~cloud storage: "API Design Doc v3" last modified Jan 15 — updated specification
+- ~~chat: #engineering discussion (Jan 14) — 초기 결정 스레드
+- ~~email: "API Decision" from Sarah Chen (Jan 15) — 공식 확인
+- ~~cloud storage: "API Design Doc v3" last modified Jan 15 — 업데이트된 사양
 ```
 
-### Attribution Rules
+### 출처 표시 규칙
 
-- Always name the source type (~~chat, ~~email, ~~cloud storage, etc.)
-- Include the specific location (channel, folder, thread)
-- Include the date or relative time
-- Include the author when relevant
-- Include document/thread titles when available
-- For ~~chat, note the channel name
-- For ~~email, note the subject line and sender
-- For ~~cloud storage, note the document title
+- 항상 소스 유형 명시 (~~chat, ~~email, ~~cloud storage 등)
+- 구체적인 위치 포함 (채널, 폴더, 스레드)
+- 날짜 또는 상대적 시간 포함
+- 관련 있는 경우 작성자 포함
+- 사용 가능한 경우 문서/스레드 제목 포함
+- ~~chat의 경우 채널 이름 기록
+- ~~email의 경우 제목 줄과 발신자 기록
+- ~~cloud storage의 경우 문서 제목 기록
 
-## Confidence Levels
+## 신뢰도 수준
 
-Not all results are equally trustworthy. Assess confidence based on:
+모든 결과가 동일하게 신뢰할 수 있는 것은 아닙니다. 다음을 기반으로 신뢰도를 평가합니다:
 
-### Freshness
+### 최신성
 
-| Recency | Confidence impact |
+| 최신성 | 신뢰도 영향 |
 |---------|------------------|
-| Today / yesterday | High confidence for current state |
-| This week | Good confidence |
-| This month | Moderate — things may have changed |
-| Older than a month | Lower confidence — flag as potentially outdated |
+| 오늘 / 어제 | 현재 상태에 대한 높은 신뢰도 |
+| 이번 주 | 좋은 신뢰도 |
+| 이번 달 | 보통 — 변경되었을 수 있음 |
+| 한 달 이상 | 낮은 신뢰도 — 잠재적으로 구식일 수 있음을 표시 |
 
-For status queries, heavily weight freshness. For policy/factual queries, freshness matters less.
+상태 쿼리의 경우 최신성에 큰 가중치를 부여합니다. 정책/사실 쿼리의 경우 최신성은 덜 중요합니다.
 
-### Authority
+### 권위도
 
-| Source type | Authority level |
+| 소스 유형 | 권위 수준 |
 |-------------|----------------|
-| Official wiki / knowledge base | Highest — curated, maintained |
-| Shared documents (final versions) | High — intentionally published |
-| Email announcements | High — formal communication |
-| Meeting notes | Moderate-high — may be incomplete |
-| Chat messages (thread conclusions) | Moderate — informal but real-time |
-| Chat messages (mid-thread) | Lower — may not reflect final position |
-| Draft documents | Low — not finalized |
-| Task comments | Contextual — depends on commenter |
+| 공식 위키 / 지식 베이스 | 최고 — 큐레이션되고 유지 관리됨 |
+| 공유 문서 (최종 버전) | 높음 — 의도적으로 게시됨 |
+| 이메일 공지 | 높음 — 공식 커뮤니케이션 |
+| 회의록 | 보통-높음 — 불완전할 수 있음 |
+| 채팅 메시지 (스레드 결론) | 보통 — 비공식적이지만 실시간 |
+| 채팅 메시지 (스레드 중간) | 낮음 — 최종 입장을 반영하지 않을 수 있음 |
+| 초안 문서 | 낮음 — 확정되지 않음 |
+| 태스크 댓글 | 맥락 의존 — 댓글 작성자에 따라 다름 |
 
-### Expressing Confidence
+### 신뢰도 표현
 
-When confidence is high (multiple fresh, authoritative sources agree):
+신뢰도가 높은 경우 (여러 최신 권위 소스가 일치):
 ```
-The team decided to use REST for the API redesign. [direct statement]
-```
-
-When confidence is moderate (single source or somewhat dated):
-```
-Based on the discussion in #engineering last month, the team was leaning
-toward REST for the API redesign. This may have evolved since then.
+팀은 API 재설계에 REST를 사용하기로 결정했습니다. [직접 서술]
 ```
 
-When confidence is low (old data, informal source, or conflicting signals):
+신뢰도가 보통인 경우 (단일 소스 또는 다소 오래된 경우):
 ```
-I found a reference to an API migration discussion from three months ago
-in ~~chat, but I couldn't find a formal decision document. The information
-may be outdated. You might want to check with the team for current status.
-```
-
-### Conflicting Information
-
-When sources disagree:
-```
-I found conflicting information about the API approach:
-- The ~~chat discussion on Jan 10 suggested GraphQL
-- But Sarah's email on Jan 15 confirmed REST
-- The design doc (updated Jan 15) reflects REST
-
-The most recent sources indicate REST was the final decision,
-but the earlier ~~chat discussion explored GraphQL first.
+지난 달 #engineering의 논의에 따르면, 팀은 API 재설계에
+REST를 채택하는 방향으로 기울었습니다. 그 이후 변경되었을 수 있습니다.
 ```
 
-Always surface conflicts rather than silently picking one version.
-
-## Summarization Strategies
-
-### For Small Result Sets (1-5 results)
-
-Present each result with context. No summarization needed — give the user everything:
+신뢰도가 낮은 경우 (오래된 데이터, 비공식 소스, 또는 상충되는 신호):
 ```
-[Direct answer synthesized from results]
-
-[Detail from source 1]
-[Detail from source 2]
-
-Sources: [full attribution]
+3개월 전 ~~chat에서 API 마이그레이션 논의에 대한 언급을 찾았지만,
+공식 결정 문서를 찾을 수 없었습니다. 정보가 오래되었을 수 있습니다.
+현재 상태를 확인하려면 팀에 직접 문의하는 것이 좋을 수 있습니다.
 ```
 
-### For Medium Result Sets (5-15 results)
+### 상충되는 정보
 
-Group by theme and summarize each group:
+소스들이 일치하지 않는 경우:
 ```
-[Overall answer]
+API 접근 방식에 대해 상충되는 정보를 발견했습니다:
+- Jan 10 ~~chat 논의에서 GraphQL 제안
+- 하지만 Jan 15 Sarah의 이메일에서 REST 확인
+- Jan 15 업데이트된 설계 문서에 REST 반영
 
-Theme 1: [summary of related results]
-Theme 2: [summary of related results]
-
-Key sources: [top 3-5 most relevant sources]
-Full results: [count] items found across [sources]
-```
-
-### For Large Result Sets (15+ results)
-
-Provide a high-level synthesis with the option to drill down:
-```
-[Overall answer based on most relevant results]
-
-Summary:
-- [Key finding 1] (supported by N sources)
-- [Key finding 2] (supported by N sources)
-- [Key finding 3] (supported by N sources)
-
-Top sources:
-- [Most authoritative/relevant source]
-- [Second most relevant]
-- [Third most relevant]
-
-Found [total count] results across [source list].
-Want me to dig deeper into any specific aspect?
+가장 최신 소스는 REST가 최종 결정임을 나타내지만,
+초기 ~~chat 논의에서는 먼저 GraphQL이 검토되었습니다.
 ```
 
-### Summarization Rules
+충돌을 조용히 하나의 버전으로 선택하지 말고 항상 표면화합니다.
 
-- Lead with the answer, not the search process
-- Do not list raw results — synthesize them into narrative
-- Group related items from different sources together
-- Preserve important nuance and caveats
-- Include enough detail that the user can decide whether to dig deeper
-- Always offer to provide more detail if the result set was large
+## 요약 전략
 
-## Synthesis Workflow
+### 소규모 결과 (1-5개)
+
+각 결과를 맥락과 함께 제시합니다. 요약 불필요 — 사용자에게 모든 것을 제공합니다:
+```
+[결과에서 종합된 직접 답변]
+
+[소스 1의 세부 사항]
+[소스 2의 세부 사항]
+
+Sources: [전체 출처]
+```
+
+### 중간 규모 결과 (5-15개)
+
+주제별로 그룹화하고 각 그룹을 요약합니다:
+```
+[전체 답변]
+
+주제 1: [관련 결과 요약]
+주제 2: [관련 결과 요약]
+
+주요 소스: [가장 관련성 높은 소스 3-5개]
+전체 결과: [소스]에서 [수]개 항목 발견
+```
+
+### 대규모 결과 (15개 이상)
+
+더 자세히 알아볼 수 있는 옵션과 함께 고수준 종합을 제공합니다:
+```
+[가장 관련성 높은 결과에 기반한 전체 답변]
+
+요약:
+- [핵심 발견 1] (N개 소스에서 지원)
+- [핵심 발견 2] (N개 소스에서 지원)
+- [핵심 발견 3] (N개 소스에서 지원)
+
+주요 소스:
+- [가장 권위 있는/관련성 높은 소스]
+- [두 번째로 관련성 높은 소스]
+- [세 번째로 관련성 높은 소스]
+
+[소스 목록]에서 총 [수]개의 결과를 발견했습니다.
+특정 측면에 대해 더 자세히 알아볼까요?
+```
+
+### 요약 규칙
+
+- 검색 과정이 아닌 답변으로 시작
+- 원시 결과를 나열하지 말고 서사로 종합
+- 다른 소스의 관련 항목을 함께 그룹화
+- 중요한 뉘앙스와 주의 사항 보존
+- 사용자가 더 깊이 파고들지 결정할 수 있도록 충분한 세부 사항 포함
+- 결과 세트가 많은 경우 항상 더 자세한 내용 제공 제안
+
+## 종합 워크플로우
 
 ```
-[Raw results from all sources]
+[모든 소스의 원시 결과]
           ↓
-[1. Deduplicate — merge same info from different sources]
+[1. 중복 제거 — 다른 소스의 동일 정보 병합]
           ↓
-[2. Cluster — group related results by theme/topic]
+[2. 클러스터링 — 관련 결과를 주제/토픽별로 그룹화]
           ↓
-[3. Rank — order clusters and items by relevance to query]
+[3. 순위 지정 — 쿼리 관련성에 따라 클러스터 및 항목 정렬]
           ↓
-[4. Assess confidence — freshness × authority × agreement]
+[4. 신뢰도 평가 — 최신성 × 권위도 × 일치도]
           ↓
-[5. Synthesize — produce narrative answer with attribution]
+[5. 종합 — 출처 표시와 함께 서사 답변 생성]
           ↓
-[6. Format — choose appropriate detail level for result count]
+[6. 포맷 — 결과 수에 맞는 적절한 세부 수준 선택]
           ↓
-[Coherent answer with sources]
+[소스가 포함된 일관된 답변]
 ```
 
-## Anti-Patterns
+## 안티 패턴
 
-**Do not:**
-- List results source by source ("From ~~chat: ... From ~~email: ... From ~~cloud storage: ...")
-- Include irrelevant results just because they matched a keyword
-- Bury the answer under methodology explanation
-- Present conflicting info without flagging the conflict
-- Omit source attribution
-- Present uncertain information with the same confidence as well-supported facts
-- Summarize so aggressively that useful detail is lost
+**하지 말아야 할 것:**
+- 소스별로 결과 나열 ("~~chat에서: ... ~~email에서: ... ~~cloud storage에서: ...")
+- 키워드가 일치한다는 이유만으로 관련 없는 결과 포함
+- 방법론 설명 아래에 답변 묻기
+- 충돌을 표시하지 않고 상충되는 정보 제시
+- 소스 출처 생략
+- 불확실한 정보를 잘 뒷받침된 사실과 같은 신뢰도로 제시
+- 유용한 세부 사항이 손실될 정도로 지나치게 요약
 
-**Do:**
-- Lead with the answer
-- Group by topic, not by source
-- Flag confidence levels when appropriate
-- Surface conflicts explicitly
-- Attribute all claims to sources
-- Offer to go deeper when result sets are large
+**해야 할 것:**
+- 답변으로 시작
+- 소스별이 아닌 주제별로 그룹화
+- 적절한 경우 신뢰도 수준 표시
+- 충돌을 명시적으로 표면화
+- 모든 주장에 소스 출처 표시
+- 결과 세트가 많을 때 더 깊이 탐색 제안

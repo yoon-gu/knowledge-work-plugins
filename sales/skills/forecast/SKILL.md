@@ -1,214 +1,214 @@
 ---
 name: forecast
-description: Generate a weighted sales forecast with best/likely/worst scenarios, commit vs. upside breakdown, and gap analysis. Use when preparing a quarterly forecast call, assessing gap-to-quota from a pipeline CSV, deciding which deals to commit vs. call upside, or checking pipeline coverage against your number.
-argument-hint: "<period>"
+description: 최선/예상/최악 시나리오, 커밋 vs. 업사이드 분해, 갭 분석이 포함된 가중 영업 예측을 생성합니다. 분기별 예측 콜을 준비할 때, 파이프라인 CSV에서 할당 대비 갭을 평가할 때, 어떤 거래를 커밋 vs. 업사이드로 부를지 결정할 때, 또는 파이프라인 커버리지를 목표 대비 확인할 때 사용하세요.
+argument-hint: "<기간>"
 ---
 
 # /forecast
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 하는 경우, [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Generate a weighted sales forecast with risk analysis and commit recommendations.
+리스크 분석과 커밋 추천이 포함된 가중 영업 예측을 생성합니다.
 
-## Usage
+## 사용법
 
 ```
-/forecast [period]
+/forecast [기간]
 ```
 
-Generate a forecast for: $ARGUMENTS
+다음에 대한 예측을 생성합니다: $ARGUMENTS
 
-If a file is referenced: @$1
+파일이 참조된 경우: @$1
 
 ---
 
-## How It Works
+## 작동 방식
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        FORECAST                                  │
+│                        예측                                      │
 ├─────────────────────────────────────────────────────────────────┤
-│  STANDALONE (always works)                                       │
-│  ✓ Upload CSV export from your CRM                              │
-│  ✓ Or paste/describe your pipeline deals                        │
-│  ✓ Set your quota and timeline                                  │
-│  ✓ Get weighted forecast with stage probabilities               │
-│  ✓ Risk-adjusted projections (best/likely/worst case)           │
-│  ✓ Commit vs. upside breakdown                                  │
-│  ✓ Gap analysis and recommendations                             │
+│  단독 사용 (항상 작동)                                            │
+│  ✓ CRM에서 CSV 내보내기 업로드                                   │
+│  ✓ 또는 파이프라인 거래를 붙여넣기/설명                           │
+│  ✓ 할당 및 타임라인 설정                                          │
+│  ✓ 단계 확률이 포함된 가중 예측 제공                              │
+│  ✓ 리스크 조정 예측 (최선/예상/최악)                              │
+│  ✓ 커밋 vs. 업사이드 분해                                        │
+│  ✓ 갭 분석 및 추천                                               │
 ├─────────────────────────────────────────────────────────────────┤
-│  SUPERCHARGED (when you connect your tools)                      │
-│  + CRM: Pull pipeline automatically, real-time data             │
-│  + Historical win rates by stage, segment, deal size            │
-│  + Activity signals for risk scoring                            │
-│  + Automatic refresh and tracking over time                     │
+│  강화 (도구를 연결하면)                                            │
+│  + CRM: 파이프라인 자동 가져오기, 실시간 데이터                   │
+│  + 단계, 세그먼트, 거래 규모별 과거 승률                          │
+│  + 리스크 점수를 위한 활동 신호                                    │
+│  + 자동 갱신 및 시간에 따른 추적                                   │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## What I Need From You
+## 필요한 정보
 
-### Step 1: Your Pipeline Data
+### 1단계: 파이프라인 데이터
 
-**Option A: Upload a CSV**
-Export your pipeline from your CRM (e.g. Salesforce, HubSpot). I need at minimum:
-- Deal/Opportunity name
-- Amount
-- Stage
-- Close date
+**옵션 A: CSV 업로드**
+CRM (예: Salesforce, HubSpot)에서 파이프라인을 내보냅니다. 최소 필요:
+- 거래/기회 이름
+- 금액
+- 단계
+- 마감일
 
-Helpful if you have:
-- Owner (if team forecast)
-- Last activity date
-- Created date
-- Account name
+도움이 되는 항목:
+- 담당자 (팀 예측인 경우)
+- 마지막 활동 날짜
+- 생성 날짜
+- 계정 이름
 
-**Option B: Paste your deals**
+**옵션 B: 거래 붙여넣기**
 ```
-Acme Corp - $50K - Negotiation - closes Jan 31
-TechStart - $25K - Demo scheduled - closes Feb 15
-BigCo - $100K - Discovery - closes Mar 30
+Acme Corp - $50K - 협상 - 1월 31일 마감
+TechStart - $25K - 데모 예정 - 2월 15일 마감
+BigCo - $100K - 발견 - 3월 30일 마감
 ```
 
-**Option C: Describe your territory**
-"I have 8 deals in pipeline totaling $400K. Two are in negotiation ($120K), three in evaluation ($180K), three in discovery ($100K)."
+**옵션 C: 영역 설명**
+"8개 거래가 파이프라인에 있고 총 $400K입니다. 2개는 협상 중 ($120K), 3개는 평가 중 ($180K), 3개는 발견 중 ($100K)."
 
-### Step 2: Your Targets
+### 2단계: 목표
 
-- **Quota**: What's your number? (e.g., "$500K this quarter")
-- **Timeline**: When does the period end? (e.g., "Q1 ends March 31")
-- **Already closed**: How much have you already booked this period?
+- **할당**: 목표는 얼마인가? (예: "이번 분기 $500K")
+- **타임라인**: 기간이 언제 끝나는가? (예: "Q1은 3월 31일 종료")
+- **이미 마감**: 이 기간에 이미 예약한 금액은?
 
 ---
 
-## Output
+## 출력
 
 ```markdown
-# Sales Forecast: [Period]
+# 영업 예측: [기간]
 
-**Generated:** [Date]
-**Data Source:** [CSV upload / Manual input / CRM]
+**생성일:** [날짜]
+**데이터 소스:** [CSV 업로드 / 수동 입력 / CRM]
 
 ---
 
-## Summary
+## 요약
 
-| Metric | Value |
+| 지표 | 값 |
 |--------|-------|
-| **Quota** | $[X] |
-| **Closed to Date** | $[X] ([X]% of quota) |
-| **Open Pipeline** | $[X] |
-| **Weighted Forecast** | $[X] |
-| **Gap to Quota** | $[X] |
-| **Coverage Ratio** | [X]x |
+| **할당** | $[X] |
+| **현재까지 마감** | $[X] (할당의 [X]%) |
+| **오픈 파이프라인** | $[X] |
+| **가중 예측** | $[X] |
+| **할당까지 갭** | $[X] |
+| **커버리지 비율** | [X]배 |
 
 ---
 
-## Forecast Scenarios
+## 예측 시나리오
 
-| Scenario | Amount | % of Quota | Assumptions |
+| 시나리오 | 금액 | 할당 대비 % | 가정 |
 |----------|--------|------------|-------------|
-| **Best Case** | $[X] | [X]% | All deals close as expected |
-| **Likely Case** | $[X] | [X]% | Stage-weighted probabilities |
-| **Worst Case** | $[X] | [X]% | Only commit deals close |
+| **최선** | $[X] | [X]% | 모든 거래가 예상대로 마감 |
+| **예상** | $[X] | [X]% | 단계 가중 확률 |
+| **최악** | $[X] | [X]% | 커밋 거래만 마감 |
 
 ---
 
-## Pipeline by Stage
+## 단계별 파이프라인
 
-| Stage | # Deals | Total Value | Probability | Weighted Value |
+| 단계 | 거래 수 | 총 가치 | 확률 | 가중 가치 |
 |-------|---------|-------------|-------------|----------------|
-| Negotiation | [X] | $[X] | 80% | $[X] |
-| Proposal | [X] | $[X] | 60% | $[X] |
-| Evaluation | [X] | $[X] | 40% | $[X] |
-| Discovery | [X] | $[X] | 20% | $[X] |
-| **Total** | [X] | $[X] | — | $[X] |
+| 협상 | [X] | $[X] | 80% | $[X] |
+| 제안 | [X] | $[X] | 60% | $[X] |
+| 평가 | [X] | $[X] | 40% | $[X] |
+| 발견 | [X] | $[X] | 20% | $[X] |
+| **합계** | [X] | $[X] | — | $[X] |
 
 ---
 
-## Commit vs. Upside
+## 커밋 vs. 업사이드
 
-### Commit (High Confidence)
-Deals you'd stake your forecast on:
+### 커밋 (높은 확신)
+예측을 걸 수 있는 거래:
 
-| Deal | Amount | Stage | Close Date | Why Commit |
+| 거래 | 금액 | 단계 | 마감일 | 커밋 이유 |
 |------|--------|-------|------------|------------|
-| [Deal] | $[X] | [Stage] | [Date] | [Reason] |
+| [거래] | $[X] | [단계] | [날짜] | [이유] |
 
-**Total Commit:** $[X]
+**총 커밋:** $[X]
 
-### Upside (Lower Confidence)
-Deals that could close but have risk:
+### 업사이드 (낮은 확신)
+마감될 수 있지만 리스크가 있는 거래:
 
-| Deal | Amount | Stage | Close Date | Risk Factor |
+| 거래 | 금액 | 단계 | 마감일 | 리스크 요인 |
 |------|--------|-------|------------|-------------|
-| [Deal] | $[X] | [Stage] | [Date] | [Risk] |
+| [거래] | $[X] | [단계] | [날짜] | [리스크] |
 
-**Total Upside:** $[X]
+**총 업사이드:** $[X]
 
 ---
 
-## Risk Flags
+## 리스크 플래그
 
-| Deal | Amount | Risk | Recommendation |
+| 거래 | 금액 | 리스크 | 추천 |
 |------|--------|------|----------------|
-| [Deal] | $[X] | Close date passed | Update close date or move to lost |
-| [Deal] | $[X] | No activity in 14+ days | Re-engage or downgrade stage |
-| [Deal] | $[X] | Close date this week, still in discovery | Unlikely to close — push out |
+| [거래] | $[X] | 마감일 경과 | 마감일 업데이트 또는 실패로 이동 |
+| [거래] | $[X] | 14일+ 활동 없음 | 재참여 또는 단계 하향 |
+| [거래] | $[X] | 이번 주 마감인데 아직 발견 중 | 마감 가능성 낮음 — 연기 |
 
 ---
 
-## Gap Analysis
+## 갭 분석
 
-**To hit quota, you need:** $[X] more
+**할당 달성을 위해 필요:** $[X] 추가
 
-**Options to close the gap:**
-1. **Accelerate [Deal]** — Currently [stage], worth $[X]. If you can close by [date], you're at [X]% of quota.
-2. **Revive [Stalled Deal]** — Last active [date]. Worth $[X]. Reach out to [contact].
-3. **New pipeline needed** — You need $[X] in new opportunities at [X]x coverage to be safe.
+**갭을 메울 옵션:**
+1. **[거래] 가속** — 현재 [단계], $[X] 규모. [날짜]까지 마감하면 할당의 [X]% 도달.
+2. **[정체 거래] 부활** — 마지막 활동 [날짜]. $[X] 규모. [담당자]에게 연락.
+3. **신규 파이프라인 필요** — 안전하려면 [X]배 커버리지로 $[X]의 새 기회 필요.
 
 ---
 
-## Recommendations
+## 추천
 
-1. [ ] [Specific action for highest-impact deal]
-2. [ ] [Action for at-risk deal]
-3. [ ] [Pipeline generation recommendation if gap exists]
+1. [ ] [최고 영향 거래에 대한 구체적 조치]
+2. [ ] [위험 거래에 대한 조치]
+3. [ ] [갭이 있으면 파이프라인 생성 추천]
 ```
 
 ---
 
-## Stage Probabilities (Default)
+## 단계 확률 (기본값)
 
-If you don't provide custom probabilities, I'll use:
+사용자 지정 확률을 제공하지 않으면 다음을 사용합니다:
 
-| Stage | Default Probability |
+| 단계 | 기본 확률 |
 |-------|---------------------|
-| Closed Won | 100% |
-| Negotiation / Contract | 80% |
-| Proposal / Quote | 60% |
-| Evaluation / Demo | 40% |
-| Discovery / Qualification | 20% |
-| Prospecting / Lead | 10% |
+| 마감 성공 | 100% |
+| 협상 / 계약 | 80% |
+| 제안 / 견적 | 60% |
+| 평가 / 데모 | 40% |
+| 발견 / 자격 검증 | 20% |
+| 잠재 / 리드 | 10% |
 
-Tell me if your stages or probabilities are different.
-
----
-
-## If CRM Connected
-
-- I'll pull your pipeline automatically
-- Use your actual historical win rates
-- Factor in activity recency for risk scoring
-- Track forecast changes over time
-- Compare to previous forecasts
+단계나 확률이 다르면 알려주세요.
 
 ---
 
-## Tips
+## CRM이 연결된 경우
 
-1. **Be honest about commit** — Only commit deals you'd bet on. Upside is for everything else.
-2. **Update close dates** — Stale close dates kill forecast accuracy. Push out deals that won't close in time.
-3. **Coverage matters** — 3x pipeline coverage is healthy. Below 2x is risky.
-4. **Activity = signal** — Deals with no recent activity are at higher risk than stage suggests.
+- 파이프라인을 자동으로 가져옵니다
+- 실제 과거 승률을 사용합니다
+- 리스크 점수에 활동 최근성을 반영합니다
+- 시간에 따른 예측 변화를 추적합니다
+- 이전 예측과 비교합니다
+
+---
+
+## 팁
+
+1. **커밋에 솔직하세요** — 확실히 걸 수 있는 거래만 커밋. 업사이드는 나머지 모두.
+2. **마감일을 업데이트하세요** — 오래된 마감일은 예측 정확성을 죽입니다. 제시간에 마감되지 않을 거래는 연기.
+3. **커버리지가 중요** — 3배 파이프라인 커버리지가 건강. 2배 미만은 위험.
+4. **활동 = 신호** — 최근 활동이 없는 거래는 단계가 시사하는 것보다 더 높은 리스크.

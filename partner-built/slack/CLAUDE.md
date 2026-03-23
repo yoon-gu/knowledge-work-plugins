@@ -1,16 +1,16 @@
-# Slack Plugin
+# Slack 플러그인
 
-This plugin integrates Slack with Claude Code, providing tools to search, read, and send messages in Slack.
+이 플러그인은 Slack을 Claude Code와 통합하여 Slack에서 메시지를 검색, 읽기, 보내기 위한 도구를 제공합니다.
 
-## Commands
+## 명령어
 
-- `/slack:summarize-channel <channel-name>` — Summarize recent activity in a Slack channel
-- `/slack:find-discussions <topic>` — Find discussions about a specific topic across Slack channels
-- `/slack:draft-announcement <topic>` — Draft a well-formatted Slack announcement and save it as a draft
-- `/slack:standup` — Generate a standup update based on your recent Slack activity
-- `/slack:channel-digest <channel1, channel2, ...>` — Get a digest of recent activity across multiple Slack channels
+- `/slack:summarize-channel <channel-name>` — Slack 채널의 최근 활동을 요약합니다
+- `/slack:find-discussions <topic>` — Slack 채널 전체에서 특정 주제에 대한 토론을 찾습니다
+- `/slack:draft-announcement <topic>` — 잘 포맷된 Slack 공지를 작성하고 초안으로 저장합니다
+- `/slack:standup` — 최근 Slack 활동을 기반으로 스탠드업 업데이트를 생성합니다
+- `/slack:channel-digest <channel1, channel2, ...>` — 여러 Slack 채널의 최근 활동 다이제스트를 제공합니다
 
-## Skills
+## 스킬
 
-- **slack-messaging** — Guidance for composing well-formatted Slack messages using mrkdwn syntax
-- **slack-search** — Guidance for effectively searching Slack to find messages, files, channels, and people
+- **slack-messaging** — mrkdwn 구문을 사용하여 잘 포맷된 Slack 메시지를 작성하기 위한 지침
+- **slack-search** — Slack에서 메시지, 파일, 채널, 사람을 효과적으로 검색하기 위한 지침

@@ -1,20 +1,20 @@
-# CITE-seq Analysis with totalVI
+# totalVI를 이용한 CITE-seq 분석
 
-This reference covers multi-modal analysis of CITE-seq data (RNA + surface proteins) using totalVI.
+이 레퍼런스는 totalVI를 사용한 CITE-seq 데이터 (RNA + 표면 단백질)의 다중 모달 분석을 다룹니다.
 
-## Overview
+## 개요
 
-CITE-seq combines:
-- scRNA-seq (transcriptome)
-- Protein surface markers (antibody-derived tags, ADT)
+CITE-seq는 다음을 결합합니다:
+- scRNA-seq (전사체)
+- 단백질 표면 마커 (항체 유래 태그, ADT)
 
-totalVI jointly models both modalities to:
-- Integrate across batches
-- Denoise protein signal
-- Learn joint latent representation
-- Enable cross-modal imputation
+totalVI는 두 모달리티를 공동으로 모델링하여:
+- 배치 간 통합
+- 단백질 신호 잡음 제거
+- 공동 잠재 표현 학습
+- 교차 모달 대체 활성화
 
-## Prerequisites
+## 사전 요구사항
 
 ```python
 import scvi
@@ -26,15 +26,15 @@ import pandas as pd
 print(f"scvi-tools version: {scvi.__version__}")
 ```
 
-## Step 1: Load CITE-seq Data
+## 1단계: CITE-seq 데이터 로드
 
-### From 10x Genomics (Cell Ranger)
+### 10x Genomics (Cell Ranger)에서
 
 ```python
-# 10x outputs separate gene expression and feature barcoding
+# 10x는 유전자 발현과 피처 바코딩을 별도로 출력
 adata_rna = sc.read_10x_h5("filtered_feature_bc_matrix.h5", gex_only=False)
 
-# Separate RNA and protein
+# RNA와 단백질 분리
 adata_protein = adata_rna[:, adata_rna.var['feature_types'] == 'Antibody Capture'].copy()
 adata_rna = adata_rna[:, adata_rna.var['feature_types'] == 'Gene Expression'].copy()
 
@@ -42,36 +42,36 @@ print(f"RNA: {adata_rna.shape}")
 print(f"Protein: {adata_protein.shape}")
 ```
 
-### From MuData
+### MuData에서
 
 ```python
-# If data is in MuData format
+# MuData 형식의 데이터인 경우
 mdata = md.read_h5mu("cite_seq.h5mu")
 
 adata_rna = mdata['rna'].copy()
 adata_protein = mdata['protein'].copy()
 ```
 
-### Combine into Single AnnData
+### 단일 AnnData로 결합
 
 ```python
-# totalVI expects protein data in obsm
+# totalVI는 단백질 데이터를 obsm에 기대
 adata = adata_rna.copy()
 
-# Add protein expression to obsm
+# obsm에 단백질 발현 추가
 adata.obsm["protein_expression"] = adata_protein.X.toarray() if hasattr(adata_protein.X, 'toarray') else adata_protein.X
 
-# Store protein names
+# 단백질 이름 저장
 adata.uns["protein_names"] = list(adata_protein.var_names)
 ```
 
-## Step 2: Quality Control
+## 2단계: 품질 관리
 
 ### RNA QC
 
 ```python
-# Standard RNA QC
-# Handle both human (MT-) and mouse (mt-, Mt-) mitochondrial genes
+# 표준 RNA QC
+# 인간 (MT-)과 마우스 (mt-, Mt-) 미토콘드리아 유전자 모두 처리
     adata.var['mt'] = (
         adata.var_names.str.startswith('MT-') |
         adata.var_names.str.startswith('mt-') |
@@ -79,96 +79,96 @@ adata.uns["protein_names"] = list(adata_protein.var_names)
     )
 sc.pp.calculate_qc_metrics(adata, qc_vars=['mt'], inplace=True)
 
-# Filter cells
+# 세포 필터링
 adata = adata[adata.obs['n_genes_by_counts'] > 200].copy()
 adata = adata[adata.obs['pct_counts_mt'] < 20].copy()
 
-# Filter genes
+# 유전자 필터링
 sc.pp.filter_genes(adata, min_cells=3)
 ```
 
-### Protein QC
+### 단백질 QC
 
 ```python
-# Protein QC
+# 단백질 QC
 protein_counts = adata.obsm["protein_expression"]
-print(f"Protein counts per cell: min={protein_counts.sum(1).min():.0f}, max={protein_counts.sum(1).max():.0f}")
+print(f"세포당 단백질 카운트: min={protein_counts.sum(1).min():.0f}, max={protein_counts.sum(1).max():.0f}")
 
-# Check for isotype controls
-# Isotype controls should have low counts
+# 아이소타입 대조군 확인
+# 아이소타입 대조군은 낮은 카운트를 가져야 함
 protein_names = adata.uns["protein_names"]
 for i, name in enumerate(protein_names):
     if 'isotype' in name.lower() or 'control' in name.lower():
         print(f"{name}: mean={protein_counts[:, i].mean():.1f}")
 ```
 
-## Step 3: Data Preparation
+## 3단계: 데이터 준비
 
-### Store Raw Counts
+### 원시 카운트 저장
 
 ```python
-# Store RNA counts
+# RNA 카운트 저장
 adata.layers["counts"] = adata.X.copy()
 
-# Protein must be raw ADT counts (NOT CLR-normalized)
-# WARNING: If importing from Seurat, ensure you use raw counts, not CLR-normalized data
-# Seurat's NormalizeData(normalization.method = "CLR") transforms counts - use the original assay
+# 단백질은 원시 ADT 카운트여야 함 (CLR 정규화된 것이 아님)
+# 주의: Seurat에서 가져오는 경우, 정규화된 데이터가 아닌 원시 카운트를 사용해야 함
+# Seurat의 NormalizeData(normalization.method = "CLR")는 카운트를 변환 - 원래 assay 사용
 ```
 
-### HVG Selection for RNA
+### RNA용 HVG 선택
 
 ```python
-# Select HVGs for RNA
-# Note: totalVI uses all proteins regardless of HVG
+# RNA용 HVG 선택
+# 참고: totalVI는 HVG에 관계없이 모든 단백질을 사용
 
 sc.pp.highly_variable_genes(
     adata,
-    n_top_genes=4000,  # Use more for CITE-seq
+    n_top_genes=4000,  # CITE-seq에는 더 많이 사용
     flavor="seurat_v3",
     batch_key="batch" if "batch" in adata.obs else None,
     layer="counts"
 )
 
-# Subset to HVGs
+# HVG로 서브셋
 adata = adata[:, adata.var["highly_variable"]].copy()
 ```
 
-## Step 4: Setup and Train totalVI
+## 4단계: totalVI 설정 및 학습
 
 ```python
-# Setup AnnData for totalVI
+# totalVI용 AnnData 설정
 scvi.model.TOTALVI.setup_anndata(
     adata,
     layer="counts",
     protein_expression_obsm_key="protein_expression",
-    batch_key="batch"  # Optional
+    batch_key="batch"  # 선택사항
 )
 
-# Create model
+# 모델 생성
 model = scvi.model.TOTALVI(
     adata,
     n_latent=20,
-    latent_distribution="normal"  # or "ln" for log-normal
+    latent_distribution="normal"  # 또는 로그 정규 분포는 "ln"
 )
 
-# Train
+# 학습
 model.train(
     max_epochs=200,
     early_stopping=True,
     batch_size=128
 )
 
-# Check training
+# 학습 확인
 model.history['elbo_train'].plot()
 ```
 
-## Step 5: Get Latent Representation
+## 5단계: 잠재 표현 얻기
 
 ```python
-# Joint latent space
+# 공동 잠재 공간
 adata.obsm["X_totalVI"] = model.get_latent_representation()
 
-# Clustering and visualization
+# 클러스터링 및 시각화
 sc.pp.neighbors(adata, use_rep="X_totalVI")
 sc.tl.umap(adata)
 sc.tl.leiden(adata, resolution=1.0)
@@ -176,21 +176,21 @@ sc.tl.leiden(adata, resolution=1.0)
 sc.pl.umap(adata, color=['leiden', 'batch'])
 ```
 
-## Step 6: Denoised Protein Expression
+## 6단계: 잡음 제거된 단백질 발현
 
 ```python
-# Get denoised protein values
-# This removes background noise from protein measurements
+# 잡음 제거된 단백질 값 얻기
+# 이것은 단백질 측정에서 배경 잡음을 제거
 
 _, protein_denoised = model.get_normalized_expression(
     return_mean=True,
-    transform_batch="batch1"  # Optional: normalize to specific batch
+    transform_batch="batch1"  # 선택사항: 특정 배치로 정규화
 )
 
-# Add to adata
+# adata에 추가
 adata.obsm["protein_denoised"] = protein_denoised
 
-# Visualize denoised proteins
+# 잡음 제거된 단백질 시각화
 protein_names = adata.uns["protein_names"]
 for i, protein in enumerate(protein_names[:5]):
     adata.obs[f"denoised_{protein}"] = protein_denoised[:, i]
@@ -198,43 +198,43 @@ for i, protein in enumerate(protein_names[:5]):
 sc.pl.umap(adata, color=[f"denoised_{p}" for p in protein_names[:5]])
 ```
 
-## Step 7: Normalized RNA Expression
+## 7단계: 정규화된 RNA 발현
 
 ```python
-# Get normalized RNA expression
+# 정규화된 RNA 발현 얻기
 rna_normalized, _ = model.get_normalized_expression(
     return_mean=True
 )
 
-# Store
+# 저장
 adata.layers["totalVI_normalized"] = rna_normalized
 ```
 
-## Step 8: Differential Expression
+## 8단계: 차등 발현
 
-### RNA Differential Expression
+### RNA 차등 발현
 
 ```python
-# DE between clusters
+# 클러스터 간 DE
 de_rna = model.differential_expression(
     groupby="leiden",
     group1="0",
     group2="1"
 )
 
-# Filter significant genes
+# 유의미한 유전자 필터링
 de_sig = de_rna[
     (de_rna['is_de_fdr_0.05']) &
     (abs(de_rna['lfc_mean']) > 1)
 ]
 
-print(f"Significant DE genes: {len(de_sig)}")
+print(f"유의미한 DE 유전자: {len(de_sig)}")
 ```
 
-### Protein Differential Expression
+### 단백질 차등 발현
 
 ```python
-# Protein DE
+# 단백질 DE
 de_protein = model.differential_expression(
     groupby="leiden",
     group1="0",
@@ -245,12 +245,12 @@ de_protein = model.differential_expression(
 print(de_protein.head(20))
 ```
 
-## Step 9: Visualization
+## 9단계: 시각화
 
-### Protein Expression on UMAP
+### UMAP 위의 단백질 발현
 
 ```python
-# Denoised protein on UMAP
+# UMAP 위의 잡음 제거된 단백질
 import matplotlib.pyplot as plt
 
 proteins_to_plot = ["CD3", "CD4", "CD8", "CD19", "CD14"]
@@ -268,10 +268,10 @@ for ax, protein in zip(axes, proteins_to_plot):
 plt.tight_layout()
 ```
 
-### Joint Heatmap
+### 공동 히트맵
 
 ```python
-# Heatmap of top genes and proteins per cluster
+# 클러스터별 상위 유전자 및 단백질 히트맵
 sc.pl.dotplot(
     adata,
     var_names=de_sig.index[:20].tolist(),
@@ -280,12 +280,12 @@ sc.pl.dotplot(
 )
 ```
 
-## Step 10: Cell Type Annotation
+## 10단계: 세포 유형 주석
 
 ```python
-# Use both RNA and protein markers for annotation
+# RNA와 단백질 마커 모두 사용하여 주석
 
-# RNA markers
+# RNA 마커
 rna_markers = {
     'T cells': ['CD3D', 'CD3E'],
     'CD4 T': ['CD4'],
@@ -294,17 +294,17 @@ rna_markers = {
     'Monocytes': ['CD14', 'LYZ']
 }
 
-# Check denoised protein expression
+# 잡음 제거된 단백질 발현 확인
 for i, protein in enumerate(adata.uns["protein_names"]):
     if any(m in protein for m in ['CD3', 'CD4', 'CD8', 'CD19', 'CD14']):
-        print(f"{protein}: cluster means")
+        print(f"{protein}: 클러스터 평균")
         for cluster in adata.obs['leiden'].unique():
             mask = adata.obs['leiden'] == cluster
             mean_expr = adata.obsm["protein_denoised"][mask, i].mean()
-            print(f"  Cluster {cluster}: {mean_expr:.2f}")
+            print(f"  클러스터 {cluster}: {mean_expr:.2f}")
 ```
 
-## Complete Pipeline
+## 전체 파이프라인
 
 ```python
 def analyze_citeseq(
@@ -315,39 +315,39 @@ def analyze_citeseq(
     n_latent=20
 ):
     """
-    Complete CITE-seq analysis with totalVI.
-    
+    totalVI를 사용한 전체 CITE-seq 분석.
+
     Parameters
     ----------
     adata_rna : AnnData
-        RNA expression (raw counts)
+        RNA 발현 (원시 카운트)
     adata_protein : AnnData
-        Protein expression (raw counts)
+        단백질 발현 (원시 카운트)
     batch_key : str, optional
-        Batch column in obs
+        obs의 배치 열
     n_top_genes : int
-        Number of HVGs
+        HVG 수
     n_latent : int
-        Latent dimensions
-        
+        잠재 차원
+
     Returns
     -------
-    Tuple of (processed AnnData, trained model)
+    (처리된 AnnData, 학습된 모델) 튜플
     """
     import scvi
     import scanpy as sc
-    
-    # Ensure same cells
+
+    # 동일 세포 확인
     common_cells = adata_rna.obs_names.intersection(adata_protein.obs_names)
     adata = adata_rna[common_cells].copy()
     adata_protein = adata_protein[common_cells].copy()
-    
-    # Add protein to obsm
+
+    # obsm에 단백질 추가
     adata.obsm["protein_expression"] = adata_protein.X.toarray() if hasattr(adata_protein.X, 'toarray') else adata_protein.X
     adata.uns["protein_names"] = list(adata_protein.var_names)
-    
+
     # RNA QC
-    # Handle both human (MT-) and mouse (mt-, Mt-) mitochondrial genes
+    # 인간 (MT-)과 마우스 (mt-, Mt-) 미토콘드리아 유전자 모두 처리
     adata.var['mt'] = (
         adata.var_names.str.startswith('MT-') |
         adata.var_names.str.startswith('mt-') |
@@ -356,11 +356,11 @@ def analyze_citeseq(
     sc.pp.calculate_qc_metrics(adata, qc_vars=['mt'], inplace=True)
     adata = adata[adata.obs['pct_counts_mt'] < 20].copy()
     sc.pp.filter_genes(adata, min_cells=3)
-    
-    # Store counts
+
+    # 카운트 저장
     adata.layers["counts"] = adata.X.copy()
-    
-    # HVG selection
+
+    # HVG 선택
     sc.pp.highly_variable_genes(
         adata,
         n_top_genes=n_top_genes,
@@ -369,52 +369,52 @@ def analyze_citeseq(
         layer="counts"
     )
     adata = adata[:, adata.var["highly_variable"]].copy()
-    
-    # Setup totalVI
+
+    # totalVI 설정
     scvi.model.TOTALVI.setup_anndata(
         adata,
         layer="counts",
         protein_expression_obsm_key="protein_expression",
         batch_key=batch_key
     )
-    
-    # Train
+
+    # 학습
     model = scvi.model.TOTALVI(adata, n_latent=n_latent)
     model.train(max_epochs=200, early_stopping=True)
-    
-    # Get representations
+
+    # 표현 얻기
     adata.obsm["X_totalVI"] = model.get_latent_representation()
     rna_norm, protein_denoised = model.get_normalized_expression(return_mean=True)
     adata.layers["totalVI_normalized"] = rna_norm
     adata.obsm["protein_denoised"] = protein_denoised
-    
-    # Clustering
+
+    # 클러스터링
     sc.pp.neighbors(adata, use_rep="X_totalVI")
     sc.tl.umap(adata)
     sc.tl.leiden(adata)
-    
+
     return adata, model
 
-# Usage
+# 사용법
 adata, model = analyze_citeseq(
     adata_rna,
     adata_protein,
     batch_key="batch"
 )
 
-# Visualize
+# 시각화
 sc.pl.umap(adata, color=['leiden', 'batch'])
 ```
 
-## Troubleshooting
+## 문제 해결
 
-| Issue | Cause | Solution |
-|-------|-------|----------|
-| Protein signal noisy | Background not removed | Use get_normalized_expression with denoising |
-| Batch effects persist | Need batch_key | Ensure batch_key is specified |
-| Memory error | Too many genes | Reduce n_top_genes |
-| Poor protein clustering | Few proteins | Normal - totalVI uses RNA for structure |
+| 문제 | 원인 | 해결 방법 |
+|------|------|----------|
+| 단백질 신호 잡음 | 배경 제거 안 됨 | 잡음 제거와 함께 get_normalized_expression 사용 |
+| 배치 효과 지속 | batch_key 필요 | batch_key 지정 확인 |
+| 메모리 오류 | 유전자 수 너무 많음 | n_top_genes 줄이기 |
+| 단백질 클러스터링 불량 | 단백질 수 적음 | 정상 - totalVI는 구조에 RNA 사용 |
 
-## Key References
+## 주요 참고문헌
 
 - Gayoso et al. (2021) "Joint probabilistic modeling of single-cell multi-omic data with totalVI"

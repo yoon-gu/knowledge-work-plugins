@@ -6,168 +6,168 @@ argument-hint: "[--daily | --weekly | --since <date>]"
 
 # Digest Command
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 하는 경우 [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Scan recent activity across all connected sources and generate a structured digest highlighting what matters.
+연결된 모든 소스의 최근 활동을 스캔하고 중요한 내용을 강조하는 구조화된 다이제스트를 생성합니다.
 
-## Instructions
+## 지침
 
-### 1. Parse Flags
+### 1. 플래그 분석
 
-Determine the time window from the user's input:
+사용자 입력에서 시간 범위를 결정합니다:
 
-- `--daily` — Last 24 hours (default if no flag specified)
-- `--weekly` — Last 7 days
+- `--daily` — 최근 24시간 (플래그 미지정 시 기본값)
+- `--weekly` — 최근 7일
 
-The user may also specify a custom range:
+사용자가 사용자 지정 범위를 지정할 수도 있습니다:
 - `--since yesterday`
 - `--since Monday`
 - `--since 2025-01-20`
 
-### 2. Check Available Sources
+### 2. 사용 가능한 소스 확인
 
-Identify which MCP sources are connected (same approach as the search command):
+연결된 MCP 소스 파악 (search 명령어와 동일한 방식):
 
-- **~~chat** — channels, DMs, mentions
-- **~~email** — inbox, sent, threads
-- **~~cloud storage** — recently modified docs shared with user
-- **~~project tracker** — tasks assigned, completed, commented on
-- **~~CRM** — opportunity updates, account activity
-- **~~knowledge base** — recently updated wiki pages
+- **~~chat** — 채널, DM, 언급
+- **~~email** — 받은 편지함, 발신함, 스레드
+- **~~cloud storage** — 사용자와 공유된 최근 수정 문서
+- **~~project tracker** — 배정, 완료, 댓글 단 태스크
+- **~~CRM** — 영업 기회 업데이트, 계정 활동
+- **~~knowledge base** — 최근 업데이트된 위키 페이지
 
-If no sources are connected, guide the user:
+연결된 소스가 없는 경우 사용자에게 안내합니다:
 ```
-To generate a digest, you'll need at least one source connected.
-Check your MCP settings to add ~~chat, ~~email, ~~cloud storage, or other tools.
+다이제스트를 생성하려면 최소 하나의 소스가 연결되어 있어야 합니다.
+MCP 설정을 확인하여 ~~chat, ~~email, ~~cloud storage 또는 다른 도구를 추가하세요.
 ```
 
-### 3. Gather Activity from Each Source
+### 3. 각 소스에서 활동 수집
 
 **~~chat:**
-- Search for messages mentioning the user (`to:me`)
-- Check channels the user is in for recent activity
-- Look for threads the user participated in
-- Identify new messages in key channels
+- 사용자를 언급하는 메시지 검색 (`to:me`)
+- 사용자가 참여 중인 채널의 최근 활동 확인
+- 사용자가 참여한 스레드 탐색
+- 주요 채널의 새 메시지 파악
 
 **~~email:**
-- Search recent inbox messages
-- Identify threads with new replies
-- Flag emails with action items or questions directed at the user
+- 최근 받은 편지함 메시지 검색
+- 새 답글이 있는 스레드 파악
+- 사용자에게 액션 아이템이나 질문이 포함된 이메일 표시
 
 **~~cloud storage:**
-- Find documents recently modified or shared with the user
-- Note new comments on docs the user owns or collaborates on
+- 최근 수정되었거나 사용자와 공유된 문서 탐색
+- 사용자가 소유하거나 협업 중인 문서의 새 댓글 기록
 
 **~~project tracker:**
-- Tasks assigned to the user (new or updated)
-- Tasks completed by others that the user follows
-- Comments on tasks the user is involved with
+- 사용자에게 배정된 태스크 (신규 또는 업데이트)
+- 사용자가 팔로우하는 다른 사람이 완료한 태스크
+- 사용자가 관여한 태스크의 댓글
 
 **~~CRM:**
-- Opportunity stage changes
-- New activities logged on accounts the user owns
-- Updated contacts or accounts
+- 영업 기회 단계 변경
+- 사용자가 담당하는 계정에 기록된 새 활동
+- 업데이트된 연락처 또는 계정
 
 **~~knowledge base:**
-- Recently updated documents in relevant collections
-- New documents created in watched areas
+- 관련 컬렉션에서 최근 업데이트된 문서
+- 모니터링 중인 영역에 새로 생성된 문서
 
-### 4. Identify Key Items
+### 4. 주요 항목 파악
 
-From all gathered activity, extract and categorize:
+수집된 모든 활동에서 다음을 추출하고 분류합니다:
 
-**Action Items:**
-- Direct requests made to the user ("Can you...", "Please...", "@user")
-- Tasks assigned or due soon
-- Questions awaiting the user's response
-- Review requests
+**액션 아이템:**
+- 사용자에게 직접 요청 ("...해 주실 수 있나요?", "...해 주세요", "@user")
+- 배정되었거나 곧 마감인 태스크
+- 사용자의 답변을 기다리는 질문
+- 검토 요청
 
-**Decisions:**
-- Conclusions reached in threads or emails
-- Approvals or rejections
-- Policy or direction changes
+**결정 사항:**
+- 스레드나 이메일에서 도달한 결론
+- 승인 또는 거부
+- 정책 또는 방향 변경
 
-**Mentions:**
-- Times the user was mentioned or referenced
-- Discussions about the user's projects or areas
+**언급:**
+- 사용자가 언급되거나 참조된 경우
+- 사용자의 프로젝트나 담당 영역에 대한 논의
 
-**Updates:**
-- Status changes on projects the user follows
-- Document updates in the user's domain
-- Completed items the user was waiting on
+**업데이트:**
+- 사용자가 팔로우하는 프로젝트의 상태 변경
+- 사용자 담당 도메인의 문서 업데이트
+- 사용자가 기다리고 있던 완료된 항목
 
-### 5. Group by Topic
+### 5. 주제별 그룹화
 
-Organize the digest by topic, project, or theme rather than by source. Merge related activity across sources:
+소스별이 아닌 주제, 프로젝트, 또는 테마별로 다이제스트를 구성합니다. 소스 간 관련 활동을 합칩니다:
 
 ```
 ## Project Aurora
-- ~~chat: Design review thread concluded — team chose Option B (#design, Tuesday)
-- ~~email: Sarah sent updated spec incorporating feedback (Wednesday)
-- ~~cloud storage: "Aurora API Spec v3" updated by Sarah (Wednesday)
-- ~~project tracker: 3 tasks moved to In Progress, 2 completed
+- ~~chat: 디자인 리뷰 스레드 마무리 — 팀이 Option B 선택 (#design, 화요일)
+- ~~email: Sarah가 피드백을 반영한 업데이트된 사양 발송 (수요일)
+- ~~cloud storage: "Aurora API Spec v3" Sarah에 의해 업데이트 (수요일)
+- ~~project tracker: 태스크 3개 진행 중으로 이동, 2개 완료
 
 ## Budget Planning
-- ~~email: Finance team requesting Q2 projections by Friday
-- ~~chat: Todd shared template in #finance (Monday)
-- ~~cloud storage: "Q2 Budget Template" shared with you (Monday)
+- ~~email: 재무팀에서 금요일까지 Q2 예측 요청
+- ~~chat: Todd가 #finance에서 템플릿 공유 (월요일)
+- ~~cloud storage: "Q2 Budget Template"이 사용자와 공유됨 (월요일)
 ```
 
-### 6. Format the Digest
+### 6. 다이제스트 포맷
 
-Structure the output clearly:
+결과물을 명확하게 구조화합니다:
 
 ```
-# [Daily/Weekly] Digest — [Date or Date Range]
+# [일간/주간] Digest — [날짜 또는 날짜 범위]
 
-Sources scanned: ~~chat, ~~email, ~~cloud storage, [others]
+스캔된 소스: ~~chat, ~~email, ~~cloud storage, [기타]
 
-## Action Items (X items)
-- [ ] [Action item 1] — from [person], [source] ([date])
-- [ ] [Action item 2] — from [person], [source] ([date])
+## Action Items (X개 항목)
+- [ ] [액션 아이템 1] — [person] 요청, [source] ([date])
+- [ ] [액션 아이템 2] — [person] 요청, [source] ([date])
 
 ## Decisions Made
-- [Decision 1] — [context] ([source], [date])
-- [Decision 2] — [context] ([source], [date])
+- [결정 1] — [맥락] ([source], [date])
+- [결정 2] — [맥락] ([source], [date])
 
-## [Topic/Project Group 1]
-[Activity summary with source attribution]
+## [주제/프로젝트 그룹 1]
+[소스 출처가 포함된 활동 요약]
 
-## [Topic/Project Group 2]
-[Activity summary with source attribution]
+## [주제/프로젝트 그룹 2]
+[소스 출처가 포함된 활동 요약]
 
 ## Mentions
-- [Mention context] — [source] ([date])
+- [언급 맥락] — [source] ([date])
 
 ## Documents Updated
-- [Doc name] — [who modified, what changed] ([date])
+- [문서 이름] — [수정한 사람, 변경 내용] ([date])
 ```
 
-### 7. Handle Unavailable Sources
+### 7. 사용 불가능한 소스 처리
 
-If any source fails or is unreachable:
+소스가 실패하거나 접근 불가능한 경우:
 ```
-Note: Could not reach [source name] for this digest.
-The following sources were included: [list of successful sources].
+참고: 이 다이제스트에서 [source name]에 접근할 수 없었습니다.
+포함된 소스: [성공한 소스 목록].
 ```
 
-Do not let one failed source prevent the digest from being generated. Produce the best digest possible from available sources.
+하나의 소스 실패가 다이제스트 생성을 막지 않도록 합니다. 사용 가능한 소스에서 최선의 다이제스트를 생성합니다.
 
-### 8. Summary Stats
+### 8. 요약 통계
 
-End with a quick summary:
+빠른 요약으로 마무리합니다:
 ```
 ---
-[X] action items · [Y] decisions · [Z] mentions · [W] doc updates
-Across [N] sources · Covering [time range]
+[X]개 액션 아이템 · [Y]개 결정 사항 · [Z]개 언급 · [W]개 문서 업데이트
+[N]개 소스 · [시간 범위] 커버
 ```
 
-## Notes
+## 참고 사항
 
-- Default to `--daily` if no flag is specified
-- Group by topic/project, not by source — users care about what happened, not where it happened
-- Action items should always be listed first — they are the most actionable part of a digest
-- Deduplicate cross-source activity (same decision in ~~chat and email = one entry)
-- For weekly digests, prioritize significance over completeness — highlight what matters, skip noise
-- If the user has a memory system (CLAUDE.md), use it to decode people names and project references
-- Include enough context in each item that the user can decide whether to dig deeper without clicking through
+- 플래그 미지정 시 `--daily`로 기본 설정
+- 소스별이 아닌 주제/프로젝트별로 그룹화 — 사용자는 어디서 일어났는지가 아니라 무슨 일이 있었는지를 중요하게 여김
+- 액션 아이템은 항상 먼저 나열 — 다이제스트에서 가장 실행 가능한 부분
+- 크로스 소스 활동 중복 제거 (~~chat과 이메일에 동일한 결정 = 하나의 항목)
+- 주간 다이제스트의 경우 완전성보다 중요성 우선 — 중요한 것을 강조하고 노이즈는 건너뜀
+- 사용자에게 메모리 시스템(CLAUDE.md)이 있는 경우, 사람 이름과 프로젝트 참조를 해석하는 데 활용
+- 사용자가 클릭해서 확인하지 않고도 더 깊이 파고들지 결정할 수 있도록 각 항목에 충분한 맥락 포함

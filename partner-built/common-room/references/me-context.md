@@ -1,40 +1,40 @@
-# The `Me` Object — User Context Guide
+# `Me` 객체 — 사용자 컨텍스트 가이드
 
-## What `Me` Is
+## `Me`란 무엇인가
 
-The `Me` object in Common Room represents the currently authenticated user. Fetching it at the start of a session gives the LLM context to personalize outputs and scope queries correctly.
+Common Room의 `Me` 객체는 현재 인증된 사용자를 나타냅니다. 세션 시작 시 이를 가져오면 LLM이 출력을 개인화하고 쿼리 범위를 올바르게 지정할 수 있는 컨텍스트를 제공합니다.
 
-Always fetch `Me` before running account research, prospecting, or any workflow that should be scoped to the user's territory.
+계정 조사, 잠재 고객 발굴, 또는 사용자의 테리토리로 범위를 지정해야 하는 워크플로를 실행하기 전에 항상 `Me`를 먼저 가져옵니다.
 
-## What `Me` Returns
+## `Me`가 반환하는 내용
 
-### User Profile
-- Login identifier (email or username)
-- Full name and display name
-- Job title and role
-- Persona in CR (e.g., AE, SDR, CSM, Manager)
-- All linked profiles (e.g., Salesforce user ID, LinkedIn handle)
+### 사용자 프로필
+- 로그인 식별자 (이메일 또는 사용자 이름)
+- 전체 이름 및 표시 이름
+- 직함 및 역할
+- CR에서의 페르소나 (예: AE, SDR, CSM, Manager)
+- 연결된 모든 프로필 (예: Salesforce 사용자 ID, LinkedIn 핸들)
 
-### User Segments ("My Segments")
-- A list of all segments that belong to this user (name and segment ID each)
-- Corresponds to the **"My Segments" tab** in the Common Room product
+### 사용자 세그먼트 ("내 세그먼트")
+- 이 사용자에게 속하는 모든 세그먼트 목록 (각각의 이름과 세그먼트 ID)
+- Common Room 제품의 **"내 세그먼트" 탭**에 해당
 
-## How to Use `Me` Context
+## `Me` 컨텍스트 활용 방법
 
-### 1. Scope queries and respect territory boundaries
-When running account research, prospecting, or generating briefings, filter results to the user's own segments unless they ask for a broader view.
+### 1. 쿼리 범위 지정 및 테리토리 경계 준수
+계정 조사, 잠재 고객 발굴, 브리핑 생성 시 사용자가 더 넓은 범위를 요청하지 않는 한 결과를 사용자의 세그먼트로 필터링합니다.
 
-> Default: "Show me accounts showing buying signals" -> scope to My Segments
-> Override: "Show me all accounts in the workspace showing buying signals" -> remove segment scope
+> 기본: "구매 신호를 보이는 계정 보여줘" -> 내 세그먼트로 범위 지정
+> 재정의: "워크스페이스의 모든 계정 중 구매 신호를 보이는 것 보여줘" -> 세그먼트 범위 제거
 
-If a user asks about an account not in their segments, note: "This account doesn't appear to be in your segments — would you still like me to research it?"
+사용자가 자신의 세그먼트에 없는 계정에 대해 물으면 알립니다: "이 계정은 귀하의 세그먼트에 없는 것 같습니다 — 그래도 조사하시겠습니까?"
 
-### 2. Personalize outreach and briefings
-Use the user's name, title, and role to personalize outputs — e.g., reference their territory in a weekly brief, use their name in drafted emails.
+### 2. 아웃리치 및 브리핑 개인화
+사용자의 이름, 직함, 역할을 사용하여 출력을 개인화합니다 — 예: 주간 브리핑에서 테리토리를 언급하거나, 작성된 이메일에 이름을 사용합니다.
 
-### 3. Infer context for reasoning
-The user's Persona in CR influences how outputs should be framed:
-- **AE / AM / Account Executive / Account Manager** — focus on pipeline, deals, expansion, close timelines
-- **SDR / BDR / Sales Development Representative / Business Development Representative** — focus on prospecting, warm signals, first-touch outreach
-- **CSM / Customer Success Manager** — focus on health, retention, expansion, champion engagement
-- **Manager / Director / VP** — focus on team-level trends, not individual outreach
+### 3. 추론을 위한 컨텍스트 파악
+CR에서의 사용자 페르소나는 출력의 프레임을 어떻게 설정할지에 영향을 줍니다:
+- **AE / AM / Account Executive / Account Manager** — 파이프라인, 거래, 확장, 클로징 타임라인에 집중
+- **SDR / BDR / Sales Development Representative / Business Development Representative** — 잠재 고객 발굴, 따뜻한 신호, 첫 접촉 아웃리치에 집중
+- **CSM / Customer Success Manager** — 건강도, 유지, 확장, 챔피언 참여에 집중
+- **Manager / Director / VP** — 개별 아웃리치가 아닌 팀 수준 트렌드에 집중

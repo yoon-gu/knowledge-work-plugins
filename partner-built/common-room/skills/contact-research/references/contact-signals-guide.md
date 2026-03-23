@@ -1,48 +1,48 @@
-# Contact Signals — Interpretation Guide
+# 연락처 신호 — 해석 가이드
 
-## Contact Signal Types
+## 연락처 신호 유형
 
-### Activity Signals
+### 활동 신호
 
-| Signal | Interpretation |
-|--------|---------------|
-| Email open / reply | Actively aware of your org; replied = higher intent |
-| Meeting attended | Relationship established; note meeting type (demo, QBR, etc.) |
-| Community post or reply | Has a question, problem, or idea — high engagement signal |
-| Support ticket opened | Experiencing friction — empathy opportunity |
-| Documentation page visited | Researching a specific area — note which pages |
-| Product login | Active user — check frequency and recency |
-| Event registered/attended | Strong engagement and intent signal |
+| 신호 | 해석 |
+|------|------|
+| 이메일 오픈/답장 | 귀사를 적극적으로 인지; 답장 = 더 높은 의도 |
+| 미팅 참석 | 관계 수립됨; 미팅 유형 기록 (데모, QBR 등) |
+| 커뮤니티 게시글 또는 답글 | 질문, 문제, 아이디어 있음 — 높은 참여 신호 |
+| 지원 티켓 오픈 | 마찰 경험 — 공감 기회 |
+| 문서 페이지 방문 | 특정 영역 조사 — 어떤 페이지인지 기록 |
+| 제품 로그인 | 활성 사용자 — 빈도와 최신성 확인 |
+| 이벤트 등록/참석 | 강력한 참여 및 의도 신호 |
 
-### Relationship Signals
+### 관계 신호
 
-| Signal | Interpretation |
-|--------|---------------|
-| No activity in 30+ days | Relationship cooling — gentle check-in appropriate |
-| No activity in 90+ days | Dormant — may need re-engagement from a different angle |
-| Consistent activity across multiple channels | Champion or highly engaged user — high-value contact |
-| Activity spike after dormancy | Something changed — investigate why |
+| 신호 | 해석 |
+|------|------|
+| 30일 이상 활동 없음 | 관계 냉각 — 부드러운 점검 적절 |
+| 90일 이상 활동 없음 | 휴면 — 다른 각도에서 재참여 필요 |
+| 여러 채널에서 일관된 활동 | 챔피언 또는 높은 참여 사용자 — 고가치 연락처 |
+| 휴면 후 활동 급증 | 무언가 변화 — 원인 조사 |
 
-### Job / Professional Signals
+### 직업/전문 신호
 
-| Signal | Interpretation |
-|--------|---------------|
-| Recent job change (new company) | Warm intro opportunity at new company; relationship may shift at old one |
-| Promotion at same company | Growing influence — relationship becomes more valuable |
-| Title change to decision-maker role | Upgrade the relationship strategy |
-| Company expansion (new hires in their team) | Budget may be available; expansion opportunity |
+| 신호 | 해석 |
+|------|------|
+| 최근 이직 (새 회사) | 새 회사에서의 따뜻한 소개 기회; 이전 회사의 관계가 바뀔 수 있음 |
+| 같은 회사에서 승진 | 영향력 성장 — 관계가 더 가치 있어짐 |
+| 의사 결정자 역할로 직함 변경 | 관계 전략 업그레이드 |
+| 회사 확장 (팀에 새 채용) | 예산 가능; 확장 기회 |
 
-## Spark Persona Classification
+## Spark 페르소나 분류
 
-- *Champion* — daily user, advocates internally
-- *Economic Buyer* — holds budget authority, may not use product directly
-- *Technical Evaluator* — evaluates fit and integration, influences technical decisions
-- *End User* — primary product user, influences renewal through NPS/feedback
-- *Gatekeeper* — controls access, must be navigated carefully
+- *Champion* — 일상 사용자, 내부 옹호
+- *Economic Buyer* — 예산 권한 보유, 직접 제품 사용 안 할 수 있음
+- *Technical Evaluator* — 적합성과 통합 평가, 기술적 결정에 영향
+- *End User* — 주요 제품 사용자, NPS/피드백을 통해 갱신에 영향
+- *Gatekeeper* — 접근 통제, 신중한 탐색 필요
 
-## Conversation Starters
+## 대화 스타터
 
-A strong starter references something specific, shows homework, opens a door without forcing one, and connects to value.
+강력한 스타터는 구체적인 것을 참조하고, 준비된 모습을 보여주며, 강요 없이 문을 열고, 가치와 연결합니다.
 
-- "I saw your question in the community about [topic] — we just released a feature that addresses exactly that. Would it be useful to walk through it?"
-- "Your team's usage of [feature] jumped last month — curious if you're running into [common blocker] at that stage."
+- "커뮤니티에서 [주제]에 대한 질문을 봤습니다 — 정확히 그것을 해결하는 기능을 출시했습니다. 살펴보시면 유용할까요?"
+- "귀하 팀의 [기능] 사용이 지난달에 급증했습니다 — 혹시 그 단계에서 [일반적 장애물]에 부딪히고 있는지 궁금합니다."

@@ -6,173 +6,173 @@ argument-hint: "<query>"
 
 # Search Command
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 하는 경우 [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Search across all connected MCP sources in a single query. Decompose the user's question, run parallel searches, and synthesize results.
+단일 쿼리로 연결된 모든 MCP 소스를 검색합니다. 사용자의 질문을 분해하고, 병렬 검색을 실행하며, 결과를 종합합니다.
 
-## Instructions
+## 지침
 
-### 1. Check Available Sources
+### 1. 사용 가능한 소스 확인
 
-Before searching, determine which MCP sources are available. Attempt to identify connected tools from the available tool list. Common sources:
+검색 전에 어떤 MCP 소스가 사용 가능한지 확인합니다. 사용 가능한 도구 목록에서 연결된 도구를 파악합니다. 주요 소스:
 
-- **~~chat** — chat platform tools
-- **~~email** — email tools
-- **~~cloud storage** — cloud storage tools
-- **~~project tracker** — project tracking tools
-- **~~CRM** — CRM tools
-- **~~knowledge base** — knowledge base tools
+- **~~chat** — 채팅 플랫폼 도구
+- **~~email** — 이메일 도구
+- **~~cloud storage** — 클라우드 스토리지 도구
+- **~~project tracker** — 프로젝트 추적 도구
+- **~~CRM** — CRM 도구
+- **~~knowledge base** — 지식 베이스 도구
 
-If no MCP sources are connected:
+연결된 MCP 소스가 없는 경우:
 ```
-To search across your tools, you'll need to connect at least one source.
-Check your MCP settings to add ~~chat, ~~email, ~~cloud storage, or other tools.
+도구 전체를 검색하려면 최소 하나의 소스를 연결해야 합니다.
+MCP 설정을 확인하여 ~~chat, ~~email, ~~cloud storage 또는 다른 도구를 추가하세요.
 
-Supported sources: ~~chat, ~~email, ~~cloud storage, ~~project tracker, ~~CRM, ~~knowledge base,
-and any other MCP-connected service.
+지원 소스: ~~chat, ~~email, ~~cloud storage, ~~project tracker, ~~CRM, ~~knowledge base,
+그리고 MCP로 연결된 다른 모든 서비스.
 ```
 
-### 2. Parse the User's Query
+### 2. 사용자 쿼리 분석
 
-Analyze the search query to understand:
+검색 쿼리를 분석하여 다음을 파악합니다:
 
-- **Intent**: What is the user looking for? (a decision, a document, a person, a status update, a conversation)
-- **Entities**: People, projects, teams, tools mentioned
-- **Time constraints**: Recency signals ("this week", "last month", specific dates)
-- **Source hints**: References to specific tools ("in ~~chat", "that email", "the doc")
-- **Filters**: Extract explicit filters from the query:
-  - `from:` — Filter by sender/author
-  - `in:` — Filter by channel, folder, or location
-  - `after:` — Only results after this date
-  - `before:` — Only results before this date
-  - `type:` — Filter by content type (message, email, doc, thread, file)
+- **의도**: 사용자가 무엇을 찾고 있는가? (결정, 문서, 사람, 상태 업데이트, 대화)
+- **엔티티**: 언급된 사람, 프로젝트, 팀, 도구
+- **시간 제약**: 최신성 신호 ("이번 주", "지난 달", 특정 날짜)
+- **소스 힌트**: 특정 도구 참조 ("~~chat에서", "그 이메일", "그 문서")
+- **필터**: 쿼리에서 명시적 필터 추출:
+  - `from:` — 발신자/작성자 기준 필터
+  - `in:` — 채널, 폴더, 또는 위치 기준 필터
+  - `after:` — 이 날짜 이후의 결과만
+  - `before:` — 이 날짜 이전의 결과만
+  - `type:` — 콘텐츠 유형 기준 필터 (메시지, 이메일, 문서, 스레드, 파일)
 
-### 3. Decompose into Sub-Queries
+### 3. 하위 쿼리로 분해
 
-For each available source, create a targeted sub-query using that source's native search syntax:
+사용 가능한 각 소스에 대해 해당 소스의 기본 검색 구문을 사용한 타겟 하위 쿼리를 생성합니다:
 
 **~~chat:**
-- Use available search and read tools for your chat platform
-- Translate filters: `from:` maps to sender, `in:` maps to channel/room, dates map to time range filters
-- Use natural language queries for semantic search when appropriate
-- Use keyword queries for exact matches
+- 채팅 플랫폼의 검색 및 읽기 도구 사용
+- 필터 변환: `from:`은 발신자, `in:`은 채널/룸, 날짜는 시간 범위 필터로 매핑
+- 적절한 경우 시맨틱 검색을 위해 자연어 쿼리 사용
+- 정확한 일치를 위해 키워드 쿼리 사용
 
 **~~email:**
-- Use available email search tools
-- Translate filters: `from:` maps to sender, dates map to time range filters
-- Map `type:` to attachment filters or subject-line searches as appropriate
+- 사용 가능한 이메일 검색 도구 사용
+- 필터 변환: `from:`은 발신자, 날짜는 시간 범위 필터로 매핑
+- `type:`은 첨부 파일 필터 또는 제목 줄 검색으로 적절히 매핑
 
 **~~cloud storage:**
-- Use available file search tools
-- Translate to file query syntax: name contains, full text contains, modified date, file type
-- Consider both file names and content
+- 사용 가능한 파일 검색 도구 사용
+- 파일 쿼리 구문으로 변환: 파일명 포함, 전체 텍스트 포함, 수정 날짜, 파일 유형
+- 파일 이름과 내용 모두 고려
 
 **~~project tracker:**
-- Use available task search or typeahead tools
-- Map to task text search, assignee filters, date filters, project filters
+- 사용 가능한 태스크 검색 또는 자동완성 도구 사용
+- 태스크 텍스트 검색, 담당자 필터, 날짜 필터, 프로젝트 필터로 매핑
 
 **~~CRM:**
-- Use available CRM query tools
-- Search across Account, Contact, Opportunity, and other relevant objects
+- 사용 가능한 CRM 쿼리 도구 사용
+- Account, Contact, Opportunity 및 기타 관련 객체 전체 검색
 
 **~~knowledge base:**
-- Use semantic search for conceptual questions
-- Use keyword search for exact matches
+- 개념적 질문에는 시맨틱 검색 사용
+- 정확한 일치에는 키워드 검색 사용
 
-### 4. Execute Searches in Parallel
+### 4. 병렬로 검색 실행
 
-Run all sub-queries simultaneously across available sources. Do not wait for one source before searching another.
+사용 가능한 모든 소스에서 모든 하위 쿼리를 동시에 실행합니다. 다른 소스를 검색하기 전에 한 소스의 결과를 기다리지 않습니다.
 
-For each source:
-- Execute the translated query
-- Capture results with metadata (timestamps, authors, links, source type)
-- Note any sources that fail or return errors — do not let one failure block others
+각 소스에 대해:
+- 변환된 쿼리 실행
+- 메타데이터(타임스탬프, 작성자, 링크, 소스 유형)와 함께 결과 수집
+- 실패하거나 오류를 반환하는 소스 기록 — 하나의 실패가 다른 소스를 차단하지 않도록 함
 
-### 5. Rank and Deduplicate Results
+### 5. 결과 순위 지정 및 중복 제거
 
-**Deduplication:**
-- Identify the same information appearing across sources (e.g., a decision discussed in ~~chat AND confirmed via email)
-- Group related results together rather than showing duplicates
-- Prefer the most authoritative or complete version
+**중복 제거:**
+- 여러 소스에 동일한 정보가 나타나는 경우 파악 (예: ~~chat에서 논의되고 이메일로 확인된 결정)
+- 중복을 표시하는 대신 관련 결과를 그룹화
+- 가장 권위 있거나 완전한 버전 선호
 
-**Ranking factors:**
-- **Relevance**: How well does the result match the query intent?
-- **Freshness**: More recent results rank higher for status/decision queries
-- **Authority**: Official docs > wiki > chat messages for factual questions; conversations > docs for "what did we discuss" queries
-- **Completeness**: Results with more context rank higher
+**순위 결정 요소:**
+- **관련성**: 결과가 쿼리 의도와 얼마나 일치하는가?
+- **최신성**: 상태/결정 쿼리의 경우 최신 결과가 높은 순위
+- **권위도**: 사실 질문에는 공식 문서 > 위키 > 채팅 메시지; "무엇을 논의했나" 쿼리에는 대화 > 문서
+- **완전성**: 맥락이 더 많은 결과가 높은 순위
 
-### 6. Present Unified Results
+### 6. 통합 결과 표시
 
-Format the response as a synthesized answer, not a raw list of results:
+원시 결과 목록이 아닌 종합된 답변으로 응답을 포맷합니다:
 
-**For factual/decision queries:**
+**사실/결정 쿼리의 경우:**
 ```
-[Direct answer to the question]
+[질문에 대한 직접 답변]
 
 Sources:
-- [Source 1: brief description] (~~chat, #channel, date)
-- [Source 2: brief description] (~~email, from person, date)
-- [Source 3: brief description] (~~cloud storage, doc name, last modified)
+- [Source 1: 간략한 설명] (~~chat, #channel, date)
+- [Source 2: 간략한 설명] (~~email, from person, date)
+- [Source 3: 간략한 설명] (~~cloud storage, doc name, last modified)
 ```
 
-**For exploratory queries ("what do we know about X"):**
+**탐색적 쿼리 ("X에 대해 알고 있는 것은?")의 경우:**
 ```
-[Synthesized summary combining information from all sources]
+[모든 소스의 정보를 결합한 종합 요약]
 
-Found across:
-- ~~chat: X relevant messages in Y channels
-- ~~email: X relevant threads
-- ~~cloud storage: X related documents
-- [Other sources as applicable]
+검색된 소스:
+- ~~chat: Y개 채널에서 X개의 관련 메시지
+- ~~email: X개의 관련 스레드
+- ~~cloud storage: X개의 관련 문서
+- [해당하는 경우 다른 소스]
 
-Key sources:
-- [Most important source with link/reference]
-- [Second most important source]
-```
-
-**For "find" queries (looking for a specific thing):**
-```
-[The thing they're looking for, with direct reference]
-
-Also found:
-- [Related items from other sources]
+주요 소스:
+- [링크/참조가 있는 가장 중요한 소스]
+- [두 번째로 중요한 소스]
 ```
 
-### 7. Handle Edge Cases
-
-**Ambiguous queries:**
-If the query could mean multiple things, ask one clarifying question before searching:
+**"찾기" 쿼리 (특정 항목을 찾는 경우)의 경우:**
 ```
-"API redesign" could refer to a few things. Are you looking for:
-1. The REST API v2 redesign (Project Aurora)
-2. The internal SDK API changes
-3. Something else?
+[직접 참조와 함께 찾고 있는 항목]
+
+추가로 발견된 항목:
+- [다른 소스의 관련 항목]
 ```
 
-**No results:**
-```
-I couldn't find anything matching "[query]" across [list of sources searched].
+### 7. 엣지 케이스 처리
 
-Try:
-- Broader terms (e.g., "database" instead of "PostgreSQL migration")
-- Different time range (currently searching [time range])
-- Checking if the relevant source is connected (currently searching: [sources])
+**모호한 쿼리:**
+쿼리가 여러 가지를 의미할 수 있는 경우, 검색 전에 명확화 질문 하나를 요청합니다:
 ```
-
-**Partial results (some sources failed):**
-```
-[Results from successful sources]
-
-Note: I couldn't reach [failed source(s)] during this search.
-Results above are from [successful sources] only.
+"API redesign"은 몇 가지를 의미할 수 있습니다. 다음 중 무엇을 찾고 계신가요:
+1. REST API v2 재설계 (Project Aurora)
+2. 내부 SDK API 변경
+3. 다른 것?
 ```
 
-## Notes
+**결과 없음:**
+```
+[list of sources searched]에서 "[query]"와 일치하는 항목을 찾을 수 없습니다.
 
-- Always search multiple sources in parallel — never sequentially
-- Synthesize results into answers, do not just list raw search results
-- Include source attribution so users can dig deeper
-- Respect the user's filter syntax and apply it appropriately per source
-- When a query mentions a specific person, search for their messages/docs/mentions across all sources
-- For time-sensitive queries, prioritize recency in ranking
-- If only one source is connected, still provide useful results from that source
+다음을 시도해 보세요:
+- 더 넓은 용어 (예: "PostgreSQL migration" 대신 "database")
+- 다른 시간 범위 (현재 검색 범위: [time range])
+- 관련 소스가 연결되어 있는지 확인 (현재 검색 소스: [sources])
+```
+
+**부분 결과 (일부 소스 실패):**
+```
+[성공한 소스의 결과]
+
+참고: 이번 검색 중 [failed source(s)]에 접근할 수 없었습니다.
+위 결과는 [successful sources]에서만 가져온 것입니다.
+```
+
+## 참고 사항
+
+- 항상 여러 소스를 순차적이 아닌 병렬로 검색
+- 결과를 원시 목록으로 나열하지 말고 답변으로 종합
+- 사용자가 더 깊이 파고들 수 있도록 소스 출처 포함
+- 사용자의 필터 구문을 존중하고 소스별로 적절하게 적용
+- 쿼리에 특정 사람이 언급되면 모든 소스에서 그들의 메시지/문서/언급 검색
+- 시간에 민감한 쿼리의 경우 순위 지정에서 최신성 우선
+- 하나의 소스만 연결된 경우에도 해당 소스에서 유용한 결과 제공

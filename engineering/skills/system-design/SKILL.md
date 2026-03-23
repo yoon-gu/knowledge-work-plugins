@@ -1,42 +1,42 @@
 ---
 name: system-design
-description: Design systems, services, and architectures. Trigger with "design a system for", "how should we architect", "system design for", "what's the right architecture for", or when the user needs help with API design, data modeling, or service boundaries.
+description: 시스템, 서비스, 아키텍처를 설계합니다. "~를 위한 시스템을 설계해 주세요", "어떻게 아키텍처를 구성해야 할까요", "~에 대한 시스템 설계", "~에 적합한 아키텍처는 무엇인가요", 또는 API 설계, 데이터 모델링, 서비스 경계에 대한 도움이 필요할 때 사용합니다.
 ---
 
 # System Design
 
-Help design systems and evaluate architectural decisions.
+시스템을 설계하고 아키텍처 결정을 평가합니다.
 
-## Framework
+## 프레임워크
 
-### 1. Requirements Gathering
-- Functional requirements (what it does)
-- Non-functional requirements (scale, latency, availability, cost)
-- Constraints (team size, timeline, existing tech stack)
+### 1. 요구 사항 수집
+- 기능적 요구 사항 (무엇을 하는가)
+- 비기능적 요구 사항 (규모, 지연 시간, 가용성, 비용)
+- 제약 조건 (팀 규모, 일정, 기존 기술 스택)
 
-### 2. High-Level Design
-- Component diagram
-- Data flow
-- API contracts
-- Storage choices
+### 2. 고수준 설계
+- 컴포넌트 다이어그램
+- 데이터 흐름
+- API 계약
+- 스토리지 선택
 
-### 3. Deep Dive
-- Data model design
-- API endpoint design (REST, GraphQL, gRPC)
-- Caching strategy
-- Queue/event design
-- Error handling and retry logic
+### 3. 심층 분석
+- 데이터 모델 설계
+- API 엔드포인트 설계 (REST, GraphQL, gRPC)
+- 캐싱 전략
+- 큐/이벤트 설계
+- 오류 처리 및 재시도 로직
 
-### 4. Scale and Reliability
-- Load estimation
-- Horizontal vs. vertical scaling
-- Failover and redundancy
-- Monitoring and alerting
+### 4. 규모 및 안정성
+- 부하 추정
+- 수평 vs. 수직 확장
+- 장애 조치 및 이중화
+- 모니터링 및 알림
 
-### 5. Trade-off Analysis
-- Every decision has trade-offs. Make them explicit.
-- Consider: complexity, cost, team familiarity, time to market, maintainability
+### 5. 트레이드오프 분석
+- 모든 결정에는 트레이드오프가 있습니다. 이를 명시적으로 드러내세요.
+- 고려 사항: 복잡성, 비용, 팀 친숙도, 출시 시간, 유지보수성
 
-## Output
+## 출력
 
-Produce clear, structured design documents with diagrams (ASCII or described), explicit assumptions, and trade-off analysis. Always identify what you'd revisit as the system grows.
+명확하고 구조화된 설계 문서를 작성합니다. 다이어그램(ASCII 또는 설명 형식), 명시적인 가정, 트레이드오프 분석을 포함합니다. 시스템이 성장함에 따라 재검토해야 할 사항을 항상 식별합니다.

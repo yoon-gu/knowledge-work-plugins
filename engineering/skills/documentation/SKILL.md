@@ -1,49 +1,49 @@
 ---
 name: documentation
-description: Write and maintain technical documentation. Trigger with "write docs for", "document this", "create a README", "write a runbook", "onboarding guide", or when the user needs help with any form of technical writing — API docs, architecture docs, or operational runbooks.
+description: 기술 문서를 작성하고 유지 관리합니다. "~에 대한 문서를 작성해 주세요", "이것을 문서화해 주세요", "README 작성", "runbook 작성", "온보딩 가이드", 또는 API 문서, 아키텍처 문서, 운영 runbook 등 모든 형태의 기술 문서 작성이 필요할 때 사용합니다.
 ---
 
 # Technical Documentation
 
-Write clear, maintainable technical documentation for different audiences and purposes.
+다양한 독자와 목적에 맞는 명확하고 유지보수 가능한 기술 문서를 작성합니다.
 
-## Document Types
+## 문서 유형
 
 ### README
-- What this is and why it exists
-- Quick start (< 5 minutes to first success)
-- Configuration and usage
-- Contributing guide
+- 이것이 무엇이고 왜 존재하는지
+- 빠른 시작 (첫 성공까지 5분 이내)
+- 설정 및 사용법
+- 기여 가이드
 
-### API Documentation
-- Endpoint reference with request/response examples
-- Authentication and error codes
-- Rate limits and pagination
-- SDK examples
+### API 문서
+- 요청/응답 예제를 포함한 엔드포인트 레퍼런스
+- 인증 및 오류 코드
+- 속도 제한 및 페이지네이션
+- SDK 예제
 
 ### Runbook
-- When to use this runbook
-- Prerequisites and access needed
-- Step-by-step procedure
-- Rollback steps
-- Escalation path
+- 이 runbook을 사용하는 시기
+- 전제 조건 및 필요한 접근 권한
+- 단계별 절차
+- 롤백 단계
+- 에스컬레이션 경로
 
-### Architecture Doc
-- Context and goals
-- High-level design with diagrams
-- Key decisions and trade-offs
-- Data flow and integration points
+### 아키텍처 문서
+- 컨텍스트 및 목표
+- 다이어그램을 포함한 고수준 설계
+- 주요 결정 사항 및 트레이드오프
+- 데이터 흐름 및 통합 지점
 
-### Onboarding Guide
-- Environment setup
-- Key systems and how they connect
-- Common tasks with walkthroughs
-- Who to ask for what
+### 온보딩 가이드
+- 환경 설정
+- 주요 시스템 및 연결 방식
+- 연습 문제가 포함된 일반적인 작업
+- 무엇을 누구에게 물어봐야 하는지
 
-## Principles
+## 원칙
 
-1. **Write for the reader** — Who is reading this and what do they need?
-2. **Start with the most useful information** — Don't bury the lede
-3. **Show, don't tell** — Code examples, commands, screenshots
-4. **Keep it current** — Outdated docs are worse than no docs
-5. **Link, don't duplicate** — Reference other docs instead of copying
+1. **독자를 위해 작성하세요** — 누가 이것을 읽는가, 그들에게 무엇이 필요한가?
+2. **가장 유용한 정보를 먼저 제시하세요** — 핵심을 묻어두지 마세요
+3. **보여주기, 말하기 아님** — 코드 예제, 명령어, 스크린샷
+4. **최신 상태를 유지하세요** — 오래된 문서는 문서가 없는 것보다 더 나쁩니다
+5. **중복하지 말고 링크하세요** — 복사하는 대신 다른 문서를 참조하세요

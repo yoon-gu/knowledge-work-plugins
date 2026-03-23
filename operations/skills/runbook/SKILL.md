@@ -1,87 +1,87 @@
 ---
 name: runbook
-description: Create or update an operational runbook for a recurring task or procedure. Use when documenting a task that on-call or ops needs to run repeatably, turning tribal knowledge into exact step-by-step commands, adding troubleshooting and rollback steps to an existing procedure, or writing escalation paths for when things go wrong.
-argument-hint: "<process or task name>"
+description: 반복 작업 또는 절차에 대한 운영 런북을 생성하거나 업데이트합니다. 온콜이나 운영팀이 반복적으로 실행해야 하는 작업을 문서화할 때, 암묵적 지식을 정확한 단계별 명령어로 전환할 때, 기존 절차에 문제 해결 및 롤백 단계를 추가할 때, 또는 문제 발생 시 에스컬레이션 경로를 작성할 때 사용하세요.
+argument-hint: "<프로세스 또는 작업 이름>"
 ---
 
 # /runbook
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 하는 경우 [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Create a step-by-step operational runbook for a recurring task or procedure.
+반복 작업 또는 절차에 대한 단계별 운영 런북을 생성합니다.
 
-## Usage
+## 사용법
 
 ```
 /runbook $ARGUMENTS
 ```
 
-## Output
+## 출력
 
 ```markdown
-## Runbook: [Task Name]
-**Owner:** [Team/Person] | **Frequency:** [Daily/Weekly/Monthly/As Needed]
-**Last Updated:** [Date] | **Last Run:** [Date]
+## Runbook: [작업 이름]
+**담당자:** [팀/인원] | **주기:** [일간/주간/월간/필요 시]
+**최종 업데이트:** [날짜] | **최종 실행:** [날짜]
 
-### Purpose
-[What this runbook accomplishes and when to use it]
+### 목적
+[이 런북이 달성하는 것과 언제 사용하는지]
 
-### Prerequisites
-- [ ] [Access or permission needed]
-- [ ] [Tool or system required]
-- [ ] [Data or input needed]
+### 사전 요건
+- [ ] [필요한 접근 권한 또는 허가]
+- [ ] [필요한 도구 또는 시스템]
+- [ ] [필요한 데이터 또는 입력]
 
-### Procedure
+### 절차
 
-#### Step 1: [Name]
+#### 1단계: [이름]
 ```
-[Exact command, action, or instruction]
+[정확한 명령어, 작업, 또는 지침]
 ```
-**Expected result:** [What should happen]
-**If it fails:** [What to do]
+**예상 결과:** [무슨 일이 일어나야 하는지]
+**실패 시:** [해야 할 일]
 
-#### Step 2: [Name]
+#### 2단계: [이름]
 ```
-[Exact command, action, or instruction]
+[정확한 명령어, 작업, 또는 지침]
 ```
-**Expected result:** [What should happen]
-**If it fails:** [What to do]
+**예상 결과:** [무슨 일이 일어나야 하는지]
+**실패 시:** [해야 할 일]
 
-### Verification
-- [ ] [How to confirm the task completed successfully]
-- [ ] [What to check]
+### 검증
+- [ ] [작업이 성공적으로 완료됐는지 확인하는 방법]
+- [ ] [확인할 사항]
 
-### Troubleshooting
-| Symptom | Likely Cause | Fix |
+### 문제 해결
+| 증상 | 예상 원인 | 해결 방법 |
 |---------|-------------|-----|
-| [What you see] | [Why] | [What to do] |
+| [보이는 것] | [이유] | [해야 할 일] |
 
-### Rollback
-[How to undo this if something goes wrong]
+### 롤백
+[문제 발생 시 변경을 되돌리는 방법]
 
-### Escalation
-| Situation | Contact | Method |
+### 에스컬레이션
+| 상황 | 연락처 | 방법 |
 |-----------|---------|--------|
-| [When to escalate] | [Who] | [How to reach them] |
+| [에스컬레이션 시기] | [담당자] | [연락 방법] |
 
-### History
-| Date | Run By | Notes |
+### 이력
+| 날짜 | 실행자 | 비고 |
 |------|--------|-------|
-| [Date] | [Person] | [Any issues or observations] |
+| [날짜] | [인원] | [문제 또는 관찰 사항] |
 ```
 
-## If Connectors Available
+## 커넥터 사용 가능 시
 
-If **~~knowledge base** is connected:
-- Search for existing runbooks to update rather than create from scratch
-- Publish the completed runbook to your ops wiki
+**~~knowledge base**가 연결된 경우:
+- 새로 작성하는 대신 업데이트할 기존 런북 검색
+- 완성된 런북을 운영 위키에 게시
 
-If **~~ITSM** is connected:
-- Link the runbook to related incident types and change requests
-- Auto-populate escalation contacts from on-call schedules
+**~~ITSM**이 연결된 경우:
+- 런북을 관련 인시던트 유형 및 변경 요청에 연결
+- 온콜 일정에서 에스컬레이션 연락처 자동 채우기
 
-## Tips
+## 팁
 
-1. **Be painfully specific** — "Run the script" is not a step. "Run `python sync.py --prod --dry-run` from the ops server" is.
-2. **Include failure modes** — What can go wrong at each step and what to do about it.
-3. **Test the runbook** — Have someone unfamiliar with the process follow it. Fix where they get stuck.
+1. **극도로 구체적으로 작성하세요** — "스크립트 실행"은 단계가 아닙니다. "ops 서버에서 `python sync.py --prod --dry-run` 실행"이 올바른 표현입니다.
+2. **실패 모드를 포함하세요** — 각 단계에서 무엇이 잘못될 수 있으며 대처 방법을 기술하세요.
+3. **런북을 테스트하세요** — 프로세스에 익숙하지 않은 사람이 따라하도록 하세요. 막히는 부분을 수정하세요.

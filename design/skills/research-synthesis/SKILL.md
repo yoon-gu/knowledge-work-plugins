@@ -6,87 +6,87 @@ argument-hint: "<research data, transcripts, or survey results>"
 
 # /research-synthesis
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 낯선 플레이스홀더가 보이거나 연결된 도구를 확인해야 할 경우 [CONNECTORS.md](../../CONNECTORS.md)를 참고하세요.
 
-Synthesize user research data into actionable insights. See the **user-research** skill for research methods, interview guides, and analysis frameworks.
+사용자 리서치 데이터를 실행 가능한 인사이트로 합성합니다. 리서치 방법, 인터뷰 가이드, 분석 프레임워크는 **user-research** 스킬을 참고하세요.
 
-## Usage
+## 사용법
 
 ```
 /research-synthesis $ARGUMENTS
 ```
 
-## What I Accept
+## 입력 가능한 데이터
 
-- Interview transcripts or notes
-- Survey results (CSV, pasted data)
-- Usability test recordings or notes
-- Support tickets or feedback
-- NPS/CSAT responses
-- App store reviews
+- 인터뷰 트랜스크립트 또는 노트
+- 설문 결과 (CSV, 붙여넣기 데이터)
+- 사용성 테스트 녹화본 또는 노트
+- 지원 티켓 또는 피드백
+- NPS/CSAT 응답
+- 앱 스토어 리뷰
 
-## Output
+## 출력
 
 ```markdown
-## Research Synthesis: [Study Name]
-**Method:** [Interviews / Survey / Usability Test] | **Participants:** [X]
-**Date:** [Date range] | **Researcher:** [Name]
+## Research Synthesis: [연구 이름]
+**방법:** [인터뷰 / 설문 / 사용성 테스트] | **참여자:** [X]
+**날짜:** [날짜 범위] | **리서처:** [이름]
 
-### Executive Summary
-[3-4 sentence overview of key findings]
+### 요약
+[주요 발견 사항 3-4문장 개요]
 
-### Key Themes
+### 주요 테마
 
-#### Theme 1: [Name]
-**Prevalence:** [X of Y participants]
-**Summary:** [What this theme is about]
-**Supporting Evidence:**
-- "[Quote]" — P[X]
-- "[Quote]" — P[X]
-**Implication:** [What this means for the product]
+#### 테마 1: [이름]
+**비율:** [Y명 중 X명]
+**요약:** [이 테마가 무엇에 관한 것인지]
+**뒷받침하는 근거:**
+- "[인용구]" — P[X]
+- "[인용구]" — P[X]
+**시사점:** [이것이 제품에 의미하는 바]
 
-#### Theme 2: [Name]
-[Same format]
+#### 테마 2: [이름]
+[동일한 형식]
 
-### Insights → Opportunities
+### 인사이트 → 기회
 
-| Insight | Opportunity | Impact | Effort |
+| 인사이트 | 기회 | 영향 | 노력 |
 |---------|-------------|--------|--------|
-| [What we learned] | [What we could do] | High/Med/Low | High/Med/Low |
+| [배운 것] | [할 수 있는 것] | 높음/중간/낮음 | 높음/중간/낮음 |
 
-### User Segments Identified
-| Segment | Characteristics | Needs | Size |
+### 식별된 사용자 세그먼트
+| 세그먼트 | 특성 | 니즈 | 규모 |
 |---------|----------------|-------|------|
-| [Name] | [Description] | [Key needs] | [Rough %] |
+| [이름] | [설명] | [주요 니즈] | [대략 %] |
 
-### Recommendations
-1. **[High priority]** — [Why, based on which findings]
-2. **[Medium priority]** — [Why]
-3. **[Lower priority]** — [Why]
+### 권고사항
+1. **[높은 우선순위]** — [왜, 어떤 발견 사항을 기반으로]
+2. **[중간 우선순위]** — [왜]
+3. **[낮은 우선순위]** — [왜]
 
-### Questions for Further Research
-- [What we still don't know]
+### 추가 리서치를 위한 질문
+- [아직 모르는 것]
 
-### Methodology Notes
-[How the research was conducted, any limitations or biases to note]
+### 방법론 노트
+[리서치가 어떻게 수행되었는지, 주의해야 할 제한 사항 또는 편향]
 ```
 
-## If Connectors Available
+## 커넥터를 사용할 수 있는 경우
 
-If **~~user feedback** is connected:
-- Pull support tickets, feature requests, and NPS responses to supplement research data
-- Cross-reference themes with real user complaints and requests
+**~~user feedback**이 연결된 경우:
+- 리서치 데이터를 보완하기 위해 지원 티켓, 기능 요청, NPS 응답 가져오기
+- 실제 사용자 불만 및 요청과 테마 교차 참조
 
-If **~~product analytics** is connected:
-- Validate qualitative findings with usage data and behavioral metrics
-- Quantify the impact of identified pain points
+**~~product analytics**가 연결된 경우:
+- 사용 데이터 및 행동 지표로 정성적 발견 사항 검증
+- 식별된 불편 사항의 영향 정량화
 
-If **~~knowledge base** is connected:
-- Search for prior research studies and findings to compare against
-- Publish the synthesis to your research repository
+**~~knowledge base**가 연결된 경우:
+- 비교를 위해 이전 리서치 연구 및 발견 사항 검색
+- 합성 결과를 리서치 저장소에 게시
 
-## Tips
+## 팁
 
-1. **Include raw quotes** — Direct participant quotes make insights credible and memorable.
-2. **Separate observations from interpretations** — "5 of 8 users clicked the wrong button" is an observation. "The button placement is confusing" is an interpretation.
-3. **Quantify where possible** — "Most users" is vague. "7 of 10 users" is specific.
+1. **원본 인용구를 포함하세요** — 참여자의 직접 인용구는 인사이트를 신뢰할 수 있고 기억에 남게 만듭니다.
+2. **관찰과 해석을 분리하세요** — "8명 중 5명이 잘못된 버튼을 클릭했다"는 관찰입니다. "버튼 배치가 혼란스럽다"는 해석입니다.
+3. **가능한 한 정량화하세요** — "대부분의 사용자"는 모호합니다. "10명 중 7명"은 구체적입니다.

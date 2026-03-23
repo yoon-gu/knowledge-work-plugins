@@ -1,104 +1,104 @@
 ---
 name: vendor-review
-description: Evaluate a vendor — cost analysis, risk assessment, and recommendation. Use when reviewing a new vendor proposal, deciding whether to renew or replace a contract, comparing two vendors side-by-side, or building a TCO breakdown and negotiation points before procurement sign-off.
-argument-hint: "<vendor name or proposal>"
+description: 벤더 평가 — 비용 분석, 리스크 평가, 권고사항. 새로운 벤더 제안서를 검토할 때, 계약 갱신 또는 교체 여부를 결정할 때, 두 벤더를 나란히 비교할 때, 또는 조달 승인 전 TCO 분석 및 협상 포인트를 작성할 때 사용하세요.
+argument-hint: "<벤더 이름 또는 제안서>"
 ---
 
 # /vendor-review
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 하는 경우 [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Evaluate a vendor with structured analysis covering cost, risk, performance, and fit.
+비용, 리스크, 성과, 적합성을 포괄하는 구조화된 분석으로 벤더를 평가합니다.
 
-## Usage
+## 사용법
 
 ```
 /vendor-review $ARGUMENTS
 ```
 
-## What I Need From You
+## 필요한 정보
 
-- **Vendor name**: Who are you evaluating?
-- **Context**: New vendor evaluation, renewal decision, or comparison?
-- **Details**: Contract terms, pricing, proposal document, or current performance data
+- **벤더 이름**: 누구를 평가하나요?
+- **맥락**: 신규 벤더 평가, 갱신 결정, 또는 비교?
+- **세부 정보**: 계약 조건, 가격, 제안서, 또는 현재 성과 데이터
 
-## Evaluation Framework
+## 평가 프레임워크
 
-### Cost Analysis (Total Cost of Ownership)
-- Total cost of ownership (not just license fees)
-- Implementation and migration costs
-- Training and onboarding costs
-- Ongoing support and maintenance
-- Exit costs (data migration, contract termination)
+### 비용 분석 (총 소유 비용)
+- 총 소유 비용 (라이선스 비용만이 아님)
+- 구현 및 마이그레이션 비용
+- 교육 및 온보딩 비용
+- 지속적인 지원 및 유지보수
+- 탈출 비용 (데이터 마이그레이션, 계약 해지)
 
-### Risk Assessment
-- Vendor financial stability
-- Security and compliance posture
-- Concentration risk (single vendor dependency)
-- Contract lock-in and exit terms
-- Business continuity and disaster recovery
+### 리스크 평가
+- 벤더 재무 안정성
+- 보안 및 컴플라이언스 태세
+- 집중 리스크 (단일 벤더 의존성)
+- 계약 잠금 및 탈출 조건
+- 비즈니스 연속성 및 재해 복구
 
-### Performance Metrics
-- SLA compliance
-- Support response times
-- Uptime and reliability
-- Feature delivery cadence
-- Customer satisfaction
+### 성과 지표
+- SLA 준수
+- 지원 응답 시간
+- 가동 시간 및 안정성
+- 기능 출시 주기
+- 고객 만족도
 
-### Comparison Matrix
-When comparing vendors, produce a side-by-side matrix covering: pricing, features, integrations, security, support, contract terms, and references.
+### 비교 매트릭스
+벤더를 비교할 때, 가격, 기능, 통합, 보안, 지원, 계약 조건, 레퍼런스를 나란히 비교한 매트릭스를 작성합니다.
 
-## Output
+## 출력
 
 ```markdown
-## Vendor Review: [Vendor Name]
-**Date:** [Date] | **Type:** [New / Renewal / Comparison]
+## Vendor Review: [벤더 이름]
+**날짜:** [날짜] | **유형:** [신규 / 갱신 / 비교]
 
-### Summary
-[2-3 sentence recommendation]
+### 요약
+[2-3문장 권고사항]
 
-### Cost Analysis
-| Component | Annual Cost | Notes |
+### 비용 분석
+| 항목 | 연간 비용 | 비고 |
 |-----------|-------------|-------|
-| License/subscription | $[X] | [Per seat, flat, usage-based] |
-| Implementation | $[X] | [One-time] |
-| Support/maintenance | $[X] | [Included or add-on] |
-| **Total Year 1** | **$[X]** | |
-| **Total 3-Year** | **$[X]** | |
+| 라이선스/구독 | $[X] | [좌석당, 정액, 사용량 기반] |
+| 구현 | $[X] | [일회성] |
+| 지원/유지보수 | $[X] | [포함 또는 추가] |
+| **1년차 합계** | **$[X]** | |
+| **3년 합계** | **$[X]** | |
 
-### Risk Assessment
-| Risk | Likelihood | Impact | Mitigation |
+### 리스크 평가
+| 리스크 | 발생 가능성 | 영향 | 완화 방안 |
 |------|-----------|--------|------------|
-| [Risk] | High/Med/Low | High/Med/Low | [Mitigation] |
+| [리스크] | 높음/보통/낮음 | 높음/보통/낮음 | [완화 방법] |
 
-### Strengths
-- [Strength 1]
-- [Strength 2]
+### 강점
+- [강점 1]
+- [강점 2]
 
-### Concerns
-- [Concern 1]
-- [Concern 2]
+### 우려 사항
+- [우려 사항 1]
+- [우려 사항 2]
 
-### Recommendation
-[Proceed / Negotiate / Pass] — [Reasoning]
+### 권고사항
+[진행 / 협상 / 거절] — [이유]
 
-### Negotiation Points
-- [Leverage point 1]
-- [Leverage point 2]
+### 협상 포인트
+- [협상 레버리지 1]
+- [협상 레버리지 2]
 ```
 
-## If Connectors Available
+## 커넥터 사용 가능 시
 
-If **~~knowledge base** is connected:
-- Search for existing vendor evaluations, contracts, and performance reviews
-- Pull procurement policies and approval thresholds
+**~~knowledge base**가 연결된 경우:
+- 기존 벤더 평가, 계약, 성과 검토 검색
+- 조달 정책 및 승인 임계값 조회
 
-If **~~procurement** is connected:
-- Pull current contract terms, spend history, and renewal dates
-- Compare pricing against existing vendor agreements
+**~~procurement**가 연결된 경우:
+- 현재 계약 조건, 지출 이력, 갱신 날짜 조회
+- 기존 벤더 계약 대비 가격 비교
 
-## Tips
+## 팁
 
-1. **Upload the proposal** — I can extract pricing, terms, and SLAs from vendor documents.
-2. **Compare vendors** — "Compare Vendor A vs Vendor B" gets you a side-by-side analysis.
-3. **Include current spend** — For renewals, knowing what you pay now helps evaluate price changes.
+1. **제안서를 업로드하세요** — 벤더 문서에서 가격, 조건, SLA를 추출할 수 있습니다.
+2. **벤더를 비교하세요** — "벤더 A vs 벤더 B 비교"를 요청하면 나란히 분석을 제공합니다.
+3. **현재 지출을 포함하세요** — 갱신의 경우 현재 지불하는 금액을 알면 가격 변동 평가에 도움이 됩니다.

@@ -1,115 +1,115 @@
-# Voice Constant, Tone Flexes
+# 보이스 상수, 톤 조절
 
-The core mental model for brand voice enforcement: voice is constant, tone flexes by context.
+브랜드 보이스 적용의 핵심 멘탈 모델: 보이스는 일정하고, 톤은 맥락에 따라 조절됩니다.
 
-## The Distinction
+## 구분
 
-**Voice** is WHO the brand is — personality, values, identity. It never changes regardless of channel, audience, or content type. Think of it as the brand's character.
+**보이스**는 브랜드가 누구인지입니다 — 성격, 가치, 정체성. 채널, 독자, 콘텐츠 유형에 관계없이 변하지 않습니다. 브랜드의 캐릭터라고 생각하세요.
 
-**Tone** is HOW the brand speaks in a given moment — formality, energy, technical depth. It adapts to context the way a person adjusts their tone when speaking to a friend vs. a CEO vs. a large audience.
+**톤**은 브랜드가 특정 순간에 어떻게 말하는지입니다 — 격식도, 에너지, 기술적 깊이. 사람이 친구, CEO, 대규모 청중에게 말할 때 톤을 조절하는 것처럼 맥락에 따라 적응합니다.
 
-## Voice Constants: "We Are / We Are Not"
+## 보이스 상수: "우리는 ~ / 우리는 ~이 아님"
 
-The "We Are / We Are Not" table is the anchor of brand voice. It defines the brand's personality in paired attributes — what the brand IS and the boundary it should never cross.
+"우리는 ~ / 우리는 ~이 아님" 테이블은 브랜드 보이스의 기준점입니다. 브랜드의 성격을 쌍으로 된 속성으로 정의합니다 — 브랜드가 무엇이고, 절대 넘지 말아야 할 경계.
 
-### Structure
+### 구조
 
-The table below is an illustrative example. During enforcement, use the "We Are / We Are Not" table from the user's own brand guidelines.
+아래 테이블은 예시입니다. 적용 시에는 사용자의 브랜드 가이드라인에 있는 "우리는 ~ / 우리는 ~이 아님" 테이블을 사용합니다.
 
-| We Are | We Are Not |
-|--------|------------|
-| **Confident** — we know our product and stand behind it | **Arrogant** — we never talk down to prospects or dismiss alternatives |
-| **Approachable** — we make complex topics feel manageable | **Casual or sloppy** — approachable doesn't mean unprofessional |
-| **Direct** — we get to the point quickly and clearly | **Blunt or aggressive** — directness includes empathy |
-| **Data-driven** — we support claims with evidence | **Dry or academic** — data tells stories, not lectures |
-| **Innovative** — we push boundaries and challenge status quo | **Hype-driven** — innovation is real, not buzzwords |
+| 우리는 ~ | 우리는 ~이 아님 |
+|----------|---------------|
+| **자신감 있는** — 제품을 알고 뒷받침합니다 | **오만한** — 잠재 고객을 무시하거나 대안을 폄하하지 않습니다 |
+| **친근한** — 복잡한 주제를 다루기 쉽게 만듭니다 | **캐주얼하거나 부주의한** — 친근함이 비전문적임을 뜻하지 않습니다 |
+| **직접적인** — 빠르고 명확하게 요점을 전달합니다 | **무뚝뚝하거나 공격적인** — 직접적임에는 공감이 포함됩니다 |
+| **데이터 중심의** — 주장을 근거로 뒷받침합니다 | **건조하거나 학술적인** — 데이터는 이야기를 전하지 강의하지 않습니다 |
+| **혁신적인** — 경계를 넓히고 현상에 도전합니다 | **과장하는** — 혁신은 실제이며 버즈워드가 아닙니다 |
 
-### How to Use During Enforcement
+### 적용 시 사용법
 
-For every piece of content:
-1. Check each "We Are" attribute — does the content reflect this?
-2. Check each "We Are Not" boundary — does the content avoid crossing it?
-3. If a boundary is crossed, revise the specific passage
-4. If an attribute is missing, find a natural place to express it
+모든 콘텐츠에 대해:
+1. 각 "우리는 ~" 속성을 확인 — 콘텐츠가 이를 반영하는가?
+2. 각 "우리는 ~이 아님" 경계를 확인 — 콘텐츠가 이를 넘지 않는가?
+3. 경계를 넘은 경우 해당 문구를 수정
+4. 속성이 누락된 경우 자연스럽게 표현할 곳을 찾음
 
-Not every attribute needs to appear in every piece of content. Prioritize the 2-3 most relevant attributes for the content type and audience.
+모든 속성이 모든 콘텐츠에 나타날 필요는 없습니다. 콘텐츠 유형과 독자에 가장 관련된 2-3개 속성에 우선순위를 둡니다.
 
-## Tone Flexes: The Three Dimensions
+## 톤 조절: 세 가지 차원
 
-Tone adjusts along three independent dimensions:
+톤은 세 가지 독립적인 차원을 따라 조절됩니다:
 
-### 1. Formality
-How formal or casual the language is.
+### 1. 격식도
+언어가 얼마나 격식 있거나 캐주얼한지입니다.
 
-| Level | Signals | When |
-|-------|---------|------|
-| High | Complete sentences, industry terminology, structured format | Proposals, RFPs, enterprise comms |
-| Medium | Clear and professional but conversational | Most emails, presentations, blog posts |
-| Low | Casual language, contractions, personality shows through | Social media, internal comms, Slack |
+| 수준 | 특징 | 사용 시점 |
+|------|------|----------|
+| 높음 | 완전한 문장, 업계 용어, 구조화된 형식 | 제안서, RFP, 기업 커뮤니케이션 |
+| 중간 | 명확하고 전문적이지만 대화체 | 대부분의 이메일, 프레젠테이션, 블로그 포스트 |
+| 낮음 | 캐주얼한 언어, 축약형, 개성이 드러남 | 소셜 미디어, 내부 커뮤니케이션, Slack |
 
-### 2. Energy
-How much enthusiasm, urgency, or dynamism the content conveys.
+### 2. 에너지
+콘텐츠가 전달하는 열정, 긴급함, 역동성의 정도입니다.
 
-| Level | Signals | When |
-|-------|---------|------|
-| High | Active verbs, short sentences, exclamation-worthy excitement | Product launches, cold outreach hooks, social media |
-| Medium | Steady pace, balanced between informative and engaging | Discovery content, follow-ups, case studies |
-| Warm | Empathetic, supportive, understanding | Customer success, objection handling, bad news |
-| Low | Measured, thoughtful, deliberate | Legal language, policy docs, sensitive topics |
+| 수준 | 특징 | 사용 시점 |
+|------|------|----------|
+| 높음 | 능동적 동사, 짧은 문장, 감탄할 만한 흥분 | 제품 출시, 콜드 아웃리치 후크, 소셜 미디어 |
+| 중간 | 안정적 페이스, 정보 전달과 참여 사이 균형 | 탐색 콘텐츠, 후속 메일, 사례 연구 |
+| 따뜻함 | 공감적, 지지적, 이해하는 | 고객 성공, 이의 처리, 나쁜 소식 |
+| 낮음 | 절제된, 사려 깊은, 신중한 | 법적 언어, 정책 문서, 민감한 주제 |
 
-### 3. Technical Depth
-How much domain expertise or technical detail is included.
+### 3. 기술적 깊이
+포함된 도메인 전문성이나 기술적 세부 사항의 정도입니다.
 
-| Level | Signals | When |
-|-------|---------|------|
-| High | Technical terminology, architecture details, specs | Technical audience, implementation proposals, API docs |
-| Medium | Industry terms explained when needed, features described clearly | Mixed audience, product demos, mid-funnel content |
-| Low | Outcome-focused, benefits over features, no jargon | Executive audience, cold outreach, social media |
+| 수준 | 특징 | 사용 시점 |
+|------|------|----------|
+| 높음 | 기술 용어, 아키텍처 세부 사항, 사양 | 기술 독자, 구현 제안서, API 문서 |
+| 중간 | 필요시 업계 용어 설명, 기능 명확하게 설명 | 혼합 독자, 제품 데모, 미드 퍼널 콘텐츠 |
+| 낮음 | 결과 중심, 기능보다 이점, 전문 용어 없음 | 임원 독자, 콜드 아웃리치, 소셜 미디어 |
 
-## Tone-by-Context Matrix
+## 맥락별 톤 매트릭스
 
-Combine the three dimensions for each content type:
+각 콘텐츠 유형에 대해 세 차원을 조합합니다:
 
-| Context | Formality | Energy | Technical Depth | Key Principle |
-|---------|-----------|--------|-----------------|---------------|
-| Cold outreach | Medium | High | Low | Hook fast, earn attention |
-| Discovery calls | Medium | Medium-High | Medium | Ask more than tell |
-| Demo / presentation | Medium-High | High | High | Show, don't just describe |
-| Enterprise proposal | High | Medium | High | ROI and precision |
-| Follow-up email | Medium | Medium | Low-Medium | Add new value each touch |
-| Social media | Low-Medium | High | Low | Brevity and personality |
-| Customer success | Medium | Warm | Medium | Empathy and competence |
-| Internal comms | Low | Medium | Varies | Authentic, less polished |
+| 맥락 | 격식도 | 에너지 | 기술적 깊이 | 핵심 원칙 |
+|------|--------|--------|-----------|----------|
+| 콜드 아웃리치 | 중간 | 높음 | 낮음 | 빠르게 후크, 관심 획득 |
+| 탐색 통화 | 중간 | 중간-높음 | 중간 | 말하기보다 묻기 |
+| 데모/프레젠테이션 | 중간-높음 | 높음 | 높음 | 설명만 하지 말고 보여주기 |
+| 기업 제안서 | 높음 | 중간 | 높음 | ROI와 정밀함 |
+| 후속 이메일 | 중간 | 중간 | 낮음-중간 | 매 접촉마다 새 가치 추가 |
+| 소셜 미디어 | 낮음-중간 | 높음 | 낮음 | 간결함과 개성 |
+| 고객 성공 | 중간 | 따뜻함 | 중간 | 공감과 역량 |
+| 내부 커뮤니케이션 | 낮음 | 중간 | 다양 | 진정성, 덜 다듬어진 |
 
-## Applying Voice + Tone Together
+## 보이스 + 톤 함께 적용하기
 
-**Example: Cold outreach email**
+**예: 콜드 아웃리치 이메일**
 
-Voice constants active:
-- **Confident** — lead with a strong value claim
-- **Direct** — get to the point in sentence one
-- **Approachable** — don't sound like a robot
+활성 보이스 상수:
+- **자신감 있는** — 강력한 가치 주장으로 시작
+- **직접적인** — 첫 문장에서 요점 전달
+- **친근한** — 로봇처럼 들리지 않기
 
-Tone settings:
-- Formality: Medium (professional but not stiff)
-- Energy: High (earn attention quickly)
-- Technical Depth: Low (outcomes, not features)
+톤 설정:
+- 격식도: 중간 (전문적이지만 딱딱하지 않음)
+- 에너지: 높음 (빠르게 관심 획득)
+- 기술적 깊이: 낮음 (기능이 아닌 결과)
 
-**Example: Enterprise proposal**
+**예: 기업 제안서**
 
-Voice constants active:
-- **Data-driven** — every claim has supporting evidence
-- **Confident** — strong positioning without hedging
-- **Innovative** — show forward-thinking approach
+활성 보이스 상수:
+- **데이터 중심의** — 모든 주장에 뒷받침 근거
+- **자신감 있는** — 머뭇거림 없는 강력한 포지셔닝
+- **혁신적인** — 미래 지향적 접근 방식 제시
 
-Tone settings:
-- Formality: High (structured, complete sentences)
-- Energy: Medium (measured, not breathless)
-- Technical Depth: High (detailed implementation, specs)
+톤 설정:
+- 격식도: 높음 (구조화된 완전한 문장)
+- 에너지: 중간 (절제된, 숨가쁘지 않은)
+- 기술적 깊이: 높음 (상세한 구현, 사양)
 
-## Common Enforcement Mistakes
+## 일반적인 적용 실수
 
-1. **Applying all voice attributes at maximum intensity** — Not every attribute needs to shine in every sentence. Let 2-3 lead for the content type.
-2. **Confusing voice with tone** — If the user asks for "casual" content, adjust TONE (lower formality, higher energy). Don't change VOICE (the brand's personality stays the same).
-3. **Rigid enforcement over natural flow** — Guidelines are principles, not a checklist. Content should feel natural, not mechanically assembled.
-4. **Ignoring the audience** — The same voice can sound very different to a CTO vs. a VP of Sales. Tone flexes handle this.
+1. **모든 보이스 속성을 최대 강도로 적용** — 모든 속성이 모든 문장에서 빛날 필요는 없습니다. 콘텐츠 유형에 맞게 2-3개가 주도하도록 합니다.
+2. **보이스와 톤 혼동** — 사용자가 "캐주얼한" 콘텐츠를 요청하면 톤을 조절합니다 (격식도 낮춤, 에너지 높임). 보이스(브랜드 성격)는 변경하지 마세요.
+3. **자연스러운 흐름보다 엄격한 적용** — 가이드라인은 원칙이지 체크리스트가 아닙니다. 콘텐츠는 기계적으로 조립된 것이 아니라 자연스러워야 합니다.
+4. **독자 무시** — 같은 보이스도 CTO와 VP of Sales에게는 매우 다르게 들릴 수 있습니다. 톤 조절이 이를 처리합니다.

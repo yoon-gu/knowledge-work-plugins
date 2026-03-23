@@ -1,78 +1,78 @@
 ---
 name: deploy-checklist
-description: Pre-deployment verification checklist. Use when about to ship a release, deploying a change with database migrations or feature flags, verifying CI status and approvals before going to production, or documenting rollback triggers ahead of time.
-argument-hint: "[service or release name]"
+description: 배포 전 검증 체크리스트. 릴리스를 출시하려고 할 때, 데이터베이스 마이그레이션이나 feature flag가 포함된 변경 사항을 배포할 때, 프로덕션 배포 전 CI 상태 및 승인을 확인할 때, 또는 롤백 트리거를 미리 문서화할 때 사용합니다.
+argument-hint: "[서비스 또는 릴리스 이름]"
 ---
 
 # /deploy-checklist
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 자리 표시자가 보이거나 연결된 도구를 확인해야 하는 경우 [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Generate a pre-deployment checklist to verify readiness before shipping.
+출시 전 준비 상태를 검증하기 위한 배포 전 체크리스트를 생성합니다.
 
-## Usage
+## 사용법
 
 ```
 /deploy-checklist $ARGUMENTS
 ```
 
-## Output
+## 출력
 
 ```markdown
-## Deploy Checklist: [Service/Release]
-**Date:** [Date] | **Deployer:** [Name]
+## Deploy Checklist: [서비스/릴리스]
+**Date:** [날짜] | **Deployer:** [이름]
 
 ### Pre-Deploy
-- [ ] All tests passing in CI
-- [ ] Code reviewed and approved
-- [ ] No known critical bugs in release
-- [ ] Database migrations tested (if applicable)
-- [ ] Feature flags configured (if applicable)
-- [ ] Rollback plan documented
-- [ ] On-call team notified
+- [ ] CI에서 모든 테스트 통과
+- [ ] 코드 리뷰 및 승인 완료
+- [ ] 릴리스에 알려진 치명적 버그 없음
+- [ ] 데이터베이스 마이그레이션 테스트 완료 (해당하는 경우)
+- [ ] Feature flag 설정 완료 (해당하는 경우)
+- [ ] 롤백 계획 문서화 완료
+- [ ] 온콜 팀 알림 완료
 
 ### Deploy
-- [ ] Deploy to staging and verify
-- [ ] Run smoke tests
-- [ ] Deploy to production (canary if available)
-- [ ] Monitor error rates and latency for 15 min
-- [ ] Verify key user flows
+- [ ] 스테이징에 배포 및 검증
+- [ ] 스모크 테스트 실행
+- [ ] 프로덕션에 배포 (가능한 경우 canary 사용)
+- [ ] 15분간 오류율 및 지연 시간 모니터링
+- [ ] 주요 사용자 플로우 검증
 
 ### Post-Deploy
-- [ ] Confirm metrics are nominal
-- [ ] Update release notes / changelog
-- [ ] Notify stakeholders
-- [ ] Close related tickets
+- [ ] 메트릭이 정상 범위인지 확인
+- [ ] 릴리스 노트 / changelog 업데이트
+- [ ] 이해관계자 알림
+- [ ] 관련 티켓 종료
 
 ### Rollback Triggers
-- Error rate exceeds [X]%
-- P50 latency exceeds [X]ms
-- [Critical user flow] fails
+- 오류율이 [X]%를 초과하는 경우
+- P50 지연 시간이 [X]ms를 초과하는 경우
+- [중요 사용자 플로우]가 실패하는 경우
 ```
 
-## Customization
+## 커스터마이징
 
-Tell me about your deploy and I'll customize the checklist:
-- "We use feature flags" → adds flag verification steps
-- "This includes a database migration" → adds migration-specific checks
-- "This is a breaking API change" → adds consumer notification steps
+배포에 대해 알려주시면 체크리스트를 맞춤화해 드립니다:
+- "feature flag를 사용합니다" → flag 검증 단계 추가
+- "데이터베이스 마이그레이션이 포함됩니다" → 마이그레이션 특화 확인 항목 추가
+- "breaking API 변경입니다" → 소비자 알림 단계 추가
 
-## If Connectors Available
+## 커넥터 사용 가능 시
 
-If **~~source control** is connected:
-- Pull the release diff and list of changes
-- Verify all PRs are approved and merged
+**~~source control**이 연결된 경우:
+- 릴리스 diff 및 변경 목록 가져오기
+- 모든 PR이 승인 및 병합되었는지 확인
 
-If **~~CI/CD** is connected:
-- Check build and test status automatically
-- Verify pipeline is green before deploy
+**~~CI/CD**가 연결된 경우:
+- 빌드 및 테스트 상태 자동 확인
+- 배포 전 파이프라인이 통과 상태인지 검증
 
-If **~~monitoring** is connected:
-- Pre-fill rollback trigger thresholds from current baselines
-- Set up post-deploy metric watch
+**~~monitoring**이 연결된 경우:
+- 현재 기준선에서 롤백 트리거 임계값 미리 채우기
+- 배포 후 메트릭 감시 설정
 
-## Tips
+## 팁
 
-1. **Run before every deploy** — Even routine ones. Checklists prevent "I forgot to..."
-2. **Customize once, reuse** — Tell me your stack and I'll remember your deploy process.
-3. **Include rollback criteria** — Decide when to roll back before you deploy, not during.
+1. **모든 배포 전에 실행하세요** — 일상적인 배포도 마찬가지입니다. 체크리스트는 "잊어버렸다..."를 방지합니다.
+2. **한 번 커스터마이징하고 재사용하세요** — 기술 스택을 알려주시면 배포 프로세스를 기억해 드립니다.
+3. **롤백 기준을 포함하세요** — 배포 중이 아닌, 배포 전에 언제 롤백할지 결정하세요.

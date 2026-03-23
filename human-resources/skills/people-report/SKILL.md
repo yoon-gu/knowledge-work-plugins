@@ -1,99 +1,99 @@
 ---
 name: people-report
-description: Generate headcount, attrition, diversity, or org health reports. Use when pulling a headcount snapshot for leadership, analyzing turnover trends by team, preparing diversity representation metrics, or assessing span of control and flight risk across the org.
-argument-hint: "<report type — headcount, attrition, diversity, org health>"
+description: 헤드카운트, 이직률, 다양성 또는 조직 건강 보고서를 생성합니다. 리더십을 위한 헤드카운트 스냅샷을 생성할 때, 팀별 이직률 추세를 분석할 때, 다양성 대표성 지표를 준비할 때, 또는 조직 전반의 관리 범위와 이탈 위험을 평가할 때 사용하세요.
+argument-hint: "<보고서 유형 — headcount, attrition, diversity, org health>"
 ---
 
 # /people-report
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 자리 표시자가 보이거나 연결된 도구를 확인해야 하는 경우, [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Generate people analytics reports from your HR data. Analyze workforce data to surface trends, risks, and opportunities.
+HR 데이터를 기반으로 인원 분석 보고서를 생성합니다. 인력 데이터를 분석하여 추세, 위험, 기회를 파악합니다.
 
-## Usage
+## 사용법
 
 ```
 /people-report $ARGUMENTS
 ```
 
-## Report Types
+## 보고서 유형
 
-**Headcount**: Current org snapshot — by team, location, level, tenure
-**Attrition**: Turnover analysis — voluntary/involuntary, by team, trends
-**Diversity**: Representation metrics — by level, team, pipeline
-**Org Health**: Span of control, management layers, team sizes, flight risk
+**Headcount**: 현재 조직 스냅샷 — 팀, 위치, 레벨, 근속 기간별
+**Attrition**: 이직률 분석 — 자발적/비자발적, 팀별, 추세
+**Diversity**: 대표성 지표 — 레벨, 팀, 파이프라인별
+**Org Health**: 관리 범위, 관리 계층, 팀 규모, 이탈 위험
 
-## Key Metrics
+## 주요 지표
 
-### Retention
-- Overall attrition rate (voluntary + involuntary)
-- Regrettable attrition rate
-- Average tenure
-- Flight risk indicators
+### 유지율
+- 전체 이직률 (자발적 + 비자발적)
+- 우수 인재 이직률
+- 평균 근속 기간
+- 이탈 위험 지표
 
-### Diversity
-- Representation by level, team, and function
-- Pipeline diversity (hiring funnel by demographic)
-- Promotion rates by group
-- Pay equity analysis
+### 다양성
+- 레벨, 팀, 직무별 대표성
+- 파이프라인 다양성 (인구통계별 채용 깔때기)
+- 그룹별 승진율
+- 임금 형평성 분석
 
-### Engagement
-- Survey scores and trends
+### 참여도
+- 설문 점수 및 추세
 - eNPS (Employee Net Promoter Score)
-- Participation rates
-- Open-ended feedback themes
+- 참여율
+- 주관식 피드백 주제
 
-### Productivity
-- Revenue per employee
-- Span of control efficiency
-- Time to productivity for new hires
+### 생산성
+- 직원 1인당 매출
+- 관리 범위 효율성
+- 신입 직원의 생산성 도달 시간
 
-## Approach
+## 접근 방식
 
-1. Understand what question they're trying to answer
-2. Identify the right data (upload, paste, or pull from ~~HRIS)
-3. Analyze with appropriate statistical methods
-4. Present findings with context and caveats
-5. Recommend specific actions based on data
+1. 답하고자 하는 질문이 무엇인지 파악
+2. 적절한 데이터 확인 (업로드, 붙여넣기, 또는 ~~HRIS에서 조회)
+3. 적합한 통계 방법으로 분석
+4. 맥락과 주의사항을 포함하여 결과 제시
+5. 데이터를 기반으로 구체적인 조치 권고
 
-## What I Need From You
+## 필요한 정보
 
-Upload a CSV or describe your data. Helpful fields:
-- Employee name/ID, department, team
-- Title, level, location
-- Start date, end date (if applicable)
-- Manager, compensation (if relevant)
-- Demographics (for diversity reports, if available)
+CSV를 업로드하거나 데이터를 설명해 주세요. 유용한 필드:
+- 직원 이름/ID, 부서, 팀
+- 직함, 레벨, 위치
+- 입사일, 퇴사일 (해당하는 경우)
+- 관리자, 보상 (관련 있는 경우)
+- 인구통계 정보 (다양성 보고서의 경우, 가용한 경우)
 
-## Output
+## 출력 결과
 
 ```markdown
-## People Report: [Type] — [Date]
+## People Report: [유형] — [날짜]
 
-### Executive Summary
-[2-3 key takeaways]
+### 요약
+[2~3가지 핵심 시사점]
 
-### Key Metrics
-| Metric | Value | Trend |
+### 주요 지표
+| 지표 | 값 | 추세 |
 |--------|-------|-------|
-| [Metric] | [Value] | [up/down/flat] |
+| [지표] | [값] | [상승/하락/유지] |
 
-### Detailed Analysis
-[Charts, tables, and narrative for the specific report type]
+### 상세 분석
+[보고서 유형별 차트, 표, 서술 내용]
 
-### Recommendations
-- [Data-driven recommendation]
-- [Action item]
+### 권고사항
+- [데이터 기반 권고사항]
+- [실행 항목]
 
-### Methodology
-[How the numbers were calculated, any caveats]
+### 방법론
+[수치 산출 방법, 주의사항]
 ```
 
-## If Connectors Available
+## 커넥터 사용 시
 
-If **~~HRIS** is connected:
-- Pull live employee data — headcount, tenure, department, level
-- Generate reports without needing a CSV upload
+**~~HRIS**가 연결된 경우:
+- 실시간 직원 데이터 조회 — 헤드카운트, 근속 기간, 부서, 레벨
+- CSV 업로드 없이 보고서 생성
 
-If **~~chat** is connected:
-- Offer to share the report summary in a relevant channel
+**~~chat**이 연결된 경우:
+- 관련 채널에 보고서 요약 공유 제안

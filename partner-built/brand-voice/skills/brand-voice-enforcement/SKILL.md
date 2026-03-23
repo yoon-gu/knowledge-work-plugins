@@ -1,107 +1,107 @@
 ---
 name: brand-voice-enforcement
 description: >
-  This skill applies brand guidelines to content creation. It should be used when
-  the user asks to "write an email", "draft a proposal", "create a pitch deck",
-  "write a LinkedIn post", "draft a presentation", "write a Slack message",
-  "draft sales content", or any content creation request where brand voice should
-  be applied. Also triggers on "on-brand", "brand voice", "enforce voice",
-  "apply brand guidelines", "brand-aligned content", "write in our voice",
-  "use our brand tone", "make this sound like us", "rewrite this in our tone",
-  or "this doesn't sound on-brand". Not for generating guidelines from scratch
-  (use guideline-generation) or discovering brand materials (use discover-brand).
+  이 스킬은 콘텐츠 제작에 브랜드 가이드라인을 적용합니다. 사용자가 "이메일 작성",
+  "제안서 초안", "피치 덱 만들기", "LinkedIn 포스트 작성", "프레젠테이션 초안",
+  "Slack 메시지 작성", "영업 콘텐츠 초안" 등 브랜드 보이스가 적용되어야 하는
+  콘텐츠 제작을 요청할 때 사용해야 합니다. 또한 "온브랜드", "브랜드 보이스",
+  "보이스 적용", "브랜드 가이드라인 적용", "브랜드에 맞는 콘텐츠", "우리 목소리로 작성",
+  "우리 브랜드 톤 사용", "우리처럼 들리게 해줘", "우리 톤으로 다시 써줘",
+  "이건 브랜드에 안 맞아" 등에서도 트리거됩니다. 가이드라인을 처음부터 생성하는 데는
+  사용하지 않습니다(guideline-generation 사용). 브랜드 자료를 발견하는 데도
+  사용하지 않습니다(discover-brand 사용).
 ---
 
-# Brand Voice Enforcement
+# 브랜드 보이스 적용
 
-Apply existing brand guidelines to all sales and marketing content generation. Load the user's brand guidelines, apply voice constants and tone flexes to the content request, validate output, and explain brand choices.
+기존 브랜드 가이드라인을 모든 영업 및 마케팅 콘텐츠 생성에 적용합니다. 사용자의 브랜드 가이드라인을 로드하고, 보이스 상수와 톤 조절을 콘텐츠 요청에 적용하며, 출력을 검증하고, 브랜드 선택을 설명합니다.
 
-## Loading Brand Guidelines
+## 브랜드 가이드라인 로드
 
-Find the user's brand guidelines using this sequence. Stop as soon as you find them:
+다음 순서로 사용자의 브랜드 가이드라인을 찾습니다. 찾으면 즉시 중단합니다:
 
-1. **Session context** — Check if brand guidelines were generated earlier in this session (via `/brand-voice:generate-guidelines`). If so, they are already in the conversation. Use them directly. Session-generated guidelines are the freshest and reflect the user's most recent intent.
+1. **세션 컨텍스트** — 이 세션에서 이전에 브랜드 가이드라인이 생성되었는지 확인합니다 (`/brand-voice:generate-guidelines` 사용). 있다면 이미 대화에 있습니다. 직접 사용합니다. 세션에서 생성된 가이드라인이 가장 최신이며 사용자의 가장 최근 의도를 반영합니다.
 
-2. **Local guidelines file** — Check for `.claude/brand-voice-guidelines.md` inside the user's working folder. Do NOT use a relative path from the agent's current working directory — in Cowork, the agent runs from a plugin cache directory, not the user's project. Resolve the path relative to the user's working folder. If no working folder is set, skip this step.
+2. **로컬 가이드라인 파일** — 사용자의 작업 폴더 내 `.claude/brand-voice-guidelines.md`를 확인합니다. 에이전트의 현재 작업 디렉토리로부터의 상대 경로를 사용하지 마세요 — Cowork에서는 에이전트가 사용자의 프로젝트가 아닌 플러그인 캐시 디렉토리에서 실행됩니다. 사용자의 작업 폴더를 기준으로 경로를 확인합니다. 작업 폴더가 설정되지 않은 경우 이 단계를 건너뜁니다.
 
-3. **Ask the user** — If none of the above found guidelines, tell the user:
-   "I couldn't find your brand guidelines. You can:
-   - Run `/brand-voice:discover-brand` to find brand materials across your platforms
-   - Run `/brand-voice:generate-guidelines` to create guidelines from documents or transcripts
-   - Paste guidelines directly into this chat or point me to a file"
+3. **사용자에게 요청** — 위의 방법으로 가이드라인을 찾지 못한 경우, 사용자에게 알립니다:
+   "브랜드 가이드라인을 찾지 못했습니다. 다음을 할 수 있습니다:
+   - `/brand-voice:discover-brand`를 실행하여 플랫폼에서 브랜드 자료 찾기
+   - `/brand-voice:generate-guidelines`를 실행하여 문서나 트랜스크립트에서 가이드라인 생성
+   - 이 채팅에 가이드라인을 직접 붙여넣거나 파일을 알려주세요"
 
-   Wait for the user to provide guidelines before proceeding.
+   사용자가 가이드라인을 제공할 때까지 기다립니다.
 
-Also read `.claude/brand-voice.local.md` for enforcement settings (even if guidelines came from another source):
+또한 `.claude/brand-voice.local.md`에서 적용 설정을 읽습니다 (가이드라인이 다른 소스에서 온 경우에도):
 - `strictness`: strict | balanced | flexible
-- `always-explain`: whether to always explain brand choices
+- `always-explain`: 항상 브랜드 선택을 설명할지 여부
 
-## Enforcement Workflow
+## 적용 워크플로
 
-### 1. Analyze the Content Request
+### 1. 콘텐츠 요청 분석
 
-Before writing, identify:
-- **Content type**: email, presentation, proposal, social post, message, etc.
-- **Target audience**: role, seniority, industry, company stage
-- **Key messages needed**: which message pillars apply
-- **Specific requirements**: length, format, tone overrides
+작성하기 전에 다음을 식별합니다:
+- **콘텐츠 유형**: 이메일, 프레젠테이션, 제안서, 소셜 포스트, 메시지 등
+- **대상 독자**: 역할, 직급, 산업, 회사 단계
+- **필요한 핵심 메시지**: 적용할 메시지 기둥
+- **특정 요구 사항**: 길이, 형식, 톤 재정의
 
-### 2. Apply Voice Constants
+### 2. 보이스 상수 적용
 
-Voice is the brand's personality — it stays constant across all content:
-- Apply "We Are / We Are Not" attributes from guidelines
-- Use brand personality consistently
-- Incorporate approved terminology; reject prohibited terms
-- Follow messaging framework and value propositions
+보이스는 브랜드의 성격입니다 — 모든 콘텐츠에서 일정합니다:
+- 가이드라인의 "우리는 ~ / 우리는 ~이 아님" 속성 적용
+- 브랜드 성격을 일관되게 사용
+- 승인된 용어 포함, 금지 용어 거부
+- 메시징 프레임워크 및 가치 제안 따르기
 
-Refer to `references/voice-constant-tone-flexes.md` for the "voice constant, tone flexes" model.
+보이스 상수, 톤 조절 모델은 `references/voice-constant-tone-flexes.md`를 참조합니다.
 
-### 3. Flex Tone for Context
+### 3. 맥락에 맞게 톤 조절
 
-Tone adapts by content type and audience. Use the tone-by-context matrix from guidelines to set:
-- **Formality**: How formal or casual should this be?
-- **Energy**: How much urgency or enthusiasm?
-- **Technical depth**: How detailed or accessible?
+톤은 콘텐츠 유형과 독자에 따라 적응합니다. 가이드라인의 맥락별 톤 매트릭스를 사용하여 설정합니다:
+- **격식도**: 얼마나 격식 있거나 캐주얼해야 하는가?
+- **에너지**: 얼마나 긴급하거나 열정적인가?
+- **기술적 깊이**: 얼마나 상세하거나 접근하기 쉬운가?
 
-### 4. Generate Content
+### 4. 콘텐츠 생성
 
-Create content that:
-- Matches brand voice attributes throughout
-- Follows tone guidelines for this specific content type
-- Incorporates key messages naturally (not forced)
-- Uses preferred terminology
-- Mirrors the quality and style of guideline examples
+다음을 충족하는 콘텐츠를 생성합니다:
+- 전체적으로 브랜드 보이스 속성에 부합
+- 이 특정 콘텐츠 유형에 대한 톤 가이드라인 준수
+- 핵심 메시지를 자연스럽게 포함 (강제하지 않음)
+- 선호 용어 사용
+- 가이드라인 예시의 품질과 스타일 반영
 
-For complex or long-form content, delegate to the content-generation agent (defined in `agents/content-generation.md`).
-For high-stakes content, delegate to the quality-assurance agent (defined in `agents/quality-assurance.md`) for validation.
+복잡하거나 긴 형식의 콘텐츠는 content-generation 에이전트(`agents/content-generation.md`에 정의)에 위임합니다.
+중요도가 높은 콘텐츠는 quality-assurance 에이전트(`agents/quality-assurance.md`에 정의)에 검증을 위임합니다.
 
-### 5. Validate and Explain
+### 5. 검증 및 설명
 
-After generating content:
-- Briefly highlight which brand guidelines were applied
-- Explain key voice and tone decisions
-- Note any areas where guidelines were adapted for context
-- Offer to refine based on feedback
+콘텐츠 생성 후:
+- 적용된 브랜드 가이드라인을 간략히 강조합니다
+- 주요 보이스 및 톤 결정을 설명합니다
+- 맥락에 맞게 가이드라인을 조정한 영역을 기록합니다
+- 피드백에 따른 수정을 제안합니다
 
-When `always-explain` is true in settings, include brand application notes with every response.
+설정에서 `always-explain`이 true인 경우, 모든 응답에 브랜드 적용 노트를 포함합니다.
 
-## Handling Conflicts
+## 충돌 처리
 
-When the user's request conflicts with brand guidelines:
-1. Explain the conflict clearly
-2. Provide a recommendation
-3. Offer options: follow guidelines strictly, adapt for context, or override
+사용자의 요청이 브랜드 가이드라인과 충돌하는 경우:
+1. 충돌을 명확하게 설명합니다
+2. 권장 사항을 제공합니다
+3. 옵션을 제시합니다: 가이드라인을 엄격하게 따르기, 맥락에 맞게 조정, 또는 재정의
 
-Default to adapting guidelines with an explanation of the tradeoff.
+기본적으로 트레이드오프를 설명하며 가이드라인을 조정합니다.
 
-## Open Questions Awareness
+## 미해결 질문 인식
 
-Open questions are unresolved brand positioning decisions flagged during guideline generation, stored in the guidelines under an "Open Questions" section. When generating content, check if the brand guidelines contain open questions:
-- If content touches an unresolved open question, note it
-- Apply the agent's recommendation from the open question unless the user specifies otherwise
-- Suggest resolving the question if it significantly impacts the content
+미해결 질문은 가이드라인 생성 중에 표시된 미결정 브랜드 포지셔닝 결정으로, 가이드라인의 "미해결 질문" 섹션에 저장됩니다. 콘텐츠를 생성할 때 브랜드 가이드라인에 미해결 질문이 포함되어 있는지 확인합니다:
+- 콘텐츠가 미해결 질문에 해당하면 이를 기록합니다
+- 사용자가 달리 지정하지 않는 한 미해결 질문의 에이전트 권장 사항을 적용합니다
+- 질문이 콘텐츠에 크게 영향을 미치는 경우 해결을 제안합니다
 
-## Reference Files
+## 참조 파일
 
-- **`references/voice-constant-tone-flexes.md`** — The "voice constant, tone flexes" mental model, "We Are / We Are Not" table structure, and tone-by-context matrix explanation
-- **`references/before-after-examples.md`** — Before/after content examples per content type showing enforcement in practice
+- **`references/voice-constant-tone-flexes.md`** — "보이스 상수, 톤 조절" 멘탈 모델, "우리는 ~ / 우리는 ~이 아님" 테이블 구조, 맥락별 톤 매트릭스 설명
+- **`references/before-after-examples.md`** — 콘텐츠 유형별 적용 전/후 예시로 실제 적용 사례를 보여줌

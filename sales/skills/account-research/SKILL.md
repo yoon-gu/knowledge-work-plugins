@@ -1,36 +1,36 @@
 ---
 name: account-research
-description: Research a company or person and get actionable sales intel. Works standalone with web search, supercharged when you connect enrichment tools or your CRM. Trigger with "research [company]", "look up [person]", "intel on [prospect]", "who is [name] at [company]", or "tell me about [company]".
+description: 기업 또는 개인을 조사하고 실행 가능한 영업 인텔리전스를 얻으세요. 웹 검색을 통해 단독으로 동작하며, 보강 도구 또는 CRM을 연결하면 더욱 강력해집니다. "research [company]", "look up [person]", "intel on [prospect]", "who is [name] at [company]", 또는 "tell me about [company]"로 실행하세요.
 ---
 
 # Account Research
 
-Get a complete picture of any company or person before outreach. This skill always works with web search, and gets significantly better with enrichment and CRM data.
+어떤 기업이나 개인에게 아웃리치하기 전에 전체적인 그림을 파악하세요. 이 스킬은 항상 웹 검색으로 동작하며, 보강 및 CRM 데이터를 연결하면 훨씬 더 좋아집니다.
 
-## How It Works
+## 동작 방식
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                     ACCOUNT RESEARCH                             │
 ├─────────────────────────────────────────────────────────────────┤
-│  ALWAYS (works standalone via web search)                        │
-│  ✓ Company overview: what they do, size, industry               │
-│  ✓ Recent news: funding, leadership changes, announcements      │
-│  ✓ Hiring signals: open roles, growth indicators                │
-│  ✓ Key people: leadership team from LinkedIn                    │
-│  ✓ Product/service: what they sell, who they serve              │
+│  항상 (웹 검색으로 단독 동작)                                    │
+│  ✓ 기업 개요: 사업 내용, 규모, 업종                             │
+│  ✓ 최근 뉴스: 투자 유치, 리더십 변화, 발표 사항                │
+│  ✓ 채용 신호: 공개 채용 공고, 성장 지표                        │
+│  ✓ 주요 인물: LinkedIn에서 경영진 팀 정보                      │
+│  ✓ 제품/서비스: 무엇을 판매하고 누구를 대상으로 하는지         │
 ├─────────────────────────────────────────────────────────────────┤
-│  SUPERCHARGED (when you connect your tools)                      │
-│  + Enrichment: verified emails, phone, tech stack, org chart    │
-│  + CRM: prior relationship, past opportunities, contacts        │
+│  강화된 사용 (도구 연결 시)                                      │
+│  + 보강: 인증된 이메일, 전화번호, 기술 스택, 조직도             │
+│  + CRM: 과거 관계, 이전 기회, 연락처                           │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Getting Started
+## 시작하기
 
-Just tell me who to research:
+조사할 대상을 알려주세요:
 
 - "Research Stripe"
 - "Look up the CTO at Notion"
@@ -38,250 +38,250 @@ Just tell me who to research:
 - "Who is Sarah Chen at TechCorp?"
 - "Tell me about [company] before my call"
 
-I'll run web searches immediately. If you have enrichment or CRM connected, I'll pull that data too.
+즉시 웹 검색을 실행합니다. 보강 도구나 CRM이 연결되어 있으면 해당 데이터도 불러옵니다.
 
 ---
 
-## Connectors (Optional)
+## 커넥터 (선택 사항)
 
-Connect your tools to supercharge this skill:
+이 스킬을 강화하려면 도구를 연결하세요:
 
-| Connector | What It Adds |
+| 커넥터 | 추가되는 기능 |
 |-----------|--------------|
-| **Enrichment** | Verified emails, phone numbers, tech stack, org chart, funding details |
-| **CRM** | Prior relationship history, past opportunities, existing contacts, notes |
+| **보강** | 인증된 이메일, 전화번호, 기술 스택, 조직도, 투자 세부 정보 |
+| **CRM** | 과거 관계 이력, 이전 기회, 기존 연락처, 메모 |
 
-> **No connectors?** No problem. Web search provides solid research for any company or person.
+> **커넥터 없음?** 괜찮습니다. 웹 검색으로도 어떤 기업이나 개인에 대해 탄탄한 조사가 가능합니다.
 
 ---
 
-## Output Format
+## 출력 형식
 
 ```markdown
-# Research: [Company or Person Name]
+# Research: [기업 또는 개인 이름]
 
-**Generated:** [Date]
-**Sources:** Web Search [+ Enrichment] [+ CRM]
-
----
-
-## Quick Take
-
-[2-3 sentences: Who they are, why they might need you, best angle for outreach]
+**생성일:** [날짜]
+**출처:** Web Search [+ Enrichment] [+ CRM]
 
 ---
 
-## Company Profile
+## 간략 요약
 
-| Field | Value |
+[2~3문장: 누구인지, 왜 필요할 수 있는지, 아웃리치에 가장 좋은 접근 방식]
+
+---
+
+## 기업 프로필
+
+| 항목 | 내용 |
 |-------|-------|
-| **Company** | [Name] |
-| **Website** | [URL] |
-| **Industry** | [Industry] |
-| **Size** | [Employee count] |
-| **Headquarters** | [Location] |
-| **Founded** | [Year] |
-| **Funding** | [Stage + amount if known] |
-| **Revenue** | [Estimate if available] |
+| **기업** | [이름] |
+| **웹사이트** | [URL] |
+| **업종** | [업종] |
+| **규모** | [직원 수] |
+| **본사** | [위치] |
+| **설립** | [연도] |
+| **투자** | [단계 + 금액 (알려진 경우)] |
+| **매출** | [추정치 (가능한 경우)] |
 
-### What They Do
-[1-2 sentence description of their business, product, and customers]
+### 사업 내용
+[1~2문장의 사업, 제품, 고객 설명]
 
-### Recent News
-- **[Headline]** — [Date] — [Why it matters for your outreach]
-- **[Headline]** — [Date] — [Why it matters]
+### 최근 뉴스
+- **[헤드라인]** — [날짜] — [아웃리치에 중요한 이유]
+- **[헤드라인]** — [날짜] — [중요한 이유]
 
-### Hiring Signals
-- [X] open roles in [Department]
-- Notable: [Relevant roles like Engineering, Sales, AI/ML]
-- Growth indicator: [Hiring velocity interpretation]
+### 채용 신호
+- [부서]에 [X]개 채용 공고
+- 주목할 점: [엔지니어링, 영업, AI/ML 등 관련 직무]
+- 성장 지표: [채용 속도 해석]
 
 ---
 
-## Key People
+## 주요 인물
 
-### [Name] — [Title]
-| Field | Detail |
+### [이름] — [직함]
+| 항목 | 세부 사항 |
 |-------|--------|
 | **LinkedIn** | [URL] |
-| **Background** | [Prior companies, education] |
-| **Tenure** | [Time at company] |
-| **Email** | [If enrichment connected] |
+| **배경** | [이전 회사, 학력] |
+| **재직 기간** | [회사 근무 기간] |
+| **이메일** | [보강 연결 시] |
 
-**Talking Points:**
-- [Personal hook based on background]
-- [Professional hook based on role]
+**대화 포인트:**
+- [배경 기반 개인적 훅]
+- [역할 기반 직업적 훅]
 
-[Repeat for relevant contacts]
+[관련 연락처에 대해 반복]
 
 ---
 
-## Tech Stack [If Enrichment Connected]
+## 기술 스택 [보강 연결 시]
 
-| Category | Tools |
+| 카테고리 | 도구 |
 |----------|-------|
-| **Cloud** | [AWS, GCP, Azure, etc.] |
-| **Data** | [Snowflake, Databricks, etc.] |
-| **CRM** | [e.g. Salesforce, HubSpot] |
-| **Other** | [Relevant tools] |
+| **클라우드** | [AWS, GCP, Azure 등] |
+| **데이터** | [Snowflake, Databricks 등] |
+| **CRM** | [예: Salesforce, HubSpot] |
+| **기타** | [관련 도구] |
 
-**Integration Opportunity:** [How your product fits with their stack]
+**통합 기회:** [제품이 기술 스택과 맞는 방식]
 
 ---
 
-## Prior Relationship [If CRM Connected]
+## 과거 관계 [CRM 연결 시]
 
-| Field | Detail |
+| 항목 | 세부 사항 |
 |-------|--------|
-| **Status** | [New / Prior prospect / Customer / Churned] |
-| **Last Contact** | [Date and type] |
-| **Previous Opps** | [Won/Lost and why] |
-| **Known Contacts** | [Names already in CRM] |
+| **상태** | [신규 / 이전 잠재 고객 / 고객 / 이탈] |
+| **마지막 연락** | [날짜 및 유형] |
+| **이전 기회** | [성사/실패 및 이유] |
+| **기존 연락처** | [CRM에 이미 있는 이름] |
 
-**History:** [Summary of past relationship]
-
----
-
-## Qualification Signals
-
-### Positive Signals
-- ✅ [Signal and evidence]
-- ✅ [Signal and evidence]
-
-### Potential Concerns
-- ⚠️ [Concern and what to watch for]
-
-### Unknown (Ask in Discovery)
-- ❓ [Gap in understanding]
+**이력:** [과거 관계 요약]
 
 ---
 
-## Recommended Approach
+## 자격 신호
 
-**Best Entry Point:** [Person and why]
+### 긍정적 신호
+- ✅ [신호 및 근거]
+- ✅ [신호 및 근거]
 
-**Opening Hook:** [What to lead with based on research]
+### 잠재적 우려 사항
+- ⚠️ [우려 사항 및 주의해야 할 점]
 
-**Discovery Questions:**
-1. [Question about their situation]
-2. [Question about pain points]
-3. [Question about decision process]
-
----
-
-## Sources
-- [Source 1](URL)
-- [Source 2](URL)
-```
+### 미확인 (발굴 시 확인)
+- ❓ [이해의 공백]
 
 ---
 
-## Execution Flow
+## 권장 접근 방식
 
-### Step 1: Parse Request
+**최적 진입 지점:** [인물 및 이유]
 
-```
-Identify what to research:
-- "Research Stripe" → Company research
-- "Look up John Smith at Acme" → Person + company
-- "Who is the CTO at Notion" → Role-based search
-- "Intel on acme.com" → Domain-based lookup
-```
+**시작 훅:** [조사를 기반으로 무엇으로 시작할지]
 
-### Step 2: Web Search (Always)
+**발굴 질문:**
+1. [현재 상황에 대한 질문]
+2. [불편 사항에 대한 질문]
+3. [의사결정 프로세스에 대한 질문]
 
-```
-Run these searches:
-1. "[Company name]" → Homepage, about page
-2. "[Company name] news" → Recent announcements
-3. "[Company name] funding" → Investment history
-4. "[Company name] careers" → Hiring signals
-5. "[Person name] [Company] LinkedIn" → Profile info
-6. "[Company name] product" → What they sell
-7. "[Company name] customers" → Who they serve
-```
+---
 
-**Extract:**
-- Company description and positioning
-- Recent news (last 90 days)
-- Leadership team
-- Open job postings
-- Technology mentions
-- Customer base
-
-### Step 3: Enrichment (If Connected)
-
-```
-If enrichment tools available:
-1. Enrich company → Firmographics, funding, tech stack
-2. Search people → Org chart, contact list
-3. Enrich person → Email, phone, background
-4. Get signals → Intent data, hiring velocity
-```
-
-**Enrichment adds:**
-- Verified contact info
-- Complete org chart
-- Precise employee count
-- Detailed tech stack
-- Funding history with investors
-
-### Step 4: CRM Check (If Connected)
-
-```
-If CRM available:
-1. Search for account by domain
-2. Get related contacts
-3. Get opportunity history
-4. Get activity timeline
-```
-
-**CRM adds:**
-- Prior relationship context
-- What happened before (won/lost deals)
-- Who we've talked to
-- Notes and history
-
-### Step 5: Synthesize
-
-```
-1. Combine all sources
-2. Prioritize enrichment data over web (more accurate)
-3. Add CRM context if exists
-4. Identify qualification signals
-5. Generate talking points
-6. Recommend approach
+## 출처
+- [출처 1](URL)
+- [출처 2](URL)
 ```
 
 ---
 
-## Research Variations
+## 실행 흐름
 
-### Company Research
-Focus on: Business overview, news, hiring, leadership
+### 1단계: 요청 분석
 
-### Person Research
-Focus on: Background, role, LinkedIn activity, talking points
+```
+조사 대상 파악:
+- "Research Stripe" → 기업 조사
+- "Look up John Smith at Acme" → 개인 + 기업
+- "Who is the CTO at Notion" → 역할 기반 검색
+- "Intel on acme.com" → 도메인 기반 조회
+```
 
-### Competitor Research
-Focus on: Product comparison, positioning, win/loss patterns
+### 2단계: 웹 검색 (항상)
 
-### Pre-Meeting Research
-Focus on: Attendee backgrounds, recent news, relationship history
+```
+다음 검색 실행:
+1. "[기업명]" → 홈페이지, 소개 페이지
+2. "[기업명] news" → 최근 발표
+3. "[기업명] funding" → 투자 이력
+4. "[기업명] careers" → 채용 신호
+5. "[개인명] [기업] LinkedIn" → 프로필 정보
+6. "[기업명] product" → 판매 제품
+7. "[기업명] customers" → 대상 고객
+```
+
+**추출 항목:**
+- 기업 설명 및 포지셔닝
+- 최근 뉴스 (90일 이내)
+- 경영진 팀
+- 채용 공고
+- 기술 언급
+- 고객 기반
+
+### 3단계: 보강 (연결 시)
+
+```
+보강 도구가 있는 경우:
+1. 기업 보강 → 기업 정보, 투자, 기술 스택
+2. 인물 검색 → 조직도, 연락처 목록
+3. 개인 보강 → 이메일, 전화번호, 배경
+4. 신호 획득 → 인텐트 데이터, 채용 속도
+```
+
+**보강으로 추가되는 정보:**
+- 인증된 연락처 정보
+- 전체 조직도
+- 정확한 직원 수
+- 상세 기술 스택
+- 투자자 정보 포함 투자 이력
+
+### 4단계: CRM 확인 (연결 시)
+
+```
+CRM이 있는 경우:
+1. 도메인으로 계정 검색
+2. 관련 연락처 조회
+3. 기회 이력 조회
+4. 활동 타임라인 조회
+```
+
+**CRM으로 추가되는 정보:**
+- 과거 관계 컨텍스트
+- 이전에 있었던 일 (성사/실패한 딜)
+- 대화한 사람
+- 메모 및 이력
+
+### 5단계: 종합
+
+```
+1. 모든 출처 결합
+2. 웹 정보보다 보강 데이터 우선 (더 정확함)
+3. CRM 컨텍스트 추가 (있는 경우)
+4. 자격 신호 파악
+5. 대화 포인트 생성
+6. 접근 방식 권장
+```
 
 ---
 
-## Tips for Better Research
+## 조사 유형
 
-1. **Include the domain** — "research acme.com" is more precise
-2. **Specify the person** — "look up Jane Smith, VP Sales at Acme"
-3. **State your goal** — "research Stripe before my demo call"
-4. **Ask for specifics** — "what's their tech stack?" after initial research
+### 기업 조사
+중점 내용: 사업 개요, 뉴스, 채용, 리더십
+
+### 개인 조사
+중점 내용: 배경, 역할, LinkedIn 활동, 대화 포인트
+
+### 경쟁사 조사
+중점 내용: 제품 비교, 포지셔닝, 승/패 패턴
+
+### 미팅 전 조사
+중점 내용: 참석자 배경, 최근 뉴스, 관계 이력
 
 ---
 
-## Related Skills
+## 더 나은 조사를 위한 팁
 
-- **call-prep** — Full meeting prep with this research plus context
-- **draft-outreach** — Write personalized message based on research
-- **prospecting** — Qualify and prioritize research targets
+1. **도메인 포함** — "research acme.com"이 더 정확합니다
+2. **개인 특정** — "look up Jane Smith, VP Sales at Acme"
+3. **목표 명시** — "research Stripe before my demo call"
+4. **구체적으로 요청** — 초기 조사 후 "what's their tech stack?"
+
+---
+
+## 관련 스킬
+
+- **call-prep** — 이 조사와 컨텍스트를 포함한 전체 미팅 준비
+- **draft-outreach** — 조사를 기반으로 개인화된 메시지 작성
+- **prospecting** — 조사 대상 자격 평가 및 우선순위 지정

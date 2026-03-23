@@ -1,168 +1,168 @@
 ---
 name: call-summary
-description: Process call notes or a transcript — extract action items, draft follow-up email, generate internal summary. Use when pasting rough notes or a transcript after a discovery, demo, or negotiation call, drafting a customer follow-up, logging the activity for your CRM, or capturing objections and next steps for your team.
-argument-hint: "<call notes or transcript>"
+description: 통화 메모 또는 전사본 처리 — 액션 아이템 추출, 후속 이메일 초안 작성, 내부 요약 생성. 발굴 통화, 데모, 협상 통화 후 거친 메모 또는 전사본을 붙여넣을 때, 고객 후속 이메일을 작성할 때, CRM에 활동을 기록할 때, 또는 팀을 위해 이의 사항과 다음 단계를 정리할 때 사용하세요.
+argument-hint: "<통화 메모 또는 전사본>"
 ---
 
 # /call-summary
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인하려면 [CONNECTORS.md](../../CONNECTORS.md)를 참고하세요.
 
-Process call notes or a transcript to extract action items, draft follow-up communications, and update records.
+통화 메모 또는 전사본을 처리하여 액션 아이템을 추출하고, 후속 커뮤니케이션 초안을 작성하며, 기록을 업데이트합니다.
 
-## Usage
+## 사용법
 
 ```
-/call-summary <notes or transcript>
+/call-summary <메모 또는 전사본>
 ```
 
-Process these call notes: $ARGUMENTS
+다음 통화 메모를 처리해 주세요: $ARGUMENTS
 
-If a file is referenced: @$1
+파일이 참조된 경우: @$1
 
 ---
 
-## How It Works
+## 동작 방식
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                      CALL SUMMARY                                │
 ├─────────────────────────────────────────────────────────────────┤
-│  STANDALONE (always works)                                       │
-│  ✓ Paste call notes or transcript                               │
-│  ✓ Extract key discussion points and decisions                  │
-│  ✓ Identify action items with owners and due dates              │
-│  ✓ Surface objections, concerns, and open questions             │
-│  ✓ Draft customer-facing follow-up email                        │
-│  ✓ Generate internal summary for your team                      │
+│  단독 사용 (항상 동작)                                            │
+│  ✓ 통화 메모 또는 전사본 붙여넣기                                 │
+│  ✓ 주요 토론 사항 및 결정 사항 추출                               │
+│  ✓ 담당자 및 기한이 포함된 액션 아이템 파악                       │
+│  ✓ 이의 사항, 우려 사항, 미결 질문 도출                          │
+│  ✓ 고객 대상 후속 이메일 초안 작성                               │
+│  ✓ 팀을 위한 내부 요약 생성                                      │
 ├─────────────────────────────────────────────────────────────────┤
-│  SUPERCHARGED (when you connect your tools)                      │
-│  + Transcripts: Pull recording automatically (e.g. Gong, Fireflies) │
-│  + CRM: Update opportunity, log activity, create tasks          │
-│  + Email: Send follow-up directly from draft                    │
-│  + Calendar: Link to meeting, pull attendee context             │
+│  강화된 사용 (도구 연결 시)                                       │
+│  + 전사: 녹음 자동 불러오기 (예: Gong, Fireflies)                │
+│  + CRM: 기회 업데이트, 활동 기록, 태스크 생성                    │
+│  + 이메일: 초안에서 직접 후속 이메일 발송                        │
+│  + 캘린더: 미팅 연결, 참석자 컨텍스트 불러오기                   │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## What I Need From You
+## 필요한 정보
 
-**Option 1: Paste your notes**
-Just paste whatever you have — bullet points, rough notes, stream of consciousness. I'll structure it.
+**옵션 1: 메모 붙여넣기**
+가진 것은 무엇이든 붙여넣으세요 — 불릿 포인트, 거친 메모, 의식의 흐름 형식도 괜찮습니다. 제가 구조화하겠습니다.
 
-**Option 2: Paste a transcript**
-If you have a full transcript from your video conferencing tool (e.g. Zoom, Teams) or conversation intelligence tool (e.g. Gong, Fireflies), paste it. I'll extract the key moments.
+**옵션 2: 전사본 붙여넣기**
+화상 회의 도구(예: Zoom, Teams)나 대화 인텔리전스 도구(예: Gong, Fireflies)의 전체 전사본이 있다면 붙여넣으세요. 제가 핵심 순간을 추출하겠습니다.
 
-**Option 3: Describe the call**
-Tell me what happened: "Had a discovery call with Acme Corp. Met with their VP Eng and CTO. They're evaluating us vs Competitor X. Main concern is integration timeline."
+**옵션 3: 통화 내용 설명**
+무슨 일이 있었는지 알려주세요: "Acme Corp와 발굴 통화를 했습니다. 그쪽 VP Eng과 CTO를 만났어요. Competitor X와 비교 평가 중입니다. 주요 관심사는 통합 일정입니다."
 
 ---
 
-## Output
+## 출력물
 
-### Internal Summary
+### 내부 요약
 ```markdown
-## Call Summary: [Company] — [Date]
+## 통화 요약: [기업] — [날짜]
 
-**Attendees:** [Names and titles]
-**Call Type:** [Discovery / Demo / Negotiation / Check-in]
-**Duration:** [If known]
+**참석자:** [이름 및 직함]
+**통화 유형:** [발굴 / 데모 / 협상 / 체크인]
+**소요 시간:** [알려진 경우]
 
-### Key Discussion Points
-1. [Topic] — [What was discussed, decisions made]
-2. [Topic] — [Summary]
+### 주요 토론 사항
+1. [주제] — [토론 내용, 내려진 결정]
+2. [주제] — [요약]
 
-### Customer Priorities
-- [Priority 1 they expressed]
-- [Priority 2]
+### 고객 우선순위
+- [고객이 표현한 우선순위 1]
+- [우선순위 2]
 
-### Objections / Concerns Raised
-- [Concern] — [How you addressed it / status]
+### 이의 사항 / 제기된 우려
+- [우려 사항] — [해결 방법 / 현황]
 
-### Competitive Intel
-- [Any competitor mentions, what was said]
+### 경쟁 인텔
+- [경쟁사 언급 사항, 발언 내용]
 
-### Action Items
-| Owner | Action | Due |
+### 액션 아이템
+| 담당자 | 액션 | 기한 |
 |-------|--------|-----|
-| [You] | [Task] | [Date] |
-| [Customer] | [Task] | [Date] |
+| [담당자] | [태스크] | [날짜] |
+| [고객] | [태스크] | [날짜] |
 
-### Next Steps
-- [Agreed next step with timeline]
+### 다음 단계
+- [일정이 포함된 합의된 다음 단계]
 
-### Deal Impact
-- [How this call affects the opportunity — stage change, risk, acceleration]
+### 딜 영향
+- [이 통화가 기회에 미치는 영향 — 단계 변화, 위험, 가속화]
 ```
 
-### Customer Follow-Up Email
+### 고객 후속 이메일
 ```
-Subject: [Meeting recap + next steps]
+제목: [미팅 요약 + 다음 단계]
 
-Hi [Name],
+안녕하세요 [이름]님,
 
-Thank you for taking the time to meet today...
+오늘 시간 내주셔서 감사합니다...
 
-[Key points discussed]
+[토론된 주요 사항]
 
-[Commitments you made]
+[드린 약속]
 
-[Clear next step with timeline]
+[일정이 포함된 명확한 다음 단계]
 
-Best,
-[You]
-```
-
----
-
-## Email Style Guidelines
-
-When drafting customer-facing emails:
-
-1. **Be concise but informative** — Get to the point quickly. Customers are busy.
-2. **No markdown formatting** — Don't use asterisks, bold, or other markdown syntax. Write in plain text that looks natural in any email client.
-3. **Use simple structure** — Short paragraphs, line breaks between sections. No headers or bullet formatting unless the customer's email client will render it.
-4. **Keep it scannable** — If listing items, use plain dashes or numbers, not fancy formatting.
-
-**Good:**
-```
-Here's what we discussed:
-- Quote for 20 seats at $480/seat/year
-- W9 and supplier onboarding docs
-- Point of contact for the contract
-```
-
-**Bad:**
-```
-**What You Need from Us:**
-- Quote for 20 seats at $480/seat/year
+감사합니다,
+[담당자]
 ```
 
 ---
 
-## If Connectors Available
+## 이메일 스타일 가이드라인
 
-**Transcripts connected (e.g. Gong, Fireflies):**
-- I'll search for the call automatically
-- Pull the full transcript
-- Extract key moments flagged by the platform
+고객 대상 이메일 작성 시:
 
-**CRM connected:**
-- I'll offer to update the opportunity stage
-- Log the call as an activity
-- Create tasks for action items
-- Update next steps field
+1. **간결하되 유익하게** — 빠르게 요점을 전달하세요. 고객은 바쁩니다.
+2. **마크다운 서식 사용 금지** — 별표, 굵게, 기타 마크다운 문법을 사용하지 마세요. 어떤 이메일 클라이언트에서도 자연스럽게 보이는 일반 텍스트로 작성하세요.
+3. **단순한 구조 사용** — 짧은 단락, 섹션 사이 줄 바꿈. 고객의 이메일 클라이언트에서 렌더링되지 않으면 헤더나 불릿 서식을 사용하지 마세요.
+4. **훑어보기 쉽게** — 항목을 나열할 때는 일반 대시나 숫자를 사용하고, 화려한 서식은 피하세요.
 
-**Email connected:**
-- I'll offer to create a draft in ~~email
-- Or send directly if you approve
+**좋은 예:**
+```
+다음 사항들을 논의했습니다:
+- 20석 $480/석/연 견적
+- W9 및 공급업체 온보딩 서류
+- 계약 담당자 연락처
+```
+
+**나쁜 예:**
+```
+**저희에게 필요한 것:**
+- 20석 $480/석/연 견적
+```
 
 ---
 
-## Tips
+## 커넥터 사용 시
 
-1. **More detail = better output** — Even rough notes help. "They seemed concerned about X" is useful context.
-2. **Name the attendees** — Helps me structure the summary and assign action items.
-3. **Flag what matters** — If something was important, tell me: "The big thing was..."
-4. **Tell me the deal stage** — Helps me tailor the follow-up tone and next steps.
+**전사 도구 연결 시 (예: Gong, Fireflies):**
+- 자동으로 통화를 검색합니다
+- 전체 전사본을 불러옵니다
+- 플랫폼에서 표시한 핵심 순간을 추출합니다
+
+**CRM 연결 시:**
+- 기회 단계 업데이트를 제안합니다
+- 통화를 활동으로 기록합니다
+- 액션 아이템에 대한 태스크를 생성합니다
+- 다음 단계 필드를 업데이트합니다
+
+**이메일 연결 시:**
+- ~~email에 초안을 생성합니다
+- 또는 승인하시면 직접 발송합니다
+
+---
+
+## 팁
+
+1. **더 많은 정보 = 더 좋은 결과** — 거친 메모도 도움이 됩니다. "X에 대해 걱정하는 것 같았습니다"도 유용한 컨텍스트입니다.
+2. **참석자 이름 명시** — 요약을 구조화하고 액션 아이템을 배정하는 데 도움이 됩니다.
+3. **중요한 것 표시** — 무언가 중요했다면 알려주세요: "가장 중요한 것은..."
+4. **딜 단계 알려주기** — 후속 이메일 톤과 다음 단계를 맞춤화하는 데 도움이 됩니다.

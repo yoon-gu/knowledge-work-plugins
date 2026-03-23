@@ -1,186 +1,186 @@
 ---
 name: journal-entry-prep
-description: Prepare journal entries with proper debits, credits, and supporting documentation for month-end close. Use when booking accruals, prepaid amortization, fixed asset depreciation, payroll entries, revenue recognition, or any manual journal entry.
+description: 월말 결산을 위한 적절한 차변, 대변 및 증빙 서류가 포함된 분개를 작성합니다. 미지급비용 계상, 선급비용 상각, 유형자산 감가상각, 급여 분개, 수익 인식, 또는 모든 수동 분개 작성 시 사용합니다.
 user-invocable: false
 ---
 
-# Journal Entry Preparation
+# 분개 작성
 
-**Important**: This skill assists with journal entry workflows but does not provide financial advice. All entries should be reviewed by qualified financial professionals before posting.
+**중요**: 이 스킬은 분개 워크플로우를 지원하지만 재무 자문을 제공하지 않습니다. 모든 분개는 전기 전에 자격을 갖춘 재무 전문가의 검토를 받아야 합니다.
 
-Best practices, standard entry types, documentation requirements, and review workflows for journal entry preparation.
+분개 작성을 위한 모범 사례, 표준 분개 유형, 문서화 요구사항, 검토 워크플로우에 대한 내용입니다.
 
-## Standard Accrual Types and Their Entries
+## 표준 미지급비용 유형 및 분개
 
-### Accounts Payable Accruals
+### 매입채무 미지급
 
-Accrue for goods or services received but not yet invoiced at period end.
+기말 시점에 재화 또는 용역을 수령했으나 아직 청구서가 발행되지 않은 경우 미지급비용을 계상합니다.
 
-**Typical entry:**
-- Debit: Expense account (or capitalize if asset-qualifying)
-- Credit: Accrued liabilities
+**일반적인 분개:**
+- 차변: 비용 계정 (또는 자산 요건 충족 시 자본화)
+- 대변: 미지급비용
 
-**Sources for calculation:**
-- Open purchase orders with confirmed receipts
-- Contracts with services rendered but unbilled
-- Recurring vendor arrangements (utilities, subscriptions, professional services)
-- Employee expense reports submitted but not yet processed
+**계산 출처:**
+- 입고가 확인된 미결 구매주문
+- 용역이 제공되었으나 미청구된 계약
+- 반복적 공급업체 계약(공과금, 구독, 전문 서비스)
+- 제출되었으나 아직 처리되지 않은 임직원 경비 보고서
 
-**Key considerations:**
-- Reverse in the following period (auto-reversal recommended)
-- Use consistent estimation methodology period over period
-- Document basis for estimates (PO amount, contract terms, historical run-rate)
-- Track actual vs accrual to refine future estimates
+**핵심 고려사항:**
+- 다음 기간에 역분개 (자동 역분개 권장)
+- 기간별 일관된 추정 방법론 사용
+- 추정 근거 문서화(PO 금액, 계약 조건, 과거 실적 기반)
+- 실제 대 미지급 추적을 통해 향후 추정 정확도 개선
 
-### Fixed Asset Depreciation
+### 유형자산 감가상각
 
-Book periodic depreciation expense for tangible and intangible assets.
+유형자산 및 무형자산에 대한 기간 감가상각비를 계상합니다.
 
-**Typical entry:**
-- Debit: Depreciation/amortization expense (by department or cost center)
-- Credit: Accumulated depreciation/amortization
+**일반적인 분개:**
+- 차변: 감가상각비/무형자산상각비 (부서 또는 코스트센터별)
+- 대변: 감가상각누계액/무형자산상각누계액
 
-**Depreciation methods:**
-- **Straight-line:** (Cost - Salvage) / Useful life — most common for financial reporting
-- **Declining balance:** Accelerated method applying fixed rate to net book value
-- **Units of production:** Based on actual usage or output vs total expected
+**감가상각 방법:**
+- **정액법:** (취득원가 - 잔존가치) / 내용연수 — 재무보고에서 가장 일반적
+- **체감잔액법:** 순장부가액에 고정 비율을 적용하는 가속 방법
+- **생산량 비례법:** 총 예상 대비 실제 사용량 또는 산출량 기반
 
-**Key considerations:**
-- Run depreciation from the fixed asset register or schedule
-- Verify new additions are set up with correct useful life and method
-- Check for disposals or impairments requiring write-off
-- Ensure consistency between book and tax depreciation tracking
+**핵심 고려사항:**
+- 유형자산 대장 또는 스케줄에서 감가상각 실행
+- 신규 추가 자산의 내용연수 및 방법이 올바르게 설정되었는지 확인
+- 제각 또는 손상이 필요한 처분 확인
+- 장부 및 세무 감가상각 추적 간 일관성 확보
 
-### Prepaid Expense Amortization
+### 선급비용 상각
 
-Amortize prepaid expenses over their benefit period.
+선급비용을 수혜 기간에 걸쳐 상각합니다.
 
-**Typical entry:**
-- Debit: Expense account (insurance, software, rent, etc.)
-- Credit: Prepaid expense
+**일반적인 분개:**
+- 차변: 비용 계정 (보험, 소프트웨어, 임차료 등)
+- 대변: 선급비용
 
-**Common prepaid categories:**
-- Insurance premiums (typically 12-month policies)
-- Software licenses and subscriptions
-- Prepaid rent (if applicable under lease terms)
-- Prepaid maintenance contracts
-- Conference and event deposits
+**일반적인 선급 카테고리:**
+- 보험료 (일반적으로 12개월 보험증권)
+- 소프트웨어 라이선스 및 구독
+- 선급 임차료 (리스 조건에 해당하는 경우)
+- 선급 유지보수 계약
+- 컨퍼런스 및 이벤트 예치금
 
-**Key considerations:**
-- Maintain an amortization schedule with start/end dates and monthly amounts
-- Review for any prepaid items that should be fully expensed (immaterial amounts)
-- Check for cancelled or terminated contracts requiring accelerated amortization
-- Verify new prepaids are added to the schedule promptly
+**핵심 고려사항:**
+- 시작/종료 일자 및 월별 금액이 포함된 상각 스케줄 유지
+- 전액 비용 처리해야 할 선급 항목 검토(비중요 금액)
+- 가속 상각이 필요한 취소 또는 종료 계약 확인
+- 신규 선급이 스케줄에 적시에 추가되었는지 확인
 
-### Payroll Accruals
+### 급여 미지급
 
-Accrue compensation and related costs for the period.
+해당 기간의 보상 및 관련 비용을 미지급 계상합니다.
 
-**Typical entries:**
+**일반적인 분개:**
 
-*Salary accrual (for pay periods not aligned with month-end):*
-- Debit: Salary expense (by department)
-- Credit: Accrued payroll
+*급여 미지급(급여 기간이 월말과 일치하지 않는 경우):*
+- 차변: 급여비용 (부서별)
+- 대변: 미지급급여
 
-*Bonus accrual:*
-- Debit: Bonus expense (by department)
-- Credit: Accrued bonus
+*상여 미지급:*
+- 차변: 상여비용 (부서별)
+- 대변: 미지급상여
 
-*Benefits accrual:*
-- Debit: Benefits expense
-- Credit: Accrued benefits
+*복리후생 미지급:*
+- 차변: 복리후생비
+- 대변: 미지급복리후생비
 
-*Payroll tax accrual:*
-- Debit: Payroll tax expense
-- Credit: Accrued payroll taxes
+*급여세 미지급:*
+- 차변: 급여세비용
+- 대변: 미지급급여세
 
-**Key considerations:**
-- Calculate salary accrual based on working days in the period vs pay period
-- Bonus accruals should reflect plan terms (target amounts, performance metrics, payout timing)
-- Include employer-side taxes and benefits (FICA, FUTA, health, 401k match)
-- Track PTO/vacation accrual liability if required by policy or jurisdiction
+**핵심 고려사항:**
+- 해당 기간 근무일수 대 급여 기간 기준으로 급여 미지급 계산
+- 상여 미지급은 플랜 조건 반영(목표 금액, 성과 지표, 지급 시기)
+- 사용자 부담 세금 및 복리후생 포함(FICA, FUTA, 건강보험, 401k 매칭)
+- 정책 또는 관할권에 따라 요구되는 경우 유급휴가/연차 미지급부채 추적
 
-### Revenue Recognition
+### 수익 인식
 
-Recognize revenue based on performance obligations and delivery.
+이행 의무 및 인도에 기반하여 수익을 인식합니다.
 
-**Typical entries:**
+**일반적인 분개:**
 
-*Recognize previously deferred revenue:*
-- Debit: Deferred revenue
-- Credit: Revenue
+*이전에 이연된 수익 인식:*
+- 차변: 이연수익
+- 대변: 수익
 
-*Recognize revenue with new receivable:*
-- Debit: Accounts receivable
-- Credit: Revenue
+*신규 수취채권과 함께 수익 인식:*
+- 차변: 매출채권
+- 대변: 수익
 
-*Defer revenue received in advance:*
-- Debit: Cash / Accounts receivable
-- Credit: Deferred revenue
+*선수금 수익 이연:*
+- 차변: 현금 / 매출채권
+- 대변: 이연수익
 
-**Key considerations:**
-- Follow ASC 606 five-step framework for contracts with customers
-- Identify distinct performance obligations in each contract
-- Determine transaction price (including variable consideration)
-- Allocate transaction price to performance obligations
-- Recognize revenue as/when performance obligations are satisfied
-- Maintain contract-level detail for audit support
+**핵심 고려사항:**
+- 고객과의 계약에 대해 ASC 606 5단계 프레임워크 준수
+- 각 계약에서 구별되는 이행 의무 식별
+- 거래 가격 결정(변동 대가 포함)
+- 이행 의무에 거래 가격 배분
+- 이행 의무가 충족되는 시점에 수익 인식
+- 감사 지원을 위한 계약 수준 세부사항 유지
 
-## Supporting Documentation Requirements
+## 증빙 서류 요구사항
 
-Every journal entry should have:
+모든 분개에는 다음이 포함되어야 합니다:
 
-1. **Entry description/memo:** Clear, specific description of what the entry records and why
-2. **Calculation support:** How amounts were derived (formula, schedule, source data reference)
-3. **Source documents:** Reference to the underlying transactions or events (PO numbers, invoice numbers, contract references, payroll register)
-4. **Period:** The accounting period the entry applies to
-5. **Preparer identification:** Who prepared the entry and when
-6. **Approval:** Evidence of review and approval per the authorization matrix
-7. **Reversal indicator:** Whether the entry auto-reverses and the reversal date
+1. **분개 설명/메모:** 분개가 기록하는 내용과 이유에 대한 명확하고 구체적인 설명
+2. **계산 근거:** 금액 산출 방법(공식, 스케줄, 원천 데이터 참조)
+3. **원천 서류:** 기초 거래 또는 사건에 대한 참조(PO 번호, 송장 번호, 계약 참조, 급여 대장)
+4. **기간:** 분개가 적용되는 회계기간
+5. **작성자 식별:** 분개 작성자 및 시기
+6. **승인:** 승인 매트릭스에 따른 검토 및 승인 증거
+7. **역분개 표시:** 분개의 자동 역분개 여부 및 역분개 일자
 
-## Review and Approval Workflows
+## 검토 및 승인 워크플로우
 
-### Typical Approval Matrix
+### 일반적인 승인 매트릭스
 
-| Entry Type | Amount Threshold | Approver |
+| 분개 유형 | 금액 기준 | 승인자 |
 |-----------|-----------------|----------|
-| Standard recurring | Any amount | Accounting manager |
-| Non-recurring / manual | < $50K | Accounting manager |
-| Non-recurring / manual | $50K - $250K | Controller |
-| Non-recurring / manual | > $250K | CFO / VP Finance |
-| Top-side / consolidation | Any amount | Controller or above |
-| Out-of-period adjustments | Any amount | Controller or above |
+| 표준 반복 | 금액 무관 | 회계 매니저 |
+| 비반복 / 수동 | < $50K | 회계 매니저 |
+| 비반복 / 수동 | $50K - $250K | 컨트롤러 |
+| 비반복 / 수동 | > $250K | CFO / VP Finance |
+| 상위 조정 / 연결 | 금액 무관 | 컨트롤러 이상 |
+| 기간 외 조정 | 금액 무관 | 컨트롤러 이상 |
 
-*Note: Thresholds should be set based on your organization's materiality and risk tolerance.*
+*참고: 기준금액은 조직의 중요성 및 위험 허용 수준에 따라 설정해야 합니다.*
 
-### Review Checklist
+### 검토 체크리스트
 
-Before approving a journal entry, the reviewer should verify:
+분개 승인 전 검토자는 다음을 확인해야 합니다:
 
-- [ ] Debits equal credits (entry is balanced)
-- [ ] Correct accounting period (not posting to a closed period)
-- [ ] Account codes exist and are appropriate for the transaction
-- [ ] Amounts are mathematically accurate and supported by calculations
-- [ ] Description is clear, specific, and sufficient for audit purposes
-- [ ] Department/cost center/project coding is correct
-- [ ] Treatment is consistent with prior periods and accounting policies
-- [ ] Auto-reversal is set appropriately (accruals should reverse)
-- [ ] Supporting documentation is complete and referenced
-- [ ] Entry amount is within the preparer's authority level
-- [ ] No duplicate of an existing entry
-- [ ] Unusual or large amounts are explained and justified
+- [ ] 차변과 대변이 일치(분개 균형)
+- [ ] 올바른 회계기간(마감된 기간에 전기하지 않음)
+- [ ] 계정 코드가 존재하고 거래에 적합
+- [ ] 금액이 수학적으로 정확하고 계산으로 뒷받침
+- [ ] 설명이 명확하고 구체적이며 감사 목적에 충분
+- [ ] 부서/코스트센터/프로젝트 코딩이 정확
+- [ ] 처리가 전기 및 회계 정책과 일관
+- [ ] 자동 역분개가 적절히 설정(미지급은 역분개 필요)
+- [ ] 증빙 서류가 완전하고 참조됨
+- [ ] 분개 금액이 작성자의 권한 수준 이내
+- [ ] 기존 분개와 중복되지 않음
+- [ ] 비정상적이거나 큰 금액에 대한 설명 및 정당성
 
-## Common Errors to Check For
+## 확인해야 할 일반적인 오류
 
-1. **Unbalanced entries:** Debits do not equal credits (system should prevent, but check manual entries)
-2. **Wrong period:** Entry posted to an incorrect or already-closed period
-3. **Wrong sign:** Debit entered as credit or vice versa
-4. **Duplicate entries:** Same transaction recorded twice (check for duplicates before posting)
-5. **Wrong account:** Entry posted to incorrect GL account (especially similar account codes)
-6. **Missing reversal:** Accrual entry not set to auto-reverse, causing double-counting
-7. **Stale accruals:** Recurring accruals not updated for changed circumstances
-8. **Round-number estimates:** Suspiciously round amounts that may not reflect actual calculations
-9. **Incorrect FX rates:** Foreign currency entries using wrong exchange rate or date
-10. **Missing intercompany elimination:** Entries between entities without corresponding elimination
-11. **Capitalization errors:** Expenses that should be capitalized, or capitalized items that should be expensed
-12. **Cut-off errors:** Transactions recorded in the wrong period based on delivery or service date
+1. **불균형 분개:** 차변과 대변이 일치하지 않음(시스템이 방지해야 하나 수동 분개 확인)
+2. **잘못된 기간:** 분개가 잘못된 또는 이미 마감된 기간에 전기
+3. **잘못된 부호:** 차변이 대변으로 또는 그 반대로 입력
+4. **중복 분개:** 동일 거래가 두 번 기록(전기 전 중복 확인)
+5. **잘못된 계정:** 분개가 잘못된 GL 계정에 전기(특히 유사한 계정 코드)
+6. **누락된 역분개:** 미지급 분개에 자동 역분개가 설정되지 않아 이중 계상
+7. **진부한 미지급:** 변경된 상황을 반영하지 않은 반복적 미지급
+8. **정수 추정:** 실제 계산을 반영하지 않는 의심스러운 정수 금액
+9. **잘못된 환율:** 잘못된 환율 또는 일자를 사용한 외화 분개
+10. **누락된 내부거래 제거:** 법인 간 분개에 대응하는 제거 없음
+11. **자본화 오류:** 자본화해야 할 비용 또는 비용 처리해야 할 자본화 항목
+12. **기간귀속 오류:** 인도 또는 서비스 일자 기준으로 잘못된 기간에 기록된 거래

@@ -1,82 +1,82 @@
 ---
 name: draft-offer
-description: Draft an offer letter with comp details and terms. Use when a candidate is ready for an offer, assembling a total comp package (base, equity, signing bonus), writing the offer letter text itself, or prepping negotiation guidance for the hiring manager.
-argument-hint: "<role and level>"
+description: 보상 세부 정보와 조건이 포함된 오퍼 레터 초안을 작성합니다. 후보자에게 오퍼를 제시할 준비가 되었을 때, 총 보상 패키지(기본급, 주식, 사이닝 보너스)를 구성할 때, 오퍼 레터 본문을 작성할 때, 또는 채용 관리자를 위한 협상 가이던스를 준비할 때 사용하세요.
+argument-hint: "<역할 및 레벨>"
 ---
 
 # /draft-offer
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 자리 표시자가 보이거나 연결된 도구를 확인해야 하는 경우, [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Draft a complete offer letter for a new hire.
+신입 직원을 위한 완전한 오퍼 레터 초안을 작성합니다.
 
-## Usage
+## 사용법
 
 ```
 /draft-offer $ARGUMENTS
 ```
 
-## What I Need From You
+## 필요한 정보
 
-- **Role and title**: What position?
-- **Level**: Junior, Mid, Senior, Staff, etc.
-- **Location**: Where will they be based? (affects comp and benefits)
-- **Compensation**: Base salary, equity, signing bonus (if applicable)
-- **Start date**: When should they start?
-- **Hiring manager**: Who will they report to?
+- **역할 및 직함**: 어떤 포지션인가요?
+- **레벨**: Junior, Mid, Senior, Staff 등
+- **위치**: 어디서 근무하나요? (보상 및 복리후생에 영향)
+- **보상**: 기본급, 주식, 사이닝 보너스 (해당하는 경우)
+- **시작일**: 언제 시작하나요?
+- **채용 관리자**: 누구에게 보고하나요?
 
-If you don't have all details, I'll help you think through them.
+모든 세부 정보가 없어도 괜찮습니다. 함께 검토해 드리겠습니다.
 
-## Output
+## 출력 결과
 
 ```markdown
-## Offer Letter Draft: [Role] — [Level]
+## Offer Letter Draft: [역할] — [레벨]
 
-### Compensation Package
-| Component | Details |
+### 보상 패키지
+| 항목 | 세부 내용 |
 |-----------|---------|
-| **Base Salary** | $[X]/year |
-| **Equity** | [X shares/units], [vesting schedule] |
-| **Signing Bonus** | $[X] (if applicable) |
-| **Target Bonus** | [X]% of base (if applicable) |
-| **Total First-Year Comp** | $[X] |
+| **기본급** | $[X]/년 |
+| **주식** | [X shares/units], [베스팅 일정] |
+| **사이닝 보너스** | $[X] (해당하는 경우) |
+| **목표 보너스** | 기본급의 [X]% (해당하는 경우) |
+| **첫 해 총 보상** | $[X] |
 
-### Terms
-- **Start Date**: [Date]
-- **Reports To**: [Manager]
-- **Location**: [Office / Remote / Hybrid]
-- **Employment Type**: [Full-time, Exempt]
+### 조건
+- **시작일**: [날짜]
+- **보고 대상**: [관리자]
+- **근무 형태**: [사무실 / 원격 / 하이브리드]
+- **고용 형태**: [정규직, 면제 직원]
 
-### Benefits Summary
-[Key benefits highlights relevant to the candidate]
+### 복리후생 요약
+[후보자에게 관련 있는 주요 복리후생 내용]
 
-### Offer Letter Text
+### 오퍼 레터 본문
 
-Dear [Candidate Name],
+Dear [후보자 이름],
 
-We are pleased to offer you the position of [Title] at [Company]...
+We are pleased to offer you the position of [직함] at [회사명]...
 
-[Complete offer letter text]
+[전체 오퍼 레터 내용]
 
-### Notes for Hiring Manager
-- [Negotiation guidance if needed]
-- [Comp band context]
-- [Any flags or considerations]
+### 채용 관리자 메모
+- [필요 시 협상 가이던스]
+- [보상 밴드 맥락]
+- [주의 사항 또는 고려 사항]
 ```
 
-## If Connectors Available
+## 커넥터 사용 시
 
-If **~~HRIS** is connected:
-- Pull comp band data for the level/role
-- Verify headcount approval
-- Auto-populate benefits details
+**~~HRIS**가 연결된 경우:
+- 레벨/역할에 대한 보상 밴드 데이터 조회
+- 헤드카운트 승인 확인
+- 복리후생 세부 정보 자동 입력
 
-If **~~ATS** is connected:
-- Pull candidate details from the application
-- Update offer status in the pipeline
+**~~ATS**가 연결된 경우:
+- 지원서에서 후보자 정보 조회
+- 파이프라인에서 오퍼 상태 업데이트
 
-## Tips
+## 팁
 
-1. **Include total comp** — Candidates compare total compensation, not just base.
-2. **Be specific about equity** — Share count, current valuation method, vesting schedule.
-3. **Personalize** — Reference something from the interview process to make it warm.
+1. **총 보상을 포함하세요** — 후보자는 기본급만이 아니라 총 보상을 비교합니다.
+2. **주식을 구체적으로 명시하세요** — 주식 수, 현재 가치 평가 방법, 베스팅 일정.
+3. **개인화하세요** — 인터뷰 과정에서 나온 이야기를 언급하면 따뜻한 인상을 줍니다.

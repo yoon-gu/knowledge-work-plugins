@@ -1,274 +1,274 @@
 ---
 name: compliance-check
-description: Run a compliance check on a proposed action, product feature, or business initiative, surfacing applicable regulations, required approvals, and risk areas. Use when launching a feature that touches personal data, when marketing or product proposes something with regulatory implications, or when you need to know which approvals and jurisdictional requirements apply before proceeding.
+description: 제안된 조치, 제품 기능, 또는 사업 이니셔티브에 대해 컴플라이언스 검토를 실행하여 적용 가능한 규제, 필요한 승인, 위험 영역을 파악합니다. 개인정보를 다루는 기능 출시 시, 마케팅 또는 제품팀이 규제적 함의가 있는 제안을 할 때, 또는 진행 전에 어떤 승인 및 관할권별 요건이 적용되는지 확인해야 할 때 사용합니다.
 argument-hint: "<action or initiative to check>"
 ---
 
-# /compliance-check -- Compliance Review
+# /compliance-check -- 컴플라이언스 검토
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 있거나 연결된 도구를 확인하려면 [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Run a compliance check on a proposed action, product feature, marketing campaign, or business initiative.
+제안된 조치, 제품 기능, 마케팅 캠페인, 또는 사업 이니셔티브에 대해 컴플라이언스 검토를 실행합니다.
 
-**Important**: This command assists with legal workflows but does not provide legal advice. Compliance assessments should be reviewed by qualified legal professionals. Regulatory requirements change frequently; always verify current requirements with authoritative sources.
+**중요**: 이 명령은 법무 워크플로우를 지원하지만 법률 자문을 제공하지 않습니다. 컴플라이언스 평가는 자격을 갖춘 법률 전문가의 검토를 받아야 합니다. 규제 요건은 자주 변경되므로 항상 공식 소스에서 현행 요건을 확인하세요.
 
-## Usage
+## 사용법
 
 ```
 /compliance-check $ARGUMENTS
 ```
 
-## What I Need From You
+## 필요한 정보
 
-Describe what you're planning to do. Examples:
-- "We want to launch a referral program with cash rewards"
-- "We're adding biometric authentication to our mobile app"
-- "We need to process EU customer data in our US data center"
-- "Marketing wants to use customer testimonials in ads"
+계획하고 있는 내용을 설명해 주세요. 예시:
+- "현금 보상이 있는 추천 프로그램을 출시하고 싶습니다"
+- "모바일 앱에 생체 인증을 추가하려고 합니다"
+- "미국 데이터 센터에서 EU 고객 데이터를 처리해야 합니다"
+- "마케팅에서 고객 추천서를 광고에 사용하고 싶어합니다"
 
-## Output
+## 출력
 
 ```markdown
-## Compliance Check: [Initiative]
+## 컴플라이언스 검토: [이니셔티브]
 
-### Summary
-[Quick assessment: Proceed / Proceed with conditions / Requires further review]
+### 요약
+[빠른 평가: 진행 / 조건부 진행 / 추가 검토 필요]
 
-### Applicable Regulations and Policies
-| Regulation/Policy | Relevance | Key Requirements |
+### 적용 가능한 규제 및 정책
+| 규제/정책 | 관련성 | 주요 요건 |
 |-------------------|-----------|-----------------|
-| [GDPR / CCPA / HIPAA / etc.] | [How it applies] | [What you need to do] |
+| [GDPR / CCPA / HIPAA 등] | [적용 방법] | [해야 할 사항] |
 
-### Requirements
-| # | Requirement | Status | Action Needed |
+### 요건
+| # | 요건 | 상태 | 필요한 조치 |
 |---|-------------|--------|---------------|
-| 1 | [Requirement] | [Met / Not Met / Unknown] | [What to do] |
+| 1 | [요건] | [충족 / 미충족 / 미확인] | [할 일] |
 
-### Risk Areas
-| Risk | Severity | Mitigation |
+### 위험 영역
+| 위험 | 심각도 | 완화 방안 |
 |------|----------|------------|
-| [Risk] | [High/Med/Low] | [How to address] |
+| [위험] | [고/중/저] | [대응 방법] |
 
-### Recommended Actions
-1. [Most important action]
-2. [Second priority]
-3. [Third priority]
+### 권장 조치
+1. [가장 중요한 조치]
+2. [두 번째 우선순위]
+3. [세 번째 우선순위]
 
-### Approvals Needed
-| Approver | Why | Status |
+### 필요한 승인
+| 승인자 | 사유 | 상태 |
 |----------|-----|--------|
-| [Person/Team] | [Reason] | [Pending] |
+| [담당자/팀] | [사유] | [대기 중] |
 
-### Further Review Recommended
-[Areas where outside counsel or specialist review is advised]
+### 추가 검토 권장
+[외부 법률 고문 또는 전문가 검토가 권장되는 영역]
 ```
 
-## Privacy Regulation Overview
+## 개인정보보호 규제 개요
 
-### GDPR (General Data Protection Regulation)
+### GDPR (일반 데이터 보호 규정)
 
-**Scope**: Applies to processing of personal data of individuals in the EU/EEA, regardless of where the processing organization is located.
+**적용 범위**: 처리 조직의 소재지와 관계없이 EU/EEA 내 개인의 개인정보 처리에 적용됩니다.
 
-**Key Obligations for In-House Legal Teams**:
-- **Lawful basis**: Identify and document lawful basis for each processing activity (consent, contract, legitimate interest, legal obligation, vital interest, public task)
-- **Data subject rights**: Respond to access, rectification, erasure, portability, restriction, and objection requests within 30 days (extendable by 60 days for complex requests)
-- **Data protection impact assessments (DPIAs)**: Required for processing likely to result in high risk to individuals
-- **Breach notification**: Notify supervisory authority within 72 hours of becoming aware of a personal data breach; notify affected individuals without undue delay if high risk
-- **Records of processing**: Maintain Article 30 records of processing activities
-- **International transfers**: Ensure appropriate safeguards for transfers outside EEA (SCCs, adequacy decisions, BCRs)
-- **DPO requirement**: Appoint a Data Protection Officer if required (public authority, large-scale processing of special categories, large-scale systematic monitoring)
+**사내 법무팀의 주요 의무**:
+- **적법한 근거**: 각 처리 활동에 대한 적법한 근거를 식별하고 문서화(동의, 계약, 정당한 이익, 법적 의무, 중대한 이익, 공적 과제)
+- **정보주체 권리**: 접근, 정정, 삭제, 이동, 처리 제한, 이의 제기 요청에 30일 이내 응답(복잡한 요청의 경우 60일 연장 가능)
+- **데이터 보호 영향 평가(DPIA)**: 개인에게 높은 위험을 초래할 가능성이 있는 처리에 필요
+- **침해 통지**: 개인정보 침해를 인지한 후 72시간 이내 감독 당국 통지; 높은 위험이 있는 경우 영향 받는 개인에게 지체 없이 통지
+- **처리 기록**: GDPR 제30조 처리 활동 기록 유지
+- **국제 이전**: EEA 외부 이전에 적절한 보호 장치 확보(SCCs, 적정성 결정, BCRs)
+- **DPO 요건**: 필요한 경우 데이터 보호 책임자 지정(공공 기관, 특수 카테고리의 대규모 처리, 대규모 체계적 모니터링)
 
-**Common In-House Legal Touchpoints**:
-- Reviewing vendor DPAs for GDPR compliance
-- Advising product teams on privacy by design requirements
-- Responding to supervisory authority inquiries
-- Managing cross-border data transfer mechanisms
-- Reviewing consent mechanisms and privacy notices
+**일반적인 사내 법무 접점**:
+- 공급업체 DPA의 GDPR 준수 검토
+- 제품팀에 프라이버시 바이 디자인 요건 자문
+- 감독 당국 문의 대응
+- 국경 간 데이터 이전 메커니즘 관리
+- 동의 메커니즘 및 개인정보 처리방침 검토
 
-### CCPA / CPRA (California Consumer Privacy Act / California Privacy Rights Act)
+### CCPA / CPRA (캘리포니아 소비자 프라이버시법 / 캘리포니아 프라이버시 권리법)
 
-**Scope**: Applies to businesses that collect personal information of California residents and meet revenue, data volume, or data sale thresholds.
+**적용 범위**: 캘리포니아 거주자의 개인정보를 수집하며 수익, 데이터 규모, 또는 데이터 판매 기준을 충족하는 사업체에 적용됩니다.
 
-**Key Obligations**:
-- **Right to know**: Consumers can request disclosure of personal information collected, used, and shared
-- **Right to delete**: Consumers can request deletion of their personal information
-- **Right to opt-out**: Consumers can opt out of the sale or sharing of personal information
-- **Right to correct**: Consumers can request correction of inaccurate personal information (CPRA addition)
-- **Right to limit use of sensitive personal information**: Consumers can limit use of sensitive PI to specific purposes (CPRA addition)
-- **Non-discrimination**: Cannot discriminate against consumers who exercise their rights
-- **Privacy notice**: Must provide a privacy notice at or before collection describing categories of PI collected and purposes
-- **Service provider agreements**: Contracts with service providers must restrict use of PI to the specified business purpose
+**주요 의무**:
+- **알 권리**: 소비자가 수집, 사용, 공유된 개인정보의 공개를 요청할 수 있음
+- **삭제 권리**: 소비자가 개인정보 삭제를 요청할 수 있음
+- **옵트아웃 권리**: 소비자가 개인정보의 판매 또는 공유를 거부할 수 있음
+- **정정 권리**: 소비자가 부정확한 개인정보의 정정을 요청할 수 있음 (CPRA 추가)
+- **민감한 개인정보 사용 제한 권리**: 소비자가 민감한 개인정보의 사용을 특정 목적으로 제한할 수 있음 (CPRA 추가)
+- **차별 금지**: 권리를 행사한 소비자에 대해 차별할 수 없음
+- **개인정보 처리방침**: 수집 시 또는 수집 전에 수집되는 개인정보 카테고리 및 목적을 설명하는 처리방침 제공 필수
+- **서비스 제공자 계약**: 서비스 제공자와의 계약에서 개인정보 사용을 지정된 사업 목적으로 제한해야 함
 
-**Response Timelines**:
-- Acknowledge receipt within 10 business days
-- Respond substantively within 45 calendar days (extendable by 45 days with notice)
+**응답 기한**:
+- 접수 후 10 영업일 이내 접수 확인
+- 45 역일 이내 실질적 응답(통지 후 45일 연장 가능)
 
-### Other Key Regulations to Monitor
+### 기타 주요 규제 모니터링
 
-| Regulation | Jurisdiction | Key Differentiators |
+| 규제 | 관할권 | 주요 차별점 |
 |---|---|---|
-| **LGPD** (Brazil) | Brazil | Similar to GDPR; requires DPO appointment; National Data Protection Authority (ANPD) enforcement |
-| **POPIA** (South Africa) | South Africa | Information Regulator oversight; required registration of processing |
-| **PIPEDA** (Canada) | Canada (federal) | Consent-based framework; OPC oversight; being modernized |
-| **PDPA** (Singapore) | Singapore | Do Not Call registry; mandatory breach notification; PDPC enforcement |
-| **Privacy Act** (Australia) | Australia | Australian Privacy Principles (APPs); notifiable data breaches scheme |
-| **PIPL** (China) | China | Strict cross-border transfer rules; data localization requirements; CAC oversight |
-| **UK GDPR** | United Kingdom | Post-Brexit UK version; ICO oversight; similar to EU GDPR with UK-specific adequacy |
+| **LGPD** (브라질) | 브라질 | GDPR과 유사; DPO 지정 필요; 국가 데이터 보호 당국(ANPD) 집행 |
+| **POPIA** (남아프리카) | 남아프리카 | 정보 규제 기관 감독; 처리 등록 필요 |
+| **PIPEDA** (캐나다) | 캐나다(연방) | 동의 기반 프레임워크; OPC 감독; 현대화 진행 중 |
+| **PDPA** (싱가포르) | 싱가포르 | Do Not Call 레지스트리; 의무적 침해 통지; PDPC 집행 |
+| **Privacy Act** (호주) | 호주 | 호주 프라이버시 원칙(APPs); 통지 가능 데이터 침해 제도 |
+| **PIPL** (중국) | 중국 | 엄격한 국경 간 이전 규칙; 데이터 현지화 요건; CAC 감독 |
+| **UK GDPR** | 영국 | 브렉시트 이후 영국 버전; ICO 감독; UK 특정 적정성과 함께 EU GDPR과 유사 |
 
-## DPA Review Checklist
+## DPA 검토 체크리스트
 
-When reviewing a Data Processing Agreement or Data Processing Addendum, verify the following:
+데이터 처리 계약 또는 데이터 처리 부록을 검토할 때 다음을 확인합니다:
 
-### Required Elements (GDPR Article 28)
+### 필수 요소 (GDPR 제28조)
 
-- [ ] **Subject matter and duration**: Clearly defined scope and term of processing
-- [ ] **Nature and purpose**: Specific description of what processing will occur and why
-- [ ] **Type of personal data**: Categories of personal data being processed
-- [ ] **Categories of data subjects**: Whose personal data is being processed
-- [ ] **Controller obligations and rights**: Controller's instructions and oversight rights
+- [ ] **처리 대상 및 기간**: 처리 범위와 기간이 명확히 정의됨
+- [ ] **성격 및 목적**: 어떤 처리가 발생하고 왜 발생하는지 구체적 설명
+- [ ] **개인정보 유형**: 처리되는 개인정보의 카테고리
+- [ ] **정보주체 카테고리**: 누구의 개인정보가 처리되는지
+- [ ] **컨트롤러의 의무 및 권리**: 컨트롤러의 지시 및 감독 권한
 
-### Processor Obligations
+### 프로세서 의무
 
-- [ ] **Process only on documented instructions**: Processor commits to process only per controller's instructions (with exception for legal requirements)
-- [ ] **Confidentiality**: Personnel authorized to process have committed to confidentiality
-- [ ] **Security measures**: Appropriate technical and organizational measures described (Article 32 reference)
-- [ ] **Sub-processor requirements**:
-  - [ ] Written authorization requirement (general or specific)
-  - [ ] If general authorization: notification of changes with opportunity to object
-  - [ ] Sub-processors bound by same obligations via written agreement
-  - [ ] Processor remains liable for sub-processor performance
-- [ ] **Data subject rights assistance**: Processor will assist controller in responding to data subject requests
-- [ ] **Security and breach assistance**: Processor will assist with security obligations, breach notification, DPIAs, and prior consultation
-- [ ] **Deletion or return**: On termination, delete or return all personal data (at controller's choice) and delete existing copies unless legal retention required
-- [ ] **Audit rights**: Controller has right to conduct audits and inspections (or accept third-party audit reports)
-- [ ] **Breach notification**: Processor will notify controller of personal data breaches without undue delay (ideally within 24-48 hours; must enable controller to meet 72-hour regulatory deadline)
+- [ ] **문서화된 지시에 따른 처리만**: 프로세서가 컨트롤러의 지시에 따라서만 처리할 것을 약속(법적 요건에 의한 예외 포함)
+- [ ] **기밀성**: 처리 권한을 가진 직원이 기밀 유지를 약속
+- [ ] **보안 조치**: 적절한 기술적·조직적 조치 기술(제32조 참조)
+- [ ] **하위 프로세서 요건**:
+  - [ ] 서면 승인 요건(일반 또는 특정)
+  - [ ] 일반 승인인 경우: 이의 제기 기회와 함께 변경 통지
+  - [ ] 하위 프로세서가 서면 계약을 통해 동일한 의무에 구속
+  - [ ] 프로세서가 하위 프로세서의 이행에 대해 계속 책임
+- [ ] **정보주체 권리 지원**: 프로세서가 정보주체 요청 대응에서 컨트롤러를 지원
+- [ ] **보안 및 침해 지원**: 프로세서가 보안 의무, 침해 통지, DPIA, 사전 협의에서 지원
+- [ ] **삭제 또는 반환**: 종료 시 모든 개인정보를 삭제 또는 반환(컨트롤러 선택에 따라)하고 법적 보관이 필요한 경우를 제외하고 기존 사본 삭제
+- [ ] **감사 권한**: 컨트롤러가 감사 및 검사를 수행할 권한(또는 제3자 감사 보고서 수락)
+- [ ] **침해 통지**: 프로세서가 개인정보 침해를 지체 없이 컨트롤러에 통지(이상적으로 24-48시간 이내; 컨트롤러가 72시간 규제 기한을 준수할 수 있도록 해야 함)
 
-### International Transfers
+### 국제 이전
 
-- [ ] **Transfer mechanism identified**: SCCs, adequacy decision, BCRs, or other valid mechanism
-- [ ] **SCCs version**: Using current EU SCCs (June 2021 version) if applicable
-- [ ] **Correct module**: Appropriate SCC module selected (C2P, C2C, P2P, P2C)
-- [ ] **Transfer impact assessment**: Completed if transferring to countries without adequacy decisions
-- [ ] **Supplementary measures**: Technical, organizational, or contractual measures to address gaps identified in transfer impact assessment
-- [ ] **UK addendum**: If UK personal data is in scope, UK International Data Transfer Addendum included
+- [ ] **이전 메커니즘 식별**: SCCs, 적정성 결정, BCRs, 또는 기타 유효한 메커니즘
+- [ ] **SCCs 버전**: 해당하는 경우 현행 EU SCCs(2021년 6월 버전) 사용
+- [ ] **올바른 모듈**: 적절한 SCC 모듈 선택(C2P, C2C, P2P, P2C)
+- [ ] **이전 영향 평가**: 적정성 결정이 없는 국가로의 이전 시 완료
+- [ ] **보충 조치**: 이전 영향 평가에서 식별된 공백을 해결하기 위한 기술적, 조직적, 계약적 조치
+- [ ] **UK 부록**: 영국 개인정보가 범위에 포함된 경우 UK International Data Transfer Addendum 포함
 
-### Practical Considerations
+### 실무적 고려사항
 
-- [ ] **Liability**: DPA liability provisions align with (or don't conflict with) the main services agreement
-- [ ] **Termination alignment**: DPA term aligns with the services agreement
-- [ ] **Data locations**: Processing locations specified and acceptable
-- [ ] **Security standards**: Specific security standards or certifications required (SOC 2, ISO 27001, etc.)
-- [ ] **Insurance**: Adequate insurance coverage for data processing activities
+- [ ] **책임**: DPA 책임 조항이 주요 서비스 계약과 일치(또는 상충하지 않음)
+- [ ] **종료 정합성**: DPA 기간이 서비스 계약과 일치
+- [ ] **데이터 위치**: 처리 위치가 명시되고 수용 가능
+- [ ] **보안 표준**: 특정 보안 표준 또는 인증 요구(SOC 2, ISO 27001 등)
+- [ ] **보험**: 데이터 처리 활동에 대한 적절한 보험 적용
 
-### Common DPA Issues
+### 일반적인 DPA 이슈
 
-| Issue | Risk | Standard Position |
+| 이슈 | 위험 | 표준 입장 |
 |---|---|---|
-| Blanket sub-processor authorization without notification | Loss of control over processing chain | Require notification with right to object |
-| Breach notification timeline > 72 hours | May prevent timely regulatory notification | Require notification within 24-48 hours |
-| No audit rights (or audit rights only via third-party reports) | Cannot verify compliance | Accept SOC 2 Type II + right to audit upon cause |
-| Data deletion timeline not specified | Data retained indefinitely | Require deletion within 30-90 days of termination |
-| No data processing locations specified | Data could be processed anywhere | Require disclosure of processing locations |
-| Outdated SCCs | Invalid transfer mechanism | Require current EU SCCs (2021 version) |
+| 통지 없는 포괄적 하위 프로세서 승인 | 처리 체인에 대한 통제력 상실 | 이의 제기 권한과 함께 통지 요구 |
+| 침해 통지 기한 > 72시간 | 적시 규제 통지 불가능 | 24-48시간 이내 통지 요구 |
+| 감사 권한 없음(또는 제3자 보고서를 통한 감사 권한만) | 준수 확인 불가 | SOC 2 Type II 수용 + 사유 발생 시 감사 권한 |
+| 데이터 삭제 기한 미명시 | 데이터 무기한 보관 | 종료 후 30-90일 이내 삭제 요구 |
+| 데이터 처리 위치 미명시 | 데이터가 어디서든 처리될 수 있음 | 처리 위치 공개 요구 |
+| 구 버전 SCCs | 유효하지 않은 이전 메커니즘 | 현행 EU SCCs(2021년 버전) 요구 |
 
-## Data Subject Request Handling
+## 정보주체 요청 처리
 
-### Request Intake
+### 요청 접수
 
-When a data subject request is received:
+정보주체 요청을 수신한 경우:
 
-1. **Identify the request type**:
-   - Access (copy of personal data)
-   - Rectification (correction of inaccurate data)
-   - Erasure / deletion ("right to be forgotten")
-   - Restriction of processing
-   - Data portability (structured, machine-readable format)
-   - Objection to processing
-   - Opt-out of sale/sharing (CCPA/CPRA)
-   - Limit use of sensitive personal information (CPRA)
+1. **요청 유형 식별**:
+   - 접근(개인정보 사본)
+   - 정정(부정확한 데이터 수정)
+   - 삭제("잊혀질 권리")
+   - 처리 제한
+   - 데이터 이동성(구조화된, 기계 판독 가능한 형식)
+   - 처리에 대한 이의 제기
+   - 판매/공유 옵트아웃(CCPA/CPRA)
+   - 민감한 개인정보 사용 제한(CPRA)
 
-2. **Identify applicable regulation(s)**:
-   - Where is the data subject located?
-   - Which laws apply based on your organization's presence and activities?
-   - What are the specific requirements and timelines?
+2. **적용 가능한 규제 식별**:
+   - 정보주체의 소재지는?
+   - 조직의 존재 및 활동에 기반하여 어떤 법률이 적용되는가?
+   - 구체적 요건 및 기한은?
 
-3. **Verify identity**:
-   - Confirm the requester is who they claim to be
-   - Use reasonable verification measures proportionate to the sensitivity of the data
-   - Do not require excessive documentation
+3. **신원 확인**:
+   - 요청자가 주장하는 본인인지 확인
+   - 데이터의 민감성에 비례하는 합리적 확인 조치 사용
+   - 과도한 문서를 요구하지 않음
 
-4. **Log the request**:
-   - Date received
-   - Request type
-   - Requester identity
-   - Applicable regulation
-   - Response deadline
-   - Assigned handler
+4. **요청 기록**:
+   - 수신일
+   - 요청 유형
+   - 요청자 신원
+   - 적용 규제
+   - 응답 기한
+   - 담당자
 
-### Response Timelines
+### 응답 기한
 
-| Regulation | Initial Acknowledgment | Substantive Response | Extension |
+| 규제 | 최초 접수 확인 | 실질적 응답 | 연장 |
 |---|---|---|---|
-| GDPR | Not specified (best practice: promptly) | 30 days | +60 days (with notice) |
-| CCPA/CPRA | 10 business days | 45 calendar days | +45 days (with notice) |
-| UK GDPR | Not specified (best practice: promptly) | 30 days | +60 days (with notice) |
-| LGPD | Not specified | 15 days | Limited extensions |
+| GDPR | 미지정(모범 사례: 신속히) | 30일 | +60일(통지 포함) |
+| CCPA/CPRA | 10 영업일 | 45 역일 | +45일(통지 포함) |
+| UK GDPR | 미지정(모범 사례: 신속히) | 30일 | +60일(통지 포함) |
+| LGPD | 미지정 | 15일 | 제한적 연장 |
 
-### Exemptions and Exceptions
+### 면제 및 예외
 
-Before fulfilling a request, check whether any exemptions apply:
+요청 이행 전 면제 적용 여부를 확인합니다:
 
-**Common exemptions across regulations**:
-- Legal claims defense or establishment
-- Legal obligations requiring retention
-- Public interest or official authority
-- Freedom of expression and information (for erasure requests)
-- Archiving in the public interest or scientific/historical research
+**규제 전반의 일반적 면제**:
+- 법적 청구의 방어 또는 성립
+- 보관을 요구하는 법적 의무
+- 공익 또는 공적 권한
+- 표현의 자유 및 정보(삭제 요청)
+- 공익 목적 또는 과학적/역사적 연구를 위한 보관
 
-**Organization-specific considerations**:
-- Litigation hold: Data subject to a legal hold cannot be deleted
-- Regulatory retention: Financial records, employment records, and other categories may have mandatory retention periods
-- Third-party rights: Fulfilling the request might adversely affect the rights of others
+**조직별 고려사항**:
+- 소송 보전: 법적 보전 대상 데이터는 삭제 불가
+- 규제적 보관: 재무 기록, 고용 기록, 기타 카테고리에 의무적 보관 기간이 있을 수 있음
+- 제3자 권리: 요청 이행이 타인의 권리에 부정적 영향을 미칠 수 있음
 
-### Response Process
+### 응답 프로세스
 
-1. Gather all personal data of the requester across systems
-2. Apply any exemptions and document the basis
-3. Prepare response: fulfill the request or explain why (in whole or part) it cannot be fulfilled
-4. If denying (in whole or part): cite the specific legal basis for denial
-5. Inform the requester of their right to lodge a complaint with the supervisory authority
-6. Document the response and retain records of the request and response
+1. 시스템 전반에서 요청자의 모든 개인정보 수집
+2. 면제 적용 및 근거 문서화
+3. 응답 준비: 요청 이행 또는 이행 불가 사유(전체 또는 부분) 설명
+4. 거부(전체 또는 부분)하는 경우: 거부의 구체적 법적 근거 인용
+5. 감독 당국에 불만을 제기할 권리를 요청자에게 고지
+6. 응답 문서화 및 요청·응답 기록 보관
 
-## Regulatory Monitoring Basics
+## 규제 모니터링 기초
 
-### What to Monitor
+### 모니터링 대상
 
-Maintain awareness of developments in:
-- **Regulatory guidance**: New or updated guidance from supervisory authorities (ICO, CNIL, FTC, state AGs, etc.)
-- **Enforcement actions**: Fines, orders, and settlements that signal regulatory priorities
-- **Legislative changes**: New privacy laws, amendments to existing laws, implementing regulations
-- **Industry standards**: Updates to ISO 27001, SOC 2, NIST frameworks, and sector-specific requirements
-- **Cross-border transfer developments**: Adequacy decisions, SCC updates, data localization requirements
+다음에 대한 동향을 파악합니다:
+- **규제 가이던스**: 감독 당국(ICO, CNIL, FTC, 주 법무장관 등)의 신규 또는 업데이트된 가이던스
+- **집행 조치**: 규제 우선순위를 시사하는 과징금, 명령, 합의
+- **입법 변경**: 새로운 프라이버시법, 기존법 개정, 시행 규칙
+- **산업 표준**: ISO 27001, SOC 2, NIST 프레임워크, 업종별 요건 업데이트
+- **국경 간 이전 동향**: 적정성 결정, SCC 업데이트, 데이터 현지화 요건
 
-### Monitoring Approach
+### 모니터링 접근법
 
-1. **Subscribe to regulatory authority communications** (newsletters, RSS feeds, official announcements)
-2. **Track relevant legal publications** for analysis of new developments
-3. **Review industry association updates** for sector-specific guidance
-4. **Maintain a regulatory calendar** of known upcoming deadlines, effective dates, and compliance milestones
-5. **Brief the legal team** on material developments that affect the organization's processing activities
+1. **규제 당국 커뮤니케이션 구독**(뉴스레터, RSS 피드, 공식 공지)
+2. **관련 법률 간행물 추적**을 통한 새로운 동향 분석
+3. **산업 협회 업데이트 검토**를 통한 업종별 가이던스 확인
+4. **규제 캘린더 유지**: 알려진 다가오는 기한, 시행일, 준수 마일스톤
+5. **법무팀 브리핑**: 조직의 처리 활동에 영향을 미치는 중요 동향
 
-### Escalation Criteria
+### 에스컬레이션 기준
 
-Escalate regulatory developments to senior counsel or leadership when:
-- A new regulation or guidance directly affects the organization's core business activities
-- An enforcement action in the organization's sector signals heightened regulatory scrutiny
-- A compliance deadline is approaching that requires organizational changes
-- A data transfer mechanism the organization relies on is challenged or invalidated
-- A regulatory authority initiates an inquiry or investigation involving the organization
+다음의 경우 규제 동향을 시니어 법률 고문 또는 경영진에게 에스컬레이션합니다:
+- 새로운 규제 또는 가이던스가 조직의 핵심 사업 활동에 직접 영향
+- 조직의 업종에서 규제 감시 강화를 시사하는 집행 조치
+- 조직적 변화를 요구하는 준수 기한이 다가옴
+- 조직이 의존하는 데이터 이전 메커니즘이 이의 제기되거나 무효화됨
+- 규제 당국이 조직 관련 조사를 개시
 
-## Tips
+## 팁
 
-1. **Be specific** — "We want to email all our users" is better than "marketing campaign."
-2. **Include the geography** — Compliance requirements vary by jurisdiction.
-3. **Mention the data** — What personal data is involved? This drives most compliance requirements.
+1. **구체적으로** — "마케팅 캠페인"보다 "모든 사용자에게 이메일을 보내고 싶습니다"가 좋습니다.
+2. **지역을 포함하세요** — 컴플라이언스 요건은 관할권에 따라 다릅니다.
+3. **데이터를 언급하세요** — 어떤 개인정보가 관련됩니까? 이것이 대부분의 컴플라이언스 요건을 좌우합니다.

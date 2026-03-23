@@ -1,149 +1,149 @@
 ---
 name: performance-review
-description: Structure a performance review with self-assessment, manager template, and calibration prep. Use when review season kicks off and you need a self-assessment template, writing a manager review for a direct report, prepping rating distributions and promotion cases for calibration, or turning vague feedback into specific behavioral examples.
-argument-hint: "<employee name or review cycle>"
+description: 자기 평가, 관리자 템플릿, 조정 준비를 포함한 성과 리뷰를 구조화합니다. 리뷰 시즌이 시작되어 자기 평가 템플릿이 필요할 때, 직속 부하 직원의 관리자 리뷰를 작성할 때, 조정을 위한 등급 분포 및 승진 안건을 준비할 때, 또는 막연한 피드백을 구체적인 행동 사례로 전환할 때 사용하세요.
+argument-hint: "<직원 이름 또는 리뷰 주기>"
 ---
 
 # /performance-review
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 자리 표시자가 보이거나 연결된 도구를 확인해야 하는 경우, [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Generate performance review templates and help structure feedback.
+성과 리뷰 템플릿을 생성하고 피드백 구조화를 지원합니다.
 
-## Usage
+## 사용법
 
 ```
 /performance-review $ARGUMENTS
 ```
 
-## Modes
+## 모드
 
 ```
-/performance-review self-assessment       # Generate self-assessment template
-/performance-review manager [employee]    # Manager review template for a specific person
-/performance-review calibration           # Calibration prep document
+/performance-review self-assessment       # 자기 평가 템플릿 생성
+/performance-review manager [employee]    # 특정 인원에 대한 관리자 리뷰 템플릿
+/performance-review calibration           # 조정 준비 문서
 ```
 
-If no mode is specified, ask what type of review they need.
+모드가 지정되지 않은 경우, 어떤 유형의 리뷰가 필요한지 확인합니다.
 
-## Output — Self-Assessment Template
+## 출력 결과 — 자기 평가 템플릿
 
 ```markdown
-## Self-Assessment: [Review Period]
+## Self-Assessment: [리뷰 기간]
 
-### Key Accomplishments
-[List your top 3-5 accomplishments this period. For each, describe the situation, your contribution, and the impact.]
+### 주요 성과
+[이번 기간 상위 3~5가지 성과를 나열하세요. 각 항목에 대해 상황, 기여 내용, 영향을 설명하세요.]
 
-1. **[Accomplishment]**
-   - Situation: [Context]
-   - Contribution: [What you did]
-   - Impact: [Measurable result]
+1. **[성과]**
+   - 상황: [맥락]
+   - 기여: [수행한 내용]
+   - 영향: [측정 가능한 결과]
 
-### Goals Review
-| Goal | Status | Evidence |
+### 목표 검토
+| 목표 | 상태 | 근거 |
 |------|--------|----------|
-| [Goal from last period] | Met / Exceeded / Missed | [How you know] |
+| [지난 기간 목표] | 달성 / 초과 달성 / 미달성 | [확인 방법] |
 
-### Growth Areas
-[Where did you grow? New skills, expanded scope, leadership moments.]
+### 성장 영역
+[어떤 분야에서 성장했나요? 새로운 역량, 확대된 역할 범위, 리더십 발휘 순간.]
 
-### Challenges
-[What was hard? What would you do differently?]
+### 어려움
+[무엇이 힘들었나요? 다시 한다면 어떻게 하겠나요?]
 
-### Goals for Next Period
-1. [Goal — specific and measurable]
-2. [Goal]
-3. [Goal]
+### 다음 기간 목표
+1. [목표 — 구체적이고 측정 가능하게]
+2. [목표]
+3. [목표]
 
-### Feedback for Manager
-[How can your manager better support you?]
+### 관리자에 대한 피드백
+[관리자가 당신을 더 잘 지원하려면 어떻게 해야 할까요?]
 ```
 
-## Output — Manager Review
+## 출력 결과 — 관리자 리뷰
 
 ```markdown
-## Performance Review: [Employee Name]
-**Period:** [Date range] | **Manager:** [Your name]
+## 성과 리뷰: [직원 이름]
+**기간:** [날짜 범위] | **관리자:** [이름]
 
-### Overall Rating: [Exceeds / Meets / Below Expectations]
+### 종합 등급: [기대 초과 / 기대 충족 / 기대 미달]
 
-### Performance Summary
-[2-3 sentence overall assessment]
+### 성과 요약
+[전반적인 평가 2~3문장]
 
-### Key Strengths
-- [Strength with specific example]
-- [Strength with specific example]
+### 주요 강점
+- [강점과 구체적인 사례]
+- [강점과 구체적인 사례]
 
-### Areas for Development
-- [Area with specific, actionable guidance]
-- [Area with specific, actionable guidance]
+### 개발 영역
+- [구체적이고 실행 가능한 가이던스와 함께 영역 제시]
+- [구체적이고 실행 가능한 가이던스와 함께 영역 제시]
 
-### Goal Achievement
-| Goal | Rating | Comments |
+### 목표 달성
+| 목표 | 등급 | 의견 |
 |------|--------|----------|
-| [Goal] | [Rating] | [Specific observations] |
+| [목표] | [등급] | [구체적인 관찰 내용] |
 
-### Impact and Contributions
-[Describe their biggest contributions and impact on the team/org]
+### 영향 및 기여
+[팀/조직에 대한 가장 큰 기여와 영향 설명]
 
-### Development Plan
-| Skill | Current | Target | Actions |
+### 개발 계획
+| 역량 | 현재 수준 | 목표 수준 | 실행 방안 |
 |-------|---------|--------|---------|
-| [Skill] | [Level] | [Level] | [How to get there] |
+| [역량] | [수준] | [수준] | [달성 방법] |
 
-### Compensation Recommendation
-[Promotion / Equity refresh / Adjustment / No change — with justification]
+### 보상 권고
+[승진 / 주식 갱신 / 조정 / 변동 없음 — 근거 포함]
 ```
 
-## Output — Calibration
+## 출력 결과 — 조정
 
 ```markdown
-## Calibration Prep: [Review Cycle]
-**Manager:** [Your name] | **Team:** [Team] | **Period:** [Date range]
+## 조정 준비: [리뷰 주기]
+**관리자:** [이름] | **팀:** [팀] | **기간:** [날짜 범위]
 
-### Team Overview
-| Employee | Role | Level | Tenure | Proposed Rating | Notes |
+### 팀 개요
+| 직원 | 역할 | 레벨 | 근속 기간 | 제안 등급 | 비고 |
 |----------|------|-------|--------|-----------------|-------|
-| [Name] | [Role] | [Level] | [X years] | [Rating] | [Key context] |
+| [이름] | [역할] | [레벨] | [X년] | [등급] | [주요 맥락] |
 
-### Rating Distribution
-| Rating | Count | % of Team | Company Target |
+### 등급 분포
+| 등급 | 인원 수 | 팀 내 비율 | 회사 목표 |
 |--------|-------|-----------|----------------|
-| Exceeds Expectations | [X] | [X]% | ~15-20% |
-| Meets Expectations | [X] | [X]% | ~60-70% |
-| Below Expectations | [X] | [X]% | ~10-15% |
+| 기대 초과 | [X] | [X]% | ~15-20% |
+| 기대 충족 | [X] | [X]% | ~60-70% |
+| 기대 미달 | [X] | [X]% | ~10-15% |
 
-### Calibration Discussion Points
-1. **[Employee]** — [Why this rating may need discussion, e.g., borderline, first review at level, recent role change]
-2. **[Employee]** — [Discussion point]
+### 조정 논의 포인트
+1. **[직원]** — [해당 등급에 대해 논의가 필요한 이유, 예: 경계선 사례, 해당 레벨 첫 리뷰, 최근 역할 변경]
+2. **[직원]** — [논의 포인트]
 
-### Promotion Candidates
-| Employee | Current Level | Proposed Level | Justification |
+### 승진 후보
+| 직원 | 현재 레벨 | 제안 레벨 | 근거 |
 |----------|-------------|----------------|---------------|
-| [Name] | [Current] | [Proposed] | [Evidence of next-level performance] |
+| [이름] | [현재] | [제안] | [다음 레벨 성과 근거] |
 
-### Compensation Actions
-| Employee | Action | Justification |
+### 보상 조치
+| 직원 | 조치 | 근거 |
 |----------|--------|---------------|
-| [Name] | [Promotion / Equity refresh / Market adjustment / Retention] | [Why] |
+| [이름] | [승진 / 주식 갱신 / 시장 조정 / 유지] | [이유] |
 
-### Manager Notes
-[Context the calibration group should know — team changes, org shifts, project impacts]
+### 관리자 메모
+[조정 그룹이 알아야 할 맥락 — 팀 변화, 조직 이동, 프로젝트 영향]
 ```
 
-## If Connectors Available
+## 커넥터 사용 시
 
-If **~~HRIS** is connected:
-- Pull prior review history and goal tracking data
-- Pre-populate employee details and current role information
+**~~HRIS**가 연결된 경우:
+- 이전 리뷰 이력 및 목표 추적 데이터 조회
+- 직원 세부 정보 및 현재 역할 정보 자동 입력
 
-If **~~project tracker** is connected:
-- Pull completed work and contributions for the review period
-- Reference specific tickets and project milestones as evidence
+**~~project tracker**가 연결된 경우:
+- 리뷰 기간 중 완료된 업무 및 기여 내용 조회
+- 근거 자료로 특정 티켓 및 프로젝트 마일스톤 참조
 
-## Tips
+## 팁
 
-1. **Be specific** — "Great job" isn't feedback. "You reduced deploy time 40% by implementing the new CI pipeline" is.
-2. **Balance positive and constructive** — Both are essential. Neither should be a surprise.
-3. **Focus on behaviors, not personality** — "Your documentation has been incomplete" vs. "You're careless."
-4. **Make development actionable** — "Improve communication" is vague. "Present at the next team all-hands" is actionable.
+1. **구체적으로 작성하세요** — "잘했어요"는 피드백이 아닙니다. "새 CI 파이프라인 구현으로 배포 시간을 40% 단축했습니다"가 피드백입니다.
+2. **긍정과 건설적인 내용의 균형을 맞추세요** — 둘 다 필수입니다. 어느 쪽도 리뷰 때 처음 듣는 내용이어서는 안 됩니다.
+3. **성격이 아닌 행동에 집중하세요** — "문서가 불완전했습니다" vs. "당신은 부주의합니다."
+4. **개발 목표를 실행 가능하게 만드세요** — "소통을 개선하세요"는 막연합니다. "다음 팀 전체 회의에서 발표하세요"는 실행 가능합니다.

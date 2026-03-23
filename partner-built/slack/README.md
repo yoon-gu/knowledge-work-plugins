@@ -1,30 +1,30 @@
-# Slack Plugin
+# Slack 플러그인
 
-This repository contains the configuration needed to integrate Slack with Cursor IDE and Claude Code. The plugin enables your agents to interact directly with your Slack workspace, allowing you to search messages, send communications, manage canvases, and more—all through natural language.
+이 저장소에는 Slack을 Cursor IDE 및 Claude Code와 통합하기 위해 필요한 구성이 포함되어 있습니다. 이 플러그인을 통해 에이전트가 Slack 워크스페이스와 직접 상호작용하여, 자연어로 메시지 검색, 커뮤니케이션 전송, 캔버스 관리 등을 수행할 수 있습니다.
 
-## Features
+## 기능
 
-The Slack MCP server provides the following capabilities:
+Slack MCP 서버는 다음 기능을 제공합니다:
 
-- **Search**: Find messages, files, users, and channels (both public and private)
-- **Messaging**: Send messages, retrieve channel histories, and access threaded conversations
-- **Canvas**: Create and share formatted documents, export content as markdown
-- **User Management**: Retrieve user profiles including custom fields and status information
+- **검색**: 메시지, 파일, 사용자, 채널 검색 (공개 및 비공개 모두)
+- **메시징**: 메시지 전송, 채널 기록 조회, 스레드 대화 접근
+- **캔버스**: 포맷된 문서 생성 및 공유, 마크다운으로 콘텐츠 내보내기
+- **사용자 관리**: 사용자 정의 필드 및 상태 정보를 포함한 사용자 프로필 조회
 
-## Prerequisites
+## 사전 요구 사항
 
-Before setting up the Slack MCP server, ensure you have:
+Slack MCP 서버를 설정하기 전에 다음을 확인하세요:
 
-- Cursor IDE or Claude Code CLI installed
-- Access to a Slack workspace with MCP integration approved by your workspace admin
+- Cursor IDE 또는 Claude Code CLI가 설치되어 있어야 합니다
+- 워크스페이스 관리자가 MCP 통합을 승인한 Slack 워크스페이스에 접근할 수 있어야 합니다
 
-## Installation
+## 설치
 
-Choose the installation method for your IDE:
+IDE에 맞는 설치 방법을 선택하세요:
 
 ### Claude Code
 
-If you're using Claude Code CLI, you can install this as a plugin by cloning it locally:
+Claude Code CLI를 사용하는 경우, 로컬에 클론하여 플러그인으로 설치할 수 있습니다:
 
 ```bash
 git clone https://github.com/slackapi/slack-mcp-plugin.git
@@ -32,9 +32,9 @@ cd slack-mcp-plugin
 claude --plugin-dir ./
 ```
 
-The Slack MCP server will be automatically configured when the plugin loads. You will be prompted to authenticate into your Slack workspace via OAuth.
+플러그인이 로드되면 Slack MCP 서버가 자동으로 구성됩니다. OAuth를 통해 Slack 워크스페이스에 인증하라는 메시지가 표시됩니다.
 
-The Claude plugin uses the following MCP configuration (`.mcp.json`):
+Claude 플러그인은 다음 MCP 구성 (`.mcp.json`)을 사용합니다:
 
 ```json
 {
@@ -53,21 +53,21 @@ The Claude plugin uses the following MCP configuration (`.mcp.json`):
 
 ### Cursor
 
-You can use the following Add to Cursor button or follow the steps below to manually configure the Slack MCP server in Cursor:
+아래의 Add to Cursor 버튼을 사용하거나 다음 단계를 따라 Cursor에서 Slack MCP 서버를 수동으로 구성할 수 있습니다:
 
 [![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=slack&config=eyJ1cmwiOiJodHRwczovL21jcC5zbGFjay5jb20vbWNwIiwiYXV0aCI6eyJDTElFTlRfSUQiOiIzNjYwNzUzMTkyNjI2Ljg5MDM0NjkyMjg5ODIifX0%3D)
 
-#### Step 1: Open Cursor Settings
+#### 1단계: Cursor 설정 열기
 
-Navigate to **Cursor → Settings → Cursor Settings** (or use the keyboard shortcut `Cmd+,` on macOS, `Ctrl+,` on Windows/Linux).
+**Cursor → Settings → Cursor Settings**로 이동합니다 (또는 macOS에서 `Cmd+,`, Windows/Linux에서 `Ctrl+,` 키보드 단축키 사용).
 
-#### Step 2: Navigate to MCP Tab
+#### 2단계: MCP 탭으로 이동
 
-In the Settings interface, click on the **MCP** tab to access MCP server configurations.
+설정 인터페이스에서 **MCP** 탭을 클릭하여 MCP 서버 구성에 접근합니다.
 
-#### Step 3: Add Slack MCP Configuration
+#### 3단계: Slack MCP 구성 추가
 
-Add the following configuration to connect to the remote Slack MCP server:
+원격 Slack MCP 서버에 연결하기 위해 다음 구성을 추가합니다:
 
 ```json
 {
@@ -82,27 +82,27 @@ Add the following configuration to connect to the remote Slack MCP server:
 }
 ```
 
-Save the configuration. You will also see a connect button once added. Click that to authenticate into your Slack Workspace.
+구성을 저장합니다. 추가된 후 연결 버튼도 표시됩니다. 이를 클릭하여 Slack 워크스페이스에 인증합니다.
 
-## Usage Examples
+## 사용 예시
 
-Once configured, you can interact with Slack through your AI assistant using natural language:
+구성이 완료되면 자연어를 통해 AI 어시스턴트와 Slack을 상호작용할 수 있습니다:
 
-- **Search messages**: "Search for messages about the product launch in the last week"
-- **Send messages**: "Send a message to #general channel saying the deployment is complete"
-- **Find users**: "Who is the user with email john@example.com?"
-- **Access threads**: "Show me the conversation thread from that message"
-- **Create canvases**: "Create a canvas document with our meeting notes"
+- **메시지 검색**: "지난주 제품 출시에 대한 메시지를 검색해줘"
+- **메시지 보내기**: "#general 채널에 배포가 완료되었다는 메시지를 보내줘"
+- **사용자 찾기**: "이메일이 john@example.com인 사용자는 누구야?"
+- **스레드 접근**: "해당 메시지의 대화 스레드를 보여줘"
+- **캔버스 생성**: "회의록으로 캔버스 문서를 만들어줘"
 
-## Documentation & Resources
+## 문서 및 리소스
 
-- [Official Slack MCP Server Documentation](https://docs.slack.dev/ai/mcp-server/)
+- [공식 Slack MCP 서버 문서](https://docs.slack.dev/ai/mcp-server/)
 
-## Notes & Limitations
+## 참고 사항 및 제한 사항
 
-- **Remote server only**: This configuration connects to Slack's hosted MCP server. No local installation is required or supported.
-- **Admin approval required**: Your Slack workspace administrator must approve MCP integration before you can use this feature.
+- **원격 서버만 지원**: 이 구성은 Slack의 호스팅 MCP 서버에 연결합니다. 로컬 설치는 필요하지 않으며 지원되지 않습니다.
+- **관리자 승인 필요**: Slack 워크스페이스 관리자가 이 기능을 사용하기 전에 MCP 통합을 승인해야 합니다.
 
-## Questions or Issues?
+## 질문이나 문제가 있으신가요?
 
-For questions about the Slack MCP server or integration issues, please refer to the [official Slack documentation](https://docs.slack.dev/ai/mcp-server/) or contact your workspace administrator.
+Slack MCP 서버 또는 통합 문제에 대한 질문은 [공식 Slack 문서](https://docs.slack.dev/ai/mcp-server/)를 참조하거나 워크스페이스 관리자에게 문의하세요.

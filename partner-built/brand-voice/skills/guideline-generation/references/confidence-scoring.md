@@ -1,128 +1,128 @@
-# Confidence Scoring Methodology
+# 신뢰도 점수 방법론
 
-How to assign and interpret confidence scores for generated brand guidelines.
+생성된 브랜드 가이드라인에 신뢰도 점수를 할당하고 해석하는 방법입니다.
 
-## Scoring Levels
+## 점수 수준
 
-### High Confidence
-The guideline section is well-supported and actionable.
+### 높은 신뢰도
+가이드라인 섹션이 충분히 뒷받침되고 실행 가능합니다.
 
-**Criteria (must meet at least 3):**
-- 3+ corroborating sources
-- Explicit guidance found in at least one AUTHORITATIVE source
-- Consistent across document and conversation analysis
-- Specific, actionable instructions (not just vague principles)
-- No unresolved conflicts
+**기준 (최소 3개 충족):**
+- 3개 이상의 확인 소스
+- 최소 1개의 AUTHORITATIVE 소스에서 명시적 지침 발견
+- 문서 분석과 대화 분석에서 일관됨
+- 구체적이고 실행 가능한 지침 (모호한 원칙이 아님)
+- 미해결 충돌 없음
 
-**Example:** Voice attribute "Confident but not arrogant" appears in the official style guide, is demonstrated in email templates, and matches patterns in top performer calls.
+**예시:** 보이스 속성 "자신감 있지만 오만하지 않음"이 공식 스타일 가이드에 나타나고, 이메일 템플릿에서 시연되며, 최고 성과자 통화의 패턴과 일치합니다.
 
-### Medium Confidence
-The section is reasonable but could benefit from more data or team confirmation.
+### 보통 신뢰도
+섹션이 합리적이지만 더 많은 데이터나 팀 확인이 도움이 될 수 있습니다.
 
-**Criteria (must meet at least 2):**
-- 1-2 corroborating sources
-- Inferred from patterns rather than explicit instruction
-- Minor inconsistencies resolved via recency or authority
-- Actionable but some interpretation was required
-- May have one unresolved conflict
+**기준 (최소 2개 충족):**
+- 1-2개의 확인 소스
+- 명시적 지침이 아닌 패턴에서 추론
+- 최신성이나 권위성을 통해 해결된 사소한 불일치
+- 실행 가능하지만 일부 해석이 필요
+- 미해결 충돌이 하나 있을 수 있음
 
-**Example:** Tone for social media inferred from email templates and one Slack thread, but no official social media guidelines exist.
+**예시:** 소셜 미디어 톤이 이메일 템플릿과 하나의 Slack 스레드에서 추론되었지만 공식 소셜 미디어 가이드라인이 존재하지 않습니다.
 
-### Low Confidence
-The section is a best-effort recommendation. Team review strongly recommended.
+### 낮은 신뢰도
+섹션은 최선의 권장 사항입니다. 팀 검토를 강력히 권장합니다.
 
-**Criteria (must meet at least 2):**
-- Single source only
-- Primarily inferred from indirect evidence
-- Significant interpretation required
-- Unresolved conflicts between sources
-- Limited specificity
+**기준 (최소 2개 충족):**
+- 단일 소스만
+- 주로 간접 증거에서 추론
+- 상당한 해석 필요
+- 소스 간 미해결 충돌
+- 제한된 구체성
 
-**Example:** Competitive positioning derived from a single sales call where a competitor was discussed, with no supporting documentation.
+**예시:** 경쟁 포지셔닝이 경쟁사가 언급된 단일 영업 통화에서 도출되었으며 뒷받침 문서가 없습니다.
 
-## Section-Level Scoring Guide
+## 섹션별 점수 가이드
 
-### Voice Attributes
-- **High**: Attributes appear in official brand guide AND are demonstrated in templates or calls
-- **Medium**: Attributes appear in one document type only, or are inferred from multiple conversations
-- **Low**: Attributes inferred from a single source or from indirect evidence
+### 보이스 속성
+- **높음**: 속성이 공식 브랜드 가이드에 나타나고 템플릿이나 통화에서 시연됨
+- **보통**: 속성이 하나의 문서 유형에서만 나타나거나 여러 대화에서 추론됨
+- **낮음**: 단일 소스나 간접 증거에서 추론된 속성
 
-### Messaging Framework
-- **High**: Value propositions documented in official materials AND used consistently in sales conversations
-- **Medium**: Documented but not observed in practice, OR observed but not documented
-- **Low**: Extracted from a single pitch deck or single call
+### 메시징 프레임워크
+- **높음**: 가치 제안이 공식 자료에 문서화되고 영업 대화에서 일관되게 사용됨
+- **보통**: 문서화되었지만 실무에서 관찰되지 않음, 또는 관찰되었지만 문서화되지 않음
+- **낮음**: 단일 피치 덱이나 단일 통화에서 추출됨
 
-### Tone Matrix
-- **High**: Explicit tone guidance exists for the context AND matches observed behavior
-- **Medium**: Tone inferred from 3+ examples of content in that context
-- **Low**: Tone inferred from 1-2 examples, or extrapolated from similar contexts
+### 톤 매트릭스
+- **높음**: 해당 맥락에 대한 명시적 톤 지침이 존재하고 관찰된 행동과 일치
+- **보통**: 해당 맥락에서 3개 이상의 콘텐츠 예시로부터 톤 추론
+- **낮음**: 1-2개 예시에서 톤 추론, 또는 유사한 맥락에서 외삽
 
-### Terminology
-- **High**: Terms explicitly listed in a style guide or glossary
-- **Medium**: Terms consistently used in templates and calls (pattern-based)
-- **Low**: Terms observed in a single document or inferred from brand personality
+### 용어
+- **높음**: 스타일 가이드나 용어집에 명시적으로 나열된 용어
+- **보통**: 템플릿과 통화에서 일관되게 사용되는 용어 (패턴 기반)
+- **낮음**: 단일 문서에서 관찰되거나 브랜드 성격에서 추론된 용어
 
-### Language Patterns (from transcripts)
-- **High**: Pattern observed in 5+ calls across multiple speakers
-- **Medium**: Pattern observed in 3-4 calls or from a single top performer
-- **Low**: Pattern observed in 1-2 calls only
+### 언어 패턴 (트랜스크립트에서)
+- **높음**: 여러 화자에 걸쳐 5개 이상의 통화에서 관찰된 패턴
+- **보통**: 3-4개 통화에서 관찰되거나 단일 최고 성과자로부터의 패턴
+- **낮음**: 1-2개 통화에서만 관찰된 패턴
 
-### Transcript-Primary Scenarios
+### 트랜스크립트 중심 시나리오
 
-When guidelines are generated primarily from conversational sources (no AUTHORITATIVE documents available):
-- Voice Attributes derived from 5+ transcripts = **Medium** (not Low)
-- Messaging Framework from consistent patterns across 5+ calls = **Medium**
-- Language Patterns weight increases from 10% to 20% in aggregate calculation (subtract 10% from Voice Attributes)
+가이드라인이 주로 대화 소스에서 생성된 경우 (AUTHORITATIVE 문서 없음):
+- 5개 이상 트랜스크립트에서 도출된 보이스 속성 = **보통** (낮음이 아님)
+- 5개 이상 통화에서 일관된 패턴의 메시징 프레임워크 = **보통**
+- 언어 패턴 가중치가 종합 계산에서 10%에서 20%로 증가 (보이스 속성에서 10% 차감)
 
-Note this in the guideline metadata: "Guidelines generated primarily from conversational sources — team review recommended to formalize."
+가이드라인 메타데이터에 이를 기록합니다: "가이드라인이 주로 대화 소스에서 생성됨 — 공식화를 위한 팀 검토를 권장합니다."
 
-## Aggregate Confidence
+## 종합 신뢰도
 
-Calculate overall guideline confidence as the weighted average of section scores:
+섹션 점수의 가중 평균으로 전체 가이드라인 신뢰도를 계산합니다:
 
-| Section | Weight |
-|---------|--------|
-| Voice Attributes | 30% |
-| Messaging Framework | 25% |
-| Tone Matrix | 20% |
-| Terminology | 15% |
-| Language Patterns | 10% |
+| 섹션 | 가중치 |
+|------|--------|
+| 보이스 속성 | 30% |
+| 메시징 프레임워크 | 25% |
+| 톤 매트릭스 | 20% |
+| 용어 | 15% |
+| 언어 패턴 | 10% |
 
-Convert scores: High = 1.0, Medium = 0.6, Low = 0.3
+점수 변환: 높음 = 1.0, 보통 = 0.6, 낮음 = 0.3
 
-**Example:**
-- Voice Attributes: High (1.0 x 0.30 = 0.30)
-- Messaging: Medium (0.6 x 0.25 = 0.15)
-- Tone: Medium (0.6 x 0.20 = 0.12)
-- Terminology: High (1.0 x 0.15 = 0.15)
-- Language: Low (0.3 x 0.10 = 0.03)
-- **Overall: 0.75 = Medium-High confidence**
+**예시:**
+- 보이스 속성: 높음 (1.0 x 0.30 = 0.30)
+- 메시징: 보통 (0.6 x 0.25 = 0.15)
+- 톤: 보통 (0.6 x 0.20 = 0.12)
+- 용어: 높음 (1.0 x 0.15 = 0.15)
+- 언어: 낮음 (0.3 x 0.10 = 0.03)
+- **전체: 0.75 = 보통-높음 신뢰도**
 
-**Aggregate score thresholds:**
-- 0.85–1.0 = High
-- 0.60–0.84 = Medium
-- Below 0.60 = Low
+**종합 점수 기준:**
+- 0.85–1.0 = 높음
+- 0.60–0.84 = 보통
+- 0.60 미만 = 낮음
 
-## Presentation
+## 제시
 
-Present confidence alongside each section header:
+각 섹션 헤더와 함께 신뢰도를 제시합니다:
 
 ```markdown
-## Voice Attributes (Confidence: High)
-[content]
+## 보이스 속성 (신뢰도: 높음)
+[내용]
 
-## Tone Matrix (Confidence: Medium)
-[content — note: no official social media guidelines found, tone inferred from email patterns]
+## 톤 매트릭스 (신뢰도: 보통)
+[내용 — 참고: 공식 소셜 미디어 가이드라인이 발견되지 않음, 이메일 패턴에서 톤 추론]
 ```
 
-For Medium and Low confidence sections, include a brief note explaining why confidence is limited and what would raise it.
+보통 및 낮은 신뢰도 섹션의 경우, 신뢰도가 제한적인 이유와 이를 높이는 데 필요한 것을 설명하는 간단한 메모를 포함합니다.
 
-## Relationship to Open Questions
+## 미해결 질문과의 관계
 
-Low confidence sections should generate corresponding open questions:
+낮은 신뢰도 섹션은 해당하는 미해결 질문을 생성해야 합니다:
 
-- **Low confidence + conflict** = High Priority open question
-- **Low confidence + gap** = Medium Priority open question
-- **Medium confidence + minor inconsistency** = Low Priority open question
+- **낮은 신뢰도 + 충돌** = 높은 우선순위 미해결 질문
+- **낮은 신뢰도 + 공백** = 보통 우선순위 미해결 질문
+- **보통 신뢰도 + 사소한 불일치** = 낮은 우선순위 미해결 질문
 
-Every open question includes a recommendation that, if confirmed, would raise the section's confidence score.
+모든 미해결 질문에는 확인되면 해당 섹션의 신뢰도 점수를 높일 수 있는 권장 사항이 포함됩니다.

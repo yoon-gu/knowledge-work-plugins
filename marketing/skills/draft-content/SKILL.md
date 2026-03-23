@@ -1,117 +1,117 @@
 ---
 name: draft-content
-description: Draft blog posts, social media, email newsletters, landing pages, press releases, and case studies with channel-specific formatting and SEO recommendations. Use when writing any marketing content, when you need headline or subject line options, or when adapting a message for a specific platform, audience, and brand voice.
-argument-hint: "<content type and topic>"
+description: 채널별 서식과 SEO 추천이 포함된 블로그 포스트, 소셜 미디어, 이메일 뉴스레터, 랜딩 페이지, 보도 자료, 사례 연구를 초안합니다. 마케팅 콘텐츠를 작성할 때, 헤드라인이나 제목 옵션이 필요할 때, 또는 특정 플랫폼, 대상, 브랜드 보이스에 맞게 메시지를 적응시킬 때 사용하세요.
+argument-hint: "<콘텐츠 유형과 주제>"
 ---
 
-# Draft Content
+# 콘텐츠 초안
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 하는 경우, [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Generate marketing content drafts tailored to a specific content type, audience, and brand voice.
+특정 콘텐츠 유형, 대상, 브랜드 보이스에 맞춤화된 마케팅 콘텐츠 초안을 생성합니다.
 
-## Trigger
+## 트리거
 
-User runs `/draft-content` or asks to draft, write, or create marketing content.
+사용자가 `/draft-content`를 실행하거나 마케팅 콘텐츠를 초안, 작성 또는 생성하도록 요청합니다.
 
-## Inputs
+## 입력
 
-Gather the following from the user. If not provided, ask before proceeding:
+사용자로부터 다음을 수집합니다. 제공되지 않으면 진행하기 전에 질문합니다:
 
-1. **Content type** — one of:
-   - Blog post
-   - Social media post (specify platform: LinkedIn, Twitter/X, Instagram, Facebook)
-   - Email newsletter
-   - Landing page copy
-   - Press release
-   - Case study
+1. **콘텐츠 유형** — 다음 중 하나:
+   - 블로그 포스트
+   - 소셜 미디어 포스트 (플랫폼 지정: LinkedIn, Twitter/X, Instagram, Facebook)
+   - 이메일 뉴스레터
+   - 랜딩 페이지 카피
+   - 보도 자료
+   - 사례 연구
 
-2. **Topic** — the subject or theme of the content
+2. **주제** — 콘텐츠의 주제 또는 테마
 
-3. **Target audience** — who this content is for (role, industry, seniority, pain points)
+3. **대상** — 이 콘텐츠의 대상 (역할, 산업, 직급, 페인 포인트)
 
-4. **Key messages** — 2-4 main points or takeaways to communicate
+4. **핵심 메시지** — 전달할 2-4개의 주요 포인트 또는 핵심 사항
 
-5. **Tone** — e.g., authoritative, conversational, inspirational, technical, witty (optional if brand voice is configured)
+5. **톤** — 예: 권위적, 대화적, 영감을 주는, 기술적, 위트 있는 (브랜드 보이스가 구성된 경우 선택 사항)
 
-6. **Length** — target word count or format constraint (e.g., "1000 words", "280 characters", "3 paragraphs")
+6. **길이** — 목표 단어 수 또는 형식 제약 (예: "1000단어", "280자", "3문단")
 
-## Brand Voice
+## 브랜드 보이스
 
-- If the user has a brand voice configured in their local settings file, apply it automatically. Inform the user that brand voice settings are being applied.
-- If no brand voice is configured, ask: "Do you have brand voice guidelines you'd like me to follow? If not, I'll use a neutral professional tone."
-- Apply the specified or default tone consistently throughout the draft.
+- 사용자의 로컬 설정 파일에 브랜드 보이스가 구성되어 있으면 자동으로 적용합니다. 브랜드 보이스 설정이 적용되고 있음을 사용자에게 알립니다.
+- 브랜드 보이스가 구성되어 있지 않으면 질문합니다: "따를 브랜드 보이스 가이드라인이 있으신가요? 없으면 중립적인 전문적 톤을 사용하겠습니다."
+- 지정되거나 기본 톤을 초안 전체에 일관되게 적용합니다.
 
-## Content Generation by Type
+## 유형별 콘텐츠 생성
 
-### Blog Post
-- Engaging headline (provide 2-3 options)
-- Introduction with a hook (question, statistic, bold statement, or story)
-- 3-5 organized sections with descriptive subheadings
-- Supporting points, examples, or data references in each section
-- Conclusion with a clear call to action
-- SEO considerations: suggest a primary keyword, include it in the headline and first paragraph, use related keywords in subheadings
+### 블로그 포스트
+- 매력적인 헤드라인 (2-3개 옵션 제공)
+- 후크가 있는 도입부 (질문, 통계, 대담한 진술 또는 스토리)
+- 설명적 소제목이 있는 3-5개 구성된 섹션
+- 각 섹션의 지원 포인트, 예시 또는 데이터 참조
+- 명확한 행동 촉구가 있는 결론
+- SEO 고려 사항: 주요 키워드 제안, 헤드라인과 첫 문단에 포함, 소제목에 관련 키워드 사용
 
-### Social Media Post
-- Platform-appropriate format and length
-- Hook in the first line
-- Hashtag suggestions (3-5 relevant hashtags)
-- Call to action or engagement prompt
-- Emoji usage appropriate to brand and platform
-- If LinkedIn: professional framing, paragraph breaks for readability
-- If Twitter/X: concise, punchy, within character limit
-- If Instagram: visual-first language, story-driven, hashtag block
+### 소셜 미디어 포스트
+- 플랫폼에 적합한 형식과 길이
+- 첫 줄의 후크
+- 해시태그 제안 (3-5개 관련 해시태그)
+- 행동 촉구 또는 참여 유도
+- 브랜드와 플랫폼에 적절한 이모지 사용
+- LinkedIn인 경우: 전문적 프레이밍, 가독성을 위한 문단 구분
+- Twitter/X인 경우: 간결하고, 강렬하고, 글자 수 제한 내
+- Instagram인 경우: 비주얼 중심 언어, 스토리 중심, 해시태그 블록
 
-### Email Newsletter
-- Subject line (provide 2-3 options with open-rate considerations)
-- Preview text
-- Greeting
-- Body sections with clear hierarchy
-- Call to action button text
-- Sign-off
-- Unsubscribe note reminder
+### 이메일 뉴스레터
+- 제목줄 (오픈율 고려 사항 포함 2-3개 옵션)
+- 미리보기 텍스트
+- 인사말
+- 명확한 계층 구조의 본문 섹션
+- 행동 촉구 버튼 텍스트
+- 마무리 인사
+- 수신 거부 안내 알림
 
-### Landing Page Copy
-- Headline and subheadline
-- Hero section copy
-- Value propositions (3-4 benefit-driven bullets or sections)
-- Social proof placeholder (suggest testimonial or stat placement)
-- Primary and secondary CTAs
-- FAQ section suggestions
-- SEO: meta title and meta description suggestions
+### 랜딩 페이지 카피
+- 헤드라인 및 서브헤드라인
+- 히어로 섹션 카피
+- 가치 제안 (3-4개 혜택 중심 불릿 또는 섹션)
+- 소셜 증거 플레이스홀더 (추천사 또는 통계 배치 제안)
+- 주요 및 보조 CTA
+- FAQ 섹션 제안
+- SEO: 메타 제목 및 메타 설명 제안
 
-### Press Release
-- Headline following press release conventions
-- Dateline and location
-- Lead paragraph (who, what, when, where, why)
-- Supporting quotes (provide placeholder guidance)
-- Company boilerplate placeholder
-- Media contact placeholder
-- Standard press release formatting
+### 보도 자료
+- 보도 자료 관례를 따르는 헤드라인
+- 날짜 및 위치
+- 리드 문단 (누가, 무엇을, 언제, 어디서, 왜)
+- 지원 인용구 (플레이스홀더 안내 제공)
+- 회사 소개 플레이스홀더
+- 미디어 연락처 플레이스홀더
+- 표준 보도 자료 서식
 
-### Case Study
-- Title emphasizing the result
-- Customer overview (industry, size, challenge)
-- Challenge section
-- Solution section (what was implemented)
-- Results section with metrics (prompt user for data)
-- Customer quote placeholder
-- Call to action
+### 사례 연구
+- 결과를 강조하는 제목
+- 고객 개요 (산업, 규모, 도전)
+- 도전 섹션
+- 솔루션 섹션 (구현된 내용)
+- 지표가 포함된 결과 섹션 (사용자에게 데이터 요청)
+- 고객 인용구 플레이스홀더
+- 행동 촉구
 
-## SEO Considerations (for web content)
+## SEO 고려 사항 (웹 콘텐츠용)
 
-For blog posts, landing pages, and other web-facing content:
-- Suggest a primary keyword based on the topic
-- Recommend keyword placement: headline, first paragraph, subheadings, meta description
-- Suggest internal and external linking opportunities
-- Recommend a meta description (under 160 characters)
-- Note image alt text opportunities
+블로그 포스트, 랜딩 페이지 및 기타 웹 대면 콘텐츠의 경우:
+- 주제를 기반으로 주요 키워드 제안
+- 키워드 배치 추천: 헤드라인, 첫 문단, 소제목, 메타 설명
+- 내부 및 외부 링크 기회 제안
+- 메타 설명 추천 (160자 이내)
+- 이미지 대체 텍스트 기회 안내
 
-## Output
+## 출력
 
-Present the draft with clear formatting. After the draft, include:
-- A brief note on what brand voice and tone were applied
-- Any SEO recommendations (for web content)
-- Suggestions for next steps (e.g., "Review with your team", "Add customer quotes", "Pair with a visual")
+명확한 서식으로 초안을 제시합니다. 초안 후에 포함:
+- 적용된 브랜드 보이스와 톤에 대한 간략한 설명
+- SEO 추천 사항 (웹 콘텐츠의 경우)
+- 다음 단계 제안 (예: "팀과 검토", "고객 인용구 추가", "비주얼과 함께 배치")
 
-Ask: "Would you like me to revise any section, adjust the tone, or create a variation for a different channel?"
+질문합니다: "특정 섹션을 수정하거나, 톤을 조정하거나, 다른 채널용 변형을 만들어 드릴까요?"

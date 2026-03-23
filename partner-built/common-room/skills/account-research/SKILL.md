@@ -1,140 +1,139 @@
 ---
 name: account-research
-description: "Research a company using Common Room data. Triggers on 'research [company]', 'tell me about [domain]', 'pull up signals for [account]', 'what's going on with [company]', or any account-level question."
+description: "Common Room 데이터를 사용하여 회사를 조사합니다. '[회사] 조사해줘', '[도메인]에 대해 알려줘', '[계정]의 신호 가져와', '[회사]에 무슨 일이 있어', 또는 기타 계정 수준 질문에서 트리거됩니다."
 ---
 
-# Account Research
+# 계정 조사
 
-Retrieve and synthesize account information from Common Room. Handles four interaction patterns: full overviews, targeted field questions, sparse data situations, and combined MCP data + LLM reasoning.
+Common Room에서 계정 정보를 조회하고 합성합니다. 네 가지 상호작용 패턴을 처리합니다: 전체 개요, 타겟 필드 질문, 데이터 부족 상황, MCP 데이터와 LLM 추론 결합.
 
-## Step 0: Load User Context (Me)
+## 0단계: 사용자 컨텍스트(Me) 로드
 
-Before researching any account, fetch the `Me` object from Common Room. This provides:
-- The user's profile, title, role, and Persona in CR
-- The user's segments ("My Segments")
+계정을 조사하기 전에 Common Room에서 `Me` 객체를 가져옵니다. 이를 통해:
+- 사용자의 프로필, 직함, 역할, CR에서의 페르소나
+- 사용자의 세그먼트 ("내 세그먼트")
 
-Default all queries to the user's own segments unless the user explicitly asks for a broader view. This keeps results scoped to their territory.
+사용자가 명시적으로 더 넓은 범위를 요청하지 않는 한 모든 쿼리를 사용자의 세그먼트로 기본 설정합니다. 이렇게 하면 결과가 테리토리로 제한됩니다.
 
-## Step 1: Identify the Interaction Pattern
+## 1단계: 상호작용 패턴 식별
 
-Determine what the user actually needs before deciding how much data to fetch:
+데이터를 얼마나 가져올지 결정하기 전에 사용자가 실제로 무엇을 필요로 하는지 파악합니다:
 
-**Pattern 1 — Full Overview:** "Tell me about Datadog" / "Summarize cloudflare.com"
-→ Fetch the full field set and produce a structured briefing.
+**패턴 1 — 전체 개요:** "Datadog에 대해 알려줘" / "cloudflare.com 요약해줘"
+→ 전체 필드 세트를 가져와 구조화된 브리핑을 작성합니다.
 
-**Pattern 2 — Targeted Question:** "Who owns the Snowflake account?" / "Is acme.io showing buying signals?" / "What's the employee count for notion.so?"
-→ Fetch only the relevant field(s). Return a direct, concise answer — do not produce a full brief for a simple question.
+**패턴 2 — 타겟 질문:** "Snowflake 계정 담당자가 누구야?" / "acme.io가 구매 신호를 보이고 있어?" / "notion.so의 직원 수는?"
+→ 관련 필드만 가져옵니다. 직접적이고 간결한 답변을 반환합니다 — 간단한 질문에 전체 브리핑을 작성하지 마세요.
 
-**Pattern 3 — Sparse Data:** "Tell me about tiny-startup.io"
-→ If Common Room has limited data for an account, say so honestly: "There is limited information available for this account." Never speculate or fill gaps with generic statements.
+**패턴 3 — 데이터 부족:** "tiny-startup.io에 대해 알려줘"
+→ Common Room에 해당 계정의 데이터가 제한적이면 솔직하게 말합니다: "이 계정에 대한 정보가 제한적입니다." 절대 추측하거나 일반적인 문구로 공백을 채우지 마세요.
 
-**Pattern 4 — Combined Reasoning:** Fetch structured MCP data, then layer in LLM analysis — e.g., "Stripe has 8,000 employees and is hiring heavily for AI roles. Based on your ICP of 1k–10k fintech companies, this is a strong fit."
+**패턴 4 — 결합 추론:** 구조화된 MCP 데이터를 가져온 후 LLM 분석을 레이어링 — 예: "Stripe는 직원 8,000명이고 AI 직군을 대규모로 채용 중입니다. 1k-10k 핀테크 기업이라는 귀사의 ICP를 기준으로 강력한 적합도입니다."
 
-## Step 2: Look Up the Account
+## 2단계: 계정 조회
 
-Search Common Room for the account by domain or company name. Exact match first; if no result, try partial match and confirm with the user before proceeding.
+Common Room에서 도메인 또는 회사 이름으로 계정을 검색합니다. 정확히 일치하는 것을 먼저 시도하고, 결과가 없으면 부분 일치를 시도하여 진행 전에 사용자에게 확인합니다.
 
-## Step 3: Fetch the Right Fields
+## 3단계: 적절한 필드 가져오기
 
-Use the Common Room object catalog to see available field groups and their contents. For full overviews, request all field groups. For targeted questions, request only what's relevant.
+Common Room 객체 카탈로그를 사용하여 사용 가능한 필드 그룹과 내용을 확인합니다. 전체 개요의 경우 모든 필드 그룹을 요청합니다. 타겟 질문의 경우 관련된 것만 요청합니다.
 
-**Key field groups to know about:**
-- **Scores** — always return as raw values or percentiles, never labels
-- **Summary research** — RoomieAI output; often the richest qualitative signal
-- **Top contacts** — sorted by score desc; use communityMemberID for full lookups
+**알아야 할 핵심 필드 그룹:**
+- **점수** — 항상 원시 값 또는 백분위수로 반환, 절대 레이블이 아님
+- **요약 리서치** — RoomieAI 출력; 종종 가장 풍부한 정성적 신호
+- **상위 연락처** — 점수 내림차순 정렬; 전체 조회에는 communityMemberID 사용
 
-**Choosing what to fetch:**
+**가져올 내용 선택:**
 
-| User query type | Fields to request |
-|-----------------|------------------|
-| Full account overview | All field groups |
-| "Who owns this account?" | Company profiles & links, CRM fields |
-| "Is this company a good fit?" | Key fields, scores, about |
-| "What signals is this account showing?" | Scores, summary research, CRM fields |
-| "Who are the top contacts?" | Top contacts |
-| "What does RoomieAI say about them?" | Summary research, all research |
-| "Find engineers at this account" | Prospects (with title filter) |
+| 사용자 쿼리 유형 | 요청할 필드 |
+|-----------------|-----------|
+| 전체 계정 개요 | 모든 필드 그룹 |
+| "이 계정 담당자가 누구야?" | 회사 프로필 & 링크, CRM 필드 |
+| "이 회사가 적합한가?" | 핵심 필드, 점수, 소개 |
+| "이 계정이 어떤 신호를 보이고 있어?" | 점수, 요약 리서치, CRM 필드 |
+| "상위 연락처가 누구야?" | 상위 연락처 |
+| "RoomieAI가 뭐라고 해?" | 요약 리서치, 모든 리서치 |
+| "이 계정에서 엔지니어 찾아줘" | 잠재 고객 (직함 필터 포함) |
 
-## Step 4: Web Search (Sparse Data Only)
+## 4단계: 웹 검색 (데이터 부족 시에만)
 
-Common Room is the primary data source. Do not run web search when CR returns rich data.
+Common Room이 주요 데이터 소스입니다. CR이 풍부한 데이터를 반환하면 웹 검색을 실행하지 마세요.
 
-When CR data is sparse (Pattern 3 — few fields returned, no activity, no scores), run a targeted web search to fill gaps:
-- `"[company name]" news` — scoped to the last 30 days
-- Look for: funding rounds, acquisitions, product launches, executive changes, press coverage
+CR 데이터가 부족한 경우 (패턴 3 — 반환된 필드가 적고, 활동이 없고, 점수가 없음), 타겟 웹 검색으로 공백을 채웁니다:
+- `"[회사 이름]" news` — 최근 30일로 범위 지정
+- 찾을 것: 펀딩 라운드, 인수, 제품 출시, 임원 변경, 언론 보도
 
-If the user explicitly asks for external context or recent news, run web search regardless of data richness.
+사용자가 명시적으로 외부 컨텍스트나 최근 뉴스를 요청하면 데이터 풍부도에 관계없이 웹 검색을 실행합니다.
 
-## Step 5: Apply Reasoning (Pattern 4)
+## 5단계: 추론 적용 (패턴 4)
 
-When the user's question invites synthesis — not just data retrieval — layer in analysis:
-- Compare account data to known ICP criteria from session context
-- Identify fit signals (size, industry, tech stack, hiring patterns)
-- Note timing signals (funding, trial status, recent activity spike)
-- Frame insights as clearly derived from data, not assumed
+사용자의 질문이 단순한 데이터 조회가 아닌 합성을 요구하는 경우 — 분석을 레이어링합니다:
+- 세션 컨텍스트의 알려진 ICP 기준과 계정 데이터 비교
+- 적합 신호 식별 (규모, 산업, 기술 스택, 채용 패턴)
+- 타이밍 신호 기록 (펀딩, 트라이얼 상태, 최근 활동 급증)
+- 인사이트를 추정이 아닌 데이터에서 명확히 도출된 것으로 프레임
 
-When the user's company context is available (see `references/my-company-context.md`), position findings relative to the user's value proposition and ICP.
+사용자의 회사 컨텍스트가 가능한 경우 (`references/my-company-context.md` 참조), 사용자의 가치 제안과 ICP를 기준으로 발견 사항을 포지셔닝합니다.
 
-## Step 6: Produce Output
+## 6단계: 출력 생성
 
-Only include sections where Common Room returned actual data. Omit sections entirely rather than filling them with guesses.
+Common Room이 실제 데이터를 반환한 섹션만 포함합니다. 추측으로 섹션을 채우기보다 완전히 생략합니다.
 
-**Full overview (when data is rich):**
-
-```
-## [Company Name] — Account Overview
-
-**Snapshot**
-[2–3 sentences: what they do, plan/stage, relationship status]
-
-**Key Details**
-[Employee count, industry, location, domain, funding — from key fields]
-
-**CRM & Ownership** [If CRM fields returned]
-[Owner, opp stage, ARR]
-
-**Scores** [If scores returned]
-[All available scores as raw values or percentiles]
-
-**Signal Highlights** [If activity/signals exist]
-[3–5 most important signals with dates]
-
-**Top Contacts** [If contacts returned]
-[Name | Title | Score — top 5 sorted by score desc]
-
-**RoomieAI Research** [If summary research is non-null]
-[Summary research output; list all available research topic names]
-
-**Recommended Next Steps**
-[2–3 specific, signal-backed actions]
-```
-
-**Targeted question:** 1–3 sentence direct answer. No full brief needed.
-
-**Sparse data (few fields returned, most sections would be empty):**
+**전체 개요 (데이터가 풍부한 경우):**
 
 ```
-## [Company Name] — Account Overview (Limited Data)
+## [회사명] — 계정 개요
 
-**Data available:** [List exactly what Common Room returned]
+**스냅샷**
+[2-3문장: 무엇을 하는지, 요금제/단계, 관계 상태]
 
-[Present only the returned fields]
+**핵심 세부 정보**
+[직원 수, 산업, 위치, 도메인, 펀딩 — 핵심 필드에서]
 
-**Web Search**
-[Findings from web search — or "No significant recent news found"]
+**CRM & 소유권** [CRM 필드가 반환된 경우]
+[담당자, 기회 단계, ARR]
 
-**Note:** Common Room has limited data on this account. The account may need enrichment in Common Room.
+**점수** [점수가 반환된 경우]
+[모든 가용 점수를 원시 값 또는 백분위수로]
+
+**신호 하이라이트** [활동/신호가 있는 경우]
+[날짜와 함께 가장 중요한 3-5개 신호]
+
+**상위 연락처** [연락처가 반환된 경우]
+[이름 | 직함 | 점수 — 점수 내림차순 상위 5명]
+
+**RoomieAI 리서치** [요약 리서치가 null이 아닌 경우]
+[요약 리서치 출력; 가용한 모든 리서치 주제 이름 나열]
+
+**권장 다음 단계**
+[2-3개 구체적이고 신호에 기반한 조치]
 ```
 
-## Quality Standards
+**타겟 질문:** 1-3문장의 직접적인 답변. 전체 브리핑은 필요 없습니다.
 
-- Scores must always be raw values or percentiles — never categorical labels
-- For targeted questions, answer precisely and don't over-deliver
-- Be explicit when data is missing or stale — don't speculate
-- Keep full briefings readable in 2–3 minutes
-- **Every fact must trace to a tool call** — don't include data not returned by Common Room
+**데이터 부족 (반환된 필드가 적고, 대부분의 섹션이 비어 있을 때):**
 
-## Reference Files
+```
+## [회사명] — 계정 개요 (제한된 데이터)
 
-- **`references/signals-guide.md`** — signal type taxonomy and interpretation guide
+**가용한 데이터:** [Common Room이 반환한 것을 정확히 나열]
 
+[반환된 필드만 제시]
+
+**웹 검색**
+[웹 검색 결과 — 또는 "주목할 만한 최근 뉴스 없음"]
+
+**참고:** Common Room에 이 계정에 대한 데이터가 제한적입니다. Common Room에서 보강이 필요할 수 있습니다.
+```
+
+## 품질 기준
+
+- 점수는 항상 원시 값 또는 백분위수 — 절대 범주형 레이블이 아님
+- 타겟 질문에는 정확히 답변하고 과도하게 제공하지 않음
+- 데이터가 없거나 오래되었을 때 명시적으로 표시 — 추측하지 않음
+- 전체 브리핑은 2-3분 안에 읽을 수 있도록 유지
+- **모든 사실은 도구 호출에서 추적 가능해야 함** — Common Room이 반환하지 않은 데이터를 포함하지 않음
+
+## 참조 파일
+
+- **`references/signals-guide.md`** — 신호 유형 분류 및 해석 가이드

@@ -1,157 +1,157 @@
 ---
 name: competitive-intelligence
-description: Research your competitors and build an interactive battlecard. Outputs an HTML artifact with clickable competitor cards and a comparison matrix. Trigger with "competitive intel", "research competitors", "how do we compare to [competitor]", "battlecard for [competitor]", or "what's new with [competitor]".
+description: 경쟁사를 조사하고 인터랙티브 배틀카드를 구축합니다. 클릭 가능한 경쟁사 카드와 비교 매트릭스가 포함된 HTML 아티팩트를 출력합니다. "경쟁 인텔", "경쟁사 조사", "[경쟁사]와 어떻게 비교되나요", "[경쟁사] 배틀카드", "[경쟁사] 최근 소식"으로 트리거합니다.
 ---
 
-# Competitive Intelligence
+# 경쟁 인텔리전스
 
-Research your competitors extensively and generate an **interactive HTML battlecard** you can use in deals. The output is a self-contained artifact with clickable competitor tabs and an overall comparison matrix.
+경쟁사를 광범위하게 조사하고 거래에서 사용할 수 있는 **인터랙티브 HTML 배틀카드**를 생성합니다. 출력은 클릭 가능한 경쟁사 탭과 전체 비교 매트릭스가 포함된 자체 완결형 아티팩트입니다.
 
-## How It Works
+## 작동 방식
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                  COMPETITIVE INTELLIGENCE                        │
+│                  경쟁 인텔리전스                                   │
 ├─────────────────────────────────────────────────────────────────┤
-│  ALWAYS (works standalone via web search)                        │
-│  ✓ Competitor product deep-dive: features, pricing, positioning │
-│  ✓ Recent releases: what they've shipped in last 90 days        │
-│  ✓ Your company releases: what you've shipped to counter        │
-│  ✓ Differentiation matrix: where you win vs. where they win     │
-│  ✓ Sales talk tracks: how to position against each competitor   │
-│  ✓ Landmine questions: expose their weaknesses naturally        │
+│  항상 (웹 검색으로 단독 작동)                                      │
+│  ✓ 경쟁사 제품 심층 분석: 기능, 가격, 포지셔닝                    │
+│  ✓ 최근 릴리스: 지난 90일간 출시한 것                             │
+│  ✓ 당사 릴리스: 대응으로 출시한 것                                │
+│  ✓ 차별화 매트릭스: 당사가 이기는 곳 vs. 경쟁사가 이기는 곳       │
+│  ✓ 영업 토크트랙: 각 경쟁사에 대한 포지셔닝 방법                  │
+│  ✓ 지뢰 질문: 자연스럽게 약점을 노출시키기                        │
 ├─────────────────────────────────────────────────────────────────┤
-│  OUTPUT: Interactive HTML Battlecard                             │
-│  ✓ Comparison matrix overview                                    │
-│  ✓ Clickable tabs for each competitor                           │
-│  ✓ Dark theme, professional styling                             │
-│  ✓ Self-contained HTML file — share or host anywhere            │
+│  출력: 인터랙티브 HTML 배틀카드                                    │
+│  ✓ 비교 매트릭스 개요                                             │
+│  ✓ 각 경쟁사용 클릭 가능한 탭                                     │
+│  ✓ 다크 테마, 전문적 스타일링                                     │
+│  ✓ 자체 완결 HTML 파일 — 어디서든 공유 또는 호스팅               │
 ├─────────────────────────────────────────────────────────────────┤
-│  SUPERCHARGED (when you connect your tools)                      │
-│  + CRM: Win/loss data, competitor mentions in closed deals      │
-│  + Docs: Existing battlecards, competitive playbooks            │
-│  + Chat: Internal intel, field reports from colleagues          │
-│  + Transcripts: Competitor mentions in customer calls           │
+│  강화 (도구를 연결하면)                                            │
+│  + CRM: 승패 데이터, 마감 거래의 경쟁사 언급                      │
+│  + 문서: 기존 배틀카드, 경쟁 플레이북                             │
+│  + 채팅: 내부 인텔, 동료의 현장 보고                              │
+│  + 기록: 고객 통화의 경쟁사 언급                                   │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Getting Started
+## 시작하기
 
-When you run this skill, I'll ask for context:
+이 스킬을 실행하면 맥락을 요청합니다:
 
-**Required:**
-- What company do you work for? (or I'll detect from your email)
-- Who are your main competitors? (1-5 names)
+**필수:**
+- 어떤 회사에서 일하시나요? (또는 이메일에서 감지)
+- 주요 경쟁사는 누구인가요? (1-5개 이름)
 
-**Optional:**
-- Which competitor do you want to focus on first?
-- Any specific deals where you're competing against them?
-- Pain points you've heard from customers about competitors?
+**선택:**
+- 먼저 집중하고 싶은 경쟁사는?
+- 경쟁하고 있는 구체적 거래가 있나요?
+- 경쟁사에 대해 고객이 말한 페인 포인트가 있나요?
 
-If I already have your seller context from a previous session, I'll confirm and skip the questions.
+이전 세션의 판매자 맥락이 있으면, 확인하고 질문을 건너뜁니다.
 
 ---
 
-## Connectors (Optional)
+## 커넥터 (선택)
 
-| Connector | What It Adds |
+| 커넥터 | 추가되는 것 |
 |-----------|--------------|
-| **CRM** | Win/loss history against each competitor, deal-level competitor tracking |
-| **Docs** | Existing battlecards, product comparison docs, competitive playbooks |
-| **Chat** | Internal chat intel (e.g. Slack) — what your team is hearing from the field |
-| **Transcripts** | Competitor mentions in customer calls, objections raised |
+| **CRM** | 각 경쟁사에 대한 승패 이력, 거래 수준 경쟁사 추적 |
+| **문서** | 기존 배틀카드, 제품 비교 문서, 경쟁 플레이북 |
+| **채팅** | 내부 채팅 인텔 (예: Slack) — 팀이 현장에서 듣는 것 |
+| **기록** | 고객 통화의 경쟁사 언급, 제기된 이의 |
 
-> **No connectors?** Web research works great. I'll pull everything from public sources — product pages, pricing, blogs, release notes, reviews, job postings.
-
----
-
-## Output: Interactive HTML Battlecard
-
-The skill generates a **self-contained HTML file** with:
-
-### 1. Comparison Matrix (Landing View)
-Overview comparing you vs. all competitors at a glance:
-- Feature comparison grid
-- Pricing comparison
-- Market positioning
-- Win rate indicators (if CRM connected)
-
-### 2. Competitor Tabs (Click to Expand)
-Each competitor gets a clickable card that expands to show:
-- Company profile (size, funding, target market)
-- What they sell and how they position
-- Recent releases (last 90 days)
-- Where they win vs. where you win
-- Pricing intelligence
-- Talk tracks for different scenarios
-- Objection handling
-- Landmine questions
-
-### 3. Your Company Card
-- Your releases (last 90 days)
-- Your key differentiators
-- Proof points and customer quotes
+> **커넥터 없나요?** 웹 조사가 훌륭하게 작동합니다. 공개 소스에서 모든 것을 가져옵니다 — 제품 페이지, 가격, 블로그, 릴리스 노트, 리뷰, 채용 공고.
 
 ---
 
-## HTML Structure
+## 출력: 인터랙티브 HTML 배틀카드
+
+스킬이 생성하는 **자체 완결 HTML 파일**:
+
+### 1. 비교 매트릭스 (랜딩 뷰)
+한눈에 당사 vs. 모든 경쟁사 비교:
+- 기능 비교 그리드
+- 가격 비교
+- 시장 포지셔닝
+- 승률 표시 (CRM 연결 시)
+
+### 2. 경쟁사 탭 (클릭하여 확장)
+각 경쟁사는 클릭 가능한 카드로 다음을 표시:
+- 회사 프로필 (규모, 펀딩, 대상 시장)
+- 판매하는 것과 포지셔닝 방법
+- 최근 릴리스 (지난 90일)
+- 경쟁사가 이기는 곳 vs. 당사가 이기는 곳
+- 가격 인텔리전스
+- 다양한 시나리오별 토크트랙
+- 이의 처리
+- 지뢰 질문
+
+### 3. 당사 카드
+- 당사 릴리스 (지난 90일)
+- 핵심 차별화 요소
+- 증거 포인트 및 고객 인용구
+
+---
+
+## HTML 구조
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Battlecard: [Your Company] vs Competitors</title>
+    <title>배틀카드: [당사] vs 경쟁사</title>
     <style>
-        /* Dark theme, professional styling */
-        /* Tabbed navigation */
-        /* Expandable cards */
-        /* Responsive design */
+        /* 다크 테마, 전문적 스타일링 */
+        /* 탭 내비게이션 */
+        /* 확장 가능한 카드 */
+        /* 반응형 디자인 */
     </style>
 </head>
 <body>
-    <!-- Header with your company + date -->
+    <!-- 당사 + 날짜 포함 헤더 -->
     <header>
-        <h1>[Your Company] Competitive Battlecard</h1>
-        <p>Generated: [Date] | Competitors: [List]</p>
+        <h1>[당사] 경쟁 배틀카드</h1>
+        <p>생성일: [날짜] | 경쟁사: [목록]</p>
     </header>
 
-    <!-- Tab Navigation -->
+    <!-- 탭 내비게이션 -->
     <nav class="tabs">
-        <button class="tab active" data-tab="matrix">Comparison Matrix</button>
-        <button class="tab" data-tab="competitor-1">[Competitor 1]</button>
-        <button class="tab" data-tab="competitor-2">[Competitor 2]</button>
-        <button class="tab" data-tab="competitor-3">[Competitor 3]</button>
+        <button class="tab active" data-tab="matrix">비교 매트릭스</button>
+        <button class="tab" data-tab="competitor-1">[경쟁사 1]</button>
+        <button class="tab" data-tab="competitor-2">[경쟁사 2]</button>
+        <button class="tab" data-tab="competitor-3">[경쟁사 3]</button>
     </nav>
 
-    <!-- Comparison Matrix Tab -->
+    <!-- 비교 매트릭스 탭 -->
     <section id="matrix" class="tab-content active">
-        <h2>Head-to-Head Comparison</h2>
+        <h2>직접 비교</h2>
         <table class="comparison-matrix">
-            <!-- Feature rows with you vs each competitor -->
+            <!-- 당사 vs 각 경쟁사 기능 행 -->
         </table>
 
-        <h2>Quick Win/Loss Guide</h2>
+        <h2>빠른 승패 가이드</h2>
         <div class="win-loss-grid">
-            <!-- Per-competitor: when you win, when you lose -->
+            <!-- 경쟁사별: 이기는 경우, 지는 경우 -->
         </div>
     </section>
 
-    <!-- Individual Competitor Tabs -->
+    <!-- 개별 경쟁사 탭 -->
     <section id="competitor-1" class="tab-content">
         <div class="battlecard">
-            <div class="profile"><!-- Company info --></div>
-            <div class="differentiation"><!-- Where they win / you win --></div>
-            <div class="talk-tracks"><!-- Scenario-based positioning --></div>
-            <div class="objections"><!-- Common objections + responses --></div>
-            <div class="landmines"><!-- Questions to ask --></div>
+            <div class="profile"><!-- 회사 정보 --></div>
+            <div class="differentiation"><!-- 경쟁사 승리 / 당사 승리 --></div>
+            <div class="talk-tracks"><!-- 시나리오별 포지셔닝 --></div>
+            <div class="objections"><!-- 일반적 이의 + 대응 --></div>
+            <div class="landmines"><!-- 물어볼 질문 --></div>
         </div>
     </section>
 
     <script>
-        // Tab switching logic
-        // Expand/collapse sections
+        // 탭 전환 로직
+        // 섹션 확장/축소
     </script>
 </body>
 </html>
@@ -159,243 +159,158 @@ Each competitor gets a clickable card that expands to show:
 
 ---
 
-## Visual Design
+## 비주얼 디자인
 
-### Color System
+### 색상 시스템
 ```css
 :root {
-    /* Dark theme base */
     --bg-primary: #0a0d14;
     --bg-elevated: #0f131c;
     --bg-surface: #161b28;
     --bg-hover: #1e2536;
-
-    /* Text */
     --text-primary: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.7);
     --text-muted: rgba(255, 255, 255, 0.5);
-
-    /* Accent (your brand or neutral) */
     --accent: #3b82f6;
     --accent-hover: #2563eb;
-
-    /* Status indicators */
     --you-win: #10b981;
     --they-win: #ef4444;
     --tie: #f59e0b;
 }
 ```
 
-### Card Design
-- Rounded corners (12px)
-- Subtle borders (1px, low opacity)
-- Hover states with slight elevation
-- Smooth transitions (200ms)
+---
 
-### Comparison Matrix
-- Sticky header row
-- Color-coded winner indicators (green = you, red = them, yellow = tie)
-- Expandable rows for detail
+## 실행 플로우
+
+### 1단계: 판매자 맥락 수집
+### 2단계: 당사 조사 (항상)
+### 3단계: 각 경쟁사 조사 (항상)
+### 4단계: 연결된 소스에서 가져오기 (가능한 경우)
+### 5단계: HTML 아티팩트 구축
 
 ---
 
-## Execution Flow
-
-### Phase 1: Gather Seller Context
-
-```
-If first time:
-1. Ask: "What company do you work for?"
-2. Ask: "What do you sell? (product/service in one line)"
-3. Ask: "Who are your main competitors? (up to 5)"
-4. Store context for future sessions
-
-If returning user:
-1. Confirm: "Still at [Company] selling [Product]?"
-2. Ask: "Same competitors, or any new ones to add?"
-```
-
-### Phase 2: Research Your Company (Always)
-
-```
-Web searches:
-1. "[Your company] product" — current offerings
-2. "[Your company] pricing" — pricing model
-3. "[Your company] news" — recent announcements (90 days)
-4. "[Your company] product updates OR changelog OR releases" — what you've shipped
-5. "[Your company] vs [competitor]" — existing comparisons
-```
-
-### Phase 3: Research Each Competitor (Always)
-
-```
-For each competitor, run:
-1. "[Competitor] product features" — what they offer
-2. "[Competitor] pricing" — how they charge
-3. "[Competitor] news" — recent announcements
-4. "[Competitor] product updates OR changelog OR releases" — what they've shipped
-5. "[Competitor] reviews G2 OR Capterra OR TrustRadius" — customer sentiment
-6. "[Competitor] vs [alternatives]" — how they position
-7. "[Competitor] customers" — who uses them
-8. "[Competitor] careers" — hiring signals (growth areas)
-```
-
-### Phase 4: Pull Connected Sources (If Available)
-
-```
-If CRM connected:
-1. Query closed-won deals with competitor field = [Competitor]
-2. Query closed-lost deals with competitor field = [Competitor]
-3. Extract win/loss patterns
-
-If docs connected:
-1. Search for "battlecard [competitor]"
-2. Search for "competitive [competitor]"
-3. Pull existing positioning docs
-
-If chat connected:
-1. Search for "[Competitor]" mentions (last 90 days)
-2. Extract field intel and colleague insights
-
-If transcripts connected:
-1. Search calls for "[Competitor]" mentions
-2. Extract objections and customer quotes
-```
-
-### Phase 5: Build HTML Artifact
-
-```
-1. Structure data for each competitor
-2. Build comparison matrix
-3. Generate individual battlecards
-4. Create talk tracks for each scenario
-5. Compile landmine questions
-6. Render as self-contained HTML
-7. Save as [YourCompany]-battlecard-[date].html
-```
-
----
-
-## Data Structure Per Competitor
+## 경쟁사별 데이터 구조
 
 ```yaml
 competitor:
-  name: "[Name]"
+  name: "[이름]"
   website: "[URL]"
   profile:
-    founded: "[Year]"
-    funding: "[Stage + amount]"
-    employees: "[Count]"
-    target_market: "[Who they sell to]"
-    pricing_model: "[Per seat / usage / etc.]"
-    market_position: "[Leader / Challenger / Niche]"
+    founded: "[연도]"
+    funding: "[단계 + 금액]"
+    employees: "[인원]"
+    target_market: "[판매 대상]"
+    pricing_model: "[시트당 / 사용량 / 등]"
+    market_position: "[리더 / 도전자 / 니치]"
 
-  what_they_sell: "[Product summary]"
-  their_positioning: "[How they describe themselves]"
+  what_they_sell: "[제품 요약]"
+  their_positioning: "[자기 설명 방법]"
 
   recent_releases:
-    - date: "[Date]"
-      release: "[Feature/Product]"
-      impact: "[Why it matters]"
+    - date: "[날짜]"
+      release: "[기능/제품]"
+      impact: "[중요한 이유]"
 
   where_they_win:
-    - area: "[Area]"
-      advantage: "[Their strength]"
-      how_to_handle: "[Your counter]"
+    - area: "[영역]"
+      advantage: "[경쟁사 강점]"
+      how_to_handle: "[당사 대응]"
 
   where_you_win:
-    - area: "[Area]"
-      advantage: "[Your strength]"
-      proof_point: "[Evidence]"
+    - area: "[영역]"
+      advantage: "[당사 강점]"
+      proof_point: "[증거]"
 
   pricing:
-    model: "[How they charge]"
-    entry_price: "[Starting price]"
-    enterprise: "[Enterprise pricing]"
-    hidden_costs: "[Implementation, etc.]"
-    talk_track: "[How to discuss pricing]"
+    model: "[과금 방법]"
+    entry_price: "[시작 가격]"
+    enterprise: "[엔터프라이즈 가격]"
+    hidden_costs: "[구현 등]"
+    talk_track: "[가격 논의 방법]"
 
   talk_tracks:
-    early_mention: "[Strategy if they come up early]"
-    displacement: "[Strategy if customer uses them]"
-    late_addition: "[Strategy if added late to eval]"
+    early_mention: "[초기 언급 시 전략]"
+    displacement: "[고객이 사용 중일 때 전략]"
+    late_addition: "[늦게 평가에 추가될 때 전략]"
 
   objections:
-    - objection: "[What customer says]"
-      response: "[How to handle]"
+    - objection: "[고객이 말하는 것]"
+      response: "[대응 방법]"
 
   landmines:
-    - "[Question that exposes their weakness]"
+    - "[약점을 노출시키는 질문]"
 
-  win_loss: # If CRM connected
+  win_loss: # CRM 연결 시
     win_rate: "[X]%"
-    common_win_factors: "[What predicts wins]"
-    common_loss_factors: "[What predicts losses]"
+    common_win_factors: "[승리를 예측하는 것]"
+    common_loss_factors: "[패배를 예측하는 것]"
 ```
 
 ---
 
-## Delivery
+## 전달
 
 ```markdown
-## ✓ Battlecard Created
+## ✓ 배틀카드 생성 완료
 
-[View your battlecard](file:///path/to/[YourCompany]-battlecard-[date].html)
-
----
-
-**Summary**
-- **Your Company**: [Name]
-- **Competitors Analyzed**: [List]
-- **Data Sources**: Web research [+ CRM] [+ Docs] [+ Transcripts]
+[배틀카드 보기](file:///path/to/[당사]-battlecard-[날짜].html)
 
 ---
 
-**How to Use**
-- **Before a call**: Open the relevant competitor tab, review talk tracks
-- **During a call**: Reference landmine questions
-- **After win/loss**: Update with new intel
+**요약**
+- **당사**: [이름]
+- **분석 경쟁사**: [목록]
+- **데이터 소스**: 웹 조사 [+ CRM] [+ 문서] [+ 기록]
 
 ---
 
-**Sharing Options**
-- **Local file**: Open in any browser
-- **Host it**: Upload to Netlify, Vercel, or internal wiki
-- **Share directly**: Send the HTML file to teammates
+**사용 방법**
+- **통화 전**: 관련 경쟁사 탭을 열고 토크트랙 검토
+- **통화 중**: 지뢰 질문 참조
+- **승패 후**: 새 인텔로 업데이트
 
 ---
 
-**Keep it Fresh**
-Run this skill again to refresh with latest intel. Recommended: monthly or before major deals.
+**공유 옵션**
+- **로컬 파일**: 브라우저에서 열기
+- **호스팅**: Netlify, Vercel 또는 내부 위키에 업로드
+- **직접 공유**: HTML 파일을 팀원에게 전송
+
+---
+
+**최신 유지**
+최신 인텔로 갱신하려면 이 스킬을 다시 실행하세요. 추천: 월간 또는 주요 거래 전.
 ```
 
 ---
 
-## Refresh Cadence
+## 갱신 주기
 
-Competitive intel gets stale. Recommended refresh:
+경쟁 인텔은 오래됩니다. 추천 갱신:
 
-| Trigger | Action |
+| 트리거 | 조치 |
 |---------|--------|
-| **Monthly** | Quick refresh — new releases, news, pricing changes |
-| **Before major deal** | Deep refresh for specific competitor in that deal |
-| **After win/loss** | Update patterns with new data |
-| **Competitor announcement** | Immediate update on that competitor |
+| **월간** | 빠른 갱신 — 새 릴리스, 뉴스, 가격 변경 |
+| **주요 거래 전** | 해당 거래의 특정 경쟁사에 대한 심층 갱신 |
+| **승패 후** | 새 데이터로 패턴 업데이트 |
+| **경쟁사 발표** | 해당 경쟁사에 대한 즉시 업데이트 |
 
 ---
 
-## Tips for Better Intel
+## 더 나은 인텔을 위한 팁
 
-1. **Be honest about weaknesses** — Credibility comes from acknowledging where competitors are strong
-2. **Focus on outcomes, not features** — "They have X feature" matters less than "customers achieve Y result"
-3. **Update from the field** — Best intel comes from actual customer conversations, not just websites
-4. **Plant landmines, don't badmouth** — Ask questions that expose weaknesses; never trash-talk
-5. **Track releases religiously** — What they ship tells you their strategy and your opportunity
+1. **약점에 솔직하세요** — 경쟁사가 강한 곳을 인정하면 신뢰성이 생깁니다
+2. **기능이 아닌 결과에 집중** — "기능 X가 있다"보다 "고객이 Y 결과를 달성한다"가 중요
+3. **현장에서 업데이트** — 최고의 인텔은 웹사이트가 아닌 실제 고객 대화에서 옵니다
+4. **지뢰를 심고, 비방하지 마세요** — 약점을 노출하는 질문을 하세요; 절대 험담하지 마세요
+5. **릴리스를 철저히 추적** — 경쟁사가 출시하는 것이 전략과 당사의 기회를 알려줍니다
 
 ---
 
-## Related Skills
+## 관련 스킬
 
-- **account-research** — Research a specific prospect before reaching out
-- **call-prep** — Prep for a call where you know competitor is involved
-- **create-an-asset** — Build a custom comparison page for a specific deal
+- **account-research** — 연락 전 특정 잠재 고객 조사
+- **call-prep** — 경쟁사가 관련된 통화 준비
+- **create-an-asset** — 특정 거래를 위한 맞춤형 비교 페이지 구축

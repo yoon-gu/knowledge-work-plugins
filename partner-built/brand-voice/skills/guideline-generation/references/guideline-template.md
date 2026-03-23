@@ -1,241 +1,241 @@
-# Brand Guidelines Output Template
+# 브랜드 가이드라인 출력 템플릿
 
-The complete structure for generated brand voice guidelines. Fill each section based on discovered and analyzed sources. The following is a raw markdown template — copy and fill the sections below. Omit sections with no data rather than including empty placeholders.
+생성된 브랜드 보이스 가이드라인의 완전한 구조입니다. 발견 및 분석된 소스를 기반으로 각 섹션을 채웁니다. 다음은 원시 마크다운 템플릿입니다 — 아래 섹션을 복사하여 채웁니다. 데이터가 없는 섹션은 빈 자리표시자를 포함하기보다 생략합니다.
 
-# [Company Name] Brand Voice Guidelines
+# [회사명] 브랜드 보이스 가이드라인
 
-## Generation Metadata
-- Created: [date]
-- Version: [N] (incremented from previous if updating)
-- Replaces: [previous version date, if applicable]
-- Sources: [list of documents and/or conversations analyzed]
-- Documents processed: [N]
-- Conversations analyzed: [N]
-- Discovery report used: [Yes/No]
-- Overall confidence: [High/Medium/Low]
-
----
-
-## Executive Summary
-
-[2-3 paragraph overview of the brand voice. What makes this brand distinctive?
-What is the core personality? How should content feel to the reader?]
+## 생성 메타데이터
+- 생성일: [날짜]
+- 버전: [N] (업데이트인 경우 이전 버전에서 증가)
+- 대체: [해당하는 경우 이전 버전 날짜]
+- 소스: [분석된 문서 및/또는 대화 목록]
+- 처리된 문서: [N]
+- 분석된 대화: [N]
+- 탐색 보고서 사용: [예/아니오]
+- 전체 신뢰도: [높음/보통/낮음]
 
 ---
 
-## We Are / We Are Not
+## 요약
 
-The foundational brand identity anchor. Voice is constant — it doesn't change by channel or audience.
-
-| We Are | We Are Not |
-|--------|------------|
-| **[Attribute 1]** — [brief description] | **[Counter 1]** — [what to avoid] |
-| **[Attribute 2]** — [brief description] | **[Counter 2]** — [what to avoid] |
-| **[Attribute 3]** — [brief description] | **[Counter 3]** — [what to avoid] |
-| **[Attribute 4]** — [brief description] | **[Counter 4]** — [what to avoid] |
-| **[Attribute 5]** — [brief description] | **[Counter 5]** — [what to avoid] |
-
-### Voice Attributes Detail
-
-For each "We Are" attribute:
-
-#### [Attribute 1]: [Name]
-- **What it means**: [detailed description]
-- **How it shows up**: [specific behaviors in content]
-- **What to avoid**: [the "We Are Not" counterpart, expanded]
-- **Evidence**: [source quote or pattern, with citation]
-- **Confidence**: [High/Medium/Low]
-
-[Repeat for each attribute]
+[브랜드 보이스에 대한 2-3단락 개요. 이 브랜드를 독특하게 만드는 것은 무엇인가?
+핵심 성격은 무엇인가? 독자에게 콘텐츠가 어떻게 느껴져야 하는가?]
 
 ---
 
-## Brand Personality
+## 우리는 ~ / 우리는 ~이 아님
 
-- **Archetype**: [e.g., "The Expert Friend" — technically deep but never condescending]
-- **If our brand were a person**: [brief personality sketch]
-- **Core values expressed in voice**: [list]
+기본적인 브랜드 아이덴티티 기준점. 보이스는 일정합니다 — 채널이나 독자에 따라 변하지 않습니다.
 
----
+| 우리는 ~ | 우리는 ~이 아님 |
+|----------|---------------|
+| **[속성 1]** — [간략한 설명] | **[반대 1]** — [피할 것] |
+| **[속성 2]** — [간략한 설명] | **[반대 2]** — [피할 것] |
+| **[속성 3]** — [간략한 설명] | **[반대 3]** — [피할 것] |
+| **[속성 4]** — [간략한 설명] | **[반대 4]** — [피할 것] |
+| **[속성 5]** — [간략한 설명] | **[반대 5]** — [피할 것] |
 
-## Messaging Framework
+### 보이스 속성 상세
 
-### Primary Value Proposition
-[Core value statement — one sentence]
+각 "우리는 ~" 속성에 대해:
 
-Variations observed:
-- "[Variation 1]" (Source: [doc])
-- "[Variation 2]" (Source: [doc])
+#### [속성 1]: [이름]
+- **의미**: [상세 설명]
+- **나타나는 방식**: [콘텐츠에서의 구체적 행동]
+- **피할 것**: ["우리는 ~이 아님" 대응, 확장]
+- **근거**: [인용 또는 패턴, 출처 명시]
+- **신뢰도**: [높음/보통/낮음]
 
-### Key Message Pillars
-
-1. **[Pillar Name]**
-   - Core idea: [one sentence]
-   - When to use: [contexts]
-   - Example phrasing: "[quote]"
-   - Frequency in conversations: [X]% (if transcript data available)
-   - Effectiveness: [High/Medium/Low] (if outcome data available)
-
-2. **[Pillar Name]**
-   [same format]
-
-3. **[Pillar Name]**
-   [same format]
-
-### Competitive Positioning
-- vs. [Competitor A]: [how we differentiate]
-- vs. [Competitor B]: [how we differentiate]
-- vs. Status Quo: [why change is worth it]
+[각 속성에 대해 반복]
 
 ---
 
-## Tone-by-Context Matrix
+## 브랜드 성격
 
-Voice is constant. Tone flexes by context. These three dimensions adjust:
-
-| Context | Formality | Energy | Technical Depth | Key Principle |
-|---------|-----------|--------|-----------------|---------------|
-| Cold outreach | Medium | High | Low | Hook fast, earn attention |
-| Discovery calls | Medium | Medium-High | Medium | Ask more than tell |
-| Demo / presentation | Medium-High | High | High | Show, don't just describe |
-| Enterprise proposal | High | Medium | High | ROI and precision |
-| Follow-up email | Medium | Medium | Low-Medium | Add new value each touch |
-| Social media | Low-Medium | High | Low | Brevity and personality |
-| Customer success | Medium | Warm | Medium | Empathy and competence |
-| Internal comms | Low | Medium | Varies | Authentic, less polished |
-
-### Context-Specific Guidelines
-
-#### Cold Outreach
-- **Overall tone**: [description]
-- **Opening approach**: [what works]
-- **Do's**: [list]
-- **Don'ts**: [list]
-- **Example**: "[sample opening line]"
-
-#### Discovery Calls
-[same structure]
-
-#### Proposals & RFPs
-[same structure]
-
-#### Social Media
-[same structure]
+- **아키타입**: [예: "전문가 친구" — 기술적으로 깊지만 결코 무시하지 않는]
+- **우리 브랜드가 사람이라면**: [간략한 성격 묘사]
+- **보이스로 표현되는 핵심 가치**: [목록]
 
 ---
 
-## Terminology Guide
+## 메시징 프레임워크
 
-### Must-Use Terms
-| Term | Usage | Instead Of | Example |
-|------|-------|------------|---------|
-| [term] | [when/how to use] | [what it replaces] | "[in a sentence]" |
+### 핵심 가치 제안
+[핵심 가치 진술 — 한 문장]
 
-### Preferred Terms
-| Term | Usage | Example |
-|------|-------|---------|
-| [term] | [guidance] | "[in a sentence]" |
+관찰된 변형:
+- "[변형 1]" (출처: [문서])
+- "[변형 2]" (출처: [문서])
 
-### Avoid These Terms
-| Term | Reason | Alternative |
-|------|--------|-------------|
-| [term] | [why to avoid] | [what to use instead] |
+### 핵심 메시지 기둥
 
-### Never-Use Terms
-| Term | Reason |
-|------|--------|
-| [term] | [why this is prohibited] |
+1. **[기둥 이름]**
+   - 핵심 아이디어: [한 문장]
+   - 사용 시점: [맥락]
+   - 예시 표현: "[인용]"
+   - 대화 빈도: [X]% (트랜스크립트 데이터가 있는 경우)
+   - 효과성: [높음/보통/낮음] (결과 데이터가 있는 경우)
 
----
+2. **[기둥 이름]**
+   [동일 형식]
 
-## Language That Works
+3. **[기둥 이름]**
+   [동일 형식]
 
-Ranked by effectiveness (from conversation analysis, if available):
-
-### Top Phrases
-1. **"[Phrase]"** — Context: [when to use], Why it works: [analysis]
-2. **"[Phrase]"** — Context: [when to use], Why it works: [analysis]
-
-### Questions That Engage
-1. **"[Question]"** — Leads to: [typical outcome]
-2. **"[Question]"** — Leads to: [typical outcome]
-
-### Objection Handling Patterns
-1. **Objection**: "[common objection]"
-   **Response pattern**: "[how top performers respond]"
-   **Why it works**: [analysis]
+### 경쟁 포지셔닝
+- vs. [경쟁사 A]: [차별화 방법]
+- vs. [경쟁사 B]: [차별화 방법]
+- vs. 현상 유지: [변화가 가치 있는 이유]
 
 ---
 
-## Language to Avoid
+## 맥락별 톤 매트릭스
 
-### Anti-Patterns
-1. **"[Phrase/pattern]"** — Problem: [what happens], Better: "[alternative]"
-2. **"[Phrase/pattern]"** — Problem: [what happens], Better: "[alternative]"
+보이스는 일정합니다. 톤은 맥락에 따라 조절됩니다. 다음 세 차원이 조절됩니다:
 
----
+| 맥락 | 격식도 | 에너지 | 기술적 깊이 | 핵심 원칙 |
+|------|--------|--------|-----------|----------|
+| 콜드 아웃리치 | 중간 | 높음 | 낮음 | 빠르게 후크, 관심 획득 |
+| 탐색 통화 | 중간 | 중간-높음 | 중간 | 말하기보다 묻기 |
+| 데모/프레젠테이션 | 중간-높음 | 높음 | 높음 | 설명만 하지 말고 보여주기 |
+| 기업 제안서 | 높음 | 중간 | 높음 | ROI와 정밀함 |
+| 후속 이메일 | 중간 | 중간 | 낮음-중간 | 매 접촉마다 새 가치 추가 |
+| 소셜 미디어 | 낮음-중간 | 높음 | 낮음 | 간결함과 개성 |
+| 고객 성공 | 중간 | 따뜻함 | 중간 | 공감과 역량 |
+| 내부 커뮤니케이션 | 낮음 | 중간 | 다양 | 진정성, 덜 다듬어진 |
 
-## Content Examples
+### 맥락별 지침
 
-### Excellent Examples
-[Full example with annotation explaining what makes it on-brand]
+#### 콜드 아웃리치
+- **전체 톤**: [설명]
+- **오프닝 접근**: [효과적인 방법]
+- **해야 할 것**: [목록]
+- **하지 말아야 할 것**: [목록]
+- **예시**: "[샘플 오프닝 라인]"
 
-### Examples to Avoid
-[Full example with annotation explaining what's off-brand and how to fix it]
+#### 탐색 통화
+[동일 구조]
 
----
+#### 제안서 & RFP
+[동일 구조]
 
-## Confidence Scores
-
-| Section | Confidence | Basis | Sources |
-|---------|------------|-------|---------|
-| Voice Attributes | [H/M/L] | [why] | [N sources] |
-| Messaging Framework | [H/M/L] | [why] | [N sources] |
-| Tone Matrix | [H/M/L] | [why] | [N sources] |
-| Terminology | [H/M/L] | [why] | [N sources] |
-| Language Patterns | [H/M/L] | [why] | [N sources] |
-
----
-
-## Open Questions for Team Discussion
-
-### High Priority (blocks guideline completion)
-1. **[Question Title]**
-   - What was found: [description of ambiguity]
-   - Agent recommendation: [suggested resolution]
-   - Need from you: [specific decision]
-
-### Medium Priority (improves quality)
-[same format]
-
-### Low Priority (nice to have)
-[same format]
+#### 소셜 미디어
+[동일 구조]
 
 ---
 
-## Data Gaps & Recommendations
+## 용어 가이드
 
-[What's missing and specific actions to fill gaps]
+### 필수 사용 용어
+| 용어 | 사용법 | 대체 대상 | 예시 |
+|------|--------|----------|------|
+| [용어] | [사용 시점/방법] | [대체하는 것] | "[문장 내]" |
 
-- [ ] [Gap 1]: [recommendation to fill it]
-- [ ] [Gap 2]: [recommendation to fill it]
+### 선호 용어
+| 용어 | 사용법 | 예시 |
+|------|--------|------|
+| [용어] | [지침] | "[문장 내]" |
+
+### 피해야 할 용어
+| 용어 | 이유 | 대안 |
+|------|------|------|
+| [용어] | [피해야 하는 이유] | [대신 사용할 것] |
+
+### 절대 사용 금지 용어
+| 용어 | 이유 |
+|------|------|
+| [용어] | [이 용어가 금지된 이유] |
 
 ---
 
-## Appendix: Sources
+## 효과적인 언어
 
-| # | Source | Platform | Type | Date | Key Sections Used | Confidence |
-|---|--------|----------|------|------|-------------------|------------|
-| 1 | [title] | [platform] | [AUTHORITATIVE/OPERATIONAL/etc.] | [date] | [sections] | [H/M/L] |
+효과성 순위 (대화 분석에서, 가능한 경우):
+
+### 상위 표현
+1. **"[표현]"** — 맥락: [사용 시점], 효과적인 이유: [분석]
+2. **"[표현]"** — 맥락: [사용 시점], 효과적인 이유: [분석]
+
+### 참여를 유도하는 질문
+1. **"[질문]"** — 이끄는 결과: [일반적 결과]
+2. **"[질문]"** — 이끄는 결과: [일반적 결과]
+
+### 이의 처리 패턴
+1. **이의**: "[일반적 이의]"
+   **응답 패턴**: "[최고 성과자의 응답 방식]"
+   **효과적인 이유**: [분석]
 
 ---
 
-## Template Usage Notes
+## 피해야 할 언어
 
-- Omit sections with no data rather than including empty placeholders
-- If transcript data is unavailable, omit the "Language That Works" and "Language to Avoid" sections
-- If only documents are available (no transcripts), note this in metadata
-- "We Are / We Are Not" table should have minimum 4 rows, ideally 5-7
-- Tone matrix should cover at minimum: cold outreach, proposals, social media
-- All examples must have source attribution
-- Every open question must include an agent recommendation
+### 안티패턴
+1. **"[표현/패턴]"** — 문제점: [발생하는 문제], 대안: "[대안]"
+2. **"[표현/패턴]"** — 문제점: [발생하는 문제], 대안: "[대안]"
+
+---
+
+## 콘텐츠 예시
+
+### 우수 예시
+[무엇이 온브랜드인지 설명하는 주석이 포함된 전체 예시]
+
+### 피해야 할 예시
+[무엇이 오프브랜드이고 어떻게 수정하는지 설명하는 주석이 포함된 전체 예시]
+
+---
+
+## 신뢰도 점수
+
+| 섹션 | 신뢰도 | 근거 | 소스 |
+|------|--------|------|------|
+| 보이스 속성 | [높/보/낮] | [이유] | [N개 소스] |
+| 메시징 프레임워크 | [높/보/낮] | [이유] | [N개 소스] |
+| 톤 매트릭스 | [높/보/낮] | [이유] | [N개 소스] |
+| 용어 | [높/보/낮] | [이유] | [N개 소스] |
+| 언어 패턴 | [높/보/낮] | [이유] | [N개 소스] |
+
+---
+
+## 팀 토론을 위한 미해결 질문
+
+### 높은 우선순위 (가이드라인 완성을 차단)
+1. **[질문 제목]**
+   - 발견된 내용: [모호성 설명]
+   - 에이전트 권장 사항: [제안 해결 방안]
+   - 필요한 사항: [구체적 결정]
+
+### 보통 우선순위 (품질 향상)
+[동일 형식]
+
+### 낮은 우선순위 (있으면 좋음)
+[동일 형식]
+
+---
+
+## 데이터 공백 및 권장 사항
+
+[누락된 것과 공백을 채우기 위한 구체적 조치]
+
+- [ ] [공백 1]: [채우기 위한 권장 사항]
+- [ ] [공백 2]: [채우기 위한 권장 사항]
+
+---
+
+## 부록: 소스
+
+| # | 소스 | 플랫폼 | 유형 | 날짜 | 사용된 주요 섹션 | 신뢰도 |
+|---|------|--------|------|------|---------------|--------|
+| 1 | [제목] | [플랫폼] | [AUTHORITATIVE/OPERATIONAL/등] | [날짜] | [섹션] | [높/보/낮] |
+
+---
+
+## 템플릿 사용 참고 사항
+
+- 데이터가 없는 섹션은 빈 자리표시자를 포함하기보다 생략
+- 트랜스크립트 데이터가 없으면 "효과적인 언어"와 "피해야 할 언어" 섹션 생략
+- 문서만 있는 경우 (트랜스크립트 없음) 메타데이터에 기록
+- "우리는 ~ / 우리는 ~이 아님" 테이블은 최소 4행, 이상적으로는 5-7행
+- 톤 매트릭스는 최소한 콜드 아웃리치, 제안서, 소셜 미디어를 커버
+- 모든 예시에 소스 명시
+- 모든 미해결 질문에 에이전트 권장 사항 포함

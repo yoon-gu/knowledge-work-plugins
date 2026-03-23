@@ -1,418 +1,236 @@
 ---
 name: draft-response
-description: Draft a professional customer-facing response tailored to the situation and relationship. Use when answering a product question, responding to an escalation or outage, delivering bad news like a delay or won't-fix, declining a feature request, or replying to a billing issue.
-argument-hint: "<situation description>"
+description: 상황과 관계에 맞춘 전문적인 고객 대면 응답을 초안합니다. 제품 질문에 답할 때, 에스컬레이션이나 장애에 응답할 때, 지연이나 수정 불가 같은 나쁜 소식을 전할 때, 기능 요청을 거절할 때, 또는 결제 이슈에 답변할 때 사용하세요.
+argument-hint: "<상황 설명>"
 ---
 
 # /draft-response
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 하는 경우, [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Draft a professional, customer-facing response tailored to the situation, customer relationship, and communication context.
+상황, 고객 관계, 커뮤니케이션 맥락에 맞춘 전문적인 고객 대면 응답을 초안합니다.
 
-## Usage
-
-```
-/draft-response <context about the customer question, issue, or request>
-```
-
-Examples:
-- `/draft-response Acme Corp is asking when the new dashboard feature will ship`
-- `/draft-response Customer escalation — their integration has been down for 2 days`
-- `/draft-response Responding to a feature request we won't be building`
-- `/draft-response Customer hit a billing error and wants a resolution ASAP`
-
-## Workflow
-
-### 1. Understand the Context
-
-Parse the user's input to determine:
-
-- **Customer**: Who is the communication for? Look up account context if available.
-- **Situation type**: Question, issue, escalation, announcement, negotiation, bad news, good news, follow-up
-- **Urgency**: Is this time-sensitive? How long has the customer been waiting?
-- **Channel**: Email, support ticket, chat, or other (adjust formality accordingly)
-- **Relationship stage**: New customer, established, frustrated/escalated
-- **Stakeholder level**: End user, manager, executive, technical, business
-
-### 2. Research Context
-
-Gather relevant background from available sources:
-
-**~~email:**
-- Previous correspondence with this customer on this topic
-- Any commitments or timelines previously shared
-- Tone and style of the existing thread
-
-**~~chat:**
-- Internal discussions about this customer or topic
-- Any guidance from product, engineering, or leadership
-- Similar situations and how they were handled
-
-**~~CRM (if connected):**
-- Account details and plan level
-- Contact information and key stakeholders
-- Previous escalations or sensitive issues
-
-**~~support platform (if connected):**
-- Related tickets and their resolution
-- Known issues or workarounds
-- SLA status and response time commitments
-
-**~~knowledge base:**
-- Official documentation or help articles to reference
-- Product roadmap information (if shareable)
-- Policy or process documentation
-
-### 3. Generate the Draft
-
-Produce a response tailored to the situation:
+## 사용법
 
 ```
-## Draft Response
+/draft-response <고객 질문, 이슈, 또는 요청에 대한 맥락>
+```
 
-**To:** [Customer contact name]
-**Re:** [Subject/topic]
-**Channel:** [Email / Ticket / Chat]
-**Tone:** [Empathetic / Professional / Technical / Celebratory / Candid]
+예시:
+- `/draft-response Acme Corp이 새 대시보드 기능 출시 시기를 묻고 있습니다`
+- `/draft-response 고객 에스컬레이션 — 연동이 2일째 다운`
+- `/draft-response 만들지 않을 기능 요청에 응답`
+- `/draft-response 고객이 결제 오류를 겪고 빠른 해결을 원합니다`
+
+## 워크플로우
+
+### 1. 맥락 이해
+
+사용자 입력을 파싱하여 결정합니다:
+
+- **고객**: 누구를 위한 커뮤니케이션인가? 가능하면 계정 맥락 조회.
+- **상황 유형**: 질문, 이슈, 에스컬레이션, 발표, 협상, 나쁜 소식, 좋은 소식, 후속
+- **긴급성**: 시간에 민감한가? 고객이 얼마나 기다렸는가?
+- **채널**: 이메일, 지원 티켓, 채팅, 기타 (격식 조정)
+- **관계 단계**: 신규 고객, 기존 고객, 좌절/에스컬레이션
+- **이해관계자 수준**: 최종 사용자, 관리자, 경영진, 기술, 비즈니스
+
+### 2. 맥락 조사
+
+### 3. 초안 생성
+
+상황에 맞춘 응답을 생성합니다:
+
+```
+## 초안 응답
+
+**수신:** [고객 연락처 이름]
+**건:** [제목/주제]
+**채널:** [이메일 / 티켓 / 채팅]
+**톤:** [공감적 / 전문적 / 기술적 / 축하 / 솔직]
 
 ---
 
-[Draft response text]
+[초안 응답 텍스트]
 
 ---
 
-### Notes for You (internal — do not send)
-- **Why this approach:** [Rationale for tone and content choices]
-- **Things to verify:** [Any facts or commitments to confirm before sending]
-- **Risk factors:** [Anything sensitive about this response]
-- **Follow-up needed:** [Actions to take after sending]
-- **Escalation note:** [If this should be reviewed by someone else first]
+### 내부 참고 (발송하지 마세요)
+- **이 접근의 이유:** [톤과 내용 선택의 근거]
+- **확인할 사항:** [발송 전 확인할 사실이나 약속]
+- **리스크 요소:** [이 응답에 대한 민감한 것]
+- **필요한 후속:** [발송 후 취할 조치]
+- **에스컬레이션 참고:** [다른 사람이 먼저 검토해야 하는 경우]
 ```
 
-### 4. Run Quality Checks
+### 4. 품질 점검 실행
 
-Before presenting the draft, verify:
+초안 제시 전 확인:
 
-- [ ] Tone matches the situation and relationship
-- [ ] No commitments beyond what's authorized
-- [ ] No product roadmap details that shouldn't be shared externally
-- [ ] Accurate references to previous conversations
-- [ ] Clear next steps and ownership
-- [ ] Appropriate for the stakeholder level (not too technical for executives, not too vague for engineers)
-- [ ] Length is appropriate for the channel (shorter for chat, fuller for email)
+- [ ] 톤이 상황과 관계에 맞는가
+- [ ] 승인된 것 이상의 약속이 없는가
+- [ ] 외부에 공유하면 안 되는 제품 로드맵 세부 사항이 없는가
+- [ ] 이전 대화 참조가 정확한가
+- [ ] 명확한 다음 단계와 담당이 있는가
+- [ ] 이해관계자 수준에 적합한가
+- [ ] 채널에 적합한 길이인가
 
-### 5. Offer Iterations
+### 5. 반복 제안
 
-After presenting the draft:
-- "Want me to adjust the tone? (more formal, more casual, more empathetic, more direct)"
-- "Should I add or remove any specific points?"
-- "Want me to make this shorter/longer?"
-- "Should I draft a version for a different stakeholder?"
-- "Want me to draft the internal escalation note as well?"
-- "Should I prepare a follow-up message to send after [X days] if no response?"
+초안 제시 후:
+- "톤을 조정할까요? (더 격식, 더 캐주얼, 더 공감적, 더 직접적)"
+- "특정 포인트를 추가하거나 제거할까요?"
+- "더 짧게/길게 만들까요?"
+- "다른 이해관계자를 위한 버전을 초안할까요?"
+- "내부 에스컬레이션 노트도 초안할까요?"
+- "[X일] 후 응답이 없으면 보낼 후속 메시지를 준비할까요?"
 
 ---
 
-## Customer Communication Best Practices
+## 고객 커뮤니케이션 모범 사례
 
-### Core Principles
+### 핵심 원칙
 
-1. **Lead with empathy**: Acknowledge the customer's situation before jumping to solutions
-2. **Be direct**: Get to the point — customers are busy. Bottom-line-up-front.
-3. **Be honest**: Never overpromise, never mislead, never hide bad news in jargon
-4. **Be specific**: Use concrete details, timelines, and names — avoid vague language
-5. **Own it**: Take responsibility when appropriate. "We" not "the system" or "the process"
-6. **Close the loop**: Every response should have a clear next step or call to action
-7. **Match their energy**: If they're frustrated, be empathetic first. If they're excited, be enthusiastic.
+1. **공감으로 시작**: 솔루션으로 뛰어들기 전에 고객의 상황을 인정
+2. **직접적으로**: 핵심으로 — 고객은 바쁩니다. 결론부터.
+3. **정직하게**: 과도한 약속, 오도, 전문 용어로 나쁜 소식을 숨기지 않기
+4. **구체적으로**: 구체적 세부, 타임라인, 이름 사용 — 모호한 언어 피하기
+5. **책임지기**: 적절할 때 책임지기. "시스템"이나 "프로세스"가 아닌 "우리"
+6. **고리를 닫기**: 모든 응답에 명확한 다음 단계나 행동 촉구
+7. **에너지를 맞추기**: 좌절하면 먼저 공감. 흥분하면 열정적으로.
 
-### Response Structure
+### 응답 구조
 
-For most customer communications, follow this structure:
-
-```
-1. Acknowledgment / Context (1-2 sentences)
-   - Acknowledge what they said, asked, or are experiencing
-   - Show you understand their situation
-
-2. Core Message (1-3 paragraphs)
-   - Deliver the main information, answer, or update
-   - Be specific and concrete
-   - Include relevant details they need
-
-3. Next Steps (1-3 bullets)
-   - What YOU will do and by when
-   - What THEY need to do (if anything)
-   - When they'll hear from you next
-
-4. Closing (1 sentence)
-   - Warm but professional sign-off
-   - Reinforce you're available if needed
-```
-
-### Length Guidelines
-
-- **Chat/IM**: 1-4 sentences. Get to the point immediately.
-- **Support ticket response**: 1-3 short paragraphs. Structured and scannable.
-- **Email**: 3-5 paragraphs max. Respect their inbox.
-- **Escalation response**: As long as needed to be thorough, but well-structured with headers.
-- **Executive communication**: Shorter is better. 2-3 paragraphs max. Data-driven.
-
-## Tone and Style Guidelines
-
-### Tone Spectrum
-
-| Situation | Tone | Characteristics |
-|-----------|------|----------------|
-| Good news / wins | Celebratory | Enthusiastic, warm, congratulatory, forward-looking |
-| Routine update | Professional | Clear, concise, informative, friendly |
-| Technical response | Precise | Accurate, detailed, structured, patient |
-| Delayed delivery | Accountable | Honest, apologetic, action-oriented, specific |
-| Bad news | Candid | Direct, empathetic, solution-oriented, respectful |
-| Issue / outage | Urgent | Immediate, transparent, actionable, reassuring |
-| Escalation | Executive | Composed, ownership-taking, plan-presenting, confident |
-| Billing / account | Precise | Clear, factual, empathetic, resolution-focused |
-
-### Tone Adjustments by Relationship Stage
-
-**New Customer (0-3 months):**
-- More formal and professional
-- Extra context and explanation (don't assume knowledge)
-- Proactively offer help and resources
-- Build trust through reliability and responsiveness
-
-**Established Customer (3+ months):**
-- Warm and collaborative
-- Can reference shared history and previous conversations
-- More direct and efficient communication
-- Show awareness of their goals and priorities
-
-**Frustrated or Escalated Customer:**
-- Extra empathy and acknowledgment
-- Urgency in response times
-- Concrete action plans with specific commitments
-- Shorter feedback loops
-
-### Writing Style Rules
-
-**DO:**
-- Use active voice ("We'll investigate" not "This will be investigated")
-- Use "I" for personal commitments and "we" for team commitments
-- Name specific people when assigning actions ("Sarah from our engineering team will...")
-- Use the customer's terminology, not your internal jargon
-- Include specific dates and times, not relative terms ("by Friday January 24" not "in a few days")
-- Break up long responses with headers or bullet points
-
-**DON'T:**
-- Use corporate jargon or buzzwords ("synergy", "leverage", "paradigm shift")
-- Deflect blame to other teams, systems, or processes
-- Use passive voice to avoid ownership ("Mistakes were made")
-- Include unnecessary caveats or hedging that undermines confidence
-- CC people unnecessarily — only include those who need to be in the conversation
-- Use exclamation marks excessively (one per email max, if any)
-
-## Situation-Specific Approaches
-
-**Answering a product question:**
-- Lead with the direct answer
-- Provide relevant documentation links
-- Offer to connect them with the right resource if needed
-- If you don't know the answer: say so honestly, commit to finding out, give a timeline
-
-**Responding to an issue or bug:**
-- Acknowledge the impact on their work
-- State what you know about the issue and its status
-- Provide workaround if available
-- Set expectations for resolution timeline
-- Commit to updates at regular intervals
-
-**Handling an escalation:**
-- Acknowledge the severity and their frustration
-- Take ownership (no deflecting or excuse-making)
-- Provide a clear action plan with timeline
-- Identify the person accountable for resolution
-- Offer a meeting or call if appropriate for the severity
-
-**Delivering bad news (feature sunset, delay, can't-fix):**
-- Be direct — don't bury the news
-- Explain the reasoning honestly
-- Acknowledge the impact on them specifically
-- Offer alternatives or mitigation
-- Provide a clear path forward
-
-**Sharing good news (feature launch, milestone, recognition):**
-- Lead with the positive outcome
-- Connect it to their specific goals or use case
-- Suggest next steps to capitalize on the good news
-- Express genuine enthusiasm
-
-**Declining a request (feature request, discount, exception):**
-- Acknowledge the request and its reasoning
-- Be honest about the decision
-- Explain the why without being dismissive
-- Offer alternatives when possible
-- Leave the door open for future conversation
-
-## Response Templates for Common Scenarios
-
-### Acknowledging a Bug Report
+대부분의 고객 커뮤니케이션에 이 구조를 따릅니다:
 
 ```
-Hi [Name],
+1. 인정 / 맥락 (1-2문장)
+   - 말한 것, 물은 것, 경험하는 것을 인정
+   - 상황을 이해한다는 것을 보여주기
 
-Thank you for reporting this — I can see how [specific impact] would be
-frustrating for your team.
+2. 핵심 메시지 (1-3문단)
+   - 주요 정보, 답변, 업데이트 전달
+   - 구체적이고 구체적으로
+   - 필요한 관련 세부 포함
 
-I've confirmed the issue and escalated it to our engineering team as a
-[priority level]. Here's what we know so far:
-- [What's happening]
-- [What's causing it, if known]
-- [Workaround, if available]
+3. 다음 단계 (1-3개 불릿)
+   - 당사가 할 것과 언제까지
+   - 고객이 해야 할 것 (있으면)
+   - 다음에 연락할 시기
 
-I'll update you by [specific date/time] with a resolution timeline.
-In the meantime, [workaround details if applicable].
-
-Let me know if you have any questions or if this is impacting you in
-other ways I should know about.
-
-Best,
-[Your name]
+4. 마무리 (1문장)
+   - 따뜻하지만 전문적 마무리
+   - 필요하면 가능하다는 것을 강조
 ```
 
-### Acknowledging a Billing or Account Issue
+### 상황별 접근
+
+**제품 질문에 답변:**
+- 직접적 답변으로 시작
+- 관련 문서 링크 제공
+- 필요하면 적합한 리소스 연결 제안
+- 답을 모르면: 솔직히 말하고, 알아보겠다고 약속, 타임라인 제공
+
+**이슈나 버그에 응답:**
+- 작업에 미치는 영향을 인정
+- 이슈와 상태에 대해 알고 있는 것을 진술
+- 가능하면 우회 방법 제공
+- 해결 타임라인에 대한 기대 설정
+- 정기적 간격으로 업데이트를 약속
+
+**에스컬레이션 처리:**
+- 심각도와 좌절을 인정
+- 책임지기 (변명이나 책임 전가 금지)
+- 타임라인이 포함된 명확한 실행 계획 제공
+- 해결 책임자를 식별
+- 심각도에 적합하면 미팅이나 전화 제안
+
+**나쁜 소식 전달 (기능 중단, 지연, 수정 불가):**
+- 직접적으로 — 뉴스를 묻지 않기
+- 이유를 솔직하게 설명
+- 구체적으로 그들에게 미치는 영향을 인정
+- 대안이나 완화 제안
+- 명확한 앞으로의 경로 제공
+
+**요청 거절 (기능 요청, 할인, 예외):**
+- 요청과 근거를 인정
+- 결정에 솔직하게
+- 무시하지 않고 이유를 설명
+- 가능하면 대안 제안
+- 향후 대화의 여지를 남기기
+
+## 응답 템플릿
+
+### 버그 보고 인정
 
 ```
-Hi [Name],
+[이름]님, 안녕하세요.
 
-Thank you for reaching out about this — I understand billing issues
-need prompt attention, and I want to make sure this gets resolved
-quickly.
+이것을 보고해 주셔서 감사합니다 — [구체적 영향]이 팀에
+불편을 드리고 있다는 것을 이해합니다.
 
-I've looked into your account and here's what I'm seeing:
-- [What happened — clear factual explanation]
-- [Impact on their account — charges, access, etc.]
+이 이슈를 확인하고 엔지니어링 팀에 [우선순위]로
+에스컬레이션했습니다. 지금까지 알고 있는 것:
+- [일어나고 있는 것]
+- [원인, 알려진 경우]
+- [우회 방법, 있는 경우]
 
-Here's what I'm doing to fix this:
-- [Action 1 — with timeline]
-- [Action 2 — if applicable]
+[구체적 날짜/시간]까지 해결 타임라인을 업데이트해 드리겠습니다.
+그동안 [해당하면 우회 방법 세부].
 
-[If resolution is immediate: "This has been corrected and you should
-see the change reflected within [timeframe]."]
-[If needs investigation: "I'm escalating this to our billing team
-and will have an update for you by [specific date]."]
+질문이 있거나 다른 방식으로 영향받고 있다면 알려주세요.
 
-I'm sorry for the inconvenience. Let me know if you have any
-questions about your account.
-
-Best,
-[Your name]
+감사합니다,
+[이름]
 ```
 
-### Responding to a Feature Request You Won't Build
+### 장애 또는 사고 커뮤니케이션
 
 ```
-Hi [Name],
+[이름]님, 안녕하세요.
 
-Thank you for sharing this request — I can see why [capability] would
-be valuable for [their use case].
+팀이 사용하시는 [서비스/기능]에 영향을 미치는 이슈에 대해
+직접 연락드립니다.
 
-I discussed this with our product team, and this isn't something we're
-planning to build in the near term. The primary reason is [honest,
-respectful explanation — e.g., it serves a narrow use case, it conflicts
-with our architecture direction, etc.].
+**발생한 일:** [명확한 비기술적 설명]
+**영향:** [구체적으로 어떻게 영향받는지]
+**상태:** [조사 중 / 식별됨 / 수정 중 / 해결됨]
+**해결 예상:** [알려진 경우 구체적 시간, 또는 "X시간마다 업데이트"]
 
-That said, I want to make sure you can accomplish your goal. Here are
-some alternatives:
-- [Alternative approach 1]
-- [Alternative approach 2]
-- [Integration or workaround if applicable]
+[해당하면: "그동안 [우회 방법]을 사용하실 수 있습니다."]
 
-I've also documented your request in our feedback system, and if our
-direction changes, I'll let you know.
+직접 추적하고 있으며 해결되는 대로 업데이트해 드리겠습니다.
+실시간 업데이트는 [상태 페이지 URL]에서도 확인하실 수 있습니다.
 
-Would any of these alternatives work for your team? Happy to dig
-deeper into any of them.
+팀의 작업에 지장을 드려 죄송합니다. 이것을 심각하게 받아들이고
+[알려진 경우 재발 방지를 위한 조치].
 
-Best,
-[Your name]
+[이름]
 ```
 
-### Outage or Incident Communication
+## 후속 및 에스컬레이션 안내
 
-```
-Hi [Name],
+### 후속 주기
 
-I wanted to reach out directly to let you know about an issue affecting
-[service/feature] that I know your team relies on.
-
-**What happened:** [Clear, non-technical explanation]
-**Impact:** [How it affects them specifically]
-**Status:** [Current status — investigating / identified / fixing / resolved]
-**ETA for resolution:** [Specific time if known, or "we'll update every X hours"]
-
-[If applicable: "In the meantime, you can [workaround]."]
-
-I'm personally tracking this and will update you as soon as we have a
-resolution. You can also check [status page URL] for real-time updates.
-
-I'm sorry for the disruption to your team's work. We take this seriously
-and [what you're doing to prevent recurrence if known].
-
-[Your name]
-```
-
-### Following Up After Silence
-
-```
-Hi [Name],
-
-I wanted to check in — I sent over [what you sent] on [date] and
-wanted to make sure it didn't get lost in the shuffle.
-
-[Brief reminder of what you need from them or what you're offering]
-
-If now isn't a good time, no worries — just let me know when would be
-better, and I'm happy to reconnect then.
-
-Best,
-[Your name]
-```
-
-## Follow-up and Escalation Guidance
-
-### Follow-up Cadence
-
-| Situation | Follow-up Timing |
+| 상황 | 후속 시기 |
 |-----------|-----------------|
-| Unanswered question | 2-3 business days |
-| Open support issue | Daily until resolved for critical, 2-3 days for standard |
-| Post-meeting action items | Within 24 hours (send notes), then check at deadline |
-| General check-in | As needed for ongoing issues |
-| After delivering bad news | 1 week to check on impact and sentiment |
+| 미답변 질문 | 2-3 영업일 |
+| 오픈 지원 이슈 | 심각: 해결까지 매일, 표준: 2-3일 |
+| 회의 후 실행 항목 | 24시간 이내 (노트 발송), 마감일에 확인 |
+| 일반 체크인 | 진행 중인 이슈에 필요에 따라 |
+| 나쁜 소식 전달 후 | 영향과 감정 확인을 위해 1주 |
 
-### When to Escalate
+### 에스컬레이션 시기
 
-**Escalate to your manager when:**
-- Customer threatens to cancel or significantly downsell
-- Customer requests exception to policy you can't authorize
-- An issue has been unresolved for longer than SLA allows
-- Customer requests direct contact with leadership
-- You've made an error that needs senior involvement to resolve
+**매니저에게 에스컬레이션:**
+- 고객이 취소하거나 크게 다운셀하겠다고 위협
+- 고객이 승인할 수 없는 정책 예외를 요청
+- SLA보다 오래 해결되지 않은 이슈
+- 고객이 리더십과의 직접 연락을 요청
+- 시니어 관여가 필요한 실수를 한 경우
 
-**Escalate to product/engineering when:**
-- Bug is critical and blocking the customer's business
-- Feature gap is causing a competitive loss
-- Customer has unique technical requirements beyond standard support
-- Integration issues require engineering investigation
-
-**Escalation format:**
-```
-ESCALATION: [Customer Name] — [One-line summary]
-
-Urgency: [Critical / High / Medium]
-Customer impact: [What's broken for them]
-History: [Brief background — 2-3 sentences]
-What I've tried: [Actions taken so far]
-What I need: [Specific help or decision needed]
-Deadline: [When this needs to be resolved by]
-```
+**제품/엔지니어링에 에스컬레이션:**
+- 버그가 심각하고 고객의 비즈니스를 차단
+- 기능 갭이 경쟁 손실을 야기
+- 고객이 표준 지원을 넘는 고유한 기술 요구사항
+- 엔지니어링 조사가 필요한 연동 문제

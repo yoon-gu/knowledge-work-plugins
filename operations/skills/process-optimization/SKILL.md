@@ -1,39 +1,39 @@
 ---
 name: process-optimization
-description: Analyze and improve business processes. Trigger with "this process is slow", "how can we improve", "streamline this workflow", "too many steps", "bottleneck", or when the user describes an inefficient process they want to fix.
+description: 비즈니스 프로세스를 분석하고 개선합니다. "이 프로세스가 느려요", "어떻게 개선할 수 있을까요", "워크플로우 간소화", "단계가 너무 많아요", "병목", 또는 사용자가 고치고 싶은 비효율적인 프로세스를 설명할 때 활성화됩니다.
 ---
 
-# Process Optimization
+# 프로세스 최적화
 
-Analyze existing processes and recommend improvements.
+기존 프로세스를 분석하고 개선 방안을 권고합니다.
 
-## Analysis Framework
+## 분석 프레임워크
 
-### 1. Map Current State
-- Document every step, decision point, and handoff
-- Identify who does what and how long each step takes
-- Note manual steps, approvals, and waiting times
+### 1. 현재 상태 매핑
+- 모든 단계, 의사결정 지점, 인수인계를 문서화
+- 누가 무엇을 하며 각 단계에 얼마나 걸리는지 파악
+- 수동 단계, 승인, 대기 시간 기록
 
-### 2. Identify Waste
-- **Waiting**: Time spent in queues or waiting for approvals
-- **Rework**: Steps that fail and need to be redone
-- **Handoffs**: Each handoff is a potential point of failure or delay
-- **Over-processing**: Steps that add no value
-- **Manual work**: Tasks that could be automated
+### 2. 낭비 식별
+- **대기**: 대기열이나 승인을 기다리는 시간
+- **재작업**: 실패하여 다시 수행해야 하는 단계
+- **인수인계**: 각 인수인계는 잠재적 실패 또는 지연 지점
+- **과도한 처리**: 가치를 더하지 않는 단계
+- **수작업**: 자동화할 수 있는 작업
 
-### 3. Design Future State
-- Eliminate unnecessary steps
-- Automate where possible
-- Reduce handoffs
-- Parallelize independent steps
-- Add checkpoints (not gates)
+### 3. 미래 상태 설계
+- 불필요한 단계 제거
+- 가능한 곳에서 자동화
+- 인수인계 줄이기
+- 독립적인 단계 병렬화
+- 체크포인트 추가 (게이트 아님)
 
-### 4. Measure Impact
-- Time saved per cycle
-- Error rate reduction
-- Cost savings
-- Employee satisfaction improvement
+### 4. 영향 측정
+- 주기당 절약된 시간
+- 오류율 감소
+- 비용 절감
+- 직원 만족도 향상
 
-## Output
+## 출력
 
-Produce a before/after process comparison with specific improvement recommendations, estimated impact, and an implementation plan.
+구체적인 개선 권고사항, 예상 영향, 구현 계획이 포함된 개선 전/후 프로세스 비교를 작성합니다.

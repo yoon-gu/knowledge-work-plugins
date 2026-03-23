@@ -1,396 +1,396 @@
-# SKILL 4: Parameter Fixation Strategy
+# 스킬 4: 매개변수 고정 전략
 
-## Overview
-This skill helps scientists strategically decide which parameters to fix and which to keep flexible in their project. The paradox: too many fixed parameters creates brittleness, but too few causes paralysis. The key is fixing ONE parameter thoughtfully and letting others float—constraints engender creativity.
+## 개요
+이 스킬은 과학자들이 프로젝트에서 어떤 매개변수를 고정하고 어떤 것을 유연하게 유지할지 전략적으로 결정하도록 돕습니다. 역설적으로: 너무 많은 고정 매개변수는 취약성을 만들지만, 너무 적으면 마비를 유발합니다. 핵심은 하나의 매개변수를 신중하게 고정하고 나머지는 유동적으로 두는 것입니다—제약은 창의성을 낳습니다.
 
-## Core Principle
+## 핵심 원칙
 
-**"Fix one parameter; let the others float."**
+**"하나의 매개변수를 고정하고 나머지는 유동적으로 두세요."**
 
-Most failure modes in ideation involve fixing too many parameters at the outset (system + method + application). Conversely, statements like "I want to do impactful work in cell engineering" are so broad they cause paralysis. The sweet spot: fix one meaningful constraint and let creativity flow within that boundary.
+아이디어 발상에서 대부분의 실패 모드는 시작부터 너무 많은 매개변수를 고정하는 것 (시스템 + 방법 + 응용)에 있습니다. 반대로, "세포 공학에서 영향력 있는 연구를 하고 싶다"와 같은 진술은 너무 광범위하여 마비를 유발합니다. 최적점: 하나의 의미 있는 제약을 고정하고 그 경계 안에서 창의성이 흐르게 하세요.
 
-## What Are Project Parameters?
+## 프로젝트 매개변수란?
 
-Parameters are the choices that define your project:
+매개변수는 프로젝트를 정의하는 선택입니다:
 
-**Common Parameters:**
-- **System:** Which organism/cell type/tissue/molecule?
-- **Question:** What biological phenomenon to study?
-- **Tool/Method:** Which experimental approach?
-- **Application:** What practical use or goal?
-- **Output:** What form will results take?
-- **Collaborators:** Who will you work with?
-- **Timeline:** How fast must you move?
-- **Resources:** What's available/necessary?
+**일반적인 매개변수:**
+- **시스템:** 어떤 생물/세포 유형/조직/분자?
+- **질문:** 어떤 생물학적 현상을 연구할 것인가?
+- **도구/방법:** 어떤 실험 접근법?
+- **응용:** 어떤 실용적 용도나 목표?
+- **결과물:** 결과는 어떤 형태를 취할 것인가?
+- **협력자:** 누구와 함께 일할 것인가?
+- **타임라인:** 얼마나 빠르게 움직여야 하는가?
+- **자원:** 무엇이 가용/필요한가?
 
-## The Skill Workflow
+## 스킬 워크플로우
 
-### Phase 1: Parameter Inventory (10 minutes)
+### 단계 1: 매개변수 목록 작성 (10분)
 
-First, let's identify what's already fixed in your current project idea:
+먼저, 현재 프로젝트 아이디어에서 이미 고정된 것을 식별합시다:
 
-**Question 1: List your project parameters**
+**질문 1: 프로젝트 매개변수를 나열하세요**
 
-For each category, indicate if it's **FIXED** (must stay) or **FLOATING** (could change):
+각 범주에 대해, **고정**(유지해야 함) 또는 **유동**(변경 가능)인지 표시하세요:
 
-| Parameter Type | Your Choice | Status (F/FL) | Why Fixed? |
-|----------------|-------------|---------------|------------|
-| **System** | [organism/cell/tissue] | F / FL | [reason] |
-| **Question** | [biological phenomenon] | F / FL | [reason] |
-| **Tool/Method** | [techniques] | F / FL | [reason] |
-| **Application** | [use case/goal] | F / FL | [reason] |
-| **Timeline** | [duration] | F / FL | [reason] |
-| **Resources** | [equipment/funding] | F / FL | [reason] |
+| 매개변수 유형 | 당신의 선택 | 상태 (고정/유동) | 왜 고정? |
+|-------------|-----------|----------------|---------|
+| **시스템** | [생물/세포/조직] | 고정 / 유동 | [이유] |
+| **질문** | [생물학적 현상] | 고정 / 유동 | [이유] |
+| **도구/방법** | [기술들] | 고정 / 유동 | [이유] |
+| **응용** | [사용 사례/목표] | 고정 / 유동 | [이유] |
+| **타임라인** | [기간] | 고정 / 유동 | [이유] |
+| **자원** | [장비/자금] | 고정 / 유동 | [이유] |
 
-**Question 2: Count your fixed parameters**
-- How many did you mark as FIXED? _____
-- If >2, you may have over-constrained the problem
+**질문 2: 고정된 매개변수 수를 세세요**
+- 고정으로 표시한 것이 몇 개인가? _____
+- 2개 초과면, 문제를 과도하게 제약했을 수 있습니다
 
-**Question 3: Why are they fixed?**
-For each fixed parameter, is it because:
-A. Your expertise/passion
-B. Lab resources/capabilities  
-C. Advisor requirements
-D. You think it's the "best" solution
-E. Historical accident (you started this way)
+**질문 3: 왜 고정되어 있는가?**
+각 고정된 매개변수에 대해, 다음 중 어떤 이유 때문인가:
+A. 전문성/열정
+B. 연구실 자원/역량
+C. 지도교수 요구사항
+D. "최선의" 해결책이라고 생각
+E. 역사적 우연 (이 방식으로 시작함)
 
-### Phase 2: The GLP-1 Example (Case Study)
+### 단계 2: GLP-1 예시 (사례 연구)
 
-Let's learn from a concrete example:
+구체적인 예시에서 배워봅시다:
 
-**Proposed Project:** Engineer a T cell to produce GLP-1 (glucagon-like peptide-1) for continuous supply.
+**제안된 프로젝트:** 지속적 공급을 위해 GLP-1(글루카곤 유사 펩타이드-1)을 생산하는 T 세포를 엔지니어링
 
-**Analysis: What's Fixed?**
-1. Improving GLP-1 receptor agonist delivery characteristics (the problem)
-2. Using an engineered T cell (the solution)
+**분석: 무엇이 고정되었는가?**
+1. GLP-1 수용체 작용제 전달 특성 개선 (문제)
+2. 엔지니어링된 T 세포 사용 (해결책)
 
-**Problem:** Two parameters fixed = poor technique-application match
+**문제:** 두 개의 매개변수 고정 = 불량한 기술-응용 매칭
 
-**Alternative Framings:**
+**대안적 프레이밍:**
 
-**If you fix Parameter 1 (GLP-1 delivery):**
-- Let the solution float
-- Better options: peptide engineering for extended half-life, oral peptides, small molecules, B cells (better protein secretion)
-- Why T cell is suboptimal: Not designed for protein secretion
-- **Best for:** Trainee in metabolism lab who cares about GLP-1
+**매개변수 1을 고정하면 (GLP-1 전달):**
+- 해결책을 유동적으로
+- 더 나은 옵션: 연장된 반감기를 위한 펩타이드 엔지니어링, 경구 펩타이드, 소분자, B 세포 (더 나은 단백질 분비)
+- T 세포가 차선인 이유: 단백질 분비를 위해 설계되지 않음
+- **최적 대상:** GLP-1에 관심 있는 대사 연구실의 수련생
 
-**If you fix Parameter 2 (Engineered T cell):**
-- Let the application float
-- Better options: local-acting peptides (cytokines, chemokines, growth factors) for oncology/autoimmunity/regeneration
-- Why GLP-1 is suboptimal: Doesn't leverage T cell's natural capabilities
-- **Best for:** Trainee in immunology/cell engineering lab
+**매개변수 2를 고정하면 (엔지니어링된 T 세포):**
+- 응용을 유동적으로
+- 더 나은 옵션: 종양학/자가면역/재생을 위한 국소 작용 펩타이드 (사이토카인, 케모카인, 성장인자)
+- GLP-1이 차선인 이유: T 세포의 자연적 역량을 활용하지 않음
+- **최적 대상:** 면역학/세포 공학 연구실의 수련생
 
-**Key Insight:** Which parameter you fix depends on YOUR interests and your lab's expertise. Both can lead to great projects, but they're DIFFERENT projects.
+**핵심 통찰:** 어떤 매개변수를 고정하느냐는 당신의 관심사와 연구실의 전문성에 따라 달라집니다. 둘 다 훌륭한 프로젝트로 이어질 수 있지만, 다른 프로젝트입니다.
 
-### Phase 3: Diagnostic Questions
+### 단계 3: 진단 질문
 
-**The Goldilocks Test:**
+**골디락스 테스트:**
 
-**Too Many Fixed Parameters (>2):**
-- Are you forcing a technique-application match?
-- If one assumption fails, does everything fail?
-- Are you more attached to HOW than WHAT?
-- Does your project sound like: "Use X to do Y in Z"?
+**너무 많은 고정 매개변수 (>2):**
+- 기술-응용 매칭을 강제하고 있는가?
+- 하나의 가정이 실패하면 모든 것이 실패하는가?
+- 무엇(WHAT)보다 어떻게(HOW)에 더 집착하고 있는가?
+- 프로젝트가 "X를 사용하여 Z에서 Y를 하자"처럼 들리는가?
 
-**Too Few Fixed Parameters (0-1 very broad):**
-- Do you feel paralyzed where to start?
-- Is your statement super generic? ("Do impactful work in...")
-- Are you avoiding commitment?
-- Do you have decision fatigue?
+**너무 적은 고정 매개변수 (0-1개 매우 광범위):**
+- 어디서 시작해야 할지 마비되었는가?
+- 진술이 매우 일반적인가? ("...에서 영향력 있는 연구를 하자")
+- 헌신을 피하고 있는가?
+- 결정 피로가 있는가?
 
-**Just Right (1-2 well-chosen):**
-- Do you have creative constraints?
-- Can you articulate why THIS constraint matters?
-- If one approach fails, do alternatives exist?
-- Does the constraint energize you?
-
-### Phase 4: The Illumina Example (Constraints Drive Innovation)
-
-**Historical Context:** Next-generation sequencing wasn't designed; we got Illumina's approach (many short reads).
-
-**Initial Constraint:** Short reads seemed like a limitation
-- Not what we would have "asked for"
-- Seemed inferior to long reads
+**적절한 수준 (잘 선택된 1-2개):**
+- 창의적 제약이 있는가?
+- 왜 이 제약이 중요한지 명시할 수 있는가?
+- 하나의 접근법이 실패하면 대안이 존재하는가?
+- 제약이 에너지를 주는가?
+
+### 단계 4: Illumina 예시 (제약이 혁신을 이끈다)
+
+**역사적 맥락:** 차세대 시퀀싱은 설계된 것이 아닙니다; 우리는 Illumina의 접근법(많은 짧은 리드)을 얻었습니다.
+
+**초기 제약:** 짧은 리드는 한계처럼 보였음
+- 우리가 "요청했을" 것이 아님
+- 긴 리드보다 열등해 보였음
 
-**Innovation Unleashed:**
-- Computational methods (assembly algorithms)
-- Novel applications (RNA-seq, ChIP-seq, ATAC-seq)
-- Unexpected uses (protein folding via sequencing)
-- Biochemical creativity to work within constraints
+**촉발된 혁신:**
+- 계산 방법 (어셈블리 알고리즘)
+- 새로운 응용 (RNA-seq, ChIP-seq, ATAC-seq)
+- 예상치 못한 사용 (시퀀싱을 통한 단백질 접힘)
+- 제약 내에서 일하기 위한 생화학적 창의성
 
-**Lesson:** Constraints don't limit creativity—they focus it. If you feel stuck, fix ONE parameter and watch resourcefulness emerge.
-
-### Phase 5: Which Parameter Should You Fix?
+**교훈:** 제약은 창의성을 제한하지 않습니다—집중시킵니다. 막혔다면, 하나의 매개변수를 고정하고 자원 활용성이 나타나는 것을 지켜보세요.
+
+### 단계 5: 어떤 매개변수를 고정해야 하는가?
 
-**Strategic Questions to Identify the Right Fixed Parameter:**
-
-1. **What can you prototype quickly?**
-   - What test article could you build rapidly?
-   - Which experimental conditions enable early go/no-go?
-   - What gives you fastest feedback?
+**올바른 고정 매개변수를 식별하기 위한 전략적 질문:**
+
+1. **빠르게 프로토타입할 수 있는 것은?**
+   - 빠르게 만들 수 있는 테스트 물품은?
+   - 어떤 실험 조건이 조기 go/no-go를 가능하게 하는가?
+   - 가장 빠른 피드백을 주는 것은?
 
-2. **What are people around you unusually good at?**
-   - Lab expertise?
-   - Core facility capabilities?
-   - Collaborator strengths?
-   - Your unique skill combination?
+2. **주변 사람들이 특별히 잘하는 것은?**
+   - 연구실 전문성?
+   - 핵심 시설 역량?
+   - 협력자 강점?
+   - 당신의 고유한 기술 조합?
 
-3. **What do you enjoy so much you don't think of it as work?**
-   - System you're passionate about?
-   - Technique you love?
-   - Type of question that excites you?
+3. **일이라고 생각하지 않을 만큼 즐기는 것은?**
+   - 열정적인 시스템?
+   - 좋아하는 기술?
+   - 흥분시키는 질문 유형?
 
-4. **What's your competitive advantage?**
-   - Unique resource access?
-   - Rare skill combination?
-   - Proprietary data/reagents?
-   - First-mover opportunity?
+4. **당신의 경쟁 우위는?**
+   - 고유한 자원 접근?
+   - 드문 기술 조합?
+   - 독점 데이터/시약?
+   - 선발자 이점 기회?
 
-**Common Strategic Choices:**
+**일반적인 전략적 선택:**
 
-**Fix the System (Let question & tool float):**
-- Good if: You're an expert in the organism/tissue/cell type
-- Enables: Asking multiple questions, trying various tools
-- Example: "I study *Drosophila* neural development; I'll let the specific questions and methods emerge"
+**시스템 고정 (질문 & 도구는 유동):**
+- 적합한 경우: 생물/조직/세포 유형의 전문가인 경우
+- 가능하게 하는 것: 여러 질문 탐색, 다양한 도구 시도
+- 예시: "초파리 신경 발달을 연구합니다; 구체적인 질문과 방법은 자연스럽게 나타나게 할 것입니다"
 
-**Fix the Question (Let system & tool float):**
-- Good if: You care deeply about a biological phenomenon
-- Enables: Testing across systems, using best tool for each
-- Example: "I want to understand phase separation; I'll study it wherever it's clearest"
+**질문 고정 (시스템 & 도구는 유동):**
+- 적합한 경우: 생물학적 현상에 깊은 관심이 있는 경우
+- 가능하게 하는 것: 여러 시스템에서 테스트, 각각에 가장 좋은 도구 사용
+- 예시: "상분리를 이해하고 싶습니다; 가장 명확한 곳에서 연구할 것입니다"
 
-**Fix the Tool (Let system & question float):**
-- Good if: You're developing or mastering a technology
-- Enables: Finding best applications, comparing across systems
-- Example: "I'm building a new microscopy method; I'll find the most impactful uses"
+**도구 고정 (시스템 & 질문은 유동):**
+- 적합한 경우: 기술을 개발하거나 마스터하는 경우
+- 가능하게 하는 것: 최적의 응용 찾기, 시스템 간 비교
+- 예시: "새로운 현미경 방법을 만들고 있습니다; 가장 영향력 있는 사용처를 찾을 것입니다"
 
-**Fix the Application (Let system & tool float):**
-- Good if: You have a specific translational goal
-- Enables: Trying multiple approaches, testing in different models
-- Example: "I want to treat disease X; I'm open to any validated approach"
+**응용 고정 (시스템 & 도구는 유동):**
+- 적합한 경우: 특정 번역 목표가 있는 경우
+- 가능하게 하는 것: 여러 접근법 시도, 다른 모델에서 테스트
+- 예시: "질병 X를 치료하고 싶습니다; 검증된 어떤 접근법이든 열려 있습니다"
 
-### Phase 6: Parameter Flexibility Matrix
+### 단계 6: 매개변수 유연성 매트릭스
 
-For your project, let's create a flexibility assessment:
+당신의 프로젝트에 대해 유연성 평가를 만들어봅시다:
 
-| Parameter | Currently | Should Be? | If Problem Arises, Could This Float? |
-|-----------|-----------|------------|--------------------------------------|
-| System | [F/FL] | [F/FL] | Yes / No / Maybe |
-| Question | [F/FL] | [F/FL] | Yes / No / Maybe |
-| Tool | [F/FL] | [F/FL] | Yes / No / Maybe |
-| Application | [F/FL] | [F/FL] | Yes / No / Maybe |
-| Timeline | [F/FL] | [F/FL] | Yes / No / Maybe |
-| Resources | [F/FL] | [F/FL] | Yes / No / Maybe |
+| 매개변수 | 현재 상태 | 적절한 상태? | 문제 발생 시 유동할 수 있는가? |
+|---------|---------|------------|--------------------------|
+| 시스템 | [고정/유동] | [고정/유동] | 예 / 아니오 / 아마도 |
+| 질문 | [고정/유동] | [고정/유동] | 예 / 아니오 / 아마도 |
+| 도구 | [고정/유동] | [고정/유동] | 예 / 아니오 / 아마도 |
+| 응용 | [고정/유동] | [고정/유동] | 예 / 아니오 / 아마도 |
+| 타임라인 | [고정/유동] | [고정/유동] | 예 / 아니오 / 아마도 |
+| 자원 | [고정/유동] | [고정/유동] | 예 / 아니오 / 아마도 |
 
-**Analysis:**
-- **Flexibility Score:** How many "Yes" or "Maybe"? _____
-- **Risk Assessment:** If <3 can float, you're brittle
-- **Pivot Potential:** Which parameters provide escape routes?
+**분석:**
+- **유연성 점수:** "예" 또는 "아마도"가 몇 개? _____
+- **위험 평가:** 3개 미만이 유동할 수 있으면, 취약합니다
+- **전환 잠재력:** 어떤 매개변수가 탈출 경로를 제공하는가?
 
-### Phase 7: Scenario Planning
+### 단계 7: 시나리오 계획
 
-For each fixed parameter, let's plan what happens if it becomes untenable:
+각 고정 매개변수에 대해, 유지 불가능하게 될 경우를 계획합시다:
 
-**Fixed Parameter 1: [Name it]**
-- **Why it's fixed:** [Your reason]
-- **Risk if this fails:** [What breaks]
-- **Contingency:** [What could you float instead]
-- **Alternative project:** [If you fixed something else]
+**고정 매개변수 1: [이름]**
+- **고정된 이유:** [당신의 이유]
+- **실패 시 위험:** [무엇이 깨지는가]
+- **비상 대책:** [대신 유동할 수 있는 것]
+- **대안 프로젝트:** [다른 것을 고정하면]
 
-**Fixed Parameter 2: [Name it]**
-- **Why it's fixed:** [Your reason]  
-- **Risk if this fails:** [What breaks]
-- **Contingency:** [What could you float instead]
-- **Alternative project:** [If you fixed something else]
+**고정 매개변수 2: [이름]**
+- **고정된 이유:** [당신의 이유]
+- **실패 시 위험:** [무엇이 깨지는가]
+- **비상 대책:** [대신 유동할 수 있는 것]
+- **대안 프로젝트:** [다른 것을 고정하면]
 
-### Phase 8: The Unfixing Exercise
+### 단계 8: 고정 해제 연습
 
-Sometimes you need to unfix parameters to escape a rut:
+때때로 교착 상태를 벗어나기 위해 매개변수를 해제해야 합니다:
 
-**Current State:** [Describe your over-constrained project]
+**현재 상태:** [과도하게 제약된 프로젝트 설명]
 
-**Unfixing Experiment:**
+**고정 해제 실험:**
 
-**Try 1: Unfix the System**
-- Keep question & tool
-- What other systems could you study?
-- Which would be easier/faster/more informative?
+**시도 1: 시스템 해제**
+- 질문 & 도구 유지
+- 어떤 다른 시스템을 연구할 수 있는가?
+- 어떤 것이 더 쉽고/빠르고/더 유익한가?
 
-**Try 2: Unfix the Tool**
-- Keep system & question
-- What other methods exist?
-- Which are more mature/accessible/powerful?
+**시도 2: 도구 해제**
+- 시스템 & 질문 유지
+- 어떤 다른 방법이 존재하는가?
+- 어떤 것이 더 성숙하고/접근 가능하고/강력한가?
 
-**Try 3: Unfix the Question**
-- Keep system & tool
-- What other questions could you ask?
-- Which would be more impactful/feasible?
+**시도 3: 질문 해제**
+- 시스템 & 도구 유지
+- 어떤 다른 질문을 할 수 있는가?
+- 어떤 것이 더 영향력 있고/실현 가능한가?
 
-**Evaluation:** Does any "unfixed" version seem better than your original? If yes, you over-constrained.
+**평가:** 어떤 "해제된" 버전이 원래보다 나아 보이는가? 그렇다면, 과도하게 제약한 것입니다.
 
-### Phase 9: Literature Reality Check
+### 단계 9: 문헌 현실 점검
 
-Let's use PubMed to see how others handled parameter fixation:
+PubMed를 사용하여 다른 사람들이 매개변수 고정을 어떻게 처리했는지 봅시다:
 
-**Search 1: Successful projects in your area**
-- What did they fix?
-- What did they let float?
-- Did they pivot from their initial parameter choices?
+**검색 1: 당신 분야의 성공적인 프로젝트**
+- 무엇을 고정했는가?
+- 무엇을 유동적으로 두었는가?
+- 초기 매개변수 선택에서 전환했는가?
 
-**Search 2: Failed or stalled projects**
-- (Often in discussion sections or preprints)
-- Did they over-constrain?
-- What parameters trapped them?
+**검색 2: 실패하거나 정체된 프로젝트**
+- (종종 토론 섹션이나 프리프린트에서)
+- 과도하게 제약했는가?
+- 어떤 매개변수가 그들을 가두었는가?
 
-**Search 3: Method papers**
-- How did technology developers choose applications?
-- Did they fix the tool and let applications emerge?
+**검색 3: 방법 논문**
+- 기술 개발자가 응용을 어떻게 선택했는가?
+- 도구를 고정하고 응용이 나타나게 했는가?
 
-**Your Searches:**
-What specific papers should we analyze for parameter lessons?
+**당신의 검색:**
+매개변수 교훈을 위해 어떤 구체적 논문을 분석해야 하는가?
 
-## Output Deliverable
+## 결과물
 
-**2-Page Parameter Strategy Document**
+**2페이지 매개변수 전략 문서**
 
-### Page 1: Current State and Analysis
+### 1페이지: 현재 상태 및 분석
 
-#### Parameter Inventory:
-| Parameter | Current Status | Strategic Rationale | Flexibility |
-|-----------|----------------|---------------------|-------------|
-| System | Fixed: [X] | [Why] | Can float if: [condition] |
-| Question | Floating: [Y,Z] | [Why] | Constrained by: [X] |
-| Tool | [Status] | [Why] | [Contingency] |
-| Application | [Status] | [Why] | [Contingency] |
+#### 매개변수 목록:
+| 매개변수 | 현재 상태 | 전략적 근거 | 유연성 |
+|---------|---------|-----------|-------|
+| 시스템 | 고정: [X] | [이유] | 다음 조건 시 유동 가능: [조건] |
+| 질문 | 유동: [Y,Z] | [이유] | 다음에 의해 제약: [X] |
+| 도구 | [상태] | [이유] | [비상 대책] |
+| 응용 | [상태] | [이유] | [비상 대책] |
 
-#### Diagnostic Summary:
-- **Fixed Parameters:** [Count and list]
-- **Assessment:** ☐ Too Many (>2) / ☐ Just Right (1-2) / ☐ Too Few (0, too broad)
-- **Primary Fixed Parameter:** [The one that matters most]
-- **Reason for Fixation:** [Expertise/Passion/Resources/Other]
+#### 진단 요약:
+- **고정된 매개변수:** [수와 목록]
+- **평가:** ☐ 너무 많음 (>2) / ☐ 적절함 (1-2) / ☐ 너무 적음 (0, 너무 광범위)
+- **주요 고정 매개변수:** [가장 중요한 것]
+- **고정 이유:** [전문성/열정/자원/기타]
 
-#### Goldilocks Test Results:
-- Over-constrained indicators: [Yes/No to each test]
-- Under-constrained indicators: [Yes/No to each test]
-- Verdict: [Analysis]
+#### 골디락스 테스트 결과:
+- 과도 제약 지표: [각 테스트에 예/아니오]
+- 과소 제약 지표: [각 테스트에 예/아니오]
+- 판정: [분석]
 
-### Page 2: Strategy and Contingencies
+### 2페이지: 전략 및 비상 대책
 
-#### Recommended Parameter Strategy:
+#### 권장 매개변수 전략:
 
-**Core Fixed Parameter:** [The one to keep]
-- **Rationale:** [Why this one]
-- **Your advantage:** [Expertise/access/passion]
-- **Enables:** [What becomes possible]
+**핵심 고정 매개변수:** [유지할 것]
+- **근거:** [왜 이것인가]
+- **당신의 이점:** [전문성/접근/열정]
+- **가능하게 하는 것:** [무엇이 가능해지는가]
 
-**Parameters That Should Float:** [List]
-- [Parameter 1]: [How to explore alternatives]
-- [Parameter 2]: [How to explore alternatives]
+**유동해야 하는 매개변수:** [목록]
+- [매개변수 1]: [대안 탐색 방법]
+- [매개변수 2]: [대안 탐색 방법]
 
-#### If Core Assumptions Fail:
+#### 핵심 가정이 실패하면:
 
-**Scenario 1: [Specific failure mode]**
-- **Unfix:** [Which parameter to let float]
-- **Alternative 1:** [New configuration]
-- **Alternative 2:** [Another option]
+**시나리오 1: [구체적 실패 모드]**
+- **해제:** [어떤 매개변수를 유동적으로]
+- **대안 1:** [새로운 구성]
+- **대안 2:** [다른 옵션]
 
-**Scenario 2: [Another failure mode]**
-- **Unfix:** [Which parameter]
-- **Alternative 1:** [New configuration]
-- **Alternative 2:** [Another option]
+**시나리오 2: [다른 실패 모드]**
+- **해제:** [어떤 매개변수]
+- **대안 1:** [새로운 구성]
+- **대안 2:** [다른 옵션]
 
-#### Project Ensemble:
+#### 프로젝트 앙상블:
 ```
-Core Fixed: [X]
+핵심 고정: [X]
 
-Possible Projects:
-1. [X] + [A] + [B1] → [Outcome]
-2. [X] + [A] + [B2] → [Outcome]
-3. [X] + [C] + [B1] → [Outcome]
+가능한 프로젝트:
+1. [X] + [A] + [B1] → [결과]
+2. [X] + [A] + [B2] → [결과]
+3. [X] + [C] + [B1] → [결과]
 
-All share [X], but float other parameters
+모두 [X]를 공유하지만, 다른 매개변수는 유동
 ```
 
-#### Strategic Questions Answered:
-1. **Quick prototype:** [How to test quickly]
-2. **Team strengths:** [Who's good at what]
-3. **Your passion:** [What energizes you]
-4. **Competitive advantage:** [Your edge]
+#### 전략적 질문 답변:
+1. **빠른 프로토타입:** [빠르게 테스트하는 방법]
+2. **팀 강점:** [누가 무엇을 잘하는가]
+3. **당신의 열정:** [무엇이 에너지를 주는가]
+4. **경쟁 우위:** [당신의 장점]
 
-#### Historical Parallel:
-[Example like Illumina where constraints drove innovation in your field]
-- The constraint: [What seemed limiting]
-- The innovation: [How people worked within it]
-- Your application: [How this applies to your project]
+#### 역사적 유사 사례:
+[Illumina처럼 당신의 분야에서 제약이 혁신을 이끈 예시]
+- 제약: [제한적으로 보였던 것]
+- 혁신: [그 안에서 사람들이 일한 방법]
+- 당신의 적용: [이것이 프로젝트에 어떻게 적용되는지]
 
-## Practical Examples
+## 실용적 예시
 
-### Example 1: GLP-1 T Cell Project (Over-Constrained)
-- **Fixed:** GLP-1 delivery + T cell engineering
-- **Problem:** Poor technique-application match
-- **Solution:** Unfix one parameter
-  - Fix delivery, float cell type → Better options emerge
-  - Fix T cell, float payload → Better applications emerge
+### 예시 1: GLP-1 T 세포 프로젝트 (과도 제약)
+- **고정:** GLP-1 전달 + T 세포 엔지니어링
+- **문제:** 불량한 기술-응용 매칭
+- **해결:** 하나의 매개변수 해제
+  - 전달 고정, 세포 유형 유동 → 더 나은 옵션 도출
+  - T 세포 고정, 페이로드 유동 → 더 나은 응용 도출
 
-### Example 2: Drosophila Neurobiologist (Well-Constrained)
-- **Fixed:** *Drosophila* nervous system
-- **Floating:** Specific questions, methods
-- **Works because:** Deep system expertise, many tools available
-- **Enables:** Pursuing most impactful questions as field evolves
+### 예시 2: 초파리 신경생물학자 (적절한 제약)
+- **고정:** *Drosophila* 신경 시스템
+- **유동:** 구체적 질문, 방법
+- **효과적인 이유:** 깊은 시스템 전문성, 많은 도구 가용
+- **가능하게 하는 것:** 분야가 진화함에 따라 가장 영향력 있는 질문 추구
 
-### Example 3: "Impactful Cell Engineering" (Under-Constrained)
-- **Fixed:** Nothing specific
-- **Problem:** Paralysis from too many options
-- **Solution:** Fix one meaningful constraint
-  - Option A: Fix CAR-T platform → Find best applications
-  - Option B: Fix autoimmune disease → Find best cell engineering approach
-  - Option C: Fix specific rare disease → Let methods emerge
+### 예시 3: "영향력 있는 세포 공학" (과소 제약)
+- **고정:** 구체적인 것 없음
+- **문제:** 너무 많은 옵션으로 인한 마비
+- **해결:** 하나의 의미 있는 제약 고정
+  - 옵션 A: CAR-T 플랫폼 고정 → 최적의 응용 찾기
+  - 옵션 B: 자가면역 질환 고정 → 최적의 세포 공학 접근법 찾기
+  - 옵션 C: 특정 희귀 질환 고정 → 방법은 자연스럽게 나타나게
 
-## Key Principles to Remember
+## 기억해야 할 핵심 원칙
 
-1. **Constraints Engender Creativity:** Limitations focus resourcefulness
+1. **제약은 창의성을 낳는다:** 한계가 자원 활용성을 집중시킨다
 
-2. **One Parameter Rule:** Fix one meaningful constraint, let others float
+2. **하나의 매개변수 규칙:** 하나의 의미 있는 제약을 고정하고, 나머지는 유동적으로
 
-3. **Match to Your Strengths:** Fix the parameter you have advantage in
+3. **강점에 맞추기:** 이점이 있는 매개변수를 고정
 
-4. **Technique-Application Match:** Don't force tools into wrong problems
+4. **기술-응용 매칭:** 잘못된 문제에 도구를 강제하지 마세요
 
-5. **Flexibility = Resilience:** Floating parameters provide pivot options
+5. **유연성 = 회복력:** 유동 매개변수가 전환 옵션을 제공
 
-6. **Historical Lesson:** Best technologies emerged from working within constraints (Illumina)
+6. **역사적 교훈:** 최고의 기술은 제약 내에서 일하는 것에서 나타남 (Illumina)
 
-7. **Not Forever:** Parameters can unfix mid-project when stuck
+7. **영원하지 않음:** 매개변수는 프로젝트 중간에 막혔을 때 해제할 수 있음
 
-## Warning Signs
+## 경고 신호
 
-**Over-Constrained (Too Many Fixed):**
-- Project sounds like: "Use X to study Y in Z"
-- When one assumption fails, everything fails
-- You're attached to HOW more than WHAT
-- Forcing a technique-application match
+**과도 제약 (너무 많은 고정):**
+- 프로젝트가 "X를 사용하여 Z에서 Y를 연구"처럼 들림
+- 하나의 가정이 실패하면 모든 것이 실패
+- 무엇(WHAT)보다 어떻게(HOW)에 더 집착
+- 기술-응용 매칭을 강제
 
-**Under-Constrained (Too Few/Vague):**
-- Statement is incredibly broad ("impactful work in...")
-- Feeling paralyzed about where to start
-- Avoiding commitment due to infinite options
-- No clear next experimental step
+**과소 제약 (너무 적음/모호):**
+- 진술이 극도로 광범위 ("...에서 영향력 있는 연구를...")
+- 어디서 시작할지에 대한 마비
+- 무한한 옵션으로 인한 헌신 회피
+- 명확한 다음 실험 단계 없음
 
-**Well-Constrained:**
-- One clear fixed parameter with good rationale
-- Multiple paths within that constraint
-- Energized by the focused challenge
-- If one approach fails, alternatives exist
+**적절한 제약:**
+- 좋은 근거를 가진 하나의 명확한 고정 매개변수
+- 그 제약 내에서 여러 경로
+- 집중된 도전에 에너지를 얻음
+- 하나의 접근법이 실패하면 대안 존재
 
-## Ready to Begin?
+## 시작할 준비가 되었나요?
 
-Let's start with Phase 1. Please provide:
-1. Your current project description
-2. List of what you think is fixed vs. floating
-3. Your lab's core expertise
-4. What aspect excites you most
+단계 1부터 시작합시다. 다음을 제공해 주세요:
+1. 현재 프로젝트 설명
+2. 고정 vs. 유동이라고 생각하는 것의 목록
+3. 연구실의 핵심 전문성
+4. 가장 흥분되는 측면
 
-Together we'll optimize your parameter strategy for maximum creativity and resilience.
+함께 최대의 창의성과 회복력을 위한 매개변수 전략을 최적화하겠습니다.
 
 ---
 
-*Remember: The right constraint is liberating, not limiting. It channels creativity into productive directions while maintaining flexibility for pivots.*
+*기억하세요: 올바른 제약은 해방적이지, 제한적이지 않습니다. 전환을 위한 유연성을 유지하면서 창의성을 생산적인 방향으로 이끕니다.*

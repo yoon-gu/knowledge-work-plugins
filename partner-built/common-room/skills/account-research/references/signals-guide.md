@@ -1,52 +1,52 @@
-# Common Room Signal Types — Interpretation Guide
+# Common Room 신호 유형 — 해석 가이드
 
-## Signal Categories
+## 신호 카테고리
 
-### Product Signals (1st-Party)
+### 제품 신호 (1st-Party)
 
-| Signal | What it means |
-|--------|--------------|
-| Active seats increasing | Expansion within the account — outreach opportunity |
-| Feature adoption (new features used) | Product engagement deepening — good for expansion talk |
-| Login frequency spike | Increased engagement — follow up to understand why |
-| Login frequency drop | Risk of disengagement or churn — proactive outreach needed |
-| Trial started | Active evaluation — time-sensitive, prioritize |
-| Trial nearing expiry | Decision point approaching — immediate action |
-| Support tickets opened | Potential friction — check for patterns |
+| 신호 | 의미 |
+|------|------|
+| 활성 시트 증가 | 계정 내 확장 — 아웃리치 기회 |
+| 기능 채택 (새 기능 사용) | 제품 참여 심화 — 확장 대화에 적합 |
+| 로그인 빈도 급증 | 참여 증가 — 원인 파악을 위해 후속 조치 |
+| 로그인 빈도 감소 | 참여 이탈 또는 이탈 위험 — 선제적 아웃리치 필요 |
+| 트라이얼 시작 | 적극적 평가 — 시간에 민감하므로 우선순위 |
+| 트라이얼 만료 임박 | 결정 시점 접근 — 즉각 조치 |
+| 지원 티켓 오픈 | 잠재적 마찰 — 패턴 확인 |
 
-### Community Signals (2nd-Party)
+### 커뮤니티 신호 (2nd-Party)
 
-| Signal | What it means |
-|--------|--------------|
-| New community post | Actively engaged, has a question or idea |
-| Reply / reaction to post | Community participation |
-| Forum thread started | Seeking help or sharing feedback — can engage directly |
-| Documentation viewed (specific page) | Researching a specific feature — high value if tied to expansion area |
-| Event registration/attendance | Strong engagement and intent signal |
+| 신호 | 의미 |
+|------|------|
+| 새 커뮤니티 게시글 | 적극적 참여, 질문이나 아이디어 있음 |
+| 게시글에 답글/반응 | 커뮤니티 참여 |
+| 포럼 스레드 시작 | 도움을 구하거나 피드백 공유 — 직접 참여 가능 |
+| 문서 조회 (특정 페이지) | 특정 기능 조사 — 확장 영역과 연결되면 높은 가치 |
+| 이벤트 등록/참석 | 강력한 참여 및 의도 신호 |
 
-### Intent Signals (3rd-Party)
+### 의도 신호 (3rd-Party)
 
-| Signal | What it means |
-|--------|--------------|
-| Hiring for relevant roles | Growing team, budget exists |
-| Funding announced | New budget likely available — reach out congratulating |
-| Company news / press mention | Good hook for outreach |
-| Tech stack change | May need new integrations |
-| Competitive product removed from stack | Window of opportunity — very high priority |
-| Website activity spike | Active research phase |
+| 신호 | 의미 |
+|------|------|
+| 관련 직군 채용 | 팀 성장, 예산 존재 |
+| 펀딩 발표 | 새로운 예산 가능 — 축하하며 연락 |
+| 회사 뉴스/언론 언급 | 아웃리치를 위한 좋은 훅 |
+| 기술 스택 변경 | 새로운 통합이 필요할 수 있음 |
+| 경쟁 제품을 스택에서 제거 | 기회의 창 — 매우 높은 우선순위 |
+| 웹사이트 활동 급증 | 적극적 조사 단계 |
 
-### Relationship Signals
+### 관계 신호
 
-| Signal | What it means |
-|--------|--------------|
-| Recent meeting logged | Active relationship — context available |
-| No meeting in 90+ days | Relationship cooling — check in |
-| Open opportunity in CRM | Active deal — coordinate with AE |
-| Champion job change | Relationship risk or opportunity |
+| 신호 | 의미 |
+|------|------|
+| 최근 미팅 기록 | 활성 관계 — 컨텍스트 활용 가능 |
+| 90일 이상 미팅 없음 | 관계 냉각 — 점검 필요 |
+| CRM에 오픈 기회 | 활성 거래 — AE와 조율 |
+| 챔피언 이직 | 관계 위험 또는 기회 |
 
-## Signal Interpretation Principles
+## 신호 해석 원칙
 
-1. **Recency matters most.** A signal from yesterday far outweighs one from 6 months ago. Always note timestamps.
-2. **Signal clusters > single signals.** Multiple signals in the same direction are much stronger than any individual one.
-3. **Absence of signals is a signal.** Minimal usage + no community engagement at a paid account = risk indicator.
-4. **Contextualize against account stage.** Trial: conversion signals dominate. Mature customer: expansion and churn-risk. Prospect: intent signals are paramount.
+1. **최신성이 가장 중요합니다.** 어제의 신호가 6개월 전 신호보다 훨씬 중요합니다. 항상 타임스탬프를 기록합니다.
+2. **신호 클러스터 > 단일 신호.** 같은 방향의 여러 신호는 개별 신호보다 훨씬 강력합니다.
+3. **신호의 부재도 신호입니다.** 유료 계정에서 최소한의 사용 + 커뮤니티 참여 없음 = 위험 지표.
+4. **계정 단계에 맞게 맥락화합니다.** 트라이얼: 전환 신호가 지배적. 성숙한 고객: 확장 및 이탈 위험. 잠재 고객: 의도 신호가 가장 중요.

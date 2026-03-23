@@ -1,104 +1,104 @@
 ---
 name: signature-request
-description: Prepare and route a document for e-signature — run a pre-signature checklist, configure signing order, and send for execution. Use when a contract is finalized and ready to sign, when verifying entity names, exhibits, and signature blocks before sending, or when setting up an envelope with sequential or parallel signers.
+description: 전자서명을 위한 문서를 준비하고 라우팅합니다 — 서명 전 체크리스트 실행, 서명 순서 구성, 체결을 위해 발송합니다. 계약이 최종 확정되어 서명 준비가 된 경우, 발송 전 법인명, 별첨, 서명 블록을 확인할 때, 또는 순차적 또는 동시 서명자로 봉투를 설정할 때 사용합니다.
 argument-hint: "<document or contract to send>"
 ---
 
-# /signature-request -- E-Signature Routing
+# /signature-request -- 전자서명 라우팅
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 있거나 연결된 도구를 확인하려면 [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Prepare a document for electronic signature — verify completeness, set signing order, and route for execution.
+전자서명을 위한 문서를 준비합니다 — 완전성 검증, 서명 순서 설정, 체결을 위한 라우팅.
 
-**Important**: This command assists with legal workflows but does not provide legal advice. Verify documents are in final form before sending for signature.
+**중요**: 이 명령은 법무 워크플로우를 지원하지만 법률 자문을 제공하지 않습니다. 서명 발송 전에 문서가 최종 확정 형태인지 확인하세요.
 
-## Usage
+## 사용법
 
 ```
 /signature-request $ARGUMENTS
 ```
 
-Prepare for signature: @$1
+서명 준비: @$1
 
-## Workflow
+## 워크플로우
 
-### Step 1: Accept the Document
+### 단계 1: 문서 수신
 
-Accept the document in any format:
-- **File upload**: PDF, DOCX
-- **URL**: Link to a document in ~~cloud storage or ~~CLM
-- **Reference**: "The Acme Corp MSA we finalized yesterday"
+다음 형식으로 문서를 수신합니다:
+- **파일 업로드**: PDF, DOCX
+- **URL**: ~~cloud storage 또는 ~~CLM의 문서 링크
+- **참조**: "어제 최종 확정한 Acme Corp MSA"
 
-### Step 2: Pre-Signature Checklist
+### 단계 2: 서명 전 체크리스트
 
-Before routing for signature, verify:
+서명 라우팅 전 확인:
 
 ```markdown
-## Pre-Signature Checklist
+## 서명 전 체크리스트
 
-- [ ] Document is in final, agreed form (no open redlines)
-- [ ] All exhibits and schedules are attached
-- [ ] Correct legal entity names on signature blocks
-- [ ] Dates are correct or left blank for execution date
-- [ ] Signature blocks match the authorized signers
-- [ ] Any required internal approvals have been obtained
-- [ ] Document has been reviewed by appropriate counsel
+- [ ] 문서가 최종 합의된 형태임(미결 수정안 없음)
+- [ ] 모든 별첨 및 부속서가 첨부됨
+- [ ] 서명 블록에 올바른 법인명
+- [ ] 날짜가 올바르거나 체결일을 위해 공란
+- [ ] 서명 블록이 권한 있는 서명자와 일치
+- [ ] 필요한 내부 승인이 획득됨
+- [ ] 해당 법률 고문의 검토를 받음
 ```
 
-### Step 3: Configure Signing
+### 단계 3: 서명 구성
 
-Gather signing details:
-- **Signers**: Who needs to sign? (names, emails, titles)
-- **Signing order**: Sequential or parallel?
-- **Internal approval**: Does anyone need to approve before the counterparty signs?
-- **CC recipients**: Who should receive a copy of the executed document?
+서명 세부사항을 수집합니다:
+- **서명자**: 누가 서명해야 하는가? (이름, 이메일, 직함)
+- **서명 순서**: 순차적 또는 동시?
+- **내부 승인**: 상대방 서명 전에 승인이 필요한 사람이 있는가?
+- **참조 수신자**: 누가 체결된 문서의 사본을 받아야 하는가?
 
-### Step 4: Route for Signature
+### 단계 4: 서명 라우팅
 
-**If ~~e-signature is connected:**
-- Create the signature envelope/request
-- Set signing fields and order
-- Add any required initials or date fields
-- Send for signature
+**~~e-signature가 연결된 경우:**
+- 서명 봉투/요청 생성
+- 서명 필드 및 순서 설정
+- 필요한 이니셜 또는 날짜 필드 추가
+- 서명 발송
 
-**If not connected:**
-- Generate a signing instruction document
-- Provide the document formatted for wet signature or manual e-sign
-- List all signers with contact information
+**연결되지 않은 경우:**
+- 서명 지침 문서 생성
+- 수기 서명 또는 수동 전자서명용 문서 형식 제공
+- 연락처와 함께 모든 서명자 목록
 
-## Output
+## 출력
 
 ```markdown
-## Signature Request: [Document Title]
+## 서명 요청: [문서 제목]
 
-### Document Details
-- **Type**: [MSA / NDA / SOW / Amendment / etc.]
-- **Parties**: [Party A] and [Party B]
-- **Pages**: [X]
+### 문서 세부사항
+- **유형**: [MSA / NDA / SOW / 수정안 / 등]
+- **당사자**: [당사자 A] 및 [당사자 B]
+- **페이지**: [X]
 
-### Pre-Signature Check: [PASS / ISSUES FOUND]
-[List any issues that need attention before sending]
+### 서명 전 확인: [통과 / 이슈 발견]
+[발송 전 주의가 필요한 이슈 목록]
 
-### Signing Configuration
-| Order | Signer | Email | Role |
+### 서명 구성
+| 순서 | 서명자 | 이메일 | 역할 |
 |-------|--------|-------|------|
-| 1 | [Name] | [email] | [Party A Authorized Signatory] |
-| 2 | [Name] | [email] | [Party B Authorized Signatory] |
+| 1 | [이름] | [이메일] | [당사자 A 권한 있는 서명자] |
+| 2 | [이름] | [이메일] | [당사자 B 권한 있는 서명자] |
 
-### CC Recipients
-- [Name] — [email]
+### 참조 수신자
+- [이름] — [이메일]
 
-### Status
-[Sent for signature / Ready to send / Issues to resolve first]
+### 상태
+[서명 발송됨 / 발송 준비 완료 / 먼저 해결할 이슈]
 
-### Next Steps
-- [What to expect after sending]
-- [Expected turnaround time]
-- [Follow-up if not signed within X days]
+### 다음 단계
+- [발송 후 예상 사항]
+- [예상 처리 시간]
+- [X일 내 미서명 시 후속 조치]
 ```
 
-## Tips
+## 팁
 
-1. **Check entity names carefully** — The most common signing error is incorrect legal entity names.
-2. **Verify authority** — Make sure each signer is authorized to bind their organization.
-3. **Keep a copy** — Executed copies should be filed in ~~cloud storage or ~~CLM immediately after execution.
+1. **법인명을 주의 깊게 확인하세요** — 가장 흔한 서명 오류는 잘못된 법인명입니다.
+2. **권한을 확인하세요** — 각 서명자가 조직을 대리하여 서명할 권한이 있는지 확인하세요.
+3. **사본을 보관하세요** — 체결된 사본은 체결 후 즉시 ~~cloud storage 또는 ~~CLM에 보관해야 합니다.

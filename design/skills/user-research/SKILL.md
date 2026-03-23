@@ -5,37 +5,37 @@ description: Plan, conduct, and synthesize user research. Trigger with "user res
 
 # User Research
 
-Help plan, execute, and synthesize user research studies.
+사용자 리서치 연구를 계획하고, 실행하고, 합성하는 데 도움을 드립니다.
 
-## Research Methods
+## 리서치 방법
 
-| Method | Best For | Sample Size | Time |
+| 방법 | 최적 사용 | 표본 크기 | 소요 시간 |
 |--------|----------|-------------|------|
-| User interviews | Deep understanding of needs and motivations | 5-8 | 2-4 weeks |
-| Usability testing | Evaluating a specific design or flow | 5-8 | 1-2 weeks |
-| Surveys | Quantifying attitudes and preferences | 100+ | 1-2 weeks |
-| Card sorting | Information architecture decisions | 15-30 | 1 week |
-| Diary studies | Understanding behavior over time | 10-15 | 2-8 weeks |
-| A/B testing | Comparing specific design choices | Statistical significance | 1-4 weeks |
+| 사용자 인터뷰 | 니즈와 동기에 대한 깊은 이해 | 5-8명 | 2-4주 |
+| 사용성 테스트 | 특정 디자인 또는 플로우 평가 | 5-8명 | 1-2주 |
+| 설문조사 | 태도와 선호도 정량화 | 100명 이상 | 1-2주 |
+| 카드 소팅 | 정보 아키텍처 결정 | 15-30명 | 1주 |
+| 다이어리 연구 | 시간에 따른 행동 이해 | 10-15명 | 2-8주 |
+| A/B 테스트 | 특정 디자인 선택 비교 | 통계적 유의성 | 1-4주 |
 
-## Interview Guide Structure
+## 인터뷰 가이드 구조
 
-1. **Warm-up** (5 min): Build rapport, explain the session
-2. **Context** (10 min): Understand their current workflow
-3. **Deep dive** (20 min): Explore the specific topic
-4. **Reaction** (10 min): Show concepts or prototypes
-5. **Wrap-up** (5 min): Anything we missed? Thank them.
+1. **워밍업** (5분): 라포 형성, 세션 설명
+2. **컨텍스트** (10분): 현재 워크플로우 이해
+3. **심층 탐구** (20분): 특정 주제 탐색
+4. **반응** (10분): 개념 또는 프로토타입 보여주기
+5. **마무리** (5분): 빠진 것이 있나요? 감사 인사.
 
-## Analysis Framework
+## 분석 프레임워크
 
-- **Affinity mapping**: Group observations into themes
-- **Impact/effort matrix**: Prioritize findings
-- **Journey mapping**: Visualize the user experience over time
-- **Jobs to be done**: Understand what users are hiring your product to do
+- **어피니티 매핑**: 관찰을 테마별로 그룹화
+- **영향/노력 매트릭스**: 발견 사항 우선순위 결정
+- **여정 맵핑**: 시간에 따른 사용자 경험 시각화
+- **Jobs to be done**: 사용자가 제품을 통해 무엇을 하려는지 이해
 
-## Deliverables
+## 산출물
 
-- Research plan (objectives, methods, timeline, participants)
-- Interview guide (questions, probes, activities)
-- Synthesis report (themes, insights, recommendations)
-- Highlight reel (key quotes and observations)
+- 리서치 계획 (목표, 방법, 타임라인, 참여자)
+- 인터뷰 가이드 (질문, 프로브, 활동)
+- 합성 보고서 (테마, 인사이트, 권고사항)
+- 하이라이트 릴 (주요 인용구 및 관찰)

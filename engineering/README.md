@@ -1,124 +1,124 @@
 # Engineering Plugin
 
-A software engineering plugin primarily designed for [Cowork](https://claude.com/product/cowork), Anthropic's agentic desktop application — though it also works in Claude Code. Helps with standups, code review, architecture decisions, incident response, debugging, and technical documentation. Works with any engineering team — standalone with your input, supercharged when you connect your source control, project tracker, and monitoring tools.
+주로 Anthropic의 에이전트형 데스크톱 애플리케이션인 [Cowork](https://claude.com/product/cowork)을 위해 설계된 소프트웨어 엔지니어링 플러그인입니다 — Claude Code에서도 동작합니다. 스탠드업, 코드 리뷰, 아키텍처 결정, 인시던트 대응, 디버깅, 기술 문서화를 지원합니다. 모든 엔지니어링 팀에서 사용 가능하며 — 입력만으로도 단독 사용이 가능하고, source control, project tracker, monitoring 도구를 연결하면 더욱 강력해집니다.
 
-## Installation
+## 설치
 
 ```bash
 claude plugins add knowledge-work-plugins/engineering
 ```
 
-## Commands
+## 명령어
 
-Explicit workflows you invoke with a slash command:
+슬래시 명령어로 호출하는 명시적 워크플로우:
 
-| Command | Description |
+| 명령어 | 설명 |
 |---|---|
-| `/standup` | Generate a standup update from your recent activity — commits, PRs, tickets, and chat |
-| `/review` | Review code changes — security, performance, style, and correctness |
-| `/debug` | Structured debugging session — reproduce, isolate, diagnose, and fix |
-| `/architecture` | Create or evaluate architecture decisions — ADR format with trade-off analysis |
-| `/incident` | Run an incident response workflow — triage, communicate, mitigate, and write postmortem |
-| `/deploy-checklist` | Pre-deployment checklist — verify tests, review changes, check dependencies, confirm rollback plan |
+| `/standup` | 최근 활동(커밋, PR, 티켓, 채팅)에서 스탠드업 업데이트 생성 |
+| `/review` | 코드 변경 사항 리뷰 — 보안, 성능, 스타일, 정확성 |
+| `/debug` | 구조화된 디버깅 세션 — 재현, 격리, 진단, 수정 |
+| `/architecture` | 아키텍처 결정 생성 또는 평가 — 트레이드오프 분석을 포함한 ADR 형식 |
+| `/incident` | 인시던트 대응 워크플로우 실행 — 분류, 소통, 완화, 사후 분석 작성 |
+| `/deploy-checklist` | 배포 전 체크리스트 — 테스트 확인, 변경 사항 검토, 의존성 확인, 롤백 계획 확인 |
 
-All commands work **standalone** (paste code, describe your system, upload files) and get **supercharged** with MCP connectors.
+모든 명령어는 **단독으로** 동작하며(코드 붙여넣기, 시스템 설명, 파일 업로드), MCP 커넥터를 연결하면 **한층 강화**됩니다.
 
 ## Skills
 
-Domain knowledge Claude uses automatically when relevant:
+관련성이 있을 때 Claude가 자동으로 사용하는 도메인 지식:
 
-| Skill | Description |
+| Skill | 설명 |
 |---|---|
-| `code-review` | Review code for bugs, security issues, performance, and maintainability |
-| `incident-response` | Triage and manage production incidents — status updates, runbooks, postmortems |
-| `system-design` | Design systems and services — architecture diagrams, API design, data modeling |
-| `tech-debt` | Identify, categorize, and prioritize technical debt — build a remediation plan |
-| `testing-strategy` | Design test strategies — unit, integration, e2e coverage, test plan creation |
-| `documentation` | Write and maintain technical documentation — READMEs, API docs, runbooks, onboarding guides |
+| `code-review` | 버그, 보안 문제, 성능, 유지보수성 관점에서 코드 리뷰 |
+| `incident-response` | 프로덕션 인시던트 분류 및 관리 — 상태 업데이트, runbook, 사후 분석 |
+| `system-design` | 시스템 및 서비스 설계 — 아키텍처 다이어그램, API 설계, 데이터 모델링 |
+| `tech-debt` | 기술 부채 식별, 분류, 우선순위 지정 — 개선 계획 수립 |
+| `testing-strategy` | 테스트 전략 설계 — 단위, 통합, e2e 커버리지, 테스트 계획 작성 |
+| `documentation` | 기술 문서 작성 및 유지 — README, API 문서, runbook, 온보딩 가이드 |
 
-## Example Workflows
+## 예시 워크플로우
 
-### Morning Standup
+### 아침 스탠드업
 
 ```
 /standup
 ```
 
-If your tools are connected, I'll pull your recent commits, PR activity, and ticket updates. Otherwise, tell me what you worked on and I'll format it.
+도구가 연결되어 있으면 최근 커밋, PR 활동, 티켓 업데이트를 가져옵니다. 연결되지 않은 경우 작업한 내용을 알려주면 형식에 맞게 정리해 드립니다.
 
-### Code Review
+### 코드 리뷰
 
 ```
 /review https://github.com/org/repo/pull/123
 ```
 
-Share a PR link, paste a diff, or point to files. Get a structured review covering security, performance, correctness, and style.
+PR 링크를 공유하거나, diff를 붙여넣거나, 파일을 지정하세요. 보안, 성능, 정확성, 스타일을 다루는 구조화된 리뷰를 받아보세요.
 
-### Debugging an Issue
+### 이슈 디버깅
 
 ```
 /debug Users are getting 500 errors on the checkout page
 ```
 
-Walk through a structured debugging process: reproduce, isolate, diagnose, fix. I'll help you think through it systematically.
+구조화된 디버깅 프로세스를 통해 진행합니다: 재현, 격리, 진단, 수정. 체계적으로 생각할 수 있도록 도와드립니다.
 
-### Architecture Decision
+### 아키텍처 결정
 
 ```
 /architecture Should we use a message queue or direct API calls between services?
 ```
 
-Get a structured ADR with options analysis, trade-offs, and a recommendation.
+옵션 분석, 트레이드오프, 권장 사항이 포함된 구조화된 ADR을 받아보세요.
 
-### Incident Response
+### 인시던트 대응
 
 ```
 /incident The payments service is returning 503s
 ```
 
-Start an incident workflow: triage severity, draft communications, track timeline, and generate a postmortem when resolved.
+인시던트 워크플로우 시작: 심각도 분류, 소통 초안 작성, 타임라인 추적, 해결 후 사후 분석 생성.
 
-### Pre-Deploy Check
+### 배포 전 확인
 
 ```
 /deploy-checklist auth-service v2.3.0
 ```
 
-Get a customized deployment checklist based on your service and what's changing.
+서비스와 변경 사항을 기반으로 맞춤화된 배포 체크리스트를 받아보세요.
 
-## Standalone + Supercharged
+## 단독 사용 + 강화 사용
 
-Every command and skill works without any integrations:
+모든 명령어와 skill은 통합 없이도 동작합니다:
 
-| What You Can Do | Standalone | Supercharged With |
+| 할 수 있는 것 | 단독 사용 | 강화 사용 (연결 도구) |
 |-----------------|------------|-------------------|
-| Standup updates | Describe your work | Source control, Project tracker, Chat |
-| Code review | Paste diff or code | Source control (pull PRs automatically) |
-| Debug sessions | Describe the problem | Monitoring (pull logs and metrics) |
-| Architecture decisions | Describe the system | Knowledge base (find prior ADRs) |
-| Incident response | Describe the incident | Monitoring, Incident management, Chat |
-| Deploy checklists | Describe the deploy | CI/CD, Source control |
+| 스탠드업 업데이트 | 작업 내용 설명 | Source control, Project tracker, Chat |
+| 코드 리뷰 | diff 또는 코드 붙여넣기 | Source control (PR 자동 가져오기) |
+| 디버깅 세션 | 문제 설명 | Monitoring (로그 및 메트릭 가져오기) |
+| 아키텍처 결정 | 시스템 설명 | Knowledge base (이전 ADR 검색) |
+| 인시던트 대응 | 인시던트 설명 | Monitoring, Incident management, Chat |
+| 배포 체크리스트 | 배포 내용 설명 | CI/CD, Source control |
 
-## MCP Integrations
+## MCP 통합
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](CONNECTORS.md).
+> 익숙하지 않은 자리 표시자가 보이거나 연결된 도구를 확인해야 하는 경우 [CONNECTORS.md](CONNECTORS.md)를 참조하세요.
 
-Connect your tools for a richer experience:
+더 풍부한 경험을 위해 도구를 연결하세요:
 
-| Category | Examples | What It Enables |
+| 카테고리 | 예시 | 활성화되는 기능 |
 |---|---|---|
-| **Source control** | GitHub, GitLab | PR diffs, commit history, branch status |
-| **Project tracker** | Linear, Jira, Asana | Ticket status, sprint data, assignments |
-| **Monitoring** | Datadog, New Relic | Logs, metrics, alerts, dashboards |
-| **Incident management** | PagerDuty, Opsgenie | On-call schedules, incident tracking, paging |
-| **Chat** | Slack, Teams | Team discussions, standup channels |
-| **Knowledge base** | Notion, Confluence | ADRs, runbooks, onboarding docs |
+| **Source control** | GitHub, GitLab | PR diff, 커밋 히스토리, 브랜치 상태 |
+| **Project tracker** | Linear, Jira, Asana | 티켓 상태, 스프린트 데이터, 담당자 |
+| **Monitoring** | Datadog, New Relic | 로그, 메트릭, 알림, 대시보드 |
+| **Incident management** | PagerDuty, Opsgenie | 온콜 일정, 인시던트 추적, 페이징 |
+| **Chat** | Slack, Teams | 팀 토론, 스탠드업 채널 |
+| **Knowledge base** | Notion, Confluence | ADR, runbook, 온보딩 문서 |
 
-See [CONNECTORS.md](CONNECTORS.md) for the full list of supported integrations.
+지원되는 통합의 전체 목록은 [CONNECTORS.md](CONNECTORS.md)를 참조하세요.
 
-## Settings
+## 설정
 
-Create a local settings file at `engineering/.claude/settings.local.json` to personalize:
+개인화를 위해 `engineering/.claude/settings.local.json`에 로컬 설정 파일을 만드세요:
 
 ```json
 {
@@ -132,4 +132,4 @@ Create a local settings file at `engineering/.claude/settings.local.json` to per
 }
 ```
 
-The plugin will ask you for this information interactively if it's not configured.
+설정이 구성되지 않은 경우 플러그인이 이 정보를 대화형으로 요청합니다.

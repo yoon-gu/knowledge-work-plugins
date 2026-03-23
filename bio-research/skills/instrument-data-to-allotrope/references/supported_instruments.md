@@ -1,24 +1,24 @@
-# Supported Instruments
+# 지원 기기
 
-## What Can This Skill Convert?
+## 이 스킬로 무엇을 변환할 수 있나요?
 
-**Any instrument data that maps to an Allotrope schema can be converted.** The skill uses a tiered parsing approach:
+**Allotrope 스키마에 매핑할 수 있는 모든 기기 데이터를 변환할 수 있습니다.** 이 스킬은 계층적 파싱 접근 방식을 사용합니다:
 
-1. **Native allotropy parsers** (listed below) - Highest fidelity, validated against vendor-specific formats
-2. **Flexible fallback parser** - Handles any tabular data (CSV, Excel, TXT) by mapping columns to ASM fields
-3. **PDF extraction** - Extracts tables from PDFs, then applies flexible parsing
+1. **네이티브 allotropy 파서** (아래 목록) - 벤더별 형식에 대해 검증된 최고 충실도
+2. **유연한 폴백 파서** - 컬럼을 ASM 필드에 매핑하여 모든 표 형식 데이터(CSV, Excel, TXT) 처리
+3. **PDF 추출** - PDF에서 테이블을 추출한 후 유연한 파싱 적용
 
-If your instrument isn't listed below, the skill can still convert it as long as your data contains recognizable measurement fields (sample IDs, values, units, timestamps, etc.) that map to an ASM technique schema.
+기기가 아래 목록에 없더라도, 데이터에 ASM 기법 스키마에 매핑할 수 있는 인식 가능한 측정 필드(샘플 ID, 값, 단위, 타임스탬프 등)가 포함되어 있으면 변환할 수 있습니다.
 
 ---
 
-## Instruments with Native Allotropy Parsers
+## 네이티브 Allotropy 파서가 있는 기기
 
-The following instruments have optimized parsers in the allotropy library with their Vendor enum values.
+다음 기기들은 allotropy 라이브러리에 벤더 Enum 값과 함께 최적화된 파서를 갖추고 있습니다.
 
-## Cell Counting
+## 세포 계수
 
-| Instrument | Vendor Enum | File Types |
+| 기기 | Vendor Enum | 파일 유형 |
 |------------|-------------|------------|
 | Beckman Coulter Vi-CELL BLU | `BECKMAN_VI_CELL_BLU` | .csv |
 | Beckman Coulter Vi-CELL XR | `BECKMAN_VI_CELL_XR` | .txt, .xls, .xlsx |
@@ -26,9 +26,9 @@ The following instruments have optimized parsers in the allotropy library with t
 | ChemoMetec NC-View | `CHEMOMETEC_NC_VIEW` | .xlsx |
 | Revvity Matrix | `REVVITY_MATRIX` | .csv |
 
-## Spectrophotometry (UV-Vis)
+## 분광광도법 (UV-Vis)
 
-| Instrument | Vendor Enum | File Types |
+| 기기 | Vendor Enum | 파일 유형 |
 |------------|-------------|------------|
 | Thermo Fisher NanoDrop One | `THERMO_FISHER_NANODROP_ONE` | .csv, .xlsx |
 | Thermo Fisher NanoDrop Eight | `THERMO_FISHER_NANODROP_EIGHT` | .tsv, .txt |
@@ -36,9 +36,9 @@ The following instruments have optimized parsers in the allotropy library with t
 | Unchained Labs Lunatic | `UNCHAINED_LABS_LUNATIC` | .csv, .xlsx |
 | Thermo Fisher Genesys 30 | `THERMO_FISHER_GENESYS30` | .csv |
 
-## Plate Readers (Multi-mode, Absorbance, Fluorescence)
+## 플레이트 리더 (다중모드, 흡광도, 형광)
 
-| Instrument | Vendor Enum | File Types |
+| 기기 | Vendor Enum | 파일 유형 |
 |------------|-------------|------------|
 | Molecular Devices SoftMax Pro | `MOLDEV_SOFTMAX_PRO` | .txt |
 | PerkinElmer EnVision | `PERKIN_ELMER_ENVISION` | .csv |
@@ -50,9 +50,9 @@ The following instruments have optimized parsers in the allotropy library with t
 | Revvity Kaleido | `REVVITY_KALEIDO` | .csv |
 | Tecan Magellan | `TECAN_MAGELLAN` | .xlsx |
 
-## ELISA / Immunoassay
+## ELISA / 면역분석
 
-| Instrument | Vendor Enum | File Types |
+| 기기 | Vendor Enum | 파일 유형 |
 |------------|-------------|------------|
 | Molecular Devices SoftMax Pro | `MOLDEV_SOFTMAX_PRO` | .txt |
 | MSD Discovery Workbench | `MSD_WORKBENCH` | .txt |
@@ -61,69 +61,69 @@ The following instruments have optimized parsers in the allotropy library with t
 
 ## qPCR / PCR
 
-| Instrument | Vendor Enum | File Types |
+| 기기 | Vendor Enum | 파일 유형 |
 |------------|-------------|------------|
 | Applied Biosystems QuantStudio | `APPBIO_QUANTSTUDIO` | .xlsx |
 | Applied Biosystems QuantStudio Design & Analysis | `APPBIO_QUANTSTUDIO_DESIGNANALYSIS` | .xlsx, .csv |
 | Bio-Rad CFX Maestro | `BIORAD_CFX_MAESTRO` | .csv, .xlsx |
 | Roche LightCycler | `ROCHE_LIGHTCYCLER` | .txt |
 
-## Chromatography (HPLC, LC)
+## 크로마토그래피 (HPLC, LC)
 
-| Instrument | Vendor Enum | File Types |
+| 기기 | Vendor Enum | 파일 유형 |
 |------------|-------------|------------|
 | Waters Empower | `WATERS_EMPOWER` | .xml |
 | Thermo Fisher Chromeleon | `THERMO_FISHER_CHROMELEON` | .xml |
 | Agilent ChemStation | `AGILENT_CHEMSTATION` | .csv |
 
-## Electrophoresis
+## 전기영동
 
-| Instrument | Vendor Enum | File Types |
+| 기기 | Vendor Enum | 파일 유형 |
 |------------|-------------|------------|
 | Agilent TapeStation | `AGILENT_TAPESTATION` | .csv |
 | PerkinElmer LabChip | `PERKIN_ELMER_LABCHIP` | .csv |
 
-## Flow Cytometry
+## 유세포 분석
 
-| Instrument | Vendor Enum | File Types |
+| 기기 | Vendor Enum | 파일 유형 |
 |------------|-------------|------------|
 | BD Biosciences FACSDiva | `BD_BIOSCIENCES_FACSDIVA` | .xml |
 | FlowJo | `FLOWJO` | .wsp |
 
-## Solution Analysis
+## 용액 분석
 
-| Instrument | Vendor Enum | File Types |
+| 기기 | Vendor Enum | 파일 유형 |
 |------------|-------------|------------|
 | Roche Cedex BioHT | `ROCHE_CEDEX_BIOHT` | .xlsx |
 | Beckman Coulter Biomek | `BECKMAN_COULTER_BIOMEK` | .csv |
 
-## Auto-Detection Patterns
+## 자동 감지 패턴
 
-The skill attempts to identify instrument type from file contents using these patterns:
+이 스킬은 파일 내용에서 다음 패턴을 사용하여 기기 유형을 식별합니다:
 
 ### Vi-CELL BLU
-- Column headers: "Sample ID", "Viable cells (x10^6 cells/mL)", "Viability (%)"
-- File structure: CSV with specific column order
+- 컬럼 헤더: "Sample ID", "Viable cells (x10^6 cells/mL)", "Viability (%)"
+- 파일 구조: 특정 컬럼 순서의 CSV
 
 ### Vi-CELL XR
-- Column headers: "Sample", "Total cells/ml", "Viable cells/ml"
-- Multiple export formats supported
+- 컬럼 헤더: "Sample", "Total cells/ml", "Viable cells/ml"
+- 다양한 내보내기 형식 지원
 
 ### NanoDrop
-- Column headers: "Sample Name", "Nucleic Acid Conc.", "A260", "A280"
-- 260/280 and 260/230 ratio columns
+- 컬럼 헤더: "Sample Name", "Nucleic Acid Conc.", "A260", "A280"
+- 260/280 및 260/230 비율 컬럼
 
-### Plate Readers (General)
-- Well identifiers (A1-H12 pattern)
-- "Plate", "Well", "Sample" columns
-- Block-based structure with metadata headers
+### 플레이트 리더 (일반)
+- 웰 식별자 (A1-H12 패턴)
+- "Plate", "Well", "Sample" 컬럼
+- 메타데이터 헤더가 있는 블록 기반 구조
 
 ### ELISA
-- Standard curve data with concentrations
-- OD/absorbance readings
-- Sample/blank/standard classification
+- 농도가 포함된 표준 곡선 데이터
+- OD/흡광도 판독값
+- 샘플/블랭크/표준 분류
 
-## Using Vendor Enums
+## Vendor Enum 사용하기
 
 ```python
 from allotropy.parser_factory import Vendor
@@ -137,7 +137,7 @@ for v in Vendor:
 asm = allotrope_from_file("data.csv", Vendor.BECKMAN_VI_CELL_BLU)
 ```
 
-## Checking Supported Status
+## 지원 상태 확인하기
 
 ```python
 from allotropy.parser_factory import get_parser

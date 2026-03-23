@@ -1,175 +1,175 @@
 ---
 name: reconciliation
-description: Reconcile accounts by comparing GL balances to subledgers, bank statements, or third-party data. Use when performing bank reconciliations, GL-to-subledger recs, intercompany reconciliations, or identifying and categorizing reconciling items.
+description: GL 잔액을 보조원장, 은행 명세서 또는 제3자 데이터와 비교하여 계정을 조정합니다. 은행 조정, GL-보조원장 조정, 내부거래 조정 수행, 또는 조정 항목 식별 및 분류 시 사용합니다.
 argument-hint: "<account> [period]"
 ---
 
-# Reconciliation
+# 계정 조정
 
-**Important**: This skill assists with reconciliation workflows but does not provide financial advice. All reconciliations should be reviewed by qualified financial professionals before sign-off.
+**중요**: 이 스킬은 조정 워크플로우를 지원하지만 재무 자문을 제공하지 않습니다. 모든 조정은 최종 승인 전에 자격을 갖춘 재무 전문가의 검토를 받아야 합니다.
 
-Methodology and best practices for account reconciliation, including GL-to-subledger, bank reconciliations, and intercompany. Covers reconciling item categorization, aging analysis, and escalation.
+GL-보조원장, 은행 조정, 내부거래를 포함한 계정 조정의 방법론 및 모범 사례입니다. 조정 항목 분류, 경과 분석, 에스컬레이션을 다룹니다.
 
-## Reconciliation Types
+## 조정 유형
 
-### GL to Subledger Reconciliation
+### GL-보조원장 조정
 
-Compare the general ledger control account balance to the detailed subledger balance.
+총계정원장 통제 계정 잔액과 세부 보조원장 잔액을 비교합니다.
 
-**Common accounts:**
-- Accounts receivable (GL control vs AR subledger aging)
-- Accounts payable (GL control vs AP subledger aging)
-- Fixed assets (GL control vs fixed asset register)
-- Inventory (GL control vs inventory valuation report)
-- Prepaid expenses (GL control vs prepaid amortization schedule)
-- Accrued liabilities (GL control vs accrual detail schedules)
+**일반적인 계정:**
+- 매출채권 (GL 통제 vs AR 보조원장 경과보고서)
+- 매입채무 (GL 통제 vs AP 보조원장 경과보고서)
+- 유형자산 (GL 통제 vs 유형자산 대장)
+- 재고자산 (GL 통제 vs 재고 평가 보고서)
+- 선급비용 (GL 통제 vs 선급비용 상각 스케줄)
+- 미지급비용 (GL 통제 vs 미지급 세부 스케줄)
 
-**Process:**
-1. Pull GL balance for the control account as of period end
-2. Pull subledger trial balance or detail report as of the same date
-3. Compare totals — they should match if posting is real-time
-4. Investigate any differences (timing of posting, manual entries not reflected, interface errors)
+**프로세스:**
+1. 기말 기준 통제 계정의 GL 잔액 추출
+2. 동일 일자 기준 보조원장 시산표 또는 세부 보고서 추출
+3. 합계 비교 — 실시간 전기인 경우 일치해야 함
+4. 차이 조사(전기 시점, 보조원장에 반영되지 않은 수동 분개, 인터페이스 오류)
 
-**Common causes of differences:**
-- Manual journal entries posted to the control account but not reflected in the subledger
-- Subledger transactions not yet interfaced to the GL
-- Timing differences in batch posting
-- Reclassification entries in the GL without subledger adjustment
-- System interface errors or failed postings
+**일반적인 차이 원인:**
+- 통제 계정에 전기되었으나 보조원장에 반영되지 않은 수동 분개
+- GL에 아직 인터페이스되지 않은 보조원장 거래
+- 배치 전기의 시점 차이
+- 보조원장 조정 없이 GL에서의 재분류 분개
+- 시스템 인터페이스 오류 또는 전기 실패
 
-### Bank Reconciliation
+### 은행 조정
 
-Compare the GL cash balance to the bank statement balance.
+GL 현금 잔액과 은행 명세서 잔액을 비교합니다.
 
-**Process:**
-1. Obtain the bank statement balance as of period end
-2. Pull the GL cash account balance as of the same date
-3. Identify outstanding checks (issued but not cleared at the bank)
-4. Identify deposits in transit (recorded in GL but not yet credited by bank)
-5. Identify bank charges, interest, or adjustments not yet recorded in GL
-6. Reconcile both sides to an adjusted balance
+**프로세스:**
+1. 기말 기준 은행 명세서 잔액 확인
+2. 동일 일자 기준 GL 현금 계정 잔액 추출
+3. 미결 수표(발행되었으나 은행에서 미결제) 식별
+4. 미입금(GL에 기록되었으나 은행에 미입금) 식별
+5. GL에 아직 기록되지 않은 은행 수수료, 이자, 조정 식별
+6. 양측을 조정 후 잔액으로 조정
 
-**Standard format:**
+**표준 형식:**
 
 ```
-Balance per bank statement:         $XX,XXX
-Add: Deposits in transit            $X,XXX
-Less: Outstanding checks           ($X,XXX)
-Add/Less: Bank errors               $X,XXX
-Adjusted bank balance:              $XX,XXX
+은행 명세서 잔액:                    $XX,XXX
+가산: 미입금                         $X,XXX
+차감: 미결 수표                     ($X,XXX)
+가감: 은행 오류                      $X,XXX
+조정 후 은행 잔액:                   $XX,XXX
 
-Balance per general ledger:         $XX,XXX
-Add: Interest/credits not recorded  $X,XXX
-Less: Bank fees not recorded       ($X,XXX)
-Add/Less: GL errors                 $X,XXX
-Adjusted GL balance:                $XX,XXX
+총계정원장 잔액:                     $XX,XXX
+가산: 미기록 이자/입금               $X,XXX
+차감: 미기록 은행 수수료            ($X,XXX)
+가감: GL 오류                        $X,XXX
+조정 후 GL 잔액:                     $XX,XXX
 
-Difference:                         $0.00
+차이:                                $0.00
 ```
 
-### Intercompany Reconciliation
+### 내부거래 조정
 
-Reconcile balances between related entities to ensure they net to zero on consolidation.
+연결 시 상계되도록 관계사 간 잔액을 조정합니다.
 
-**Process:**
-1. Pull intercompany receivable/payable balances for each entity pair
-2. Compare Entity A's receivable from Entity B to Entity B's payable to Entity A
-3. Identify and resolve differences
-4. Confirm all intercompany transactions have been recorded on both sides
-5. Verify elimination entries are correct for consolidation
+**프로세스:**
+1. 각 법인 쌍의 내부거래 채권/채무 잔액 추출
+2. 법인 A의 법인 B에 대한 채권과 법인 B의 법인 A에 대한 채무 비교
+3. 차이 식별 및 해결
+4. 모든 내부거래가 양측에 기록되었는지 확인
+5. 연결을 위한 제거 분개가 올바른지 검증
 
-**Common causes of differences:**
-- Transactions recorded by one entity but not the other (timing)
-- Different FX rates used by each entity
-- Misclassification (intercompany vs third-party)
-- Disputed amounts or unapplied payments
-- Different period-end cut-off practices across entities
+**일반적인 차이 원인:**
+- 한 법인에서는 기록했으나 다른 법인에서는 미기록(시점)
+- 각 법인이 사용한 환율 차이
+- 오분류(내부거래 vs 외부거래)
+- 분쟁 금액 또는 미적용 지급
+- 법인 간 상이한 기말 마감 관행
 
-## Reconciling Item Categorization
+## 조정 항목 분류
 
-### Category 1: Timing Differences
+### 카테고리 1: 시점 차이
 
-Items that exist because of normal processing timing and will clear without action:
+정상적인 처리 시점으로 인해 존재하며 조치 없이 해소될 항목:
 
-- **Outstanding checks:** Checks issued and recorded in GL, pending bank clearance
-- **Deposits in transit:** Deposits made and recorded in GL, pending bank credit
-- **In-transit transactions:** Items posted in one system but pending interface to the other
-- **Pending approvals:** Transactions awaiting approval to post in one system
+- **미결 수표:** GL에 발행·기록되었으나 은행 결제 대기 중
+- **미입금:** GL에 기록·입금되었으나 은행 입금 대기 중
+- **이동 중 거래:** 한 시스템에 전기되었으나 다른 시스템으로 인터페이스 대기 중
+- **승인 대기:** 한 시스템에서 전기 승인 대기 중인 거래
 
-**Expected resolution:** These items should clear within the normal processing cycle (typically 1-5 business days). No adjusting entry needed.
+**예상 해소:** 이러한 항목은 정상 처리 주기 내(일반적으로 1-5 영업일) 해소되어야 합니다. 조정 분개 불필요.
 
-### Category 2: Adjustments Required
+### 카테고리 2: 조정 필요
 
-Items that require a journal entry to correct:
+수정을 위해 분개가 필요한 항목:
 
-- **Unrecorded bank charges:** Bank fees, wire charges, returned item fees
-- **Unrecorded interest:** Interest income or expense from bank/lender
-- **Recording errors:** Wrong amount, wrong account, duplicates
-- **Missing entries:** Transactions in one system with no corresponding entry in the other
-- **Classification errors:** Correctly recorded but in the wrong account
+- **미기록 은행 수수료:** 은행 수수료, 송금 수수료, 반송 수수료
+- **미기록 이자:** 은행/대출기관의 이자수익 또는 이자비용
+- **기록 오류:** 잘못된 금액, 잘못된 계정, 중복
+- **누락 분개:** 한 시스템에는 있으나 다른 시스템에 대응 분개가 없는 거래
+- **분류 오류:** 올바르게 기록되었으나 잘못된 계정에 기록
 
-**Action:** Prepare adjusting journal entry to correct the GL or subledger.
+**조치:** GL 또는 보조원장을 수정하기 위한 조정 분개를 작성합니다.
 
-### Category 3: Requires Investigation
+### 카테고리 3: 조사 필요
 
-Items that cannot be immediately explained:
+즉시 설명할 수 없는 항목:
 
-- **Unidentified differences:** Variances with no obvious cause
-- **Disputed items:** Amounts contested between parties
-- **Aged outstanding items:** Items that have not cleared within expected timeframes
-- **Recurring unexplained differences:** Same type of difference appearing each period
+- **미확인 차이:** 명확한 원인이 없는 차이
+- **분쟁 항목:** 당사자 간 이의가 제기된 금액
+- **장기 미결 항목:** 예상 기간 내 해소되지 않은 항목
+- **반복적 설명 불가 차이:** 매 기간 동일 유형의 차이 발생
 
-**Action:** Investigate root cause, document findings, escalate if unresolved.
+**조치:** 근본 원인 조사, 결과 문서화, 미해결 시 에스컬레이션.
 
-## Aging Analysis for Outstanding Items
+## 미결 항목 경과 분석
 
-Track the age of reconciling items to identify stale items requiring escalation:
+에스컬레이션이 필요한 오래된 항목을 식별하기 위해 조정 항목의 경과를 추적합니다:
 
-| Age Bucket | Status | Action |
+| 경과 구간 | 상태 | 조치 |
 |-----------|--------|--------|
-| 0-30 days | Current | Monitor — within normal processing cycle |
-| 31-60 days | Aging | Investigate — follow up on why item has not cleared |
-| 61-90 days | Overdue | Escalate — notify supervisor, document investigation |
-| 90+ days | Stale | Escalate to management — potential write-off or adjustment needed |
+| 0-30일 | 현재 | 모니터링 — 정상 처리 주기 내 |
+| 31-60일 | 경과 중 | 조사 — 항목이 해소되지 않은 이유 후속 조치 |
+| 61-90일 | 기한 초과 | 에스컬레이션 — 상급자 통보, 조사 문서화 |
+| 90일+ | 장기 미결 | 경영진 에스컬레이션 — 제각 또는 조정 필요 가능 |
 
-### Aging Report Format
+### 경과 보고서 형식
 
-| Item # | Description | Amount | Date Originated | Age (Days) | Category | Status | Owner |
+| 항목 # | 설명 | 금액 | 발생일 | 경과(일) | 카테고리 | 상태 | 담당자 |
 |--------|-------------|--------|-----------------|------------|----------|--------|-------|
-| 1      | [Detail]    | $X,XXX | [Date]          | XX         | [Type]   | [Status] | [Name] |
+| 1      | [세부사항]  | $X,XXX | [일자]          | XX         | [유형]   | [상태] | [이름] |
 
-### Trending
+### 추세 분석
 
-Track reconciling item totals over time to identify growing balances:
+시간 경과에 따른 조정 항목 합계를 추적하여 증가하는 잔액을 식별합니다:
 
-- Compare total outstanding items to prior period
-- Flag if total reconciling items exceed materiality threshold
-- Flag if number of items is growing period over period
-- Identify recurring items that appear every period (may indicate process issue)
+- 총 미결 항목을 전기와 비교
+- 총 조정 항목이 중요성 기준을 초과하는 경우 플래그
+- 항목 수가 기간별로 증가하는 경우 플래그
+- 매 기간 반복되는 항목 식별(프로세스 문제를 나타낼 수 있음)
 
-## Escalation Thresholds
+## 에스컬레이션 기준
 
-Define escalation triggers based on your organization's risk tolerance:
+조직의 위험 허용 수준에 따라 에스컬레이션 트리거를 정의합니다:
 
-| Trigger | Threshold (Example) | Escalation |
+| 트리거 | 기준(예시) | 에스컬레이션 |
 |---------|---------------------|------------|
-| Individual item amount | > $10,000 | Supervisor review |
-| Individual item amount | > $50,000 | Controller review |
-| Total reconciling items | > $100,000 | Controller review |
-| Item age | > 60 days | Supervisor follow-up |
-| Item age | > 90 days | Controller / management review |
-| Unreconciled difference | Any amount | Cannot close — must resolve or document |
-| Growing trend | 3+ consecutive periods | Process improvement investigation |
+| 개별 항목 금액 | > $10,000 | 상급자 검토 |
+| 개별 항목 금액 | > $50,000 | 컨트롤러 검토 |
+| 총 조정 항목 | > $100,000 | 컨트롤러 검토 |
+| 항목 경과 | > 60일 | 상급자 후속 조치 |
+| 항목 경과 | > 90일 | 컨트롤러 / 경영진 검토 |
+| 미조정 차이 | 금액 무관 | 마감 불가 — 해결 또는 문서화 필요 |
+| 증가 추세 | 3기간 이상 연속 | 프로세스 개선 조사 |
 
-*Note: Set thresholds based on your organization's materiality level and risk appetite. The examples above are illustrative.*
+*참고: 조직의 중요성 수준 및 위험 성향에 따라 기준을 설정하세요. 위 예시는 설명을 위한 것입니다.*
 
-## Reconciliation Best Practices
+## 조정 모범 사례
 
-1. **Timeliness:** Complete reconciliations within the close calendar deadline (typically T+3 to T+5 business days after period end)
-2. **Completeness:** Reconcile all balance sheet accounts on a defined frequency (monthly for material accounts, quarterly for immaterial)
-3. **Documentation:** Every reconciliation should include preparer, reviewer, date, and clear explanation of all reconciling items
-4. **Segregation:** The person who reconciles should not be the same person who processes transactions in that account
-5. **Follow-through:** Track open items to resolution — do not just carry items forward indefinitely
-6. **Root cause analysis:** For recurring reconciling items, investigate and fix the underlying process issue
-7. **Standardization:** Use consistent templates and procedures across all accounts
-8. **Retention:** Maintain reconciliations and supporting detail per your organization's document retention policy
+1. **적시성:** 결산 일정 내 조정 완료(일반적으로 기말 후 T+3 ~ T+5 영업일)
+2. **완전성:** 정의된 빈도로 모든 대차대조표 계정 조정(중요 계정은 매월, 비중요 계정은 분기)
+3. **문서화:** 모든 조정에 작성자, 검토자, 일자, 모든 조정 항목에 대한 명확한 설명 포함
+4. **직무 분리:** 조정 수행자와 해당 계정의 거래 처리자가 동일하면 안 됨
+5. **후속 조치:** 미결 항목을 해결까지 추적 — 항목을 무한정 이월하지 않음
+6. **근본 원인 분석:** 반복적 조정 항목의 경우 기초 프로세스 문제를 조사하고 수정
+7. **표준화:** 모든 계정에 일관된 템플릿 및 절차 사용
+8. **보관:** 조직의 문서 보관 정책에 따라 조정 및 증빙 세부사항 보관

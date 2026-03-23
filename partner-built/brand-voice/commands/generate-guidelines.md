@@ -1,28 +1,28 @@
 ---
-description: Generate brand voice guidelines from documents, transcripts, discovery reports, or any combination
-argument-hint: "<sources — documents, transcripts, or description of what you have>"
+description: 문서, 트랜스크립트, 탐색 보고서 또는 이들의 조합에서 브랜드 보이스 가이드라인을 생성합니다
+argument-hint: "<소스 — 문서, 트랜스크립트 또는 보유 자료 설명>"
 ---
 
-**MANDATORY FIRST STEP — do this before anything else, including reading sources or processing arguments.** Check whether the user has a working folder selected for this session. You must verify this before starting any guideline generation work. If there is no working folder, stop and warn the user: "You don't have a working folder selected. Without one, I can't save guidelines to a file — they'll only exist in this conversation and won't persist to future sessions. Please select a working folder and re-run this command. If you'd like to proceed anyway, let me know."  Wait for the user to confirm before continuing.
+**필수 첫 번째 단계 — 소스 읽기나 인수 처리를 포함한 다른 어떤 작업보다 먼저 이것을 수행하세요.** 사용자가 이 세션에서 작업 폴더를 선택했는지 확인합니다. 가이드라인 생성 작업을 시작하기 전에 반드시 이를 확인해야 합니다. 작업 폴더가 없는 경우, 중단하고 사용자에게 경고합니다: "작업 폴더가 선택되어 있지 않습니다. 작업 폴더가 없으면 가이드라인을 파일로 저장할 수 없습니다 — 이 대화에서만 존재하며 향후 세션에 유지되지 않습니다. 작업 폴더를 선택하고 이 명령을 다시 실행해 주세요. 그래도 진행하고 싶으시면 알려주세요." 사용자가 확인할 때까지 기다립니다.
 
-Generate comprehensive, LLM-ready brand voice guidelines from whatever sources the user provides — brand documents, conversation transcripts, a discovery report from `/brand-voice:discover-brand`, or direct input.
+사용자가 제공하는 모든 소스 — 브랜드 문서, 대화 트랜스크립트, `/brand-voice:discover-brand`의 탐색 보고서 또는 직접 입력 — 에서 포괄적이고 LLM 호환 브랜드 보이스 가이드라인을 생성합니다.
 
-Process the sources specified in $ARGUMENTS. If none specified, check:
-1. Whether a discovery report was generated in this session
-2. `.claude/brand-voice.local.md` for known brand material locations
-3. Connected platforms (Notion, Confluence, Google Drive, Box, SharePoint, Gong) for existing materials
-4. If nothing is available, suggest running `/brand-voice:discover-brand` first
+$ARGUMENTS에 지정된 소스를 처리합니다. 지정되지 않은 경우 다음을 확인합니다:
+1. 이 세션에서 탐색 보고서가 생성되었는지
+2. `.claude/brand-voice.local.md`에서 알려진 브랜드 자료 위치
+3. 연결된 플랫폼(Notion, Confluence, Google Drive, Box, SharePoint, Gong)에서 기존 자료
+4. 아무것도 없으면 먼저 `/brand-voice:discover-brand` 실행을 제안합니다
 
-Follow the guideline-generation skill instructions to:
-1. Identify and classify all available sources (discovery report, documents, transcripts)
-2. Delegate to document-analysis and conversation-analysis agents as needed
-3. Synthesize findings into unified guidelines with "We Are / We Are Not" table and tone-by-context matrix
-4. Assign confidence scores per section
-5. Surface open questions with agent recommendations for any ambiguity
-6. Present key findings and offer next steps
-7. Save guidelines to `.claude/brand-voice-guidelines.md` inside the user's working folder (archiving any existing file first). Do NOT use a relative path from the agent's current working directory — in Cowork, the agent runs from a plugin cache directory, not the user's project.
+guideline-generation 스킬 지침에 따라:
+1. 사용 가능한 모든 소스를 식별하고 분류합니다 (탐색 보고서, 문서, 트랜스크립트)
+2. 필요에 따라 document-analysis 및 conversation-analysis 에이전트에 위임합니다
+3. 결과를 "우리는 ~ / 우리는 ~이 아님" 테이블과 맥락별 톤 매트릭스가 포함된 통합 가이드라인으로 합성합니다
+4. 섹션별 신뢰도 점수를 할당합니다
+5. 모호성에 대해 에이전트 권장 사항이 포함된 미해결 질문을 제시합니다
+6. 핵심 결과를 제시하고 다음 단계를 제안합니다
+7. 사용자의 작업 폴더 내 `.claude/brand-voice-guidelines.md`에 가이드라인을 저장합니다 (기존 파일이 있으면 먼저 보관). 에이전트의 현재 작업 디렉토리로부터의 상대 경로를 사용하지 마세요 — Cowork에서는 에이전트가 사용자의 프로젝트가 아닌 플러그인 캐시 디렉토리에서 실행됩니다.
 
-After generation, guidelines are saved locally so `/brand-voice:enforce-voice` can automatically find them in future sessions.
+생성 후 가이드라인은 로컬에 저장되어 `/brand-voice:enforce-voice`가 향후 세션에서 자동으로 찾을 수 있습니다.
 
-Supported document formats: PDF, PowerPoint, Word, Markdown, plain text.
-Supported transcript sources: Gong (MCP), Granola (MCP), Notion meeting notes, manual uploads.
+지원 문서 형식: PDF, PowerPoint, Word, Markdown, 일반 텍스트.
+지원 트랜스크립트 소스: Gong (MCP), Granola (MCP), Notion 회의록, 수동 업로드.
