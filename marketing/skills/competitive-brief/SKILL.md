@@ -1,41 +1,41 @@
 ---
 name: competitive-brief
-description: Research competitors and generate a positioning and messaging comparison with content gaps, opportunities, and threats. Use when building sales battlecards, when finding positioning gaps and messaging angles competitors haven't claimed, or when a competitor makes a move and you need to assess the impact.
+description: 경쟁사를 조사하고 포지셔닝 및 메시지 비교를 콘텐츠 갭, 기회, 위협과 함께 생성합니다. 세일즈 배틀카드를 만들 때, 경쟁사가 아직 차지하지 않은 포지셔닝 갭과 메시지 각도를 찾을 때, 또는 경쟁사가 움직였을 때 그 영향을 평가해야 할 때 사용합니다.
 argument-hint: "<competitor or market segment>"
 ---
 
-# Competitive Brief
+# 경쟁 브리프
 
 > If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
 
-Research competitors and generate a structured competitive analysis comparing positioning, messaging, content strategy, and market presence.
+경쟁사를 조사하고 포지셔닝, 메시지, 콘텐츠 전략, 시장 존재감을 비교하는 구조화된 경쟁 분석을 생성합니다.
 
-## Trigger
+## 트리거
 
-User runs `/competitive-brief` or asks for a competitive analysis, competitor research, or market comparison.
+사용자가 `/competitive-brief`를 실행하거나 경쟁 분석, 경쟁사 조사, 시장 비교를 요청합니다.
 
-## Inputs
+## 입력
 
-Gather the following from the user:
+사용자로부터 다음을 받습니다.
 
-1. **Competitor name(s)** — one or more competitors to analyze (required)
+1. **경쟁사 이름** - 분석할 경쟁사 1개 이상(필수)
 
-2. **Your company/product context** (optional but recommended):
-   - What you sell and to whom
-   - Your positioning or value proposition
-   - Key differentiators you want to highlight
+2. **귀사의 회사/제품 맥락**(선택 사항이지만 권장):
+   - 무엇을 누구에게 파는지
+   - 포지셔닝 또는 가치 제안
+   - 강조하고 싶은 핵심 차별점
 
-3. **Focus areas** (optional — if not specified, cover all):
-   - Messaging and positioning
-   - Product and feature comparison
-   - Content and thought leadership strategy
-   - Recent announcements and news
-   - Pricing and packaging (if publicly available)
-   - Market presence and audience
+3. **중점 영역**(선택 사항 - 지정되지 않으면 전체를 다룸):
+   - 메시지와 포지셔닝
+   - 제품 및 기능 비교
+   - 콘텐츠 및 사고 리더십 전략
+   - 최근 발표와 뉴스
+   - 가격과 패키징(공개되어 있으면)
+   - 시장 존재감과 대상
 
-## Research Process
+## 조사 과정
 
-For each competitor, research using web search:
+각 경쟁사에 대해 웹 검색으로 조사합니다.
 
 1. **Company website** — homepage messaging, product pages, about page, pricing page
 2. **Recent news** — press releases, funding announcements, product launches, partnerships (last 6 months)
@@ -43,11 +43,11 @@ For each competitor, research using web search:
 4. **Review sites and comparisons** — third-party comparisons, analyst mentions, customer review themes
 5. **Job postings** — hiring signals that indicate strategic direction (optional)
 
-### Research Sources
+### 조사 소스
 
-Gather intelligence from these categories of sources:
+다음 범주의 소스에서 인텔리전스를 수집합니다.
 
-#### Primary Sources (Direct from Competitor)
+#### 1차 소스(경쟁사 직접)
 - **Website**: homepage, product pages, pricing, about page, careers
 - **Blog and resource center**: content themes, publishing frequency, depth
 - **Social media profiles**: messaging, engagement, content strategy
@@ -56,7 +56,7 @@ Gather intelligence from these categories of sources:
 - **Press releases and newsroom**: announcements, partnerships, milestones
 - **Job postings**: hiring signals that reveal strategic priorities (e.g., hiring for a new product line or market)
 
-#### Secondary Sources (Third-Party)
+#### 2차 소스(제3자)
 - **Review sites**: G2, Capterra, TrustRadius, Product Hunt — customer sentiment themes
 - **Analyst reports**: Gartner, Forrester, IDC — market positioning and category placement
 - **News coverage**: TechCrunch, industry publications — funding, partnerships, narrative
@@ -65,267 +65,267 @@ Gather intelligence from these categories of sources:
 - **Financial filings**: revenue, growth rate, investment areas (for public companies)
 - **Community forums**: community forums (e.g. Reddit, Discourse), industry chat groups (e.g. Slack communities) — user sentiment
 
-### Research Cadence
-- **Deep competitive analysis**: quarterly (full research across all sources)
-- **Competitive monitoring**: monthly (scan for new announcements, content, messaging changes)
-- **Real-time alerts**: ongoing (set up alerts for competitor brand mentions, press, job postings)
+### 조사 주기
+- **심층 경쟁 분석**: 분기별(모든 소스를 아우르는 전체 조사)
+- **경쟁 모니터링**: 월별(새 발표, 콘텐츠, 메시지 변화 스캔)
+- **실시간 알림**: 상시(경쟁사 브랜드 언급, 보도, 채용 공고 알림 설정)
 
-## Competitive Brief Structure
+## 경쟁 브리프 구조
 
-### 1. Executive Summary
-- 2-3 sentence overview of the competitive landscape
-- Key takeaway: your biggest opportunity and biggest threat
+### 1. 요약
+- 경쟁 환경에 대한 2-3문장 개요
+- 핵심 인사이트: 가장 큰 기회와 가장 큰 위협
 
-### 2. Competitor Profiles
+### 2. 경쟁사 프로필
 
-For each competitor:
+각 경쟁사마다 다음을 작성합니다.
 
-#### Company Overview
-- What they do (one-sentence positioning)
-- Target audience
-- Company size/stage indicators (funding, employee count if available)
-- Key recent developments
+#### 회사 개요
+- 무엇을 하는지(한 문장 포지셔닝)
+- 대상
+- 회사 규모/단계 지표(펀딩, 가능하면 직원 수)
+- 최근 주요 동향
 
-#### Messaging Analysis
-- Primary tagline or headline
-- Core value proposition
-- Key messaging themes (3-5)
-- Tone and voice characterization
-- How they describe the problem they solve
+#### 메시지 분석
+- 주요 태그라인 또는 헤드라인
+- 핵심 가치 제안
+- 주요 메시지 주제(3-5개)
+- 톤과 voice 특성
+- 자신들이 해결하는 문제를 어떻게 설명하는지
 
-#### Product/Solution Positioning
-- How they categorize their product
-- Key features they emphasize
-- Claimed differentiators
-- Pricing approach (if publicly available)
+#### 제품/솔루션 포지셔닝
+- 제품을 어떤 범주로 설명하는지
+- 강조하는 주요 기능
+- 주장하는 차별점
+- 가격 접근 방식(공개되어 있으면)
 
-#### Content Strategy
-- Blog frequency and topics
-- Content types produced (ebooks, webinars, case studies, tools)
-- Social media presence and engagement approach
-- Thought leadership themes
-- SEO strategy observations (what terms they appear to target)
+#### 콘텐츠 전략
+- 블로그 빈도와 주제
+- 생산하는 콘텐츠 유형(전자책, 웨비나, 사례 연구, 도구)
+- 소셜 미디어 존재감과 참여 방식
+- 사고 리더십 주제
+- SEO 전략 관찰(어떤 용어를 노리는지)
 
-#### Strengths
-- What they do well
-- Where their messaging resonates
-- Competitive advantages
+#### 강점
+- 잘하는 것
+- 메시지가 잘 먹히는 지점
+- 경쟁 우위
 
-#### Weaknesses
-- Gaps in their messaging or positioning
-- Areas where they are vulnerable
-- Customer complaints or criticism themes (from reviews)
+#### 약점
+- 메시지 또는 포지셔닝의 갭
+- 취약한 영역
+- 고객 불만 또는 비판 주제(리뷰 기준)
 
-### 3. Messaging Comparison Matrix
+### 3. 메시지 비교 매트릭스
 
-| Dimension | Your Company | Competitor A | Competitor B |
+| 차원 | 귀사 | 경쟁사 A | 경쟁사 B |
 |-----------|-------------|--------------|--------------|
-| Primary tagline | ... | ... | ... |
-| Target buyer | ... | ... | ... |
-| Key differentiator | ... | ... | ... |
-| Tone/voice | ... | ... | ... |
-| Core value prop | ... | ... | ... |
+| 주요 태그라인 | ... | ... | ... |
+| 타깃 구매자 | ... | ... | ... |
+| 핵심 차별점 | ... | ... | ... |
+| 톤/voice | ... | ... | ... |
+| 핵심 가치 제안 | ... | ... | ... |
 
-(Include user's company only if they provided their positioning context)
+(사용자가 포지셔닝 맥락을 제공한 경우에만 귀사 정보를 포함합니다)
 
-### 4. Content Gap Analysis
-- Topics your competitors cover that you do not (or vice versa)
-- Content formats they use that you could adopt
-- Keywords or themes they own vs. opportunities they have missed
+### 4. 콘텐츠 갭 분석
+- 경쟁사는 다루지만 귀사는 다루지 않는(또는 그 반대) 주제
+- 경쟁사가 사용하는데 귀사가 도입할 수 있는 콘텐츠 형식
+- 경쟁사가 소유한 키워드 또는 주제 vs. 놓친 기회
 
-### 5. Opportunities
-- Positioning gaps you can exploit
-- Messaging angles your competitors have not claimed
-- Audience segments they are underserving
-- Content or channel opportunities
+### 5. 기회
+- 활용할 수 있는 포지셔닝 갭
+- 경쟁사가 차지하지 않은 메시지 각도
+- 충분히 공략하지 못한 대상 세그먼트
+- 콘텐츠 또는 채널 기회
 
-### 6. Threats
-- Areas where competitors are strong and you are vulnerable
-- Trends that favor their positioning
-- Recent moves that could shift the market
+### 6. 위협
+- 경쟁사가 강하고 귀사가 취약한 영역
+- 경쟁사 포지셔닝에 유리한 트렌드
+- 시장을 바꿀 수 있는 최근 움직임
 
-### 7. Recommended Actions
-- 3-5 specific, actionable recommendations based on the analysis
-- Quick wins (things you can act on this week)
-- Strategic moves (longer-term positioning or content investments)
+### 7. 권장 조치
+- 분석에 기반한 구체적이고 실행 가능한 권고 3-5개
+- 빠른 승리(이번 주에 실행할 수 있는 것)
+- 전략적 움직임(더 장기적인 포지셔닝 또는 콘텐츠 투자)
 
 ## Analysis Frameworks
 
-### Messaging Comparison Frameworks
+### 메시지 비교 프레임워크
 
-#### Value Proposition Comparison
+#### 가치 제안 비교
 
-For each competitor, document:
-- **Promise**: what they promise the customer will achieve
-- **Evidence**: how they prove the promise (data, testimonials, demos)
-- **Mechanism**: how their product delivers on the promise (the "how it works")
-- **Uniqueness**: what they claim only they can do
+각 경쟁사마다 다음을 문서화합니다.
+- **약속**: 고객이 달성할 것이라고 약속하는 것
+- **증거**: 그 약속을 어떻게 증명하는지(데이터, 추천사, 데모)
+- **메커니즘**: 제품이 약속을 어떻게 실현하는지("작동 방식")
+- **고유성**: 오직 자신들만 할 수 있다고 주장하는 것
 
-#### Narrative Analysis
+#### 내러티브 분석
 
-Identify each competitor's story arc:
-- **Villain**: what problem or enemy they position against (status quo, legacy tools, complexity)
-- **Hero**: who is the hero in their story (the customer? the product? the team?)
-- **Transformation**: what before/after do they promise?
-- **Stakes**: what happens if you do not act?
+각 경쟁사의 스토리 아크를 식별합니다.
+- **악당**: 어떤 문제나 적을 상대로 포지셔닝하는지(현상 유지, 레거시 툴, 복잡성)
+- **영웅**: 이야기 속 영웅이 누구인지(고객? 제품? 팀?)
+- **변화**: 어떤 전/후를 약속하는지
+- **이해관계**: 행동하지 않으면 무슨 일이 일어나는지
 
-This reveals positioning strategy and emotional appeals.
+이것은 포지셔닝 전략과 감성적 호소를 드러냅니다.
 
-#### Messaging Strengths and Vulnerabilities
+#### 메시지 강점과 취약성
 
-For each competitor's messaging, assess:
-- **Clarity**: can a first-time visitor understand what they do in 5 seconds?
-- **Differentiation**: is their positioning distinct or generic?
-- **Proof**: do they back up claims with evidence?
-- **Consistency**: is messaging consistent across channels?
-- **Resonance**: does their messaging address real customer pain points?
+각 경쟁사의 메시지에 대해 다음을 평가합니다.
+- **명확성**: 처음 방문한 사람이 5초 안에 무엇을 하는지 이해할 수 있나?
+- **차별성**: 포지셔닝이 독특한가, 아니면 일반적인가?
+- **증거**: 주장을 증거로 뒷받침하는가?
+- **일관성**: 채널 전반에서 메시지가 일관적인가?
+- **공감도**: 실제 고객의 페인 포인트를 다루는가?
 
-### Content Gap Analysis Methodology
+### 콘텐츠 갭 분석 방법론
 
-#### Content Audit Comparison
+#### 콘텐츠 감사 비교
 
 Map content across competitors by:
 
-| Topic/Theme | Your Content | Competitor A | Competitor B | Gap? |
+| 주제/테마 | 귀사 콘텐츠 | 경쟁사 A | 경쟁사 B | 갭? |
 |-------------|-------------|--------------|--------------|------|
-| [Topic 1] | Blog post, ebook | Blog series, webinar | Nothing | Opportunity for B |
-| [Topic 2] | Nothing | Whitepaper | Blog post, video | Gap for you |
-| [Topic 3] | Case study | Nothing | Case study | Parity |
+| [주제 1] | 블로그 글, 전자책 | 블로그 시리즈, 웨비나 | 없음 | B의 기회 |
+| [주제 2] | 없음 | 백서 | 블로그 글, 영상 | 귀사의 갭 |
+| [주제 3] | 사례 연구 | 없음 | 사례 연구 | 동등 |
 
-#### Content Type Coverage
+#### 콘텐츠 유형 커버리지
 
-| Content Format | You | Comp A | Comp B | Comp C |
+| 콘텐츠 형식 | 귀사 | 경쟁사 A | 경쟁사 B | 경쟁사 C |
 |----------------|-----|--------|--------|--------|
-| Blog posts | Y | Y | Y | Y |
-| Case studies | Y | Y | N | Y |
-| Ebooks/Whitepapers | N | Y | Y | N |
-| Webinars | Y | Y | Y | N |
-| Podcast | N | N | Y | N |
-| Video content | N | Y | Y | Y |
-| Interactive tools | N | N | N | Y |
-| Templates/Resources | Y | N | Y | N |
+| 블로그 글 | Y | Y | Y | Y |
+| 사례 연구 | Y | Y | N | Y |
+| 전자책/백서 | N | Y | Y | N |
+| 웨비나 | Y | Y | Y | N |
+| 팟캐스트 | N | N | Y | N |
+| 영상 콘텐츠 | N | Y | Y | Y |
+| 인터랙티브 도구 | N | N | N | Y |
+| 템플릿/리소스 | Y | N | Y | N |
 
-#### Identifying Content Opportunities
-1. **Topics they cover that you do not**: potential gaps in your content strategy
-2. **Topics you cover that they do not**: potential differentiators to amplify
-3. **Formats they use that you do not**: format gaps that could reach new audiences
-4. **Audience segments they address that you do not**: underserved audiences
-5. **Search terms they rank for that you do not**: SEO content gaps
+#### 콘텐츠 기회 식별
+1. **경쟁사가 다루지만 귀사가 다루지 않는 주제**: 콘텐츠 전략의 잠재 갭
+2. **귀사는 다루지만 경쟁사는 다루지 않는 주제**: 키울 수 있는 차별점
+3. **경쟁사가 사용하지만 귀사는 사용하지 않는 형식**: 새 대상에 도달할 수 있는 형식 갭
+4. **경쟁사가 공략하지만 귀사는 공략하지 않는 대상 세그먼트**: 충분히 다루지 못한 대상
+5. **경쟁사가 순위에 있는 검색어 중 귀사가 없는 것**: SEO 콘텐츠 갭
 
-#### Content Quality Assessment
-- Depth: surface-level or comprehensive?
-- Freshness: regularly updated or stale?
-- Engagement: do posts get comments, shares, links?
-- Production value: text-only or multimedia?
-- Thought leadership: original insights or rehashed content?
+#### 콘텐츠 품질 평가
+- 깊이: 표면적인가, 포괄적인가?
+- 최신성: 정기적으로 업데이트되는가, 아니면 오래됐는가?
+- 참여도: 게시물에 댓글, 공유, 링크가 생기는가?
+- 제작 가치: 텍스트만인가, 멀티미디어인가?
+- 사고 리더십: 독창적 통찰인가, 재탕 콘텐츠인가?
 
-### Positioning Strategy
+### 포지셔닝 전략
 
-#### Positioning Statement Framework
+#### 포지셔닝 문장 프레임워크
 
-For your company and each competitor, define (or reverse-engineer) their positioning statement:
+귀사와 각 경쟁사에 대해 포지셔닝 문장을 정의하거나 역으로 추론합니다.
 
-> For [target audience], [product/company] is the [category] that [key benefit/differentiator] because [reason to believe].
+> [대상]에게 [제품/회사]는 [핵심 혜택/차별점]을 제공하는 [범주]입니다. 왜냐하면 [믿을 이유]가 있기 때문입니다.
 
-Example:
-> For mid-market SaaS marketing teams, Acme is the campaign management platform that unifies planning and execution in one workspace because it is built on a single data model that eliminates tool fragmentation.
+예시:
+> 중견 SaaS 마케팅 팀에게 Acme는 계획과 실행을 하나의 작업 공간에서 통합하는 캠페인 관리 플랫폼입니다. 도구 파편화를 없애는 단일 데이터 모델 위에 구축되었기 때문입니다.
 
-#### Positioning Map
+#### 포지셔닝 맵
 
 Plot competitors on a 2x2 matrix using the two most important dimensions for your market:
 
-Common axis pairs:
-- **Price vs. Capability** (low cost / basic vs. premium / full-featured)
-- **Ease of Use vs. Power** (simple / limited vs. complex / flexible)
-- **SMB Focus vs. Enterprise Focus** (self-serve / individual vs. sales-led / team)
-- **Point Solution vs. Platform** (does one thing well vs. does many things)
-- **Innovative vs. Established** (new approach vs. proven track record)
+흔한 축 조합:
+- **가격 vs. 역량** (저가/기본 vs. 프리미엄/다기능)
+- **사용 용이성 vs. 파워** (단순/제한적 vs. 복잡/유연)
+- **SMB 집중 vs. 엔터프라이즈 집중** (셀프서브/개인 vs. 세일즈 주도/팀)
+- **포인트 솔루션 vs. 플랫폼** (한 가지를 잘함 vs. 많은 것을 함)
+- **혁신적 vs. 확립됨** (새로운 접근 vs. 검증된 실적)
 
-Identify which quadrant is underserved or where your differentiation is strongest.
+어느 사분면이 충분히 공략되지 않았는지, 또는 어디서 차별점이 가장 강한지 식별합니다.
 
-#### Category Strategy
-- **Create a new category**: if you do something genuinely different, define and own the category (high risk, high reward)
-- **Reframe the existing category**: change how buyers evaluate the category to favor your strengths
-- **Win the existing category**: compete directly on recognized criteria and out-execute
-- **Niche within the category**: own a specific segment, use case, or audience
+#### 카테고리 전략
+- **새 카테고리 만들기**: 정말로 다른 것을 한다면 카테고리를 정의하고 소유합니다(고위험, 고보상)
+- **기존 카테고리 재정의**: 구매자가 카테고리를 평가하는 방식을 바꿔 자신의 강점이 유리해지게 합니다
+- **기존 카테고리에서 승리**: 알려진 기준으로 직접 경쟁하고 더 잘 실행합니다
+- **카테고리 내 니치 공략**: 특정 세그먼트, 사용 사례, 대상의 주인이 됩니다
 
-#### Positioning Pitfalls to Avoid
-- Positioning against a competitor rather than for a customer need
-- Claiming too many differentiators (pick 1-2 that matter most)
-- Using category jargon the customer does not use
-- Positioning on features rather than outcomes
-- Changing positioning too frequently (confuses the market)
+#### 피해야 할 포지셔닝 함정
+- 고객의 필요가 아니라 경쟁사를 상대로 포지셔닝하기
+- 차별점을 너무 많이 주장하기(가장 중요한 1-2개만 고르기)
+- 고객이 쓰지 않는 카테고리 전문용어 사용
+- 결과가 아니라 기능으로 포지셔닝하기
+- 포지셔닝을 너무 자주 바꾸기(시장을 혼란스럽게 함)
 
-### Battlecard Creation
+### 배틀카드 만들기
 
-A competitive battlecard is a one-page reference for sales and marketing teams. Include:
+경쟁 배틀카드는 영업 및 마케팅 팀을 위한 1페이지 참고 자료입니다. 다음을 포함합니다.
 
-#### Header
-- Competitor name and logo
-- Last updated date
-- Competitive win rate (if tracked)
+#### 헤더
+- 경쟁사 이름과 로고
+- 마지막 업데이트 날짜
+- 경쟁 승률(추적하는 경우)
 
-#### Quick Overview
-- What they do (one sentence)
-- Their target customer
-- Pricing model summary
-- Key recent developments
+#### 빠른 개요
+- 무엇을 하는지(한 문장)
+- 타깃 고객
+- 가격 모델 요약
+- 최근 주요 동향
 
-#### Their Pitch
-- How they describe themselves
-- Their primary tagline
-- Their top 3 claimed differentiators
+#### 그들의 피치
+- 스스로를 어떻게 설명하는지
+- 주요 태그라인
+- 주장하는 상위 3개 차별점
 
-#### Strengths (Be Honest)
-- Where they genuinely compete well
-- What customers like about them (from reviews)
-- Features or capabilities where they lead
+#### 강점(솔직하게)
+- 실제로 잘 경쟁하는 영역
+- 고객이 좋아하는 점(리뷰 기준)
+- 선도하는 기능이나 역량
 
-#### Weaknesses
-- Consistent customer complaints (from reviews)
-- Technical limitations
-- Gaps in their offering
-- Areas where customers report dissatisfaction
+#### 약점
+- 일관된 고객 불만(리뷰 기준)
+- 기술적 한계
+- 제공 범위의 갭
+- 고객이 불만을 제기하는 영역
 
-#### Our Differentiators
-- 3-5 specific ways your product or approach is different
-- For each: the differentiator, why it matters to the customer, and proof
+#### 우리의 차별점
+- 제품 또는 접근 방식이 다른 구체적 방법 3-5개
+- 각 항목마다: 차별점, 고객에게 중요한 이유, 증거
 
-#### Objection Handling
-| If the prospect says... | Respond with... |
+#### 반대 의견 대응
+| 잠재 고객이 이렇게 말하면... | 이렇게 답합니다... |
 |------------------------|----------------|
-| "[Competitor] does X too" | "Here is how our approach differs..." |
-| "[Competitor] is cheaper" | "Here is what that price difference gets you..." |
-| "I've heard good things about [Competitor]" | "They are strong at X. Where we differ is..." |
+| "[경쟁사]도 X를 합니다" | "우리 접근 방식은 이렇게 다릅니다..." |
+| "[경쟁사]가 더 저렴합니다" | "그 가격 차이로 얻는 것은 이것입니다..." |
+| "[경쟁사]에 대해 좋은 얘길 들었습니다" | "그들은 X에 강합니다. 우리가 다른 점은..." |
 
-#### Landmines to Set
-Questions to ask prospects early that highlight your advantages:
-- "How do you currently handle [area where competitor is weak]?"
-- "How important is [capability you have that they lack]?"
-- "Have you considered [risk that your product mitigates]?"
+#### 깔아 둘 질문
+초기에 물어보면 귀사의 장점이 드러나는 질문:
+- "지금 [경쟁사가 약한 영역]은 어떻게 처리하고 있나요?"
+- "[귀사는 있고 경쟁사는 없는 역량]이 얼마나 중요한가요?"
+- "[제품이 완화해 주는 리스크]를 고려해 보셨나요?"
 
-#### Landmines to Defuse
-Questions competitors might encourage prospects to ask you, with prepared responses.
+#### 미리 무력화할 질문
+경쟁사가 잠재 고객에게 묻도록 유도할 수 있는 질문과 그에 대한 준비된 답변.
 
-#### Win/Loss Themes
-- Common reasons deals are won against this competitor
-- Common reasons deals are lost to this competitor
-- What types of prospects favor them vs. you
+#### 승/패 주제
+- 이 경쟁사를 상대로 거래를 따내는 일반적 이유
+- 이 경쟁사에게 거래를 잃는 일반적 이유
+- 어떤 유형의 잠재 고객이 그들을 선호하고, 어떤 유형이 우리를 선호하는지
 
-#### Battlecard Maintenance
-- Review and update quarterly at minimum
-- Update immediately after major competitor announcements
-- Incorporate win/loss feedback from sales team
-- Track which objection-handling responses are most effective
+#### 배틀카드 유지보수
+- 최소 분기별로 검토 및 업데이트
+- 주요 경쟁사 발표 직후 즉시 업데이트
+- 영업팀의 승/패 피드백 반영
+- 어떤 반대 의견 대응이 가장 효과적인지 추적
 
-## Output
+## 출력
 
-Present the full competitive brief with clear formatting. Note the date of the research so the user knows the freshness of the data.
+명확한 형식으로 전체 경쟁 브리프를 제시합니다. 데이터의 최신성을 알 수 있도록 조사 날짜를 메모합니다.
 
-After the brief, ask:
+브리프 뒤에는 다음과 같이 묻습니다.
 
-"Would you like me to:
-- Create a battlecard for your sales team based on this analysis?
-- Draft messaging that exploits the positioning gaps identified?
-- Dive deeper into any specific competitor?
-- Set up a competitive monitoring plan?"
+"다음을 해 드릴까요?
+- 이 분석을 바탕으로 영업팀용 배틀카드를 만들까요?
+- 식별된 포지셔닝 갭을 활용하는 메시지를 초안 작성할까요?
+- 특정 경쟁사를 더 깊게 볼까요?
+- 경쟁 모니터링 계획을 세울까요?"
