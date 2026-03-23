@@ -1,12 +1,12 @@
 ---
 name: sql-queries
-description: Snowflake, BigQuery, Databricks, PostgreSQL 등 주요 데이터 웨어하우스 방언 전반에서 올바르고 성능 좋고 읽기 쉬운 SQL을 작성합니다. 쿼리를 작성할 때, 느린 SQL을 최적화할 때, 방언 간 변환을 할 때, 또는 CTE, 윈도 함수, 집계를 사용한 복잡한 분석 쿼리를 만들 때 사용합니다.
+description: Snowflake, BigQuery, Databricks, PostgreSQL 등 주요 데이터 웨어하우스 방언에서 올바르고 성능이 좋은 SQL을 작성합니다. 쿼리를 디버깅할 때, SQL을 최적화할 때, 방언 간 변환을 할 때, 또는 CTE와 윈도 함수가 포함된 쿼리를 만들 때 참고하세요.
 user-invocable: false
 ---
 
 # SQL 쿼리 스킬
 
-주요 데이터 웨어하우스 방언 전반에서 올바르고 성능 좋고 읽기 쉬운 SQL을 작성합니다.
+주요 데이터 웨어하우스 방언에서 올바르고 성능이 좋은 SQL을 작성합니다.
 
 ## 방언별 참조
 
@@ -26,21 +26,21 @@ DATE_TRUNC('month', created_at)
 
 -- 구성 요소 추출
 EXTRACT(YEAR FROM created_at)
-EXTRACT(DOW FROM created_at)  -- 0=Sunday
+EXTRACT(DOW FROM created_at)  -- 0=일요일
 
 -- 서식 지정
 TO_CHAR(created_at, 'YYYY-MM-DD')
 ```
 
-**문자열 함수:**
+**문자열:**
 ```sql
 -- 연결
 first_name || ' ' || last_name
 CONCAT(first_name, ' ', last_name)
 
 -- 패턴 일치
-column ILIKE '%pattern%'  -- case-insensitive
-column ~ '^regex_pattern$'  -- regex
+column ILIKE '%pattern%'  -- 대소문자 구분 없음
+column ~ '^regex_pattern$'  -- 정규식
 
 -- 문자열 조작
 LEFT(str, n), RIGHT(str, n)
@@ -51,9 +51,9 @@ REGEXP_REPLACE(str, pattern, replacement)
 **배열과 JSON:**
 ```sql
 -- JSON 접근
-data->>'key'  -- text
-data->'nested'->'key'  -- json
-data#>>'{path,to,key}'  -- nested text
+data->>'key'  -- 텍스트
+data->'nested'->'key'  -- JSON
+data#>>'{path,to,key}'  -- 중첩 텍스트
 
 -- 배열 연산
 ARRAY_AGG(column)
@@ -61,12 +61,12 @@ ANY(array_column)
 array_column @> ARRAY['value']
 ```
 
-**성능 팁:**
+**검토 팁:**
 - 쿼리 프로파일링에는 `EXPLAIN ANALYZE`를 사용하세요
-- 자주 필터링/조인되는 열에는 인덱스를 만드세요
+- 조인 조건에는 인덱스가 잘 맞는 열을 사용하세요
 - 상관 서브쿼리에는 `IN`보다 `EXISTS`를 사용하세요
-- 자주 쓰는 필터 조건에는 부분 인덱스를 사용하세요
-- 동시 접근에는 커넥션 풀링을 사용하세요
+- 자주 찾는 조건에는 다른 절을 사용하는 편이 좋습니다
+- 연결에는 커넥션 풀링을 사용하세요
 
 ---
 
@@ -92,7 +92,7 @@ DAYOFWEEK(created_at)
 TO_CHAR(created_at, 'YYYY-MM-DD')
 ```
 
-**문자열 함수:**
+**문자열:**
 ```sql
 -- 기본적으로 대소문자 비구분(정렬 규칙에 따라 다름)
 column ILIKE '%pattern%'
@@ -107,7 +107,7 @@ GET_PATH(variant_col, 'path.to.key')
 SELECT f.value FROM table, LATERAL FLATTEN(input => array_col) f
 ```
 
-**반구조화 데이터:**
+**반구조 데이터:**
 ```sql
 -- VARIANT 타입 접근
 data:customer:name::STRING
@@ -122,16 +122,16 @@ FROM my_table t,
 LATERAL FLATTEN(input => t.data:items) item
 ```
 
-**성능 팁:**
-- 큰 테이블에는 클러스터링 키를 사용하세요(전통적 인덱스 아님)
-- 파티션 프루닝을 위해 클러스터링 키 열로 필터링하세요
-- 쿼리 복잡도에 맞는 웨어하우스 크기를 설정하세요
-- 비용이 큰 쿼리를 다시 실행하지 않으려면 `RESULT_SCAN(LAST_QUERY_ID())`를 사용하세요
-- 스테이징/임시 데이터에는 transient 테이블을 사용하세요
+**검토 팁:**
+- 큰 테이블에는 클러스터링 키를 사용하세요
+- 클러스터링 키는 자주 필터링하는 열 중심으로 설계하세요
+- 웨어하우스 크기를 적절히 설정하세요
+- 비용이 많이 드는 쿼리를 다시 실행하지 않으려면 `RESULT_SCAN(LAST_QUERY_ID())`를 사용하세요
+- 스테이징/임시 데이터에는 임시 테이블을 사용하세요
 
 ---
 
-### BigQuery(Google Cloud)
+### BigQuery (Google Cloud)
 
 **날짜/시간:**
 ```sql
@@ -150,14 +150,14 @@ TIMESTAMP_TRUNC(created_at, HOUR)
 
 -- 구성 요소 추출
 EXTRACT(YEAR FROM created_at)
-EXTRACT(DAYOFWEEK FROM created_at)  -- 1=Sunday
+EXTRACT(DAYOFWEEK FROM created_at)  -- 1=일요일
 
 -- 서식 지정
 FORMAT_DATE('%Y-%m-%d', date_column)
 FORMAT_TIMESTAMP('%Y-%m-%d %H:%M:%S', ts_column)
 ```
 
-**문자열 함수:**
+**문자열:**
 ```sql
 -- ILIKE는 없으므로 LOWER() 사용
 LOWER(column) LIKE '%pattern%'
@@ -165,11 +165,11 @@ REGEXP_CONTAINS(column, r'pattern')
 REGEXP_EXTRACT(column, r'pattern')
 
 -- 문자열 조작
-SPLIT(str, delimiter)  -- returns ARRAY
+SPLIT(str, delimiter)  -- 배열을 반환합니다
 ARRAY_TO_STRING(array, delimiter)
 ```
 
-**배열과 구조체:**
+**배열과 구조:**
 ```sql
 -- 배열 연산
 ARRAY_AGG(column)
@@ -181,17 +181,17 @@ value IN UNNEST(array_column)
 struct_column.field_name
 ```
 
-**성능 팁:**
-- 스캔 바이트를 줄이려면 항상 파티션 열(보통 날짜)로 필터링하세요
-- 파티션 내에서 자주 필터링되는 열에는 클러스터링을 사용하세요
-- 대규모 카디널리티 추정에는 `APPROX_COUNT_DISTINCT()`를 사용하세요
-- `SELECT *`는 피하세요. 비용은 스캔한 바이트 단위로 청구됩니다
-- 파라미터화된 스크립트에는 `DECLARE`와 `SET`을 사용하세요
-- 큰 쿼리는 실행 전 dry run으로 비용을 미리 확인하세요
+**검토 팁:**
+- 스캔 바이트를 줄이려면 파티션 열(보통 날짜)로 필터링하세요
+- 자주 제외되는 열에는 클러스터링을 사용하세요
+- 높은 카디널리티 집계에는 `APPROX_COUNT_DISTINCT()`를 사용하세요
+- `SELECT *`는 피하세요. 비용은 스캔한 바이트 단위로 청구됩니다.
+- 변수 값은 `DECLARE`와 `SET`으로 관리하세요
+- BigQuery는 실행 전에 드라이 런으로 비용을 미리 확인하세요
 
 ---
 
-### Redshift(Amazon)
+### Redshift (Amazon)
 
 **날짜/시간:**
 ```sql
@@ -210,7 +210,7 @@ EXTRACT(YEAR FROM created_at)
 DATE_PART('dow', created_at)
 ```
 
-**문자열 함수:**
+**문자열:**
 ```sql
 -- 대소문자 비구분
 column ILIKE '%pattern%'
@@ -221,17 +221,17 @@ SPLIT_PART(str, delimiter, position)
 LISTAGG(column, ', ') WITHIN GROUP (ORDER BY column)
 ```
 
-**성능 팁:**
-- 함께 조인되는 테이블에는 분산 키(DISTKEY)를 설계하세요
-- 자주 필터링되는 열에는 정렬 키(SORTKEY)를 사용하세요
+**검토 팁:**
+- 함께 조인되는 테이블에는 DISTKEY를 설계하세요
+- 자주 필터링하거나 정렬하는 열에는 SORTKEY를 사용하세요
 - `EXPLAIN`으로 쿼리 계획을 확인하세요
-- 노드 간 데이터 이동을 피하세요(DS_BCAST, DS_DIST를 주의)
-- `ANALYZE`와 `VACUUM`을 정기적으로 실행하세요
-- 스키마 유연성을 위해 late-binding view를 사용하세요
+- 데이터 이동을 최소화하세요(DS_BCAST, DS_DIST를 주의)
+- `ANALYZE`와 `VACUUM`을 실행하세요
+- 필요할 때는 late-binding view를 사용하세요
 
 ---
 
-### Databricks SQL
+### 데이터브릭스 SQL
 
 **날짜/시간:**
 ```sql
@@ -252,7 +252,7 @@ YEAR(created_at), MONTH(created_at)
 DAYOFWEEK(created_at)
 ```
 
-**Delta Lake 기능:**
+**Delta Lake에서 사용할 수 있는 기능:**
 ```sql
 -- 시점 조회
 SELECT * FROM my_table TIMESTAMP AS OF '2024-01-15'
@@ -268,11 +268,11 @@ WHEN MATCHED THEN UPDATE SET *
 WHEN NOT MATCHED THEN INSERT *
 ```
 
-**성능 팁:**
+**검토 팁:**
 - 쿼리 성능을 위해 Delta Lake의 `OPTIMIZE`와 `ZORDER`를 사용하세요
-- 계산 집약적 쿼리에는 Photon 엔진을 활용하세요
+- 집계가 많은 쿼리에서는 Photon 엔진을 활용하세요
 - 자주 접근하는 데이터셋에는 `CACHE TABLE`을 사용하세요
-- 카디널리티가 낮은 날짜 열로 파티션하세요
+- 자주 필터링하는 날짜 열처럼 카디널리티가 낮은 열에 적합합니다
 
 ---
 
@@ -303,7 +303,7 @@ revenue / SUM(revenue) OVER () as pct_of_total
 revenue / SUM(revenue) OVER (PARTITION BY category) as pct_of_category
 ```
 
-### 가독성을 위한 CTE
+### 읽기 쉬운 CTE
 
 ```sql
 WITH
@@ -416,13 +416,13 @@ WITH ranked AS (
 SELECT * FROM ranked WHERE rn = 1;
 ```
 
-## 오류 처리 및 디버깅
+## 오류 처리
 
 쿼리가 실패하면:
 
-1. **문법 오류**: 방언별 문법을 확인하세요(예: BigQuery에는 `ILIKE`가 없고 `SAFE_DIVIDE`는 BigQuery 전용)
-2. **열을 찾을 수 없음**: 스키마와 대조해 열 이름을 확인하세요 - 오타, 대소문자 구분(PostgreSQL은 따옴표로 감싼 식별자에 대해 대소문자를 구분)
-3. **형식 불일치**: 서로 다른 타입을 비교할 때는 명시적으로 캐스팅하세요(`CAST(col AS DATE)`, `col::DATE`)
-4. **0으로 나누기**: `NULLIF(denominator, 0)` 또는 방언별 안전한 나눗셈을 사용하세요
-5. **모호한 열**: JOIN에서는 항상 테이블 별칭으로 열 이름을 수식하세요
-6. **GROUP BY 오류**: 집계되지 않은 모든 열은 GROUP BY에 있어야 합니다(BigQuery는 별칭 그룹화를 허용하는 예외)
+1. **문법 오류**: 방언별 차이를 확인하세요. 예를 들어 BigQuery는 `ILIKE`를 지원하지 않고, `SAFE_DIVIDE()`를 제공합니다.
+2. **열을 찾을 수 없음**: 로그와 대조해 열 이름을 확인하세요. PostgreSQL은 따옴표로 식별자 대소문자를 구분하므로 특히 주의하세요.
+3. **형식 오류**: 필요한 경우 명시적으로 형변환하세요(`CAST(col AS DATE)`, `col::DATE`).
+4. **0으로 나누기**: `NULLIF(denominator, 0)` 또는 방언별 안전 함수를 사용해 보호하세요.
+5. **모호한 열**: JOIN에서는 항상 테이블 별칭으로 열 이름을 명시하세요.
+6. **GROUP BY 오류**: 집계하지 않은 모든 열은 `GROUP BY`에 포함해야 합니다(BigQuery는 일부 별칭 그룹화를 허용합니다).

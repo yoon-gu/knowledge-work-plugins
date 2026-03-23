@@ -1,6 +1,6 @@
 # SQL 방언 참조
 
-사용자의 데이터 웨어하우스에 맞는 섹션을 생성된 스킬에 포함하세요.
+사용자의 데이터 웨어하우스에 맞는 표를 적절한 위치에 포함하세요.
 
 ---
 
@@ -16,9 +16,9 @@
   - `DATE_SUB(date_col, INTERVAL 1 DAY)`
   - `DATE_DIFF(end_date, start_date, DAY)`
 - **열 제외**: `SELECT * EXCEPT(column_to_exclude)`
-- **배열**: 펼칠 때 `UNNEST(array_column)` 사용
-- **구조체**: 점 표기법 `struct_col.field_name`으로 접근
-- **타임스탬프**: `TIMESTAMP_TRUNC()`, 기본 시간은 UTC
+- **배열**: 펼칠 때 `UNNEST(array_column)`을 사용합니다
+- **구조체**: 점 표기법 `struct_col.field_name`으로 접근합니다
+- **타임스탬프**: `TIMESTAMP_TRUNC()`, 기본 시간대는 UTC입니다
 - **문자열 일치**: `LIKE`, `REGEXP_CONTAINS(col, r'pattern')`
 - **집계에서의 NULL**: 대부분의 함수는 NULL을 무시합니다. `IFNULL()` 또는 `COALESCE()`를 사용하세요
 ```
@@ -37,7 +37,7 @@
   - `DATEADD(DAY, -1, date_col)`
   - `DATEDIFF(DAY, start_date, end_date)`
 - **열 제외**: `SELECT * EXCLUDE (column_to_exclude)`
-- **배열**: 펼칠 때 `FLATTEN(array_column)`을 사용하고, `value`로 접근합니다
+- **배열**: 펼칠 때 `FLATTEN(array_column)`을 사용하고 `value`로 접근합니다
 - **Variant/JSON**: 콜론 표기법 `variant_col:field_name`으로 접근합니다
 - **타임스탬프**: `TIMESTAMP_NTZ`(시간대 없음), `TIMESTAMP_TZ`(시간대 포함)
 - **문자열 일치**: `LIKE`, `REGEXP_LIKE(col, 'pattern')`
@@ -46,7 +46,7 @@
 
 ---
 
-## PostgreSQL / Redshift
+## PostgreSQL/Redshift
 
 ```markdown
 ## SQL 방언: PostgreSQL/Redshift
@@ -58,29 +58,29 @@
   - `date_col - INTERVAL '1 day'`
   - `DATE_PART('day', end_date - start_date)`
 - **열 선택**: EXCEPT가 없습니다. 열을 명시적으로 나열해야 합니다
-- **배열**: `UNNEST(array_column)` (PostgreSQL), Redshift에서는 제한적
+- **배열**: `UNNEST(array_column)` (PostgreSQL), Redshift에서는 제한적입니다
 - **JSON**: 텍스트는 `json_col->>'field_name'`, JSON은 `json_col->'field_name'`
-- **타임스탬프**: 시간대 변환에는 `AT TIME ZONE 'UTC'` 사용
+- **타임스탬프**: 시간대 변환에는 `AT TIME ZONE 'UTC'`를 사용합니다
 - **문자열 일치**: `LIKE`, 정규식은 `col ~ 'pattern'`
 - **불리언**: 기본 BOOLEAN 타입을 사용하며 `TRUE`/`FALSE`를 사용합니다
 ```
 
 ---
 
-## Databricks / Spark SQL
+## Databricks/Spark SQL
 
 ```markdown
 ## SQL 방언: Databricks/Spark SQL
 
 - **테이블 참조**: `catalog.schema.table`(Unity Catalog) 또는 `schema.table`
-- **안전한 나눗셈**: `NULLIF`: `a / NULLIF(b, 0)` 또는 `TRY_DIVIDE(a, b)`
+- **안전한 나눗셈**: `a / NULLIF(b, 0)` 또는 `TRY_DIVIDE(a, b)`
 - **날짜 함수**:
   - `DATE_TRUNC('MONTH', date_col)`
   - `DATE_SUB(date_col, 1)`
   - `DATEDIFF(end_date, start_date)`
 - **열 제외**: `SELECT * EXCEPT (column_to_exclude)` (Databricks SQL)
-- **배열**: 펼칠 때 `EXPLODE(array_column)` 사용
-- **구조체**: 점 표기법 `struct_col.field_name`으로 접근
+- **배열**: 펼칠 때 `EXPLODE(array_column)`을 사용합니다
+- **구조체**: 점 표기법 `struct_col.field_name`으로 접근합니다
 - **JSON**: `json_col:field_name` 또는 `GET_JSON_OBJECT()`
 - **문자열 일치**: `LIKE`, 정규식은 `RLIKE`
 - **Delta 기능**: `DESCRIBE HISTORY`, `VERSION AS OF`를 사용한 시점 조회
@@ -93,29 +93,29 @@
 ```markdown
 ## SQL 방언: MySQL
 
-- **테이블 참조**: 백틱으로 \`database\`.\`table\` 사용
+- **테이블 참조**: 백틱으로 \`database\`.\`table\`을 사용합니다
 - **안전한 나눗셈**: 수동 방식: `IF(b = 0, NULL, a / b)` 또는 `a / NULLIF(b, 0)`
 - **날짜 함수**:
-  - `DATE_FORMAT(date_col, '%Y-%m-01')` for truncation
+  - `DATE_FORMAT(date_col, '%Y-%m-01')`로 절사
   - `DATE_SUB(date_col, INTERVAL 1 DAY)`
   - `DATEDIFF(end_date, start_date)`
 - **열 선택**: EXCEPT가 없습니다. 열을 명시적으로 나열해야 합니다
 - **배열**: 기본 지원이 제한적이며, 종종 JSON으로 저장됩니다
 - **JSON**: `JSON_EXTRACT(col, '$.field')` 또는 `col->>'$.field'`
-- **타임스탬프**: 시간대 변환에는 `CONVERT_TZ()` 사용
+- **타임스탬프**: 시간대 변환에는 `CONVERT_TZ()`를 사용합니다
 - **문자열 일치**: `LIKE`, 정규식은 `REGEXP`
 - **대소문자 구분**: Linux에서는 테이블 이름이 대소문자를 구분하지만 Windows에서는 그렇지 않습니다
 ```
 
 ---
 
-## 방언 공통 패턴
+## 방언 패턴
 
-| 작업 | BigQuery | Snowflake | PostgreSQL | Databricks |
+| 기능 | BigQuery | Snowflake | PostgreSQL | Databricks |
 |-----------|----------|-----------|------------|------------|
 | 현재 날짜 | `CURRENT_DATE()` | `CURRENT_DATE()` | `CURRENT_DATE` | `CURRENT_DATE()` |
 | 현재 타임스탬프 | `CURRENT_TIMESTAMP()` | `CURRENT_TIMESTAMP()` | `NOW()` | `CURRENT_TIMESTAMP()` |
-| 문자열 연결 | `CONCAT()` 또는 `\|\|` | `CONCAT()` 또는 `\|\|` | `CONCAT()` 또는 `\|\|` | `CONCAT()` 또는 `\|\|` |
-| COALESCE | `COALESCE()` | `COALESCE()` | `COALESCE()` | `COALESCE()` |
-| CASE WHEN | `CASE WHEN` | `CASE WHEN` | `CASE WHEN` | `CASE WHEN` |
+| 문자열 연결 | `CONCAT()` 또는 `||` | `CONCAT()` 또는 `||` | `CONCAT()` 또는 `||` | `CONCAT()` 또는 `||` |
+| NULL 대체 | `COALESCE()` | `COALESCE()` | `COALESCE()` | `COALESCE()` |
+| 조건 분기 | `CASE WHEN` | `CASE WHEN` | `CASE WHEN` | `CASE WHEN` |
 | 고유 개수 | `COUNT(DISTINCT x)` | `COUNT(DISTINCT x)` | `COUNT(DISTINCT x)` | `COUNT(DISTINCT x)` |

@@ -1,186 +1,186 @@
-# scverse Quality Control Guidelines
+# scverse 품질 관리 지침
 
-This document provides detailed information about quality control best practices for single-cell RNA-seq data, following the scverse ecosystem recommendations.
+이 문서는 scverse 생태계의 권장 사항에 따라 단일 세포 RNA-seq 데이터 품질 관리의 모범 사례를 자세히 설명합니다.
 
-## Quality Control Metrics
+## 품질 관리 지표
 
-### Count Depth (Total Counts)
-- **What it measures**: Total number of UMI/reads per cell
-- **Why it matters**: Low count cells may be empty droplets, debris, or poorly captured cells
-- **Typical range**: 500-50,000 counts per cell (varies by protocol)
-- **Red flags**: Bimodal distributions may indicate mixing of high and low-quality cells
+### 카운트 깊이(총 카운트)
+- **측정 대상**: 세포당 총 UMI/읽기 수
+- **중요한 이유**: 값이 낮은 세포는 빈 드롭렛, 잔해, 또는 포획이 잘 되지 않은 세포일 수 있습니다.
+- **일반적인 범위**: 세포당 500~50,000개(프로토콜에 따라 다름)
+- **위험 신호**: 이봉 분포는 고품질 세포와 저품질 세포가 섞여 있음을 시사할 수 있습니다.
 
-### Gene Detection (Genes per Cell)
-- **What it measures**: Number of genes with at least 1 count
-- **Why it matters**: Strongly correlates with count depth; low values indicate poor capture
-- **Typical range**: 200-5,000 genes per cell
-- **Red flags**: Very low values (<200) suggest technical failures
+### 유전자 검출(세포당 유전자 수)
+- **측정 대상**: 1개 이상 검출된 유전자 수
+- **중요한 이유**: 카운트 깊이와 강하게 연관됩니다. 값이 낮으면 포획이 부실하다는 뜻일 수 있습니다.
+- **일반적인 범위**: 세포당 200~5,000개
+- **위험 신호**: 매우 낮은 값(<200)은 기술적 문제를 나타낼 수 있습니다.
 
-### Mitochondrial Content
-- **What it measures**: Percentage of counts from mitochondrial genes
-- **Why it matters**: High MT% indicates cell stress, apoptosis, or lysed cells
-- **Typical range**: <5% for most tissues, up to 10-15% for metabolically active cells
-- **Species-specific patterns**:
-  - Mouse: Genes start with 'mt-' (e.g., mt-Nd1, mt-Co1)
-  - Human: Genes start with 'MT-' (e.g., MT-ND1, MT-CO1)
-- **Context matters**: Some cell types (cardiomyocytes, neurons) naturally have higher MT content
+### 미토콘드리아 함량
+- **측정 대상**: 미토콘드리아 유전자 수의 비율
+- **중요한 이유**: 높은 MT%는 세포 스트레스, 세포사멸, 또는 용해된 세포를 나타낼 수 있습니다.
+- **일반적인 범위**: 대부분의 조직에서는 <5%, 대사적으로 활발한 세포는 10~15%까지도 가능합니다.
+- **종별 패턴**:
+  - 마우스: 유전자는 `mt-`로 시작합니다(예: `mt-Nd1`, `mt-Co1`)
+  - 인간: 유전자는 `MT-`로 시작합니다(예: `MT-ND1`, `MT-CO1`)
+- **주의할 점**: 심근세포나 뉴런 같은 일부 세포 유형은 원래 MT 함량이 더 높습니다.
 
-### Ribosomal Content
-- **What it measures**: Percentage of counts from ribosomal protein genes
-- **Why it matters**: Can indicate cell state or contamination
-- **Patterns**: Genes start with 'Rpl'/'RPL' (large subunit) or 'Rps'/'RPS' (small subunit)
-- **Note**: High ribosomal content isn't always bad - metabolically active cells have more ribosomes
+### 리보솜 함량
+- **측정 대상**: 리보솜 단백질 유전자의 비율
+- **중요한 이유**: 세포 상태나 오염을 반영할 수 있습니다.
+- **패턴**: 유전자가 `Rpl`/`RPL`(대형 소단위) 또는 `Rps`/`RPS`(소형 소단위)로 시작합니다.
+- **참고**: 리보솜 함량이 높다고 항상 나쁜 것은 아닙니다. 대사적으로 활발한 세포는 리보솜이 더 많습니다.
 
-### Hemoglobin Content
-- **What it measures**: Percentage of counts from hemoglobin genes
-- **Why it matters**: Indicates blood contamination in non-blood tissues
-- **Patterns**: Genes matching '^Hb[^(p)]' or '^HB[^(P)]' (excludes Hbp1/HBP1)
-- **When to use**: Particularly important for tissue samples (brain, liver, etc.)
+### 헤모글로빈 함량
+- **측정 대상**: 헤모글로빈 유전자 수의 비율
+- **중요한 이유**: 비혈액 조직에서 혈액 오염이 있는지 보여줍니다.
+- **패턴**: `^Hb[^(p)]` 또는 `^HB[^(P)]`와 일치하는 유전자(Hbp1/HBP1 제외)
+- **사용 시기**: 뇌, 간 같은 조직 샘플에서 특히 중요합니다.
 
-## MAD-Based Filtering Rationale
+## MAD 기반 필터링의 근거
 
-### Why MAD Instead of Fixed Thresholds?
+### 고정 임계값 대신 MAD를 쓰는 이유
 
-Fixed thresholds (e.g., "remove cells with <500 genes") fail because:
-- Different protocols yield different ranges
-- Different tissues have different characteristics
-- Different species have different gene counts
-- Fixed thresholds are arbitrary and not data-driven
+고정 임계값(예: "유전자가 500개 미만인 세포 제거")은 다음 이유로 잘 맞지 않을 수 있습니다.
+- 서로 다른 프로토콜이 서로 다른 분포를 만듭니다.
+- 조직마다 특성이 다릅니다.
+- 종마다 유전자 수가 다릅니다.
+- 고정 임계값은 임의적이고 데이터 중심적이지 않습니다.
 
-MAD (Median Absolute Deviation) is robust to outliers and adapts to your dataset:
+MAD(Median Absolute Deviation)는 이상값에 강하고 데이터셋에 맞게 조정됩니다.
 ```
 MAD = median(|X - median(X)|)
 Outlier bounds = median ± n_MADs × MAD
 ```
 
-### Recommended MAD Thresholds
+### 권장 MAD 임계값
 
-Following scverse best practices (deliberately permissive):
+scverse의 모범 사례를 따르며, 일부는 의도적으로 관대하게 설정합니다.
 
-**5 MADs for count depth (log-transformed)**
-- Very permissive to retain rare cell populations
-- Catches extreme outliers (empty droplets, debris)
-- Log transformation handles the typical right-skewed distribution
+**카운트 깊이에 대한 5 MAD(로그 변환)**
+- 희귀 세포 집단을 보존하는 데 매우 관대합니다.
+- 빈 드롭렛이나 파편 같은 극단적 이상값을 잡아냅니다.
+- 로그 변환은 흔한 우측 치우침 분포를 다루는 데 도움이 됩니다.
 
-**5 MADs for gene counts (log-transformed)**
-- Parallels count depth filtering
-- Most informative when combined with count filtering
-- Log transformation normalizes the distribution
+**유전자 수에 대한 5 MAD(로그 변환)**
+- 카운트 깊이 필터링과 같은 맥락입니다.
+- 카운트 필터링과 함께 사용할 때 특히 유용합니다.
+- 로그 변환으로 분포를 정규화합니다.
 
-**3 MADs for mitochondrial percentage**
-- More stringent because high MT% strongly indicates dying cells
-- Uses raw percentages (not log-transformed)
-- Combined with hard threshold for extra stringency
+**미토콘드리아 비율에 대한 3 MAD**
+- MT%가 높으면 세포가 죽어가고 있음을 강하게 시사하므로 더 엄격합니다.
+- 원시 백분율을 사용합니다(로그 변환하지 않음).
+- 추가 엄격성을 위해 하드 임계값과 함께 사용합니다.
 
-**Hard threshold: 8% mitochondrial content**
-- Additional filter beyond MAD-based detection
-- Conservative cutoff that works across most tissues
-- Adjust higher (10-15%) for metabolically active cell types
+**하드 임계값: 미토콘드리아 함량 8%**
+- MAD 기반 탐지 외에 추가로 적용하는 필터입니다.
+- 대부분의 조직에 적용할 수 있는 보수적인 차단선입니다.
+- 대사적으로 활발한 세포 유형은 10~15%처럼 더 높게 조정할 수 있습니다.
 
-### Why Be Permissive?
+### 왜 관대해야 하나요?
 
-The default thresholds intentionally err on the side of keeping cells because:
-1. **Rare populations**: Stringent filtering may remove rare but viable cell types
-2. **Biological variation**: Some healthy cells naturally have extreme values
-3. **Reversibility**: Easier to filter more later than to recover lost cells
-4. **Downstream robustness**: Modern normalization methods handle moderate quality variation
+기본 임계값은 세포를 최대한 보존하는 쪽으로 의도적으로 설정됩니다.
+1. **희귀 집단**: 지나치게 엄격하면 드물지만 살아 있는 세포 유형을 제거할 수 있습니다.
+2. **생물학적 변이**: 일부 건강한 세포는 원래 극단적인 값을 가집니다.
+3. **가역성**: 나중에 필터링하는 편이, 한 번 잃은 세포를 복구하는 것보다 쉽습니다.
+4. **후속 분석의 견고성**: 최신 정규화 방법은 어느 정도의 품질 변동을 감당할 수 있습니다.
 
-## Interpreting QC Visualizations
+## QC 시각화 해석
 
-### Histograms
-- **Bimodal distributions**: May indicate mixing of cell types or quality issues
-- **Long tails**: Common for count depth; MAD filtering handles this
-- **Sharp cutoffs**: May indicate prior filtering or technical artifacts
+### 히스토그램
+- **이봉 분포**: 세포 유형이 섞였거나 품질 문제가 있을 수 있습니다.
+- **긴 꼬리**: 카운트 깊이에서 흔하며, MAD 필터링이 이를 다룹니다.
+- **날카로운 절단점**: 사전 필터링이나 기술적 아티팩트를 시사할 수 있습니다.
 
-### Violin Plots
-- Shows distribution shape and density
-- Median (line) and mean (diamond) should be similar for symmetric distributions
-- Wide distributions suggest high heterogeneity
+### 바이올린 플롯
+- 분포의 모양과 밀도를 보여줍니다.
+- 대칭 분포라면 중앙값(선)과 평균(다이아몬드)이 비슷해야 합니다.
+- 분포가 넓을수록 이질성이 높다는 뜻입니다.
 
-### Scatter Plots
+### 산점도
 
-**Counts vs Genes (colored by MT%)**
-- Should show strong positive correlation (R² > 0.8 typical)
-- Points deviating from trend may be outliers
-- High MT% cells often cluster at low counts/genes
+**카운트 대 유전자(MT%로 색상 지정)**
+- 강한 양의 상관관계를 보여야 합니다(R² > 0.8이 일반적).
+- 추세에서 벗어난 점은 이상값일 수 있습니다.
+- MT%가 높은 세포는 종종 낮은 카운트/유전자 영역에 모입니다.
 
-**Counts vs MT%**
-- Negative correlation expected (dying cells have fewer counts)
-- Vertical stratification may indicate batch effects
-- Cells with high counts + high MT% are suspicious
+**카운트 대 MT%**
+- 음의 상관관계가 예상됩니다(죽어가는 세포는 수가 적습니다).
+- 수직 방향의 층화는 배치 효과를 나타낼 수 있습니다.
+- 카운트와 MT%가 모두 높은 세포는 의심해 볼 필요가 있습니다.
 
-**Genes vs MT%**
-- Similar to counts vs MT%, but often weaker correlation
-- Useful for identifying cells with gene detection issues
+**유전자 대 MT%**
+- 카운트 대 MT%와 비슷하지만 상관관계가 더 약한 경우가 많습니다.
+- 유전자 검출에 문제가 있는 세포를 찾는 데 유용합니다.
 
-## Gene Filtering
+## 유전자 필터링
 
-After filtering cells, remove genes detected in fewer than 20 cells:
-- **Why 20?**: Balances noise reduction with information retention
-- **Benefits**: Reduces dataset size, speeds up computation, removes noisy genes
-- **Trade-offs**: May lose very rare markers; adjust to 10 if studying rare populations
+세포를 필터링한 뒤에는 20개 미만의 세포에서만 검출된 유전자를 제거합니다.
+- **왜 20개인가요?**: 잡음을 줄이면서 정보는 보존하는 균형점입니다.
+- **장점**: 데이터셋 크기를 줄이고, 계산 속도를 높이며, 잡음성 유전자를 제거합니다.
+- **절충점**: 매우 희귀한 마커를 잃을 수 있습니다. 희귀 집단을 연구한다면 10으로 낮추세요.
 
-## Species-Specific Considerations
+## 종별 고려 사항
 
-### Mouse (Mus musculus)
-- Mitochondrial genes: mt-* (lowercase)
-- Ribosomal genes: Rpl*, Rps* (capitalized first letter)
-- Hemoglobin genes: Hb* (but not Hbp1)
+### 마우스(Mus musculus)
+- 미토콘드리아 유전자: `mt-*`(소문자)
+- 리보솜 유전자: `Rpl*`, `Rps*`(첫 글자만 대문자)
+- 헤모글로빈 유전자: `Hb*`(Hbp1 제외)
 
-### Human (Homo sapiens)
-- Mitochondrial genes: MT-* (uppercase)
-- Ribosomal genes: RPL*, RPS* (all uppercase)
-- Hemoglobin genes: HB* (but not HBP1)
+### 인간(Homo sapiens)
+- 미토콘드리아 유전자: `MT-*`(대문자)
+- 리보솜 유전자: `RPL*`, `RPS*`(모두 대문자)
+- 헤모글로빈 유전자: `HB*`(HBP1 제외)
 
-### Other Species
-Adjust gene name patterns in the script to match your organism's gene nomenclature. Consult Ensembl or your reference annotation for correct prefixes.
+### 기타 종
+유기체의 유전자 명명 규칙에 맞게 스크립트의 유전자 이름 패턴을 조정하세요. 올바른 접두사는 Ensembl 또는 참조 주석을 확인하세요.
 
-## When to Adjust Parameters
+## 매개변수를 조정해야 하는 경우
 
-Consider adjusting filtering thresholds when:
+다음과 같은 경우 필터링 임계값을 조정하는 것을 고려하세요.
 
-**More stringent (lower MADs)**
-- High ambient RNA contamination suspected
-- Many low-quality cells observed in visualizations
-- Downstream analysis shows quality-driven clustering
+**더 엄격하게(더 낮은 MAD)**
+- 주변 RNA 오염이 의심될 때
+- 시각화에서 저품질 세포가 많이 보일 때
+- 후속 분석에서 품질 중심의 클러스터링이 나타날 때
 
-**More permissive (higher MADs)**
-- Studying rare cell populations
-- Dataset has high technical quality
-- Cell types naturally have extreme values (e.g., neurons with high MT%)
+**더 관대하게(더 높은 MAD)**
+- 희귀 세포 집단을 연구할 때
+- 데이터셋의 기술적 품질이 높을 때
+- 세포 유형이 원래 극단적인 값을 가질 때(예: MT%가 높은 뉴런)
 
-**Tissue-specific adjustments**
-- Brain/neurons: May need higher MT% threshold (10-15%)
-- Blood: Can be more stringent with MT% (5-8%)
-- Tumor samples: Often need more permissive thresholds due to biological variation
+**조직별 조정**
+- 뇌/뉴런: 더 높은 MT% 임계값(10~15%)이 필요할 수 있습니다.
+- 혈액: MT%를 더 엄격하게(5~8%) 관리할 수 있습니다.
+- 종양 샘플: 생물학적 변이 때문에 더 관대한 임계값이 필요한 경우가 많습니다.
 
-## Advanced QC Considerations
+## 고급 QC 고려 사항
 
-### Not Included in This Workflow
+### 이 워크플로에는 포함되지 않음
 
-**Ambient RNA correction**
-- Tool: SoupX, CellBender, DecontX
-- When: High background RNA in droplet-based data
-- Effect: Removes contamination from lysed cells
+**주변 RNA 보정**
+- 도구: SoupX, CellBender, DecontX
+- 시기: 드롭렛 기반 데이터에서 배경 RNA가 높을 때
+- 효과: 용해된 세포에서 나온 오염을 제거합니다.
 
-**Doublet detection**
-- Tool: scDblFinder, scrublet, DoubletFinder
-- When: Always recommended for droplet-based data
-- Effect: Identifies and removes multiplets (2+ cells in one droplet)
+**이중체 탐지**
+- 도구: scDblFinder, Scrublet, DoubletFinder
+- 시기: 드롭렛 기반 데이터에서는 항상 권장됩니다.
+- 효과: 더블릿(한 드롭렛에 2개 이상 세포)을 식별하고 제거합니다.
 
-**Cell cycle scoring**
-- Tool: scanpy's score_genes_cell_cycle
-- When: Cell cycle effects confound biological signal
-- Effect: Allows regressing out or accounting for cell cycle phase
+**세포 주기 점수 계산**
+- 도구: scanpy의 `Score_genes_cell_cycle`
+- 시기: 세포 주기 효과가 생물학적 신호를 흐릴 때
+- 효과: 세포 주기 단계를 회귀분석하거나 설명 변수로 다룰 수 있습니다.
 
-**Batch correction**
-- Tool: Harmony, scVI, ComBat
-- When: Integrating data from multiple batches/experiments
-- Effect: Removes technical batch effects while preserving biology
+**배치 보정**
+- 도구: Harmony, scVI, ComBat
+- 시기: 여러 배치나 실험의 데이터를 통합할 때
+- 효과: 생물학적 신호를 유지하면서 기술적 배치 효과를 줄입니다.
 
-## References
+## 참고자료
 
-- scverse Best Practices: https://www.sc-best-practices.org/preprocessing_visualization/quality_control.html
-- Luecken & Theis (2019): Current best practices in single-cell RNA-seq analysis
-- Osorio & Cai (2021): Systematic determination of the mitochondrial proportion in human and mouse genomes
-- Germain et al. (2020): Doublet identification in single-cell sequencing data using scDblFinder
+- scverse 모범 사례: https://www.sc-best-practices.org/preprocessing_visualization/quality_control.html
+- Luecken & Theis (2019): 단일 세포 RNA-seq 분석의 현재 모범 사례
+- Osorio & Cai (2021): 인간과 마우스 게놈에서의 미토콘드리아 비율 체계적 결정
+- Germain 외. (2020): scDblFinder를 사용한 단일 세포 시퀀싱 데이터의 이중체 식별
