@@ -1,6 +1,6 @@
 ---
 name: metrics-review
-description: Review and analyze product metrics with trend analysis and actionable insights. Use when running a weekly, monthly, or quarterly metrics review, investigating a sudden spike or drop, comparing performance against targets, or turning raw numbers into a scorecard with recommended actions.
+description: 추세 분석과 실행 가능한 인사이트로 제품 지표를 검토하고 분석합니다. 주간, 월간, 분기별 지표 리뷰를 할 때, 급격한 상승이나 하락을 조사할 때, 목표와 성과를 비교할 때, 원시 숫자를 권장 조치가 있는 스코어카드로 바꿀 때 사용합니다.
 argument-hint: "<time period or metric focus>"
 ---
 
@@ -8,41 +8,41 @@ argument-hint: "<time period or metric focus>"
 
 > If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
 
-Review and analyze product metrics, identify trends, and surface actionable insights.
+제품 지표를 검토하고 분석하며, 추세를 파악하고, 실행 가능한 인사이트를 드러냅니다.
 
-## Usage
+## 사용법
 
 ```
 /metrics-review $ARGUMENTS
 ```
 
-## Workflow
+## 워크플로
 
-### 1. Gather Metrics Data
+### 1. 지표 데이터 수집
 
-If **~~product analytics** is connected:
+**~~product analytics**가 연결되어 있다면:
 - Pull key product metrics for the relevant time period
 - Get comparison data (previous period, same period last year, targets)
 - Pull segment breakdowns if available
 
-If no analytics tool is connected, ask the user to provide:
+분석 도구가 연결되어 있지 않다면 사용자에게 다음을 제공해 달라고 요청합니다.
 - The metrics and their values (paste a table, screenshot, or describe)
 - Comparison data (previous period, targets)
 - Any context on recent changes (launches, incidents, seasonality)
 
-Ask the user:
+사용자에게 다음을 묻습니다.
 - What time period to review? (last week, last month, last quarter)
 - What metrics to focus on? Or should we review the full product metrics suite?
 - Are there specific targets or goals to compare against?
 - Any known events that might explain changes (launches, outages, marketing campaigns, seasonality)?
 
-### 2. Organize the Metrics
+### 2. 지표 구조화
 
 Structure the review using a metrics hierarchy: North Star metric at the top, L1 health indicators (acquisition, activation, engagement, retention, revenue, satisfaction), and L2 diagnostic metrics for drill-down. See **Product Metrics Hierarchy** below for full definitions.
 
 If the user has not defined their metrics hierarchy, help them identify their North Star and key L1 metrics before proceeding.
 
-### 3. Analyze Trends
+### 3. 추세 분석
 
 For each key metric:
 - **Current value**: What is the metric today?
@@ -56,49 +56,49 @@ Identify correlations:
 - Are there leading indicators that predict lagging metric changes?
 - Do segment breakdowns reveal that an aggregate trend is driven by a specific cohort?
 
-### 4. Generate the Review
+### 4. 리뷰 생성
 
-#### Summary
+#### 요약
 2-3 sentences: overall product health, most notable changes, key callout.
 
-#### Metric Scorecard
+#### 지표 스코어카드
 Table format for quick scanning:
 
 | Metric | Current | Previous | Change | Target | Status |
 |--------|---------|----------|--------|--------|--------|
 | [Metric] | [Value] | [Value] | [+/- %] | [Target] | [On track / At risk / Miss] |
 
-#### Trend Analysis
+#### 추세 분석
 For each metric worth discussing:
 - What happened and how significant is the change
 - Why it likely happened (attribution based on known events, correlated metrics, segment analysis)
 - Whether this is a one-time event or a sustained trend
 
-#### Bright Spots
+#### 밝은 지점
 What is going well:
 - Metrics beating targets
 - Positive trends to sustain
 - Segments or features showing strong performance
 
-#### Areas of Concern
+#### 우려 영역
 What needs attention:
 - Metrics missing targets or trending negatively
 - Early warning signals before they become problems
 - Metrics where we lack visibility or understanding
 
-#### Recommended Actions
+#### 권장 조치
 Specific next steps based on the analysis:
 - Investigations to run (dig deeper into a concerning trend)
 - Experiments to launch (test hypotheses about what could improve a metric)
 - Investments to make (double down on what is working)
 - Alerts to set (monitor a metric more closely)
 
-#### Context and Caveats
+#### 맥락과 주의사항
 - Known data quality issues
 - Events that affect comparability (outages, holidays, launches)
 - Metrics we should be tracking but are not yet
 
-### 5. Follow Up
+### 5. 후속 조치
 
 After generating the review:
 - Ask if any metric needs deeper investigation
@@ -106,7 +106,7 @@ After generating the review:
 - Offer to draft experiment proposals for areas of concern
 - Offer to set up a metrics review template for recurring use
 
-## Product Metrics Hierarchy
+## 제품 지표 계층
 
 ### North Star Metric
 The single metric that best captures the core value your product delivers to users. It should be:
@@ -123,7 +123,7 @@ The single metric that best captures the core value your product delivers to use
 - Content platform: Weekly engaged reading/viewing time
 - Developer tool: Weekly deployments using the tool
 
-### L1 Metrics (Health Indicators)
+### L1 지표(건강 지표)
 The 5-7 metrics that together paint a complete picture of product health. These map to the key stages of the user lifecycle:
 
 **Acquisition**: Are new users finding the product?
@@ -164,7 +164,7 @@ The 5-7 metrics that together paint a complete picture of product health. These 
 - Support ticket volume and resolution time
 - App store ratings and review sentiment
 
-### L2 Metrics (Diagnostic)
+### L2 지표(진단용)
 Detailed metrics used to investigate changes in L1 metrics:
 
 - Funnel conversion at each step
@@ -173,7 +173,7 @@ Detailed metrics used to investigate changes in L1 metrics:
 - Performance metrics (page load time, error rate, API latency)
 - Content-specific engagement (which features, pages, or content types drive engagement)
 
-## Common Product Metrics
+## 일반적인 제품 지표
 
 ### DAU / WAU / MAU
 **What they measure**: Unique users who perform a qualifying action in a day, week, or month.
@@ -187,7 +187,7 @@ Detailed metrics used to investigate changes in L1 metrics:
 - Trend matters more than absolute number. Is active usage growing, flat, or declining?
 - Segment by user type. Power users and casual users behave very differently.
 
-### Retention
+### 리텐션
 **What it measures**: Of users who started in period X, what % are still active in period Y?
 
 **Common retention timeframes**:
@@ -201,7 +201,7 @@ Detailed metrics used to investigate changes in L1 metrics:
 - Compare cohorts over time. Are newer cohorts retaining better than older ones? That means product improvements are working.
 - Segment retention by activation behavior. Users who completed onboarding vs those who did not. Users who used feature X vs those who did not.
 
-### Conversion
+### 전환
 **What it measures**: % of users who move from one stage to the next.
 
 **Common conversion funnels**:
@@ -217,7 +217,7 @@ Detailed metrics used to investigate changes in L1 metrics:
 - Segment conversion by source, plan, user type. Different segments convert very differently.
 - Track conversion over time. Is it improving as you iterate on the experience?
 
-### Activation
+### 활성화
 **What it measures**: % of new users who reach the moment where they first experience the product's core value.
 
 **Defining activation**:

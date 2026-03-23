@@ -1,6 +1,6 @@
-# Common Room Prospector — Usage Guide
+# Common Room Prospector - 사용 가이드
 
-## The Two Object Types (Critical)
+## 두 객체 유형(중요)
 
 Never conflate these — they have different fields and filter sets.
 
@@ -11,7 +11,7 @@ Never conflate these — they have different fields and filter sets.
 | **Available filters** | Firmographic and technographic only | All firmographic plus signal-based, score-based, segment-based, and CRM filters |
 | **Use for** | Territory planning, top-of-funnel list building | Prioritizing warm accounts, expansion candidates, intent signals |
 
-## Deciding Which Object Type to Use
+## 어떤 객체 유형을 쓸지 결정하기
 
 | User says... | Likely object type |
 |-------------|-------------------|
@@ -21,14 +21,14 @@ Never conflate these — they have different fields and filter sets.
 | "Show accounts that haven't engaged in 90 days" | `Organization` |
 | Ambiguous — could apply to both | Ask: "Are you looking for net-new companies, or filtering accounts already in your workspace?" |
 
-## Iterative Refinement
+## 반복적 정교화
 
 - Start with the user's initial criteria
 - For large results (50+), return count first: "I found 500 results. Want to narrow by size or tech stack?"
 - Accept follow-up refinements as filter adjustments — not a fresh search
 - Suggest relaxing criteria if results are fewer than 5
 
-## Common Pitfalls
+## 흔한 함정
 
 - **Conflating object types** — Never mix ProspectorOrganization and Organization results in the same list.
 - **Not scoping to "My Segments"** — When querying Organization records, scope to the user's segments by default.

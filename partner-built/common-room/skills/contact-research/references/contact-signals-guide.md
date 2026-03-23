@@ -1,8 +1,8 @@
-# Contact Signals — Interpretation Guide
+# 연락처 신호 - 해석 가이드
 
-## Contact Signal Types
+## 연락처 신호 유형
 
-### Activity Signals
+### 활동 신호
 
 | Signal | Interpretation |
 |--------|---------------|
@@ -14,7 +14,7 @@
 | Product login | Active user — check frequency and recency |
 | Event registered/attended | Strong engagement and intent signal |
 
-### Relationship Signals
+### 관계 신호
 
 | Signal | Interpretation |
 |--------|---------------|
@@ -23,7 +23,7 @@
 | Consistent activity across multiple channels | Champion or highly engaged user — high-value contact |
 | Activity spike after dormancy | Something changed — investigate why |
 
-### Job / Professional Signals
+### 직무 / 직업 신호
 
 | Signal | Interpretation |
 |--------|---------------|
@@ -32,15 +32,15 @@
 | Title change to decision-maker role | Upgrade the relationship strategy |
 | Company expansion (new hires in their team) | Budget may be available; expansion opportunity |
 
-## Spark Persona Classification
+## Spark 페르소나 분류
 
-- *Champion* — daily user, advocates internally
-- *Economic Buyer* — holds budget authority, may not use product directly
-- *Technical Evaluator* — evaluates fit and integration, influences technical decisions
-- *End User* — primary product user, influences renewal through NPS/feedback
-- *Gatekeeper* — controls access, must be navigated carefully
+- *Champion* — 일상 사용자, 내부에서 옹호함
+- *Economic Buyer* — 예산 권한 보유, 제품을 직접 쓰지 않을 수도 있음
+- *Technical Evaluator* — 적합성과 통합을 평가하고 기술 결정을 좌우함
+- *End User* — 주요 제품 사용자, NPS/피드백으로 갱신에 영향
+- *Gatekeeper* — 접근을 통제하므로 신중하게 접근해야 함
 
-## Conversation Starters
+## 대화 시작 문구
 
 A strong starter references something specific, shows homework, opens a door without forcing one, and connects to value.
 

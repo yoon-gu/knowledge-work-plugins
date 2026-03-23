@@ -1,15 +1,15 @@
-# Outreach Formats — Guidelines and Examples
+# 아웃리치 형식 - 가이드와 예시
 
-## Email
+## 이메일
 
-### Structure
+### 구조
 - **Subject line:** 4-8 words, specific and curiosity-inducing. Reference the hook directly.
 - **Opening:** Acknowledge the specific signal. Start with "You", "Your team", "Saw that", "Noticed" — not "I".
 - **Value Bridge:** 1-2 sentences connecting their signal to something you can help with. Be concrete.
 - **Ask:** Single, specific, low-friction next step.
 - **Total length:** 3-5 sentences max. No paragraphs.
 
-### Example
+### 예시
 
 > Subject: Question about your [feature] usage
 >
@@ -17,9 +17,9 @@
 
 ---
 
-## Call Script
+## 콜 스크립트
 
-Three parts — a guide, not a word-for-word read:
+세 부분입니다. 한 글자씩 읽는 대본이 아니라 가이드입니다.
 
 **Opening (10-15 seconds):** State your name and company, then reference the specific hook immediately.
 
@@ -29,25 +29,25 @@ Three parts — a guide, not a word-for-word read:
 
 ---
 
-## LinkedIn Message
+## LinkedIn 메시지
 
-### Constraints
+### 제약
 - **300 characters maximum** (platform limit is 400 — we target 300 to prevent overruns)
 - No attachments, no links in the first message
 - No pitch — just open a door
 
-### Structure
+### 구조
 - Personal acknowledgment (what you noticed about them)
 - One brief sentence on why you reached out
 - Soft invitation to connect or respond
 
-### Example
+### 예시
 
 > Saw your post about [topic] in [community] — our team has been thinking about the same problem. Would love to share what we've learned. Open to a quick chat?
 
 ---
 
-## Tone Calibration by Context
+## 맥락별 톤 조정
 
 | Context | Tone | Approach |
 |---------|------|----------|
@@ -59,7 +59,7 @@ Three parts — a guide, not a word-for-word read:
 
 ---
 
-## What to Avoid (All Channels)
+## 피해야 할 것(모든 채널)
 
 - Starting with filler ("I hope this email finds you well") or defensive language ("I know you're busy but...")
 - Multi-paragraph messages with multiple asks

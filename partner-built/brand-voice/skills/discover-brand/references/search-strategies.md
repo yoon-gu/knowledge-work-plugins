@@ -1,99 +1,99 @@
-# Search Strategies by Platform
+# 플랫폼별 검색 전략
 
-Platform-specific query patterns and tips for maximizing brand material discovery.
+브랜드 자료 탐색을 극대화하기 위한 플랫폼별 쿼리 패턴과 팁입니다.
 
-## Notion (Primary Discovery Engine)
+## Notion(주요 탐색 엔진)
 
-Notion AI Search federates across connected sources (Google Drive, SharePoint, OneDrive, Slack, Jira, Teams), making it the most valuable single search endpoint.
+Notion AI Search는 연결된 출처(Google Drive, SharePoint, OneDrive, Slack, Jira, Teams)를 가로질러 검색을 통합하므로, 단일 검색 엔드포인트로 가장 가치가 큽니다.
 
-### Query Patterns
+### 쿼리 패턴
 
-**Direct brand searches:**
+**직접 브랜드 검색:**
 - "brand guidelines"
 - "style guide"
 - "brand voice"
 - "tone of voice"
 - "messaging framework"
 
-**Sales and marketing content:**
+**세일즈 및 마케팅 콘텐츠:**
 - "pitch deck"
 - "sales playbook"
 - "email templates"
 - "value proposition"
 - "competitive positioning"
 
-**Operational brand content:**
+**운영성 브랜드 콘텐츠:**
 - "brand update"
 - "rebrand"
 - "launch messaging"
 - "press release template"
 - "social media guidelines"
 
-### Tips
-- Notion AI Search returns results from connected sources — one search covers multiple platforms
-- Search for the company name + "brand" to find company-specific guidelines
-- Check for databases titled "Brand Assets", "Marketing Resources", or "Content Library"
-- Look for pages tagged with "brand", "marketing", "style"
+### 팁
+- Notion AI Search는 연결된 출처의 결과를 반환하므로 한 번의 검색으로 여러 플랫폼을 커버할 수 있습니다
+- 회사 이름 + "brand"를 검색해 회사 전용 가이드를 찾습니다
+- "Brand Assets", "Marketing Resources", "Content Library"라는 이름의 데이터베이스를 확인합니다
+- "brand", "marketing", "style" 태그가 붙은 페이지를 찾습니다
 
 ## Atlassian Confluence
 
-Enterprises often store official brand documentation in Confluence spaces.
+엔터프라이즈 조직은 공식 브랜드 문서를 Confluence 공간에 저장하는 경우가 많습니다.
 
-### Query Patterns
+### 쿼리 패턴
 
-**Space-level search:**
+**공간 수준 검색:**
 - Search spaces named: "Marketing", "Brand", "Communications", "Sales Enablement"
 - Check for spaces with labels: "brand", "style-guide", "guidelines"
 
-**Page-level search:**
+**페이지 수준 검색:**
 - "brand style guide"
 - "voice and tone guidelines"
 - "messaging framework"
 - "content standards"
 - "editorial guidelines"
 
-**Template search:**
+**템플릿 검색:**
 - "email template"
 - "proposal template"
 - "presentation template"
 
-### Tips
-- Confluence spaces often have hierarchical page trees — find the brand root page and explore children
-- Check for recently updated pages (brand guidelines evolve)
-- Look for pages with many watchers — indicates important shared content
-- Search attachments for PDF brand guides uploaded to Confluence pages
+### 팁
+- Confluence 공간은 종종 계층형 페이지 트리를 가집니다. 브랜드 루트 페이지를 찾아 하위 페이지를 살펴보세요
+- 최근 업데이트된 페이지를 확인하세요(브랜드 가이드는 계속 바뀝니다)
+- watcher가 많은 페이지를 찾으세요. 중요한 공유 콘텐츠일 가능성이 높습니다
+- 페이지에 업로드된 PDF 브랜드 가이드는 첨부파일에서 검색합니다
 
 ## Box
 
-Cloud file storage — official brand documents, shared decks, and style guides frequently live here.
+클라우드 파일 저장소입니다. 공식 브랜드 문서, 공유 덱, 스타일 가이드가 자주 여기에 있습니다.
 
-### Query Patterns
+### 쿼리 패턴
 
-**Folder search:**
+**폴더 검색:**
 - "Brand Guidelines"
 - "Marketing Assets"
 - "Brand Kit"
 - "Style Guide"
 - "Sales Collateral"
 
-**Document search:**
+**문서 검색:**
 - "brand guide" (PDF, DOCX, Word)
 - "style guide" (PDF, DOCX, Word)
 - "messaging document"
 - "brand standards"
 
-### Tips
-- Box often contains the "source of truth" brand guides as PDFs or Word docs
-- Check shared folders with company-wide access
-- Look for folders shared with the marketing or brand team
-- Search for recently modified brand documents to find the latest version
-- Use Box metadata search to filter by content type or custom attributes
+### 팁
+- Box에는 종종 PDF나 Word 문서 형태의 "source of truth" 브랜드 가이드가 있습니다
+- 회사 전체가 접근 가능한 공유 폴더를 확인하세요
+- 마케팅 또는 브랜드 팀과 공유된 폴더를 찾으세요
+- 최근 수정된 브랜드 문서를 검색해 최신 버전을 찾으세요
+- Box 메타데이터 검색으로 콘텐츠 유형이나 사용자 정의 속성별로 필터링하세요
 
 ## Google Drive
 
-Google Drive stores shared brand documents, marketing materials, and official style guides.
+Google Drive는 공유 브랜드 문서, 마케팅 자료, 공식 스타일 가이드를 저장합니다.
 
-### Query Patterns
+### 쿼리 패턴
 
 **Folder search:**
 - "Brand Guidelines"
@@ -108,120 +108,120 @@ Google Drive stores shared brand documents, marketing materials, and official st
 - "brand standards"
 - "brand voice"
 
-### Tips
-- Check shared drives — brand materials often live in team-wide shared drives
-- Look for recently modified brand documents to find the latest version
-- Search by owner (marketing team members) to surface brand-owned content
-- Google Docs and Slides are common formats for living brand documents
-- Check for Google Slides presentations with brand overview decks
+### 팁
+- 공유 드라이브를 확인하세요. 브랜드 자료는 팀 단위 공유 드라이브에 있는 경우가 많습니다
+- 최근 수정된 브랜드 문서를 찾아 최신 버전을 확인합니다
+- 소유자(마케팅 팀 멤버) 기준으로 검색해 브랜드 소유 콘텐츠를 드러냅니다
+- Google Docs와 Slides는 살아 있는 브랜드 문서의 흔한 형식입니다
+- 브랜드 개요 덱이 담긴 Google Slides 발표 자료를 찾으세요
 
-## Microsoft 365 (SharePoint / OneDrive)
+## Microsoft 365(SharePoint / OneDrive)
 
-Enterprise organizations often centralize brand documentation on SharePoint sites.
+엔터프라이즈 조직은 종종 SharePoint 사이트에 브랜드 문서를 중앙화합니다.
 
-### Query Patterns
+### 쿼리 패턴
 
-**SharePoint site search:**
+**SharePoint 사이트 검색:**
 - Search marketing or communications SharePoint sites
 - "brand guidelines"
 - "style guide"
 - "brand standards"
 - "messaging framework"
 
-**Document library search:**
+**문서 라이브러리 검색:**
 - Check document libraries in marketing/communications sites
 - "brand guide" (Word, PDF, PowerPoint)
 - "brand book"
 - "editorial guidelines"
 
-**OneDrive search:**
+**OneDrive 검색:**
 - "brand" files in shared OneDrive folders
 - "style guide" shared with the organization
 
-### Tips
-- Check marketing/communications SharePoint sites first — most common location for brand docs
-- Search document libraries for PDF brand guides and PowerPoint brand decks
-- Look for brand-tagged content using SharePoint metadata
-- OneDrive shared folders may contain working drafts of brand materials
-- Use SharePoint search and document library tools when available
+### 팁
+- 마케팅/커뮤니케이션 SharePoint 사이트를 먼저 확인하세요. 브랜드 문서가 가장 흔한 위치입니다
+- 문서 라이브러리에서 PDF 브랜드 가이드와 PowerPoint 브랜드 덱을 검색합니다
+- SharePoint 메타데이터를 사용해 브랜드 태그가 붙은 콘텐츠를 찾습니다
+- OneDrive 공유 폴더에는 브랜드 자료의 작업 초안이 있을 수 있습니다
+- 가능하면 SharePoint 검색과 문서 라이브러리 도구를 사용하세요
 
 ## Slack
 
-Slack channels contain informal brand discussions, decisions, and evolving brand voice patterns.
+Slack 채널에는 비공식적인 브랜드 논의, 결정, 진화하는 브랜드 보이스 패턴이 담겨 있습니다.
 
-### Query Patterns
+### 쿼리 패턴
 
-**Channel search:**
+**채널 검색:**
 - Look for channels: #brand, #marketing, #brand-voice, #style-guide, #creative
 - Check channel topics and descriptions for brand-related content
 
-**Message search:**
+**메시지 검색:**
 - "brand guidelines"
 - "brand voice"
 - "tone of voice"
 - "style guide"
 - "brand update"
 
-**Pinned messages:**
+**고정 메시지:**
 - Check pinned messages in #brand and #marketing channels
 - Pinned items often contain approved brand resources or decisions
 
-### Tips
-- Search #brand and #marketing channels first — most likely to contain brand discussions
-- Look for pinned messages — teams often pin brand guidelines and decisions
-- Find brand discussion threads for context on brand evolution
-- Slack is a conversational source — ranks as CONVERSATIONAL tier in source triage
-- Recent messages may reveal brand changes not yet documented formally
+### 팁
+- #brand와 #marketing 채널을 먼저 검색하세요. 브랜드 논의가 들어 있을 가능성이 높습니다
+- 고정 메시지를 찾으세요. 팀은 종종 브랜드 가이드와 결정을 고정합니다
+- 브랜드 진화의 맥락을 파악하려면 브랜드 논의 스레드를 찾으세요
+- Slack은 대화형 출처이므로 출처 선별에서는 CONVERSATIONAL 등급입니다
+- 최근 메시지는 아직 공식 문서화되지 않은 브랜드 변화를 드러낼 수 있습니다
 
-## Gong (Conversation Intelligence)
+## Gong(대화 인텔리전스)
 
-Sales call transcripts reveal how the brand actually communicates in practice.
+세일즈 통화 전사 기록은 브랜드가 실제로 어떻게 커뮤니케이션하는지 보여 줍니다.
 
-### Query Patterns
+### 쿼리 패턴
 
-**Call search:**
+**통화 검색:**
 - Search for calls tagged: "won", "closed-won" (successful brand application)
 - Filter by top performers (their language patterns define implicit brand voice)
 - Look for calls tagged: "demo", "discovery", "closing"
 
-**Transcript search:**
+**전사 검색:**
 - Search transcripts for company-specific value propositions
 - Look for recurring phrases across successful calls
 - Find calls where competitors are discussed (reveals positioning)
 
-### Tips
-- Focus on successful calls — they represent brand voice that works
-- Compare top performer language with average performer language
-- Look for consistent opening lines and closing patterns
-- Note objection handling language — reveals brand positioning under pressure
+### 팁
+- 성공한 통화에 집중하세요. 실제로 먹히는 브랜드 보이스를 보여 줍니다
+- 상위 성과자의 언어와 평균 성과자의 언어를 비교하세요
+- 일관된 오프닝과 클로징 패턴을 찾으세요
+- 반대 의견 처리 언어를 기록하세요. 압박 상황에서의 브랜드 포지셔닝을 보여 줍니다
 
-## Granola (Meeting Intelligence)
+## Granola(회의 인텔리전스)
 
-Meeting notes and transcripts from the AI notepad for meetings.
+회의용 AI 노트패드에서 나온 회의 노트와 전사 기록입니다.
 
-### Query Patterns
+### 쿼리 패턴
 
-**Meeting search:**
+**회의 검색:**
 - Query for meetings related to: "brand", "positioning", "messaging"
 - List recent meetings and filter for customer-facing calls
 - Search for strategy sessions and brand planning meetings
 
-**Transcript retrieval:**
+**전사 가져오기:**
 - Get full transcripts from high-signal meetings
 - Look for recurring themes in meeting notes
 - Find meetings with key stakeholders (marketing leads, executives)
 
-### Tips
-- Granola captures both meeting notes and transcripts — both are valuable
-- Meeting notes often contain summarized brand decisions and action items
-- Look for recurring meeting series (weekly brand syncs, marketing standups)
-- Cross-reference Granola meeting notes with Gong call transcripts when both are available
+### 팁
+- Granola는 회의 노트와 전사 모두를 캡처합니다. 둘 다 가치가 있습니다
+- 회의 노트에는 브랜드 결정과 액션 아이템이 요약되어 있는 경우가 많습니다
+- 반복되는 회의 시리즈(주간 브랜드 싱크, 마케팅 스탠드업)를 찾으세요
+- Granola 회의 노트와 Gong 통화 전사가 모두 있으면 교차 참조하세요
 
 ## Figma (Brand Design Systems)
 
-Visual brand elements inform voice and tone indirectly.
+시각적 브랜드 요소는 간접적으로 보이스와 톤에 영향을 줍니다.
 
-### Query Patterns
+### 쿼리 패턴
 
 **File search:**
 - "brand design system"
@@ -235,15 +235,15 @@ Visual brand elements inform voice and tone indirectly.
 - Find component documentation with usage guidelines
 - Check for content/copy guidelines in design system docs
 
-### Tips
-- Figma design systems often include writing guidelines alongside visual specs
-- Check file descriptions and comments for brand context
-- Look for "voice and tone" sections within design system documentation
-- Brand personality descriptions in design files reveal voice attributes
+### 팁
+- Figma 디자인 시스템에는 종종 시각 사양과 함께 작성 가이드가 들어 있습니다
+- 파일 설명과 댓글에서 브랜드 맥락을 확인하세요
+- 디자인 시스템 문서 안의 "voice and tone" 섹션을 찾으세요
+- 디자인 파일의 브랜드 성격 설명은 보이스 속성을 드러냅니다
 
-## Cross-Platform Search Tips
+## 플랫폼 간 검색 팁
 
-### Maximizing Coverage
+### 커버리지 극대화
 1. Start with Notion AI Search (broadest coverage via federation)
 2. Follow up with Confluence for enterprise documentation
 3. Check Google Drive for official brand documents
@@ -254,18 +254,18 @@ Visual brand elements inform voice and tone indirectly.
 8. Search Granola for meeting transcripts and notes
 9. Review Figma for design-embedded brand guidelines
 
-### Avoiding Duplicates
+### 중복 피하기
 - Track source URLs to detect the same document across platforms
 - When the same content appears on multiple platforms, prefer the most recently updated version
 - Note when Notion federation returns results from other platforms to avoid double-searching
 
-### Recency Focus
+### 최신성 집중
 - Focus on content from the last 12 months for operational, conversational, and contextual sources
 - Only search further back when looking for explicit brand documents (style guides, brand books)
 - When results include older content, prefer the most recently updated version
 - Flag any non-AUTHORITATIVE source older than 12 months — it may reflect outdated positioning
 
-### Handling No Results
+### 결과가 없을 때 처리
 - If a platform returns zero results, try broader queries ("marketing", "sales")
 - Check if the platform is actually connected and authenticated
 - Note the gap in the discovery report — the absence of content on a platform is itself useful information

@@ -1,24 +1,24 @@
 ---
 name: roadmap-update
-description: Update, create, or reprioritize your product roadmap. Use when adding a new initiative and deciding what moves to make room, shifting priorities after new information comes in, moving timelines due to a dependency slip, or building a Now/Next/Later view from scratch.
+description: 제품 로드맵을 업데이트, 생성, 재우선순위화합니다. 새로운 이니셔티브를 추가하고 무엇을 밀어낼지 결정할 때, 새 정보로 우선순위가 바뀔 때, 의존성 지연으로 일정이 움직일 때, 또는 Now/Next/Later 뷰를 처음 만들 때 사용합니다.
 argument-hint: "<update description>"
 ---
 
-# Roadmap Update
+# 로드맵 업데이트
 
 > If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
 
-Update, create, or reprioritize a product roadmap.
+제품 로드맵을 업데이트, 생성, 재우선순위화합니다.
 
-## Usage
+## 사용법
 
 ```
 /roadmap-update $ARGUMENTS
 ```
 
-## Workflow
+## 워크플로
 
-### 1. Understand Current State
+### 1. 현재 상태 이해
 
 If **~~project tracker** is connected:
 - Pull current roadmap items with their statuses, assignees, and dates
@@ -29,41 +29,41 @@ If no project management tool is connected:
 - Ask the user to describe their current roadmap or paste/upload it
 - Accept any format: list, table, spreadsheet, screenshot, or prose description
 
-### 2. Determine the Operation
+### 2. 작업 유형 결정
 
 Ask what the user wants to do:
 
-**Add item**: New feature, initiative, or work item to the roadmap
+**항목 추가**: 로드맵에 새 기능, 이니셔티브, 작업 항목을 추가합니다
 - Gather: name, description, priority, estimated effort, target timeframe, owner, dependencies
 - Suggest where it fits based on current priorities and capacity
 
-**Update status**: Change status of existing items
+**상태 업데이트**: 기존 항목의 상태를 바꿉니다
 - Options: not started, in progress, at risk, blocked, completed, cut
 - For "at risk" or "blocked": ask for the blocker and mitigation plan
 
-**Reprioritize**: Change the order or priority of items
+**재우선순위화**: 항목의 순서나 우선순위를 바꿉니다
 - Ask what changed (new information, strategy shift, resource change, customer feedback)
 - Apply a prioritization framework if helpful — see **Prioritization Frameworks** below for RICE, MoSCoW, ICE, and value-vs-effort
 - Show before/after comparison
 
-**Move timeline**: Shift dates for items
+**일정 이동**: 항목의 날짜를 조정합니다
 - Ask why (scope change, dependency slip, resource constraint)
 - Identify downstream impacts on dependent items
 - Flag items that move past hard deadlines
 
-**Create new roadmap**: Build a roadmap from scratch
+**새 로드맵 생성**: 로드맵을 처음부터 만듭니다
 - Ask about timeframe (quarter, half, year)
 - Ask about format preference (Now/Next/Later, quarterly columns, OKR-aligned) — see **Roadmap Frameworks** below
 - Gather the list of initiatives to include
 
-### 3. Generate Roadmap Summary
+### 3. 로드맵 요약 생성
 
 Produce a roadmap view with:
 
-#### Status Overview
+#### 상태 개요
 Quick summary: X items in progress, Y completed this period, Z at risk.
 
-#### Roadmap Items
+#### 로드맵 항목
 For each item, show:
 - Name and one-line description
 - Status indicator (on track / at risk / blocked / completed / not started)
@@ -75,25 +75,25 @@ Group items by:
 - Timeframe (Now / Next / Later) or quarter, depending on format
 - Or by theme/goal if the user prefers
 
-#### Risks and Dependencies
+#### 위험과 의존성
 - Items that are blocked or at risk, with details
 - Cross-team dependencies and their status
 - Items approaching hard deadlines
 
-#### Changes This Update
+#### 이번 업데이트의 변경 사항
 If this is an update to an existing roadmap, summarize what changed:
 - Items added, removed, or reprioritized
 - Timeline shifts
 - Status changes
 
-### 4. Follow Up
+### 4. 후속 조치
 
 After generating the roadmap:
 - Offer to format for a specific audience (executive summary, engineering detail, customer-facing)
 - Offer to draft communication about roadmap changes
 - If project management tool is connected, offer to update ticket statuses
 
-## Roadmap Frameworks
+## 로드맵 프레임워크
 
 ### Now / Next / Later
 The simplest and often most effective roadmap format:
@@ -104,7 +104,7 @@ The simplest and often most effective roadmap format:
 
 When to use: Most teams, most of the time. Especially good for communicating externally or to leadership because it avoids false precision on dates.
 
-### Quarterly Themes
+### 분기별 테마
 Organize the roadmap around 2-3 themes per quarter:
 
 - Each theme represents a strategic area of investment (e.g., "Enterprise readiness", "Activation improvements", "Platform extensibility")
@@ -114,7 +114,7 @@ Organize the roadmap around 2-3 themes per quarter:
 
 When to use: When you need to show strategic alignment. Good for planning meetings and executive communication.
 
-### OKR-Aligned Roadmap
+### OKR 연계 로드맵
 Map roadmap items directly to Objectives and Key Results:
 
 - Start with the team's OKRs for the period
@@ -124,7 +124,7 @@ Map roadmap items directly to Objectives and Key Results:
 
 When to use: Organizations that run on OKRs. Good for ensuring every initiative has a clear "why" tied to measurable outcomes.
 
-### Timeline / Gantt View
+### 타임라인 / Gantt 뷰
 Calendar-based view with items on a timeline:
 
 - Shows start dates, end dates, and durations
@@ -134,9 +134,9 @@ Calendar-based view with items on a timeline:
 
 When to use: Execution planning with engineering. Identifying scheduling conflicts. NOT good for communicating externally (creates false precision expectations).
 
-## Prioritization Frameworks
+## 우선순위 프레임워크
 
-### RICE Score
+### RICE 점수
 Score each initiative on four dimensions, then calculate RICE = (Reach x Impact x Confidence) / Effort
 
 - **Reach**: How many users/customers will this affect in a given time period? Use concrete numbers (e.g., "500 users per quarter").
@@ -156,7 +156,7 @@ Categorize items into Must have, Should have, Could have, Won't have:
 
 When to use: Scoping a release or quarter. Negotiating with stakeholders about what fits. Good for forcing prioritization conversations.
 
-### ICE Score
+### ICE 점수
 Simpler than RICE. Score each item 1-10 on three dimensions:
 
 - **Impact**: How much will this move the target metric?
@@ -167,7 +167,7 @@ ICE Score = Impact x Confidence x Ease
 
 When to use: Quick prioritization of a feature backlog. Good for early-stage products or when you do not have enough data for RICE.
 
-### Value vs Effort Matrix
+### 가치 vs 노력 매트릭스
 Plot initiatives on a 2x2 matrix:
 
 - **High value, Low effort** (Quick wins): Do these first.
@@ -177,9 +177,9 @@ Plot initiatives on a 2x2 matrix:
 
 When to use: Visual prioritization in team planning sessions. Good for building shared understanding of tradeoffs.
 
-## Dependency Mapping
+## 의존성 맵핑
 
-### Identifying Dependencies
+### 의존성 식별
 Look for dependencies across these categories:
 
 - **Technical dependencies**: Feature B requires infrastructure work from Feature A
@@ -188,7 +188,7 @@ Look for dependencies across these categories:
 - **Knowledge dependencies**: Need research or investigation results before starting
 - **Sequential dependencies**: Must ship Feature A before starting Feature B (shared code, user flow)
 
-### Managing Dependencies
+### 의존성 관리
 - List all dependencies explicitly in the roadmap
 - Assign an owner to each dependency (who is responsible for resolving it)
 - Set a "need by" date: when does the depending item need this resolved
@@ -196,21 +196,21 @@ Look for dependencies across these categories:
 - Flag dependencies that cross team boundaries early — these require coordination
 - Have a contingency plan: what do you do if the dependency slips?
 
-### Reducing Dependencies
+### 의존성 줄이기
 - Can you build a simpler version that avoids the dependency?
 - Can you parallelize by using an interface contract or mock?
 - Can you sequence differently to move the dependency earlier?
 - Can you absorb the work into your team to remove the cross-team coordination?
 
-## Capacity Planning
+## 용량 계획
 
-### Estimating Capacity
+### 용량 추정
 - Start with the number of engineers and the time period
 - Subtract known overhead: meetings, on-call rotations, interviews, holidays, PTO
 - A common rule of thumb: engineers spend 60-70% of time on planned feature work
 - Factor in team ramp time for new members
 
-### Allocating Capacity
+### 용량 배분
 A healthy allocation for most product teams:
 
 - **70% planned features**: Roadmap items that advance strategic goals

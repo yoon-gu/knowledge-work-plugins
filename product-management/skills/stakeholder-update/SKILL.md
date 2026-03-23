@@ -1,24 +1,24 @@
 ---
 name: stakeholder-update
-description: Generate a stakeholder update tailored to audience and cadence. Use when writing a weekly or monthly status for leadership, announcing a launch, escalating a risk or blocker, or translating the same progress into exec-brief, engineering-detail, or customer-facing versions.
+description: 대상과 주기에 맞춘 이해관계자 업데이트를 생성합니다. 리더십을 위한 주간 또는 월간 상태 보고를 쓸 때, 출시를 알릴 때, 위험이나 블로커를 에스컬레이션할 때, 같은 진척을 임원용/엔지니어링용/고객용 버전으로 바꿀 때 사용합니다.
 argument-hint: "<update type and audience>"
 ---
 
-# Stakeholder Update
+# 이해관계자 업데이트
 
 > If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
 
-Generate a stakeholder update tailored to the audience and cadence.
+대상과 주기에 맞춘 이해관계자 업데이트를 생성합니다.
 
-## Usage
+## 사용법
 
 ```
 /stakeholder-update $ARGUMENTS
 ```
 
-## Workflow
+## 워크플로
 
-### 1. Determine Update Type
+### 1. 업데이트 유형 결정
 
 Ask the user what kind of update:
 - **Weekly**: Regular cadence update on progress, blockers, and next steps
@@ -26,7 +26,7 @@ Ask the user what kind of update:
 - **Launch**: Announcement of a feature or product launch with details and impact
 - **Ad-hoc**: One-off update for a specific situation (escalation, pivot, major decision)
 
-### 2. Determine Audience
+### 2. 대상 결정
 
 Ask who the update is for:
 - **Executives / leadership**: High-level, outcome-focused, strategic framing, brief
@@ -35,7 +35,7 @@ Ask who the update is for:
 - **Customers / external**: Benefits-focused, clear timelines, no internal jargon
 - **Board**: Metrics-driven, strategic, risk-focused, very concise
 
-### 3. Pull Context from Connected Tools
+### 3. 연결된 도구에서 맥락 가져오기
 
 If **~~project tracker** is connected:
 - Pull status of roadmap items and milestones
@@ -62,7 +62,7 @@ If no tools are connected, ask the user to provide:
 - Key decisions made or needed
 - What is coming next
 
-### 4. Generate the Update
+### 4. 업데이트 생성
 
 Structure the update for the target audience using the templates and frameworks below.
 
@@ -76,16 +76,16 @@ Structure the update for the target audience using the templates and frameworks 
 
 **For launch announcements**: What launched, why it matters, key details (scope, availability, limitations), success metrics, rollout plan, and feedback channels.
 
-### 5. Review and Deliver
+### 5. 검토 및 전달
 
 After generating the update:
 - Ask if the user wants to adjust tone, detail level, or emphasis
 - Offer to format for the delivery channel (email, chat post, doc, slides)
 - If **~~chat** is connected, offer to draft the message for sending
 
-## Update Templates by Audience
+## 대상별 업데이트 템플릿
 
-### Executive / Leadership Update
+### 임원 / 리더십 업데이트
 Executives want: strategic context, progress against goals, risks that need their help, decisions that need their input.
 
 **Format**:
@@ -116,7 +116,7 @@ Next milestones:
 - Only include risks you want help with. Do not list risks you are already handling unless they need to know.
 - Asks must be specific: "Decision on X by Friday" not "support needed."
 
-### Engineering Team Update
+### 엔지니어링 팀 업데이트
 Engineers want: clear priorities, technical context, blockers resolved, decisions that affect their work.
 
 **Format**:
@@ -144,7 +144,7 @@ Coming up:
 - Be explicit about what is blocking them and what you are doing to unblock it.
 - Do not waste their time with information that does not affect their work.
 
-### Cross-Functional Partner Update
+### 크로스펑셔널 파트너 업데이트
 Partners (design, marketing, sales, support) want: what is coming that affects them, what they need to prepare for, how to give input.
 
 **Format**:
@@ -162,7 +162,7 @@ Open for input:
 - [Topic we'd love feedback on] — [How to provide it].
 ```
 
-### Customer / External Update
+### 고객 / 외부 업데이트
 Customers want: what is new, what is coming, how it benefits them, how to get started.
 
 **Format**:
@@ -186,9 +186,9 @@ Feedback:
 - Be honest about timelines but do not overcommit. "Later this quarter" is better than a date you might miss.
 - Only mention known issues if they are customer-impacting and you have a resolution plan.
 
-## Status Reporting Framework
+## 상태 보고 프레임워크
 
-### Green / Yellow / Red Status
+### Green / Yellow / Red 상태
 
 **Green** (On Track):
 - Progressing as planned
@@ -208,15 +208,15 @@ Feedback:
 - Will miss commitments without significant intervention (scope cut, resource addition, timeline extension)
 - Use Red when you genuinely need help. Do not wait until it is too late.
 
-### When to Change Status
+### 상태를 바꿀 때
 - Move to Yellow at the FIRST sign of risk, not when you are sure things are bad
 - Move to Red when you have exhausted your own options and need escalation
 - Move back to Green only when the risk is genuinely resolved, not just paused
 - Document what changed when you change status — "Moved to Yellow because [reason]"
 
-## Risk Communication
+## 위험 커뮤니케이션
 
-### ROAM Framework for Risk Management
+### 위험 관리를 위한 ROAM 프레임워크
 - **Resolved**: Risk is no longer a concern. Document how it was resolved.
 - **Owned**: Risk is acknowledged and someone is actively managing it. State the owner and the mitigation plan.
 - **Accepted**: Risk is known but we are choosing to proceed without mitigation. Document the rationale.

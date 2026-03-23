@@ -1,24 +1,24 @@
 ---
 name: write-spec
-description: Write a feature spec or PRD from a problem statement or feature idea. Use when turning a vague idea or user request into a structured document, scoping a feature with goals and non-goals, defining success metrics and acceptance criteria, or breaking a big ask into a phased spec.
+description: 문제 진술이나 기능 아이디어로부터 기능 명세서 또는 PRD를 작성합니다. 막연한 아이디어나 사용자 요청을 구조화된 문서로 바꿀 때, 목표와 비목표로 기능 범위를 정할 때, 성공 지표와 수용 기준을 정의할 때, 큰 요구를 단계별 명세로 나눌 때 사용합니다.
 argument-hint: "<feature or problem statement>"
 ---
 
-# Write Spec
+# 명세 작성
 
 > If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
 
-Write a feature specification or product requirements document (PRD).
+기능 명세서 또는 제품 요구사항 문서(PRD)를 작성합니다.
 
-## Usage
+## 사용법
 
 ```
 /write-spec $ARGUMENTS
 ```
 
-## Workflow
+## 워크플로
 
-### 1. Understand the Feature
+### 1. 기능 이해
 
 Ask the user what they want to spec. Accept any of:
 - A feature name ("SSO support")
@@ -26,7 +26,7 @@ Ask the user what they want to spec. Accept any of:
 - A user request ("Users want to export their data as CSV")
 - A vague idea ("We should do something about onboarding drop-off")
 
-### 2. Gather Context
+### 2. 맥락 수집
 
 Ask the user for the following. Be conversational — do not dump all questions at once. Ask the most important ones first and fill in gaps as you go:
 
@@ -36,7 +36,7 @@ Ask the user for the following. Be conversational — do not dump all questions 
 - **Constraints**: Technical constraints, timeline, regulatory requirements, dependencies
 - **Prior art**: Has this been attempted before? Are there existing solutions?
 
-### 3. Pull Context from Connected Tools
+### 3. 연결된 도구에서 맥락 가져오기
 
 If **~~project tracker** is connected:
 - Search for related tickets, epics, or features
@@ -54,7 +54,7 @@ If **~~design** is connected:
 
 If these tools are not connected, work entirely from what the user provides. Do not ask the user to connect tools — just proceed with available information.
 
-### 4. Generate the PRD
+### 4. PRD 생성
 
 Produce a structured PRD with these sections. See **PRD Structure** below for detailed guidance on what each section should contain.
 
@@ -67,34 +67,34 @@ Produce a structured PRD with these sections. See **PRD Structure** below for de
 - **Open Questions**: Unresolved questions tagged with who needs to answer (engineering, design, legal, data)
 - **Timeline Considerations**: Hard deadlines, dependencies, and phasing
 
-### 5. Review and Iterate
+### 5. 검토 및 반복
 
 After generating the PRD:
 - Ask the user if any sections need adjustment
 - Offer to expand on specific sections
 - Offer to create follow-up artifacts (design brief, engineering ticket breakdown, stakeholder pitch)
 
-## PRD Structure
+## PRD 구조
 
-### Problem Statement
+### 문제 진술
 - Describe the user problem in 2-3 sentences
 - Who experiences this problem and how often
 - What is the cost of not solving it (user pain, business impact, competitive risk)
 - Ground this in evidence: user research, support data, metrics, or customer feedback
 
-### Goals
+### 목표
 - 3-5 specific, measurable outcomes this feature should achieve
 - Each goal should answer: "How will we know this succeeded?"
 - Distinguish between user goals (what users get) and business goals (what the company gets)
 - Goals should be outcomes, not outputs ("reduce time to first value by 50%" not "build onboarding wizard")
 
-### Non-Goals
+### 비목표
 - 3-5 things this feature explicitly will NOT do
 - Adjacent capabilities that are out of scope for this version
 - For each non-goal, briefly explain why it is out of scope (not enough impact, too complex, separate initiative, premature)
 - Non-goals prevent scope creep during implementation and set expectations with stakeholders
 
-### User Stories
+### 사용자 스토리
 Write user stories in standard format: "As a [user type], I want [capability] so that [benefit]"
 
 Guidelines:
@@ -110,7 +110,7 @@ Example:
 - "As a team member, I want to be automatically redirected to my company's SSO login so that I do not need to remember a separate password"
 - "As a team admin, I want to see which members have logged in via SSO so that I can verify the rollout is working"
 
-### Requirements
+### 요구사항
 
 **Must-Have (P0)**: The feature cannot ship without these. These represent the minimum viable version of the feature. Ask: "If we cut this, does the feature still solve the core problem?" If no, it is P0.
 
@@ -124,17 +124,17 @@ For each requirement:
 - Note any technical considerations or constraints
 - Flag dependencies on other teams or systems
 
-### Open Questions
+### 열린 질문
 - Questions that need answers before or during implementation
 - Tag each with who should answer (engineering, design, legal, data, stakeholder)
 - Distinguish between blocking questions (must answer before starting) and non-blocking (can resolve during implementation)
 
-### Timeline Considerations
+### 일정 고려사항
 - Hard deadlines (contractual commitments, events, compliance dates)
 - Dependencies on other teams' work or releases
 - Suggested phasing if the feature is too large for one release
 
-## User Story Writing
+## 사용자 스토리 작성
 
 Good user stories are:
 - **Independent**: Can be developed and delivered on their own
@@ -144,30 +144,30 @@ Good user stories are:
 - **Small**: Can be completed in one sprint/iteration
 - **Testable**: There is a clear way to verify it works
 
-### Common Mistakes in User Stories
+### 사용자 스토리의 흔한 실수
 - Too vague: "As a user, I want the product to be faster" — what specifically should be faster?
 - Solution-prescriptive: "As a user, I want a dropdown menu" — describe the need, not the UI widget
 - No benefit: "As a user, I want to click a button" — why? What does it accomplish?
 - Too large: "As a user, I want to manage my team" — break this into specific capabilities
 - Internal focus: "As the engineering team, we want to refactor the database" — this is a task, not a user story
 
-## Requirements Categorization
+## 요구사항 분류
 
-### MoSCoW Framework
+### MoSCoW 프레임워크
 - **Must have**: Without these, the feature is not viable. Non-negotiable.
 - **Should have**: Important but not critical for launch. High-priority fast follows.
 - **Could have**: Desirable if time permits. Will not delay delivery if cut.
 - **Won't have (this time)**: Explicitly out of scope. May revisit in future versions.
 
-### Tips for Categorization
+### 분류 팁
 - Be ruthless about P0s. The tighter the must-have list, the faster you ship and learn.
 - If everything is P0, nothing is P0. Challenge every must-have: "Would we really not ship without this?"
 - P1s should be things you are confident you will build soon, not a wish list.
 - P2s are architectural insurance — they guide design decisions even though you are not building them now.
 
-## Success Metrics Definition
+## 성공 지표 정의
 
-### Leading Indicators
+### 선행 지표
 Metrics that change quickly after launch (days to weeks):
 - **Adoption rate**: % of eligible users who try the feature
 - **Activation rate**: % of users who complete the core action
@@ -176,7 +176,7 @@ Metrics that change quickly after launch (days to weeks):
 - **Error rate**: How often users encounter errors or dead ends
 - **Feature usage frequency**: How often users return to use the feature
 
-### Lagging Indicators
+### 후행 지표
 Metrics that take time to develop (weeks to months):
 - **Retention impact**: Does this feature improve user retention?
 - **Revenue impact**: Does this drive upgrades, expansion, or new revenue?
@@ -184,14 +184,14 @@ Metrics that take time to develop (weeks to months):
 - **Support ticket reduction**: Does this reduce support load?
 - **Competitive win rate**: Does this help win more deals?
 
-### Setting Targets
+### 목표 설정
 - Targets should be specific: "50% adoption within 30 days" not "high adoption"
 - Base targets on comparable features, industry benchmarks, or explicit hypotheses
 - Set a "success" threshold and a "stretch" target
 - Define the measurement method: what tool, what query, what time window
 - Specify when you will evaluate: 1 week, 1 month, 1 quarter post-launch
 
-## Acceptance Criteria
+## 수용 기준
 
 Write acceptance criteria in Given/When/Then format or as a checklist:
 
@@ -212,16 +212,16 @@ Example:
 - [ ] SSO login links to existing account if email matches
 - [ ] Failed SSO attempts show a clear error message
 
-### Tips for Acceptance Criteria
+### 수용 기준 팁
 - Cover the happy path, error cases, and edge cases
 - Be specific about the expected behavior, not the implementation
 - Include what should NOT happen (negative test cases)
 - Each criterion should be independently testable
 - Avoid ambiguous words: "fast", "user-friendly", "intuitive" — define what these mean concretely
 
-## Scope Management
+## 범위 관리
 
-### Recognizing Scope Creep
+### 범위 확대 징후 인식
 Scope creep happens when:
 - Requirements keep getting added after the spec is approved
 - "Small" additions accumulate into a significantly larger project
@@ -229,7 +229,7 @@ Scope creep happens when:
 - The launch date keeps moving without explicit re-scoping
 - Stakeholders add requirements without removing anything
 
-### Preventing Scope Creep
+### 범위 확대 방지
 - Write explicit non-goals in every spec
 - Require that any scope addition comes with a scope removal or timeline extension
 - Separate "v1" from "v2" clearly in the spec
@@ -237,11 +237,11 @@ Scope creep happens when:
 - Time-box investigations: "If we cannot figure out X in 2 days, we cut it"
 - Create a "parking lot" for good ideas that are not in scope
 
-## Output Format
+## 출력 형식
 
 Use markdown with clear headers. Keep the document scannable — busy stakeholders should be able to read just the headers and bold text to get the gist.
 
-## Tips
+## 팁
 
 - Be opinionated about scope. It is better to have a tight, well-defined spec than an expansive vague one.
 - If the user's idea is too big for one spec, suggest breaking it into phases and spec the first phase.

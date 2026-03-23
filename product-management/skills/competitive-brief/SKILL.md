@@ -1,31 +1,31 @@
 ---
 name: competitive-brief
-description: Create a competitive analysis brief for one or more competitors or a feature area. Use when informing product strategy or feature prioritization, building sales battle cards, prepping board or investor materials, or deciding where to differentiate vs. achieve parity.
+description: 하나 이상의 경쟁사 또는 기능 영역에 대한 경쟁 분석 브리핑을 만듭니다. 제품 전략이나 기능 우선순위를 정할 때, 세일즈 배틀카드를 만들 때, 이사회나 투자자 자료를 준비할 때, 차별화와 동등화 중 어디에 집중할지 결정할 때 사용합니다.
 argument-hint: "<competitor or feature area>"
 ---
 
-# Competitive Brief
+# 경쟁 브리핑
 
 > If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
 
-Create a competitive analysis brief for one or more competitors or a feature area.
+하나 이상의 경쟁사 또는 기능 영역에 대한 경쟁 분석 브리핑을 만듭니다.
 
-## Usage
+## 사용법
 
 ```
 /competitive-brief $ARGUMENTS
 ```
 
-## Workflow
+## 워크플로
 
-### 1. Scope the Analysis
+### 1. 분석 범위 정하기
 
 Ask the user:
-- **Competitor(s)**: Which specific competitor(s) to analyze? Or a feature area to compare across competitors?
-- **Focus**: Full product comparison, specific feature area, pricing/packaging, go-to-market, or positioning?
-- **Context**: What decision will this inform? (product strategy, sales enablement, investor/board materials, feature prioritization)
+- **Competitor(s)**: 어떤 경쟁사를 분석할까요? 아니면 경쟁사 간 비교할 기능 영역인가요?
+- **Focus**: 전체 제품 비교, 특정 기능 영역, 가격/패키징, go-to-market, 포지셔닝 중 무엇인가요?
+- **Context**: 이 분석이 어떤 결정을 돕나요? (제품 전략, 세일즈 활성화, 투자자/이사회 자료, 기능 우선순위)
 
-### 2. Research
+### 2. 조사
 
 **Via web search**:
 - Product pages and feature lists
@@ -45,47 +45,47 @@ If **~~chat** is connected:
 - Search for competitive mentions in sales or product channels
 - Find recent deal feedback involving competitors
 
-### 3. Generate the Brief
+### 3. 브리핑 생성
 
-#### Competitor Overview
+#### 경쟁사 개요
 For each competitor:
 - Company summary: founding, size, funding/revenue if public, target market
 - Product positioning: how they describe themselves, who they target
 - Recent momentum: launches, funding, partnerships, customer wins
 
-#### Feature Comparison
+#### 기능 비교
 Compare capabilities across key areas relevant to the analysis. See **Feature Comparison Matrices** below for rating scales and matrix templates.
 
-#### Positioning Analysis
+#### 포지셔닝 분석
 Analyze how each competitor positions themselves — target customer, category claim, key differentiator, and value proposition. See **Positioning Analysis Frameworks** below for the positioning statement template and message architecture levels.
 
-#### Strengths and Weaknesses
+#### 강점과 약점
 For each competitor:
 - **Strengths**: Where they genuinely excel. What customers praise.
 - **Weaknesses**: Where they fall short. What customers complain about.
 - Be honest and evidence-based — do not dismiss competitors or inflate their weaknesses.
 
-#### Opportunities
+#### 기회
 Based on the analysis:
 - Where are there gaps in competitor offerings we could exploit?
 - What are customers asking for that no one provides well?
 - Where are competitors making bets we disagree with?
 - What market shifts could advantage our approach?
 
-#### Threats
+#### 위협
 - Where are competitors investing heavily?
 - What competitive moves could disrupt our position?
 - Where are we most vulnerable?
 - What would a "nightmare scenario" competitive move look like?
 
-#### Strategic Implications
+#### 전략적 시사점
 Tie the analysis back to product strategy:
 - What should we build, accelerate, or deprioritize based on this analysis?
 - Where should we differentiate vs. achieve parity?
 - How should we adjust positioning or messaging?
 - What should we monitor going forward?
 
-### 4. Follow Up
+### 4. 후속 조치
 
 After generating the brief:
 - Ask if the user wants to dive deeper on any section
@@ -94,30 +94,30 @@ After generating the brief:
 - Offer to draft a "how to win against [competitor]" guide
 - Offer to set up a monitoring plan for competitive moves
 
-## Competitive Landscape Mapping
+## 경쟁 환경 맵핑
 
-### Identifying the Competitive Set
+### 경쟁 세트 식별
 Define competitors at multiple levels:
 
-**Direct competitors**: Products that solve the same problem for the same users in the same way.
+**직접 경쟁사**: 같은 사용자에게 같은 방식으로 같은 문제를 푸는 제품입니다.
 - These are the products your customers actively evaluate against you
 - They appear in your deals, in customer comparisons, in review site matchups
 
-**Indirect competitors**: Products that solve the same problem but differently.
+**간접 경쟁사**: 같은 문제를 다른 방식으로 푸는 제품입니다.
 - Different approach to the same user need (e.g., spreadsheets vs dedicated project management tool)
 - Include "non-consumption" — sometimes the competitor is doing nothing or using a manual process
 
-**Adjacent competitors**: Products that do not compete today but could.
+**인접 경쟁사**: 지금은 경쟁하지 않지만 경쟁자가 될 수 있는 제품입니다.
 - Companies with similar technology, customer base, or distribution that could expand into your space
 - Larger platforms that could add your functionality as a feature
 - Startups attacking a niche that could grow into your core market
 
-**Substitute solutions**: Entirely different ways users solve the underlying need.
+**대체 솔루션**: 사용자가 근본적인 필요를 해결하는 전혀 다른 방식입니다.
 - Hiring a person instead of buying software
 - Using a general-purpose tool (Excel, email) instead of a specialized one
 - Outsourcing the process entirely
 
-### Landscape Map
+### 환경 맵
 Position competitors on meaningful dimensions:
 
 **Common axes**:
@@ -129,7 +129,7 @@ Position competitors on meaningful dimensions:
 
 Choose axes that reveal strategic positioning differences relevant to your market. The right axes make competitive dynamics visible.
 
-### Monitoring the Landscape
+### 환경 모니터링
 Track competitive movements over time:
 - Product launches and feature releases (changelogs, blog posts, press releases)
 - Pricing and packaging changes
@@ -139,14 +139,14 @@ Track competitive movements over time:
 - Analyst and review coverage
 - Partnership announcements
 
-## Feature Comparison Matrices
+## 기능 비교 매트릭스
 
-### Building a Feature Comparison
+### 기능 비교 만들기
 1. **Define capability areas**: Group features into functional categories that matter to buyers (not your internal architecture). Use the categories buyers use when evaluating.
 2. **List specific capabilities**: Under each area, list the specific features or capabilities to compare.
 3. **Rate each competitor**: Use a consistent rating scale.
 
-### Rating Scale Options
+### 평가 척도 옵션
 
 **Simple (recommended for most cases)**:
 - Strong: Market-leading capability. Deep functionality, well-executed.
@@ -162,7 +162,7 @@ Track competitive movements over time:
 - 1: Minimal. Barely functional or in early beta.
 - 0: Absent. Not available.
 
-### Comparison Matrix Template
+### 비교 매트릭스 템플릿
 ```
 | Capability Area | Our Product | Competitor A | Competitor B |
 |----------------|-------------|-------------|-------------|
@@ -173,7 +173,7 @@ Track competitive movements over time:
 |   [Feature 3]  | Strong      | Strong      | Adequate    |
 ```
 
-### Tips for Feature Comparison
+### 기능 비교 팁
 - Rate based on real product experience, customer feedback, and reviews — not just marketing claims
 - Features exist on a spectrum. "Has feature X" is less useful than "How well does it do X?"
 - Weight the comparison by what matters to your target customers, not by total feature count
@@ -181,9 +181,9 @@ Track competitive movements over time:
 - Be honest about where competitors are ahead. A comparison that always shows you winning is not credible.
 - Include the "why it matters" for each capability area. Not all features matter equally to buyers.
 
-## Positioning Analysis Frameworks
+## 포지셔닝 분석 프레임워크
 
-### Positioning Statement Analysis
+### 포지셔닝 문장 분석
 For each competitor, extract their positioning:
 
 **Template**: For [target customer] who [need/problem], [Product] is a [category] that [key benefit]. Unlike [competitor/alternative], [Product] [key differentiator].
@@ -195,7 +195,7 @@ For each competitor, extract their positioning:
 - Analyst briefing materials
 - Earnings call language (for public companies)
 
-### Message Architecture Analysis
+### 메시지 아키텍처 분석
 How does each competitor communicate value?
 
 **Level 1 — Category**: What category do they claim? (CRM, project management, collaboration platform)
@@ -203,16 +203,16 @@ How does each competitor communicate value?
 **Level 3 — Value Proposition**: What outcome do they promise? (Close deals faster, ship products faster, never miss a deadline)
 **Level 4 — Proof Points**: What evidence do they provide? (Customer logos, metrics, awards, case studies)
 
-### Positioning Gaps and Opportunities
+### 포지셔닝 공백과 기회
 Look for:
 - **Unclaimed positions**: Value propositions no competitor owns that matter to buyers
 - **Crowded positions**: Claims every competitor makes that have lost meaning
 - **Emerging positions**: New value propositions driven by market changes (AI, remote work, compliance)
 - **Vulnerable positions**: Claims competitors make that they cannot fully deliver on
 
-## Win/Loss Analysis Methodology
+## Win/Loss 분석 방법론
 
-### Conducting Win/Loss Analysis
+### Win/Loss 분석 수행
 Win/loss analysis reveals why you actually win and lose deals. It is the most actionable competitive intelligence.
 
 **Data sources**:
