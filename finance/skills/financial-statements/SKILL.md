@@ -1,6 +1,6 @@
 ---
 name: financial-statements
-description: Generate financial statements (income statement, balance sheet, cash flow) with period-over-period comparison and variance analysis. Use when preparing a monthly or quarterly P&L, closing the books and need to flag material variances, comparing actuals to budget, building a financial summary for leadership review, or looking up GAAP presentation requirements and period-end adjustments.
+description: 기간 대비 비교와 차이 분석이 포함된 재무제표(손익계산서, 대차대조표, 현금흐름표)를 생성합니다. 월간 또는 분기 P&L을 준비할 때, 장부를 마감하며 중요한 차이를 표시해야 할 때, 실제값을 예산과 비교할 때, 경영진 검토용 재무 요약을 만들 때, GAAP 표시 요구사항과 기간 말 조정을 확인할 때 사용합니다.
 argument-hint: "<frequency> <period>"
 ---
 
@@ -10,9 +10,9 @@ argument-hint: "<frequency> <period>"
 
 **Important**: This command assists with financial statement workflows but does not provide financial advice. All statements should be reviewed by qualified financial professionals before use in reporting or filings.
 
-Generate financial statements with period-over-period comparison and variance analysis. The workflow below walks through income statement generation; balance sheet and cash flow statement reference formats, GAAP presentation requirements (ASC 220/210/230), and common period-end adjustments are included as supporting reference material.
+기간 대비 비교와 차이 분석이 포함된 재무제표를 생성합니다. 아래 워크플로는 손익계산서 생성을 중심으로 설명하며, 대차대조표와 현금흐름표의 참조 형식, GAAP 표시 요구사항(ASC 220/210/230), 일반적인 기간 말 조정도 함께 제공합니다.
 
-## Usage
+## 사용법
 
 ```
 /financial-statements <period-type> <period>
@@ -20,316 +20,283 @@ Generate financial statements with period-over-period comparison and variance an
 
 ### Arguments
 
-- `period-type` — The reporting period type:
-  - `monthly` — Single month P&L with prior month and prior year month comparison
-  - `quarterly` — Quarter P&L with prior quarter and prior year quarter comparison
-  - `annual` — Full year P&L with prior year comparison
-  - `ytd` — Year-to-date P&L with prior year YTD comparison
-- `period` — The period to report (e.g., `2024-12`, `2024-Q4`, `2024`)
+- `period-type` — 보고 기간 유형:
+  - `monthly` — 전월 및 전년 동월 비교가 포함된 단일 월 P&L
+  - `quarterly` — 전분기 및 전년 동기 분기 비교가 포함된 분기 P&L
+  - `annual` — 전년 비교가 포함된 연간 P&L
+  - `ytd` — 전년 YTD 비교가 포함된 연초 누적 P&L
+- `period` — 보고할 기간(예: `2024-12`, `2024-Q4`, `2024`)
 
 ## Workflow
 
-### 1. Gather Financial Data
+### 1. 재무 데이터 수집
 
-If ~~erp or ~~data warehouse is connected:
-- Pull trial balance or income statement data for the specified period
-- Pull comparison period data (prior period, prior year, budget/forecast)
-- Pull account hierarchy and groupings for presentation
+~~erp 또는 ~~data warehouse가 연결되어 있다면:
+- 지정 기간의 시산표 또는 손익 데이터 가져오기
+- 비교 기간 데이터(전기, 전년, 예산/예상) 가져오기
+- 표시용 계정 계층과 그룹핑 가져오기
 
-If no data source is connected:
-> Connect ~~erp or ~~data warehouse to pull financial data automatically. You can also paste trial balance data, upload a spreadsheet, or provide income statement data for analysis.
+데이터 소스가 연결되어 있지 않다면:
+> 재무 데이터를 자동으로 가져오려면 ~~erp 또는 ~~data warehouse를 연결하세요. 시산표 데이터를 붙여넣거나, 스프레드시트를 업로드하거나, 손익 데이터를 제공해 분석할 수도 있습니다.
 
-Prompt the user to provide:
-- Current period revenue and expense data (by account or category)
-- Comparison period data (prior period, prior year, and/or budget)
-- Any known adjustments or reclassifications
+사용자에게 다음을 요청:
+- 현재 기간의 매출 및 비용 데이터(계정 또는 범주별)
+- 비교 기간 데이터(전기, 전년, 및/또는 예산)
+- 알려진 조정 또는 재분류
 
-### 2. Generate Income Statement
+### 2. 손익계산서 생성
 
-Present in standard multi-column format:
+표준 다열 형식으로 제시:
 
-```
-INCOME STATEMENT
-Period: [Period description]
-(in thousands, unless otherwise noted)
+```text
+손익계산서
+기간: [기간 설명]
+(특기하지 않는 한 천 단위)
 
-                              Current    Prior      Variance   Variance   Budget    Budget
-                              Period     Period     ($)        (%)        Amount    Var ($)
+                              당기       전기       차이        차이        예산       예산
+                              기간       기간       ($)        (%)        금액       차이($)
                               --------   --------   --------   --------   --------  --------
-REVENUE
-  Product revenue             $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
-  Service revenue             $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
-  Other revenue               $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
+매출
+  제품 매출                   $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
+  서비스 매출                 $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
+  기타 매출                   $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
                               --------   --------   --------              --------  --------
-TOTAL REVENUE                 $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
+총매출                         $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
 
-COST OF REVENUE
-  [Cost items]                $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
+매출원가
+  [원가 항목]                  $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
                               --------   --------   --------              --------  --------
-GROSS PROFIT                  $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
-  Gross Margin                XX.X%      XX.X%
+매출총이익                     $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
+  매출총이익률                 XX.X%      XX.X%
 
-OPERATING EXPENSES
-  Research & development      $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
-  Sales & marketing           $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
-  General & administrative    $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
+영업비용
+  연구개발비                   $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
+  판매 및 마케팅               $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
+  일반관리비                   $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
                               --------   --------   --------              --------  --------
-TOTAL OPERATING EXPENSES      $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
+총영업비용                     $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
 
-OPERATING INCOME (LOSS)       $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
-  Operating Margin            XX.X%      XX.X%
+영업이익(손실)                 $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
+  영업이익률                   XX.X%      XX.X%
 
-OTHER INCOME (EXPENSE)
-  Interest income             $XX,XXX    $XX,XXX    $X,XXX     X.X%
-  Interest expense           ($XX,XXX)  ($XX,XXX)   $X,XXX     X.X%
-  Other, net                  $XX,XXX    $XX,XXX    $X,XXX     X.X%
+기타수익(비용)
+  이자수익                     $XX,XXX    $XX,XXX    $X,XXX     X.X%
+  이자비용                   ($XX,XXX)  ($XX,XXX)   $X,XXX     X.X%
+  기타수익(비용)               $XX,XXX    $XX,XXX    $X,XXX     X.X%
                               --------   --------   --------
-TOTAL OTHER INCOME (EXPENSE)  $XX,XXX    $XX,XXX    $X,XXX     X.X%
-
-INCOME BEFORE TAXES           $XX,XXX    $XX,XXX    $X,XXX     X.X%
-  Income tax expense          $XX,XXX    $XX,XXX    $X,XXX     X.X%
+세전이익                       $XX,XXX    $XX,XXX    $X,XXX     X.X%
+  법인세 비용                  $XX,XXX    $XX,XXX    $X,XXX     X.X%
                               --------   --------   --------
-
-NET INCOME (LOSS)             $XX,XXX    $XX,XXX    $X,XXX     X.X%       $XX,XXX   $X,XXX
-  Net Margin                  XX.X%      XX.X%
+당기순이익(손실)               $XX,XXX    $XX,XXX    $X,XXX     X.X%
+  순이익률                     XX.X%      XX.X%
 ```
 
-### 3. Variance Analysis
+### 3. 차이 분석
 
-For each line item, calculate and flag material variances.
+각 중요한 차이에 대해:
 
-#### Variance Calculation
+- **Price effect:** 단가 변화의 영향
+- **Volume effect:** 거래량, 단위, 고객 수, 사용량 변화
+- **Mix effect:** 서로 다른 비율/마진을 가진 항목 간 구성 변화
+- **New/discontinued items:** 한 기간에만 존재하는 항목
+- **One-time/non-recurring items:** 반복되지 않을 것으로 예상되는 항목
+- **Timing effect:** 기간 간 이동한 항목(실제 실행률 변화 아님)
+- **Currency effect:** FX 환율 변화가 번역 결과에 미치는 영향
 
-For each line item, calculate:
-- **Dollar variance:** Current period - Prior period (or current period - budget)
-- **Percentage variance:** (Current - Prior) / |Prior| x 100
-- **Basis point change:** For margins and ratios, express change in basis points (1 bp = 0.01%)
+각 중요한 차이에 대해:
+1. 차이 금액($, %)을 정량화
+2. 유리/불리인지 식별
+3. 위 범주를 사용해 동인을 분해
+4. 비즈니스 이유를 서술
+5. 일시적 현상인지 추세 변화인지 평가
+6. 필요한 후속 조치(추가 조사, 예측 업데이트, 프로세스 변경)를 표시
 
-#### Materiality Thresholds
+### 4. 핵심 지표 요약
 
-Define what constitutes a "material" variance requiring investigation. Common approaches:
-
-- **Fixed dollar threshold:** Variances exceeding a set dollar amount (e.g., $50K, $100K)
-- **Percentage threshold:** Variances exceeding a set percentage (e.g., 10%, 15%)
-- **Combined:** Either the dollar OR percentage threshold is exceeded
-- **Scaled:** Different thresholds for different line items based on their size and volatility
-
-*Example thresholds (adjust for your organization):*
-
-| Line Item Size | Dollar Threshold | Percentage Threshold |
-|---------------|-----------------|---------------------|
-| > $10M        | $500K           | 5%                  |
-| $1M - $10M    | $100K           | 10%                 |
-| < $1M         | $50K            | 15%                 |
-
-#### Variance Decomposition
-
-Break down total variance into component drivers:
-
-- **Volume/quantity effect:** Change in volume at prior period rates
-- **Rate/price effect:** Change in rate/price at current period volume
-- **Mix effect:** Shift in composition between items with different rates/margins
-- **New/discontinued items:** Items present in one period but not the other
-- **One-time/non-recurring items:** Items that are not expected to repeat
-- **Timing effect:** Items shifting between periods (not a true change in run rate)
-- **Currency effect:** Impact of FX rate changes on translated results
-
-#### Investigation and Narrative
-
-For each material variance:
-1. Quantify the variance ($ and %)
-2. Identify whether favorable or unfavorable
-3. Decompose into drivers using the categories above
-4. Provide a narrative explanation of the business reason
-5. Assess whether the variance is temporary or represents a trend change
-6. Note any actions required (further investigation, forecast update, process change)
-
-### 4. Key Metrics Summary
-
-```
-KEY METRICS
-                              Current    Prior      Change
-Revenue growth (%)                                  X.X%
-Gross margin (%)              XX.X%      XX.X%      X.X pp
-Operating margin (%)          XX.X%      XX.X%      X.X pp
-Net margin (%)                XX.X%      XX.X%      X.X pp
-OpEx as % of revenue          XX.X%      XX.X%      X.X pp
-Effective tax rate (%)        XX.X%      XX.X%      X.X pp
+```text
+핵심 지표
+                              당기       전기       변동
+매출 성장률 (%)                                   X.X%
+매출총이익률 (%)              XX.X%      XX.X%      X.X pp
+영업이익률 (%)                XX.X%      XX.X%      X.X pp
+순이익률 (%)                  XX.X%      XX.X%      X.X pp
+매출 대비 영업비용 비율       XX.X%      XX.X%      X.X pp
+실효세율 (%)                  XX.X%      XX.X%      X.X pp
 ```
 
-### 5. Material Variance Summary
+### 5. 중요 차이 요약
 
-List all material variances requiring investigation:
+조사가 필요한 모든 중요한 차이를 나열:
 
-| Line Item | Variance ($) | Variance (%) | Direction | Preliminary Driver | Action |
+| 항목 | 차이($) | 차이(%) | 방향 | 1차 원인 | 조치 |
 |-----------|-------------|-------------|-----------|-------------------|--------|
-| [Item]    | $X,XXX      | X.X%        | Unfav.    | [If known]        | Investigate |
+| [항목]    | $X,XXX      | X.X%        | 불리     | [알려진 경우]     | 조사 |
 
-### 6. Output
+### 6. 출력
 
-Provide:
-1. Formatted income statement with comparisons
-2. Key metrics summary
-3. Material variance listing with investigation flags
-4. Suggested follow-up questions for unexplained variances
-5. Offer to drill into any specific variance with `/flux`
+다음을 제공합니다:
+1. 비교가 포함된 형식화된 손익계산서
+2. 핵심 지표 요약
+3. 조사 플래그가 포함된 중요한 차이 목록
+4. 설명되지 않은 차이에 대한 후속 질문 제안
+5. 특정 차이를 `/flux`로 더 깊게 분석하겠다는 제안
 
 ## GAAP Presentation Requirements
 
-### Income Statement (ASC 220 / IAS 1)
+### 손익계산서 (ASC 220 / IAS 1)
 
-- Present all items of income and expense recognized in a period
-- Classify expenses either by nature (materials, labor, depreciation) or by function (COGS, R&D, S&M, G&A) — function is more common for US companies
-- If classified by function, disclose depreciation, amortization, and employee benefit costs by nature in the notes
-- Present operating and non-operating items separately
-- Show income tax expense as a separate line
-- Extraordinary items are prohibited under both US GAAP and IFRS
-- Discontinued operations presented separately, net of tax
+- 기간에 인식된 모든 수익과 비용 항목을 제시
+- 비용은 성격(materials, labor, depreciation) 또는 기능(COGS, R&D, S&M, G&A)으로 분류 - 미국 회사에서는 기능 분류가 더 일반적
+- 기능 기준으로 분류한 경우, 주석에 감가상각, 상각, 직원 복리후생 비용을 성격별로 공시
+- 영업 항목과 비영업 항목을 분리
+- 법인세 비용은 별도 라인으로 표시
+- 특이항목(extraordinary items)은 US GAAP와 IFRS 모두에서 금지
+- 중단사업은 세후 순액으로 별도 표시
 
-**Common presentation considerations:**
+**일반적인 표시 고려사항:**
 
-- **Revenue disaggregation:** ASC 606 requires disaggregation of revenue into categories that depict how the nature, amount, timing, and uncertainty of revenue are affected by economic factors
-- **Stock-based compensation:** Classify within the functional expense categories (R&D, S&M, G&A) with total SBC disclosed in notes
-- **Restructuring charges:** Present separately if material, or include in operating expenses with note disclosure
-- **Non-GAAP adjustments:** If presenting non-GAAP measures (common in earnings releases), clearly label and reconcile to GAAP
+- **수익 세분화:** ASC 606은 경제적 요인이 수익의 성격, 금액, 시기, 불확실성에 미치는 영향을 보여 주는 범주로 매출을 세분화할 것을 요구
+- **주식기준보상:** 기능별 비용 범주(R&D, S&M, G&A)에 분류하고 총 SBC는 주석 공시
+- **구조조정 비용:** 중요한 경우 별도 표시하거나, 주석 공시와 함께 영업비용에 포함
+- **비GAAP 조정:** 비GAAP 지표를 제시하는 경우(실적 발표에서 흔함), 명확히 라벨링하고 GAAP로 조정표를 제공
 
-### Balance Sheet (ASC 210 / IAS 1)
+### 대차대조표 (ASC 210 / IAS 1)
 
-- Distinguish between current and non-current assets and liabilities
-- Current: expected to be realized, consumed, or settled within 12 months (or the operating cycle if longer)
-- Present assets in order of liquidity (most liquid first) — standard US practice
-- Accounts receivable shown net of allowance for credit losses (ASC 326)
-- Property and equipment shown net of accumulated depreciation
-- Goodwill is not amortized — tested for impairment annually (ASC 350)
-- Leases: recognize right-of-use assets and lease liabilities for operating and finance leases (ASC 842)
+- 유동자산과 비유동자산, 유동부채와 비유동부채를 구분
+- 유동: 12개월 이내(또는 더 길면 영업주기 내)에 실현, 소비, 결제될 것으로 예상되는 것
+- 자산은 유동성 순서대로 표시(가장 유동적인 것 먼저) - 미국의 표준 관행
+- 매출채권은 신용손실충당금 차감 후 표시(ASC 326)
+- 유형자산은 감가상각누계액 차감 후 표시
+- 영업권은 상각하지 않음 - 매년 손상검사(ASC 350)
+- 리스: 운용리스와 금융리스 모두에 대해 사용권 자산과 리스부채 인식(ASC 842)
 
-### Cash Flow Statement (ASC 230 / IAS 7)
+### 현금흐름표 (ASC 230 / IAS 7)
 
-- Indirect method is most common (start with net income, adjust for non-cash items)
-- Direct method is permitted but rarely used (requires supplemental indirect reconciliation)
-- Interest paid and income taxes paid must be disclosed (either on the face or in notes)
-- Non-cash investing and financing activities disclosed separately (e.g., assets acquired under leases, stock issued for acquisitions)
-- Cash equivalents: short-term, highly liquid investments with original maturities of 3 months or less
+- 간접법이 가장 일반적(순이익에서 시작해 비현금 항목 조정)
+- 직접법도 허용되지만 잘 사용되지 않음(보충적 간접 조정 필요)
+- 지급이자와 법인세 납부액은 표시해야 함(표시부 또는 주석)
+- 비현금 투자 및 재무 활동은 별도 공시(예: 리스 취득 자산, 인수에 대한 주식 발행)
+- 현금성 자산: 원래 만기가 3개월 이하인 단기 고유동성 투자
 
-## Balance Sheet Reference Format
+## 대차대조표 참조 형식
 
+```text
+자산
+유동자산
+  현금 및 현금성자산
+  단기투자
+  매출채권, 순액
+  재고자산
+  선급비용 및 기타 유동자산
+유동자산 합계
+
+비유동자산
+  유형자산, 순액
+  운용리스 사용권자산
+  영업권
+  무형자산, 순액
+  장기투자
+  기타 비유동자산
+비유동자산 합계
+
+자산 총계
+
+부채 및 주주지분
+유동부채
+  매입채무
+  미지급부채
+  이연수익, 유동 부분
+  장기부채의 유동 부분
+  운용리스부채, 유동 부분
+  기타 유동부채
+유동부채 합계
+
+비유동부채
+  장기부채
+  이연수익, 비유동 부분
+  운용리스부채, 비유동 부분
+  기타 비유동부채
+비유동부채 합계
+
+부채 총계
+
+주주지분
+  보통주
+  추가납입자본
+  이익잉여금(누적결손)
+  기타포괄손익누계액
+  자기주식
+주주지분 합계
+
+부채 및 주주지분 총계
 ```
-ASSETS
-Current Assets
-  Cash and cash equivalents
-  Short-term investments
-  Accounts receivable, net
-  Inventory
-  Prepaid expenses and other current assets
-Total Current Assets
 
-Non-Current Assets
-  Property and equipment, net
-  Operating lease right-of-use assets
-  Goodwill
-  Intangible assets, net
-  Long-term investments
-  Other non-current assets
-Total Non-Current Assets
+## 현금흐름표 참조 형식(간접법)
 
-TOTAL ASSETS
+```text
+영업활동으로 인한 현금흐름
+당기순이익(손실)
+당기순이익을 영업활동 현금흐름으로 조정:
+  감가상각 및 상각
+  주식기준보상
+  차입원가 상각
+  이연법인세
+  자산 처분손실(이익)
+  손상차손
+  기타 비현금 항목
+영업자산 및 부채의 변동:
+  매출채권
+  재고자산
+  선급비용 및 기타 자산
+  매입채무
+  미지급부채
+  이연수익
+  기타 부채
+영업활동으로 인한 현금흐름 순액
 
-LIABILITIES AND STOCKHOLDERS' EQUITY
-Current Liabilities
-  Accounts payable
-  Accrued liabilities
-  Deferred revenue, current portion
-  Current portion of long-term debt
-  Operating lease liabilities, current portion
-  Other current liabilities
-Total Current Liabilities
+투자활동으로 인한 현금흐름
+  유형자산 취득
+  투자자산 취득
+  투자자산 처분/만기 회수
+  인수, 인수한 현금 차감 후
+  기타 투자활동
+투자활동으로 인한 현금흐름 순액
 
-Non-Current Liabilities
-  Long-term debt
-  Deferred revenue, non-current
-  Operating lease liabilities, non-current
-  Other non-current liabilities
-Total Non-Current Liabilities
+재무활동으로 인한 현금흐름
+  차입금 발행
+  차입금 상환
+  보통주 발행
+  보통주 자기주식 취득
+  배당 지급
+  차입원가 지급
+  기타 재무활동
+재무활동으로 인한 현금흐름 순액
 
-Total Liabilities
+현금에 대한 환율 변동 효과
 
-Stockholders' Equity
-  Common stock
-  Additional paid-in capital
-  Retained earnings (accumulated deficit)
-  Accumulated other comprehensive income (loss)
-  Treasury stock
-Total Stockholders' Equity
-
-TOTAL LIABILITIES AND STOCKHOLDERS' EQUITY
-```
-
-## Cash Flow Statement Reference Format (Indirect Method)
-
-```
-CASH FLOWS FROM OPERATING ACTIVITIES
-Net income (loss)
-Adjustments to reconcile net income to net cash from operations:
-  Depreciation and amortization
-  Stock-based compensation
-  Amortization of debt issuance costs
-  Deferred income taxes
-  Loss (gain) on disposal of assets
-  Impairment charges
-  Other non-cash items
-Changes in operating assets and liabilities:
-  Accounts receivable
-  Inventory
-  Prepaid expenses and other assets
-  Accounts payable
-  Accrued liabilities
-  Deferred revenue
-  Other liabilities
-Net Cash Provided by (Used in) Operating Activities
-
-CASH FLOWS FROM INVESTING ACTIVITIES
-  Purchases of property and equipment
-  Purchases of investments
-  Proceeds from sale/maturity of investments
-  Acquisitions, net of cash acquired
-  Other investing activities
-Net Cash Provided by (Used in) Investing Activities
-
-CASH FLOWS FROM FINANCING ACTIVITIES
-  Proceeds from issuance of debt
-  Repayment of debt
-  Proceeds from issuance of common stock
-  Repurchases of common stock
-  Dividends paid
-  Payment of debt issuance costs
-  Other financing activities
-Net Cash Provided by (Used in) Financing Activities
-
-Effect of exchange rate changes on cash
-
-Net Increase (Decrease) in Cash and Cash Equivalents
-Cash and cash equivalents, beginning of period
-Cash and cash equivalents, end of period
+현금 및 현금성자산 순증가(감소)
+기초의 현금 및 현금성자산
+기말의 현금 및 현금성자산
 ```
 
 ## Common Adjustments and Reclassifications
 
 ### Period-End Adjustments
 
-1. **Accruals:** Record expenses incurred but not yet paid (AP accruals, payroll accruals, interest accruals)
-2. **Deferrals:** Adjust prepaid expenses, deferred revenue, and deferred costs for the period
-3. **Depreciation and amortization:** Book periodic depreciation/amortization from fixed asset and intangible schedules
-4. **Bad debt provision:** Adjust allowance for credit losses based on aging analysis and historical loss rates
-5. **Inventory adjustments:** Record write-downs for obsolete, slow-moving, or impaired inventory
-6. **FX revaluation:** Revalue foreign-currency-denominated monetary assets and liabilities at period-end rates
-7. **Tax provision:** Record current and deferred income tax expense
-8. **Fair value adjustments:** Mark-to-market investments, derivatives, and other fair-value items
+1. **Accruals:** 발생했지만 아직 지급되지 않은 비용 기록(AP 미지급비용, 급여 미지급, 이자 미지급)
+2. **Deferrals:** 해당 기간의 선급비용, 이연 매출, 이연 비용 조정
+3. **Depreciation and amortization:** 고정자산과 무형자산 스케줄에서 정기 감가상각/상각 게시
+4. **Bad debt provision:** aging 분석과 과거 손실률을 바탕으로 대손충당금 조정
+5. **Inventory adjustments:** 진부화, 저회전, 손상 재고의 감액 기록
+6. **FX revaluation:** 외화 표시 화폐성 자산/부채를 기간 말 환율로 재평가
+7. **Tax provision:** 당기 및 이연 법인세 비용 기록
+8. **Fair value adjustments:** 투자, 파생상품, 기타 공정가치 항목을 시가 평가
 
 ### Reclassifications
 
-1. **Current/non-current reclassification:** Reclassify long-term debt maturing within 12 months to current
-2. **Contra account netting:** Net allowances against gross receivables, accumulated depreciation against gross assets
-3. **Intercompany elimination:** Eliminate intercompany balances and transactions in consolidation
-4. **Discontinued operations:** Reclassify results of discontinued operations to a separate line item
-5. **Equity method adjustments:** Record share of investee income/loss for equity method investments
-6. **Segment reclassifications:** Ensure transactions are properly classified by operating segment
+1. **Current/non-current reclassification:** 12개월 내 만기 도래 장기부채를 유동으로 재분류
+2. **Contra account netting:** 채권총액에서 충당금 차감, 자산총액에서 감가상각누계액 차감
+3. **Intercompany elimination:** 연결 시 인터컴퍼니 잔액과 거래 제거
+4. **Discontinued operations:** 중단사업 결과를 별도 라인으로 재분류
+5. **Equity method adjustments:** 지분법 투자에 대한 피투자회사 손익 지분 기록
+6. **Segment reclassifications:** 거래가 영업 세그먼트별로 올바르게 분류되도록 확인

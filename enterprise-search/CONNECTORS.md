@@ -1,14 +1,14 @@
-# Connectors
+# 커넥터
 
-## How tool references work
+## 도구 참조 방식
 
-Plugin files use `~~category` as a placeholder for whatever tool the user connects in that category. For example, `~~chat` might mean Slack, Microsoft Teams, or any other chat tool with an MCP server.
+플러그인 파일은 `~~category`를 해당 범주에서 사용자가 연결한 도구를 가리키는 자리표시자로 사용합니다. 예를 들어 `~~chat`은 MCP 서버가 있는 Slack, Microsoft Teams, 또는 다른 채팅 도구를 의미할 수 있습니다.
 
-Plugins are **tool-agnostic** — they describe workflows in terms of categories (chat, email, cloud storage, etc.) rather than specific products. The `.mcp.json` pre-configures specific MCP servers, but any MCP server in that category works.
+플러그인은 **도구 중립적**입니다. 특정 제품이 아니라 범주(chat, email, cloud storage 등) 기준으로 워크플로를 설명합니다. `.mcp.json`은 특정 MCP 서버를 미리 구성하지만, 해당 범주의 어떤 MCP 서버라도 사용할 수 있습니다.
 
-This plugin uses `~~category` references extensively as source labels in search output (e.g. `~~chat:`, `~~email:`). These are intentional — they represent dynamic category markers that resolve to whatever tool is connected.
+이 플러그인은 검색 결과의 소스 라벨로 `~~category` 참조를 광범위하게 사용합니다(예: `~~chat:`, `~~email:`). 이는 의도된 것으로, 연결된 도구에 맞게 해석되는 동적 범주 표시자입니다.
 
-## Connectors for this plugin
+## 이 플러그인의 커넥터
 
 | Category | Placeholder | Included servers | Other options |
 |----------|-------------|-----------------|---------------|

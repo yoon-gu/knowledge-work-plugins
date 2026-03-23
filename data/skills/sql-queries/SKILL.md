@@ -1,119 +1,119 @@
 ---
 name: sql-queries
-description: Write correct, performant SQL across all major data warehouse dialects (Snowflake, BigQuery, Databricks, PostgreSQL, etc.). Use when writing queries, optimizing slow SQL, translating between dialects, or building complex analytical queries with CTEs, window functions, or aggregations.
+description: Snowflake, BigQuery, Databricks, PostgreSQL 등 주요 데이터 웨어하우스 방언 전반에서 올바르고 성능 좋고 읽기 쉬운 SQL을 작성합니다. 쿼리를 작성할 때, 느린 SQL을 최적화할 때, 방언 간 변환을 할 때, 또는 CTE, 윈도 함수, 집계를 사용한 복잡한 분석 쿼리를 만들 때 사용합니다.
 user-invocable: false
 ---
 
-# SQL Queries Skill
+# SQL 쿼리 스킬
 
-Write correct, performant, readable SQL across all major data warehouse dialects.
+주요 데이터 웨어하우스 방언 전반에서 올바르고 성능 좋고 읽기 쉬운 SQL을 작성합니다.
 
-## Dialect-Specific Reference
+## 방언별 참조
 
-### PostgreSQL (including Aurora, RDS, Supabase, Neon)
+### PostgreSQL(Aurora, RDS, Supabase, Neon 포함)
 
-**Date/time:**
+**날짜/시간:**
 ```sql
--- Current date/time
+-- 현재 날짜/시간
 CURRENT_DATE, CURRENT_TIMESTAMP, NOW()
 
--- Date arithmetic
+-- 날짜 산술
 date_column + INTERVAL '7 days'
 date_column - INTERVAL '1 month'
 
--- Truncate to period
+-- 기간 단위 절사
 DATE_TRUNC('month', created_at)
 
--- Extract parts
+-- 구성 요소 추출
 EXTRACT(YEAR FROM created_at)
 EXTRACT(DOW FROM created_at)  -- 0=Sunday
 
--- Format
+-- 서식 지정
 TO_CHAR(created_at, 'YYYY-MM-DD')
 ```
 
-**String functions:**
+**문자열 함수:**
 ```sql
--- Concatenation
+-- 연결
 first_name || ' ' || last_name
 CONCAT(first_name, ' ', last_name)
 
--- Pattern matching
+-- 패턴 일치
 column ILIKE '%pattern%'  -- case-insensitive
 column ~ '^regex_pattern$'  -- regex
 
--- String manipulation
+-- 문자열 조작
 LEFT(str, n), RIGHT(str, n)
 SPLIT_PART(str, delimiter, position)
 REGEXP_REPLACE(str, pattern, replacement)
 ```
 
-**Arrays and JSON:**
+**배열과 JSON:**
 ```sql
--- JSON access
+-- JSON 접근
 data->>'key'  -- text
 data->'nested'->'key'  -- json
 data#>>'{path,to,key}'  -- nested text
 
--- Array operations
+-- 배열 연산
 ARRAY_AGG(column)
 ANY(array_column)
 array_column @> ARRAY['value']
 ```
 
-**Performance tips:**
-- Use `EXPLAIN ANALYZE` to profile queries
-- Create indexes on frequently filtered/joined columns
-- Use `EXISTS` over `IN` for correlated subqueries
-- Partial indexes for common filter conditions
-- Use connection pooling for concurrent access
+**성능 팁:**
+- 쿼리 프로파일링에는 `EXPLAIN ANALYZE`를 사용하세요
+- 자주 필터링/조인되는 열에는 인덱스를 만드세요
+- 상관 서브쿼리에는 `IN`보다 `EXISTS`를 사용하세요
+- 자주 쓰는 필터 조건에는 부분 인덱스를 사용하세요
+- 동시 접근에는 커넥션 풀링을 사용하세요
 
 ---
 
 ### Snowflake
 
-**Date/time:**
+**날짜/시간:**
 ```sql
--- Current date/time
+-- 현재 날짜/시간
 CURRENT_DATE(), CURRENT_TIMESTAMP(), SYSDATE()
 
--- Date arithmetic
+-- 날짜 산술
 DATEADD(day, 7, date_column)
 DATEDIFF(day, start_date, end_date)
 
--- Truncate to period
+-- 기간 단위 절사
 DATE_TRUNC('month', created_at)
 
--- Extract parts
+-- 구성 요소 추출
 YEAR(created_at), MONTH(created_at), DAY(created_at)
 DAYOFWEEK(created_at)
 
--- Format
+-- 서식 지정
 TO_CHAR(created_at, 'YYYY-MM-DD')
 ```
 
-**String functions:**
+**문자열 함수:**
 ```sql
--- Case-insensitive by default (depends on collation)
+-- 기본적으로 대소문자 비구분(정렬 규칙에 따라 다름)
 column ILIKE '%pattern%'
 REGEXP_LIKE(column, 'pattern')
 
--- Parse JSON
-column:key::string  -- dot notation for VARIANT
+-- JSON 파싱
+column:key::string  -- VARIANT는 점 표기법
 PARSE_JSON('{"key": "value"}')
 GET_PATH(variant_col, 'path.to.key')
 
--- Flatten arrays/objects
+-- 배열/객체 펼치기
 SELECT f.value FROM table, LATERAL FLATTEN(input => array_col) f
 ```
 
-**Semi-structured data:**
+**반구조화 데이터:**
 ```sql
--- VARIANT type access
+-- VARIANT 타입 접근
 data:customer:name::STRING
 data:items[0]:price::NUMBER
 
--- Flatten nested structures
+-- 중첩 구조 펼치기
 SELECT
     t.id,
     item.value:name::STRING as item_name,
@@ -122,171 +122,171 @@ FROM my_table t,
 LATERAL FLATTEN(input => t.data:items) item
 ```
 
-**Performance tips:**
-- Use clustering keys on large tables (not traditional indexes)
-- Filter on clustering key columns for partition pruning
-- Set appropriate warehouse size for query complexity
-- Use `RESULT_SCAN(LAST_QUERY_ID())` to avoid re-running expensive queries
-- Use transient tables for staging/temp data
+**성능 팁:**
+- 큰 테이블에는 클러스터링 키를 사용하세요(전통적 인덱스 아님)
+- 파티션 프루닝을 위해 클러스터링 키 열로 필터링하세요
+- 쿼리 복잡도에 맞는 웨어하우스 크기를 설정하세요
+- 비용이 큰 쿼리를 다시 실행하지 않으려면 `RESULT_SCAN(LAST_QUERY_ID())`를 사용하세요
+- 스테이징/임시 데이터에는 transient 테이블을 사용하세요
 
 ---
 
-### BigQuery (Google Cloud)
+### BigQuery(Google Cloud)
 
-**Date/time:**
+**날짜/시간:**
 ```sql
--- Current date/time
+-- 현재 날짜/시간
 CURRENT_DATE(), CURRENT_TIMESTAMP()
 
--- Date arithmetic
+-- 날짜 산술
 DATE_ADD(date_column, INTERVAL 7 DAY)
 DATE_SUB(date_column, INTERVAL 1 MONTH)
 DATE_DIFF(end_date, start_date, DAY)
 TIMESTAMP_DIFF(end_ts, start_ts, HOUR)
 
--- Truncate to period
+-- 기간 단위 절사
 DATE_TRUNC(created_at, MONTH)
 TIMESTAMP_TRUNC(created_at, HOUR)
 
--- Extract parts
+-- 구성 요소 추출
 EXTRACT(YEAR FROM created_at)
 EXTRACT(DAYOFWEEK FROM created_at)  -- 1=Sunday
 
--- Format
+-- 서식 지정
 FORMAT_DATE('%Y-%m-%d', date_column)
 FORMAT_TIMESTAMP('%Y-%m-%d %H:%M:%S', ts_column)
 ```
 
-**String functions:**
+**문자열 함수:**
 ```sql
--- No ILIKE, use LOWER()
+-- ILIKE는 없으므로 LOWER() 사용
 LOWER(column) LIKE '%pattern%'
 REGEXP_CONTAINS(column, r'pattern')
 REGEXP_EXTRACT(column, r'pattern')
 
--- String manipulation
+-- 문자열 조작
 SPLIT(str, delimiter)  -- returns ARRAY
 ARRAY_TO_STRING(array, delimiter)
 ```
 
-**Arrays and structs:**
+**배열과 구조체:**
 ```sql
--- Array operations
+-- 배열 연산
 ARRAY_AGG(column)
 UNNEST(array_column)
 ARRAY_LENGTH(array_column)
 value IN UNNEST(array_column)
 
--- Struct access
+-- 구조체 접근
 struct_column.field_name
 ```
 
-**Performance tips:**
-- Always filter on partition columns (usually date) to reduce bytes scanned
-- Use clustering for frequently filtered columns within partitions
-- Use `APPROX_COUNT_DISTINCT()` for large-scale cardinality estimates
-- Avoid `SELECT *` -- billing is per-byte scanned
-- Use `DECLARE` and `SET` for parameterized scripts
-- Preview query cost with dry run before executing large queries
+**성능 팁:**
+- 스캔 바이트를 줄이려면 항상 파티션 열(보통 날짜)로 필터링하세요
+- 파티션 내에서 자주 필터링되는 열에는 클러스터링을 사용하세요
+- 대규모 카디널리티 추정에는 `APPROX_COUNT_DISTINCT()`를 사용하세요
+- `SELECT *`는 피하세요. 비용은 스캔한 바이트 단위로 청구됩니다
+- 파라미터화된 스크립트에는 `DECLARE`와 `SET`을 사용하세요
+- 큰 쿼리는 실행 전 dry run으로 비용을 미리 확인하세요
 
 ---
 
-### Redshift (Amazon)
+### Redshift(Amazon)
 
-**Date/time:**
+**날짜/시간:**
 ```sql
--- Current date/time
+-- 현재 날짜/시간
 CURRENT_DATE, GETDATE(), SYSDATE
 
--- Date arithmetic
+-- 날짜 산술
 DATEADD(day, 7, date_column)
 DATEDIFF(day, start_date, end_date)
 
--- Truncate to period
+-- 기간 단위 절사
 DATE_TRUNC('month', created_at)
 
--- Extract parts
+-- 구성 요소 추출
 EXTRACT(YEAR FROM created_at)
 DATE_PART('dow', created_at)
 ```
 
-**String functions:**
+**문자열 함수:**
 ```sql
--- Case-insensitive
+-- 대소문자 비구분
 column ILIKE '%pattern%'
 REGEXP_INSTR(column, 'pattern') > 0
 
--- String manipulation
+-- 문자열 조작
 SPLIT_PART(str, delimiter, position)
 LISTAGG(column, ', ') WITHIN GROUP (ORDER BY column)
 ```
 
-**Performance tips:**
-- Design distribution keys for collocated joins (DISTKEY)
-- Use sort keys for frequently filtered columns (SORTKEY)
-- Use `EXPLAIN` to check query plan
-- Avoid cross-node data movement (watch for DS_BCAST and DS_DIST)
-- `ANALYZE` and `VACUUM` regularly
-- Use late-binding views for schema flexibility
+**성능 팁:**
+- 함께 조인되는 테이블에는 분산 키(DISTKEY)를 설계하세요
+- 자주 필터링되는 열에는 정렬 키(SORTKEY)를 사용하세요
+- `EXPLAIN`으로 쿼리 계획을 확인하세요
+- 노드 간 데이터 이동을 피하세요(DS_BCAST, DS_DIST를 주의)
+- `ANALYZE`와 `VACUUM`을 정기적으로 실행하세요
+- 스키마 유연성을 위해 late-binding view를 사용하세요
 
 ---
 
 ### Databricks SQL
 
-**Date/time:**
+**날짜/시간:**
 ```sql
--- Current date/time
+-- 현재 날짜/시간
 CURRENT_DATE(), CURRENT_TIMESTAMP()
 
--- Date arithmetic
+-- 날짜 산술
 DATE_ADD(date_column, 7)
 DATEDIFF(end_date, start_date)
 ADD_MONTHS(date_column, 1)
 
--- Truncate to period
+-- 기간 단위 절사
 DATE_TRUNC('MONTH', created_at)
 TRUNC(date_column, 'MM')
 
--- Extract parts
+-- 구성 요소 추출
 YEAR(created_at), MONTH(created_at)
 DAYOFWEEK(created_at)
 ```
 
-**Delta Lake features:**
+**Delta Lake 기능:**
 ```sql
--- Time travel
+-- 시점 조회
 SELECT * FROM my_table TIMESTAMP AS OF '2024-01-15'
 SELECT * FROM my_table VERSION AS OF 42
 
--- Describe history
+-- 이력 확인
 DESCRIBE HISTORY my_table
 
--- Merge (upsert)
+-- 병합(upsert)
 MERGE INTO target USING source
 ON target.id = source.id
 WHEN MATCHED THEN UPDATE SET *
 WHEN NOT MATCHED THEN INSERT *
 ```
 
-**Performance tips:**
-- Use Delta Lake's `OPTIMIZE` and `ZORDER` for query performance
-- Leverage Photon engine for compute-intensive queries
-- Use `CACHE TABLE` for frequently accessed datasets
-- Partition by low-cardinality date columns
+**성능 팁:**
+- 쿼리 성능을 위해 Delta Lake의 `OPTIMIZE`와 `ZORDER`를 사용하세요
+- 계산 집약적 쿼리에는 Photon 엔진을 활용하세요
+- 자주 접근하는 데이터셋에는 `CACHE TABLE`을 사용하세요
+- 카디널리티가 낮은 날짜 열로 파티션하세요
 
 ---
 
-## Common SQL Patterns
+## 일반적인 SQL 패턴
 
-### Window Functions
+### 윈도 함수
 
 ```sql
--- Ranking
+-- 순위
 ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC)
 RANK() OVER (PARTITION BY category ORDER BY revenue DESC)
 DENSE_RANK() OVER (ORDER BY score DESC)
 
--- Running totals / moving averages
+-- 누적 합계 / 이동 평균
 SUM(revenue) OVER (ORDER BY date_col ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as running_total
 AVG(revenue) OVER (ORDER BY date_col ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) as moving_avg_7d
 
@@ -294,20 +294,20 @@ AVG(revenue) OVER (ORDER BY date_col ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) a
 LAG(value, 1) OVER (PARTITION BY entity ORDER BY date_col) as prev_value
 LEAD(value, 1) OVER (PARTITION BY entity ORDER BY date_col) as next_value
 
--- First / Last value
+-- 첫 / 마지막 값
 FIRST_VALUE(status) OVER (PARTITION BY user_id ORDER BY created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING)
 LAST_VALUE(status) OVER (PARTITION BY user_id ORDER BY created_at ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING)
 
--- Percent of total
+-- 전체 대비 비율
 revenue / SUM(revenue) OVER () as pct_of_total
 revenue / SUM(revenue) OVER (PARTITION BY category) as pct_of_category
 ```
 
-### CTEs for Readability
+### 가독성을 위한 CTE
 
 ```sql
 WITH
--- Step 1: Define the base population
+-- 1단계: 기준 모집단 정의
 base_users AS (
     SELECT user_id, created_at, plan_type
     FROM users
@@ -315,7 +315,7 @@ base_users AS (
       AND status = 'active'
 ),
 
--- Step 2: Calculate user-level metrics
+-- 2단계: 사용자 수준 지표 계산
 user_metrics AS (
     SELECT
         u.user_id,
@@ -327,7 +327,7 @@ user_metrics AS (
     GROUP BY u.user_id, u.plan_type
 ),
 
--- Step 3: Aggregate to summary level
+-- 3단계: 요약 수준으로 집계
 summary AS (
     SELECT
         plan_type,
@@ -341,7 +341,7 @@ summary AS (
 SELECT * FROM summary ORDER BY total_revenue DESC;
 ```
 
-### Cohort Retention
+### 코호트 리텐션
 
 ```sql
 WITH cohorts AS (
@@ -374,7 +374,7 @@ GROUP BY c.cohort_month
 ORDER BY c.cohort_month;
 ```
 
-### Funnel Analysis
+### 퍼널 분석
 
 ```sql
 WITH funnel AS (
@@ -400,10 +400,10 @@ SELECT
 FROM funnel;
 ```
 
-### Deduplication
+### 중복 제거
 
 ```sql
--- Keep the most recent record per key
+-- 키별로 가장 최근 레코드만 유지
 WITH ranked AS (
     SELECT
         *,
@@ -416,13 +416,13 @@ WITH ranked AS (
 SELECT * FROM ranked WHERE rn = 1;
 ```
 
-## Error Handling and Debugging
+## 오류 처리 및 디버깅
 
-When a query fails:
+쿼리가 실패하면:
 
-1. **Syntax errors**: Check for dialect-specific syntax (e.g., `ILIKE` not available in BigQuery, `SAFE_DIVIDE` only in BigQuery)
-2. **Column not found**: Verify column names against schema -- check for typos, case sensitivity (PostgreSQL is case-sensitive for quoted identifiers)
-3. **Type mismatches**: Cast explicitly when comparing different types (`CAST(col AS DATE)`, `col::DATE`)
-4. **Division by zero**: Use `NULLIF(denominator, 0)` or dialect-specific safe division
-5. **Ambiguous columns**: Always qualify column names with table alias in JOINs
-6. **Group by errors**: All non-aggregated columns must be in GROUP BY (except in BigQuery which allows grouping by alias)
+1. **문법 오류**: 방언별 문법을 확인하세요(예: BigQuery에는 `ILIKE`가 없고 `SAFE_DIVIDE`는 BigQuery 전용)
+2. **열을 찾을 수 없음**: 스키마와 대조해 열 이름을 확인하세요 - 오타, 대소문자 구분(PostgreSQL은 따옴표로 감싼 식별자에 대해 대소문자를 구분)
+3. **형식 불일치**: 서로 다른 타입을 비교할 때는 명시적으로 캐스팅하세요(`CAST(col AS DATE)`, `col::DATE`)
+4. **0으로 나누기**: `NULLIF(denominator, 0)` 또는 방언별 안전한 나눗셈을 사용하세요
+5. **모호한 열**: JOIN에서는 항상 테이블 별칭으로 열 이름을 수식하세요
+6. **GROUP BY 오류**: 집계되지 않은 모든 열은 GROUP BY에 있어야 합니다(BigQuery는 별칭 그룹화를 허용하는 예외)

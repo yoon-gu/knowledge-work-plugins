@@ -1,221 +1,195 @@
 ---
 name: close-management
-description: Manage the month-end close process with task sequencing, dependencies, and status tracking. Use when planning the close calendar, tracking close progress, identifying blockers, or sequencing close activities by day.
+description: 작업 순서, 의존성, 상태 추적으로 월말 마감 프로세스를 관리합니다. 마감 달력을 계획할 때, 마감 진행 상황을 추적할 때, 병목을 식별할 때, 또는 일자별로 마감 활동을 순서화할 때 사용합니다.
 user-invocable: false
 ---
 
-# Close Management
+# 마감 관리
 
-**Important**: This skill assists with close management workflows but does not provide financial advice. All close activities should be reviewed by qualified financial professionals.
+**중요**: 이 스킬은 마감 관리 워크플로를 지원하지만 재무 자문을 제공하지 않습니다. 모든 마감 활동은 자격을 갖춘 재무 전문가가 검토해야 합니다.
 
-Month-end close checklist, task sequencing and dependencies, status tracking, and common close activities organized by day.
+월말 마감 체크리스트, 작업 순서와 의존성, 상태 추적, 일자별 일반 마감 활동입니다.
 
-## Month-End Close Checklist
+## 월말 마감 체크리스트
 
-### Pre-Close (Last 2-3 Business Days of the Month)
+### 사전 마감(월말 전 마지막 2~3 영업일)
 
-- [ ] Send close calendar and deadline reminders to all contributors
-- [ ] Confirm cut-off procedures with AP, AR, payroll, and treasury
-- [ ] Verify all sub-systems are processing normally (ERP, payroll, banking)
-- [ ] Complete preliminary bank reconciliation (all but last-day activity)
-- [ ] Review open purchase orders for potential accrual needs
-- [ ] Confirm payroll processing schedule aligns with close timeline
-- [ ] Collect information for any known unusual transactions
+- [ ] 마감 달력과 마감일 리마인더를 모든 참여자에게 보냄
+- [ ] AP, AR, payroll, treasury와 컷오프 절차 확인
+- [ ] 모든 서브시스템(ERP, payroll, banking)이 정상 처리 중인지 검증
+- [ ] 예비 은행 조정 완료(마지막 날 활동 제외)
+- [ ] 미지급이 필요할 수 있는 열린 구매 주문 검토
+- [ ] 급여 처리 일정이 마감 타임라인과 맞는지 확인
+- [ ] 알려진 비정상 거래에 대한 정보 수집
 
-### Close Day 1 (T+1: First Business Day After Month-End)
+### 마감 1일차 (T+1: 월말 다음 첫 영업일)
 
-- [ ] Confirm all sub-ledger modules have completed period-end processing
-- [ ] Run AP accruals for goods/services received but not invoiced
-- [ ] Post payroll entries and payroll accrual (if pay period straddles month-end)
-- [ ] Record cash receipts and disbursements through month-end
-- [ ] Post intercompany transactions and confirm with counterparties
-- [ ] Complete bank reconciliation with final bank statement
-- [ ] Run fixed asset depreciation
-- [ ] Post prepaid expense amortization
+- [ ] 모든 보조원장 모듈의 기간 말 처리가 완료되었는지 확인
+- [ ] 수령했지만 청구되지 않은 재화/서비스에 대한 AP 미지급비용 실행
+- [ ] 급여 분개와 급여 미지급(급여 기간이 월말을 가로지르는 경우) 게시
+- [ ] 월말까지의 현금 입금과 지급 기록
+- [ ] 인터컴퍼니 거래 게시 및 상대방과 확인
+- [ ] 최종 은행 명세서로 은행 조정 완료
+- [ ] 고정자산 감가상각 실행
+- [ ] 선급비용 상각 게시
 
-### Close Day 2 (T+2)
+### 마감 2일차 (T+2)
 
-- [ ] Complete revenue recognition entries and deferred revenue adjustments
-- [ ] Post all remaining accrual journal entries
-- [ ] Complete AR subledger reconciliation
-- [ ] Complete AP subledger reconciliation
-- [ ] Record inventory adjustments (if applicable)
-- [ ] Post FX revaluation entries for foreign currency balances
-- [ ] Begin balance sheet account reconciliations
+- [ ] 매출 인식 분개와 이연 매출 조정 완료
+- [ ] 남은 모든 미지급 분개 게시
+- [ ] AR 보조원장 조정 완료
+- [ ] AP 보조원장 조정 완료
+- [ ] 재고 조정 기록(해당 시)
+- [ ] 외화 잔액의 FX 재평가 분개 게시
+- [ ] 대차대조표 계정 조정 시작
 
-### Close Day 3 (T+3)
+### 마감 3일차 (T+3)
 
-- [ ] Complete all balance sheet reconciliations
-- [ ] Post any adjusting journal entries identified during reconciliation
-- [ ] Complete intercompany reconciliation and elimination entries
-- [ ] Run preliminary trial balance and income statement
-- [ ] Perform preliminary flux analysis on income statement
-- [ ] Investigate and resolve material variances
+- [ ] 모든 대차대조표 계정 조정 완료
+- [ ] 조정 중 식별된 조정 분개 게시
+- [ ] 인터컴퍼니 조정 및 제거 분개 완료
+- [ ] 예비 시산표와 손익계산서 실행
+- [ ] 손익계산서에 대한 예비 변동 분석 수행
+- [ ] 중요한 차이를 조사하고 해결
 
-### Close Day 4 (T+4)
+### 마감 4일차 (T+4)
 
-- [ ] Post tax provision entries (income tax, sales tax, property tax)
-- [ ] Complete equity roll-forward (stock compensation, treasury stock)
-- [ ] Finalize all journal entries — soft close
-- [ ] Generate draft financial statements (P&L, BS, CF)
-- [ ] Perform detailed flux analysis and prepare variance explanations
-- [ ] Management review of financial statements and key metrics
+- [ ] 세무 충당 분개 게시(법인세, 판매세, 재산세)
+- [ ] 자본 롤포워드 완료(주식보상, 자기주식)
+- [ ] 모든 분개 최종화 - 소프트 클로즈
+- [ ] 재무제표 초안 생성(P&L, BS, CF)
+- [ ] 상세 변동 분석과 차이 설명 준비
+- [ ] 재무제표와 핵심 지표에 대한 경영진 검토
 
-### Close Day 5 (T+5)
+### 마감 5일차 (T+5)
 
-- [ ] Post any final adjustments from management review
-- [ ] Finalize financial statements — hard close
-- [ ] Lock the period in the ERP/GL system
-- [ ] Distribute financial reporting package to stakeholders
-- [ ] Update forecasts/projections based on actual results
-- [ ] Conduct close retrospective — identify process improvements
+- [ ] 경영진 검토에서 나온 최종 조정 게시
+- [ ] 재무제표 최종화 - 하드 클로즈
+- [ ] ERP/GL 시스템에서 기간 잠금
+- [ ] 재무 보고 패키지를 이해관계자에게 배포
+- [ ] 실제 결과를 반영해 예측/전망 업데이트
+- [ ] 마감 회고 수행 - 프로세스 개선점 식별
 
-## Task Sequencing and Dependencies
+## 작업 순서와 의존성
 
-### Dependency Map
+### 의존성 맵
 
-Tasks are organized by what must complete before the next task can begin:
+작업은 다음 작업이 시작되기 전에 무엇이 완료되어야 하는지에 따라 정리됩니다:
 
-```
-LEVEL 1 (No dependencies — can start immediately at T+1):
-├── Cash receipts/disbursements recording
-├── Bank statement retrieval
-├── Payroll processing/accrual
-├── Fixed asset depreciation run
-├── Prepaid amortization
-├── AP accrual preparation
-└── Intercompany transaction posting
+```text
+LEVEL 1 (의존성 없음 - T+1에 즉시 시작 가능):
+├── 현금 수취/지급 기록
+├── 은행 명세서 조회
+├── 급여 처리/미지급
+├── 고정자산 감가상각 실행
+├── 선급비용 상각
+├── AP 미지급비용 준비
+└── 인터컴퍼니 거래 게시
 
-LEVEL 2 (Depends on Level 1 completion):
-├── Bank reconciliation (needs: cash entries + bank statement)
-├── Revenue recognition (needs: billing/delivery data finalized)
-├── AR subledger reconciliation (needs: all revenue/cash entries)
-├── AP subledger reconciliation (needs: all AP entries/accruals)
-├── FX revaluation (needs: all foreign currency entries posted)
-└── Remaining accrual JEs (needs: review of all source data)
+LEVEL 2 (Level 1 완료 후 의존):
+├── 은행 조정 (필요: 현금 분개 + 은행 명세서)
+├── 매출 인식 (필요: 청구/인도 데이터 확정)
+├── AR 보조원장 조정 (필요: 모든 매출/현금 분개)
+├── AP 보조원장 조정 (필요: 모든 AP 분개/미지급비용)
+├── FX 재평가 (필요: 모든 외화 분개 게시)
+└── 남은 미지급비용 분개 (필요: 모든 원천 데이터 검토)
 
-LEVEL 3 (Depends on Level 2 completion):
-├── All balance sheet reconciliations (needs: all JEs posted)
-├── Intercompany reconciliation (needs: both sides posted)
-├── Adjusting entries from reconciliations
-└── Preliminary trial balance
+LEVEL 3 (Level 2 완료 후 의존):
+├── 모든 대차대조표 조정 (필요: 모든 JE 게시)
+├── 인터컴퍼니 조정 (필요: 양측 모두 게시)
+├── 조정에서 나온 수정 분개
+└── 예비 시산표
 
-LEVEL 4 (Depends on Level 3 completion):
-├── Tax provision (needs: pre-tax income finalized)
-├── Equity roll-forward
-├── Consolidation and eliminations
-├── Draft financial statements
-└── Preliminary flux analysis
+LEVEL 4 (Level 3 완료 후 의존):
+├── 세무 충당 (필요: 세전이익 확정)
+├── 자본 롤포워드
+├── 연결 및 제거
+├── 재무제표 초안
+└── 예비 변동 분석
 
-LEVEL 5 (Depends on Level 4 completion):
-├── Management review
-├── Final adjustments
-├── Hard close / period lock
-├── Financial reporting package
-└── Forecast updates
-```
-
-### Critical Path
-
-The critical path determines the minimum close duration. Typical critical path:
-
-```
-Cash/AP/AR entries → Subledger reconciliations → Balance sheet recs →
-  Tax provision → Draft financials → Management review → Hard close
+LEVEL 5 (Level 4 완료 후 의존):
+├── 경영진 검토
+├── 최종 조정
+├── 하드 클로즈 / 기간 잠금
+├── 재무 보고 패키지
+└── 예측 업데이트
 ```
 
-To shorten the close:
-- Automate Level 1 entries (depreciation, prepaid amortization, standard accruals)
-- Pre-reconcile accounts during the month (continuous reconciliation)
-- Parallel-process independent reconciliations
-- Set clear deadlines with consequences for late submissions
-- Use standardized templates to reduce reconciliation prep time
+### 상태 정의
 
-## Status Tracking and Reporting
+- **시작 전:** 작업이 아직 시작되지 않음(의존성 대기 가능)
+- **진행 중:** 작업이 현재 진행 중
+- **완료:** 작업이 끝났고 검토/승인됨
+- **차단됨:** 의존성, 데이터 누락, 이슈 때문에 진행 불가
+- **위험:** 작업은 진행 중이지만 기한을 놓칠 수 있음
 
-### Close Status Dashboard
+### 일일 마감 상태 회의(권장)
 
-Track each close task with the following attributes:
+마감 기간 동안 짧은(15분) 일일 스탠드업을 진행합니다:
 
-| Task | Owner | Deadline | Status | Blocker | Notes |
-|------|-------|----------|--------|---------|-------|
-| [Task name] | [Person/role] | [Day T+N] | Not Started / In Progress / Complete / Blocked | [If blocked, what's blocking] | [Any notes] |
+1. **상태 보드 검토:** 열린 작업을 훑고 뒤처진 항목 표시
+2. **병목 식별:** 완료를 막는 이슈를 표면화
+3. **재배정 또는 에스컬레이션:** 소유권을 조정하거나 병목을 에스컬레이션
+4. **일정 업데이트:** 위험 항목이 있으면 전체 마감 일정에 미치는 영향 평가
 
-### Status Definitions
+### 추적할 마감 지표
 
-- **Not Started:** Task has not yet begun (may be waiting on dependencies)
-- **In Progress:** Task is actively being worked on
-- **Complete:** Task is finished and has been reviewed/approved
-- **Blocked:** Task cannot proceed due to a dependency, missing data, or issue
-- **At Risk:** Task is in progress but may not meet its deadline
-
-### Daily Close Status Meeting (Recommended)
-
-During the close period, hold a brief (15-minute) daily standup:
-
-1. **Review status board:** Walk through open tasks, flag any that are behind
-2. **Identify blockers:** Surface any issues preventing task completion
-3. **Reassign or escalate:** Adjust ownership or escalate blockers to resolve quickly
-4. **Update timeline:** If any tasks are at risk, assess impact on overall close timeline
-
-### Close Metrics to Track Over Time
-
-| Metric | Definition | Target |
+| 지표 | 정의 | 목표 |
 |--------|-----------|--------|
-| Close duration | Business days from period end to hard close | Reduce over time |
-| # of adjusting entries after soft close | Entries posted during management review | Minimize |
-| # of late tasks | Tasks completed after their deadline | Zero |
-| # of reconciliation exceptions | Reconciling items requiring investigation | Reduce over time |
-| # of restatements / corrections | Errors found after close | Zero |
+| 마감 기간 | 기간 말부터 하드 클로즈까지의 영업일 수 | 지속적으로 줄이기 |
+| 소프트 클로즈 후 조정 분개 수 | 경영진 검토 중 게시된 분개 수 | 최소화 |
+| 지연 작업 수 | 기한 이후 완료된 작업 수 | 0 |
+| 조정 예외 건수 | 조사해야 하는 조정 항목 수 | 지속적으로 줄이기 |
+| 재작성 / 수정 건수 | 마감 후 발견된 오류 수 | 0 |
 
-## Common Close Activities by Day
+## 일자별 일반 마감 활동
 
-### Typical 5-Day Close Calendar
+### 일반적인 5일 마감 일정
 
-| Day | Key Activities | Responsible |
+| 일자 | 핵심 활동 | 담당 |
 |-----|---------------|-------------|
-| **T+1** | Cash entries, payroll, AP accruals, depreciation, prepaid amortization, intercompany posting | Staff accountants, payroll |
-| **T+2** | Revenue recognition, remaining accruals, subledger reconciliations (AR, AP, FA), FX revaluation | Revenue accountant, AP/AR, treasury |
-| **T+3** | Balance sheet reconciliations, intercompany reconciliation, eliminations, preliminary trial balance, preliminary flux | Accounting team, consolidation |
-| **T+4** | Tax provision, equity roll-forward, draft financial statements, detailed flux analysis, management review | Tax, controller, FP&A |
-| **T+5** | Final adjustments, hard close, period lock, reporting package distribution, forecast update, retrospective | Controller, FP&A, finance leadership |
+| **T+1** | 현금 분개, 급여, AP 미지급비용, 감가상각, 선급비용 상각, 인터컴퍼니 게시 | 회계 담당자, 급여 |
+| **T+2** | 매출 인식, 남은 미지급, 보조원장 조정(AR, AP, FA), FX 재평가 | 매출 회계 담당자, AP/AR, 재무 |
+| **T+3** | 대차대조표 조정, 인터컴퍼니 조정, 제거, 예비 시산표, 예비 변동 | 회계팀, 연결 |
+| **T+4** | 세무 충당, 자본 롤포워드, 재무제표 초안, 상세 변동 분석, 경영진 검토 | 세무, 컨트롤러, FP&A |
+| **T+5** | 최종 조정, 하드 클로즈, 기간 잠금, 보고 패키지 배포, 예측 업데이트, 회고 | 컨트롤러, FP&A, 재무 리더십 |
 
-### Accelerated Close (3-Day Target)
+### 단축 마감(3일 목표)
 
-For organizations targeting a faster close:
+더 빠른 마감을 목표로 하는 조직의 경우:
 
-| Day | Key Activities |
+| 일자 | 핵심 활동 |
 |-----|---------------|
-| **T+1** | All JEs posted (automated + manual), all subledger reconciliations, bank reconciliation, intercompany reconciliation, preliminary trial balance |
-| **T+2** | All balance sheet reconciliations, tax provision, consolidation, draft financial statements, flux analysis, management review |
-| **T+3** | Final adjustments, hard close, reporting package, forecast update |
+| **T+1** | 모든 JE 게시(자동 + 수동), 모든 보조원장 조정, 은행 조정, 인터컴퍼니 조정, 예비 시산표 |
+| **T+2** | 모든 대차대조표 조정, 세무 충당, 연결, 재무제표 초안, 변동 분석, 경영진 검토 |
+| **T+3** | 최종 조정, 하드 클로즈, 보고 패키지, 예측 업데이트 |
 
-**Prerequisites for a 3-day close:**
-- Automated recurring journal entries (depreciation, amortization, standard accruals)
-- Continuous reconciliation during the month (not all at month-end)
-- Automated intercompany elimination
-- Pre-close activities completed before month-end (cut-off, accrual estimates)
-- Empowered team with clear ownership and minimal handoffs
-- Real-time or near-real-time sub-system integration
+**3일 마감을 위한 전제 조건:**
+- 자동 반복 분개(감가상각, 상각, 표준 미지급)
+- 월중 지속 조정(월말에만 하지 않음)
+- 자동 인터컴퍼니 제거
+- 기간 말 전 사전 마감 활동 완료(컷오프, 미지급 추정)
+- 명확한 소유권과 최소한의 핸드오프로 권한이 부여된 팀
+- 실시간 또는 거의 실시간 서브시스템 통합
 
-## Close Process Improvement
+## 마감 프로세스 개선
 
-### Common Bottlenecks and Solutions
+### 일반적인 병목과 해결책
 
-| Bottleneck | Root Cause | Solution |
+| 병목 | 원인 | 해결책 |
 |-----------|-----------|---------|
-| Late AP accruals | Waiting for department spend confirmation | Implement continuous accrual estimation; set cut-off deadlines |
-| Manual journal entries | Recurring entries prepared manually each month | Automate standard recurring entries in the ERP |
-| Slow reconciliations | Starting from scratch each month | Implement continuous/rolling reconciliation |
-| Intercompany delays | Waiting for counterparty confirmation | Automate intercompany matching; set stricter deadlines |
-| Management review changes | Large adjustments found during review | Improve preliminary review process; empower team to catch issues earlier |
-| Missing supporting documents | Scrambling for documentation at close | Maintain documentation throughout the month |
+| AP 미지급비용 지연 | 부서 지출 확인을 기다림 | 지속적 미지급 추정 구현; 컷오프 기한 설정 |
+| 수동 분개 | 반복 분개를 매달 수동 준비 | ERP에서 표준 반복 분개 자동화 |
+| 느린 조정 | 매달 처음부터 시작 | 지속적/롤링 조정 구현 |
+| 인터컴퍼니 지연 | 상대방 확인을 기다림 | 인터컴퍼니 매칭 자동화; 더 엄격한 기한 설정 |
+| 경영진 검토 변경 | 검토 중 큰 조정 발견 | 예비 검토 프로세스 개선; 문제를 더 일찍 잡도록 팀에 권한 부여 |
+| 증빙 문서 누락 | 마감 때 문서를 급히 찾음 | 한 달 내내 문서 유지 |
 
-### Close Retrospective Questions
+### 마감 회고 질문
 
-After each close, ask:
-1. What went well this close that we should continue?
-2. What took longer than expected and why?
-3. What blockers did we encounter and how can we prevent them?
-4. Were there any surprises in the financial results we should have caught earlier?
-5. What can we automate or streamline for next month?
+각 마감 후 다음을 묻습니다:
+1. 이번 마감에서 잘된 점은 무엇이며 계속 유지해야 하나요?
+2. 예상보다 오래 걸린 것은 무엇이며 왜 그랬나요?
+3. 어떤 병목을 겪었고 어떻게 예방할 수 있나요?
+4. 재무 결과에서 더 일찍 잡았어야 할 놀라움이 있었나요?
+5. 다음 달에는 무엇을 자동화하거나 간소화할 수 있나요?
