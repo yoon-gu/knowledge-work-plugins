@@ -1,10 +1,8 @@
-# Field Classification Guide
+# 분야 분류 안내
 
-This guide helps classify instrument data fields into the correct ASM document locations. Use this when mapping raw instrument output to Allotrope Simple Model structure.
+이 가이드는 기기 데이터 필드를 올바른 ASM 문서 위치로 분류하는 데 도움이 됩니다. 원시 기기 출력을 동소체 단순 모델 구조에 매핑할 때 이를 사용합니다.
 
-## ASM Document Hierarchy
-
-```
+## ASM 문서 계층 구조```
 <technique>-aggregate-document
 ├── device-system-document          # Instrument hardware info
 ├── data-system-document            # Software/conversion info
@@ -25,125 +23,124 @@ This guide helps classify instrument data fields into the correct ASM document l
 │       └── calculated-data-document[]
 ```
 
-## Field Classification Categories
+## 필드 분류 카테고리
 
-### 1. Device/Instrument Information → `device-system-document`
+### 1. 장치/악기 정보 → `device-system-document`
 
-Hardware and firmware details about the physical instrument.
+실제 기기에 대한 하드웨어 및 펌웨어 세부정보입니다.
 
-| Field Type | ASM Field | Examples |
-|------------|-----------|----------|
-| Instrument name | `model-number` | "Vi-CELL BLU", "NanoDrop One" |
-| Serial number | `equipment-serial-number` | "VCB-12345", "SN001234" |
-| Manufacturer | `product-manufacturer` | "Beckman Coulter", "Thermo Fisher" |
-| Firmware version | `firmware-version` | "v2.1.3" |
-| Device ID | `device-identifier` | "Instrument_01" |
-| Brand | `brand-name` | "Beckman Coulter" |
+| 필드 유형 | ASM분야 | 예 |
+|------------|------------|------------|
+| 악기 이름 | `model-number` | "Vi-CELL BLU", "NanoDrop One" |
+| 일련번호 | `equipment-serial-number` | "VCB-12345", "SN001234" |
+| 제조업체 | `product-manufacturer` | "베크먼 쿨터", "열 피셔" |
+| 펌웨어 버전 | `firmware-version` | "v2.1.3" |
+| 장치 ID | `device-identifier` | "악기_01" |
+| 브랜드 | `brand-name` | "베크만 쿨터" ​​|
 
-**Rule:** If the value describes the physical instrument and doesn't change between runs, it goes in `device-system-document`.
-
----
-
-### 2. Software/Data System Information → `data-system-document`
-
-Information about software used for acquisition, analysis, or conversion.
-
-| Field Type | ASM Field | Examples |
-|------------|-----------|----------|
-| Software name | `software-name` | "Chromeleon", "Gen5" |
-| Software version | `software-version` | "7.3.2" |
-| File name | `file-name` | "experiment_001.xlsx" |
-| File path | `file-identifier` | "/data/runs/2024-01-15/" |
-| Database ID | `ASM-converter-name` | "allotropy v0.1.55" |
-
-**Rule:** If the value describes software, file metadata, or data provenance, it goes in `data-system-document`.
+**규칙:** 값이 실제 기기를 설명하고 실행 간에 변경되지 않는 경우 `device-system-document`에 들어갑니다.
 
 ---
 
-### 3. Sample Information → `sample-document`
+### 2. 소프트웨어/데이터 시스템 정보 → `data-system-document`
 
-Metadata about the biological/chemical sample being analyzed.
+획득, 분석 또는 변환에 사용되는 소프트웨어에 대한 정보입니다.
 
-| Field Type | ASM Field | Examples |
-|------------|-----------|----------|
-| Sample ID | `sample-identifier` | "Sample_A", "LIMS-001234" |
-| Sample name | `written-name` | "CHO Cell Culture Day 5" |
-| Sample type/role | `sample-role-type` | "unknown sample role", "control sample role" |
-| Batch ID | `batch-identifier` | "Batch-2024-001" |
-| Description | `description` | "Protein expression sample" |
-| Well position | `location-identifier` | "A1", "B3" |
+| 필드 유형 | ASM분야 | 예 |
+|------------|------------|------------|
+| 소프트웨어 이름 | `software-name` | "크로멜레온", "Gen5" |
+| 소프트웨어 버전 | `software-version` | "7.3.2" |
+| 파일 이름 | `file-name` | "실험_001.xlsx" |
+| 파일 경로 | `file-identifier` | "/데이터/실행/2024-01-15/" |
+| 데이터베이스 ID | `ASM-converter-name` | "동소체 v0.1.55" |
 
-**Rule:** If the value identifies or describes what was measured (not how), it goes in `sample-document`.
-
----
-
-### 4. Device Control Settings → `device-control-aggregate-document`
-
-Instrument settings and parameters used during measurement.
-
-| Field Type | ASM Field | Examples |
-|------------|-----------|----------|
-| Injection volume | `sample-volume-setting` | 10 µL |
-| Wavelength | `detector-wavelength-setting` | 254 nm |
-| Temperature | `compartment-temperature` | 37°C |
-| Flow rate | `flow-rate` | 1.0 mL/min |
-| Exposure time | `exposure-duration-setting` | 500 ms |
-| Detector gain | `detector-gain-setting` | 1.5 |
-| Illumination | `illumination-setting` | 80% |
-
-**Rule:** If the value is a configurable instrument parameter that affects measurement, it goes in `device-control-aggregate-document`.
+**규칙:** 값이 소프트웨어, 파일 메타데이터 또는 데이터 출처를 설명하는 경우 `data-system-document`에 들어갑니다.
 
 ---
 
-### 5. Environmental Conditions → `device-control-document` or technique-specific
+### 3. 샘플 정보 → `sample-document`
 
-Ambient or controlled environmental parameters during measurement.
+분석 중인 생물학적/화학적 샘플에 대한 메타데이터입니다.
 
-| Field Type | ASM Field | Examples |
-|------------|-----------|----------|
-| Ambient temperature | `ambient-temperature` | 22.5°C |
-| Humidity | `ambient-relative-humidity` | 45% |
-| Column temperature | `compartment-temperature` | 30°C |
-| Sample temperature | `sample-temperature` | 4°C |
-| Electrophoresis temp | (technique-specific) | 26.4°C |
+| 필드 유형 | ASM분야 | 예 |
+|------------|------------|------------|
+| 샘플 ID | `sample-identifier` | "샘플_A", "LIMS-001234" |
+| 샘플 이름 | `written-name` | "CHO 세포배양 5일차" |
+| 샘플 유형/역할 | `sample-role-type` | "알 수 없는 샘플 역할", "대조 샘플 역할" |
+| 배치 ID | `batch-identifier` | "배치-2024-001" |
+| 설명 | `description` | "단백질 발현 샘플" |
+| 그럼 위치 | `location-identifier` | "A1", "B3" |
 
-**Rule:** Environmental conditions that affect measurement quality go with device control or in technique-specific locations.
-
----
-
-### 6. Raw Measurement Data → `measurement-document`
-
-Direct instrument readings - the "ground truth" data.
-
-| Field Type | ASM Field | Examples |
-|------------|-----------|----------|
-| Absorbance | `absorbance` | 0.523 AU |
-| Fluorescence | `fluorescence` | 12500 RFU |
-| Cell count | `total-cell-count` | 2.5e6 cells |
-| Peak area | `peak-area` | 1234.5 mAU·min |
-| Retention time | `retention-time` | 5.67 min |
-| Ct value | `cycle-threshold-result` | 24.5 |
-| Concentration (measured) | `mass-concentration` | 1.5 mg/mL |
-
-**Rule:** If the value is a direct instrument reading that wasn't computed from other values in this analysis, it goes in `measurement-document`.
+**규칙:** 값이 측정된 내용(방법이 아님)을 식별하거나 설명하는 경우 `sample-document`에 들어갑니다.
 
 ---
 
-### 7. Calculated/Derived Data → `calculated-data-aggregate-document`
+### 4. 장치 제어 설정 → `device-control-aggregate-document`
 
-Values computed from raw measurements.
+측정 중에 사용되는 기기 설정 및 매개변수입니다.
 
-| Field Type | ASM Field | Examples |
-|------------|-----------|----------|
-| Viability % | `calculated-result` | 95.2% |
-| Concentration (from std curve) | `calculated-result` | 125 ng/µL |
-| Ratio (260/280) | `calculated-result` | 1.89 |
-| Relative quantity | `calculated-result` | 2.5x |
-| % Recovery | `calculated-result` | 98.7% |
-| CV% | `calculated-result` | 2.3% |
+| 필드 유형 | ASM분야 | 예 |
+|------------|------------|------------|
+| 주입량 | `sample-volume-setting` | 10 μL |
+| 파장 | `detector-wavelength-setting` | 254nm |
+| 온도 | `compartment-temperature` | 37°C |
+| 유량 | `flow-rate` | 1.0mL/분 |
+| 노출 시간 | `exposure-duration-setting` | 500ms |
+| 검출기 이득 | `detector-gain-setting` | 1.5 |
+| 조명 | `illumination-setting` | 80% |
 
-**Calculated data document structure:**
-```json
+**규칙:** 값이 측정에 영향을 미치는 구성 가능한 기기 매개변수인 경우 `device-control-aggregate-document`에 들어갑니다.
+
+---
+
+### 5. 환경 조건 → `device-control-document` 또는 기술별
+
+측정 중 주변 또는 제어된 환경 매개변수.
+
+| 필드 유형 | ASM분야 | 예 |
+|------------|------------|------------|
+| 주변 온도 | `ambient-temperature` | 22.5°C |
+| 습도 | `ambient-relative-humidity` | 45% |
+| 컬럼 온도 | `compartment-temperature` | 30°C |
+| 샘플 온도 | `sample-temperature` | 4°C |
+| 전기영동 온도 | (기술별) | 26.4°C |
+
+**규칙:** 측정 품질에 영향을 미치는 환경 조건은 장치 제어 또는 기술별 위치에 따라 달라집니다.
+
+---
+
+### 6. 원시 측정 데이터 → `measurement-document`
+
+직접적인 기기 판독 - "실측" 데이터입니다.
+
+| 필드 유형 | ASM분야 | 예 |
+|------------|------------|------------|
+| 흡광도 | `absorbance` | 0.523AU |
+| 형광 | `fluorescence` | 12500RFU |
+| 세포수 | `total-cell-count` | 2.5e6 셀 |
+| 피크 지역 | `peak-area` | 1234.5mAU·분 |
+| 보유시간 | `retention-time` | 5.67분 |
+| Ct 값 | `cycle-threshold-result` | 24.5 |
+| 농도(측정) | `mass-concentration` | 1.5mg/mL |
+
+**규칙:** 값이 이 분석의 다른 값에서 계산되지 않은 직접 기기 판독값인 경우 `measurement-document`에 들어갑니다.
+
+---
+
+### 7. 계산/파생 데이터 → `calculated-data-aggregate-document`
+
+원시 측정에서 계산된 값입니다.
+
+| 필드 유형 | ASM분야 | 예 |
+|------------|------------|------------|
+| 생존율 % | `calculated-result` | 95.2% |
+| 농도(표준 곡선에서) | `calculated-result` | 125ng/μL |
+| 비율 (260/280) | `calculated-result` | 1.89 |
+| 상대 수량 | `calculated-result` | 2.5배 |
+| % 회복 | `calculated-result` | 98.7% |
+| 이력서% | `calculated-result` | 2.3% |
+
+**계산된 데이터 문서 구조:**```json
 {
   "calculated-data-name": "viability",
   "calculated-result": {"value": 95.2, "unit": "%"},
@@ -151,23 +148,22 @@ Values computed from raw measurements.
 }
 ```
 
-**Rule:** If the value was computed from other measurements in this analysis, it goes in `calculated-data-aggregate-document`. Include `calculation-description` when possible.
+**규칙:** 이 분석에서 다른 측정값을 통해 값이 계산된 경우 `calculated-data-aggregate-document`에 들어갑니다. 가능하면 `calculation-description`을 포함하세요.
 
 ---
 
-### 8. Processed/Analyzed Data → `processed-data-aggregate-document`
+### 8. 처리/분석된 데이터 → `processed-data-aggregate-document`
 
-Results from data processing algorithms (peak integration, cell classification, etc.).
+데이터 처리 알고리즘의 결과(피크 통합, 셀 분류 등)
 
-| Field Type | ASM Field | Examples |
-|------------|-----------|----------|
-| Peak list | `peak-list` | Integrated peak results |
-| Cell size distribution | `cell-diameter-distribution` | Histogram data |
-| Baseline-corrected data | (in processed-data-document) | Corrected spectra |
-| Fitted curve | (in processed-data-document) | Standard curve fit |
+| 필드 유형 | ASM분야 | 예 |
+|------------|------------|------------|
+| 피크 목록 | `peak-list` | 통합 피크 결과 |
+| 세포 크기 분포 | `cell-diameter-distribution` | 히스토그램 데이터 |
+| 기준 수정 데이터 | (처리된 데이터 문서에서) | 수정된 스펙트럼 |
+| 적합 곡선 | (처리된 데이터 문서에서) | 표준 곡선 맞춤 |
 
-**Associated `data-processing-document`:**
-```json
+**연결된 `data-processing-document`:**```json
 {
   "cell-type-processing-method": "trypan blue exclusion",
   "cell-density-dilution-factor": {"value": 2, "unit": "(unitless)"},
@@ -176,37 +172,35 @@ Results from data processing algorithms (peak integration, cell classification, 
 }
 ```
 
-**Rule:** If the value results from an algorithm or processing method applied to raw data, it goes in `processed-data-aggregate-document` with its processing parameters in `data-processing-document`.
+**규칙:** 원시 데이터에 적용된 알고리즘이나 처리 방법으로 인해 값이 생성된 경우 해당 값은 `data-processing-document`의 처리 매개변수와 함께 `processed-data-aggregate-document`에 들어갑니다.
 
 ---
 
-### 9. Timing/Timestamps → Various locations
+### 9. 타이밍/타임스탬프 → 다양한 위치
 
-| Timestamp Type | Location | ASM Field |
-|----------------|----------|-----------|
-| Measurement time | `measurement-document` | `measurement-time` |
-| Run start time | `analysis-sequence-document` | `analysis-sequence-start-time` |
-| Run end time | `analysis-sequence-document` | `analysis-sequence-end-time` |
-| Data export time | `data-system-document` | (custom) |
+| 타임스탬프 유형 | 위치 | ASM분야 |
+|---|----------|------------|
+| 측정시간 | `measurement-document` | `measurement-time` |
+| 실행 시작 시간 | `analysis-sequence-document` | `analysis-sequence-start-time` |
+| 실행 종료 시간 | `analysis-sequence-document` | `analysis-sequence-end-time` |
+| 데이터 내보내기 시간 | `data-system-document` | (커스텀) |
 
-**Rule:** Use ISO 8601 format: `2024-01-15T10:30:00Z`
-
----
-
-### 10. Analyst/Operator Information → `<technique>-document`
-
-| Field Type | ASM Field | Examples |
-|------------|-----------|----------|
-| Operator name | `analyst` | "jsmith" |
-| Reviewer | (custom or extension) | "Pending" |
-
-**Rule:** Analyst goes at the technique-document level, not in individual measurements.
+**규칙:** ISO 8601 형식 사용: `2024-01-15T10:30:00Z`
 
 ---
 
-## Decision Tree
+### 10. 분석가/운영자 정보 → `<technique>-document`
 
-```
+| 필드 유형 | ASM분야 | 예 |
+|------------|------------|------------|
+| 운영자 이름 | `analyst` | "J스미스" |
+| 리뷰어 | (사용자 정의 또는 확장) | "보류 중" |
+
+**규칙:** 분석가는 개별 측정이 아닌 기술 문서 수준에서 진행됩니다.
+
+---
+
+## 의사결정 트리```
 Is this field about...
 
 THE INSTRUMENT ITSELF?
@@ -237,70 +231,68 @@ WHO DID IT?
 └── Operator/analyst → <technique>-document.analyst
 ```
 
-## Common Instrument-to-ASM Mappings
+## 일반적인 계측기-ASM 매핑
 
-> **Note:** These mappings are derived from the [Benchling allotropy library](https://github.com/Benchling-Open-Source/allotropy/tree/main/src/allotropy/parsers). For authoritative mappings, consult the parser source code for your specific instrument.
+> **참고:** 이러한 매핑은 [Benchling allotropy 라이브러리](https://github.com/Benchling-Open-Source/allotropy/tree/main/src/allotropy/parsers)에서 파생됩니다. 신뢰할 수 있는 매핑을 보려면 특정 기기에 대한 파서 소스 코드를 참조하세요.
 
-### Cell Counter (Vi-CELL BLU)
-*Source: `allotropy/parsers/beckman_vi_cell_blu/vi_cell_blu_structure.py`*
+### 셀 카운터(Vi-CELL BLU)
+*출처: `allotropy/parsers/beckman_vi_cell_blu/vi_cell_blu_structure.py`*
 
-| Instrument Field | ASM Field |
-|-----------------|-----------|
-| Sample ID | `sample_identifier` |
-| Analysis date/time | `measurement_time` |
-| Analysis by | `analyst` |
-| Viability (%) | `viability` |
-| Viable (x10^6) cells/mL | `viable_cell_density` |
-| Total (x10^6) cells/mL | `total_cell_density` |
-| Cell count | `total_cell_count` |
-| Viable cells | `viable_cell_count` |
-| Average diameter (μm) | `average_total_cell_diameter` |
-| Average viable diameter (μm) | `average_live_cell_diameter` |
-| Average circularity | `average_total_cell_circularity` |
-| Cell type | `cell_type_processing_method` (data-processing) |
-| Dilution | `cell_density_dilution_factor` (data-processing) |
-| Min/Max Diameter | `minimum/maximum_cell_diameter_setting` (data-processing) |
+| 계기분야 | ASM분야 |
+|----|------------|
+| 샘플 ID | `sample_identifier` |
+| 분석 날짜/시간 | `measurement_time` |
+| 분석 기준 | `analyst` |
+| 생존율(%) | `viability` |
+| 생존 가능(x10^6) 세포/mL | `viable_cell_density` |
+| 총 (x10^6) 셀/mL | `total_cell_density` |
+| 세포수 | `total_cell_count` |
+| 생존 가능한 세포 | `viable_cell_count` |
+| 평균 직경(μm) | `average_total_cell_diameter` |
+| 평균 생존 직경(μm) | `average_live_cell_diameter` |
+| 평균 순환성 | `average_total_cell_circularity` |
+| 세포 유형 | `cell_type_processing_method`(데이터 처리) |
+| 희석 | `cell_density_dilution_factor`(데이터 처리) |
+| 최소/최대 직경 | `minimum/maximum_cell_diameter_setting`(데이터 처리) |
 
-### Spectrophotometer (NanoDrop)
-| Instrument Field | ASM Field |
-|-----------------|-----------|
-| Sample Name | `sample_identifier` |
-| A260, A280 | `absorbance` (with wavelength) |
-| Concentration | `mass_concentration` |
-| 260/280 ratio | `a260_a280_ratio` |
-| Pathlength | `pathlength` |
+### 분광광도계(NanoDrop)
+| 계기분야 | ASM분야 |
+|----|------------|
+| 샘플 이름 | `sample_identifier` |
+| A260, A280 | `absorbance` (파장 포함) |
+| 농도 | `mass_concentration` |
+| 260/280 비율 | `a260_a280_ratio` |
+| 경로 길이 | `pathlength` |
 
-### Plate Reader
-| Instrument Field | ASM Field |
-|-----------------|-----------|
-| Well | `location_identifier` |
-| Sample Type | `sample_role_type` |
-| Absorbance/OD | `absorbance` |
-| Fluorescence | `fluorescence` |
-| Plate ID | `container_identifier` |
+### 플레이트 리더
+| 계기분야 | ASM분야 |
+|----|------------|
+| 음 | `location_identifier` |
+| 샘플 유형 | `sample_role_type` |
+| 흡광도/OD | `absorbance` |
+| 형광 | `fluorescence` |
+| 플레이트 ID | `container_identifier` |
 
-### Chromatography (HPLC)
-| Instrument Field | ASM Field |
-|-----------------|-----------|
-| Sample ID | `sample_identifier` |
-| Injection Volume | `injection_volume` |
-| Retention Time | `retention_time` |
-| Peak Area | `peak_area` |
-| Peak Height | `peak_height` |
-| Column Temp | `column_oven_temperature` |
-| Flow Rate | `flow_rate` |
+### 크로마토그래피(HPLC)
+| 계기분야 | ASM분야 |
+|----|------------|
+| 샘플 ID | `sample_identifier` |
+| 주입량 | `injection_volume` |
+| 보유 시간 | `retention_time` |
+| 피크 지역 | `peak_area` |
+| 피크 높이 | `peak_height` |
+| 컬럼 온도 | `column_oven_temperature` |
+| 유량 | `flow_rate` |
 
-## Unit Handling
+## 유닛 취급
 
-Only use units explicitly present in source data. If a value has no unit specified:
-- Use `(unitless)` as the unit value
-- Do NOT infer units based on domain knowledge
+소스 데이터에 명시적으로 존재하는 단위만 사용하십시오. 값에 단위가 지정되지 않은 경우:
+- 단위 값으로 `(unitless)`을 사용합니다.
+- 도메인 지식을 기반으로 단위를 추론하지 마십시오.
 
-## Calculated Data Traceability
+## 계산된 데이터 추적성
 
-When creating calculated values, always link them to their source data using `data-source-aggregate-document`:
-
-```json
+계산된 값을 생성할 때 항상 `data-source-aggregate-document`을 사용하여 소스 데이터에 연결하세요.```json
 {
     "calculated-data-name": "DIN",
     "calculated-result": {"value": 5.8, "unit": "(unitless)"},
@@ -314,40 +306,38 @@ When creating calculated values, always link them to their source data using `da
 }
 ```
 
-This declares: "DIN 5.8 was calculated from the sample at `TEST_ID_145`."
+이는 "DIN 5.8은 `TEST_ID_145`의 샘플에서 계산되었습니다."라고 선언합니다.
 
-**Why this matters:**
-- **Audits**: Prove a value came from specific raw data
-- **Debugging**: Trace unexpected results back to their source
-- **Reprocessing**: Know which inputs to re-analyze if algorithms change
+**이것이 중요한 이유:**
+- **감사**: 특정 원시 데이터에서 나온 가치를 증명합니다.
+- **디버깅**: 예상치 못한 결과를 소스까지 추적합니다.
+- **재처리**: 알고리즘이 변경되면 재분석할 입력을 파악합니다.
 
-**Assign unique IDs to:**
-- Measurements, peaks, regions, and calculated values
-- Use a consistent naming pattern (e.g., `INSTRUMENT_TYPE_TEST_ID_N`)
+**다음에 고유 ID 할당:**
+- 측정값, 피크, 영역 및 계산된 값
+- 일관된 이름 지정 패턴을 사용합니다(예: `INSTRUMENT_TYPE_TEST_ID_N`).
 
-This enables bidirectional traversal: trace from calculated → raw, or raw → all derived values.
+이를 통해 양방향 순회가 가능합니다. 즉, 계산된 → 원시 또는 원시 → 모든 파생 값을 추적합니다.
 
 ---
 
-## Nested Document Structure (Critical)
+## 중첩된 문서 구조(중요)
 
-A common mistake is "flattening" fields directly onto measurement documents when they should be wrapped in nested structures. This breaks schema compliance and loses semantic context.
+일반적인 실수는 필드를 중첩된 구조로 래핑해야 할 때 측정 문서에 직접 필드를 "평탄화"하는 것입니다. 이로 인해 스키마 준수가 중단되고 의미적 컨텍스트가 손실됩니다.
 
-### Why Nesting Matters
+### 중첩이 중요한 이유
 
-ASM uses nested documents for semantic grouping:
+ASM은 의미론적 그룹화를 위해 중첩된 문서를 사용합니다.
 
-| Document | Purpose | Contains |
-|----------|---------|----------|
-| `sample document` | What was measured | Sample ID, locations, plate identifiers |
-| `device control aggregate document` | How instrument operated | Settings, parameters, techniques |
-| `custom information document` | Vendor-specific fields | Non-standard fields that don't map to ASM |
+| 문서 | 목적 | 포함 |
+|------------|---------|----------|
+| `sample document` | 측정된 내용 | 샘플 ID, 위치, 플레이트 식별자 |
+| `device control aggregate document` | 기기 작동 방식 | 설정, 매개변수, 기술 |
+| `custom information document` | 공급업체별 필드 | ASM에 매핑되지 않는 비표준 필드 |
 
-### Sample Document Fields
+### 샘플 문서 필드
 
-These fields MUST be inside `sample document`, not flattened on measurement:
-
-```json
+이러한 필드는 `sample document` 내부에 있어야 하며 측정 시 평면화되지 않아야 합니다.```json
 // ❌ WRONG - Fields flattened on measurement
 {
   "measurement identifier": "TEST_001",
@@ -368,20 +358,18 @@ These fields MUST be inside `sample document`, not flattened on measurement:
 }
 ```
 
-**Fields belonging in sample document:**
-- `sample identifier` - Sample ID/name
-- `written name` - Descriptive sample name
-- `batch identifier` - Batch/lot number
-- `sample role type` - Standard, blank, control, unknown
-- `location identifier` - Well position (A1, B3, etc.)
-- `well plate identifier` - Plate barcode
-- `description` - Sample description
+**샘플 문서에 속하는 필드:**
+- `sample identifier` - 샘플 ID/이름
+- `written name` - 설명 샘플 이름
+- `batch identifier` - 배치/로트 번호
+- `sample role type` - 표준, 공백, 제어, 알 수 없음
+- `location identifier` - 우물 위치(A1, B3 등)
+- `well plate identifier` - 플레이트 바코드
+- `description` - 샘플 설명
 
-### Device Control Document Fields
+### 장치 제어 문서 필드
 
-Instrument settings MUST be inside `device control aggregate document`:
-
-```json
+기기 설정은 `device control aggregate document` 내부에 있어야 합니다.```json
 // ❌ WRONG - Device settings flattened
 {
   "measurement identifier": "TEST_001",
@@ -403,19 +391,17 @@ Instrument settings MUST be inside `device control aggregate document`:
 }
 ```
 
-**Fields belonging in device control:**
-- `device type` - Type of device
-- `device identifier` - Device ID
-- `detector wavelength setting` - Wavelength for detection
-- `compartment temperature` - Temperature setting
-- `sample volume setting` - Volume setting
-- `flow rate` - Flow rate setting
+**장치 제어에 속하는 필드:**
+- `device type` - 장치 유형
+- `device identifier` - 장치 ID
+- `detector wavelength setting` - 감지 파장
+- `compartment temperature` - 온도 설정
+- `sample volume setting` - 볼륨 설정
+- `flow rate` - 유량 설정
 
-### Custom Information Document
+### 맞춤 정보 문서
 
-Vendor-specific fields that don't map to standard ASM terms go in `custom information document`:
-
-```json
+표준 ASM 용어에 매핑되지 않는 공급업체별 필드는 `custom information document`에 들어갑니다.```json
 "device control document": [{
   "device type": "liquid handler",
   "custom information document": {
@@ -427,11 +413,9 @@ Vendor-specific fields that don't map to standard ASM terms go in `custom inform
 }]
 ```
 
-### Liquid Handler: Transfer Pairing
+### 액체 처리기: 전송 페어링
 
-For liquid handlers, a measurement represents a complete transfer (aspirate + dispense), not separate operations:
-
-```json
+액체 처리기의 경우 측정은 별도의 작업이 아닌 완전한 전달(흡인 + 분배)을 나타냅니다.```json
 // ❌ WRONG - Separate records for aspirate and dispense
 [
   {"measurement identifier": "OP_001", "transfer type": "Aspirate", "volume": {"value": 26, "unit": "μL"}},
@@ -452,16 +436,14 @@ For liquid handlers, a measurement represents a complete transfer (aspirate + di
 }
 ```
 
-**Pairing logic:**
-1. Match aspirate and dispense operations by probe number
-2. Create one measurement per matched pair
-3. Use `source_*` fields for aspirate location
-4. Use `destination_*` fields for dispense location
-5. Include both `aspiration volume` and `transfer volume`
+**페어링 논리:**
+1. 프로브 번호에 따라 흡인 및 분배 작업을 일치시킵니다.
+2. 일치하는 쌍당 하나의 측정을 생성합니다.
+3. 흡인 위치에 `source_*` 필드를 사용합니다.
+4. 분배 위치에 `destination_*` 필드를 사용하십시오.
+5. `aspiration volume` 및 `transfer volume`을 모두 포함합니다.
 
-### Quick Reference: Nesting Decision
-
-```
+### 빠른 참조: 중첩 결정```
 Is this field about...
 
 THE SAMPLE BEING MEASURED?
@@ -482,22 +464,21 @@ TRANSFER OPERATION TYPE?
     with source/destination fields instead
 ```
 
-### Validation
+### 유효성 검사
 
-Use `validate_asm.py` to check for nesting issues:
-```bash
+`validate_asm.py`을 사용하여 중첩 문제를 확인하세요.```bash
 python scripts/validate_asm.py output.json --reference known_good.json
 ```
 
-The validator checks for:
-- Fields incorrectly flattened on measurements
-- Missing `sample document` wrapper
-- Missing `device control aggregate document` wrapper
-- Missing `custom information document` for vendor fields
-- Liquid handler: separate transfer types instead of paired records
+유효성 검사기는 다음을 확인합니다.
+- 측정 시 필드가 잘못 평탄화됨
+- `sample document` 래퍼 누락
+- `device control aggregate document` 래퍼 누락
+- 공급업체 필드에 `custom information document`이 누락되었습니다.
+- 액체 처리기: 쌍으로 된 기록 대신 별도의 전송 유형
 
-## Sources
+## 소스
 
-- [Allotrope Simple Model Introduction](https://www.allotrope.org/introduction-to-allotrope-simple-model)
-- [Benchling allotropy library](https://github.com/Benchling-Open-Source/allotropy)
-- [Allotrope Foundation ASM Overview](https://www.allotrope.org/asm)
+- [동소체 단순 모델 소개](https://www.allotrope.org/introduction-to-allotrope-simple-model)
+- [벤칭링 동소체 라이브러리](https://github.com/Benchling-Open-Source/allotropy)
+- [Allotrope Foundation ASM 개요](https://www.allotrope.org/asm)

@@ -1,94 +1,94 @@
 ---
 name: policy-lookup
-description: Find and explain company policies in plain language. Trigger with "what's our PTO policy", "can I work remotely from another country", "how do expenses work", or any plain-language question about benefits, travel, leave, or handbook rules.
-argument-hint: "<policy topic — PTO, benefits, travel, expenses, etc.>"
+description: 회사 정책을 쉬운 언어로 찾고 설명합니다. "what's our PTO policy", "can I work remotely from another country", "how do expenses work" 같은 질문이나, 복리후생, 출장, 휴가, 핸드북 규칙에 대한 평이한 질문이 있을 때 트리거됩니다.
+argument-hint: "<정책 주제 — PTO, 복리후생, 출장, 경비 등>"
 ---
 
 # /policy-lookup
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 한다면 [CONNECTORS.md](../../CONNECTORS.md)를 참고하세요.
 
-Look up and explain company policies in plain language. Answer employee questions about policies, benefits, and procedures by searching connected knowledge bases or using provided handbook content.
+회사 정책을 쉬운 언어로 찾아 설명합니다. 연결된 지식 베이스를 검색하거나 제공된 핸드북 내용을 사용해 정책, 복리후생, 절차에 대한 직원 질문에 답합니다.
 
-## Usage
+## 사용법
 
 ```
 /policy-lookup $ARGUMENTS
 ```
 
-Search for policies matching: $ARGUMENTS
+다음과 일치하는 정책을 검색합니다: $ARGUMENTS
 
-## How It Works
+## 동작 방식
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    POLICY LOOKUP                                   │
+│                    정책 조회                                      │
 ├─────────────────────────────────────────────────────────────────┤
-│  STANDALONE (always works)                                       │
-│  ✓ Ask any policy question in plain language                    │
-│  ✓ Paste your employee handbook and I'll search it              │
-│  ✓ Get clear, jargon-free answers                               │
+│  독립 실행(항상 작동)                                            │
+│  ✓ 정책에 대한 어떤 질문이든 평이한 언어로 물어보세요           │
+│  ✓ 직원 핸드북을 붙여넣으면 제가 검색합니다                    │
+│  ✓ 명확하고 전문용어 없는 답변을 받습니다                     │
 ├─────────────────────────────────────────────────────────────────┤
-│  SUPERCHARGED (when you connect your tools)                      │
-│  + Knowledge base: Search handbook and policy docs automatically │
-│  + HRIS: Pull employee-specific details (PTO balance, benefits) │
+│  강화 모드(도구를 연결하면)                                      │
+│  + 지식 베이스: 핸드북과 정책 문서를 자동 검색                  │
+│  + HRIS: 직원별 세부 정보(PTO 잔액, 복리후생) 가져오기          │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## Common Policy Topics
+## 자주 묻는 정책 주제
 
-- **PTO and Leave**: Vacation, sick leave, parental leave, bereavement, sabbatical
-- **Benefits**: Health insurance, dental, vision, 401k, HSA/FSA, wellness
-- **Compensation**: Pay schedule, bonus timing, equity vesting, expense reimbursement
-- **Remote Work**: WFH policy, remote locations, equipment stipend, coworking
-- **Travel**: Booking policy, per diem, expense reporting, approval process
-- **Conduct**: Code of conduct, harassment policy, conflicts of interest
-- **Growth**: Professional development budget, conference policy, tuition reimbursement
+- **PTO 및 휴가**: 연차, 병가, 육아휴직, 경조사 휴가, 안식년
+- **복리후생**: 건강보험, 치과, 시력, 401k, HSA/FSA, 웰니스
+- **보상**: 급여 지급 일정, 보너스 시점, 지분 베스팅, 경비 환급
+- **원격 근무**: 재택근무 정책, 원격 지역, 장비 지원금, 코워킹
+- **출장**: 예약 정책, 일비, 경비 보고, 승인 절차
+- **행동 규범**: 행동 강령, 괴롭힘 정책, 이해상충
+- **성장**: 자기계발 예산, 컨퍼런스 정책, 학비 보조
 
-## How to Answer
+## 답변 방법
 
-1. Search ~~knowledge base for the relevant policy document
-2. Provide a clear, plain-language answer
-3. Quote the specific policy language
-4. Note any exceptions or special cases
-5. Point to who to contact for edge cases
+1. 관련 정책 문서를 ~~knowledge base에서 검색합니다.
+2. 명확하고 쉬운 언어로 답변합니다.
+3. 정책의 구체적인 문구를 인용합니다.
+4. 예외나 특수 사례를 언급합니다.
+5. 애매한 경우 누구에게 문의해야 하는지 안내합니다.
 
 **Important guardrails:**
-- Always cite the source document and section
-- If no policy is found, say so clearly rather than guessing
-- For legal or compliance questions, recommend consulting HR or legal directly
+- 항상 출처 문서와 섹션을 인용합니다.
+- 정책을 찾지 못하면 추측하지 말고 분명히 그렇게 말합니다.
+- 법무 또는 컴플라이언스 질문은 HR 또는 법무와 직접 상의하라고 권고합니다.
 
-## Output
+## 출력
 
 ```markdown
-## Policy: [Topic]
+## 정책: [주제]
 
-### Quick Answer
-[1-2 sentence direct answer to their question]
+### 빠른 답변
+[질문에 대한 1-2문장 직답]
 
-### Details
-[Relevant policy details, explained in plain language]
+### 세부 내용
+[관련 정책 내용을 쉬운 언어로 설명]
 
-### Exceptions / Special Cases
-[Any relevant exceptions or edge cases]
+### 예외 / 특수 사례
+[관련 예외나 경계 사례]
 
-### Who to Contact
-[Person or team for questions beyond what's documented]
+### 문의처
+[문서에 없는 질문을 할 사람이나 팀]
 
-### Source
-[Where this information came from — document name, page, or section]
+### 출처
+[이 정보의 출처 - 문서 이름, 페이지, 또는 섹션]
 ```
 
-## If Connectors Available
+## 연결 도구가 있을 경우
 
-If **~~knowledge base** is connected:
-- Search employee handbook and policy documents automatically
-- Cite the specific document, section, and page number
+**~~knowledge base**가 연결되어 있다면:
+- 직원 핸드북과 정책 문서를 자동 검색합니다.
+- 특정 문서, 섹션, 페이지 번호를 인용합니다.
 
-If **~~HRIS** is connected:
-- Pull employee-specific details like PTO balance, benefits elections, and enrollment status
+**~~HRIS**가 연결되어 있다면:
+- PTO 잔액, 복리후생 선택, 가입 상태 같은 직원별 세부 정보를 가져옵니다.
 
-## Tips
+## 팁
 
-1. **Ask in plain language** — "Can I work from Europe for a month?" is better than "international remote work policy."
-2. **Be specific** — "PTO for part-time employees in California" gets a better answer than "PTO policy."
+1. **평이한 언어로 질문하세요** - "Can I work from Europe for a month?"가 "international remote work policy"보다 낫습니다.
+2. **구체적으로 질문하세요** - "캘리포니아의 파트타임 직원 PTO"가 "PTO policy"보다 더 좋은 답을 얻습니다.

@@ -1,17 +1,17 @@
 ---
 name: start
-description: Set up your bio-research environment and explore available tools. Use when first getting oriented with the plugin, checking which literature, drug-discovery, or visualization MCP servers are connected, or surveying available analysis skills before starting a new project.
+description: 바이오 연구 환경을 설정하고 사용 가능한 도구를 탐색해 보세요. 플러그인을 처음 익히거나, 연결된 문헌, 약물 발견 또는 시각화 MCP 서버를 확인하거나, 새 프로젝트를 시작하기 전에 사용 가능한 분석 기술을 조사할 때 사용하세요.
 ---
 
-# Bio-Research Start
+# 바이오연구 시작
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 자리 표시자가 있거나 어떤 도구가 연결되어 있는지 확인해야 하는 경우 [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-You are helping a biological researcher get oriented with the bio-research plugin. Walk through the following steps in order.
+당신은 생물학 연구자가 바이오 연구 플러그인에 익숙해지도록 돕고 있습니다. 다음 단계를 순서대로 진행하세요.
 
-## Step 1: Welcome
+## 1단계: 환영합니다
 
-Display this welcome message:
+다음 환영 메시지를 표시합니다.
 
 ```
 Bio-Research Plugin
@@ -21,59 +21,59 @@ together literature search, data analysis pipelines,
 and scientific strategy — all in one place.
 ```
 
-## Step 2: Check Available MCP Servers
+## 2단계: 사용 가능한 MCP 서버 확인
 
-Test which MCP servers are connected by listing available tools. Group the results:
+사용 가능한 도구를 나열하여 어떤 MCP 서버가 연결되어 있는지 테스트합니다. 결과를 그룹화합니다.
 
-**Literature & Data Sources:**
-- ~~literature database — biomedical literature search
-- ~~literature database — preprint access (biology and medicine)
-- ~~journal access — academic publications
-- ~~data repository — collaborative research data (Sage Bionetworks)
+**문헌 및 데이터 출처:**
+- ~~문헌 데이터베이스 — 생의학 문헌 검색
+- ~~문헌 데이터베이스 — 사전 인쇄 액세스(생물학 및 의학)
+- ~~저널 접근 — 학술 출판물
+- ~~데이터 저장소 — 공동 연구 데이터(Sage Bionetworks)
 
-**Drug Discovery & Clinical:**
-- ~~chemical database — bioactive compound database
-- ~~drug target database — drug target discovery platform
-- ClinicalTrials.gov — clinical trial registry
-- ~~clinical data platform — clinical trial site ranking and platform help
+**약물 발견 및 임상:**
+- ~~화학 데이터베이스 — 생리활성 화합물 데이터베이스
+- ~~약물 표적 데이터베이스 — 약물 표적 발견 플랫폼
+- ClinicalTrials.gov — 임상시험 등록소
+- ~~임상 데이터 플랫폼 - 임상시험 사이트 순위 및 플랫폼 도움말
 
-**Visualization & AI:**
-- ~~scientific illustration — create scientific figures and diagrams
-- ~~AI research platform — AI for biology (histopathology, drug discovery)
+**시각화 및 AI:**
+- ~~과학적 일러스트레이션 — 과학적 수치와 다이어그램 만들기
+- ~~AI 연구 플랫폼 — 생물학(조직병리학, 신약 발견)을 위한 AI
 
-Report which servers are connected and which are not yet set up.
+연결된 서버와 아직 설정되지 않은 서버를 보고합니다.
 
-## Step 3: Survey Available Skills
+## 3단계: 사용 가능한 기술 설문조사
 
-List the analysis skills available in this plugin:
+이 플러그인에서 사용할 수 있는 분석 기술을 나열하십시오.
 
-| Skill | What It Does |
+| 스킬 | 그것이 하는 일 |
 |-------|-------------|
-| **Single-Cell RNA QC** | Quality control for scRNA-seq data with MAD-based filtering |
-| **scvi-tools** | Deep learning for single-cell omics (scVI, scANVI, totalVI, PeakVI, etc.) |
-| **Nextflow Pipelines** | Run nf-core pipelines (RNA-seq, WGS/WES, ATAC-seq) |
-| **Instrument Data Converter** | Convert lab instrument output to Allotrope ASM format |
-| **Scientific Problem Selection** | Systematic framework for choosing research problems |
+| **단일 세포 RNA QC** | MAD 기반 필터링을 통한 scRNA-seq 데이터의 품질 관리 |
+| **scvi 도구** | 단일 세포 오믹스(scVI, scANVI, totalVI, PeakVI 등)에 대한 딥 러닝 |
+| **Nextflow 파이프라인** | nf-core 파이프라인 실행(RNA-seq, WGS/WES, ATAC-seq) |
+| **계측기 데이터 변환기** | 실험실 장비 출력을 Allotrope ASM 형식으로 변환 |
+| **과학적 문제 선택** | 연구 문제 선택을 위한 체계적인 프레임워크 |
 
-## Step 4: Optional Setup — Binary MCP Servers
+## 4단계: 선택적 설정 - 바이너리 MCP 서버
 
-Mention that two additional MCP servers are available as separate installations:
+두 개의 추가 MCP 서버를 별도 설치로 사용할 수 있다는 점을 언급하세요.
 
-- **~~genomics platform** — Access cloud analysis data and workflows
-  Install: Download `txg-node.mcpb` from https://github.com/10XGenomics/txg-mcp/releases
-- **~~tool database** (Harvard MIMS) — AI tools for scientific discovery
-  Install: Download `tooluniverse.mcpb` from https://github.com/mims-harvard/ToolUniverse/releases
+- **~~게놈학 플랫폼** — 클라우드 분석 데이터 및 워크플로우에 액세스
+설치: https://github.com/10XGenomics/txg-mcp/releases에서 `txg-node.mcpb`을 다운로드하세요.
+- **~~도구 데이터베이스**(Harvard MIMS) — 과학적 발견을 위한 AI 도구
+설치: https://github.com/mims-harvard/ToolUniverse/releases에서 `tooluniverse.mcpb`을 다운로드하세요.
 
-These require downloading binary files and are optional.
+이진 파일을 다운로드해야 하며 선택 사항입니다.
 
-## Step 5: Ask How to Help
+## 5단계: 도움을 요청하는 방법
 
-Ask the researcher what they're working on today. Suggest starting points based on common workflows:
+연구원에게 오늘 무엇을 하고 있는지 물어보세요. 일반적인 워크플로를 기반으로 시작점을 제안합니다.
 
-1. **Literature review** — "Search ~~literature database for recent papers on [topic]"
-2. **Analyze sequencing data** — "Run QC on my single-cell data" or "Set up an RNA-seq pipeline"
-3. **Drug discovery** — "Search ~~chemical database for compounds targeting [protein]" or "Find drug targets for [disease]"
-4. **Data standardization** — "Convert my instrument data to Allotrope format"
-5. **Research strategy** — "Help me evaluate a new project idea"
+1. **문헌 검토** — "[주제]에 관한 최근 논문에 대한 ~~문헌 데이터베이스 검색"
+2. **시퀀싱 데이터 분석** — "단일 세포 데이터에 대해 QC 실행" 또는 "RNA-seq 파이프라인 설정"
+3. **약물 발견** — "~~[단백질]을 표적으로 하는 화합물에 대한 화학 데이터베이스 검색" 또는 "[질병]에 대한 약물 표적 찾기"
+4. **데이터 표준화** — "내 기기 데이터를 동소체 형식으로 변환"
+5. **연구 전략** — "새로운 프로젝트 아이디어를 평가하는 데 도움을 주세요."
 
-Wait for the user's response and guide them to the appropriate tools and skills.
+사용자의 응답을 기다리고 적절한 도구와 기술을 안내합니다.

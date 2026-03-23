@@ -1,28 +1,28 @@
 ---
 name: org-planning
-description: Headcount planning, org design, and team structure optimization. Trigger with "org planning", "headcount plan", "team structure", "reorg", "who should we hire next", or when the user is thinking about team size, reporting structure, or organizational design.
+description: 인력 계획, 조직 설계, 팀 구조 최적화. 사용자가 "org planning", "headcount plan", "team structure", "reorg", "who should we hire next"라고 말하거나, 팀 규모, 보고 구조, 조직 설계를 고민할 때 트리거됩니다.
 ---
 
-# Org Planning
+# 조직 계획
 
-Help plan organizational structure, headcount, and team design.
+조직 구조, 인력 수요, 팀 설계를 계획하도록 돕습니다.
 
-## Planning Dimensions
+## 계획 차원
 
-- **Headcount**: How many people do we need, in what roles, by when?
-- **Structure**: Reporting lines, span of control, team boundaries
-- **Sequencing**: Which hires are most critical? What's the right order?
-- **Budget**: Headcount cost modeling and trade-offs
+- **인력 수요**: 언제까지 어떤 역할에 몇 명이 필요한가?
+- **구조**: 보고 라인, 관리 범위, 팀 경계
+- **순서**: 어떤 채용이 가장 중요한가? 올바른 순서는?
+- **예산**: 인건비 모델링과 트레이드오프
 
-## Healthy Org Benchmarks
+## 건강한 조직 벤치마크
 
-| Metric | Healthy Range | Warning Sign |
+| 지표 | 건강한 범위 | 경고 신호 |
 |--------|---------------|--------------|
-| Span of control | 5-8 direct reports | < 3 or > 12 |
-| Management layers | 4-6 for 500 people | Too many = slow decisions |
-| IC-to-manager ratio | 6:1 to 10:1 | < 4:1 = top-heavy |
-| Team size | 5-9 people | < 4 = lonely, > 12 = hard to manage |
+| 관리 범위 | 직속 부하 5-8명 | < 3 또는 > 12 |
+| 관리 계층 | 500명 조직 기준 4-6단계 | 너무 많으면 의사결정이 느려짐 |
+| 개별 기여자-관리자 비율 | 6:1~10:1 | < 4:1 = 관리자 비중이 너무 큼 |
+| 팀 규모 | 5-9명 | < 4 = 고립감, > 12 = 관리 어려움 |
 
-## Output
+## 출력
 
-Produce org charts (text-based), headcount plans with cost modeling, and sequenced hiring roadmaps. Flag structural issues like single points of failure or excessive management overhead.
+텍스트 기반 조직도, 비용 모델링이 포함된 인력 계획, 단계별 채용 로드맵을 작성합니다. 단일 장애 지점이나 과도한 관리 오버헤드 같은 구조적 문제를 표시합니다.

@@ -1,31 +1,31 @@
 ---
 name: recruiting-pipeline
-description: Track and manage recruiting pipeline stages. Trigger with "recruiting update", "candidate pipeline", "how many candidates", "hiring status", or when the user discusses sourcing, screening, interviewing, or extending offers.
+description: 채용 파이프라인 단계를 추적하고 관리합니다. "recruiting update", "candidate pipeline", "how many candidates", "hiring status"와 같은 표현이 나오거나, 소싱, 스크리닝, 인터뷰, 오퍼 제안을 논의할 때 트리거됩니다.
 ---
 
-# Recruiting Pipeline
+# 채용 파이프라인
 
-Help manage the recruiting pipeline from sourcing through offer acceptance.
+소싱부터 오퍼 수락까지 채용 파이프라인을 관리하도록 돕습니다.
 
-## Pipeline Stages
+## 파이프라인 단계
 
-| Stage | Description | Key Actions |
+| 단계 | 설명 | 주요 작업 |
 |-------|-------------|-------------|
-| Sourced | Identified and reached out | Personalized outreach |
-| Screen | Phone/video screen | Evaluate basic fit |
-| Interview | On-site or panel interviews | Structured evaluation |
-| Debrief | Team decision | Calibrate feedback |
-| Offer | Extending offer | Comp package, negotiation |
-| Accepted | Offer accepted | Transition to onboarding |
+| Sourced | 후보를 식별하고 접촉함 | 맞춤형 아웃리치 |
+| Screen | 전화/화상 스크리닝 | 기본 적합성 평가 |
+| Interview | 대면 또는 패널 인터뷰 | 구조화된 평가 |
+| Debrief | 팀 의사결정 | 피드백 조율 |
+| Offer | 오퍼 제안 | 보상 패키지, 협상 |
+| Accepted | 오퍼 수락 | 온보딩으로 전환 |
 
-## Metrics to Track
+## 추적할 지표
 
-- **Pipeline velocity**: Days per stage
-- **Conversion rates**: Stage-to-stage drop-off
-- **Source effectiveness**: Which channels produce hires
-- **Offer acceptance rate**: Offers extended vs. accepted
-- **Time to fill**: Days from req open to offer accepted
+- **파이프라인 속도**: 단계별 소요 일수
+- **전환율**: 단계 간 이탈률
+- **소스 효율성**: 어떤 채널이 채용으로 이어지는가
+- **오퍼 수락률**: 제안한 오퍼 대비 수락 수
+- **충원 기간**: 채용 공고 오픈부터 오퍼 수락까지의 일수
 
-## If ATS Connected
+## ATS가 연결되어 있다면
 
-Pull candidate data automatically, update statuses, and track pipeline metrics in real time.
+후보자 데이터를 자동으로 가져오고, 상태를 업데이트하며, 파이프라인 지표를 실시간으로 추적합니다.

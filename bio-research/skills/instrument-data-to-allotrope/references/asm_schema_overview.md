@@ -1,17 +1,15 @@
-# ASM Schema Overview
+# ASM 스키마 개요
 
-The Allotrope Simple Model (ASM) is a JSON-based standard for representing laboratory instrument data with semantic consistency.
+ASM(동소체 단순 모델)은 의미론적 일관성을 유지하면서 실험실 장비 데이터를 표현하기 위한 JSON 기반 표준입니다.
 
-## Core Concepts
+## 핵심 개념
 
-### Structure
-ASM uses a hierarchical document structure:
-- **Manifest** - Links to ontologies and schemas
-- **Data** - The actual measurement data organized by technique
+### 구조
+ASM은 계층적 문서 구조를 사용합니다.
+- **매니페스트** - 온톨로지 및 스키마에 대한 링크
+- **데이터** - 기술별로 정리된 실제 측정 데이터
 
-### Key Components
-
-```json
+### 주요 구성요소```json
 {
   "$asm.manifest": {
     "vocabulary": ["http://purl.allotrope.org/voc/afo/REC/2023/09/"],
@@ -30,33 +28,31 @@ ASM uses a hierarchical document structure:
 }
 ```
 
-## Required Metadata Documents
+## 필수 메타데이터 문서
 
-### data system document
-Every ASM output MUST include this document with:
-- `ASM file identifier`: Output filename
-- `data system instance identifier`: System ID or "N/A"
-- `file name`: Source input filename
-- `UNC path`: Path to source file
-- `ASM converter name`: Parser identifier (e.g., "allotropy_beckman_coulter_biomek")
-- `ASM converter version`: Version string
-- `software name`: Instrument software that generated the source file
+### 데이터 시스템 문서
+모든 ASM 출력에는 다음과 함께 이 문서가 포함되어야 합니다.
+- `ASM file identifier`: 출력 파일 이름
+- `data system instance identifier`: 시스템 ID 또는 "N/A"
+- `file name`: 소스 입력 파일 이름
+- `UNC path`: 소스 파일의 경로
+- `ASM converter name`: 파서 식별자(예: "allotropy_beckman_coulter_biomek")
+- `ASM converter version`: 버전 문자열
+- `software name`: 소스 파일을 생성한 계측기 소프트웨어
 
-### device system document
-Every ASM output MUST include this document with:
-- `equipment serial number`: Main instrument serial
-- `product manufacturer`: Vendor name
-- `device document`: Array of sub-components (probes, pods, etc.)
-  - `device type`: Standardized type (e.g., "liquid handler probe head")
-  - `device identifier`: Logical name (e.g., "Pod1", not serial number)
-  - `equipment serial number`: Component serial
-  - `product manufacturer`: Component vendor
+### 장치 시스템 문서
+모든 ASM 출력에는 다음과 함께 이 문서가 포함되어야 합니다.
+- `equipment serial number`: 주요 기기 시리얼
+- `product manufacturer`: 공급업체 이름
+- `device document`: 하위 구성 요소 배열(프로브, 포드 등)
+  - `device type`: 표준화된 유형(예: "액체 핸들러 프로브 헤드")
+  - `device identifier`: 논리적 이름(예: 일련번호가 아닌 "Pod1")
+  - `equipment serial number`: 구성요소 일련번호
+  - `product manufacturer`: 구성요소 공급업체
 
-## Available ASM Techniques
+## 사용 가능한 ASM 기술
 
-The official ASM repository includes **65 technique schemas**:
-
-```
+공식 ASM 저장소에는 **65가지 기술 스키마**가 포함되어 있습니다.```
 absorbance, automated-reactors, balance, bga, binding-affinity, bulk-density,
 cell-counting, cell-culture-analyzer, chromatography, code-reader, conductance,
 conductivity, disintegration, dsc, dvs, electronic-lab-notebook,
@@ -72,36 +68,36 @@ tensile-test, thermogravimetric-analysis, titration, ultraviolet-absorbance,
 x-ray-powder-diffraction
 ```
 
-See: https://gitlab.com/allotrope-public/asm/-/tree/main/json-schemas/adm
+참조: https://gitlab.com/allotrope-public/asm/-/tree/main/json-schemas/adm
 
-## Common ASM Schemas by Technique
+## 기술별 일반적인 ASM 스키마
 
-Below are details for frequently-used techniques:
+자주 사용되는 기술에 대한 세부정보는 다음과 같습니다.
 
-### Cell Counting
-Schema: `cell-counting/REC/2024/09/cell-counting.schema.json`
+### 셀 카운팅
+스키마: `cell-counting/REC/2024/09/cell-counting.schema.json`
 
-Key fields:
-- `viable-cell-density` (cells/mL)
-- `viability` (percentage)
+주요 분야:
+- `viable-cell-density` (셀/mL)
+- `viability`(백분율)
 - `total-cell-count`
 - `dead-cell-count`
 - `cell-diameter-distribution-datum`
 
-### Spectrophotometry (UV-Vis)
-Schema: `spectrophotometry/REC/2024/06/spectrophotometry.schema.json`
+### 분광광도법(UV-Vis)
+스키마: `spectrophotometry/REC/2024/06/spectrophotometry.schema.json`
 
-Key fields:
-- `absorbance` (dimensionless)
-- `wavelength` (nm)
-- `transmittance` (percentage)
-- `pathlength` (cm)
-- `concentration` with units
+주요 분야:
+- `absorbance`(무차원)
+- `wavelength`(nm)
+- `transmittance`(백분율)
+- `pathlength`(cm)
+- `concentration`(단위 포함)
 
-### Plate Reader
-Schema: `plate-reader/REC/2024/06/plate-reader.schema.json`
+### 플레이트 리더
+스키마: `plate-reader/REC/2024/06/plate-reader.schema.json`
 
-Key fields:
+주요 분야:
 - `absorbance`
 - `fluorescence`
 - `luminescence`
@@ -109,38 +105,36 @@ Key fields:
 - `plate-identifier`
 
 ### qPCR
-Schema: `pcr/REC/2024/06/pcr.schema.json`
+스키마: `pcr/REC/2024/06/pcr.schema.json`
 
-Key fields:
+주요 분야:
 - `cycle-threshold-result`
 - `amplification-efficiency`
 - `melt-curve-datum`
 - `target-DNA-description`
 
-### Chromatography
-Schema: `liquid-chromatography/REC/2023/09/liquid-chromatography.schema.json`
+### 크로마토그래피
+스키마: `liquid-chromatography/REC/2023/09/liquid-chromatography.schema.json`
 
-Key fields:
-- `retention-time` (minutes)
+주요 분야:
+- `retention-time`(분)
 - `peak-area`
 - `peak-height`
 - `peak-width`
 - `chromatogram-data-cube`
 
-## Data Patterns
+## 데이터 패턴
 
-### Value Datum
-Simple value with unit:
-```json
+### 가치 기준
+단위가 포함된 단순 값:```json
 {
   "value": 1.5,
   "unit": "mL"
 }
 ```
 
-### Aggregate Datum
-Collection of related values:
-```json
+### 집계 데이텀
+관련 값의 수집:```json
 {
   "measurement-aggregate-document": {
     "measurement-document": [
@@ -151,9 +145,8 @@ Collection of related values:
 }
 ```
 
-### Data Cube
-Multi-dimensional array data:
-```json
+### 데이터 큐브
+다차원 배열 데이터:```json
 {
   "cube-structure": {
     "dimensions": [{"@componentDatatype": "double", "concept": "elapsed time"}],
@@ -166,11 +159,9 @@ Multi-dimensional array data:
 }
 ```
 
-## Validation
+## 검증
 
-Validate ASM output against official schemas:
-
-```python
+공식 스키마에 대해 ASM 출력을 검증합니다.```python
 import json
 import jsonschema
 from urllib.request import urlopen
@@ -186,12 +177,11 @@ schema_url = asm.get("$asm.manifest", {}).get("$ref")
 # Note: Full validation requires resolving $ref references
 ```
 
-## Schema Repository
+## 스키마 저장소
 
-Official schemas: https://gitlab.com/allotrope-public/asm/-/tree/main/json-schemas/adm
+공식 스키마: https://gitlab.com/allotrope-public/asm/-/tree/main/json-schemas/adm
 
-Schema structure:
-```
+스키마 구조:```
 json-schemas/adm/
 ├── cell-counting/
 │   └── REC/2024/09/
@@ -205,22 +195,21 @@ json-schemas/adm/
 └── ...
 ```
 
-## Common Issues
+## 일반적인 문제
 
-### Missing Fields
-Not all instrument exports contain all ASM fields. Report completeness:
-```python
+### 누락된 필드
+모든 계측기 내보내기에 모든 ASM 필드가 포함되는 것은 아닙니다. 보고서 완전성:```python
 def report_completeness(asm, expected_fields):
     found = set(extract_all_fields(asm))
     missing = expected_fields - found
     return len(found) / len(expected_fields) * 100
 ```
 
-### Unit Variations
-Instruments may use different unit formats. The allotropy library normalizes these:
-- "cells/mL" → "(cell/mL)"
+### 단위 변형
+기기는 다양한 단위 형식을 사용할 수 있습니다. 동소체 라이브러리는 다음을 정규화합니다.
+- "세포/mL" → "(세포/mL)"
 - "%" → "%"
 - "nm" → "nm"
 
-### Date Formats
-ASM uses ISO 8601: `2024-01-15T10:30:00Z`
+### 날짜 형식
+ASM은 ISO 8601을 사용합니다: `2024-01-15T10:30:00Z`
