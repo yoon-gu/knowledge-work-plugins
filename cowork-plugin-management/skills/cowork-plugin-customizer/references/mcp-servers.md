@@ -1,32 +1,32 @@
-# MCP Discovery and Connection
+# MCP 검색 및 연결
 
-How to find and connect MCPs during plugin customization.
+플러그인 커스터마이징 중 MCP를 찾고 연결하는 방법입니다.
 
-## Available Tools
+## 사용 가능한 도구
 
 ### `search_mcp_registry`
-Search the MCP directory for available connectors.
+MCP 디렉토리에서 사용 가능한 커넥터를 검색합니다.
 
-**Input:** `{ "keywords": ["array", "of", "search", "terms"] }`
+**입력:** `{ "keywords": ["array", "of", "search", "terms"] }`
 
-**Output:** Up to 10 results, each with:
-- `name`: MCP display name
-- `description`: One-liner description
-- `tools`: List of tool names the MCP provides
-- `url`: MCP endpoint URL (use this in `.mcp.json`)
-- `directoryUuid`: UUID for use with suggest_connectors
-- `connected`: Boolean - whether user has this MCP connected
+**출력:** 최대 10개의 결과, 각 항목에 포함:
+- `name`: MCP 표시 이름
+- `description`: 한 줄 설명
+- `tools`: MCP가 제공하는 도구 이름 목록
+- `url`: MCP 엔드포인트 URL (`.mcp.json`에 사용)
+- `directoryUuid`: suggest_connectors에 사용할 UUID
+- `connected`: Boolean - 사용자가 이 MCP에 연결되어 있는지 여부
 
 ### `suggest_connectors`
-Display Connect buttons to let users install/connect MCPs.
+사용자가 MCP를 설치/연결할 수 있도록 연결 버튼을 표시합니다.
 
-**Input:** `{ "directoryUuids": ["uuid1", "uuid2"] }`
+**입력:** `{ "directoryUuids": ["uuid1", "uuid2"] }`
 
-**Output:** Renders UI with Connect buttons for each MCP
+**출력:** 각 MCP에 대한 연결 버튼이 포함된 UI를 렌더링합니다
 
-## Category-to-Keywords Mapping
+## 카테고리-키워드 매핑
 
-| Category | Search Keywords |
+| 카테고리 | 검색 키워드 |
 |----------|-----------------|
 | `project-management` | `["asana", "jira", "linear", "monday", "tasks"]` |
 | `software-coding` | `["github", "gitlab", "bitbucket", "code"]` |
@@ -41,37 +41,37 @@ Display Connect buttons to let users install/connect MCPs.
 | `data-warehouse` | `["bigquery", "snowflake", "redshift"]` |
 | `conversation-intelligence` | `["gong", "chorus", "call recording"]` |
 
-## Workflow
+## 워크플로우
 
-1. **Find customization point**: Look for `~~`-prefixed values (e.g., `~~Jira`)
-2. **Check earlier phase findings**: Did you already learn which tool they use?
-   - **Yes**: Search for that specific tool to get its `url`, skip to step 5
-   - **No**: Continue to step 3
-3. **Search**: Call `search_mcp_registry` with mapped keywords
-4. **Present choices and ask user**: Show all results, ask which they use
-5. **Connect if needed**: If not connected, call `suggest_connectors`
-6. **Update MCP config**: Add config using the `url` from search results
+1. **커스터마이징 지점 찾기**: `~~` 접두사가 붙은 값을 확인합니다 (예: `~~Jira`)
+2. **이전 단계 발견 사항 확인**: 사용하는 도구를 이미 파악했나요?
+   - **예**: 해당 특정 도구를 검색하여 `url`을 얻고, 5단계로 건너뜁니다
+   - **아니오**: 3단계로 계속합니다
+3. **검색**: 매핑된 키워드로 `search_mcp_registry`를 호출합니다
+4. **선택지 제시 및 사용자에게 질문**: 모든 결과를 보여주고 어느 것을 사용하는지 질문합니다
+5. **필요시 연결**: 연결되어 있지 않은 경우 `suggest_connectors`를 호출합니다
+6. **MCP 설정 업데이트**: 검색 결과의 `url`을 사용하여 설정을 추가합니다
 
-## Updating Plugin MCP Configuration
+## 플러그인 MCP 설정 업데이트
 
-### Finding the Config File
+### 설정 파일 찾기
 
-1. **Check `plugin.json`** for an `mcpServers` field:
+1. **`plugin.json`**에서 `mcpServers` 필드를 확인합니다:
    ```json
    {
      "name": "my-plugin",
      "mcpServers": "./config/servers.json"
    }
    ```
-   If present, edit the file at that path.
+   해당 필드가 있으면 그 경로의 파일을 편집합니다.
 
-2. **If no `mcpServers` field**, use `.mcp.json` at the plugin root (default).
+2. **`mcpServers` 필드가 없는 경우**, 플러그인 루트의 `.mcp.json`을 사용합니다 (기본값).
 
-3. **If `mcpServers` points only to `.mcpb` files** (bundled servers), create a new `.mcp.json` at the plugin root.
+3. **`mcpServers`가 `.mcpb` 파일만 가리키는 경우** (번들된 서버), 플러그인 루트에 새 `.mcp.json`을 생성합니다.
 
-### Config File Format
+### 설정 파일 형식
 
-Both wrapped and unwrapped formats are supported:
+래핑 및 비래핑 형식 모두 지원됩니다:
 
 ```json
 {
@@ -84,8 +84,8 @@ Both wrapped and unwrapped formats are supported:
 }
 ```
 
-Use the `url` field from `search_mcp_registry` results.
+`search_mcp_registry` 결과의 `url` 필드를 사용하세요.
 
-### Directory Entries Without a URL
+### URL이 없는 디렉토리 항목
 
-Some directory entries have no `url` because the endpoint is dynamic — the admin provides it when connecting the server. These servers can still be referenced in the plugin's MCP config by **name**: if the MCP server name in the config matches the directory entry name, it is treated the same as a URL match.
+일부 디렉토리 항목은 엔드포인트가 동적이어서 `url`이 없습니다 — 관리자가 서버를 연결할 때 이를 제공합니다. 이러한 서버는 **이름**으로 플러그인의 MCP 설정에 참조할 수 있습니다: 설정의 MCP 서버 이름이 디렉토리 항목 이름과 일치하면 URL 일치와 동일하게 처리됩니다.

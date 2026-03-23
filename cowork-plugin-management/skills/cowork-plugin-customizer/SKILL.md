@@ -1,149 +1,149 @@
 ---
 name: cowork-plugin-customizer
 description: >
-  Customize a Claude Code plugin for a specific organization's tools and workflows.
-  Use when: customize plugin, set up plugin, configure plugin, tailor plugin, adjust plugin settings,
-  customize plugin connectors, customize plugin skill, tweak plugin, modify plugin configuration.
+  특정 조직의 도구와 워크플로우에 맞게 Claude Code 플러그인을 커스터마이징합니다.
+  사용 시점: 플러그인 커스터마이징, 플러그인 설정, 플러그인 구성, 플러그인 맞춤화, 플러그인 설정 조정,
+  플러그인 커넥터 커스터마이징, 플러그인 스킬 커스터마이징, 플러그인 수정, 플러그인 구성 변경.
 compatibility: Requires Cowork desktop app environment with access to mounted plugin directories (mnt/.local-plugins, mnt/.plugins).
 ---
 
-# Cowork Plugin Customization
+# Cowork 플러그인 커스터마이징
 
-Customize a plugin for a specific organization — either by setting up a generic plugin template for the first time, or by tweaking and refining an already-configured plugin.
+특정 조직을 위해 플러그인을 커스터마이징합니다 — 일반 플러그인 템플릿을 처음 설정하거나, 이미 구성된 플러그인을 미세 조정하는 방식으로 진행합니다.
 
-> **Finding the plugin**: To find the plugin's source files, run `find mnt/.local-plugins mnt/.plugins -type d -name "*<plugin-name>*"` to locate the plugin directory, then read its files to understand its structure before making changes. If you cannot find the plugin directory, the user is likely running this conversation in a remote container. Abort and let them know: "Customizing plugins is currently only available in the desktop app's Cowork mode."
+> **플러그인 찾기**: 플러그인 소스 파일을 찾으려면 `find mnt/.local-plugins mnt/.plugins -type d -name "*<plugin-name>*"` 명령을 실행하여 플러그인 디렉토리를 찾은 다음, 변경하기 전에 해당 파일을 읽어 구조를 파악하세요. 플러그인 디렉토리를 찾을 수 없는 경우, 사용자가 원격 컨테이너에서 이 대화를 실행 중일 가능성이 높습니다. 작업을 중단하고 다음과 같이 안내하세요: "플러그인 커스터마이징은 현재 데스크탑 앱의 Cowork 모드에서만 사용할 수 있습니다."
 
-## Determining the Customization Mode
+## 커스터마이징 모드 결정
 
-After locating the plugin, check for `~~`-prefixed placeholders: `grep -rn '~~\w' /path/to/plugin --include='*.md' --include='*.json'`
+플러그인을 찾은 후, `~~` 접두사가 붙은 플레이스홀더를 확인합니다: `grep -rn '~~\w' /path/to/plugin --include='*.md' --include='*.json'`
 
-> **Default rule**: If `~~` placeholders exist, default to **Generic plugin setup** unless the user explicitly asks to customize a specific part of the plugin.
+> **기본 규칙**: `~~` 플레이스홀더가 존재하면, 사용자가 플러그인의 특정 부분을 커스터마이징하도록 명시적으로 요청하지 않는 한 **일반 플러그인 설정** 모드로 기본 처리합니다.
 
-**1. Generic plugin setup** — The plugin contains `~~`-prefixed placeholders. These are customization points in a template that need to be replaced with real values (e.g., `~~Jira` → `Asana`, `~~your-team-channel` → `#engineering`).
+**1. 일반 플러그인 설정** — 플러그인에 `~~` 접두사가 붙은 플레이스홀더가 포함되어 있습니다. 이는 템플릿의 커스터마이징 지점으로, 실제 값으로 교체해야 합니다 (예: `~~Jira` → `Asana`, `~~your-team-channel` → `#engineering`).
 
-**2. Scoped customization** — No `~~` placeholders exist, and the user asked to customize a specific part of the plugin (e.g., "customize the connectors", "update the standup skill", "change the ticket tool"). Read the plugin files to find the relevant section(s) and focus only on those. Do not scan the entire plugin or present unrelated customization items.
+**2. 범위 지정 커스터마이징** — `~~` 플레이스홀더가 없고, 사용자가 플러그인의 특정 부분을 커스터마이징하도록 요청한 경우 (예: "커넥터 커스터마이징", "스탠드업 스킬 업데이트", "티켓 도구 변경"). 플러그인 파일을 읽어 관련 섹션을 찾고 해당 부분에만 집중하세요. 전체 플러그인을 스캔하거나 관련 없는 커스터마이징 항목을 제시하지 마세요.
 
-> **Legacy `commands/` directories**: Some plugins include a `commands/` directory. The Cowork UI now presents these alongside skills as a single "Skills" concept, so treat `commands/*.md` files the same way you would `skills/*/SKILL.md` files when customizing.
+> **레거시 `commands/` 디렉토리**: 일부 플러그인에는 `commands/` 디렉토리가 포함되어 있습니다. Cowork UI는 이제 이를 스킬과 함께 단일 "스킬" 개념으로 표시하므로, 커스터마이징 시 `commands/*.md` 파일을 `skills/*/SKILL.md` 파일과 동일하게 취급하세요.
 
-**3. General customization** — No `~~` placeholders exist, and the user wants to modify the plugin broadly. Read the plugin's files to understand its current configuration, then ask the user what they'd like to change.
+**3. 일반 커스터마이징** — `~~` 플레이스홀더가 없고, 사용자가 플러그인을 전반적으로 수정하려는 경우. 플러그인 파일을 읽어 현재 구성을 파악한 후, 사용자에게 변경하고 싶은 사항을 질문합니다.
 
-> **Important**: Never change the name of the plugin or skill being customized. Do not rename directories, files, or the plugin/skill name fields.
+> **중요**: 커스터마이징 중인 플러그인이나 스킬의 이름을 절대 변경하지 마세요. 디렉토리, 파일 또는 플러그인/스킬 이름 필드의 이름을 바꾸지 마세요.
 
-> **Nontechnical output**: All user-facing output (todo list items, questions, summaries) must be written in plain, nontechnical language. Never mention `~~` prefixes, placeholders, or customization points to the user. Frame everything in terms of the plugin's capabilities and the organization's tools.
+> **비기술적 출력**: 사용자에게 표시되는 모든 출력물(할 일 목록 항목, 질문, 요약)은 평이하고 비기술적인 언어로 작성해야 합니다. 사용자에게 `~~` 접두사, 플레이스홀더 또는 커스터마이징 지점을 언급하지 마세요. 모든 내용을 플러그인의 기능과 조직의 도구 관점에서 설명하세요.
 
-## Customization Workflow
+## 커스터마이징 워크플로우
 
-### Phase 0: Gather User Intent (scoped and general customization only)
+### 0단계: 사용자 의도 파악 (범위 지정 및 일반 커스터마이징만 해당)
 
-For **scoped customization** and **general customization** (not generic plugin setup), check whether the user provided free-form context alongside their request (e.g., "customize the standup skill — we do async standups in #eng-updates every morning").
+**범위 지정 커스터마이징** 및 **일반 커스터마이징**의 경우 (일반 플러그인 설정 제외), 사용자가 요청과 함께 자유 형식의 컨텍스트를 제공했는지 확인합니다 (예: "스탠드업 스킬 커스터마이징 — 우리는 매일 아침 #eng-updates에서 비동기 스탠드업을 합니다").
 
-- **If the user provided context**: Record it and use it to pre-fill answers in Phase 3 — skip asking questions that the user already answered here.
-- **If the user did not provide context**: Ask a single open-ended question using AskUserQuestion before proceeding. Tailor the question to what they asked to customize — e.g., "What changes do you have in mind for the brief skill?" or "What would you like to change about how this plugin works?" Keep it short and specific to their request.
+- **사용자가 컨텍스트를 제공한 경우**: 기록하고 3단계에서 답변을 미리 채우는 데 활용하세요 — 사용자가 이미 답변한 질문은 다시 묻지 마세요.
+- **사용자가 컨텍스트를 제공하지 않은 경우**: 진행하기 전에 AskUserQuestion을 사용하여 단일 개방형 질문을 합니다. 커스터마이징 요청 내용에 맞게 질문을 조정하세요 — 예: "브리프 스킬에서 어떤 변경 사항을 원하시나요?" 또는 "이 플러그인의 작동 방식에서 무엇을 변경하고 싶으신가요?" 짧고 요청 내용에 구체적으로 맞게 유지하세요.
 
-  Use their response (if any) as additional context throughout the remaining phases.
+  응답(있는 경우)을 나머지 단계 전반에 걸쳐 추가 컨텍스트로 활용하세요.
 
-### Phase 1: Gather Context from Knowledge MCPs
+### 1단계: 지식 MCP에서 컨텍스트 수집
 
-Use company-internal knowledge MCPs to collect information relevant to the customization scope. See `references/search-strategies.md` for detailed query patterns by category.
+회사 내부 지식 MCP를 사용하여 커스터마이징 범위와 관련된 정보를 수집합니다. 카테고리별 세부 쿼리 패턴은 `references/search-strategies.md`를 참조하세요.
 
-**What to gather** (scope to what's relevant):
+**수집할 내용** (관련 있는 것으로 범위 제한):
 
-- Tool names and services the organization uses
-- Organizational processes and workflows
-- Team conventions (naming, statuses, estimation scales)
-- Configuration values (workspace IDs, project names, team identifiers)
+- 조직에서 사용하는 도구 이름 및 서비스
+- 조직의 프로세스 및 워크플로우
+- 팀 규칙 (명명 규칙, 상태, 추정 척도)
+- 구성 값 (워크스페이스 ID, 프로젝트 이름, 팀 식별자)
 
-**Sources to search:**
+**검색할 소스:**
 
-1. **Chat/Slack MCPs** — tool mentions, integrations, workflow discussions
-2. **Document MCPs** — onboarding docs, tool guides, setup instructions
-3. **Email MCPs** — license notifications, admin emails, setup invitations
+1. **Chat/Slack MCP** — 도구 언급, 통합, 워크플로우 논의
+2. **문서 MCP** — 온보딩 문서, 도구 가이드, 설정 안내
+3. **이메일 MCP** — 라이선스 알림, 관리자 이메일, 설정 초대
 
-Record all findings for use in Phase 3.
+모든 발견 사항을 기록하여 3단계에서 활용하세요.
 
-### Phase 2: Create Todo List
+### 2단계: 할 일 목록 작성
 
-Build a todo list of changes to make, scoped appropriately:
+적절한 범위로 변경 사항의 할 일 목록을 작성합니다:
 
-- **For scoped customization**: Only include items related to the specific section the user asked about.
-- **For generic plugin setup**: Run `grep -rn '~~\w' /path/to/plugin --include='*.md' --include='*.json'` to find all placeholder customization points. Group them by theme.
-- **For general customization**: Read the plugin files, understand the current config, and based on the user's request, identify what needs to change.
+- **범위 지정 커스터마이징의 경우**: 사용자가 요청한 특정 섹션과 관련된 항목만 포함합니다.
+- **일반 플러그인 설정의 경우**: `grep -rn '~~\w' /path/to/plugin --include='*.md' --include='*.json'`을 실행하여 모든 플레이스홀더 커스터마이징 지점을 찾습니다. 주제별로 그룹화합니다.
+- **일반 커스터마이징의 경우**: 플러그인 파일을 읽고 현재 구성을 파악한 후, 사용자의 요청을 바탕으로 변경이 필요한 사항을 파악합니다.
 
-Use user-friendly descriptions that focus on the plugin's purpose:
+플러그인의 목적에 초점을 맞춘 사용자 친화적인 설명을 사용하세요:
 
-- **Good**: "Learn how standup prep works at Company"
-- **Bad**: "Replace placeholders in skills/standup-prep/SKILL.md"
+- **좋은 예**: "회사에서 스탠드업 준비가 어떻게 이루어지는지 파악"
+- **나쁜 예**: "skills/standup-prep/SKILL.md의 플레이스홀더 교체"
 
-### Phase 3: Complete Todo Items
+### 3단계: 할 일 항목 완료
 
-Work through each item using context from Phase 0 and Phase 1.
+0단계와 1단계의 컨텍스트를 활용하여 각 항목을 처리합니다.
 
-**If the user's free-form input (Phase 0) or knowledge MCPs (Phase 1) provided a clear answer**: Apply directly without confirmation.
+**사용자의 자유 형식 입력(0단계) 또는 지식 MCP(1단계)에서 명확한 답변을 얻은 경우**: 확인 없이 직접 적용합니다.
 
-**Otherwise**: Use AskUserQuestion. Don't assume "industry standard" defaults are correct — if neither the user's input nor knowledge MCPs provided a specific answer, ask. Note: AskUserQuestion always includes a Skip button and a free-text input box for custom answers, so do not include `None` or `Other` as options.
+**그렇지 않은 경우**: AskUserQuestion을 사용합니다. "업계 표준" 기본값이 올바르다고 가정하지 마세요 — 사용자 입력이나 지식 MCP에서 구체적인 답변을 얻지 못한 경우 질문하세요. 참고: AskUserQuestion에는 항상 건너뛰기 버튼과 사용자 지정 답변을 위한 자유 텍스트 입력창이 포함되어 있으므로, `없음` 또는 `기타`를 옵션으로 포함하지 마세요.
 
-**Types of changes:**
+**변경 유형:**
 
-1. **Placeholder replacements** (generic setup): `~~Jira` → `Asana`, `~~your-org-channel` → `#engineering`
-2. **Content updates**: Modifying instructions, skills, workflows, or references to match the organization
-3. **URL pattern updates**: `tickets.example.com/your-team/123` → `app.asana.com/0/PROJECT_ID/TASK_ID`
-4. **Configuration values**: Workspace IDs, project names, team identifiers
+1. **플레이스홀더 교체** (일반 설정): `~~Jira` → `Asana`, `~~your-org-channel` → `#engineering`
+2. **콘텐츠 업데이트**: 조직에 맞게 지침, 스킬, 워크플로우 또는 참조 수정
+3. **URL 패턴 업데이트**: `tickets.example.com/your-team/123` → `app.asana.com/0/PROJECT_ID/TASK_ID`
+4. **구성 값**: 워크스페이스 ID, 프로젝트 이름, 팀 식별자
 
-If user doesn't know or skips, leave the value unchanged (or the `~~`-prefixed placeholder, for generic setup).
+사용자가 모르거나 건너뛰는 경우, 값을 변경하지 않고 그대로 둡니다 (일반 설정의 경우 `~~` 접두사 플레이스홀더 유지).
 
-### Phase 4: Search for Useful MCPs
+### 4단계: 유용한 MCP 검색
 
-After customization items have been resolved, connect MCPs for any tools that were identified or changed. See `references/mcp-servers.md` for the full workflow, category-to-keywords mapping, and config file format.
+커스터마이징 항목이 해결된 후, 식별되거나 변경된 도구에 대한 MCP를 연결합니다. 전체 워크플로우, 카테고리-키워드 매핑 및 구성 파일 형식은 `references/mcp-servers.md`를 참조하세요.
 
-For each tool identified during customization:
+커스터마이징 중 식별된 각 도구에 대해:
 
-1. Search the registry: `search_mcp_registry(keywords=[...])` using category keywords from `references/mcp-servers.md`, or search for the specific tool name if already known
-2. If unconnected: `suggest_connectors(directoryUuids=["chosen-uuid"])` — user completes auth
-3. Update the plugin's MCP config file (check `plugin.json` for custom location, otherwise `.mcp.json` at root)
+1. 레지스트리 검색: `references/mcp-servers.md`의 카테고리 키워드를 사용하여 `search_mcp_registry(keywords=[...])`를 호출하거나, 이미 알려진 경우 특정 도구 이름으로 검색
+2. 연결되지 않은 경우: `suggest_connectors(directoryUuids=["chosen-uuid"])` — 사용자가 인증 완료
+3. 플러그인의 MCP 구성 파일 업데이트 (`plugin.json`에서 사용자 지정 위치 확인, 없으면 루트의 `.mcp.json` 사용)
 
-Collect all MCP results and present them together in the summary output (see below) — don't present MCPs one at a time during this phase.
+모든 MCP 결과를 수집하여 요약 출력에 함께 제시하세요 (아래 참조) — 이 단계에서 MCP를 하나씩 제시하지 마세요.
 
-## Packaging the Plugin
+## 플러그인 패키징
 
-After all customizations are applied, package the plugin as a `.plugin` file for the user:
+모든 커스터마이징이 적용된 후, 사용자를 위해 플러그인을 `.plugin` 파일로 패키징합니다:
 
-1. **Zip the plugin directory** (excluding `setup/` since it's no longer needed):
+1. **플러그인 디렉토리 압축** (`setup/`은 더 이상 필요하지 않으므로 제외):
    ```bash
    cd /path/to/plugin && zip -r /tmp/plugin-name.plugin . -x "setup/*" && cp /tmp/plugin-name.plugin /path/to/outputs/plugin-name.plugin
    ```
-2. **Present the file to the user** with the `.plugin` extension so they can install it directly. (Presenting the .plugin file will show to the user as a rich preview where they can look through the plugin files, and they can accept the customization by pressing a button.)
+2. **사용자에게 파일 제시** - `.plugin` 확장자로 직접 설치할 수 있도록 제시합니다. (.plugin 파일을 제시하면 사용자에게 플러그인 파일을 살펴볼 수 있는 리치 미리보기로 표시되며, 버튼을 눌러 커스터마이징을 수락할 수 있습니다.)
 
-> **Important**: Always create the zip in `/tmp/` first, then copy to the outputs folder. Writing directly to the outputs folder may fail due to permissions and leave behind temporary files.
+> **중요**: 항상 `/tmp/`에 먼저 zip을 생성한 후 출력 폴더로 복사하세요. 출력 폴더에 직접 쓰면 권한 문제로 실패하고 임시 파일이 남을 수 있습니다.
 
-> **Naming**: Use the original plugin directory name for the `.plugin` file (e.g., if the plugin directory is `coder`, the output file should be `coder.plugin`). Do not rename the plugin or its files during customization — only replace placeholder values and update content.
+> **네이밍**: `.plugin` 파일에는 원래 플러그인 디렉토리 이름을 사용하세요 (예: 플러그인 디렉토리가 `coder`인 경우 출력 파일은 `coder.plugin`이어야 합니다). 커스터마이징 중에 플러그인이나 파일의 이름을 변경하지 마세요 — 플레이스홀더 값 교체 및 콘텐츠 업데이트만 수행하세요.
 
-## Summary Output
+## 요약 출력
 
-After customization, present the user with a summary of what was learned grouped by source. Always include the MCPs sections showing which MCPs were connected during setup and which ones the user should still connect:
+커스터마이징 후, 소스별로 그룹화하여 학습 내용의 요약을 사용자에게 제시합니다. 설정 중 연결된 MCP와 사용자가 아직 연결해야 할 MCP를 보여주는 MCP 섹션을 항상 포함하세요:
 
 ```markdown
-## From searching Slack
+## Slack 검색에서 확인한 내용
 
-- You use Asana for project management
-- Sprint cycles are 2 weeks
+- 프로젝트 관리에 Asana를 사용합니다
+- 스프린트 주기는 2주입니다
 
-## From searching documents
+## 문서 검색에서 확인한 내용
 
-- Story points use T-shirt sizes
+- 스토리 포인트는 티셔츠 사이즈를 사용합니다
 
-## From your answers
+## 답변에서 확인한 내용
 
-- Ticket statuses are: Backlog, In Progress, In Review, Done
+- 티켓 상태: Backlog, In Progress, In Review, Done
 ```
 
-Then present the MCPs that were connected during setup and any that the user should still connect, with instructions on how to connect them.
+그런 다음 설정 중 연결된 MCP와 사용자가 아직 연결해야 할 MCP를 연결 방법과 함께 제시하세요.
 
-If no knowledge MCPs were available in Phase 1, and the user had to answer at least one question manually, include a note at the end:
+1단계에서 사용 가능한 지식 MCP가 없었고, 사용자가 하나 이상의 질문에 수동으로 답변해야 했던 경우, 끝에 다음 메모를 포함하세요:
 
-> By the way, connecting sources like Slack or Microsoft Teams would let me find answers automatically next time you customize a plugin.
+> 참고로, Slack이나 Microsoft Teams 같은 소스를 연결하면 다음에 플러그인을 커스터마이징할 때 자동으로 답변을 찾을 수 있습니다.
 
-## Additional Resources
+## 추가 리소스
 
-- **`references/mcp-servers.md`** — MCP discovery workflow, category-to-keywords mapping, config file locations
-- **`references/search-strategies.md`** — Knowledge MCP query patterns for finding tool names and org values
-- **`examples/customized-mcp.json`** — Example fully configured `.mcp.json`
+- **`references/mcp-servers.md`** — MCP 검색 워크플로우, 카테고리-키워드 매핑, 구성 파일 위치
+- **`references/search-strategies.md`** — 도구 이름 및 조직 값 찾기를 위한 지식 MCP 쿼리 패턴
+- **`examples/customized-mcp.json`** — 완전히 구성된 `.mcp.json` 예시
