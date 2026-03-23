@@ -1,21 +1,20 @@
-# Component Schemas
+# 구성요소 스키마
 
-Detailed format specifications for every plugin component type. Reference this when implementing components in Phase 4.
+모든 플러그인 구성 요소 유형에 대한 자세한 형식 사양입니다. 4단계에서 구성 요소를 구현할 때 이를 참조하세요.
 
-## Skills
+## 기술
 
-**Location**: `skills/skill-name/SKILL.md`
-**Format**: Markdown with YAML frontmatter
+**위치**: `skills/skill-name/SKILL.md` **형식**: YAML 머리말을 사용한 마크다운
 
-### Frontmatter Fields
+### 머리말 필드
 
-| Field         | Required | Type   | Description                                             |
-| ------------- | -------- | ------ | ------------------------------------------------------- |
-| `name`        | Yes      | String | Skill identifier (lowercase, hyphens; matches dir name) |
-| `description` | Yes      | String | Third-person description with trigger phrases           |
-| `metadata`    | No       | Map    | Arbitrary key-value pairs (e.g., `version`, `author`)   |
+| 필드 | 필수의 | 유형 | 설명 |
+| ------------- | -------- | ------ | ------------------------------------------ |
+| `name` | 예 | 끈 | 스킬 식별자(소문자, 하이픈, 디렉터리 이름과 일치) |
+| `description` | 예 | 끈 | 트리거 문구가 포함된 3인칭 설명 |
+| `metadata` | 아니요 | 지도 | 임의의 키-값 쌍(예: `version`, `author`) |
 
-### Example Skill
+### 예시 스킬
 
 ```yaml
 ---
@@ -29,13 +28,13 @@ metadata:
 ---
 ```
 
-### Writing Style Rules
+### 글쓰기 스타일 규칙
 
-- **Frontmatter description**: Third-person ("This skill should be used when..."), with specific trigger phrases in quotes.
-- **Body**: Imperative/infinitive form ("Parse the config file," not "You should parse the config file").
-- **Length**: Keep SKILL.md body under 3,000 words (ideally 1,500-2,000). Move detailed content to `references/`.
+- **본문 설명**: 3인칭("This skill should be used when..."), 특정 트리거 문구가 따옴표로 묶여 있습니다.
+- **본문**: 명령형/부정사 형식("You should parse the config file"이 아닌 "Parse the config file,").
+- **길이**: SKILL.md 본문을 3,000단어(이상적으로는 1,500-2,000) 미만으로 유지하세요. 자세한 내용을 `references/`로 이동하세요.
 
-### Skill Directory Structure
+### 스킬 디렉토리 구조
 
 ```
 skill-name/
@@ -49,28 +48,27 @@ skill-name/
     └── validate.sh
 ```
 
-### Progressive Disclosure Levels
+### 점진적 공개 수준
 
-1. **Metadata** (always in context): name + description (~100 words)
-2. **SKILL.md body** (when skill triggers): core knowledge (<5k words)
-3. **Bundled resources** (as needed): references, examples, scripts (unlimited)
+1. **메타데이터**(항상 맥락에 있음): 이름 + 설명(최대 100단어)
+2. **SKILL.md 본문**(스킬 발동 시): 핵심 지식(<5,000단어)
+3. **번들 리소스**(필요에 따라): 참조, 예시, 스크립트(무제한)
 
-## Agents
+## 자치령 대표
 
-**Location**: `agents/agent-name.md`
-**Format**: Markdown with YAML frontmatter
+**위치**: `agents/agent-name.md` **형식**: YAML 머리말을 사용한 마크다운
 
-### Frontmatter Fields
+### 머리말 필드
 
-| Field         | Required | Type   | Description                                         |
-| ------------- | -------- | ------ | --------------------------------------------------- |
-| `name`        | Yes      | String | Lowercase, hyphens, 3-50 chars                      |
-| `description` | Yes      | String | Triggering conditions with `<example>` blocks       |
-| `model`       | Yes      | String | `inherit`, `sonnet`, `opus`, or `haiku`             |
-| `color`       | Yes      | String | `blue`, `cyan`, `green`, `yellow`, `magenta`, `red` |
-| `tools`       | No       | Array  | Restrict to specific tools                          |
+| 필드 | 필수의 | 유형 | 설명 |
+| ------------- | -------- | ------ | -------------------------------------- |
+| `name` | 예 | 끈 | 소문자, 하이픈, 3~50자 |
+| `description` | 예 | 끈 | `<example>` 블록을 사용한 트리거 조건 |
+| `model` | 예 | 끈 | `inherit`, `sonnet`, `opus` 또는 `haiku` |
+| `color` | 예 | 끈 | `blue`, `cyan`, `green`, `yellow`, `magenta`, `red` |
+| `tools` | 아니요 | 정렬 | 특정 도구로 제한 |
 
-### Example Agent
+### 예시 에이전트
 
 ```markdown
 ---
@@ -124,43 +122,42 @@ Present findings grouped by severity (Critical, Warning, Info) with:
 - Suggested fix
 ```
 
-### Agent Naming Rules
+### 에이전트 명명 규칙
 
-- 3-50 characters
-- Lowercase letters, numbers, hyphens only
-- Must start and end with alphanumeric
-- No underscores, spaces, or special characters
+- 3~50자
+- 소문자, 숫자, 하이픈만 가능
+- 영숫자로 시작하고 끝나야 합니다.
+- 밑줄, 공백 또는 특수 문자가 없습니다.
 
-### Color Guidelines
+### 색상 지침
 
-- Blue/Cyan: Analysis, review
-- Green: Success-oriented tasks
-- Yellow: Caution, validation
-- Red: Critical, security
-- Magenta: Creative, generation
+- 파란색/청록색: 분석, 검토
+- 녹색: 성공 지향적 작업
+- 노란색: 주의, 검증
+- 빨간색: 위험, 보안
+- 마젠타: 크리에이티브, 세대
 
-## Hooks
+## 후크
 
-**Location**: `hooks/hooks.json`
-**Format**: JSON
+**위치**: `hooks/hooks.json` **형식**: JSON
 
-### Available Events
+### 이용 가능한 이벤트
 
-| Event              | When it fires                   |
-| ------------------ | ------------------------------- |
-| `PreToolUse`       | Before a tool call executes     |
-| `PostToolUse`      | After a tool call completes     |
-| `Stop`             | When Claude finishes a response |
-| `SubagentStop`     | When a subagent finishes        |
-| `SessionStart`     | When a session begins           |
-| `SessionEnd`       | When a session ends             |
-| `UserPromptSubmit` | When the user sends a message   |
-| `PreCompact`       | Before context compaction       |
-| `Notification`     | When a notification fires       |
+| 이벤트 | 불이 붙을 때 |
+| ------------------ | ------------------ |
+| `PreToolUse` | 도구 호출이 실행되기 전 |
+| `PostToolUse` | 도구 호출이 완료된 후 |
+| `Stop` | 클로드가 응답을 마치면 |
+| `SubagentStop` | 하위 에이전트가 완료되면 |
+| `SessionStart` | 세션이 시작되면 |
+| `SessionEnd` | 세션이 종료되면 |
+| `UserPromptSubmit` | 사용자가 메시지를 보낼 때 |
+| `PreCompact` | 컨텍스트 압축 전 |
+| `Notification` | 알림이 실행될 때 |
 
-### Hook Types
+### 후크 유형
 
-**Prompt-based** (recommended for complex logic):
+**프롬프트 기반**(복잡한 로직에 권장):
 
 ```json
 {
@@ -170,9 +167,9 @@ Present findings grouped by severity (Critical, Warning, Info) with:
 }
 ```
 
-Supported events: Stop, SubagentStop, UserPromptSubmit, PreToolUse.
+지원되는 이벤트: Stop, SubagentStop, UserPromptSubmit, PreToolUse.
 
-**Command-based** (deterministic checks):
+**명령 기반**(결정적 검사):
 
 ```json
 {
@@ -182,7 +179,7 @@ Supported events: Stop, SubagentStop, UserPromptSubmit, PreToolUse.
 }
 ```
 
-### Example hooks.json
+### 예시 Hooks.json
 
 ```json
 {
@@ -213,9 +210,9 @@ Supported events: Stop, SubagentStop, UserPromptSubmit, PreToolUse.
 }
 ```
 
-### Hook Output Format (Command Hooks)
+### 후크 출력 형식(명령 후크)
 
-Command hooks return JSON to stdout:
+명령 후크는 JSON을 stdout으로 반환합니다.
 
 ```json
 {
@@ -224,16 +221,15 @@ Command hooks return JSON to stdout:
 }
 ```
 
-Decisions: `approve`, `block`, `ask_user` (ask for confirmation).
+결정: `approve`, `block`, `ask_user`(확인 요청).
 
-## MCP Servers
+## MCP 서버
 
-**Location**: `.mcp.json` at plugin root
-**Format**: JSON
+**위치**: 플러그인 루트의 `.mcp.json` **형식**: JSON
 
-### Server Types
+### 서버 유형
 
-**stdio** (local process):
+**stdio** (로컬 프로세스):
 
 ```json
 {
@@ -249,7 +245,7 @@ Decisions: `approve`, `block`, `ask_user` (ask for confirmation).
 }
 ```
 
-**SSE** (remote server, server-sent events transport):
+**SSE**(원격 서버, 서버에서 보낸 이벤트 전송):
 
 ```json
 {
@@ -262,7 +258,7 @@ Decisions: `approve`, `block`, `ask_user` (ask for confirmation).
 }
 ```
 
-**HTTP** (remote server, streamable HTTP transport):
+**HTTP**(원격 서버, 스트리밍 가능한 HTTP 전송):
 
 ```json
 {
@@ -278,36 +274,35 @@ Decisions: `approve`, `block`, `ask_user` (ask for confirmation).
 }
 ```
 
-### Environment Variable Expansion
+### 환경변수 확장
 
-All MCP configs support `${VAR_NAME}` substitution:
+모든 MCP 구성은 `${VAR_NAME}` 대체를 지원합니다.
 
-- `${CLAUDE_PLUGIN_ROOT}` — plugin directory (always use for portability)
-- `${ANY_ENV_VAR}` — user environment variables
+- `${CLAUDE_PLUGIN_ROOT}` — 플러그인 디렉터리(항상 이식성을 위해 사용)
+- `${ANY_ENV_VAR}` — 사용자 환경 변수
 
-Document all required environment variables in the plugin README.
+플러그인 README에 필요한 모든 환경 변수를 문서화하세요.
 
-### Directory Servers Without a URL
+### URL이 없는 디렉토리 서버
 
-Some MCP directory entries have no `url` because the endpoint is dynamic. Plugins can reference these servers by **name** instead — if the server name in the plugin's MCP config matches the directory entry name, it is treated the same as a URL match.
+엔드포인트가 동적이기 때문에 일부 MCP 디렉터리 항목에는 `url`이 없습니다. 플러그인은 대신 **이름**으로 이러한 서버를 참조할 수 있습니다. 플러그인의 MCP 구성에 있는 서버 이름이 디렉터리 항목 이름과 일치하면 URL 일치와 동일하게 처리됩니다.
 
-## Commands (Legacy)
+## 명령(레거시)
 
-> **Prefer `skills/*/SKILL.md` for new plugins.** The Cowork UI now presents commands and skills as a single "Skills" concept. The `commands/` format still works, but only use it if you specifically need the single-file format with `$ARGUMENTS`/`$1` substitution and inline bash execution.
+> **새 플러그인에는 `skills/*/SKILL.md`을(를) 선호하세요.** 이제 Cowork UI는 명령과 기술을 단일 "Skills" 개념으로 표시합니다. `commands/` 형식은 여전히 ​​작동하지만 `$ARGUMENTS`/`$1` 대체 및 인라인 bash 실행이 포함된 단일 파일 형식이 특별히 필요한 경우에만 사용하십시오.
 
-**Location**: `commands/command-name.md`
-**Format**: Markdown with optional YAML frontmatter
+**위치**: `commands/command-name.md` **형식**: 선택적 YAML 머리말이 포함된 마크다운
 
-### Frontmatter Fields
+### 머리말 필드
 
-| Field           | Required | Type            | Description                                         |
-| --------------- | -------- | --------------- | --------------------------------------------------- |
-| `description`   | No       | String          | Brief description shown in `/help` (under 60 chars) |
-| `allowed-tools` | No       | String or Array | Tools the command can use                           |
-| `model`         | No       | String          | Model override: `sonnet`, `opus`, `haiku`           |
-| `argument-hint` | No       | String          | Documents expected arguments for autocomplete       |
+| 필드 | 필수의 | 유형 | 설명 |
+| --------------- | -------- | --------------- | -------------------------------------- |
+| `description` | 아니요 | 끈 | `/help`에 표시된 간략한 설명(60자 미만) |
+| `allowed-tools` | 아니요 | 문자열 또는 배열 | 명령이 사용할 수 있는 도구 |
+| `model` | 아니요 | 끈 | 모델 재정의: `sonnet`, `opus`, `haiku` |
+| `argument-hint` | 아니요 | 끈 | 자동 완성에 대한 예상 인수를 문서화합니다. |
 
-### Example Command
+### 예제 명령
 
 ```markdown
 ---
@@ -326,15 +321,15 @@ Review @$1 for security vulnerabilities including:
 Provide specific line numbers, severity ratings, and remediation suggestions.
 ```
 
-### Key Rules
+### 주요 규칙
 
-- Commands are instructions FOR Claude, not messages for the user. Write them as directives.
-- `$ARGUMENTS` captures all arguments as a single string; `$1`, `$2`, `$3` capture positional arguments.
-- `@path` syntax includes file contents in the command context.
-- `!` backtick syntax executes bash inline for dynamic context (e.g., `` !`git diff --name-only` ``).
-- Use `${CLAUDE_PLUGIN_ROOT}` to reference plugin files portably.
+- 명령은 사용자를 위한 메시지가 아니라 Claude를 위한 지침입니다. 지시어로 작성하세요.
+- `$ARGUMENTS`은 모든 인수를 단일 문자열로 캡처합니다. `$1`, `$2`, `$3` 위치 인수를 캡처합니다.
+- `@path` 구문에는 명령 컨텍스트의 파일 내용이 포함됩니다.
+- `!` 백틱 구문은 동적 컨텍스트에 대해 bash 인라인을 실행합니다(예: `` !`git diff --name-only` ``).
+- 플러그인 파일을 이식적으로 참조하려면 `${CLAUDE_PLUGIN_ROOT}`을(를) 사용하세요.
 
-### allowed-tools Patterns
+### 허용된 도구 패턴
 
 ```yaml
 # Specific tools
@@ -347,12 +342,11 @@ allowed-tools: Bash(npm:*), Read
 allowed-tools: ["mcp__plugin_name_server__tool_name"]
 ```
 
-## CONNECTORS.md
+## 커넥터.md
 
-**Location**: Plugin root
-**When to create**: When the plugin references external tools by category rather than specific product
+**위치**: 플러그인 루트 **생성 시기**: 플러그인이 특정 제품이 아닌 카테고리별로 외부 도구를 참조하는 경우
 
-### Format
+### 체재
 
 ```markdown
 # Connectors
@@ -374,23 +368,23 @@ rather than specific products.
 | Project tracker | `~~project tracker` | Linear           | Asana, Jira, Monday      |
 ```
 
-### Using ~~ Placeholders
+### ~~ 자리 표시자 사용
 
-In plugin files (skills, agents), reference tools generically:
+플러그인 파일(스킬, 에이전트)에서 참조 도구는 일반적으로 다음과 같습니다.
 
 ```markdown
 Check ~~project tracker for open tickets assigned to the user.
 Post a summary to ~~chat in the team channel.
 ```
 
-During customization (via the cowork-plugin-customizer skill), these get replaced with specific tool names.
+cowork-plugin-customizer 기술을 통해 사용자 정의하는 동안 특정 도구 이름으로 대체됩니다.
 
-## README.md
+## 읽어보기.md
 
-Every plugin should include a README with:
+모든 플러그인에는 다음과 같은 README가 포함되어야 합니다.
 
-1. **Overview** — what the plugin does
-2. **Components** — list of skills, agents, hooks, MCP servers
-3. **Setup** — any required environment variables or configuration
-4. **Usage** — how to trigger each skill
-5. **Customization** — if CONNECTORS.md exists, mention it
+1. **개요** — 플러그인의 기능
+2. **구성 요소** — 스킬, 에이전트, 후크, MCP 서버 목록
+3. **설정** — 필요한 환경 변수 또는 구성
+4. **사용법** — 각 스킬을 발동하는 방법
+5. **사용자 정의** — CONNECTORS.md가 존재하는 경우 이를 언급하세요.

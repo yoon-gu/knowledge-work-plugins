@@ -1,18 +1,18 @@
-# Connectors
+# 커넥터
 
-## How tool references work
+## 도구 참조 작동 방식
 
-Plugin files use `~~category` as a placeholder for whatever tool the user connects in that category. For example, `~~data warehouse` might mean Snowflake, BigQuery, or any other warehouse with an MCP server.
+플러그인 파일은 해당 카테고리에서 사용자가 연결하는 도구에 대한 자리 표시자로 `~~category`을 사용합니다. 예를 들어 `~~data warehouse`은 Snowflake, BigQuery 또는 MCP 서버가 있는 기타 웨어하우스를 의미할 수 있습니다.
 
-Plugins are **tool-agnostic** — they describe workflows in terms of categories (data warehouse, notebook, product analytics, etc.) rather than specific products. The `.mcp.json` pre-configures specific MCP servers, but any MCP server in that category works.
+플러그인은 **도구에 구애받지** 않습니다. 플러그인은 특정 제품이 아닌 카테고리(데이터 웨어하우스, 노트북, 제품 분석 등) 측면에서 워크플로를 설명합니다. `.mcp.json`은 특정 MCP 서버를 사전 구성하지만 해당 범주의 모든 MCP 서버가 작동합니다.
 
-## Connectors for this plugin
+## 이 플러그인의 커넥터
 
-| Category | Placeholder | Included servers | Other options |
+| 범주 | 자리 표시자 | 포함된 서버 | 기타 옵션 |
 |----------|-------------|-----------------|---------------|
-| Data warehouse | `~~data warehouse` | Snowflake\*, Databricks\*, BigQuery, Definite | Redshift, PostgreSQL, MySQL |
-| Notebook | `~~notebook` | Hex | Jupyter, Deepnote, Observable |
-| Product analytics | `~~product analytics` | Amplitude | Mixpanel, Heap |
-| Project tracker | `~~project tracker` | Atlassian (Jira/Confluence) | Linear, Asana |
+| 데이터 웨어하우스 | `~~data warehouse` | Snowflake\*, Databricks\*, BigQuery, 확정 | 레드시프트, PostgreSQL, MySQL |
+| 공책 | `~~notebook` | 마녀 | 주피터, 딥노트, 옵저버블 |
+| 제품 분석 | `~~product analytics` | 진폭 | 믹스패널, 힙 |
+| 프로젝트 트래커 | `~~project tracker` | Atlassian(Jira/Confluence) | 리니어, 아사나 |
 
-\* Placeholder — MCP URL not yet configured
+\* 자리 표시자 — MCP URL이 아직 구성되지 않았습니다.

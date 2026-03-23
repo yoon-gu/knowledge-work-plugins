@@ -1,28 +1,28 @@
-# veloVI를 사용한 RNA 속도
+# veloVI를 사용하는 RNA 속도
 
-이 참고 자료는 기존 속도 방법을 개선한 딥 러닝 접근 방식인 veloVI를 사용한 RNA 속도 분석을 다룹니다.
+이 참고 자료는 기본 속도 방법을 개선한 딥 러닝 방식으로 veloVI를 사용하여 RNA 속도 분석을 다뤘습니다.
 
 ## 개요
 
-RNA 속도는 다음을 모델링하여 세포의 미래 상태를 추정합니다.
-- **접합되지 않은 RNA**: 새로 전사되었으며 인트론이 포함되어 있습니다.
-- **접합된 RNA**: 성숙한 mRNA, 인트론 제거됨
+RNA 속도는 다음을 표시하여 세포의 현재 상태를 계산합니다.
+- **접합되지 않은 RNA**: 새로 녹음된 인트론이 포함되어 있습니다.
+- **접합된 RNA**: 세션 mRNA, 인트론 제거됨
 
-스플라이싱되지 않은 비율과 스플라이싱된 비율은 유전자가 상향 조절되는지 하향 조절되는지 여부를 나타냅니다.
+스플라이싱이 아닌 외부 스플라이싱된 컨테이너는 보호가 필요합니다.
 
 ## 왜 veloVI인가?
 
 기존 방법(velocyto, scVelo)에는 다음과 같은 제한 사항이 있습니다.
-- 정상상태 또는 동적 모델 가정
-- 소음에 민감함
-- 일괄 효과를 처리하지 마세요
+- 현재 상태가 유지되고 있습니까?
+- 압박감에 민감함
+- 효과를 처리하지 마세요.
 
 veloVI는 다음을 통해 이러한 문제를 해결합니다.
-- 확률적 모델링
-- 더 나은 불확실성 정량화
+- 재미있는 모델
+- 더 나은 연맹 정량화
 - scVI 프레임워크와 통합
 
-## 전제조건
+## 조건
 
 ```python
 import scvi
@@ -34,7 +34,7 @@ print(f"scvi-tools version: {scvi.__version__}")
 print(f"scvelo version: {scv.__version__}")
 ```
 
-## 1단계: 접합/비접합 개수 생성
+## 1단계: 및/비접합 구성
 
 ### BAM 파일에서(velocyto)
 
@@ -77,7 +77,7 @@ print(f"Spliced shape: {adata.layers['spliced'].shape}")
 print(f"Unspliced shape: {adata.layers['unspliced'].shape}")
 ```
 
-### 기존 AnnData와 병합
+### 기존 AnnData의 밸브
 
 ```python
 # If you have separate loom and h5ad
@@ -88,7 +88,7 @@ adata = sc.read_h5ad("processed.h5ad")
 adata = scv.utils.merge(adata, ldata)
 ```
 
-## 3단계: 속도 전처리
+## 3단계: 속도전처리
 
 ```python
 # Filter and normalize
@@ -131,7 +131,7 @@ vae.train(
 vae.history["elbo_train"].plot()
 ```
 
-### 속도 추정값 얻기
+### 속도 판단의 기준
 
 ```python
 # Get latent time
@@ -146,9 +146,9 @@ adata.layers["veloVI_velocity"] = velocities
 adata.layers["veloVI_expression"] = vae.get_expression_fit(n_samples=25)
 ```
 
-## 5단계: 속도 시각화
+## 5단계: 속도
 
-### 속도 합리화
+### 속도합리화
 
 ```python
 # Compute velocity graph
@@ -177,7 +177,7 @@ scv.pl.velocity_embedding(
 )
 ```
 
-### 잠재 시간
+### 취한 시간
 
 ```python
 # Plot latent time (pseudotime from velocity)
@@ -207,9 +207,9 @@ scv.pl.velocity_embedding_stream(
 plt.tight_layout()
 ```
 
-## 7단계: 유전자 수준 분석
+## 7단계: 로그 수준의 분석
 
-### 속도 위상 초상화
+### 속도 차량
 
 ```python
 # Plot phase portrait for specific genes
@@ -223,7 +223,7 @@ scv.pl.velocity(
 )
 ```
 
-### 유전자 역학
+### 담당
 
 ```python
 # Plot expression over latent time
@@ -242,7 +242,7 @@ for gene in genes:
     ax.set_ylabel(f"{gene} Expression")
 ```
 
-### 드라이버 유전자
+### 드라이버 사용자
 
 ```python
 # Find genes driving velocity
@@ -257,9 +257,9 @@ df = scv.get_df(adata, "rank_velocity_genes/names")
 print(df.head(10))
 ```
 
-## 8단계: 불확실성 정량화
+## 8 단계: 군대 정량화
 
-veloVI는 불확실성 추정치를 제공합니다:
+veloVI는 전문성을 갖춘 가치를 제공합니다:
 
 ```python
 # Get velocity with uncertainty
@@ -362,7 +362,7 @@ scv.pl.velocity_embedding_stream(
 sc.pl.umap(adata_velocity, color="latent_time")
 ```
 
-## 고급: 배치 인식 속도
+## 기존: 배치 속도
 
 ```python
 # For multi-batch data, include batch in model
@@ -377,31 +377,31 @@ model = scvi.model.VELOVI(adata)
 model.train()
 ```
 
-## 결과 해석
+## 해석
 
 ### 좋은 속도 신호
 
-- 합리화는 예상되는 차별화를 따릅니다.
-- 잠복기는 알려진 생물학과 상관관계가 있습니다
-- 위상 초상화는 명확한 역동성을 보여줍니다.
+- 합리화는 기대되는 행위입니다.
+- 장비를 갖춘 영양과 성공 관계가 있습니다
+- 스포일러는 결정적인 역동성을 보여줍니다.
 
-### 속도 신호 불량
+### 속도신호 성분
 
-- 무작위/혼란 유선형
-- 알려진 마커와 상관관계 없음
-- 다음을 나타낼 수 있습니다:
+- 팬/혼합 노선형
+- 마커와 마커의 관계는 없습니다.
+- 다음을 선택할 수 있습니다:
   - 불충분한 스플라이싱되지 않은 읽기
-  - 정상 상태의 세포
+  - 현재상태의 세포
   - 기술적인 문제
 
 ## 문제 해결
 
 | 문제 | 원인 | 해결책 |
-|-------|-------|----------|
-| 속도 신호 없음 | 낮은 접합되지 않은 개수 | 시퀀싱 깊이를 확인하고 kb-python을 사용하세요. |
-| 역방향 | 잘못된 루트 할당 | 수동으로 루트 셀 설정 |
-| 시끄러운 유선형 | 유전자가 너무 많아 | n_top_genes 감소 |
-| 메모리 오류 | 대규모 데이터 세트 | 배치 크기 줄이기 |
+| ------- | ------- | ---------- |
+| 속도신호 없음 | 그리고 그렇지 않은 버전 | 시공간을 확장하고 kb-python을 사용하세요. |
+| 역방향 | 유효하지 않은 경우 | 수동으로 설정 설정 |
+| 시끄러운 유선형 | 기분이 너무 멋지네요 | n_top_genes 설명 |
+| 메모리 오류 | 대응 데이터 세트 | 내부에 배치하기 |
 
 ## 주요 참고자료
 

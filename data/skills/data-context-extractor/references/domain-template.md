@@ -1,6 +1,6 @@
-# Domain Reference File Template
+# 도메인 참조 파일 템플릿
 
-Use this template when creating reference files for specific data domains (e.g., revenue, users, marketing).
+특정 데이터 도메인(예: 수익, 사용자, 마케팅)에 대한 참조 파일을 생성할 때 이 템플릿을 사용하십시오.
 
 ---
 
@@ -29,8 +29,7 @@ Always clarify which one before querying.
 
 For [domain] queries, always:
 ```sql
-WHERE [STANDARD_FILTER_1]
-  AND [STANDARD_FILTER_2]
+[STANDARD_FILTER_1] 및 [STANDARD_FILTER_2] 위치
 ```
 
 ---
@@ -78,13 +77,7 @@ WHERE [STANDARD_FILTER_1]
 
 ### [QUERY_PURPOSE_1]
 ```sql
--- [Brief description of what this query does]
-SELECT
-    [columns]
-FROM [table]
-WHERE [standard_filters]
-GROUP BY [grouping]
-ORDER BY [ordering]
+-- [이 쿼리의 기능에 대한 간략한 설명] SELECT [열] FROM [테이블] WHERE [표준_필터] GROUP BY [그룹화] ORDER BY [순서]
 ```
 
 ### [QUERY_PURPOSE_2]
@@ -94,13 +87,7 @@ ORDER BY [ordering]
 
 ### [QUERY_PURPOSE_3]: [More Complex Pattern]
 ```sql
-WITH [cte_name] AS (
-    [CTE_LOGIC]
-)
-SELECT
-    [final_columns]
-FROM [cte_name]
-[joins_and_filters]
+WITH [cte_name] AS ( [CTE_LOGIC] ) SELECT [최종_열] FROM [cte_name] [joins_and_filters]
 ```
 
 ---
@@ -125,23 +112,23 @@ FROM [cte_name]
 
 ---
 
-## Tips for Creating Domain Files
+## 도메인 파일 생성 팁
 
-1. **Start with the most-queried tables** - Don't try to document everything
-2. **Include column-level detail only for important columns** - Skip obvious ones like `created_at`
-3. **Real query examples > abstract descriptions** - Show don't tell
-4. **Document the gotchas prominently** - These save the most time
-5. **Keep sample queries runnable** - Use real table/column names
-6. **Note nested/struct fields explicitly** - These trip people up
+1. **가장 많이 검색되는 테이블부터 시작하세요** - 모든 것을 문서화하려고 하지 마세요.
+2. **중요한 열에 대해서만 열 수준 세부정보 포함** - `created_at`과 같은 명백한 항목은 건너뛰세요.
+3. **실제 쿼리 예 > 추상 설명** - 표시하지 않음
+4. **문제점을 눈에 띄게 문서화하세요** - 시간이 가장 많이 절약됩니다.
+5. **샘플 쿼리를 실행 가능하게 유지** - 실제 테이블/열 이름 사용
+6. **중첩/구조체 필드를 명시적으로 기록해두세요** - 이러한 여행 사람들은
 
-## Suggested Domain Files
+## 제안된 도메인 파일
 
-Common domains to document (create separate files for each):
+문서화할 공통 도메인(각 도메인에 대해 별도의 파일 생성):
 
-- `revenue.md` - Billing, subscriptions, ARR, transactions
-- `users.md` - Accounts, authentication, user attributes
-- `product.md` - Feature usage, events, sessions
-- `growth.md` - DAU/WAU/MAU, retention, activation
-- `sales.md` - CRM, pipeline, opportunities
-- `marketing.md` - Campaigns, attribution, leads
-- `support.md` - Tickets, CSAT, response times
+- `revenue.md` - 청구, 구독, ARR, 거래
+- `users.md` - 계정, 인증, 사용자 속성
+- `product.md` - 기능 사용, 이벤트, 세션
+- `growth.md` - DAU/WAU/MAU, 보존, 활성화
+- `sales.md` - CRM, 파이프라인, 기회
+- `marketing.md` - 캠페인, 기여, 리드
+- `support.md` - 티켓, CSAT, 응답 시간

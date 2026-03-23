@@ -1,35 +1,35 @@
 ---
 name: create-cowork-plugin
 description: >
-  Guide users through creating a new plugin from scratch in a cowork session.
-  Use when users want to create a plugin, build a plugin, make a new plugin, develop a plugin, scaffold a plugin, start a plugin from scratch, or design a plugin.
-  This skill requires Cowork mode with access to the outputs directory for delivering the final .plugin file.
+  공동 작업 세션에서 처음부터 새 플러그인을 만드는 과정을 사용자에게 안내합니다.
+  사용자가 플러그인 생성, 플러그인 빌드, 새 플러그인 만들기, 플러그인 개발, 플러그인 스캐폴드, 플러그인 처음부터 시작 또는 플러그인 디자인을 원할 때 사용합니다.
+  이 기술을 사용하려면 최종 .plugin 파일을 전달하기 위해 출력 디렉터리에 액세스할 수 있는 Cowork 모드가 필요합니다.
 compatibility: Requires Cowork desktop app environment with access to the outputs directory for delivering .plugin files.
 ---
 
-# Create Cowork Plugin
+# Cowork 플러그인 만들기
 
-Build a new plugin from scratch through guided conversation. Walk the user through discovery, planning, design, implementation, and packaging — delivering a ready-to-install `.plugin` file at the end.
+안내된 대화를 통해 처음부터 새로운 플러그인을 구축하세요. 검색, 계획, 설계, 구현 및 패키징 과정을 사용자에게 안내하고 마지막에 바로 설치할 수 있는 `.plugin` 파일을 제공합니다.
 
-## Overview
+## 개요
 
-A plugin is a self-contained directory that extends Claude's capabilities with skills, agents, hooks, and MCP server integrations. This skill encodes the full plugin architecture and a five-phase workflow for creating one conversationally.
+플러그인은 기술, 에이전트, 후크 및 MCP 서버 통합을 통해 Claude의 기능을 확장하는 독립형 디렉터리입니다. 이 기술은 전체 플러그인 아키텍처와 이를 대화식으로 생성하기 위한 5단계 워크플로를 인코딩합니다.
 
-The process:
+과정:
 
-1. **Discovery** — understand what the user wants to build
-2. **Component Planning** — determine which component types are needed
-3. **Design & Clarifying Questions** — specify each component in detail
-4. **Implementation** — create all plugin files
-5. **Review & Package** — deliver the `.plugin` file
+1. **발견** — 사용자가 구축하려는 것이 무엇인지 이해
+2. **구성요소 계획** — 필요한 구성요소 유형 결정
+3. **설계 및 명확화 질문** - 각 구성 요소를 자세히 지정합니다.
+4. **구현** — 모든 플러그인 파일 생성
+5. **검토 및 패키지** — `.plugin` 파일 전달
 
-> **Nontechnical output**: Keep all user-facing conversation in plain language. Do not expose implementation details like file paths, directory structures, or schema fields unless the user asks. Frame everything in terms of what the plugin will do.
+> **비기술적 출력**: 사용자가 접하는 모든 대화를 일반 언어로 유지합니다. 사용자가 요청하지 않는 한 파일 경로, 디렉터리 구조, 스키마 필드와 같은 구현 세부정보를 노출하지 마세요. 플러그인이 수행할 작업 측면에서 모든 것을 구성합니다.
 
-## Plugin Architecture
+## 플러그인 아키텍처
 
-### Directory Structure
+### 디렉토리 구조
 
-Every plugin follows this layout:
+모든 플러그인은 다음 레이아웃을 따릅니다.
 
 ```
 plugin-name/
@@ -44,18 +44,18 @@ plugin-name/
 └── README.md                 # Plugin documentation
 ```
 
-> **Legacy `commands/` format**: Older plugins may include a `commands/` directory with single-file `.md` slash commands. This format still works, but new plugins should use `skills/*/SKILL.md` instead — the Cowork UI presents both as a single "Skills" concept, and the skills format supports progressive disclosure via `references/`.
+> **레거시 `commands/` 형식**: 이전 플러그인에는 단일 파일 `.md` 슬래시 명령이 있는 `commands/` 디렉터리가 포함될 수 있습니다. 이 형식은 여전히 ​​작동하지만 새 플러그인은 대신 `skills/*/SKILL.md`을 사용해야 합니다. Cowork UI는 두 가지를 모두 단일 "Skills" 개념으로 표시하고 기술 형식은 `references/`를 통해 점진적인 공개를 지원합니다.
 
-**Rules:**
+**규칙:**
 
-- `.claude-plugin/plugin.json` is always required
-- Component directories (`skills/`, `agents/`) go at the plugin root, not inside `.claude-plugin/`
-- Only create directories for components the plugin actually uses
-- Use kebab-case for all directory and file names
+- `.claude-plugin/plugin.json`은(는) 항상 필요합니다.
+- 구성 요소 디렉터리(`skills/`, `agents/`)는 `.claude-plugin/` 내부가 아닌 플러그인 루트에 있습니다.
+- 플러그인이 실제로 사용하는 구성요소에 대한 디렉토리만 생성
+- 모든 디렉터리 및 파일 이름에 kebab-case를 사용하세요.
 
-### plugin.json Manifest
+### 플러그인.json 매니페스트
 
-Located at `.claude-plugin/plugin.json`. Minimal required field is `name`.
+`.claude-plugin/plugin.json`에 위치합니다. 최소 필수 필드는 `name`입니다.
 
 ```json
 {
@@ -68,12 +68,11 @@ Located at `.claude-plugin/plugin.json`. Minimal required field is `name`.
 }
 ```
 
-**Name rules:** kebab-case, lowercase with hyphens, no spaces or special characters.
-**Version:** semver format (MAJOR.MINOR.PATCH). Start at `0.1.0`.
+**이름 규칙:** 케밥 대소문자, 하이픈 포함 소문자, 공백이나 특수 문자 없음. **버전:** semver 형식(MAJOR.MINOR.PATCH). `0.1.0`에서 시작하세요.
 
-Optional fields: `homepage`, `repository`, `license`, `keywords`.
+선택 필드: `homepage`, `repository`, `license`, `keywords`.
 
-Custom component paths can be specified (supplements, does not replace, auto-discovery):
+사용자 정의 구성요소 경로를 지정할 수 있습니다(보충, 대체하지 않음, 자동 검색).
 
 ```json
 {
@@ -84,30 +83,26 @@ Custom component paths can be specified (supplements, does not replace, auto-dis
 }
 ```
 
-### Component Schemas
+### 구성요소 스키마
 
-Detailed schemas for each component type are in `references/component-schemas.md`. Summary:
+각 구성요소 유형에 대한 자세한 스키마는 `references/component-schemas.md`에 있습니다. 요약:
 
-| Component                          | Location            | Format                      |
-| ---------------------------------- | ------------------- | --------------------------- |
-| Skills                             | `skills/*/SKILL.md` | Markdown + YAML frontmatter |
-| MCP Servers                        | `.mcp.json`         | JSON                        |
-| Agents (uncommonly used in Cowork) | `agents/*.md`       | Markdown + YAML frontmatter |
-| Hooks (rarely used in Cowork)      | `hooks/hooks.json`  | JSON                        |
-| Commands (legacy)                  | `commands/*.md`     | Markdown + YAML frontmatter |
+| 요소 | 위치 | 체재 |
+| ---------------------------------- | ------ | -------------- |
+| 기술 | `skills/*/SKILL.md` | 마크다운 + YAML 서문 |
+| MCP 서버 | `.mcp.json` | JSON |
+| 에이전트(Cowork에서는 자주 사용되지 않음) | `agents/*.md` | 마크다운 + YAML 서문 |
+| Hooks (Cowork에서는 거의 사용되지 않음) | `hooks/hooks.json` | JSON |
+| 명령(레거시) | `commands/*.md` | 마크다운 + YAML 서문 |
 
-This schema is shared with Claude Code's plugin system, but you're creating a plugin for Claude Cowork, a desktop app for doing knowledge work.
-Cowork users will usually find skills the most useful. **Scaffold new plugins with `skills/*/SKILL.md` — do not create `commands/` unless the user explicitly needs the legacy single-file format.**
+이 스키마는 지식 작업을 수행하기 위한 데스크톱 앱인 Claude Cowork용 플러그인을 만드는 Claude Code's plugin system, but you'와 공유됩니다. Cowork 사용자는 일반적으로 기술이 가장 유용하다고 생각합니다. **`skills/*/SKILL.md`을 사용한 스캐폴드 새 플러그인 — 사용자가 기존 단일 파일 형식을 명시적으로 필요로 하지 않는 한 `commands/`을 생성하지 마십시오.**
 
-### Customizable plugins with `~~` placeholders
+### `~~` 자리 표시자를 사용하여 사용자 정의 가능한 플러그인
 
-> **Do not use or ask about this pattern by default.** Only introduce `~~` placeholders if the user explicitly says they want people outside their organization to use the plugin.
-> You can mention this is an option if it seems like the user wants to distribute the plugin externally, but do not proactively ask about this with AskUserQuestion.
+> **기본적으로 이 패턴을 사용하거나 질문하지 마세요.** 사용자가 조직 외부의 사람들이 플러그인을 사용하기를 명시적으로 원하는 경우에만 `~~` 자리 표시자를 도입하세요.
+> 사용자가 플러그인을 외부에 배포하고 싶어하는 것처럼 보이면 이것이 옵션이라고 언급할 수 있지만 AskUserQuestion을 통해 이에 대해 사전에 질문하지 마세요.
 
-When a plugin is intended to be shared with others outside their company, it might have parts that need to be adapted to individual users.
-You might need to reference external tools by category rather than specific product (e.g., "project tracker" instead of "Jira").
-When sharing is needed, use generic language and mark these as requiring customization with two tilde characters such as `create an issue in ~~project tracker`.
-If used any tool categories, write a `CONNECTORS.md` file at the plugin root to explain:
+플러그인을 회사 외부의 다른 사람들과 공유하려는 경우 개별 사용자에게 맞게 조정해야 하는 부분이 있을 수 있습니다. 특정 제품이 아닌 카테고리별로 외부 도구를 참조해야 할 수도 있습니다(예: "Jira" 대신 "project tracker"). 공유가 필요한 경우 일반 언어를 사용하고 `create an issue in ~~project tracker`와 같은 두 개의 물결표 문자를 사용하여 사용자 정의가 필요하다고 표시하세요. 도구 카테고리를 사용한 경우 플러그인 루트에 `CONNECTORS.md` 파일을 작성하여 다음을 설명하세요.
 
 ```markdown
 # Connectors
@@ -126,41 +121,41 @@ workflows in terms of categories rather than specific products.
 | Project tracker | `~~project tracker` | Linear, Asana, Jira             |
 ```
 
-### ${CLAUDE_PLUGIN_ROOT} Variable
+### ${CLAUDE_PLUGIN_ROOT} 변수
 
-Use `${CLAUDE_PLUGIN_ROOT}` for all intra-plugin path references in hooks and MCP configs. Never hardcode absolute paths.
+후크 및 MCP 구성의 모든 플러그인 내 경로 참조에 `${CLAUDE_PLUGIN_ROOT}`을 사용하세요. 절대 경로를 하드코딩하지 마세요.
 
-## Guided Workflow
+## 안내된 작업 흐름
 
-When you ask the user something, use AskUserQuestion. Don't assume "industry standard" defaults are correct. Note: AskUserQuestion always includes a Skip button and a free-text input box for custom answers, so do not include `None` or `Other` as options.
+사용자에게 무엇인가를 물어볼 때는 AskUserQuestion을 사용하세요. "industry standard" 기본값이 정확하다고 가정하지 마세요. 참고: AskUserQuestion에는 항상 건너뛰기 버튼과 맞춤 답변을 위한 자유 텍스트 입력 상자가 포함되어 있으므로 `None` 또는 `Other`를 옵션으로 포함하지 마세요.
 
-### Phase 1: Discovery
+### 1단계: 발견
 
-**Goal**: Understand what the user wants to build and why.
+**목표**: 사용자가 빌드하려는 항목과 이유를 이해합니다.
 
-Ask (only what is unclear — skip questions if the user's initial request already answers them):
+질문하세요(불분명한 것만 - 사용자의 초기 요청이 이미 답변한 경우 질문을 건너뛰세요):
 
-- What should this plugin do? What problem does it solve?
-- Who will use it and in what context?
-- Does it integrate with any external tools or services?
-- Is there a similar plugin or workflow to reference?
+- 이 플러그인은 무엇을 해야 합니까? 어떤 문제가 해결되나요?
+- 누가, 어떤 맥락에서 사용할 것인가?
+- 외부 도구나 서비스와 통합됩니까?
+- 참조할 수 있는 유사한 플러그인이나 작업 흐름이 있나요?
 
-Summarize understanding and confirm before proceeding.
+계속 진행하기 전에 이해한 내용을 요약하고 확인하세요.
 
-**Output**: Clear statement of plugin purpose and scope.
+**출력**: 플러그인 목적과 범위에 대한 명확한 설명입니다.
 
-### Phase 2: Component Planning
+### 2단계: 구성 요소 계획
 
-**Goal**: Determine which component types the plugin needs.
+**목표**: 플러그인에 필요한 구성 요소 유형을 결정합니다.
 
-Based on the discovery answers, determine:
+발견 답변을 바탕으로 다음을 결정합니다.
 
-- **Skills** — Does it need specialized knowledge that Claude should load on-demand, or user-initiated actions? (domain expertise, reference schemas, workflow guides, deploy/configure/analyze/review actions)
-- **MCP Servers** — Does it need external service integration? (databases, APIs, SaaS tools)
-- **Agents (uncommon)** — Are there autonomous multi-step tasks? (validation, generation, analysis)
-- **Hooks (rare)** — Should something happen automatically on certain events? (enforce policies, load context, validate operations)
+- **기술** — Claude가 온디맨드 또는 사용자 시작 작업을 로드해야 한다는 전문 지식이 필요합니까? (도메인 전문 지식, 참조 스키마, 워크플로 가이드, 배포/구성/분석/검토 작업)
+- **MCP 서버** — 외부 서비스 통합이 필요합니까? (데이터베이스, API, SaaS 도구)
+- **에이전트(흔하지 않음)** — 자율적인 다단계 작업이 있습니까? (검증, 생성, 분석)
+- **후크(희귀)** — 특정 이벤트에서 자동으로 어떤 일이 발생해야 합니까? (정책 시행, 컨텍스트 로드, 작업 검증)
 
-Present a component plan table, including component types you decided not to create:
+생성하지 않기로 결정한 구성 요소 유형을 포함하여 구성 요소 계획표를 제시합니다.
 
 ```
 | Component | Count | Purpose |
@@ -171,100 +166,100 @@ Present a component plan table, including component types you decided not to cre
 | MCP       | 1     | Connect to service Y |
 ```
 
-Get user confirmation or adjustments before proceeding.
+계속하기 전에 사용자 확인이나 조정을 받으세요.
 
-**Output**: Confirmed list of components to create.
+**출력**: 생성할 확인된 구성 요소 목록입니다.
 
-### Phase 3: Design & Clarifying Questions
+### 3단계: 질문 설계 및 명확화
 
-**Goal**: Specify each component in detail. Resolve all ambiguities before implementation.
+**목표**: 각 구성 요소를 자세히 지정합니다. 구현하기 전에 모든 모호성을 해결하십시오.
 
-For each component type in the plan, ask targeted design questions. Present questions grouped by component type. Wait for answers before proceeding.
+계획의 각 구성요소 유형에 대해 대상 설계 질문을 하십시오. 구성 요소 유형별로 그룹화된 질문을 제시합니다. 계속하기 전에 답변을 기다리십시오.
 
-**Skills:**
+**기술:**
 
-- What user queries should trigger this skill?
-- What knowledge domains does it cover?
-- Should it include reference files for detailed content?
-- If the skill represents a user-initiated action: what arguments does it accept, and what tools does it need? (Read, Write, Bash, Grep, etc.)
+- 이 기술을 트리거해야 하는 사용자 쿼리는 무엇입니까?
+- 어떤 지식 영역을 다루고 있나요?
+- 자세한 내용에 대한 참조 파일을 포함해야 합니까?
+- 스킬이 사용자 시작 작업을 나타내는 경우 어떤 인수를 허용하며 어떤 도구가 필요합니까? (읽기, 쓰기, Bash, Grep 등)
 
-**Agents:**
+**자치령 대표:**
 
-- Should each agent trigger proactively or only when requested?
-- What tools does it need?
-- What should the output format be?
+- 각 에이전트는 사전에 트리거해야 합니까, 아니면 요청된 경우에만 트리거해야 합니까?
+- 어떤 도구가 필요합니까?
+- 출력 형식은 무엇이어야 합니까?
 
-**Hooks:**
+**후크:**
 
-- Which events? (PreToolUse, PostToolUse, Stop, SessionStart, etc.)
-- What behavior — validate, block, modify, add context?
-- Prompt-based (LLM-driven) or command-based (deterministic script)?
+- 어떤 이벤트인가요? (PreToolUse, PostToolUse, 중지, SessionStart 등)
+- 어떤 행동 — 유효성 검사, 차단, 수정, 컨텍스트 추가?
+- 프롬프트 기반(LLM 기반) 또는 명령 기반(결정적 스크립트)?
 
-**MCP Servers:**
+**MCP 서버:**
 
-- What server type? (stdio for local, SSE for hosted with OAuth, HTTP for REST APIs)
-- What authentication method?
-- What tools should be exposed?
+- 어떤 서버 유형인가요? (로컬의 경우 stdio, OAuth 호스팅의 경우 SSE, REST API의 경우 HTTP)
+- 어떤 인증 방법이 있나요?
+- 어떤 도구가 노출되어야 합니까?
 
-If the user says "whatever you think is best," provide specific recommendations and get explicit confirmation.
+사용자가 "whatever you think is best,"이라고 말하면 구체적인 권장사항을 제공하고 명시적인 확인을 받습니다.
 
-**Output**: Detailed specification for every component.
+**출력**: 모든 구성 요소에 대한 세부 사양입니다.
 
-### Phase 4: Implementation
+### 4단계: 구현
 
-**Goal**: Create all plugin files following best practices.
+**목표**: 모범 사례에 따라 모든 플러그인 파일을 만듭니다.
 
-**Order of operations:**
+**작업 순서:**
 
-1. Create the plugin directory structure
-2. Create `plugin.json` manifest
-3. Create each component (see `references/component-schemas.md` for exact formats)
-4. Create `README.md` documenting the plugin
+1. 플러그인 디렉토리 구조 생성
+2. `plugin.json` 매니페스트 만들기
+3. 각 구성 요소를 만듭니다(정확한 형식은 `references/component-schemas.md` 참조).
+4. 플러그인을 문서화하는 `README.md` 생성
 
-**Implementation guidelines:**
+**구현 지침:**
 
-- **Skills** use progressive disclosure: lean SKILL.md body (under 3,000 words), detailed content in `references/`. Frontmatter description must be third-person with specific trigger phrases. Skill bodies are instructions FOR Claude, not messages to the user — write them as directives about what to do.
-- **Agents** need a description with `<example>` blocks showing triggering conditions, plus a system prompt in the markdown body.
-- **Hooks** config goes in `hooks/hooks.json`. Use `${CLAUDE_PLUGIN_ROOT}` for script paths. Prefer prompt-based hooks for complex logic.
-- **MCP configs** go in `.mcp.json` at plugin root. Use `${CLAUDE_PLUGIN_ROOT}` for local server paths. Document required env vars in README.
+- **스킬**은 점진적 공개를 사용합니다. 간결한 SKILL.md 본문(3,000단어 미만), 자세한 내용은 `references/`에 있습니다. 머리말 설명은 특정 트리거 문구가 포함된 3인칭이어야 합니다. 스킬 본문은 사용자에게 보내는 메시지가 아니라 Claude를 위한 지침입니다. 수행할 작업에 대한 지침으로 작성하세요.
+- **에이전트**에는 트리거 조건을 보여주는 `<example>` 블록에 대한 설명과 마크다운 본문에 시스템 프롬프트가 필요합니다.
+- **후크** 구성은 `hooks/hooks.json`에 들어갑니다. 스크립트 경로에는 `${CLAUDE_PLUGIN_ROOT}`을 사용하세요. 복잡한 논리에는 프롬프트 기반 후크를 선호합니다.
+- **MCP 구성**은 플러그인 루트의 `.mcp.json`에 들어갑니다. 로컬 서버 경로에는 `${CLAUDE_PLUGIN_ROOT}`을 사용하세요. README에 필요한 환경 변수를 문서화하세요.
 
-### Phase 5: Review & Package
+### 5단계: 검토 및 패키지
 
-**Goal**: Deliver the finished plugin.
+**목표**: 완성된 플러그인을 제공합니다.
 
-1. Summarize what was created — list each component and its purpose
-2. Ask if the user wants any adjustments
-3. Run `claude plugin validate <path-to-plugin-json>` to check the plugin structure. If this command is unavailable (e.g., when running inside Cowork), verify the structure manually:
-   - `.claude-plugin/plugin.json` exists and contains valid JSON with at least a `name` field
-   - The `name` field is kebab-case (lowercase letters, numbers, and hyphens only)
-   - Any component directories referenced by the plugin (`commands/`, `skills/`, `agents/`, `hooks/`) actually exist and contain files in the expected formats — `.md` for commands/skills/agents, `.json` for hooks
-   - Each skill subdirectory contains a `SKILL.md`
-   - Report what passed and what didn't, the same way the CLI validator would
+1. 생성된 내용을 요약합니다. 각 구성 요소와 해당 목적을 나열합니다.
+2. 사용자가 조정을 원하는지 묻습니다.
+3. `claude plugin validate <path-to-plugin-json>`을 실행하여 플러그인 구조를 확인하세요. 이 명령을 사용할 수 없는 경우(예: Cowork 내부에서 실행하는 경우) 구조를 수동으로 확인하세요.
+   - `.claude-plugin/plugin.json`이(가) 존재하며 최소한 `name` 필드가 있는 유효한 JSON을 포함합니다.
+   - `name` 필드는 케밥 대소문자(소문자, 숫자, 하이픈만)입니다.
+   - 플러그인에서 참조하는 모든 구성 요소 디렉터리(`commands/`, `skills/`, `agents/`, `hooks/`)는 실제로 존재하며 예상 형식(명령/스킬/에이전트의 경우 `.md`, 후크의 경우 `.json`)의 파일을 포함합니다.
+   - 각 기술 하위 디렉터리에는 `SKILL.md`이 포함되어 있습니다.
+   - CLI 유효성 검사기와 동일한 방식으로 통과한 것과 통과하지 못한 것을 보고합니다.
 
-   Fix any errors before proceeding.
-4. Package as a `.plugin` file:
+계속하기 전에 오류를 수정하세요.
+4. `.plugin` 파일로 패키지:
 
 ```bash
 cd /path/to/plugin-dir && zip -r /tmp/plugin-name.plugin . -x "*.DS_Store" && cp /tmp/plugin-name.plugin /path/to/outputs/plugin-name.plugin
 ```
 
-> **Important**: Always create the zip in `/tmp/` first, then copy to the outputs folder. Writing directly to the outputs folder may fail due to permissions.
+> **중요**: 항상 `/tmp/`에 zip을 먼저 만든 다음 출력 폴더에 복사하세요. 권한으로 인해 출력 폴더에 직접 쓰지 못할 수 있습니다.
 
-> **Naming**: Use the plugin name from `plugin.json` for the `.plugin` file (e.g., if name is `code-reviewer`, output `code-reviewer.plugin`).
+> **이름 지정**: `.plugin` 파일에 `plugin.json`의 플러그인 이름을 사용합니다(예: 이름이 `code-reviewer`인 경우 `code-reviewer.plugin`을 출력합니다).
 
-The `.plugin` file will appear in the chat as a rich preview where the user can browse the files and accept the plugin by pressing a button.
+`.plugin` 파일은 사용자가 버튼을 눌러 파일을 탐색하고 플러그인을 수락할 수 있는 풍부한 미리보기로 채팅에 표시됩니다.
 
-## Best Practices
+## 모범 사례
 
-- **Start small**: Begin with the minimum viable set of components. A plugin with one well-crafted skill is more useful than one with five half-baked components.
-- **Progressive disclosure for skills**: Core knowledge in SKILL.md, detailed reference material in `references/`, working examples in `examples/`.
-- **Clear trigger phrases**: Skill descriptions should include specific phrases users would say. Agent descriptions should include `<example>` blocks.
-- **Skills are for Claude**: Write skill body content as instructions for Claude to follow, not documentation for the user to read.
-- **Imperative writing style**: Use verb-first instructions in skills ("Parse the config file," not "You should parse the config file").
-- **Portability**: Always use `${CLAUDE_PLUGIN_ROOT}` for intra-plugin paths, never hardcoded paths.
-- **Security**: Use environment variables for credentials, HTTPS for remote servers, least-privilege tool access.
+- **작게 시작**: 실행 가능한 최소 구성 요소 세트로 시작합니다. 잘 만들어진 기술 하나가 포함된 플러그인은 5개의 절반만 구운 구성 요소가 포함된 플러그인보다 더 유용합니다.
+- **기술에 대한 점진적 공개**: SKILL.md의 핵심 지식, `references/`의 자세한 참조 자료, `examples/`의 작업 예제.
+- **명확한 트리거 문구**: 스킬 설명에는 사용자가 말할 특정 문구가 포함되어야 합니다. 에이전트 설명에는 `<example>` 블록이 포함되어야 합니다.
+- **스킬은 클로드를 위한 것입니다**: 사용자가 읽을 문서가 아닌 클로드가 따라야 할 지침으로 스킬 본문 콘텐츠를 작성합니다.
+- **명령형 글쓰기 스타일**: 기술에 동사 우선 지침을 사용하세요("Parse the config file," 아님 "You should parse the config file").
+- **이식성**: 플러그인 내 경로에는 항상 `${CLAUDE_PLUGIN_ROOT}`을 사용하고 하드코딩된 경로는 사용하지 마세요.
+- **보안**: 자격 증명에는 환경 변수를 사용하고 원격 서버에는 HTTPS를 사용하며 최소 권한 도구 액세스를 사용합니다.
 
-## Additional Resources
+## 추가 리소스
 
-- **`references/component-schemas.md`** — Detailed format specifications for every component type (skills, agents, hooks, MCP, legacy commands, CONNECTORS.md)
-- **`references/example-plugins.md`** — Three complete example plugin structures at different complexity levels
+- **`references/component-schemas.md`** — 모든 구성 요소 유형(스킬, 에이전트, 후크, MCP, 레거시 명령, CONNECTORS.md)에 대한 자세한 형식 사양
+- **`references/example-plugins.md`** — 서로 다른 복잡성 수준의 세 가지 완전한 예제 플러그인 구조

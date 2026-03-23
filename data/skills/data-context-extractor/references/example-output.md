@@ -1,10 +1,10 @@
-# Example: Generated Skill
+# 예: 생성된 스킬
 
-This is an example of what a generated skill looks like after the bootstrap process. This example is for a fictional e-commerce company called "ShopCo" using Snowflake.
+이는 부트스트랩 프로세스 후에 생성된 스킬이 어떻게 보이는지에 대한 예입니다. 이 예는 Snowflake를 사용하는 "ShopCo"이라는 가상의 전자 상거래 회사에 대한 것입니다.
 
 ---
 
-## Example SKILL.md
+## 예 SKILL.md
 
 ```markdown
 ---
@@ -67,36 +67,36 @@ WHERE order_status != 'TEST'
 
 ---
 
-## Key Metrics
+## 주요 지표
 
-### Gross Merchandise Value (GMV)
-- **Definition**: Total value of all orders placed
-- **Formula**: `SUM(order_total_gross)`
-- **Source**: `CORE.FCT_ORDERS.order_total_gross`
-- **Time grain**: Daily, aggregated to weekly/monthly
-- **Caveats**: Includes orders that may later be cancelled or returned
+### 총 상품 가치(GMV)
+- **정의**: 접수된 모든 주문의 총 가치
+- **공식**: `SUM(order_total_gross)`
+- **출처**: `CORE.FCT_ORDERS.order_total_gross`
+- **시간 단위**: 일별, 주별/월별로 집계됨
+- **주의사항**: 나중에 취소되거나 반품될 수 있는 주문이 포함됩니다.
 
-### Net Revenue
-- **Definition**: Actual revenue after returns and discounts
-- **Formula**: `SUM(order_total_gross - return_amount - discount_amount)`
-- **Source**: `CORE.FCT_ORDERS`
-- **Caveats**: Returns can occur up to 90 days post-order; use settled_revenue for finalized numbers
-
----
-
-## Knowledge Base Navigation
-
-| Domain | Reference File | Use For |
-|--------|----------------|---------|
-| Orders | `references/orders.md` | Order tables, GMV/NMV calculations |
-| Customers | `references/customers.md` | User/customer entities, LTV, cohorts |
-| Products | `references/products.md` | Catalog, inventory, categories |
+### 순수익
+- **정의**: 반품 및 할인 후 실제 수익
+- **공식**: `SUM(order_total_gross - return_amount - discount_amount)`
+- **출처**: `CORE.FCT_ORDERS`
+- **주의사항**: 반품은 주문 후 최대 90일까지 가능합니다. 확정된 숫자에 Seted_revenue를 사용하세요.
 
 ---
 
-## Common Query Patterns
+## 기술 자료 탐색
 
-### Daily GMV by Channel
+| 도메인 | 참조 파일 | 사용 대상 |
+| -------- | ---------------- | --------- |
+| 명령 | `references/orders.md` | 주문표, GMV/NMV 계산 |
+| 고객 | `references/customers.md` | 사용자/고객 엔터티, LTV, 코호트 |
+| 제품 | `references/products.md` | 카탈로그, 재고, 카테고리 |
+
+---
+
+## 일반적인 쿼리 패턴
+
+### 채널별 일일 GMV
 ```sql
 SELECT
     DATE_TRUNC('DAY', order_timestamp) AS order_date,
@@ -110,7 +110,7 @@ GROUP BY 1, 2
 ORDER BY 1 DESC, 3 DESC
 ```
 
-### Customer Cohort Retention
+### 고객 집단 유지
 ```sql
 WITH cohorts AS (
     SELECT
@@ -135,42 +135,38 @@ ORDER BY 1, 2
 ## Example references/orders.md
 
 ```markdown
-# Orders Tables
+# 주문 테이블
 
-Order and transaction data for ShopCo.
+ShopCo의 주문 및 거래 데이터입니다.
 
 ---
 
-## Key Tables
+## 주요 테이블
 
 ### FCT_ORDERS
-**Location**: `SHOPCO_DW.CORE.FCT_ORDERS`
-**Description**: Fact table of all orders. One row per order.
-**Primary Key**: `order_id`
-**Update Frequency**: Hourly (15 min lag)
-**Partitioned By**: `order_date`
+**위치**: `SHOPCO_DW.CORE.FCT_ORDERS` **설명**: 모든 주문에 대한 팩트 테이블입니다. 주문당 한 행입니다. **기본 키**: `order_id` **업데이트 빈도**: 매시간(15분 지연) **파티션 기준**: `order_date`
 
-| Column | Type | Description | Notes |
-|--------|------|-------------|-------|
-| **order_id** | VARCHAR | Unique order identifier | |
-| **customer_id** | VARCHAR | FK to DIM_CUSTOMERS | NULL for guest checkout |
-| **order_timestamp** | TIMESTAMP_NTZ | When order was placed | UTC |
-| **order_date** | DATE | Date portion of order_timestamp | Partition column |
-| **order_status** | VARCHAR | Current status | PENDING, SHIPPED, DELIVERED, CANCELLED, RETURNED |
-| **channel** | VARCHAR | Acquisition channel | WEB, APP, MARKETPLACE |
-| **order_total_gross** | DECIMAL(12,2) | Pre-discount total | |
-| **discount_amount** | DECIMAL(12,2) | Total discounts applied | |
-| **return_amount** | DECIMAL(12,2) | Value of returned items | Updates async |
+| 열 | 유형 | 설명 | 메모 |
+| -------- | ------ | ------------- | ------- |
+| **주문_ID** | VARCHAR | 고유 주문 식별자 | |
+| **고객_ID** | VARCHAR | DIM_CUSTOMERS에 대한 FK | 비회원 결제의 경우 NULL |
+| **주문_타임스탬프** | TIMESTAMP_NTZ | 주문이 접수되었을 때 | UTC |
+| **주문_날짜** | 날짜 | order_timestamp의 날짜 부분 | 파티션 컬럼 |
+| **주문_상태** | VARCHAR | 현황 | 보류 중, 배송됨, 배송됨, 취소됨, 반품됨 |
+| **채널** | VARCHAR | 획득 채널 | 웹, 앱, 마켓플레이스 |
+| **주문_총_총액** | 십진수(12,2) | 할인 전 총액 | |
+| **할인_금액** | 십진수(12,2) | 총 할인 적용 | |
+| **반품_금액** | 십진수(12,2) | 반품된 상품의 가치 | 비동기 업데이트 |
 
-**Relationships**:
-- Joins to `DIM_CUSTOMERS` on `customer_id`
-- Parent of `FCT_ORDER_ITEMS` via `order_id`
+**관계**:
+- `customer_id`에서 `DIM_CUSTOMERS`에 조인
+- `order_id`을(를) 통해 `FCT_ORDER_ITEMS`의 상위
 
 ---
 
-## Sample Queries
+## 샘플 쿼리
 
-### Orders with Returns Rate
+### 반품률이 있는 주문
 ```sql
 SELECT
     DATE_TRUNC('WEEK', order_date) AS week,

@@ -1,25 +1,25 @@
-# scArches를 사용한 참조 매핑
+# scArches를 사용하여 참조 매핑
 
-이 참조에서는 처음부터 다시 학습하지 않고 쿼리 데이터를 사전 학습된 참조 모델에 매핑하기 위해 scArches를 사용하는 방법을 다룹니다.
+이 참조에서는 처음부터 다시 학습하지 않고 쿼리 데이터를 사전에 학습한 참조 모델에 매핑하기 위해 scArches를 사용하는 방법을 다에요.
 
 ## 개요
 
-scArches(단일 세포 구조 수술)는 다음을 가능하게 합니다.
-- 새로운 데이터를 기존 참조 아틀라스에 매핑
+scArches(단일 세포구조 수술)는 다음을 가능하게 해줍니다.
+- 새로운 데이터를 참조 아틀라스에 매핑
 - 새로운 배치/연구로 모델 확장
-- 전체 재교육 없이 전이 학습
-- 쿼리를 통합하는 동안 참조 구조 유지
+- 전체재교육 없이 전이 학습
+- 쿼리를 통합하는 동안 참조 구성을 유지합니다.
 
 ## scArches를 사용하는 경우
 
 | 대본 | 접근하다 |
-|----------|----------|
+| ---------- | ---------- |
 | 쿼리를 기존 아틀라스에 매핑 | scArches 쿼리 매핑 |
-| 새로운 데이터로 아틀라스 확장 | scArches 모델 수술 |
-| 사전 학습된 모델이 없습니다. | scANVI를 처음부터 훈련하기 |
+| 새로운 데이터로 아틀라스 확장 | scArches 모형수술 |
+| 사전 학습된 모델은 없습니다. | scANVI를 처음부터 훈련하기 |
 | 참조와 매우 다른 쿼리 | 재교육을 고려해보세요 |
 
-## 전제조건
+## 조건
 
 ```python
 import scvi
@@ -29,7 +29,7 @@ import numpy as np
 print(f"scvi-tools version: {scvi.__version__}")
 ```
 
-## 워크플로 1: 사전 학습된 참조에 쿼리 매핑
+## 워크플로 1: 사전 학습된 참조에 대한 탐색 매핑
 
 ### 1단계: 사전 학습된 참조 모델 로드
 
@@ -95,7 +95,7 @@ query_model = scvi.model.SCVI.load_query_data(
 # - Decoder is fine-tuned for query
 ```
 
-### 5단계: 쿼리 세부 조정
+### 5단계: 세부조정
 
 ```python
 # Fine-tune the query model
@@ -111,7 +111,7 @@ query_model.train(
 query_model.history['elbo_train'].plot()
 ```
 
-### 6단계: 쿼리 표현 가져오기
+### 6 단계: 쿼리를 가져오기
 
 ```python
 # Get latent representation
@@ -124,9 +124,9 @@ sc.tl.umap(adata_query)
 sc.pl.umap(adata_query, color=['cell_type', 'batch'])
 ```
 
-## 작업흐름 2: 라벨 전송을 통한 scANVI 쿼리 매핑
+## 작업 흐름 2: 라벨 전송을 업무 scANVI 쿼리 매핑
 
-참조에서 쿼리로 세포 유형 레이블을 전송하는 경우:
+참조에서 쿼리로 세포를 엑셀로 전송하는 경우:
 
 ### 1단계: scANVI 참조 로드
 
@@ -161,7 +161,7 @@ query_scanvi.train(
 )
 ```
 
-### 3단계: 예측 가져오기
+### 3단계: 예측하여 가져옴
 
 ```python
 # Predict cell types
@@ -181,7 +181,7 @@ sc.tl.umap(adata_query)
 sc.pl.umap(adata_query, color=['predicted_cell_type', 'prediction_confidence'])
 ```
 
-### 4단계: 예측 평가
+### 4단계: 예측평가
 
 ```python
 # Distribution of predictions
@@ -196,11 +196,11 @@ high_conf = adata_query[adata_query.obs['prediction_confidence'] >= 0.7].copy()
 print(f"High confidence cells: {len(high_conf)} ({len(high_conf)/len(adata_query)*100:.1f}%)")
 ```
 
-## 작업 흐름 3: 모델 수술(참조 확장)
+## 간단한 작업 3: 모델 수술(추가 축소)
 
-새 데이터로 기존 참조 모델을 확장합니다.
+새로운 데이터로 기존 참조 모델을 축소합니다.
 
-### 1단계: 참조 레이어 동결
+### 1단계: 참조플레이어 동결
 
 ```python
 # Load reference model
@@ -242,9 +242,9 @@ new_model = scvi.model.SCVI(adata_combined, n_latent=30)
 new_model.train(max_epochs=200)
 ```
 
-## 공동 시각화
+## 공동작업
 
-참조와 쿼리를 함께 시각화합니다.
+문의해 주시기 바랍니다.
 
 ```python
 # Get latent representations
@@ -271,7 +271,7 @@ sc.pl.umap(adata_combined, color="batch", ax=axes[2], show=False, title="Batch")
 plt.tight_layout()
 ```
 
-## 공개 아틀라스 모델 사용
+## 별자리 아틀라스 모델 사용
 
 ### HuggingFace 모델 허브에서
 
@@ -289,7 +289,7 @@ model_dir = hf_hub_download(
 atlas_model = scvi.model.SCANVI.load(model_dir)
 ```
 
-### CellxGene에서
+### 셀엑스진에서
 
 ```python
 # Many CellxGene datasets provide pre-trained models
@@ -388,12 +388,12 @@ sc.pl.umap(adata_mapped, color=['predicted_cell_type', 'prediction_confidence'])
 ## 문제 해결
 
 | 문제 | 원인 | 해결책 |
-|-------|-------|----------|
-| 유전자 불일치 | 다른 유전자 명명 | 유전자 ID 변환(Ensembl ← Symbol) |
-| 자신감이 낮은 경우가 많음 | 쿼리에 새로운 유형이 있습니다. | 신뢰도가 낮은 셀에 수동으로 주석 달기 |
-| 잘못된 매핑 | 쿼리가 너무 다름 | 결합된 데이터를 사용한 재교육 고려 |
-| 메모리 오류 | 대규모 쿼리 | 일괄 처리 |
-| 버전 불일치 | 다른 scvi-tools 버전 | 참조 교육과 동일한 버전 사용 |
+| ------- | ------- | ---------- |
+| 심판 | 다른 이유 | 프로세서 ID변환(Ensembl ← Symbol) |
+| 왜이렇게 많은 경우가 있나요? | 쿼리에 새로운 것이 있습니다. | 신뢰도가 유니버스 셀에 있는 매뉴얼로 달기 |
+| 잘못된 매핑 | 쿼리가 너무 많아서 | 결합된 데이터를 활용하여 재교육 고려 |
+| 메모리 오류 | 컨트롤러 쿼리 | 처리하겠습니다 |
+| 버전별로 | 다른 scvi-tools 버전 | 참조 교육과 참조 버전 사용 |
 
 ## 주요 참고자료
 

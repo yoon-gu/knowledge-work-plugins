@@ -1,25 +1,25 @@
 # scVI 및 scANVI와 scRNA-seq 통합
 
-이 참조 자료에서는 scVI(비지도) 및 scANVI(셀 유형 레이블을 사용한 반지도)를 사용한 일괄 수정 및 데이터 세트 통합을 다룹니다.
+이 참조 자료에서는 scVI(비지도) 및 scANVI(셀 유형 단위를 사용하는 Ringdo)를 사용하여 수정 및 데이터 세트 통합을 다뤄줍니다.
 
 ## 개요
 
-단일 셀 데이터 세트에는 다음과 같은 일괄 효과가 있는 경우가 많습니다.
-- 다양한 기증자/환자
+셀 데이터 세트에는 다음과 같은 목적을 갖는 경우가 있습니다.
+- 다양한 사람들/환자
 - 다양한 실험 배치
 - 다양한 기술(10x v2 대 v3)
 - 다양한 연구
 
-scVI 및 scANVI는 생물학적 변이가 보존되는 동안 배치 효과가 제거되는 공유 잠재 공간을 학습합니다.
+scVI 및 scANVI는 생물학 변이가 거부되는 동안 배치 효과를 제거하는 공유 공간을 학습합니다.
 
-## 언제 어떤 모델을 사용해야 하는가
+## 언제 어떤 모델을 사용하는지
 
-| 모델 | 사용 시기 | 필요한 라벨 |
-|-------|----------|---------------|
-| **scVI** | 사용 가능한 라벨이 없습니다. 탐색적 분석 | 아니요 |
-| **scANVI** | 부분/전체 라벨이 있고 더 나은 보존을 원함 | 예(일부 OK) |
+| 모델 | 사용시기 | 원하는 라벨 |
+| ------- | ---------- | --------------- |
+| **scVI** | 사용 가능한 라벨은 없습니다. 탐색적 분석 | 아니요 |
+| **스캔비** | 부분/전체 라벨이 있고 더 나은 느낌을 원함 | 예(일부 OK) |
 
-## scVI 통합 작업 흐름
+## scVI 통합 작업
 
 ### 1단계: 데이터 준비
 
@@ -47,7 +47,7 @@ if hasattr(adata, 'raw') and adata.raw is not None:
 adata.layers["counts"] = adata.X.copy()
 ```
 
-### 2단계: 배치 전반에 걸쳐 HVG 선택
+### 2단계: 배치에 HVG 선택
 
 ```python
 # Select HVGs considering batch
@@ -93,7 +93,7 @@ model.train(
 model.history["elbo_train"].plot()
 ```
 
-### 4단계: 통합 표현 얻기
+### 4단계: 통합 표현
 
 ```python
 # Get latent representation
@@ -108,7 +108,7 @@ sc.tl.leiden(adata, resolution=1.0)
 sc.pl.umap(adata, color=["batch", "leiden"], ncols=2)
 ```
 
-### 5단계: 모델 저장
+### 5단계: 사진 저장
 
 ```python
 # Save model for later use
@@ -120,7 +120,7 @@ model = scvi.model.SCVI.load("scvi_model/", adata=adata)
 
 ## scANVI 통합 워크플로
 
-scANVI는 더 나은 생물학적 보존을 위해 세포 유형 라벨로 scVI를 확장합니다.
+scANVI는 더 나은 생체적 효과를 위해 세포 유형 라벨로 scVI를 확장합니다.
 
 ### 1단계: 라벨을 사용하여 데이터 준비
 
@@ -157,7 +157,7 @@ scanvi_model = scvi.model.SCANVI(
 scanvi_model.train(max_epochs=200)
 ```
 
-### 2단계: 옵션 B - scVI에서 scANVI 초기화(권장)
+### 2단계: 옵션 B - scVI에서 scANVI 비동기(권장)
 
 ```python
 # First train scVI
@@ -176,7 +176,7 @@ scanvi_model = scvi.model.SCANVI.from_scvi_model(
 scanvi_model.train(max_epochs=50)
 ```
 
-### 3단계: 결과 얻기
+### 3단계: 결과
 
 ```python
 # Latent representation
@@ -197,7 +197,7 @@ sc.pl.umap(adata, color=["batch", "cell_type", "predicted_cell_type"])
 
 ## 통합 품질 비교
 
-### 시각적 평가
+### 대표평가
 
 ```python
 import matplotlib.pyplot as plt
@@ -260,7 +260,7 @@ de_sig = de_results[
 print(de_sig.head(20))
 ```
 
-## 고급: 다중 범주형 공변량
+## 일반: 복합 형태 공용 변량
 
 ```python
 # Include additional covariates beyond batch
@@ -277,7 +277,7 @@ model.train()
 
 ## 훈련 팁
 
-### 대규모 데이터 세트의 경우(>100,000개 셀)
+### 대응 데이터 세트의 경우(>100,000개 셀)
 
 ```python
 model.train(
@@ -288,7 +288,7 @@ model.train(
 )
 ```
 
-### 소규모 데이터 세트(<10,000셀)의 경우
+### 소형 데이터 집합(<10,000셀)의 경우
 
 ```python
 model = scvi.model.SCVI(
@@ -304,7 +304,7 @@ model.train(
 )
 ```
 
-### 모니터링 교육
+### 모델링 교육
 
 ```python
 # Check training curves
@@ -421,9 +421,9 @@ sc.pl.umap(adata_integrated, color=["batch", "leiden", "cell_type"])
 ## 문제 해결
 
 | 문제 | 원인 | 해결책 |
-|-------|-------|----------|
-| 혼합되지 않는 배치 | 공유 유전자가 너무 적음 | 더 많은 HVG를 사용하고 유전자 중복을 확인하세요. |
-| 과잉교정 | 생물학적 변이가 제거됨 | 레이블과 함께 scANVI 사용 |
-| 훈련은 다양하다 | 학습률이 너무 높음 | lr을 줄이고 배치 크기를 늘립니다. |
+| ------- | ------- | ---------- |
+| 훈련받지 않는 배치 | 공유하기가 너무 적음 | 더 많은 HVG를 사용하고 사용법을 확인하세요. |
+| 대응교정 | 변변찮은 것이 제거되었습니다 | 라벨과 scANVI 사용 |
+| 훈련은 다양하다 | 학습률이 너무 높음 | lr을 기념하는 행사를 개최합니다. |
 | NaN 손실 | 잘못된 데이터 | 모두 0인 세포/유전자 확인 |
-| 메모리 오류 | 셀이 너무 많습니다. | 배치 크기를 줄이고 GPU를 사용하세요. |
+| 메모리 오류 | 셀이 너무 많아요. | 배치 공간을 분리하여 GPU를 사용하세요. |

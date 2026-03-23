@@ -1,28 +1,28 @@
 # scvi-tools 문제 해결 가이드
 
-이 참조는 모든 scvi-tools 모델의 일반적인 문제를 진단하고 해결하기 위한 통합 가이드를 제공합니다.
+이 참조는 모든 scvi-tools 모델의 일반적인 문제를 해결하고 해결하기 위해 통합 가이드를 제공합니다.
 
 ## 빠른 진단
 
-| 징후 | 가능한 원인 | 빠른 수정 |
-|---------|--------------|-----------|
-| "X should contain integers" | X의 정규화된 데이터 | 설정에 `layer="counts"` 사용 |
-| CUDA 메모리 부족 | GPU 메모리가 소진되었습니다. | `batch_size` 줄이고 더 작은 모델 사용 |
-| 훈련 손실은 NaN입니다. | 잘못된 데이터 또는 학습률 | 모두 0인 세포/유전자 확인 |
-| 혼합되지 않는 배치 | 공유 기능이 너무 적습니다. | HVG 증가, 유전자 중복 확인 |
-| 과잉교정 | 너무 공격적인 통합 | 레이블과 함께 scANVI 사용 |
-| 가져오기 오류 | 종속성 누락 | `pip install scvi-tools[all]` |
+| 하다가 | 원인이 있음 | 빠른 수정 |
+| --------- | -------------- | ----------- |
+| "X should contain integers" | X의 교정화된 데이터 | 설정에 `layer="counts"` 사용 |
+| CUDA 메모리가 부족함 | GPU 메모리가 소진되었습니다. | `batch_size` 더 작은 모델 사용 |
+| 훈련은 NaN입니다. | 잘못된 변수 또는 학습률 | 모두 0인 세포/유전자 확인 |
+| 훈련받지 않는 배치 | 공유 기능이 너무 적습니다. | HVG, 자주 묻는 질문 |
+| 대응교정 | 너무 힘들어요 통합 | 라벨과 scANVI 사용 |
+| 가져오는 오류 | 대처성 대응 | `pip install scvi-tools[all]` |
 
 ## 데이터 형식 문제
 
-### 문제: Seurat의 CITE-seq 단백질 데이터가 CLR로 정규화되었습니다.
+### 문제: Seurat의 CITE-seq 계수 데이터가 CLR로 선정되었습니다.
 
-**원인**: Seurat의 `NormalizeData(normalization.method = "CLR")`은 원시 ADT 수를 변환합니다. totalVI에는 단백질 데이터에 대한 원시 정수 개수가 필요합니다.
+**원인**: Seurat의 `NormalizeData(normalization.method = "CLR")`은 원시 ADT 수를 변환합니다. totalVI에는 관찰 데이터에 대한 원시 정수가 필요합니다.
 
 **증상**:
-- 단백질 값은 정수가 아닙니다.
-- 단백질 값에 음수가 포함되어 있습니다.
-- 모델 학습 결과가 좋지 않음
+- 양이온 값은 정수가 아닙니다.
+- 가치에 가치가 포함되어 있습니다.
+- 모델 성능이 좋지 않습니다.
 
 **해결책**:
 ```python
@@ -38,7 +38,7 @@ print(f"Contains integers: {np.allclose(protein, protein.astype(int))}")
 
 ### 문제: "layer not found" 또는 "X should contain integers"
 
-**원인**: scvi-tools에는 정규화된 데이터가 아닌 원시 정수 개수가 필요합니다.
+**원인**: scvi-tools에는 표준화된 데이터가 아닌 원시 정수가 필요합니다.
 
 **해결책**:
 ```python
@@ -56,7 +56,7 @@ adata.layers["counts"] = adata.X.copy()
 scvi.model.SCVI.setup_anndata(adata, layer="counts")
 ```
 
-### 문제: 희소 행렬 오류
+### 문제: 희소 오류
 
 **원인**: 호환되지 않는 희소 형식 또는 조밀한 배열이 예상됩니다.
 
@@ -75,7 +75,7 @@ if adata.n_obs * adata.n_vars < 1e8:
 
 ### 문제: 데이터의 NaN 또는 Inf 값
 
-**원인**: 값이 누락되었거나 데이터가 손상되었습니다.
+**원인**: 거리가 있는 감지 장치가 손상되었습니다.
 
 **해결책**:
 ```python
@@ -93,7 +93,7 @@ X = np.clip(X, 0, None)  # Ensure non-negative
 adata.X = csr_matrix(X)
 ```
 
-### 문제: Batch_key 또는 labels_key를 찾을 수 없습니다.
+### 문제: Batch_key 또는 labels_key를 부품으로 찾을 수 없습니다.
 
 **원인**: adata.obs의 열 이름이 일치하지 않습니다.
 
@@ -110,7 +110,7 @@ for col in adata.obs.columns:
 
 ## GPU 및 메모리 문제
 
-### 문제: CUDA 메모리 부족
+### 문제: CUDA 메모리가 없습니다.
 
 **원인**: 모델 또는 배치가 GPU 메모리에 맞지 않습니다.
 
@@ -139,9 +139,9 @@ torch.cuda.empty_cache()
 model.train(accelerator="cpu")
 ```
 
-### 문제: GPU가 감지되지 않음
+### 문제: GPU가 감지되지 않습니다.
 
-**원인**: CUDA가 설치되지 않았거나 버전이 일치하지 않습니다.
+**원인**: CUDA가 설치되었거나 버전이 일치하지 않습니다.
 
 **진단**:
 ```python
@@ -163,9 +163,9 @@ pip install torch --index-url https://download.pytorch.org/whl/cu118  # For CUDA
 pip install torch --index-url https://download.pytorch.org/whl/cu121  # For CUDA 12.1
 ```
 
-### 문제: 대규모 데이터 세트의 메모리 오류
+### 문제: 대응 데이터 세트의 오류
 
-**원인**: 시스템 RAM에 비해 데이터 세트가 너무 큽니다.
+**원인**: 시스템 RAM에 비해 데이터 세트가 너무 많습니다.
 
 **해결책**:
 ```python
@@ -182,9 +182,9 @@ adata = adata[:, adata.var['highly_variable']].copy()
 
 ## 훈련 문제
 
-### 문제: 훈련 손실은 NaN입니다.
+### 문제: 훈련량이 NaN입니다.
 
-**원인**: 수치 불안정, 잘못된 데이터 또는 학습률 문제.
+**원인**: 참여자, 잘못된 데이터 또는 학습률 문제.
 
 **해결책**:
 ```python
@@ -201,7 +201,7 @@ model.train(max_epochs=200, early_stopping=True)
 
 ### 문제: 훈련이 수렴되지 않습니다.
 
-**원인**: 충분하지 않은 에포크, 잘못된 하이퍼매개변수 또는 데이터 문제.
+**원인**: 충분하지 않은 에포크, 쓸모없는 하이퍼매개 다양하거나 데이터 문제.
 
 **해결책**:
 ```python
@@ -224,9 +224,9 @@ model = scvi.model.SCVI(adata, n_latent=10, n_layers=1, dropout_rate=0.2)
 model = scvi.model.SCVI(adata, n_latent=30, n_layers=2)
 ```
 
-### 문제: 과적합(검증 손실 증가)
+### 문제: 과적합(검증 감소)
 
-**원인**: 모델이 너무 복잡하거나 너무 오랫동안 학습되었습니다.
+**원인**: 모델이 너무 거대하거나 너무 오래동안 놀았습니다.
 
 **해결책**:
 ```python
@@ -242,9 +242,9 @@ model = scvi.model.SCVI(adata, n_layers=1)
 
 ## 통합 문제
 
-### 문제: 배치가 혼합되지 않음
+### 문제: 배치가 이루어지지 않습니다.
 
-**원인**: 공유 기능이 너무 적거나 생물학적 차이가 크거나 기술적 문제가 있습니다.
+**원인**: 공유 기능이 너무 적거나 생물학적 차이가 크거나 관련이 있습니다.
 
 **해결책**:
 ```python
@@ -263,7 +263,7 @@ model.train(max_epochs=400)
 model = scvi.model.SCVI(adata, n_latent=50)
 ```
 
-### 문제: 과잉 교정(생체 신호 손실)
+### 문제: 생리 신호 손실
 
 **원인**: 모델이 너무 많은 변형을 제거했습니다.
 
@@ -285,7 +285,7 @@ scvi.model.SCVI.setup_anndata(
 
 ### 문제: 하나의 배치가 클러스터를 지배함
 
-**원인**: 배치 크기가 불균형하거나 통합이 불완전합니다.
+**원인**: 배치가 불편하거나 통합이 가능합니다.
 
 **해결책**:
 ```python
@@ -304,7 +304,7 @@ adata_balanced = sc.concat(balanced)
 
 ## 모델별 문제
 
-### scANVI: 라벨 전송 불량
+### scANVI: 라벨 전송 항목
 
 **해결책**:
 ```python
@@ -320,7 +320,7 @@ scanvi_model = scvi.model.SCANVI.from_scvi_model(scvi_model, labels_key="cell_ty
 scanvi_model.train(max_epochs=100)
 ```
 
-### totalVI: 시끄러운 단백질 신호
+### totalVI: 시끄러운 신호
 
 **해결책**:
 ```python
@@ -334,7 +334,7 @@ for i, name in enumerate(adata.uns["protein_names"]):
         print(f"{name}: mean={adata.obsm['protein_expression'][:, i].mean():.1f}")
 ```
 
-### PeakVI: 불량한 클러스터링
+### PeakVI: 유령한 클러스터링
 
 **해결책**:
 ```python
@@ -372,7 +372,7 @@ print(f"Common genes: {len(common_genes)}")  # Should be >1000
 print(adata_ref.obs['cell_type'].value_counts())
 ```
 
-## 버전 호환성
+## 버전 비교
 
 ### scvi-tools 1.x 대 0.x API 변경 사항
 
@@ -398,7 +398,7 @@ print(f"anndata: {anndata.__version__}")
 print(f"torch: {torch.__version__}")
 ```
 
-### 권장 버전(2024년 후반 기준)
+### 추천 버전(2024년 권고 기준)
 ```
 scvi-tools>=1.0.0
 scanpy>=1.9.0
@@ -406,15 +406,15 @@ anndata>=0.9.0
 torch>=2.0.0
 ```
 
-## 도움 받기
+## 도움 요청
 
 1. **문서 확인**: https://docs.scvi-tools.org/
 2. **GitHub 문제**: https://github.com/scverse/scvi-tools/issues
-3. **담론 포럼**: https://discourse.scverse.org/
-4. **튜토리얼**: https://docs.scvi-tools.org/en/stable/tutorials/index.html
+3. **담론 담당자**: https://discourse.scverse.org/
+4. **실제 스튜디오**: https://docs.scvi-tools.org/en/stable/tutorials/index.html
 
-문제를 보고할 때 다음을 포함하십시오.
+문제를 보고할 때 다음을 포함해 주시기 바랍니다.
 - scvi-tools 버전(`scvi.__version__`)
-- 파이썬 버전
+- 스타일 버전
 - 전체 오류 추적
-- 재현 가능한 최소 예
+- 최소한의 예를 가지고

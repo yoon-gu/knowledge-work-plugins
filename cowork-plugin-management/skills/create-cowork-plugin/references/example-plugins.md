@@ -1,12 +1,12 @@
-# Example Plugins
+# 예제 플러그인
 
-Three complete plugin structures at different complexity levels. Use these as templates when implementing in Phase 4.
+서로 다른 복잡성 수준의 세 가지 완전한 플러그인 구조. 4단계에서 구현할 때 이를 템플릿으로 사용하세요.
 
-## Minimal Plugin: Single Skill
+## 최소 플러그인: 단일 스킬
 
-A simple plugin with one skill and no other components.
+하나의 기술만 있고 다른 구성 요소는 없는 간단한 플러그인입니다.
 
-### Structure
+### 구조
 
 ```
 meeting-notes/
@@ -18,7 +18,7 @@ meeting-notes/
 └── README.md
 ```
 
-### plugin.json
+### 플러그인.json
 
 ```json
 {
@@ -31,7 +31,7 @@ meeting-notes/
 }
 ```
 
-### skills/meeting-notes/SKILL.md
+### Skills/meeting-notes/SKILL.md
 
 ```markdown
 ---
@@ -57,11 +57,11 @@ Write the notes to a new file named after the transcript with `-notes` appended.
 
 ---
 
-## Standard Plugin: Skills + MCP
+## 표준 플러그인: Skills + MCP
 
-A plugin that combines domain knowledge, user-initiated actions, and external service integration.
+도메인 지식, 사용자가 시작한 작업 및 외부 서비스 통합을 결합한 플러그인입니다.
 
-### Structure
+### 구조
 
 ```
 code-quality/
@@ -80,7 +80,7 @@ code-quality/
 └── README.md
 ```
 
-### plugin.json
+### 플러그인.json
 
 ```json
 {
@@ -93,7 +93,7 @@ code-quality/
 }
 ```
 
-### skills/review-changes/SKILL.md
+### 기술/검토-변경 사항/SKILL.md
 
 ```markdown
 ---
@@ -120,7 +120,7 @@ Present a summary with:
 - Description and suggested fix
 ```
 
-### skills/fix-lint/SKILL.md
+### Skills/fix-lint/SKILL.md
 
 ```markdown
 ---
@@ -141,7 +141,7 @@ Parse the linter output and fix each issue:
 After all fixes, run the linter again to confirm clean output.
 ```
 
-### skills/coding-standards/SKILL.md
+### 기술/코딩 표준/SKILL.md
 
 ```yaml
 ---
@@ -195,11 +195,11 @@ Project coding standards and conventions for consistent, high-quality code.
 
 ---
 
-## Full-Featured Plugin: All Component Types
+## 모든 기능을 갖춘 플러그인: 모든 구성요소 유형
 
-A plugin using skills, agents, hooks, and MCP integration with tool-agnostic connectors.
+도구에 구애받지 않는 커넥터와 기술, 에이전트, 후크 및 MCP 통합을 사용하는 플러그인입니다.
 
-### Structure
+### 구조
 
 ```
 engineering-workflow/
@@ -223,7 +223,7 @@ engineering-workflow/
 └── README.md
 ```
 
-### plugin.json
+### 플러그인.json
 
 ```json
 {
@@ -237,7 +237,7 @@ engineering-workflow/
 }
 ```
 
-### agents/ticket-analyzer.md
+### 에이전트/티켓 분석기.md
 
 ```markdown
 ---
@@ -292,7 +292,7 @@ You are a ticket analysis specialist. Analyze tickets for priority, effort, and 
 Followed by a brief rationale for the top 5 priorities.
 ```
 
-### hooks/hooks.json
+### 후크/hooks.json
 
 ```json
 {
@@ -311,7 +311,7 @@ Followed by a brief rationale for the top 5 priorities.
 }
 ```
 
-### CONNECTORS.md
+### 커넥터.md
 
 ```markdown
 # Connectors

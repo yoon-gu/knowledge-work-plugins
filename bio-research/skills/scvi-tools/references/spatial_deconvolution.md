@@ -1,23 +1,23 @@
-# 공간 전사체학 분석
+# 우주공간체학분석
 
-이 참고 자료는 scvi-tools 방법(디콘볼루션을 위한 DestVI 및 공간 모델 구축을 위한 resolVI)을 사용한 공간 전사체 분석을 다룹니다.
+이 참고 자료는 scvi-tools 방법(디콘볼루션을 분리하여 DestVI 및 공간 모델 구축을 resolVI)을 사용하여 공간 압축체 분석을 다뤄집니다.
 
 ## 개요
 
-Visium과 같은 공간 전사체학 기술은 정의된 공간 위치에서 유전자 발현을 포착하지만 많은 플랫폼은 다세포 분해능을 갖추고 있습니다. scvi-tools는 두 가지 주요 접근 방식을 제공합니다:
+Visium과 같은 공간을 활용하는 기술은 정의된 공간 위치에서 경계심을 포착하지만 많은 플랫폼은 다세포 분리 기능을 갖추고 있습니다. scvi-tools는 두 가지 주요 접근 방식을 제공합니다:
 
-- **DestVI**: Deconvolution - 단일 셀 참조를 사용하여 각 지점에서 세포 유형 비율을 추정합니다.
-- **resolVI**: 공간적 맥락을 고려한 유전자 발현 패턴을 학습하는 공간 모델 구축
+- **DestVI**: Deconvolution - 단일 셀 참조를 사용하여 각 지점에서 세포를 사용합니다.
+- **resolVI**: 공간적 소수를 고려한 소수 범위 패턴을 학습하는 공간 모델 구축
 
-## scvi-tools에서 사용 가능한 방법
+## scvi-tools를 사용하는 방법
 
 | 방법 | 설명 | 사용 사례 |
-|--------|-------------|----------|
-| **대상VI** | 디콘볼루션을 위한 변형 추론 | 스팟당 세포 유형 비율 추정 |
-| **해결VI** | 공간 유전자 발현 모델 | 공간 인식 표현 학습 |
-| **조건SCVI** | DestVI의 참조 모델 | DestVI 워크플로우에 필요 |
+| -------- | ------------- | ---------- |
+| **대상VI** | 디콘볼루션을 변형 가능 | 자리에 앉는다면 |
+| **해결VI** | 공간 제한 모델 | 공간 표현 학습 |
+| **조건SCVI** | DestVI의 참조 사진 | DestVI워크플로우에 필요 |
 
-## 전제조건
+## 조건
 
 ```python
 import scvi
@@ -32,7 +32,7 @@ print(f"scvi-tools version: {scvi.__version__}")
 
 ## 1부: DestVI 디컨볼루션
 
-### 1단계: 공간 데이터 로드
+### 1단계: 공간데이터 로드
 
 ```python
 # Load Visium data
@@ -116,7 +116,7 @@ spatial_model = scvi.model.DestVI.from_rna_model(
 spatial_model.train(max_epochs=500)
 ```
 
-### 6단계: 세포 유형 비율 얻기
+### 6단계: 세포활동을 수행한다
 
 ```python
 # Infer cell type proportions at each spot
@@ -138,11 +138,11 @@ sq.pl.spatial_scatter(
 
 ## 2부: resolVI 공간 모델
 
-resolVI는 선택적으로 초기 세포 유형 예측을 사용하여 공간 데이터에서 직접 세포 유형 할당 및 공간 인식 표현을 학습하는 준지도 방법입니다.
+resolVI는 공간 데이터에서 직접적으로 공간 데이터를 활용하여 공간 인식을 표현하는 방법을 선택적으로 초기에 예측하는 방법입니다.
 
-**참고**: resolVI는 `scvi.external`(`scvi.model` 아님)에 있습니다.
+**참고**: resolVI는 `scvi.external`(`scvi.model`__)에 있습니다.
 
-### 1단계: 공간 데이터 준비
+### 1단계: 공간데이터 준비
 
 ```python
 # Load and preprocess
@@ -185,7 +185,7 @@ model = scvi.external.RESOLVI(adata, semisupervised=True)
 model.train(max_epochs=50)
 ```
 
-### 3단계: 세포 유형 예측 가져오기
+### 3단계: 세포를 예측한다
 
 ```python
 # Get refined cell type predictions
@@ -199,7 +199,7 @@ adata.obs["resolvi_celltype"] = cell_type_labels
 sq.pl.spatial_scatter(adata, color="resolvi_celltype")
 ```
 
-### 4단계: 잠재 표현 얻기
+### 4단계: 동작하는 표현
 
 ```python
 # Get latent representation
@@ -228,7 +228,7 @@ de_results = model.differential_expression(
 print(de_results.head(20))
 ```
 
-### 6단계: 틈새 풍부도 분석
+### 6단계: 연결도 분석
 
 ```python
 # Analyze how cell type neighborhoods differ between conditions
@@ -265,7 +265,7 @@ query_labels = query_model.predict(query_adata, num_samples=3, soft=False)
 
 ## 심상
 
-### 공간적 비율
+### 공간적으로
 
 ```python
 import matplotlib.pyplot as plt
@@ -286,7 +286,7 @@ for ax, ct in zip(axes.flat, cell_types):
 plt.tight_layout()
 ```
 
-### 지역별 농축
+### 지역별로
 
 ```python
 # Cluster spatial data
@@ -308,7 +308,7 @@ sns.heatmap(region_props.T, annot=True, cmap='viridis')
 plt.title('Cell Type Proportions by Region')
 ```
 
-### 공간 셀 유형 상호 작용
+### 셀 공간 활용 기능
 
 ```python
 # Neighborhood enrichment using cell type assignments
@@ -425,12 +425,12 @@ sq.pl.spatial_scatter(
 ## 문제 해결
 
 | 문제 | 원인 | 해결책 |
-|-------|-------|----------|
-| 몇 가지 공통 유전자 | 다른 유전자 명명 | 유전자 이름 변환(Ensembl ← Symbol) |
-| 불량한 디콘볼루션 | 참조가 일치하지 않습니다. | 조직 일치 참조 사용 |
-| 모든 지점 동일한 유형 | 과도하게 평활화 | 모델 매개변수 조정, 참조 다양성 확인 |
-| NaN 비율 | 누락된 세포 유형 | 예상되는 모든 유형을 참조로 확인하세요. |
-| 느린 훈련 | 대규모 공간 데이터세트 | max_epochs 감소, 배치 크기 증가 |
+| ------- | ------- | ---------- |
+| 몇 가지 질문이 있습니다. | 다른 이유 | 특수 이름 변환(Ensembl ← Symbol) |
+| 불량한 디콘볼루션 | 참조가 일치하지 않습니다. | 조직화 사용 |
+| 모든 지역이 비슷한가요? | 엄청나게 평활화 | 다양한 종류의 조정, 선택 절단 |
+| NaN | 세포에 존재하는 세포 | 예상되는 모든 유형을 참조하시기 바랍니다. |
+| 힘든 훈련 | 우주공간 데이터세트 | max_epochs의 설명, 설명의 증가 |
 
 ## 주요 참고자료
 
