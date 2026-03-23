@@ -1,104 +1,104 @@
 ---
 name: onboarding
-description: Generate an onboarding checklist and first-week plan for a new hire. Use when someone has a start date coming up, building the pre-start task list (accounts, equipment, buddy), scheduling Day 1 and Week 1, or setting 30/60/90-day goals for a new team member.
+description: 신규 입사자를 위한 온보딩 체크리스트와 첫 주 계획을 생성합니다. 시작일이 다가왔을 때, 시작 전 작업 목록(계정, 장비, 버디)을 만들 때, Day 1과 Week 1 일정을 잡을 때, 또는 새 팀원의 30/60/90일 목표를 정할 때 사용합니다.
 argument-hint: "<new hire name and role>"
 ---
 
 # /onboarding
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 한다면 [CONNECTORS.md](../../CONNECTORS.md)를 참고하세요.
 
-Generate a comprehensive onboarding plan for a new team member.
+신규 팀원을 위한 포괄적인 온보딩 계획을 생성합니다.
 
-## Usage
+## 사용법
 
 ```
 /onboarding $ARGUMENTS
 ```
 
-## What I Need From You
+## 필요한 것
 
-- **New hire name**: Who's starting?
-- **Role**: What position?
-- **Team**: Which team are they joining?
-- **Start date**: When do they start?
-- **Manager**: Who's their manager?
+- **신규 입사자 이름**: 누가 시작하나요?
+- **역할**: 어떤 포지션인가요?
+- **팀**: 어느 팀에 합류하나요?
+- **시작일**: 언제 시작하나요?
+- **관리자**: 누구가 매니저인가요?
 
-## Output
+## 출력
 
 ```markdown
-## Onboarding Plan: [Name] — [Role]
-**Start Date:** [Date] | **Team:** [Team] | **Manager:** [Manager]
+## 온보딩 계획: [Name] — [Role]
+**시작일:** [Date] | **팀:** [Team] | **관리자:** [Manager]
 
-### Pre-Start (Before Day 1)
-- [ ] Send welcome email with start date, time, and logistics
-- [ ] Set up accounts: email, Slack, [tools for role]
-- [ ] Order equipment (laptop, monitor, peripherals)
-- [ ] Add to team calendar and recurring meetings
-- [ ] Assign onboarding buddy: [Suggested person]
-- [ ] Prepare desk / remote setup instructions
+### 시작 전(Day 1 이전)
+- [ ] 시작일, 시간, 진행 안내가 담긴 환영 이메일 발송
+- [ ] 계정 설정: 이메일, Slack, [role for tools]
+- [ ] 장비 주문(노트북, 모니터, 주변기기)
+- [ ] 팀 캘린더와 반복 회의에 추가
+- [ ] 온보딩 버디 지정: [Suggested person]
+- [ ] 책상 / 원격 근무 세팅 안내 준비
 
 ### Day 1
-| Time | Activity | With |
+| 시간 | 활동 | 함께 |
 |------|----------|------|
-| 9:00 | Welcome and orientation | Manager |
-| 10:00 | IT setup and tool walkthrough | IT / Buddy |
-| 11:00 | Team introductions | Team |
-| 12:00 | Welcome lunch | Manager + Team |
-| 1:30 | Company overview and values | Manager |
-| 3:00 | Role expectations and 30/60/90 plan | Manager |
-| 4:00 | Free time to explore tools and docs | Self |
+| 9:00 | 환영 및 오리엔테이션 | 관리자 |
+| 10:00 | IT 설정 및 도구 안내 | IT / 버디 |
+| 11:00 | 팀 소개 | 팀 |
+| 12:00 | 환영 점심 | 관리자 + 팀 |
+| 1:30 | 회사 개요와 가치 | 관리자 |
+| 3:00 | 역할 기대치와 30/60/90 계획 | 관리자 |
+| 4:00 | 도구와 문서를 자유롭게 탐색하는 시간 | 자율 |
 
 ### Week 1
-- [ ] Complete required compliance training
-- [ ] Read key documentation: [list for role]
-- [ ] 1:1 with each team member
-- [ ] Shadow key meetings
-- [ ] First small task or project assigned
-- [ ] End-of-week check-in with manager
+- [ ] 필수 컴플라이언스 교육 완료
+- [ ] 핵심 문서 읽기: [list for role]
+- [ ] 각 팀원과 1:1 진행
+- [ ] 주요 회의 참관
+- [ ] 첫 작은 업무 또는 프로젝트 배정
+- [ ] 주말 전 관리자 체크인
 
-### 30-Day Goals
+### 30일 목표
 1. [Goal aligned to role]
 2. [Goal aligned to role]
 3. [Goal aligned to role]
 
-### 60-Day Goals
+### 60일 목표
 1. [Goal]
 2. [Goal]
 
-### 90-Day Goals
+### 90일 목표
 1. [Goal]
 2. [Goal]
 
-### Key Contacts
-| Person | Role | For What |
+### 주요 연락처
+| 사람 | 역할 | 용도 |
 |--------|------|----------|
-| [Manager] | Manager | Day-to-day guidance |
-| [Buddy] | Onboarding Buddy | Questions, culture, navigation |
-| [IT Contact] | IT | Tool access, equipment |
-| [HR Contact] | HR | Benefits, policies |
+| [Manager] | 관리자 | 일상적인 안내 |
+| [Buddy] | 온보딩 버디 | 질문, 문화, 길잡이 |
+| [IT Contact] | IT | 도구 접근, 장비 |
+| [HR Contact] | HR | 복리후생, 정책 |
 
-### Tools Access Needed
-| Tool | Access Level | Requested |
+### 필요한 도구 접근
+| 도구 | 접근 수준 | 요청 여부 |
 |------|-------------|-----------|
 | [Tool] | [Level] | [ ] |
 ```
 
-## If Connectors Available
+## 연결 도구가 있을 경우
 
-If **~~HRIS** is connected:
-- Pull new hire details and team org chart
-- Auto-populate tools access list based on role
+**~~HRIS**가 연결되어 있다면:
+- 신규 입사자 세부 정보와 팀 조직도를 가져옵니다
+- 역할을 기준으로 도구 접근 목록을 자동으로 채웁니다
 
-If **~~knowledge base** is connected:
-- Link to relevant onboarding docs, team wikis, and runbooks
-- Pull the team's existing onboarding checklist to customize
+**~~knowledge base**가 연결되어 있다면:
+- 관련 온보딩 문서, 팀 위키, 런북으로 연결합니다
+- 팀의 기존 온보딩 체크리스트를 가져와 맞춤화합니다
 
-If **~~calendar** is connected:
-- Create Day 1 calendar events and Week 1 meeting invites automatically
+**~~calendar**가 연결되어 있다면:
+- Day 1 캘린더 일정과 Week 1 회의 초대를 자동으로 생성합니다
 
-## Tips
+## 팁
 
-1. **Customize for the role** — An engineer's onboarding looks different from a designer's.
-2. **Don't overload Day 1** — Focus on setup and relationships. Deep work starts Week 2.
-3. **Assign a buddy** — Having a go-to person who isn't their manager makes a huge difference.
+1. **역할에 맞게 맞춤화하세요** - 엔지니어 온보딩은 디자이너와 다릅니다.
+2. **Day 1에 과부하를 주지 마세요** - 설정과 관계 형성에 집중하고, 깊은 업무는 Week 2에 시작합니다.
+3. **버디를 지정하세요** - 매니저가 아닌 바로 물어볼 사람이 있으면 큰 도움이 됩니다.

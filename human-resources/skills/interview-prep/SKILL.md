@@ -1,37 +1,37 @@
 ---
 name: interview-prep
-description: Create structured interview plans with competency-based questions and scorecards. Trigger with "interview plan for", "interview questions for", "how should we interview", "scorecard for", or when the user is preparing to interview candidates.
+description: 역량 기반 질문과 스코어카드가 포함된 구조화된 인터뷰 계획을 만듭니다. "interview plan for", "interview questions for", "how should we interview", "scorecard for" 같은 표현이 나오거나, 사용자가 후보자 인터뷰를 준비할 때 트리거됩니다.
 ---
 
-# Interview Prep
+# 인터뷰 준비
 
-Create structured interview plans to evaluate candidates consistently and fairly.
+후보자를 일관되고 공정하게 평가하기 위한 구조화된 인터뷰 계획을 만듭니다.
 
-## Interview Design Principles
+## 인터뷰 설계 원칙
 
-1. **Structured**: Same questions for all candidates in the role
-2. **Competency-based**: Map questions to specific skills and behaviors
-3. **Evidence-based**: Use behavioral and situational questions
-4. **Diverse panel**: Multiple perspectives reduce bias
-5. **Scored**: Use rubrics, not gut feelings
+1. **구조화**: 같은 역할의 모든 후보자에게 같은 질문을 사용
+2. **역량 기반**: 질문을 특정 기술과 행동에 연결
+3. **증거 기반**: 행동 및 상황 질문 사용
+4. **다양한 패널**: 여러 관점이 편향을 줄임
+5. **점수화**: 직감이 아니라 평가 기준을 사용
 
-## Interview Plan Components
+## 인터뷰 계획 구성 요소
 
-### Role Competencies
-Define 4-6 key competencies for the role (e.g., technical skills, communication, leadership, problem-solving).
+### 역할 역량
+해당 역할의 핵심 역량 4-6개를 정의합니다(예: 기술 역량, 커뮤니케이션, 리더십, 문제 해결).
 
-### Question Bank
-For each competency, provide:
-- 2-3 behavioral questions ("Tell me about a time...")
-- 1-2 situational questions ("How would you handle...")
-- Follow-up probes
+### 질문 बैंक
+각 역량마다 다음을 제공합니다.
+- 2-3개의 행동 질문("Tell me about a time...")
+- 1-2개의 상황 질문("How would you handle...")
+- 후속 추궁 질문
 
-### Scorecard
-Rate each competency on a consistent scale (1-4) with clear descriptions of what each level looks like.
+### 스코어카드
+각 역량을 일관된 척도(1-4)로 평가하고, 각 수준이 어떤 모습인지 명확히 설명합니다.
 
-### Debrief Template
-Structured format for interviewers to share findings and make a decision.
+### 디브리프 템플릿
+면접관이 결과를 공유하고 결정을 내릴 수 있는 구조화된 형식입니다.
 
-## Output
+## 출력
 
-Produce a complete interview kit: panel assignment (who interviews for what), question bank by competency, scoring rubric, and debrief template.
+완전한 인터뷰 키트를 만듭니다. 패널 배정(누가 무엇을 인터뷰하는지), 역량별 질문 банка, 평가 루브릭, 디브리프 템플릿을 포함합니다.

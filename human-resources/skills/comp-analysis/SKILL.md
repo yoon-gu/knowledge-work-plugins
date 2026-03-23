@@ -1,60 +1,60 @@
 ---
 name: comp-analysis
-description: Analyze compensation — benchmarking, band placement, and equity modeling. Trigger with "what should we pay a [role]", "is this offer competitive", "model this equity grant", or when uploading comp data to find outliers and retention risks.
+description: 보상을 분석합니다. 벤치마킹, 밴드 배치, 지분 모델링을 다룹니다. "what should we pay a [role]", "is this offer competitive", "model this equity grant" 같은 표현이 나오거나, 보상 데이터를 업로드해 이상치와 유지 리스크를 찾을 때 트리거됩니다.
 argument-hint: "<role, level, or dataset>"
 ---
 
 # /comp-analysis
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 한다면 [CONNECTORS.md](../../CONNECTORS.md)를 참고하세요.
 
-Analyze compensation data for benchmarking, band placement, and planning. Helps benchmark compensation against market data for hiring, retention, and equity planning.
+벤치마킹, 밴드 배치, 계획 수립을 위해 보상 데이터를 분석합니다. 채용, 유지, 지분 계획을 위해 시장 데이터와 비교할 수 있도록 돕습니다.
 
-## Usage
+## 사용법
 
 ```
 /comp-analysis $ARGUMENTS
 ```
 
-## What I Need From You
+## 필요한 것
 
-**Option A: Single role analysis**
-"What should we pay a Senior Software Engineer in SF?"
+**옵션 A: 단일 역할 분석**
+"샌프란시스코의 시니어 소프트웨어 엔지니어에게 얼마를 지급해야 하나요?"
 
-**Option B: Upload comp data**
-Upload a CSV or paste your comp bands. I'll analyze placement, identify outliers, and compare to market.
+**옵션 B: 보상 데이터 업로드**
+CSV를 업로드하거나 보상 밴드를 붙여넣으세요. 배치를 분석하고, 이상치를 식별하고, 시장과 비교합니다.
 
-**Option C: Equity modeling**
-"Model a refresh grant of 10K shares over 4 years at a $50 stock price."
+**옵션 C: 지분 모델링**
+"주가 $50 기준으로 4년에 걸친 10K주 리프레시 그랜트를 모델링해 주세요."
 
-## Compensation Framework
+## 보상 프레임워크
 
-### Components of Total Compensation
-- **Base salary**: Cash compensation
-- **Equity**: RSUs, stock options, or other equity
-- **Bonus**: Annual target bonus, signing bonus
-- **Benefits**: Health, retirement, perks (harder to quantify)
+### 총보상 구성 요소
+- **기본급**: 현금 보상
+- **지분**: RSU, 스톡옵션, 기타 지분
+- **보너스**: 연간 목표 보너스, 입사 보너스
+- **복리후생**: 건강, 은퇴, 복지 혜택(정량화가 더 어려움)
 
-### Key Variables
-- **Role**: Function and specialization
-- **Level**: IC levels, management levels
-- **Location**: Geographic pay adjustments
-- **Company stage**: Startup vs. growth vs. public
-- **Industry**: Tech vs. finance vs. healthcare
+### 핵심 변수
+- **역할**: 기능과 전문성
+- **레벨**: 개인기여자(IC) 레벨, 관리자 레벨
+- **지역**: 지역별 보상 조정
+- **회사 단계**: 스타트업 vs 성장기 vs 상장사
+- **산업**: 기술 vs 금융 vs 헬스케어
 
-### Data Sources
-- **With ~~compensation data**: Pull verified benchmarks
-- **Without**: Use web research, public salary data, and user-provided context
-- Always note data freshness and source limitations
+### 데이터 소스
+- **~~compensation data가 연결된 경우**: 검증된 벤치마크를 가져옵니다
+- **연결되지 않은 경우**: 웹 조사, 공개 연봉 데이터, 사용자가 제공한 맥락을 사용합니다
+- 항상 데이터의 최신성과 출처 한계를 명시합니다
 
-## Output
+## 출력
 
-Provide percentile bands (25th, 50th, 75th, 90th) for base, equity, and total comp. Include location adjustments and company-stage context.
+기본급, 지분, 총보상에 대한 백분위 밴드(25th, 50th, 75th, 90th)를 제공합니다. 지역 조정과 회사 단계 맥락을 포함합니다.
 
 ```markdown
-## Compensation Analysis: [Role/Scope]
+## 보상 분석: [Role/Scope]
 
-### Market Benchmarks
+### 시장 벤치마크
 | Percentile | Base | Equity | Total Comp |
 |------------|------|--------|------------|
 | 25th | $[X] | $[X] | $[X] |
@@ -62,31 +62,31 @@ Provide percentile bands (25th, 50th, 75th, 90th) for base, equity, and total co
 | 75th | $[X] | $[X] | $[X] |
 | 90th | $[X] | $[X] | $[X] |
 
-**Sources:** [Web research, compensation data tools, or user-provided data]
+**출처:** [웹 조사, 보상 데이터 도구, 또는 사용자가 제공한 데이터]
 
-### Band Analysis (if data provided)
+### 밴드 분석(데이터가 제공된 경우)
 | Employee | Current Base | Band Min | Band Mid | Band Max | Position |
 |----------|-------------|----------|----------|----------|----------|
 | [Name] | $[X] | $[X] | $[X] | $[X] | [Below/At/Above] |
 
-### Recommendations
-- [Specific compensation recommendations]
-- [Equity considerations]
-- [Retention risks if applicable]
+### 권고 사항
+- [구체적인 보상 권고]
+- [지분 관련 고려사항]
+- [해당되는 경우 유지 리스크]
 ```
 
-## If Connectors Available
+## 연결 도구가 있을 경우
 
-If **~~compensation data** is connected:
-- Pull verified market benchmarks by role, level, and location
-- Compare your bands against real-time market data
+**~~compensation data**가 연결되어 있다면:
+- 역할, 레벨, 지역별 검증된 시장 벤치마크를 가져옵니다
+- 밴드를 실시간 시장 데이터와 비교합니다
 
-If **~~HRIS** is connected:
-- Pull current employee comp data for band analysis
-- Identify outliers and retention risks automatically
+**~~HRIS**가 연결되어 있다면:
+- 밴드 분석을 위해 현재 직원 보상 데이터를 가져옵니다
+- 이상치와 유지 리스크를 자동으로 식별합니다
 
-## Tips
+## 팁
 
-1. **Location matters** — Always specify location for benchmarking. SF vs. Austin vs. London are very different.
-2. **Total comp, not just base** — Include equity, bonus, and benefits for a complete picture.
-3. **Keep data confidential** — Comp data is sensitive. Results stay in your conversation.
+1. **지역은 중요합니다** - 벤치마킹 시 항상 지역을 명시하세요. SF, Austin, London은 매우 다릅니다.
+2. **기본급만 보지 마세요** - 전체 그림을 위해 지분, 보너스, 복리후생을 포함하세요.
+3. **데이터를 비공개로 유지하세요** - 보상 데이터는 민감합니다. 결과는 대화 안에만 남습니다.

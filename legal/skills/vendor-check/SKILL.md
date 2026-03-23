@@ -1,91 +1,91 @@
 ---
 name: vendor-check
-description: Check the status of existing agreements with a vendor across all connected systems — CLM, CRM, email, and document storage — with gap analysis and upcoming deadlines. Use when onboarding or renewing a vendor, when you need a consolidated view of what's signed and what's missing (MSA, DPA, SOW), or when checking for approaching expirations and surviving obligations.
+description: 연결된 모든 시스템(CLM, CRM, 이메일, 문서 저장소)에서 벤더와의 기존 계약 상태를 확인하고, 공백 분석과 다가오는 마감까지 제공합니다. 벤더를 온보딩하거나 갱신할 때, 무엇이 서명되었고 무엇이 빠졌는지(MSA, DPA, SOW) 한눈에 보고 싶을 때, 또는 만료 임박과 잔존 의무를 확인할 때 사용합니다.
 argument-hint: "[vendor name]"
 ---
 
-# /vendor-check -- Vendor Agreement Status
+# /vendor-check -- 벤더 계약 현황
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 한다면 [CONNECTORS.md](../../CONNECTORS.md)를 참고하세요.
 
-Check the status of existing agreements with a vendor across all connected systems. Provides a consolidated view of the legal relationship.
+연결된 모든 시스템에서 벤더와의 기존 계약 상태를 확인합니다. 법적 관계를 한눈에 볼 수 있게 해 줍니다.
 
-**Important**: This command assists with legal workflows but does not provide legal advice. Agreement status reports should be verified against original documents by qualified legal professionals.
+**중요**: 이 명령은 법무 워크플로를 지원하지만 법률 자문을 제공하지 않습니다. 계약 현황 보고서는 자격을 갖춘 법률 전문가가 원문과 대조해 검증해야 합니다.
 
-## Invocation
+## 호출
 
 ```
 /vendor-check [vendor name]
 ```
 
-If no vendor name is provided, prompt the user to specify which vendor to check.
+벤더 이름이 제공되지 않으면 어떤 벤더를 확인할지 사용자에게 물어봅니다.
 
-## Workflow
+## 워크플로
 
-### Step 1: Identify the Vendor
+### 1단계: 벤더 식별
 
-Accept the vendor name from the user. Handle common variations:
-- Full legal name vs. trade name (e.g., "Alphabet Inc." vs. "Google")
-- Abbreviations (e.g., "AWS" vs. "Amazon Web Services")
-- Parent/subsidiary relationships
+사용자로부터 벤더 이름을 받습니다. 일반적인 변형을 처리합니다.
+- 정식 법인명 vs 상호명(예: "Alphabet Inc." vs. "Google")
+- 약어(예: "AWS" vs. "Amazon Web Services")
+- 모회사/자회사 관계
 
-Ask the user to clarify if the vendor name is ambiguous.
+벤더 이름이 모호하면 사용자에게 확인을 요청합니다.
 
-### Step 2: Search Connected Systems
+### 2단계: 연결된 시스템 검색
 
-Search for the vendor across all available connected systems, in priority order:
+사용 가능한 모든 연결 시스템에서 우선순위 순으로 벤더를 검색합니다.
 
-#### CLM (Contract Lifecycle Management) -- If Connected
-Search for all contracts involving the vendor:
-- Active agreements
-- Expired agreements (last 3 years)
-- Agreements in negotiation or pending signature
-- Amendments and addenda
+#### CLM(계약 생명주기 관리) -- 연결된 경우
+벤더가 포함된 모든 계약을 검색합니다.
+- 활성 계약
+- 만료된 계약(최근 3년)
+- 협상 중이거나 서명 대기 중인 계약
+- 수정계약 및 부속합의서
 
-#### CRM -- If Connected
-Search for the vendor/account record:
-- Account status and relationship type
-- Associated opportunities or deals
-- Contact information for vendor's legal/contracts team
+#### CRM -- 연결된 경우
+벤더/계정 레코드를 검색합니다.
+- 계정 상태와 관계 유형
+- 관련 기회 또는 딜
+- 벤더의 법무/계약팀 연락처 정보
 
-#### Email -- If Connected
-Search for recent relevant correspondence:
-- Contract-related emails (last 6 months)
-- NDA or agreement attachments
-- Negotiation threads
+#### 이메일 -- 연결된 경우
+최근 관련 커뮤니케이션을 검색합니다.
+- 계약 관련 이메일(최근 6개월)
+- NDA 또는 계약 첨부파일
+- 협상 스레드
 
-#### Documents (e.g., Box, Egnyte, SharePoint) -- If Connected
-Search for:
-- Executed agreements
-- Redlines and drafts
-- Due diligence materials
+#### 문서(예: Box, Egnyte, SharePoint) -- 연결된 경우
+다음을 검색합니다.
+- 실행된 계약
+- 레드라인과 초안
+- 실사 자료
 
-#### Chat (e.g., Slack, Teams) -- If Connected
-Search for recent mentions:
-- Contract requests involving this vendor
-- Legal questions about the vendor
-- Relevant team discussions (last 3 months)
+#### 채팅(예: Slack, Teams) -- 연결된 경우
+최근 언급을 검색합니다.
+- 이 벤더와 관련된 계약 요청
+- 벤더에 대한 법무 질문
+- 관련 팀 논의(최근 3개월)
 
-### Step 3: Compile Agreement Status
+### 3단계: 계약 현황 정리
 
-For each agreement found, report:
+찾은 각 계약에 대해 다음을 보고합니다.
 
 | Field | Details |
 |-------|---------|
-| **Agreement Type** | NDA, MSA, SOW, DPA, SLA, License Agreement, etc. |
-| **Status** | Active, Expired, In Negotiation, Pending Signature |
-| **Effective Date** | When the agreement started |
-| **Expiration Date** | When it expires or renews |
-| **Auto-Renewal** | Yes/No, with renewal term and notice period |
-| **Key Terms** | Liability cap, governing law, termination provisions |
-| **Amendments** | Any amendments or addenda on file |
+| **계약 유형** | NDA, MSA, SOW, DPA, SLA, 라이선스 계약 등 |
+| **상태** | 활성, 만료, 협상 중, 서명 대기 |
+| **시행일** | 계약 시작일 |
+| **만료일** | 만료 또는 갱신일 |
+| **자동 갱신** | 예/아니오, 갱신 기간과 통지 기간 포함 |
+| **핵심 조건** | 책임 한도, 준거법, 종료 조항 |
+| **수정사항** | 보관 중인 수정계약 또는 부속합의서 |
 
-### Step 4: Gap Analysis
+### 4단계: 공백 분석
 
-Identify what agreements exist and what might be missing:
+존재하는 계약과 누락된 가능성이 있는 계약을 식별합니다.
 
 ```
-## Agreement Coverage
+## 계약 커버리지
 
 [CHECK] NDA -- [status]
 [CHECK/MISSING] MSA -- [status or "Not found"]
@@ -95,65 +95,65 @@ Identify what agreements exist and what might be missing:
 [CHECK/MISSING] Insurance Certificate -- [status or "Not found"]
 ```
 
-Flag any gaps that may be needed based on the relationship type (e.g., if there is an MSA but no DPA and the vendor handles personal data).
+관계 유형에 따라 필요한 공백을 표시합니다(예: MSA는 있지만 DPA가 없고, 벤더가 개인정보를 처리하는 경우).
 
-### Step 5: Generate Report
+### 5단계: 보고서 생성
 
-Output a consolidated report:
+통합 보고서를 출력합니다.
 
 ```
-## Vendor Agreement Status: [Vendor Name]
+## 벤더 계약 현황: [Vendor Name]
 
-**Search Date**: [today's date]
-**Sources Checked**: [list of systems searched]
-**Sources Unavailable**: [list of systems not connected, if any]
+**검색일**: [today's date]
+**확인한 소스**: [list of systems searched]
+**사용할 수 없는 소스**: [list of systems not connected, if any]
 
-## Relationship Overview
+## 관계 개요
 
-**Vendor**: [full legal name]
-**Relationship Type**: [vendor/partner/customer/etc.]
-**CRM Status**: [if available]
+**벤더**: [full legal name]
+**관계 유형**: [vendor/partner/customer/etc.]
+**CRM 상태**: [if available]
 
-## Agreement Summary
+## 계약 요약
 
 ### [Agreement Type 1] -- [Status]
-- **Effective**: [date]
-- **Expires**: [date] ([auto-renews / does not auto-renew])
-- **Key Terms**: [summary of material terms]
-- **Location**: [where the executed copy is stored]
+- **시행일**: [date]
+- **만료일**: [date] ([auto-renews / does not auto-renew])
+- **핵심 조건**: [summary of material terms]
+- **위치**: [where the executed copy is stored]
 
 ### [Agreement Type 2] -- [Status]
 [etc.]
 
-## Gap Analysis
+## 공백 분석
 
-[What's in place vs. what may be needed]
+[현재 갖춰진 것과 필요할 수 있는 것]
 
-## Upcoming Actions
+## 예정된 조치
 
-- [Any approaching expirations or renewal deadlines]
-- [Required agreements not yet in place]
-- [Amendments or updates that may be needed]
+- [다가오는 만료 또는 갱신 마감]
+- [아직 갖춰지지 않은 필수 계약]
+- [필요할 수 있는 수정 또는 업데이트]
 
-## Notes
+## 메모
 
-[Any relevant context from email/chat searches]
+[이메일/채팅 검색에서 얻은 관련 맥락]
 ```
 
-### Step 6: Handle Missing Sources
+### 6단계: 누락 소스 처리
 
-If key systems are not connected via MCP:
+주요 시스템이 MCP로 연결되어 있지 않다면:
 
-- **No CLM**: Note that no CLM is connected. Suggest the user check their CLM manually. Report what was found in other systems.
-- **No CRM**: Skip CRM context. Note the gap.
-- **No Email**: Note that email was not searched. Suggest the user search their email for "[vendor name] agreement" or "[vendor name] NDA".
-- **No Documents**: Note that document storage was not searched.
+- **CLM 없음**: CLM이 연결되어 있지 않다고 명시합니다. 사용자가 CLM을 수동으로 확인하도록 제안합니다. 다른 시스템에서 찾은 내용을 보고합니다.
+- **CRM 없음**: CRM 맥락을 생략합니다. 공백을 명시합니다.
+- **이메일 없음**: 이메일을 검색하지 않았다고 명시합니다. 사용자가 "[vendor name] agreement" 또는 "[vendor name] NDA"로 이메일을 검색하도록 제안합니다.
+- **문서 없음**: 문서 저장소를 검색하지 않았다고 명시합니다.
 
-Always clearly state which sources were checked and which were not, so the user knows the completeness of the report.
+보고서의 완전성을 알 수 있도록 어떤 소스를 확인했고 어떤 소스를 확인하지 않았는지 항상 분명히 밝힙니다.
 
-## Notes
+## 참고사항
 
-- If no agreements are found in any connected system, report that clearly and ask the user if they have agreements stored elsewhere
-- For vendor groups (e.g., a vendor with multiple subsidiaries), ask whether the user wants to check a specific entity or the entire group
-- Flag any agreements that are expired but may still have surviving obligations (confidentiality, indemnification, etc.)
-- If an agreement is approaching expiration (within 90 days), highlight this prominently
+- 연결된 어떤 시스템에서도 계약이 발견되지 않으면 이를 명확히 보고하고, 다른 곳에 계약이 저장되어 있는지 사용자에게 묻습니다
+- 벤더 그룹(예: 여러 자회사가 있는 벤더)의 경우, 특정 법인만 확인할지 전체 그룹을 확인할지 물어봅니다
+- 만료되었더라도 잔존 의무(비밀유지, 면책 등)가 남아 있을 수 있는 계약은 표시합니다
+- 계약 만료가 다가오는 경우(90일 이내) 눈에 띄게 강조합니다
