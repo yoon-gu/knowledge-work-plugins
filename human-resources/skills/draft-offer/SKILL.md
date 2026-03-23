@@ -6,28 +6,28 @@ argument-hint: "<role and level>"
 
 # /draft-offer
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 자리 표시자가 보이거나 연결된 도구를 확인해야 하는 경우, [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Draft a complete offer letter for a new hire.
+신입 직원을 위한 완전한 오퍼 레터 초안을 작성합니다.
 
-## Usage
+## 사용법
 
 ```
 /draft-offer $ARGUMENTS
 ```
 
-## What I Need From You
+## 필요한 정보
 
-- **Role and title**: What position?
-- **Level**: Junior, Mid, Senior, Staff, etc.
-- **Location**: Where will they be based? (affects comp and benefits)
-- **Compensation**: Base salary, equity, signing bonus (if applicable)
-- **Start date**: When should they start?
-- **Hiring manager**: Who will they report to?
+- **역할 및 직함**: 어떤 포지션인가요?
+- **레벨**: Junior, Mid, Senior, Staff 등
+- **위치**: 어디서 근무하나요? (보상 및 복리후생에 영향)
+- **보상**: 기본급, 주식, 사이닝 보너스 (해당하는 경우)
+- **시작일**: 언제 시작하나요?
+- **채용 관리자**: 누구에게 보고하나요?
 
-If you don't have all details, I'll help you think through them.
+모든 세부 정보가 없어도 괜찮습니다. 함께 검토해 드리겠습니다.
 
-## Output
+## 출력 결과
 
 ```markdown
 ## Offer Letter Draft: [Role] — [Level]
@@ -64,19 +64,19 @@ We are pleased to offer you the position of [Title] at [Company]...
 - [Any flags or considerations]
 ```
 
-## If Connectors Available
+## 커넥터 사용 시
 
-If **~~HRIS** is connected:
-- Pull comp band data for the level/role
-- Verify headcount approval
-- Auto-populate benefits details
+**~~HRIS**가 연결된 경우:
+- 레벨/역할에 대한 보상 밴드 데이터 조회
+- 헤드카운트 승인 확인
+- 복리후생 세부 정보 자동 입력
 
-If **~~ATS** is connected:
-- Pull candidate details from the application
-- Update offer status in the pipeline
+**~~ATS**가 연결된 경우:
+- 지원서에서 후보자 정보 조회
+- 파이프라인에서 오퍼 상태 업데이트
 
-## Tips
+## 팁
 
-1. **Include total comp** — Candidates compare total compensation, not just base.
-2. **Be specific about equity** — Share count, current valuation method, vesting schedule.
-3. **Personalize** — Reference something from the interview process to make it warm.
+1. **총 보상을 포함하세요** — 후보자는 기본급만이 아니라 총 보상을 비교합니다.
+2. **주식을 구체적으로 명시하세요** — 주식 수, 현재 가치 평가 방법, 베스팅 일정.
+3. **개인화하세요** — 인터뷰 과정에서 나온 이야기를 언급하면 따뜻한 인상을 줍니다.

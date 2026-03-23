@@ -5,27 +5,27 @@ description: Track and manage recruiting pipeline stages. Trigger with "recruiti
 
 # Recruiting Pipeline
 
-Help manage the recruiting pipeline from sourcing through offer acceptance.
+소싱부터 오퍼 수락까지 채용 파이프라인을 관리하도록 지원합니다.
 
-## Pipeline Stages
+## 파이프라인 단계
 
-| Stage | Description | Key Actions |
+| 단계 | 설명 | 주요 액션 |
 |-------|-------------|-------------|
-| Sourced | Identified and reached out | Personalized outreach |
-| Screen | Phone/video screen | Evaluate basic fit |
-| Interview | On-site or panel interviews | Structured evaluation |
-| Debrief | Team decision | Calibrate feedback |
-| Offer | Extending offer | Comp package, negotiation |
-| Accepted | Offer accepted | Transition to onboarding |
+| 소싱됨 | 발굴 및 접촉 완료 | 개인화된 아웃리치 |
+| 스크리닝 | 전화/화상 스크리닝 | 기본 적합성 평가 |
+| 인터뷰 | 현장 또는 패널 인터뷰 | 구조화된 평가 |
+| 디브리프 | 팀 결정 | 피드백 조율 |
+| 오퍼 | 오퍼 제시 | 보상 패키지, 협상 |
+| 수락됨 | 오퍼 수락 | 온보딩으로 전환 |
 
-## Metrics to Track
+## 추적할 지표
 
-- **Pipeline velocity**: Days per stage
-- **Conversion rates**: Stage-to-stage drop-off
-- **Source effectiveness**: Which channels produce hires
-- **Offer acceptance rate**: Offers extended vs. accepted
-- **Time to fill**: Days from req open to offer accepted
+- **파이프라인 속도**: 단계별 소요 일수
+- **전환율**: 단계 간 이탈률
+- **소스 효과성**: 어떤 채널이 채용으로 이어지는지
+- **오퍼 수락률**: 제시된 오퍼 vs. 수락된 오퍼
+- **채용 소요 시간**: 채용 공고 오픈부터 오퍼 수락까지의 일수
 
-## If ATS Connected
+## ATS 연결 시
 
-Pull candidate data automatically, update statuses, and track pipeline metrics in real time.
+후보자 데이터를 자동으로 조회하고, 상태를 업데이트하며, 파이프라인 지표를 실시간으로 추적합니다.
