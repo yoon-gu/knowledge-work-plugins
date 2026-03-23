@@ -1,25 +1,25 @@
-# Connectors
+# 커넥터
 
-## How tool references work
+## 도구 참조 방식
 
-Plugin files use `~~category` as a placeholder for whatever tool the user connects in that category. This plugin is built around Common Room as the primary data source — but some workflows benefit from an optional calendar integration.
+플러그인 파일은 `~~category`를 해당 범주에서 사용자가 연결한 도구를 가리키는 자리표시자로 사용합니다. 이 플러그인은 Common Room을 기본 데이터 소스로 삼지만, 일부 워크플로에서는 선택적으로 캘린더 연동이 있으면 더 편리합니다.
 
-## Connectors for this plugin
+## 이 플러그인의 커넥터
 
-| Category | Placeholder | Included servers | Other options |
+| 범주 | 자리표시자 | 포함된 서버 | 기타 옵션 |
 |----------|-------------|-----------------|---------------|
-| Calendar | `~~calendar` | Google Calendar (via MCP) | Outlook / Microsoft 365 Calendar |
+| 캘린더 | `~~calendar` | Google Calendar (MCP 통해) | Outlook / Microsoft 365 Calendar |
 
 ## Common Room MCP
 
-The Common Room MCP server (`mcp.commonroom.io/mcp`) is the primary data source for all skills and commands in this plugin. It is listed in `.mcp.json` and must be connected and authenticated for the plugin to function.
+Common Room MCP 서버(`mcp.commonroom.io/mcp`)는 이 플러그인의 모든 스킬과 명령이 사용하는 기본 데이터 소스입니다. 이 서버는 `.mcp.json`에 등록되어 있으며, 플러그인이 동작하려면 연결 및 인증이 완료되어 있어야 합니다.
 
-## Calendar (Optional)
+## 캘린더(선택 사항)
 
-The `~~calendar` connector is used in two skills:
-- **call-prep** — to automatically pull attendee names from upcoming meetings
-- **weekly-prep-brief** — to fetch all external meetings scheduled in the next 7 days
+`~~calendar` 커넥터는 두 개의 스킬에서 사용됩니다.
+- **call-prep** - 예정된 미팅에서 참석자 이름을 자동으로 가져오기 위해 사용
+- **weekly-prep-brief** - 앞으로 7일 동안 일정이 잡힌 외부 미팅을 모두 가져오기 위해 사용
 
-If no calendar is connected, both skills gracefully fall back to asking the user for meeting details manually. The calendar connector is entirely optional.
+캘린더가 연결되어 있지 않아도 두 스킬은 우아하게 대체 경로로 전환되어, 사용자에게 미팅 세부 정보를 수동으로 입력해 달라고 요청합니다. 캘린더 커넥터는 완전히 선택 사항입니다.
 
-To connect a calendar, install a compatible calendar MCP server and ensure it is authenticated. The plugin will automatically detect and use it when available.
+캘린더를 연결하려면 호환되는 캘린더 MCP 서버를 설치하고 인증을 완료하세요. 플러그인은 사용 가능할 때 이를 자동으로 감지해 사용합니다.

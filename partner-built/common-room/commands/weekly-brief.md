@@ -1,14 +1,14 @@
 ---
-description: Generate a weekly prep briefing from your calendar and Common Room
+description: 캘린더와 Common Room을 바탕으로 주간 준비 브리핑을 생성합니다
 argument-hint: [date range, defaults to next 7 days]
 ---
 
-Generate a weekly prep briefing using Common Room and your calendar.
+Common Room과 캘린더를 사용해 주간 준비 브리핑을 생성합니다.
 
-Follow the weekly-prep-brief skill:
-1. Use the ~~calendar connector to retrieve all external customer-facing meetings scheduled for the next 7 days (or the date range specified in "$ARGUMENTS"). Filter out internal meetings — focus on calls with customers, prospects, or partners.
-2. If no ~~calendar connector is available, ask the user to list their external calls (company name, date, attendees).
-3. For each external meeting, run account research and contact research on attendees in parallel.
-4. Compile into a single weekly briefing: week overview + per-meeting sections sorted by date.
+weekly-prep-brief 스킬을 따르세요.
+1. `~~calendar` 커넥터를 사용해 앞으로 7일 동안 일정이 잡힌 모든 외부 고객 대면 미팅을 가져옵니다(`$ARGUMENTS`에 지정된 날짜 범위가 있으면 그 범위를 사용). 내부 미팅은 제외하고, 고객, 잠재고객, 파트너와의 통화에 집중합니다.
+2. `~~calendar` 커넥터가 없으면, 사용자가 외부 통화 정보(회사명, 날짜, 참석자)를 직접 나열하도록 요청합니다.
+3. 각 외부 미팅마다 참석자에 대해 계정 조사와 연락처 조사를 병렬로 실행합니다.
+4. 이를 하나의 주간 브리핑으로 정리합니다. 주간 개요와 날짜순으로 정렬된 미팅별 섹션을 포함합니다.
 
-Keep each per-meeting section tight and scannable. Total briefing should be readable in under 10 minutes.
+각 미팅별 섹션은 간결하고 훑어보기 쉽게 유지하세요. 전체 브리핑은 10분 이내에 읽을 수 있어야 합니다.

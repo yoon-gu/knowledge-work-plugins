@@ -1,20 +1,20 @@
-# My Company Context
+# 내 회사 컨텍스트
 
-## Purpose
+## 목적
 
-Some skills produce better output when they understand the user's company — what it sells, its ICP, and competitive positioning. This context lets the LLM tailor account research, call prep, and outreach to the user's specific product and value prop.
+일부 스킬은 사용자의 회사가 무엇을 판매하는지, ICP가 무엇인지, 경쟁 포지셔닝은 어떤지 이해할 때 더 나은 결과를 냅니다. 이 컨텍스트를 사용하면 LLM이 계정 조사, 통화 준비, 아웃리치를 사용자의 구체적인 제품과 가치 제안에 맞게 조정할 수 있습니다.
 
-## How to Gather Company Context
+## 회사 컨텍스트를 수집하는 방법
 
-1. **Me object** — Fetch the `Me` object. It includes the user's company name and title.
-2. **CR lookup** — Look up the user's company in Common Room as an Organization to get firmographics, industry, and description.
-3. **Web search** — If CR data is sparse or looks stale, search the web for the user's company customer case studies, product pages, and marketing materials. This fills gaps with fresh positioning context that CR firmographics alone don't capture.
-4. **Session context** — Check if the user has already described their product, ICP, or value prop in the current conversation.
-5. **Ask once** — If company context isn't available from the above, ask the user once per session: "To tailor my recommendations, can you briefly describe what your company does and who your ideal customers are?"
+1. **Me 객체** - `Me` 객체를 가져옵니다. 여기에는 사용자의 회사명과 직함이 포함됩니다.
+2. **CR 조회** - Common Room에서 사용자의 회사를 Organization으로 조회해 기업 정보, 산업, 설명을 확인합니다.
+3. **웹 검색** - CR 데이터가 부족하거나 오래된 것 같으면, 사용자의 회사 고객 사례, 제품 페이지, 마케팅 자료를 웹에서 검색합니다. 이렇게 하면 CR의 기업 정보만으로는 잡히지 않는 최신 포지셔닝 컨텍스트를 보완할 수 있습니다.
+4. **세션 컨텍스트** - 현재 대화에서 사용자가 이미 제품, ICP, 가치 제안을 설명했는지 확인합니다.
+5. **한 번만 묻기** - 위 방법들로도 회사 컨텍스트를 얻지 못하면 세션당 한 번만 다음처럼 물어보세요: "추천을 더 맞춤화하려면, 귀사의 업무와 이상적인 고객이 누구인지 간단히 설명해 주실 수 있나요?"
 
-## How to Use It
+## 사용하는 방법
 
-- **Account research (reasoning step):** Position findings relative to the user's ICP — "This account fits your ICP because..."
-- **Call prep (talking points):** Frame talking points around the user's product value, not generic advice
-- **Compose outreach (value bridge):** Ground the pitch in the user's specific product and positioning
-- **Prospecting:** Use ICP criteria as default filter suggestions when the user doesn't specify criteria
+- **계정 조사(추론 단계):** 발견 사항을 사용자의 ICP와 연결해 설명하세요. 예: "이 계정은 귀사의 ICP에 잘 맞습니다. 왜냐하면..."
+- **통화 준비(핵심 논점):** 일반적인 조언이 아니라 사용자의 제품 가치에 맞춰 핵심 논점을 구성하세요
+- **아웃리치 작성(가치 연결):** 피치를 사용자의 구체적인 제품과 포지셔닝에 기반해 구성하세요
+- **프로스펙팅:** 사용자가 기준을 따로 지정하지 않으면 ICP 기준을 기본 필터 제안으로 사용하세요
