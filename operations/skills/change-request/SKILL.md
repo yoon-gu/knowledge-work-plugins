@@ -8,114 +8,114 @@ argument-hint: "<change description>"
 
 > If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
 
-Create a structured change request with impact analysis, risk assessment, and rollback plan.
+영향 분석, 리스크 평가, 롤백 계획이 포함된 구조화된 변경 요청을 만듭니다.
 
-## Usage
+## 사용법
 
 ```
 /change-request $ARGUMENTS
 ```
 
-## Change Management Framework
+## 변경 관리 프레임워크
 
-Apply the assess-plan-execute-sustain framework when building the request:
+요청을 만들 때 평가-계획-실행-지속 프레임워크를 적용합니다.
 
-### 1. Assess
-- What is changing?
-- Who is affected?
-- How significant is the change? (Low / Medium / High)
-- What resistance should we expect?
+### 1. 평가
+- 무엇이 바뀌나요?
+- 누가 영향을 받나요?
+- 변경의 규모는 어느 정도인가요? (낮음 / 중간 / 높음)
+- 어떤 저항을 예상해야 하나요?
 
-### 2. Plan
-- Communication plan (who, what, when, how)
-- Training plan (what skills are needed, how to deliver)
-- Support plan (help desk, champions, FAQs)
-- Timeline with milestones
+### 2. 계획
+- 커뮤니케이션 계획(누구에게, 무엇을, 언제, 어떻게)
+- 교육 계획(필요한 기술, 전달 방식)
+- 지원 계획(help desk, 챔피언, FAQ)
+- 마일스톤이 포함된 일정
 
-### 3. Execute
-- Announce and explain the "why"
-- Train and support
-- Monitor adoption
-- Address resistance
+### 3. 실행
+- "왜"를 알리고 설명합니다.
+- 교육과 지원을 제공합니다.
+- 도입을 모니터링합니다.
+- 저항을 해결합니다.
 
-### 4. Sustain
-- Measure adoption and effectiveness
-- Reinforce new behaviors
-- Address lingering issues
-- Document lessons learned
+### 4. 지속
+- 도입과 효과를 측정합니다.
+- 새로운 행동을 강화합니다.
+- 남아 있는 문제를 해결합니다.
+- 배운 점을 문서화합니다.
 
-## Communication Principles
+## 커뮤니케이션 원칙
 
-- Explain the **why** before the **what**
-- Communicate early and often
-- Use multiple channels
-- Acknowledge what's being lost, not just what's being gained
-- Provide a clear path for questions and concerns
+- **무엇**보다 먼저 **왜**를 설명합니다.
+- 일찍, 자주 커뮤니케이션합니다.
+- 여러 채널을 활용합니다.
+- 얻는 것뿐 아니라 잃는 것도 함께 인정합니다.
+- 질문과 우려를 위한 명확한 경로를 제공합니다.
 
-## Output
+## 출력
 
 ```markdown
-## Change Request: [Title]
-**Requester:** [Name] | **Date:** [Date] | **Priority:** [Critical/High/Medium/Low]
-**Status:** Draft | Pending Approval | Approved | In Progress | Complete
+## 변경 요청: [제목]
+**요청자:** [이름] | **날짜:** [날짜] | **우선순위:** [심각 / 높음 / 중간 / 낮음]
+**상태:** 초안 | 승인 대기 | 승인됨 | 진행 중 | 완료
 
-### Description
-[What is changing and why]
+### 설명
+[무엇이 왜 바뀌는지]
 
-### Business Justification
-[Why this change is needed — cost savings, compliance, efficiency, risk reduction]
+### 비즈니스 근거
+[이 변경이 필요한 이유 - 비용 절감, 컴플라이언스, 효율성, 리스크 감소]
 
-### Impact Analysis
-| Area | Impact | Details |
+### 영향 분석
+| 영역 | 영향 | 세부 사항 |
 |------|--------|---------|
-| Users | [High/Med/Low/None] | [Who is affected and how] |
-| Systems | [High/Med/Low/None] | [What systems are affected] |
-| Processes | [High/Med/Low/None] | [What workflows change] |
-| Cost | [High/Med/Low/None] | [Budget impact] |
+| 사용자 | [높음/중간/낮음/없음] | [누가 어떻게 영향을 받는지] |
+| 시스템 | [높음/중간/낮음/없음] | [어떤 시스템이 영향을 받는지] |
+| 프로세스 | [높음/중간/낮음/없음] | [어떤 워크플로가 바뀌는지] |
+| 비용 | [높음/중간/낮음/없음] | [예산 영향] |
 
-### Risk Assessment
-| Risk | Likelihood | Impact | Mitigation |
+### 리스크 평가
+| 리스크 | 발생 가능성 | 영향 | 완화 방안 |
 |------|-----------|--------|------------|
-| [Risk] | [H/M/L] | [H/M/L] | [How to mitigate] |
+| [리스크] | [H/M/L] | [H/M/L] | [완화 방법] |
 
-### Implementation Plan
-| Step | Owner | Timeline | Dependencies |
+### 실행 계획
+| 단계 | 담당자 | 일정 | 의존성 |
 |------|-------|----------|--------------|
-| [Step] | [Person] | [Date] | [What it depends on] |
+| [단계] | [사람] | [날짜] | [무엇에 의존하는지] |
 
-### Communication Plan
-| Audience | Message | Channel | Timing |
+### 커뮤니케이션 계획
+| 대상 | 메시지 | 채널 | 시점 |
 |----------|---------|---------|--------|
-| [Who] | [What to tell them] | [How] | [When] |
+| [누구] | [무엇을 전달할지] | [어떻게] | [언제] |
 
-### Rollback Plan
-[Step-by-step plan to reverse the change if needed]
-- Trigger: [When to roll back]
-- Steps: [How to roll back]
-- Verification: [How to confirm rollback worked]
+### 롤백 계획
+[필요할 경우 변경을 되돌리는 단계별 계획]
+- 트리거: [언제 롤백할지]
+- 단계: [어떻게 롤백할지]
+- 검증: [롤백이 제대로 되었는지 확인하는 방법]
 
-### Approvals Required
-| Approver | Role | Status |
+### 필요한 승인
+| 승인자 | 역할 | 상태 |
 |----------|------|--------|
 | [Name] | [Role] | Pending |
 ```
 
-## If Connectors Available
+## 연결 도구가 있을 경우
 
 If **~~ITSM** is connected:
-- Create the change request ticket automatically
-- Pull change advisory board schedule and approval workflows
+- 변경 요청 티켓을 자동으로 생성합니다.
+- CAB 일정과 승인 워크플로를 가져옵니다.
 
 If **~~project tracker** is connected:
-- Link to related implementation tasks and dependencies
-- Track change progress against milestones
+- 관련 실행 작업과 의존성을 연결합니다.
+- 마일스톤 대비 변경 진행 상황을 추적합니다.
 
 If **~~chat** is connected:
-- Draft stakeholder notifications for the communication plan
-- Post change updates to the relevant team channels
+- 커뮤니케이션 계획용 이해관계자 알림 초안을 작성합니다.
+- 관련 팀 채널에 변경 업데이트를 게시합니다.
 
-## Tips
+## 팁
 
-1. **Be specific about impact** — "Everyone" is not an impact assessment. "200 users in the billing team" is.
-2. **Always have a rollback plan** — Even if you're confident, plan for failure.
-3. **Communicate early** — Surprises create resistance. Previews create buy-in.
+1. **영향을 구체적으로 적으세요** - "모두"는 영향 분석이 아닙니다. "청구 팀의 200명 사용자"처럼 적어야 합니다.
+2. **항상 롤백 계획을 두세요** - 자신 있어도 실패를 대비하세요.
+3. **일찍 커뮤니케이션하세요** - 예상치 못한 일은 저항을 만듭니다. 미리 보여주면 동의를 얻습니다.

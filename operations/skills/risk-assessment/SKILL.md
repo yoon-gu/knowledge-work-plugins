@@ -3,38 +3,38 @@ name: risk-assessment
 description: Identify, assess, and mitigate operational risks. Trigger with "what are the risks", "risk assessment", "risk register", "what could go wrong", or when the user is evaluating risks associated with a project, vendor, process, or decision.
 ---
 
-# Risk Assessment
+# 리스크 평가
 
-Systematically identify, assess, and plan mitigations for operational risks.
+운영 리스크를 체계적으로 식별, 평가, 완화 계획 수립합니다.
 
-## Risk Assessment Matrix
+## 리스크 평가 매트릭스
 
-| | Low Impact | Medium Impact | High Impact |
+| | 낮은 영향 | 중간 영향 | 높은 영향 |
 |---|-----------|---------------|-------------|
-| **High Likelihood** | Medium | High | Critical |
-| **Medium Likelihood** | Low | Medium | High |
-| **Low Likelihood** | Low | Low | Medium |
+| **높은 발생 가능성** | 중간 | 높음 | 심각 |
+| **중간 발생 가능성** | 낮음 | 중간 | 높음 |
+| **낮은 발생 가능성** | 낮음 | 낮음 | 중간 |
 
-## Risk Categories
+## 리스크 범주
 
-- **Operational**: Process failures, staffing gaps, system outages
-- **Financial**: Budget overruns, vendor cost increases, revenue impact
-- **Compliance**: Regulatory violations, audit findings, policy breaches
-- **Strategic**: Market changes, competitive threats, technology shifts
-- **Reputational**: Customer impact, public perception, partner relationships
-- **Security**: Data breaches, access control failures, third-party vulnerabilities
+- **운영**: 프로세스 실패, 인력 공백, 시스템 장애
+- **재무**: 예산 초과, 벤더 비용 증가, 매출 영향
+- **컴플라이언스**: 규제 위반, 감사 지적, 정책 위반
+- **전략**: 시장 변화, 경쟁 위협, 기술 변화
+- **평판**: 고객 영향, 대중 인식, 파트너 관계
+- **보안**: 데이터 유출, 접근 제어 실패, 제3자 취약점
 
-## Risk Register Format
+## 리스크 등록부 형식
 
-For each risk, document:
-- **Description**: What could happen
-- **Likelihood**: High / Medium / Low
-- **Impact**: High / Medium / Low
-- **Risk Level**: Critical / High / Medium / Low
-- **Mitigation**: What we're doing to reduce likelihood or impact
-- **Owner**: Who is responsible for managing this risk
-- **Status**: Open / Mitigated / Accepted / Closed
+각 리스크마다 다음을 문서화합니다.
+- **설명**: 무엇이 일어날 수 있는지
+- **발생 가능성**: 높음 / 중간 / 낮음
+- **영향**: 높음 / 중간 / 낮음
+- **리스크 수준**: 심각 / 높음 / 중간 / 낮음
+- **완화**: 발생 가능성이나 영향을 줄이기 위해 무엇을 하는지
+- **담당자**: 이 리스크를 관리할 책임자
+- **상태**: 열림 / 완화됨 / 수용됨 / 닫힘
 
-## Output
+## 출력
 
-Produce a prioritized risk register with specific, actionable mitigations. Focus on risks that are controllable and material.
+구체적이고 실행 가능한 완화 방안이 포함된 우선순위 리스크 등록부를 작성합니다. 통제 가능하고 중요한 리스크에 집중합니다.

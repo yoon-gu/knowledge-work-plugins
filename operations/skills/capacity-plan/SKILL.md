@@ -8,106 +8,106 @@ argument-hint: "<team or project scope>"
 
 > If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
 
-Analyze team capacity and plan resource allocation.
+팀 용량을 분석하고 리소스 배분을 계획합니다.
 
-## Usage
+## 사용법
 
 ```
 /capacity-plan $ARGUMENTS
 ```
 
-## What I Need From You
+## 필요한 정보
 
-- **Team size and roles**: Who do you have?
-- **Current workload**: What are they working on? (Upload from project tracker or describe)
-- **Upcoming work**: What's coming next quarter?
-- **Constraints**: Budget, hiring timeline, skill requirements
+- **팀 규모와 역할**: 현재 누구를 보유하고 있나요?
+- **현재 업무량**: 지금 무엇을 하고 있나요? (프로젝트 추적기에서 업로드하거나 설명)
+- **다가오는 업무**: 다음 분기에 무엇이 들어오나요?
+- **제약 사항**: 예산, 채용 일정, 기술 요구사항
 
-## Planning Dimensions
+## 계획 차원
 
-### People
-- Available headcount and skills
-- Current allocation and utilization
-- Planned hires and timeline
-- Contractor and vendor capacity
+### 사람
+- 사용 가능한 인원과 기술
+- 현재 배치와 활용도
+- 예정된 채용과 일정
+- 계약직과 벤더 용량
 
-### Budget
-- Operating budget by category
-- Project-specific budgets
-- Variance tracking
-- Forecast vs. actual
+### 예산
+- 범주별 운영 예산
+- 프로젝트별 예산
+- 차이 추적
+- 예측 대비 실적
 
-### Time
-- Project timelines and dependencies
-- Critical path analysis
-- Buffer and contingency planning
-- Deadline management
+### 시간
+- 프로젝트 일정과 의존성
+- 크리티컬 패스 분석
+- 버퍼 및 비상 계획
+- 마감일 관리
 
-## Utilization Targets
+## 활용도 목표
 
-| Role Type | Target Utilization | Notes |
+| 역할 유형 | 목표 활용도 | 비고 |
 |-----------|-------------------|-------|
-| IC / Specialist | 75-80% | Leave room for reactive work and growth |
-| Manager | 60-70% | Management overhead, meetings, 1:1s |
-| On-call / Support | 50-60% | Interrupt-driven work is unpredictable |
+| IC / Specialist | 75-80% | 대응 업무와 성장 여지를 남겨두세요 |
+| Manager | 60-70% | 관리 오버헤드, 회의, 1:1 |
+| On-call / Support | 50-60% | 인터럽트 중심 업무는 예측하기 어렵습니다 |
 
-## Common Pitfalls
+## 흔한 함정
 
-- Planning to 100% utilization (no buffer for surprises)
-- Ignoring meeting load and context-switching costs
-- Not accounting for vacation, holidays, and sick time
-- Treating all hours as equal (creative work ≠ admin work)
+- 100% 활용도로 계획하기(예상 밖 상황을 위한 버퍼가 없음)
+- 회의 부담과 컨텍스트 전환 비용을 무시하기
+- 휴가, 공휴일, 병가를 반영하지 않기
+- 모든 시간을 동일하게 취급하기(창의적 업무 ≠ 행정 업무)
 
-## Output
+## 출력
 
 ```markdown
-## Capacity Plan: [Team/Project]
-**Period:** [Date range] | **Team Size:** [X]
+## 용량 계획: [팀/프로젝트]
+**기간:** [날짜 범위] | **팀 규모:** [X]
 
-### Current Utilization
-| Person/Role | Capacity | Allocated | Available | Utilization |
+### 현재 활용도
+| 사람/역할 | 용량 | 배정됨 | 사용 가능 | 활용도 |
 |-------------|----------|-----------|-----------|-------------|
 | [Name/Role] | [hrs/wk] | [hrs/wk] | [hrs/wk] | [X]% |
 
-### Capacity Summary
-- **Total capacity**: [X] hours/week
-- **Currently allocated**: [X] hours/week ([X]%)
-- **Available**: [X] hours/week ([X]%)
-- **Overallocated**: [X people above 100%]
+### 용량 요약
+- **총 용량**: [X] 시간/주
+- **현재 배정됨**: [X] 시간/주 ([X]%)
+- **사용 가능**: [X] 시간/주 ([X]%)
+- **과배정**: [100%를 초과한 인원 X명]
 
-### Upcoming Demand
-| Project/Initiative | Start | End | Resources Needed | Gap |
+### 다가오는 수요
+| 프로젝트/이니셔티브 | 시작 | 종료 | 필요한 리소스 | 격차 |
 |--------------------|-------|-----|-----------------|-----|
 | [Project] | [Date] | [Date] | [X FTEs] | [Covered/Gap] |
 
-### Bottlenecks
-- [Skill or role that's oversubscribed]
-- [Time period with a crunch]
+### 병목
+- [과부하된 기술 또는 역할]
+- [업무가 몰리는 시기]
 
-### Recommendations
+### 권고 사항
 1. [Hire / Contract / Reprioritize / Delay]
 2. [Specific action]
 
-### Scenarios
-| Scenario | Outcome |
+### 시나리오
+| 시나리오 | 결과 |
 |----------|---------|
-| Do nothing | [What happens] |
-| Hire [X] | [What changes] |
-| Deprioritize [Y] | [What frees up] |
+| 아무것도 하지 않음 | [무슨 일이 일어나는지] |
+| [X]명 채용 | [무엇이 바뀌는지] |
+| [Y] 우선순위 낮춤 | [무엇이 확보되는지] |
 ```
 
-## If Connectors Available
+## 연결 도구가 있을 경우
 
 If **~~project tracker** is connected:
-- Pull current workload and ticket assignments automatically
-- Show upcoming sprint or quarter commitments per person
+- 현재 업무량과 티켓 배정을 자동으로 가져옵니다.
+- 개인별 다음 스프린트 또는 분기 약속을 표시합니다.
 
 If **~~calendar** is connected:
-- Factor in PTO, holidays, and recurring meeting load
-- Calculate actual available hours per person
+- PTO, 공휴일, 반복 회의 부담을 반영합니다.
+- 개인별 실제 사용 가능 시간을 계산합니다.
 
-## Tips
+## 팁
 
-1. **Include all work** — BAU, projects, support, meetings. People aren't 100% available for project work.
-2. **Plan for buffer** — Target 80% utilization. 100% means no room for surprises.
-3. **Update regularly** — Capacity plans go stale fast. Review monthly.
+1. **모든 업무를 포함하세요** - BAU, 프로젝트, 지원, 회의까지. 사람들은 프로젝트 업무에 100% 투입될 수 없습니다.
+2. **버퍼를 계획하세요** - 목표 활용도는 80%로 잡으세요. 100%는 예상 밖 상황을 수용할 여지가 없다는 뜻입니다.
+3. **정기적으로 업데이트하세요** - 용량 계획은 금방 낡습니다. 매월 검토하세요.

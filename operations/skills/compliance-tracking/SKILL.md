@@ -3,42 +3,42 @@ name: compliance-tracking
 description: Track compliance requirements and audit readiness. Trigger with "compliance", "audit prep", "SOC 2", "ISO 27001", "GDPR", "regulatory requirement", or when the user needs help tracking, preparing for, or documenting compliance activities.
 ---
 
-# Compliance Tracking
+# 컴플라이언스 추적
 
-Help track compliance requirements, prepare for audits, and maintain regulatory readiness.
+컴플라이언스 요구사항을 추적하고, 감사를 준비하며, 규제 대응 태세를 유지하도록 돕습니다.
 
-## Common Frameworks
+## 주요 프레임워크
 
-| Framework | Focus | Key Requirements |
+| 프레임워크 | 초점 | 주요 요구사항 |
 |-----------|-------|-----------------|
-| SOC 2 | Service organizations | Security, availability, processing integrity, confidentiality, privacy |
-| ISO 27001 | Information security | Risk assessment, security controls, continuous improvement |
-| GDPR | Data privacy (EU) | Consent, data rights, breach notification, DPO |
-| HIPAA | Healthcare data (US) | PHI protection, access controls, audit trails |
-| PCI DSS | Payment card data | Encryption, access control, vulnerability management |
+| SOC 2 | 서비스 조직 | 보안, 가용성, 처리 무결성, 기밀성, 프라이버시 |
+| ISO 27001 | 정보 보안 | 리스크 평가, 보안 통제, 지속적 개선 |
+| GDPR | 데이터 프라이버시(EU) | 동의, 데이터 권리, 침해 통지, DPO |
+| HIPAA | 의료 데이터(미국) | PHI 보호, 접근 제어, 감사 추적 |
+| PCI DSS | 결제 카드 데이터 | 암호화, 접근 제어, 취약점 관리 |
 
-## Compliance Tracking Components
+## 컴플라이언스 추적 구성 요소
 
-### Control Inventory
-- Map controls to framework requirements
-- Document control owners and evidence
-- Track control effectiveness
+### 통제 목록
+- 통제를 프레임워크 요구사항에 매핑합니다.
+- 통제 담당자와 증거를 문서화합니다.
+- 통제 효과를 추적합니다.
 
-### Audit Calendar
-- Upcoming audit dates and deadlines
-- Evidence collection timelines
-- Remediation deadlines
+### 감사 캘린더
+- 다가오는 감사 날짜와 마감일
+- 증거 수집 일정
+- 시정 조치 마감일
 
-### Evidence Management
-- What evidence is needed for each control
-- Where evidence is stored
-- When evidence was last collected
+### 증거 관리
+- 각 통제에 어떤 증거가 필요한지
+- 증거가 어디에 저장되어 있는지
+- 증거를 마지막으로 수집한 시점
 
-### Gap Analysis
-- Requirements vs. current state
-- Prioritized remediation plan
-- Timeline to compliance
+### 갭 분석
+- 요구사항 대비 현재 상태
+- 우선순위가 정해진 시정 계획
+- 컴플라이언스까지의 일정
 
-## Output
+## 출력
 
-Produce compliance status dashboards, gap analyses, audit prep checklists, and evidence collection plans.
+컴플라이언스 상태 대시보드, 갭 분석, 감사 준비 체크리스트, 증거 수집 계획을 생성합니다.
