@@ -1,248 +1,248 @@
-# Source Ranking Algorithm
+# 소스 순위 알고리즘
 
-How to categorize, rank, and prioritize discovered brand sources.
+발견된 브랜드 소스를 분류, 순위 지정, 우선순위화하는 방법입니다.
 
-## Source Categories
+## 소스 카테고리
 
 ### AUTHORITATIVE
-Official, approved brand documentation. Highest trust level.
+공식적으로 승인된 브랜드 문서. 최고 신뢰도 수준.
 
-**Signals:**
-- Published style guides or brand books
-- C-suite or marketing leadership authored/approved
-- Lives in an official "Brand" folder or Confluence space
-- Has version numbers or approval dates
-- Referenced by other documents as "the brand guide"
+**특징:**
+- 공개된 스타일 가이드 또는 브랜드 북
+- C-suite 또는 마케팅 리더십이 작성/승인
+- 공식 "Brand" 폴더 또는 Confluence 스페이스에 위치
+- 버전 번호 또는 승인 날짜가 있음
+- 다른 문서에서 "브랜드 가이드"로 참조됨
 
-**Examples:**
+**예시:**
 - "Acme Corp Brand Guidelines v3.2.pdf"
-- "Official Style Guide" page in Confluence Marketing space
-- Brand book in Google Drive with company-wide sharing
-- Brand book in Box with company-wide sharing
-- Official Style Guide in SharePoint Marketing site
+- Confluence Marketing 스페이스의 "Official Style Guide" 페이지
+- 회사 전체 공유가 설정된 Google Drive의 브랜드 북
+- 회사 전체 공유가 설정된 Box의 브랜드 북
+- SharePoint Marketing 사이트의 공식 스타일 가이드
 
-**Trust weight:** 1.0 (baseline)
+**신뢰도 가중치:** 1.0 (기준선)
 
 ### OPERATIONAL
-Brand applied in practice. Shows how guidelines manifest in real content.
+실무에서 적용된 브랜드. 가이드라인이 실제 콘텐츠에서 어떻게 나타나는지 보여줍니다.
 
-**Signals:**
-- Templates actively used by teams
-- Sales playbooks with messaging guidance
-- Email sequences with established tone
-- Presentation templates with brand messaging
+**특징:**
+- 팀이 활발하게 사용하는 템플릿
+- 메시징 지침이 있는 영업 플레이북
+- 확립된 톤의 이메일 시퀀스
+- 브랜드 메시징이 포함된 프레젠테이션 템플릿
 
-**Examples:**
+**예시:**
 - "Cold Email Templates Q4 2024"
 - "Enterprise Sales Playbook"
 - "Customer Success Response Templates"
-- Pitch deck templates in Google Slides
-- Email templates in Outlook
-- Sales playbook on SharePoint
+- Google Slides의 피치 덱 템플릿
+- Outlook의 이메일 템플릿
+- SharePoint의 영업 플레이북
 
-**Trust weight:** 0.8
+**신뢰도 가중치:** 0.8
 
 ### CONVERSATIONAL
-Implicit brand voice from actual communications.
+실제 커뮤니케이션에서의 암묵적 브랜드 보이스.
 
-**Signals:**
-- Sales call transcripts (especially successful ones)
-- Meeting notes with customer-facing language
-- Internal discussions about positioning
-- Slack threads discussing brand decisions
+**특징:**
+- 영업 통화 트랜스크립트 (특히 성공적인 통화)
+- 고객 대면 언어가 포함된 회의록
+- 포지셔닝에 대한 내부 토론
+- 브랜드 결정을 논의하는 Slack 스레드
 
-**Examples:**
-- Gong recordings of top performer calls
-- Meeting notes from brand strategy sessions
-- Customer success call transcripts
-- Slack #brand channel discussions about tone
+**예시:**
+- 최고 성과자 통화의 Gong 녹음
+- 브랜드 전략 세션의 회의록
+- 고객 성공 통화 트랜스크립트
+- Slack #brand 채널의 톤에 대한 토론
 
-**Trust weight:** 0.6 (valuable for patterns, not prescriptive)
+**신뢰도 가중치:** 0.6 (패턴에 유용, 규범적이지 않음)
 
 ### CONTEXTUAL
-Background information that informs brand but doesn't define it directly.
+브랜드에 정보를 제공하지만 직접 정의하지는 않는 배경 정보.
 
-**Signals:**
-- Design files without explicit brand guidelines
-- Competitor analysis documents
-- Industry reports
-- Product documentation
+**특징:**
+- 명시적 브랜드 가이드라인이 없는 디자인 파일
+- 경쟁사 분석 문서
+- 산업 보고서
+- 제품 문서
 
-**Examples:**
-- Figma component library (visual only)
+**예시:**
+- Figma 컴포넌트 라이브러리 (시각 요소만)
 - "Competitive Landscape Q3 2024"
-- Product feature specifications
+- 제품 기능 사양
 
-**Trust weight:** 0.3
+**신뢰도 가중치:** 0.3
 
 ### STALE
-Outdated content superseded by newer versions.
+새 버전으로 대체된 구버전 콘텐츠.
 
-**Signals:**
-- Older version when a newer version exists
-- Pre-rebrand materials after a rebrand
-- Documents explicitly marked as deprecated
-- Content more than 2 years old without updates
+**특징:**
+- 새 버전이 있을 때의 이전 버전
+- 리브랜딩 후 리브랜딩 전 자료
+- 명시적으로 폐기 표시된 문서
+- 업데이트 없이 2년 이상 된 콘텐츠
 
-**Examples:**
-- "Brand Guidelines v1.0" when v3.2 exists
-- "2022 Style Guide" when "2024 Brand Update" exists
-- Documents in an "Archive" or "Deprecated" folder
+**예시:**
+- v3.2가 있을 때의 "Brand Guidelines v1.0"
+- "2024 Brand Update"가 있을 때의 "2022 Style Guide"
+- "Archive" 또는 "Deprecated" 폴더에 있는 문서
 
-**Trust weight:** 0.1 (flag for review, do not rely on)
+**신뢰도 가중치:** 0.1 (검토용으로 표시, 의존하지 않음)
 
-## Ranking Algorithm
+## 순위 알고리즘
 
-Apply these five ranking factors in order of priority:
+우선순위 순으로 다음 다섯 가지 순위 요소를 적용합니다:
 
-### 1. Recency (Weight: 30%)
+### 1. 최신성 (가중치: 30%)
 
-More recent sources are more likely to reflect current brand voice.
+최근 소스가 현재 브랜드 보이스를 반영할 가능성이 높습니다.
 
-- **Score 1.0**: Updated within last 6 months
-- **Score 0.7**: Updated within last year
-- **Score 0.4**: Updated within last 2 years
-- **Score 0.1**: Older than 2 years
+- **점수 1.0**: 최근 6개월 이내 업데이트
+- **점수 0.7**: 최근 1년 이내 업데이트
+- **점수 0.4**: 최근 2년 이내 업데이트
+- **점수 0.1**: 2년 이상 경과
 
-When two sources conflict, the more recent one wins unless the older source is explicitly marked as the "official" guide.
+두 소스가 충돌할 때 오래된 소스가 명시적으로 "공식" 가이드로 표시되지 않는 한 더 최근 소스가 우선합니다.
 
-Always prefer the most recent version of any document. When multiple sources cover the same topic, weight the newest one heavily. Flag any non-AUTHORITATIVE source older than 12 months in the discovery report.
+항상 문서의 가장 최근 버전을 선호합니다. 여러 소스가 같은 주제를 다룰 때 가장 새로운 것에 큰 가중치를 줍니다. 탐색 보고서에서 12개월 이상 된 비AUTHORITATIVE 소스를 표시합니다.
 
-### Recency Cutoffs
+### 최신성 기준선
 
-In addition to soft recency scoring, apply hard cutoffs to prevent stale content from polluting discovery:
+소프트 최신성 점수에 더해 오래된 콘텐츠가 탐색을 오염시키지 않도록 하드 기준선을 적용합니다:
 
-**AUTHORITATIVE sources**: No hard cutoff. Official brand guides remain valid regardless of age unless explicitly superseded by a newer version.
+**AUTHORITATIVE 소스**: 하드 기준선 없음. 공식 브랜드 가이드는 새 버전으로 명시적으로 대체되지 않는 한 기간에 관계없이 유효합니다.
 
-**OPERATIONAL, CONVERSATIONAL, CONTEXTUAL sources**: Exclude from deep fetch if older than 12 months, with one exception: if zero sources in a category fall within the 12-month window, include the single most recent source from that category and flag it as potentially stale.
+**OPERATIONAL, CONVERSATIONAL, CONTEXTUAL 소스**: 12개월 이상 된 경우 심층 조회에서 제외하되, 한 가지 예외가 있습니다: 카테고리 내에 12개월 이내의 소스가 하나도 없으면 해당 카테고리의 가장 최근 소스 하나를 포함하고 잠재적으로 구버전일 수 있다고 표시합니다.
 
-**STALE sources**: Exclude entirely from deep fetch. Include in the discovery report for reference only.
+**STALE 소스**: 심층 조회에서 완전히 제외. 참고용으로만 탐색 보고서에 포함.
 
-These cutoffs apply at the deep-fetch stage (Phase 3). All sources are still collected during broad discovery (Phase 1) and triage (Phase 2) — the cutoffs filter what gets fully retrieved and analyzed.
+이 기준선은 심층 조회 단계(3단계)에서 적용됩니다. 모든 소스는 광범위 탐색(1단계) 및 분류(2단계) 중에 여전히 수집됩니다 — 기준선은 전체 조회 및 분석 대상을 필터링합니다.
 
-### 2. Explicitness (Weight: 25%)
+### 2. 명시성 (가중치: 25%)
 
-Sources that explicitly define brand voice outrank those that merely demonstrate it.
+브랜드 보이스를 명시적으로 정의하는 소스가 단순히 보여주는 소스보다 우선합니다.
 
-- **Score 1.0**: Explicit brand instructions ("Our voice is...")
-- **Score 0.7**: Documented tone guidelines ("Emails should be...")
-- **Score 0.4**: Implicit patterns in templates or examples
-- **Score 0.2**: Inferred from conversational patterns
+- **점수 1.0**: 명시적 브랜드 지침 ("Our voice is...")
+- **점수 0.7**: 문서화된 톤 가이드라인 ("Emails should be...")
+- **점수 0.4**: 템플릿이나 예시의 암묵적 패턴
+- **점수 0.2**: 대화 패턴에서 추론
 
-### 3. Authority (Weight: 20%)
+### 3. 권위성 (가중치: 20%)
 
-Higher organizational authority indicates more trustworthy brand definitions.
+조직적 권위가 높을수록 더 신뢰할 수 있는 브랜드 정의를 나타냅니다.
 
-- **Score 1.0**: Official brand team or C-suite authored
-- **Score 0.7**: Marketing leadership authored
-- **Score 0.4**: Team leads or senior ICs
-- **Score 0.2**: Individual contributor or unknown author
+- **점수 1.0**: 공식 브랜드 팀 또는 C-suite 작성
+- **점수 0.7**: 마케팅 리더십 작성
+- **점수 0.4**: 팀 리드 또는 시니어 IC
+- **점수 0.2**: 개별 기여자 또는 작성자 불명
 
-### 4. Specificity (Weight: 15%)
+### 4. 구체성 (가중치: 15%)
 
-Detailed, actionable guidance outranks vague principles.
+상세하고 실행 가능한 지침이 모호한 원칙보다 우선합니다.
 
-- **Score 1.0**: Specific rules with examples ("Use 'platform' not 'tool'")
-- **Score 0.7**: Detailed guidelines ("Tone should be warm but professional")
-- **Score 0.4**: General principles ("Be authentic")
-- **Score 0.2**: Abstract values only ("We believe in innovation")
+- **점수 1.0**: 예시가 포함된 구체적 규칙 ("Use 'platform' not 'tool'")
+- **점수 0.7**: 상세한 가이드라인 ("Tone should be warm but professional")
+- **점수 0.4**: 일반적 원칙 ("Be authentic")
+- **점수 0.2**: 추상적 가치만 ("We believe in innovation")
 
-### 5. Cross-Source Consistency (Weight: 10%)
+### 5. 교차 소스 일관성 (가중치: 10%)
 
-Elements corroborated across multiple sources rank higher.
+여러 소스에서 확인된 요소가 더 높은 순위를 받습니다.
 
-- **Score 1.0**: Appears in 3+ independent sources
-- **Score 0.7**: Appears in 2 independent sources
-- **Score 0.4**: Appears in 1 source only
-- **Score 0.1**: Contradicted by another source
+- **점수 1.0**: 3개 이상의 독립 소스에서 나타남
+- **점수 0.7**: 2개 독립 소스에서 나타남
+- **점수 0.4**: 1개 소스에서만 나타남
+- **점수 0.1**: 다른 소스와 모순됨
 
-## Composite Score Calculation
+## 종합 점수 계산
 
 ```
 final_score = (recency × 0.30) + (explicitness × 0.25) + (authority × 0.20)
             + (specificity × 0.15) + (consistency × 0.10)
 ```
 
-Multiply by category trust weight:
+카테고리 신뢰도 가중치를 곱합니다:
 ```
 ranked_score = final_score × category_trust_weight
 ```
 
-### Example Scoring
+### 점수 산정 예시
 
-**Source: "Brand Voice Guidelines v3.2" (Confluence, updated 3 months ago)**
-- Recency: 1.0 (3 months old)
-- Explicitness: 1.0 (explicit brand instructions)
-- Authority: 1.0 (marketing VP authored)
-- Specificity: 0.7 (good guidelines, some gaps)
-- Consistency: 0.7 (corroborated by email templates)
-- Category: AUTHORITATIVE (1.0)
-- **Final: (1.0×0.30 + 1.0×0.25 + 1.0×0.20 + 0.7×0.15 + 0.7×0.10) × 1.0 = 0.925**
+**소스: "Brand Voice Guidelines v3.2" (Confluence, 3개월 전 업데이트)**
+- 최신성: 1.0 (3개월)
+- 명시성: 1.0 (명시적 브랜드 지침)
+- 권위성: 1.0 (마케팅 VP 작성)
+- 구체성: 0.7 (좋은 가이드라인, 일부 공백)
+- 일관성: 0.7 (이메일 템플릿으로 확인됨)
+- 카테고리: AUTHORITATIVE (1.0)
+- **최종: (1.0×0.30 + 1.0×0.25 + 1.0×0.20 + 0.7×0.15 + 0.7×0.10) × 1.0 = 0.925**
 
-**Source: "Top Performer Call — Enterprise Close" (Gong, 2 months ago)**
-- Recency: 1.0
-- Explicitness: 0.2 (implicit patterns only)
-- Authority: 0.4 (senior AE)
-- Specificity: 0.7 (specific phrases used)
-- Consistency: 0.4 (single source)
-- Category: CONVERSATIONAL (0.6)
-- **Final: (1.0×0.30 + 0.2×0.25 + 0.4×0.20 + 0.7×0.15 + 0.4×0.10) × 0.6 = 0.345**
+**소스: "Top Performer Call — Enterprise Close" (Gong, 2개월 전)**
+- 최신성: 1.0
+- 명시성: 0.2 (암묵적 패턴만)
+- 권위성: 0.4 (시니어 AE)
+- 구체성: 0.7 (사용된 구체적 표현)
+- 일관성: 0.4 (단일 소스)
+- 카테고리: CONVERSATIONAL (0.6)
+- **최종: (1.0×0.30 + 0.2×0.25 + 0.4×0.20 + 0.7×0.15 + 0.4×0.10) × 0.6 = 0.345**
 
-## Adaptive Scoring: No Authoritative Sources
+## 적응형 점수 산정: AUTHORITATIVE 소스 없음
 
-When discovery finds **zero AUTHORITATIVE sources**, the scoring algorithm adapts to reflect that conversational and operational sources are the primary brand evidence.
+탐색에서 **AUTHORITATIVE 소스가 하나도** 발견되지 않으면, 점수 알고리즘이 대화 및 운영 소스가 주요 브랜드 증거임을 반영하도록 적응합니다.
 
-### Adjusted Trust Weights (No Authoritative Sources)
+### 조정된 신뢰도 가중치 (AUTHORITATIVE 소스 없음)
 
-| Category | Default Weight | Adapted Weight | Rationale |
-|----------|---------------|----------------|-----------|
-| AUTHORITATIVE | 1.0 | 1.0 | (n/a — none found) |
-| OPERATIONAL | 0.8 | 0.9 | Templates become primary explicit evidence |
-| CONVERSATIONAL | 0.6 | 0.85 | Transcripts are the best signal for how the brand actually communicates |
-| CONTEXTUAL | 0.3 | 0.4 | Design and competitive context more valuable without formal docs |
-| STALE | 0.1 | 0.2 | Even old docs matter more when nothing current exists |
+| 카테고리 | 기본 가중치 | 적응 가중치 | 근거 |
+|----------|-----------|-----------|------|
+| AUTHORITATIVE | 1.0 | 1.0 | (해당 없음 — 발견되지 않음) |
+| OPERATIONAL | 0.8 | 0.9 | 템플릿이 주요 명시적 증거가 됨 |
+| CONVERSATIONAL | 0.6 | 0.85 | 트랜스크립트가 브랜드의 실제 커뮤니케이션 방식에 대한 최고의 신호 |
+| CONTEXTUAL | 0.3 | 0.4 | 공식 문서 없이 디자인 및 경쟁 맥락이 더 가치 있음 |
+| STALE | 0.1 | 0.2 | 현재 자료가 없을 때 오래된 문서도 더 중요해짐 |
 
-### Adjusted Explicitness Scoring (No Authoritative Sources)
+### 조정된 명시성 점수 (AUTHORITATIVE 소스 없음)
 
-When no authoritative sources exist, conversational patterns carry more prescriptive weight:
+AUTHORITATIVE 소스가 없을 때 대화 패턴이 더 많은 규범적 가중치를 가집니다:
 
-- **Score 0.2 → 0.5**: "Inferred from conversational patterns" — these ARE the brand evidence now
-- **Score 0.4 → 0.6**: "Implicit patterns in templates or examples"
-- Other explicitness scores unchanged
+- **점수 0.2 → 0.5**: "대화 패턴에서 추론" — 이것이 지금 브랜드 증거입니다
+- **점수 0.4 → 0.6**: "템플릿이나 예시의 암묵적 패턴"
+- 다른 명시성 점수는 변경 없음
 
-### Example: Transcript Scoring With Adaptation
+### 예시: 적응 적용 시 트랜스크립트 점수
 
-**Source: "Top Performer Call — Enterprise Close" (Gong, 2 months ago)**
-- Recency: 1.0
-- Explicitness: 0.5 (adapted from 0.2 — patterns are primary evidence)
-- Authority: 0.4 (senior AE)
-- Specificity: 0.7 (specific phrases used)
-- Consistency: 0.4 (single source)
-- Category: CONVERSATIONAL (0.85 adapted)
-- **Adapted score: (1.0×0.30 + 0.5×0.25 + 0.4×0.20 + 0.7×0.15 + 0.4×0.10) × 0.85 = 0.552**
+**소스: "Top Performer Call — Enterprise Close" (Gong, 2개월 전)**
+- 최신성: 1.0
+- 명시성: 0.5 (0.2에서 적응 — 패턴이 주요 증거)
+- 권위성: 0.4 (시니어 AE)
+- 구체성: 0.7 (사용된 구체적 표현)
+- 일관성: 0.4 (단일 소스)
+- 카테고리: CONVERSATIONAL (0.85 적응)
+- **적응 점수: (1.0×0.30 + 0.5×0.25 + 0.4×0.20 + 0.7×0.15 + 0.4×0.10) × 0.85 = 0.552**
 
-This puts the transcript well above the 0.5 deep-fetch threshold, ensuring conversational sources meaningfully contribute to guideline generation.
+이로 인해 트랜스크립트가 0.5 심층 조회 기준을 충분히 넘어 대화 소스가 가이드라인 생성에 의미 있게 기여합니다.
 
-### When to Apply
+### 적용 시점
 
-Apply adaptive scoring when:
-- Phase 2 triage produces zero AUTHORITATIVE sources
-- Flag in the discovery report: "No formal brand guidelines found — scoring adapted to weight conversational and operational sources higher"
+다음 경우에 적응형 점수를 적용합니다:
+- 2단계 분류에서 AUTHORITATIVE 소스가 하나도 없을 때
+- 탐색 보고서에 표시: "공식 브랜드 가이드라인이 발견되지 않음 — 대화 및 운영 소스에 더 높은 가중치를 부여하도록 점수가 조정됨"
 
-## Triage Decision Criteria
+## 분류 결정 기준
 
-### Include in Deep Fetch (Top 5-15 sources)
-- Ranked score > 0.5
-- All AUTHORITATIVE sources regardless of score
-- At least one source per category if available (this overrides the score threshold)
-- At least one source per platform if available
+### 심층 조회에 포함 (상위 5-15개 소스)
+- 순위 점수 > 0.5
+- 점수에 관계없이 모든 AUTHORITATIVE 소스
+- 가능한 경우 카테고리당 최소 1개 소스 (이는 점수 기준을 재정의)
+- 가능한 경우 플랫폼당 최소 1개 소스
 
-### Flag for Review
-- Sources with conflicting information
-- STALE sources that may still be referenced by teams
-- Sources with high specificity but low authority
+### 검토용 표시
+- 충돌하는 정보가 있는 소스
+- 팀에서 여전히 참조할 수 있는 STALE 소스
+- 높은 구체성이지만 낮은 권위성인 소스
 
-### Exclude
-- Ranked score < 0.1
-- Clearly irrelevant results (e.g., "brand" used in product name, not brand guidelines)
-- Duplicate content already captured from another platform
+### 제외
+- 순위 점수 < 0.1
+- 명백하게 무관한 결과 (예: 브랜드 가이드라인이 아닌 제품 이름에 "brand"가 사용됨)
+- 다른 플랫폼에서 이미 캡처된 중복 콘텐츠

@@ -1,27 +1,27 @@
 ---
-description: Draft a well-formatted Slack announcement and save it as a draft
+description: 잘 포맷된 Slack 공지를 작성하고 초안으로 저장합니다
 ---
 
-Given the topic or context provided in $ARGUMENTS:
+$ARGUMENTS에 제공된 주제 또는 맥락을 기반으로:
 
-1. Ask the user the following clarifying questions (skip any that are already clear from the provided context):
-   - Which channel should this announcement be posted in?
-   - Who is the target audience?
-   - What is the key message or call to action?
-   - Is there a deadline or date to highlight?
-   - What tone is appropriate — formal, casual, or urgent?
+1. 사용자에게 다음 확인 질문을 합니다 (제공된 맥락에서 이미 명확한 것은 건너뜁니다):
+   - 이 공지를 어떤 채널에 게시할 건가요?
+   - 대상 독자는 누구인가요?
+   - 핵심 메시지나 행동 요청은 무엇인가요?
+   - 강조할 마감일이나 날짜가 있나요?
+   - 적절한 톤은 격식체, 캐주얼, 긴급 중 무엇인가요?
 
-2. Compose the announcement following Slack formatting best practices:
-   - Use Slack's mrkdwn syntax: `*bold*` for emphasis (not `**bold**`), `_italic_` for secondary emphasis, `>` for callouts.
-   - Lead with the most important information — don't bury the point.
-   - Use a clear, descriptive opening line that works as a headline.
-   - Keep paragraphs short (2-3 sentences max).
-   - Use bullet points for lists of items or action steps.
-   - Include relevant emoji sparingly to aid scanning (e.g., :mega: for announcements, :calendar: for dates, :point_right: for action items).
-   - End with a clear call to action or next step if applicable.
+2. Slack 포매팅 모범 사례에 따라 공지를 작성합니다:
+   - Slack의 mrkdwn 구문 사용: 강조를 위해 `*bold*` (`**bold**`가 아님), 부차적 강조를 위해 `_italic_`, 콜아웃을 위해 `>`.
+   - 가장 중요한 정보를 먼저 — 요점을 묻지 마세요.
+   - 헤드라인으로 작동하는 명확하고 설명적인 오프닝 라인을 사용합니다.
+   - 문단을 짧게 유지합니다 (최대 2-3문장).
+   - 항목 목록이나 실행 단계에는 글머리 기호를 사용합니다.
+   - 스캐닝을 돕기 위해 관련 이모지를 적절히 사용합니다 (예: 공지에 :mega:, 날짜에 :calendar:, 실행 항목에 :point_right:).
+   - 해당하는 경우 명확한 행동 요청이나 다음 단계로 마무리합니다.
 
-3. Present the draft to the user for review. Offer to adjust tone, length, or formatting.
+3. 사용자에게 검토를 위해 초안을 제시합니다. 톤, 길이, 포맷 조정을 제안합니다.
 
-4. Once the user approves, use `slack_search_channels` to find the target channel ID, then use `slack_send_message_draft` to create the draft in Slack.
+4. 사용자가 승인하면 `slack_search_channels`를 사용하여 대상 채널 ID를 찾은 후, `slack_send_message_draft`를 사용하여 Slack에 초안을 생성합니다.
 
-5. Let the user know the draft is ready in Slack and they can review and send it from the Slack client.
+5. Slack에 초안이 준비되었음을 사용자에게 알리고, Slack 클라이언트에서 검토하고 전송할 수 있다고 안내합니다.

@@ -1,55 +1,55 @@
-# Call Types — Prep Guide
+# 통화 유형 — 준비 가이드
 
-## Identifying the Call Type
+## 통화 유형 식별
 
-If the user doesn't specify, infer from context: trial + early signals = Discovery/Demo; active CRM opportunity = Demo/Evaluation/Negotiation; existing customer + renewal date = Renewal/QBR; expansion signals = Expansion; support tickets + declining usage = Save call.
+사용자가 지정하지 않으면 컨텍스트에서 추론합니다: 트라이얼 + 초기 신호 = 탐색/데모; 활성 CRM 기회 = 데모/평가/협상; 기존 고객 + 갱신 날짜 = 갱신/QBR; 확장 신호 = 확장; 지원 티켓 + 사용 감소 = 세이브 콜.
 
 ---
 
-## Discovery Call
+## 탐색 통화
 
-**Goal:** Understand the prospect's pain, context, and fit.
+**목표:** 잠재 고객의 고충, 맥락, 적합성을 이해합니다.
 
-- Identify what signals triggered the meeting and prepare open-ended questions tied to those signals
-- Form a hypothesis about their primary use case from Spark persona and activity data
-- **Talking point structure:** Signal -> question -> how you might help
+- 미팅을 트리거한 신호를 식별하고 해당 신호와 연결된 개방형 질문을 준비
+- Spark 페르소나 및 활동 데이터로 주요 사용 사례에 대한 가설을 형성
+- **토킹 포인트 구조:** 신호 -> 질문 -> 도움 방법
 
-## Demo Call
+## 데모 통화
 
-**Goal:** Show the product in context of their specific needs.
+**목표:** 고객의 구체적 니즈 맥락에서 제품을 보여줍니다.
 
-- Note which features they've already explored and competitors in their stack
-- Identify audience (technical evaluator vs economic buyer) and match depth accordingly
-- Highlight 1-2 features based on their known activity
+- 이미 탐색한 기능과 스택의 경쟁 제품을 기록
+- 청중(기술 평가자 vs 경제적 구매자)을 식별하고 그에 맞는 깊이로 매칭
+- 알려진 활동을 기반으로 1-2개 기능을 강조
 
-## Expansion Conversation
+## 확장 대화
 
-**Goal:** Identify and close upsell/cross-sell or seat expansion.
+**목표:** 업셀/크로스셀 또는 시트 확장을 식별하고 클로징합니다.
 
-- Identify product areas with highest recent adoption and emerging teams/use cases
-- Lead with usage data demonstrating value already delivered
-- Present expansion as a natural next step tied to their business outcomes
+- 최근 채택이 가장 높은 제품 영역과 떠오르는 팀/사용 사례를 식별
+- 이미 제공된 가치를 보여주는 사용 데이터로 시작
+- 확장을 비즈니스 결과와 연결된 자연스러운 다음 단계로 제시
 
-## Renewal / Retention Call
+## 갱신/유지 통화
 
-**Goal:** Secure renewal; address any risk.
+**목표:** 갱신을 확보하고, 위험을 해결합니다.
 
-- Check engagement trend, open support tickets, and champion status
-- Quantify value delivered (usage stats, outcomes) as renewal justification
-- Address risk signals directly and proactively — have a retention offer ready if needed
+- 참여 트렌드, 오픈 지원 티켓, 챔피언 상태를 확인
+- 제공된 가치를 정량화 (사용 통계, 결과)하여 갱신 정당화
+- 위험 신호를 직접적이고 선제적으로 해결 — 필요시 유지 제안 준비
 
-## QBR (Quarterly Business Review)
+## QBR (분기별 비즈니스 리뷰)
 
-**Goal:** Review progress, align on strategy, deepen executive relationship.
+**목표:** 진행 상황을 검토하고, 전략을 정렬하며, 임원 관계를 깊게 합니다.
 
-- Analyze 90-day signal trends and breadth of adoption across teams
-- Lead with business outcomes, not feature usage — surface 1-2 surprising stats
-- Come with a forward-looking agenda and next quarter goals
+- 90일 신호 트렌드와 팀 전반의 채택 폭을 분석
+- 기능 사용이 아닌 비즈니스 결과로 시작 — 1-2개 놀라운 통계를 발굴
+- 미래 지향적 의제와 다음 분기 목표를 가지고 올 것
 
-## Save / Risk Call
+## 세이브/위험 통화
 
-**Goal:** Understand and reverse negative trajectory.
+**목표:** 부정적 궤적을 이해하고 반전시킵니다.
 
-- Identify specific decline signals (what dropped and when) and check for unresolved tickets
-- Acknowledge the signals without being defensive — ask questions before presenting solutions
-- Have a concrete action plan ready
+- 구체적 감소 신호(무엇이 언제 감소했는지)를 식별하고 미해결 티켓을 확인
+- 방어적이지 않게 신호를 인정 — 솔루션을 제시하기 전에 질문
+- 구체적 액션 플랜을 준비

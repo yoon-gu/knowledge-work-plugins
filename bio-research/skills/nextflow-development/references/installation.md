@@ -1,14 +1,14 @@
-# Installation
+# 설치
 
-## Contents
-- [Quick install](#quick-install)
-- [Docker setup](#docker-setup)
-- [Singularity setup (HPC)](#singularity-setup-hpc)
-- [nf-core tools (optional)](#nf-core-tools-optional)
-- [Verify installation](#verify-installation)
-- [Common issues](#common-issues)
+## 목차
+- [빠른 설치](#빠른-설치)
+- [Docker 설정](#docker-설정)
+- [Singularity 설정 (HPC)](#singularity-설정-hpc)
+- [nf-core tools (선택 사항)](#nf-core-tools-선택-사항)
+- [설치 확인](#설치-확인)
+- [일반적인 문제](#일반적인-문제)
 
-## Quick install
+## 빠른 설치
 
 ```bash
 # Nextflow
@@ -21,7 +21,7 @@ nextflow -version
 java -version  # Requires 11+
 ```
 
-## Docker setup
+## Docker 설정
 
 ### Linux
 ```bash
@@ -32,14 +32,14 @@ sudo usermod -aG docker $USER
 ```
 
 ### macOS
-Download Docker Desktop: https://docker.com/products/docker-desktop
+Docker Desktop 다운로드: https://docker.com/products/docker-desktop
 
-### Verify
+### 확인
 ```bash
 docker run hello-world
 ```
 
-## Singularity setup (HPC)
+## Singularity 설정 (HPC)
 
 ```bash
 # Ubuntu/Debian
@@ -49,47 +49,47 @@ sudo apt-get install singularity-container
 conda install -c conda-forge singularity
 ```
 
-### Configure cache
+### 캐시 설정
 ```bash
 export NXF_SINGULARITY_CACHEDIR="$HOME/.singularity/cache"
 mkdir -p $NXF_SINGULARITY_CACHEDIR
 echo 'export NXF_SINGULARITY_CACHEDIR="$HOME/.singularity/cache"' >> ~/.bashrc
 ```
 
-## nf-core tools (optional)
+## nf-core tools (선택 사항)
 
 ```bash
 pip install nf-core
 ```
 
-Useful commands:
+유용한 명령어:
 ```bash
 nf-core list                    # Available pipelines
 nf-core launch rnaseq           # Interactive parameter selection
 nf-core download rnaseq -r 3.14.0  # Download for offline use
 ```
 
-## Verify installation
+## 설치 확인
 
 ```bash
 nextflow run nf-core/demo -profile test,docker --outdir test_demo
 ls test_demo/
 ```
 
-## Common issues
+## 일반적인 문제
 
-**Java version wrong:**
+**Java 버전 오류:**
 ```bash
 export JAVA_HOME=/path/to/java11
 ```
 
-**Docker permission denied:**
+**Docker 권한 거부:**
 ```bash
 sudo usermod -aG docker $USER
 # Log out and back in
 ```
 
-**Nextflow not found:**
+**Nextflow를 찾을 수 없음:**
 ```bash
 echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc

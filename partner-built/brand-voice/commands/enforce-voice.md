@@ -1,22 +1,22 @@
 ---
-description: Apply brand guidelines to content creation
-argument-hint: "<content request>"
+description: 콘텐츠 제작에 브랜드 가이드라인을 적용합니다
+argument-hint: "<콘텐츠 요청>"
 ---
 
-**MANDATORY FIRST STEP — do this before anything else, including loading guidelines or processing the content request.** Check whether the user has a working folder selected for this session. You must verify this before starting any enforcement work. If there is no working folder, stop and warn the user: "You don't have a working folder selected. Without one, I can't load saved guidelines from a previous session, and any guidelines generated in this conversation won't be saved for future sessions either. Please select a working folder and re-run this command. If you'd like to proceed anyway (guidelines will only be usable in this session), let me know."  Wait for the user to confirm before continuing.
+**필수 첫 번째 단계 — 가이드라인 로드나 콘텐츠 요청 처리를 포함한 다른 어떤 작업보다 먼저 이것을 수행하세요.** 사용자가 이 세션에서 작업 폴더를 선택했는지 확인합니다. 적용 작업을 시작하기 전에 반드시 이를 확인해야 합니다. 작업 폴더가 없는 경우, 중단하고 사용자에게 경고합니다: "작업 폴더가 선택되어 있지 않습니다. 작업 폴더가 없으면 이전 세션에서 저장된 가이드라인을 로드할 수 없고, 이 대화에서 생성된 가이드라인도 향후 세션에 저장되지 않습니다. 작업 폴더를 선택하고 이 명령을 다시 실행해 주세요. 그래도 진행하고 싶으시면(가이드라인은 이 세션에서만 사용 가능) 알려주세요." 사용자가 확인할 때까지 기다립니다.
 
-Load the user's brand guidelines and apply them to the content request provided in $ARGUMENTS.
+사용자의 브랜드 가이드라인을 로드하고 $ARGUMENTS에 제공된 콘텐츠 요청에 적용합니다.
 
-Find brand guidelines using this sequence (stop as soon as found):
-1. Session context — check if guidelines were generated earlier in this conversation
-2. Local guidelines file — check for `.claude/brand-voice-guidelines.md` inside the user's working folder. Do NOT use a relative path from the agent's current working directory (in Cowork, the agent runs from a plugin cache directory). If no working folder is set, skip this step.
-3. If not found, ask the user to run `/brand-voice:discover-brand`, `/brand-voice:generate-guidelines`, or paste guidelines directly
+다음 순서로 브랜드 가이드라인을 찾습니다 (찾으면 즉시 중단):
+1. 세션 컨텍스트 — 이 대화에서 이전에 가이드라인이 생성되었는지 확인
+2. 로컬 가이드라인 파일 — 사용자의 작업 폴더 내 `.claude/brand-voice-guidelines.md` 확인. 에이전트의 현재 작업 디렉토리로부터의 상대 경로를 사용하지 마세요 (Cowork에서는 에이전트가 플러그인 캐시 디렉토리에서 실행됩니다). 작업 폴더가 설정되지 않은 경우 이 단계를 건너뜁니다.
+3. 찾지 못한 경우, 사용자에게 `/brand-voice:discover-brand`, `/brand-voice:generate-guidelines` 실행 또는 가이드라인 직접 붙여넣기를 요청합니다
 
-Once guidelines are loaded, follow the brand-voice-enforcement skill instructions to:
-1. Analyze the content request (type, audience, key messages, requirements)
-2. Apply voice constants ("We Are / We Are Not") and flex tone for context (formality, energy, technical depth)
-3. Generate content applying voice, tone, messaging, and terminology guidelines
-4. Validate output against brand do's and don'ts
-5. Present the content with a brief explanation of brand choices made
-6. Note any open questions from guidelines that affect this content
-7. Offer to refine based on feedback
+가이드라인이 로드되면 brand-voice-enforcement 스킬 지침에 따라:
+1. 콘텐츠 요청을 분석합니다 (유형, 대상, 핵심 메시지, 요구 사항)
+2. 보이스 상수("우리는 ~ / 우리는 ~이 아님")를 적용하고 맥락에 맞게 톤을 조정합니다 (격식도, 에너지, 기술적 깊이)
+3. 보이스, 톤, 메시징, 용어 가이드라인을 적용하여 콘텐츠를 생성합니다
+4. 브랜드 권장/금지 사항에 대해 출력을 검증합니다
+5. 브랜드 선택에 대한 간략한 설명과 함께 콘텐츠를 제시합니다
+6. 이 콘텐츠에 영향을 미치는 가이드라인의 미해결 질문을 기록합니다
+7. 피드백에 따라 수정을 제안합니다

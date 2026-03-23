@@ -1,127 +1,126 @@
 ---
 name: discover-brand
 description: >
-  This skill orchestrates autonomous discovery of brand materials across enterprise
-  platforms (Notion, Confluence, Google Drive, Box, SharePoint, Figma, Gong, Granola, Slack).
-  It should be used when the user asks to "discover brand materials",
-  "find brand documents", "search for brand guidelines", "audit brand content",
-  "what brand materials do we have", "find our style guide", "where are our brand docs",
-  "do we have a style guide", "discover brand voice", "brand content audit",
-  or "find brand assets".
+  이 스킬은 기업 플랫폼(Notion, Confluence, Google Drive, Box, SharePoint, Figma,
+  Gong, Granola, Slack)에서 브랜드 자료의 자율적 탐색을 조율합니다.
+  사용자가 "브랜드 자료 발견", "브랜드 문서 찾기", "브랜드 가이드라인 검색",
+  "브랜드 콘텐츠 감사", "어떤 브랜드 자료가 있나", "스타일 가이드 찾기",
+  "브랜드 문서 어디에 있나", "스타일 가이드 있나", "브랜드 보이스 발견",
+  "브랜드 콘텐츠 감사", "브랜드 자산 찾기" 등을 요청할 때 사용해야 합니다.
 ---
 
-# Brand Discovery
+# 브랜드 탐색
 
-Orchestrate autonomous discovery of brand materials across enterprise platforms. This skill coordinates the discover-brand agent to search connected platforms (Notion, Confluence, Google Drive, Box, Microsoft 365, Figma, Gong, Granola, Slack), triage sources, and produce a structured discovery report with open questions.
+기업 플랫폼에서 브랜드 자료의 자율적 탐색을 조율합니다. 이 스킬은 discover-brand 에이전트를 조율하여 연결된 플랫폼(Notion, Confluence, Google Drive, Box, Microsoft 365, Figma, Gong, Granola, Slack)을 검색하고, 소스를 분류하며, 미해결 질문이 포함된 구조화된 탐색 보고서를 작성합니다.
 
-## Discovery Workflow
+## 탐색 워크플로
 
-### 0. Orient the User
+### 0. 사용자 안내
 
-Before starting, briefly explain what's about to happen so the user knows what to expect:
+시작하기 전에 사용자에게 어떤 일이 일어날지 간략히 설명하여 무엇을 기대할지 알려줍니다:
 
-"Here's how brand discovery works:
+"브랜드 탐색이 어떻게 작동하는지 설명드리겠습니다:
 
-1. **Search** — I'll search your connected platforms (Notion, Google Drive, Slack, etc.) for brand-related materials: style guides, pitch decks, templates, transcripts, and more.
-2. **Analyze** — I'll categorize and rank what I find, pull the best sources, and produce a discovery report with what I found, any conflicts, and open questions.
-3. **Generate guidelines** — Once you've reviewed the report, I can generate a structured brand voice guideline document from the results.
-4. **Save** — Guidelines are saved to `.claude/brand-voice-guidelines.md` in your working folder once you approve them. Nothing is written until that step.
+1. **검색** — 연결된 플랫폼(Notion, Google Drive, Slack 등)에서 브랜드 관련 자료를 검색합니다: 스타일 가이드, 피치 덱, 템플릿, 트랜스크립트 등.
+2. **분석** — 발견된 자료를 분류하고 순위를 매기며, 최적의 소스를 가져와서 발견 내용, 충돌, 미해결 질문이 포함된 탐색 보고서를 작성합니다.
+3. **가이드라인 생성** — 보고서를 검토한 후, 결과에서 구조화된 브랜드 보이스 가이드라인 문서를 생성할 수 있습니다.
+4. **저장** — 가이드라인은 승인하시면 작업 폴더의 `.claude/brand-voice-guidelines.md`에 저장됩니다. 그 단계 전까지는 아무것도 기록되지 않습니다.
 
-The search usually takes a few minutes depending on how many platforms are connected. Ready to get started?"
+연결된 플랫폼 수에 따라 검색은 보통 몇 분 정도 걸립니다. 시작하시겠습니까?"
 
-Wait for the user to confirm before proceeding. If they have questions about the process, answer them first.
+사용자가 확인할 때까지 진행하지 않습니다. 프로세스에 대한 질문이 있으면 먼저 답변합니다.
 
-### 1. Check Settings
+### 1. 설정 확인
 
-Read `.claude/brand-voice.local.md` if it exists. Extract:
-- Company name
-- Which platforms are enabled (notion, confluence, google-drive, box, microsoft-365, figma, gong, granola, slack)
-- Search depth preference (standard or deep)
-- Max sources limit
-- Any known brand material locations listed under "Known Brand Materials"
+`.claude/brand-voice.local.md`가 있으면 읽습니다. 추출:
+- 회사 이름
+- 활성화된 플랫폼 (notion, confluence, google-drive, box, microsoft-365, figma, gong, granola, slack)
+- 검색 깊이 기본 설정 (standard 또는 deep)
+- 최대 소스 제한
+- "Known Brand Materials"에 나열된 알려진 브랜드 자료 위치
 
-If no settings file exists, proceed with all connected platforms and standard search depth.
+설정 파일이 없으면 모든 연결된 플랫폼과 표준 검색 깊이로 진행합니다.
 
-### 2. Validate Platform Coverage
+### 2. 플랫폼 커버리지 검증
 
-Before confirming scope, check which platforms are actually connected and classify them:
+범위를 확인하기 전에 실제로 연결된 플랫폼을 확인하고 분류합니다:
 
-**Document platforms** (where brand guidelines, style guides, templates, and decks live):
+**문서 플랫폼** (브랜드 가이드라인, 스타일 가이드, 템플릿, 자료가 있는 곳):
 - Notion, Confluence, Google Drive, Box, Microsoft 365 (SharePoint/OneDrive)
 
-**Supplementary platforms** (valuable for patterns, but not where brand docs are stored):
+**보조 플랫폼** (패턴에 유용하지만 브랜드 문서가 저장되지 않는 곳):
 - Slack, Gong, Granola, Figma
 
-Apply these rules:
+다음 규칙을 적용합니다:
 
-1. **If zero document platforms are connected**: **Stop.** Tell the user: "You don't have any document storage platforms connected (Google Drive, SharePoint, Notion, Confluence, or Box). Brand guidelines and style guides almost always live on one of these. Please connect at least one before running discovery. Gong/Granola/Slack transcripts are valuable supplements but unlikely to contain formal brand documents."
+1. **문서 플랫폼이 하나도 연결되지 않은 경우**: **중단합니다.** 사용자에게 알립니다: "문서 저장 플랫폼(Google Drive, SharePoint, Notion, Confluence 또는 Box)이 연결되어 있지 않습니다. 브랜드 가이드라인과 스타일 가이드는 거의 항상 이들 중 하나에 있습니다. 탐색을 실행하기 전에 최소 하나를 연결해 주세요. Gong/Granola/Slack 트랜스크립트는 유용한 보충 자료이지만 공식 브랜드 문서를 포함할 가능성이 낮습니다."
 
-2. **If no Google Drive AND no Microsoft 365 AND no Box**: **Warn** (but proceed): "None of your primary file storage platforms (Google Drive, SharePoint, Box) are connected. Brand documents frequently live on these platforms. Discovery will proceed with [connected platforms], but results may have significant gaps. Consider connecting Google Drive or SharePoint."
+2. **Google Drive도, Microsoft 365도, Box도 연결되지 않은 경우**: **경고합니다** (하지만 진행): "기본 파일 저장 플랫폼(Google Drive, SharePoint, Box)이 연결되어 있지 않습니다. 브랜드 문서는 이러한 플랫폼에 자주 보관됩니다. [연결된 플랫폼]으로 탐색을 진행하지만 결과에 상당한 공백이 있을 수 있습니다. Google Drive 또는 SharePoint 연결을 고려해 주세요."
 
-3. **If only one platform total is connected**: **Warn** (but proceed): "Only [platform] is connected. Discovery works best with 2+ platforms for cross-source validation. Results from a single platform will have lower confidence scores."
+3. **플랫폼이 총 하나만 연결된 경우**: **경고합니다** (하지만 진행): "[플랫폼]만 연결되어 있습니다. 탐색은 교차 소스 검증을 위해 2개 이상의 플랫폼에서 가장 잘 작동합니다. 단일 플랫폼의 결과는 신뢰도 점수가 더 낮을 수 있습니다."
 
-### 3. Confirm Scope with User
+### 3. 사용자와 범위 확인
 
-Before launching discovery, confirm:
-- Which platforms to search (default: all connected)
-- Whether to include conversation transcripts (Gong, Granola) or just documents
-- Any known locations to prioritize
+탐색을 시작하기 전에 확인합니다:
+- 검색할 플랫폼 (기본값: 연결된 모든 플랫폼)
+- 대화 트랜스크립트(Gong, Granola)를 포함할지 문서만 포함할지
+- 우선적으로 확인할 알려진 위치
 
-Keep this brief — one question, not a questionnaire.
+이것을 간결하게 유지합니다 — 질문지가 아닌 하나의 질문.
 
-### 4. Delegate to Discover-Brand Agent
+### 4. Discover-Brand 에이전트에 위임
 
-Launch the discover-brand agent via the Task tool. Provide:
-- Company name (from settings or user input)
-- Enabled platforms
-- Search depth
-- Any known URLs or locations to check first
+Task 도구를 통해 discover-brand 에이전트를 시작합니다. 제공:
+- 회사 이름 (설정 또는 사용자 입력에서)
+- 활성화된 플랫폼
+- 검색 깊이
+- 먼저 확인할 알려진 URL 또는 위치
 
-The agent executes the 4-phase discovery algorithm autonomously:
-1. **Broad Discovery** — parallel searches across platforms
-2. **Source Triage** — categorize and rank sources
-3. **Deep Fetch** — retrieve and extract from top sources
-4. **Discovery Report** — structured output with open questions
+에이전트가 4단계 탐색 알고리즘을 자율적으로 실행합니다:
+1. **광범위 탐색** — 플랫폼 전반 병렬 검색
+2. **소스 분류** — 소스 분류 및 순위 지정
+3. **심층 조회** — 상위 소스에서 조회 및 추출
+4. **탐색 보고서** — 미해결 질문이 포함된 구조화된 출력
 
-### 5. Present Discovery Report
+### 5. 탐색 보고서 제시
 
-When the agent returns, present the report to the user with a summary:
-- Total sources found and analyzed
-- Key brand elements discovered
-- Any conflicts between sources
-- Open questions requiring team input
+에이전트가 반환하면 요약과 함께 보고서를 사용자에게 제시합니다:
+- 발견 및 분석된 총 소스
+- 발견된 핵심 브랜드 요소
+- 소스 간 충돌
+- 팀 입력이 필요한 미해결 질문
 
-### 6. Offer Next Steps
+### 6. 다음 단계 제안
 
-After presenting the report, offer:
-1. **Generate guidelines now** — chain to `/brand-voice:generate-guidelines` using discovery report as input
-2. **Resolve open questions first** — work through high-priority questions before generating
-3. **Save report** — store the discovery report to Notion or as a local file
-4. **Expand search** — search additional platforms or deeper if coverage is low
+보고서 제시 후 다음을 제안합니다:
+1. **지금 가이드라인 생성** — 탐색 보고서를 입력으로 사용하여 `/brand-voice:generate-guidelines`로 연결
+2. **먼저 미해결 질문 해결** — 생성 전에 높은 우선순위 질문을 해결
+3. **보고서 저장** — 탐색 보고서를 Notion에 저장하거나 로컬 파일로 저장
+4. **검색 확장** — 커버리지가 낮으면 추가 플랫폼이나 더 깊이 검색
 
-## Open Questions
+## 미해결 질문
 
-Open questions arise when the discovery agent encounters ambiguity it cannot resolve:
-- Conflicting documents (e.g., 2023 style guide vs. 2024 brand update)
-- Missing critical sections (e.g., no social media guidelines found)
-- Inconsistent terminology across platforms
+미해결 질문은 탐색 에이전트가 해결할 수 없는 모호함을 만났을 때 발생합니다:
+- 충돌하는 문서 (예: 2023 스타일 가이드 vs. 2024 브랜드 업데이트)
+- 누락된 중요 섹션 (예: 소셜 미디어 가이드라인을 찾지 못함)
+- 플랫폼 간 일관되지 않는 용어
 
-Every open question includes an agent recommendation. Present questions as "confirm or override" — not dead ends.
+모든 미해결 질문에는 에이전트 권장 사항이 포함됩니다. 질문을 "확인 또는 재정의"로 제시합니다 — 막다른 길이 아닙니다.
 
-## Integration with Other Skills
+## 다른 스킬과의 통합
 
-- **Guideline Generation**: The discovery report is returned by the discover-brand agent via the Task tool. Pass it directly to the guideline-generation skill as structured input, replacing the need for users to manually gather sources.
-- **Brand Voice Enforcement**: Once guidelines are generated from discovery, enforcement uses them automatically.
+- **가이드라인 생성**: 탐색 보고서는 Task 도구를 통해 discover-brand 에이전트가 반환합니다. 이를 구조화된 입력으로 guideline-generation 스킬에 직접 전달하여, 사용자가 수동으로 소스를 수집할 필요를 대체합니다.
+- **브랜드 보이스 적용**: 탐색에서 가이드라인이 생성되면 적용이 자동으로 이를 사용합니다.
 
-## Error Handling
+## 오류 처리
 
-- If zero platforms are connected, inform the user which platforms the plugin supports and how to connect them.
-- If all searches return empty results, flag the discovery as "low coverage" and suggest the user provide documents manually or check platform connections.
-- If a platform is connected but returns permission errors, note the gap and continue with other platforms.
+- 플랫폼이 하나도 연결되지 않은 경우, 플러그인이 지원하는 플랫폼과 연결 방법을 사용자에게 알립니다.
+- 모든 검색이 빈 결과를 반환하면 탐색을 "낮은 커버리지"로 표시하고 사용자에게 수동으로 문서를 제공하거나 플랫폼 연결을 확인할 것을 제안합니다.
+- 플랫폼이 연결되어 있지만 권한 오류를 반환하면 공백을 기록하고 다른 플랫폼으로 계속 진행합니다.
 
-## Reference Files
+## 참조 파일
 
-For detailed discovery patterns and algorithms, consult:
+자세한 탐색 패턴과 알고리즘은 다음을 참고합니다:
 
-- **`references/search-strategies.md`** — Platform-specific search queries, query patterns by platform, and tips for maximizing discovery coverage
-- **`references/source-ranking.md`** — Source category definitions, ranking algorithm weights, and triage decision criteria
+- **`references/search-strategies.md`** — 플랫폼별 검색 쿼리, 플랫폼별 쿼리 패턴, 탐색 커버리지 최대화를 위한 팁
+- **`references/source-ranking.md`** — 소스 카테고리 정의, 순위 알고리즘 가중치, 분류 결정 기준

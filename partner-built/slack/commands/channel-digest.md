@@ -1,34 +1,34 @@
 ---
-description: Get a digest of recent activity across multiple Slack channels
+description: 여러 Slack 채널의 최근 활동 다이제스트를 제공합니다
 ---
 
-Given the comma-separated channel names provided in $ARGUMENTS (strip leading `#` and whitespace from each):
+$ARGUMENTS에 제공된 쉼표로 구분된 채널 이름을 기반으로 (각각에서 앞의 `#`과 공백을 제거):
 
-1. Parse the argument into individual channel names. Strip leading `#` and whitespace from each name.
+1. 인수를 개별 채널 이름으로 파싱합니다. 각 이름에서 앞의 `#`과 공백을 제거합니다.
 
-2. For each channel:
-   a. Use `slack_search_channels` to find the channel ID.
-   b. Use `slack_read_channel` to read recent messages (use a limit of 50 messages per channel to keep things manageable).
-   c. Summarize the key activity in that channel: main topics, decisions, questions, and notable messages.
+2. 각 채널에 대해:
+   a. `slack_search_channels`를 사용하여 채널 ID를 찾습니다.
+   b. `slack_read_channel`을 사용하여 최근 메시지를 읽습니다 (관리 가능한 범위를 위해 채널당 50개 메시지 제한 사용).
+   c. 해당 채널의 주요 활동을 요약합니다: 주요 주제, 결정 사항, 질문, 주목할 메시지.
 
-3. Present the digest in this format:
+3. 다음 형식으로 다이제스트를 제시합니다:
 
    ```
-   *Channel Digest — <today's date>*
+   *Channel Digest — <오늘 날짜>*
 
    *#channel-1*
-   - Summary point 1
-   - Summary point 2
+   - 요약 포인트 1
+   - 요약 포인트 2
 
    *#channel-2*
-   - Summary point 1
-   - Summary point 2
+   - 요약 포인트 1
+   - 요약 포인트 2
 
    ...
    ```
 
-4. For each channel, keep the summary to 3-5 bullet points maximum. Focus on what's actionable or noteworthy.
+4. 각 채널에 대해 요약을 최대 3-5개 항목으로 유지합니다. 실행 가능하거나 주목할 만한 것에 집중합니다.
 
-5. If a channel has no recent activity, note that it's been quiet and mention when the last message was posted (if visible).
+5. 채널에 최근 활동이 없으면 조용했다는 것을 기록하고 마지막 메시지가 게시된 시점을 언급합니다 (보이는 경우).
 
-6. If a channel name can't be found, let the user know and continue with the remaining channels.
+6. 채널 이름을 찾을 수 없으면 사용자에게 알리고 나머지 채널로 계속 진행합니다.

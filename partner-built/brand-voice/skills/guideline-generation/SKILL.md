@@ -1,141 +1,140 @@
 ---
 name: guideline-generation
 description: >
-  This skill generates, creates, or builds brand voice guidelines from source
-  materials. It should be used when the user asks to "generate brand guidelines",
-  "create a style guide", "extract brand voice", "create guidelines from calls",
-  "consolidate brand materials", "analyze my sales calls for brand voice",
-  "build a brand playbook from documents", "synthesize a voice and tone guide",
-  or uploads brand documents, transcripts, or meeting recordings for brand
-  analysis. Also triggers when the user has a discovery report and wants to
-  convert it into actionable guidelines.
+  이 스킬은 소스 자료에서 브랜드 보이스 가이드라인을 생성, 만들기, 구축합니다.
+  사용자가 "브랜드 가이드라인 생성", "스타일 가이드 만들기", "브랜드 보이스 추출",
+  "통화에서 가이드라인 만들기", "브랜드 자료 통합", "영업 통화에서 브랜드 보이스 분석",
+  "문서에서 브랜드 플레이북 구축", "보이스 앤 톤 가이드 합성"을 요청하거나,
+  브랜드 문서, 트랜스크립트, 회의 녹음을 업로드하여 브랜드 분석을 요청할 때
+  사용해야 합니다. 또한 사용자가 탐색 보고서를 가지고 있고 이를 실행 가능한
+  가이드라인으로 변환하고자 할 때도 트리거됩니다.
 ---
 
-# Guideline Generation
+# 가이드라인 생성
 
-Generate comprehensive, LLM-ready brand voice guidelines from any combination of sources — brand documents, sales call transcripts, discovery reports, or direct user input. Transform raw materials into structured, enforceable guidelines with confidence scoring and open questions.
+모든 소스 조합 — 브랜드 문서, 영업 통화 트랜스크립트, 탐색 보고서, 직접 사용자 입력 — 에서 포괄적이고 LLM 호환 브랜드 보이스 가이드라인을 생성합니다. 원시 자료를 신뢰도 점수와 미해결 질문이 포함된 구조화되고 적용 가능한 가이드라인으로 변환합니다.
 
-## Inputs
+## 입력
 
-Accept any combination of:
-- **Discovery report** from the discover-brand skill (structured, pre-triaged)
-- **Brand documents** uploaded or from connected platforms (PDF, PPTX, DOCX, MD, TXT)
-- **Conversation transcripts** from Gong, Granola, manual uploads, or Notion meeting notes
-- **Direct user input** about their brand voice and values
+다음의 모든 조합을 수용합니다:
+- discover-brand 스킬의 **탐색 보고서** (구조화된, 사전 분류됨)
+- 업로드되거나 연결된 플랫폼의 **브랜드 문서** (PDF, PPTX, DOCX, MD, TXT)
+- Gong, Granola, 수동 업로드, Notion 회의록의 **대화 트랜스크립트**
+- 브랜드 보이스와 가치에 대한 **직접 사용자 입력**
 
-When a discovery report is provided, use it as the primary input — sources are already triaged and ranked. Supplement with additional analysis as needed.
+탐색 보고서가 제공되면 이를 주요 입력으로 사용합니다 — 소스가 이미 분류되고 순위가 매겨져 있습니다. 필요에 따라 추가 분석으로 보충합니다.
 
-## Generation Workflow
+## 생성 워크플로
 
-### 1. Identify and Classify Sources
+### 1. 소스 식별 및 분류
 
-Determine what the user has provided. If no sources are available:
-- Check if a discovery report exists from a previous `/brand-voice:discover-brand` run
-- Check `.claude/brand-voice.local.md` for known brand material locations
-- Suggest running discovery first: `/brand-voice:discover-brand`
+사용자가 무엇을 제공했는지 결정합니다. 소스가 없는 경우:
+- 이전 `/brand-voice:discover-brand` 실행에서 탐색 보고서가 있는지 확인
+- `.claude/brand-voice.local.md`에서 알려진 브랜드 자료 위치 확인
+- 먼저 탐색 실행을 제안: `/brand-voice:discover-brand`
 
-### 2. Process Sources
+### 2. 소스 처리
 
-**For documents:** Delegate to the document-analysis agent for heavy parsing. Extract voice attributes, messaging themes, terminology, tone guidance, and examples.
+**문서의 경우:** 대량 파싱을 위해 document-analysis 에이전트에 위임합니다. 보이스 속성, 메시징 테마, 용어, 톤 지침, 예시를 추출합니다.
 
-**For transcripts:** Delegate to the conversation-analysis agent for pattern recognition. Extract implicit voice attributes, successful language patterns, tone by context, and anti-patterns.
+**트랜스크립트의 경우:** 패턴 인식을 위해 conversation-analysis 에이전트에 위임합니다. 암묵적 보이스 속성, 성공적인 언어 패턴, 맥락별 톤, 안티패턴을 추출합니다.
 
-**For discovery reports:** Extract pre-triaged sources, conflicts, and gaps. Use the ranked sources directly.
+**탐색 보고서의 경우:** 사전 분류된 소스, 충돌, 공백을 추출합니다. 순위가 매겨진 소스를 직접 사용합니다.
 
-### 3. Synthesize Into Guidelines
+### 3. 가이드라인으로 합성
 
-Merge all findings into a unified guideline document following the template in `references/guideline-template.md`. Key sections:
+모든 결과를 `references/guideline-template.md`의 템플릿을 따르는 통합 가이드라인 문서로 병합합니다. 핵심 섹션:
 
-**"We Are / We Are Not" Table** — The core brand identity anchor:
+**"우리는 ~ / 우리는 ~이 아님" 테이블** — 핵심 브랜드 아이덴티티 기준점:
 
-| We Are | We Are Not |
-|--------|------------|
-| [Attribute — e.g., "Confident"] | [Counter — e.g., "Arrogant"] |
-| [Attribute — e.g., "Approachable"] | [Counter — e.g., "Casual or sloppy"] |
+| 우리는 ~ | 우리는 ~이 아님 |
+|----------|---------------|
+| [속성 — 예: "자신감 있는"] | [반대 — 예: "오만한"] |
+| [속성 — 예: "친근한"] | [반대 — 예: "캐주얼하거나 부주의한"] |
 
-Derive attributes from the most consistent patterns across sources. Each row should have supporting evidence.
+소스 전반에서 가장 일관된 패턴에서 속성을 도출합니다. 각 행에는 뒷받침하는 근거가 있어야 합니다.
 
-**Voice Constants vs. Tone Flexes** — Clarify what stays fixed and what adapts:
-- **Voice** = personality, values, "We Are / We Are Not" — constant across all content
-- **Tone** = formality, energy, technical depth — flexes by context
+**보이스 상수 vs. 톤 조절** — 고정된 것과 적응하는 것을 명확히 합니다:
+- **보이스** = 성격, 가치, "우리는 ~ / 우리는 ~이 아님" — 모든 콘텐츠에서 일정
+- **톤** = 격식도, 에너지, 기술적 깊이 — 맥락에 따라 조절
 
-**Tone-by-Context Matrix:**
+**맥락별 톤 매트릭스:**
 
-| Context | Formality | Energy | Technical Depth | Example |
-|---------|-----------|--------|-----------------|---------|
-| Cold outreach | Medium | High | Low | "[example phrase]" |
-| Enterprise proposal | High | Medium | High | "[example phrase]" |
-| Social media | Low | High | Low | "[example phrase]" |
+| 맥락 | 격식도 | 에너지 | 기술적 깊이 | 예시 |
+|------|--------|--------|-----------|------|
+| 콜드 아웃리치 | 중간 | 높음 | 낮음 | "[예시 표현]" |
+| 기업 제안서 | 높음 | 중간 | 높음 | "[예시 표현]" |
+| 소셜 미디어 | 낮음 | 높음 | 낮음 | "[예시 표현]" |
 
-### 4. Assign Confidence Scores
+### 4. 신뢰도 점수 할당
 
-Score each section using the methodology in `references/confidence-scoring.md`:
-- **High confidence**: 3+ corroborating sources, explicit guidance found
-- **Medium confidence**: 1-2 sources, or inferred from patterns
-- **Low confidence**: Single source, inferred, or conflicting data
+`references/confidence-scoring.md`의 방법론을 사용하여 각 섹션에 점수를 부여합니다:
+- **높은 신뢰도**: 3개 이상의 확인 소스, 명시적 지침 발견
+- **보통 신뢰도**: 1-2개 소스, 또는 패턴에서 추론
+- **낮은 신뢰도**: 단일 소스, 추론됨, 또는 충돌하는 데이터
 
-### 5. Surface Open Questions
+### 5. 미해결 질문 제시
 
-Generate open questions for any ambiguity that cannot be resolved:
+해결할 수 없는 모호성에 대한 미해결 질문을 생성합니다:
 
 ```markdown
-## Open Questions for Team Discussion
+## 팀 토론을 위한 미해결 질문
 
-### High Priority (blocks guideline completion)
-1. **[Question Title]**
-   - What was found: [conflicting or incomplete info]
-   - Agent recommendation: [suggested resolution with reasoning]
-   - Need from you: [specific decision or confirmation needed]
+### 높은 우선순위 (가이드라인 완성을 차단)
+1. **[질문 제목]**
+   - 발견된 내용: [충돌하거나 불완전한 정보]
+   - 에이전트 권장 사항: [근거가 포함된 제안 해결 방안]
+   - 필요한 사항: [필요한 구체적 결정 또는 확인]
 ```
 
-Every open question MUST include an agent recommendation. Turn ambiguity into "confirm or override" — never a dead end.
+모든 미해결 질문에는 반드시 에이전트 권장 사항이 포함되어야 합니다. 모호성을 "확인 또는 재정의"로 전환합니다 — 막다른 길이 아닙니다.
 
-### 6. Quality Check
+### 6. 품질 확인
 
-Before presenting, verify via the quality-assurance agent (defined in `agents/quality-assurance.md`):
-- All major sections populated (including Brand Personality and Content Examples if sources support them)
-- At least 3 voice attributes with evidence
-- "We Are / We Are Not" table has 4+ rows
-- Tone matrix covers at least 3 contexts
-- Confidence scores assigned per section
-- Source attribution for all extracted elements
-- No PII exposed
-- Open questions include recommendations
+제시하기 전에 quality-assurance 에이전트(`agents/quality-assurance.md`에 정의)를 통해 확인합니다:
+- 모든 주요 섹션이 채워져 있는지 (소스가 지원하는 경우 브랜드 성격 및 콘텐츠 예시 포함)
+- 최소 3개의 보이스 속성과 근거
+- "우리는 ~ / 우리는 ~이 아님" 테이블에 4개 이상의 행
+- 톤 매트릭스가 최소 3개 맥락을 커버
+- 섹션별 신뢰도 점수 할당
+- 모든 추출된 요소에 소스 명시
+- PII 노출 없음
+- 미해결 질문에 권장 사항 포함
 
-### 7. Present and Offer Next Steps
+### 7. 제시 및 다음 단계 제안
 
-Summarize key findings:
-- Total sections generated with confidence breakdown
-- Strongest voice attribute and most effective message
-- Number of open questions (if any)
+핵심 결과를 요약합니다:
+- 신뢰도 분석이 포함된 총 생성 섹션
+- 가장 강력한 보이스 속성과 가장 효과적인 메시지
+- 미해결 질문 수 (있는 경우)
 
-### 8. Save for Future Sessions
+### 8. 향후 세션을 위한 저장
 
-The default save location is `.claude/brand-voice-guidelines.md` inside the user's working folder.
+기본 저장 위치는 사용자의 작업 폴더 내 `.claude/brand-voice-guidelines.md`입니다.
 
-**Important:** The agent's working directory may not be the user's project root (especially in Cowork, where plugins run from a plugin cache directory). Always resolve the path relative to the user's working folder, not the current working directory. If no working folder is set, skip the file save and tell the user guidelines will only be available in this conversation.
+**중요:** 에이전트의 작업 디렉토리가 사용자의 프로젝트 루트가 아닐 수 있습니다 (특히 Cowork에서는 플러그인이 플러그인 캐시 디렉토리에서 실행됨). 항상 현재 작업 디렉토리가 아닌 사용자의 작업 폴더를 기준으로 경로를 확인합니다. 작업 폴더가 설정되지 않은 경우 파일 저장을 건너뛰고 사용자에게 가이드라인이 이 대화에서만 사용 가능하다고 알립니다.
 
-1. **Resolve the save path.** The file MUST be saved to `.claude/brand-voice-guidelines.md` inside the user's working folder. Confirm the working folder path before writing.
-2. **Check if guidelines already exist** at that path
-3. **If they exist, archive the previous version:** Rename the existing file to `brand-voice-guidelines-YYYY-MM-DD.md` in the same directory (using today's date)
-4. **Save new guidelines** to `.claude/brand-voice-guidelines.md` inside the working folder
-5. **Confirm to the user** with the full absolute path: "Guidelines saved to `<full-path>`. `/brand-voice:enforce-voice` will find them automatically in future sessions."
+1. **저장 경로 확인.** 파일은 반드시 사용자의 작업 폴더 내 `.claude/brand-voice-guidelines.md`에 저장해야 합니다. 기록 전에 작업 폴더 경로를 확인합니다.
+2. **해당 경로에 가이드라인이 이미 있는지 확인**
+3. **있으면 이전 버전 보관:** 기존 파일을 같은 디렉토리의 `brand-voice-guidelines-YYYY-MM-DD.md`로 이름 변경 (오늘 날짜 사용)
+4. **새 가이드라인을 저장** — 작업 폴더 내 `.claude/brand-voice-guidelines.md`
+5. **사용자에게 확인** — 전체 절대 경로 포함: "가이드라인이 `<full-path>`에 저장되었습니다. `/brand-voice:enforce-voice`가 향후 세션에서 자동으로 이를 찾습니다."
 
-The guidelines are also present in this conversation, so `/brand-voice:enforce-voice` can use them immediately without loading from file.
+가이드라인은 이 대화에도 존재하므로 `/brand-voice:enforce-voice`가 파일에서 로드하지 않고 즉시 사용할 수 있습니다.
 
-After saving, offer:
-1. Walk through the guidelines section by section
-2. Start creating content with `/brand-voice:enforce-voice`
-3. Resolve open questions
+저장 후 다음을 제안합니다:
+1. 가이드라인을 섹션별로 살펴보기
+2. `/brand-voice:enforce-voice`로 콘텐츠 제작 시작
+3. 미해결 질문 해결
 
-## Privacy and Security
+## 개인 정보 보호 및 보안
 
-Enforce these privacy constraints throughout the entire generation workflow, not only at output time:
-- Redact customer names and contact information from all examples
-- Anonymize company names in transcript excerpts if requested
-- Flag any sensitive information detected during processing
+출력 시점뿐만 아니라 전체 생성 워크플로에서 이러한 개인 정보 보호 제약을 시행합니다:
+- 모든 예시에서 고객 이름 및 연락처 정보 삭제
+- 요청 시 트랜스크립트 발췌에서 회사 이름 익명화
+- 처리 중에 감지된 민감한 정보 표시
 
-## Reference Files
+## 참조 파일
 
-- **`references/guideline-template.md`** — Complete output template with all sections, field definitions, and formatting guidance
-- **`references/confidence-scoring.md`** — Confidence scoring methodology, thresholds, and examples
+- **`references/guideline-template.md`** — 모든 섹션, 필드 정의, 서식 지침이 포함된 완전한 출력 템플릿
+- **`references/confidence-scoring.md`** — 신뢰도 점수 방법론, 기준, 예시

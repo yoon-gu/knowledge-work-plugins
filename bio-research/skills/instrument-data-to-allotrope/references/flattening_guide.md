@@ -1,39 +1,39 @@
-# Flattening ASM to 2D CSV
+# ASM을 2D CSV로 평탄화하기
 
-Converting hierarchical ASM JSON to flat 2D tables for LIMS import, spreadsheet analysis, or data engineering pipelines.
+계층적 ASM JSON을 LIMS 가져오기, 스프레드시트 분석 또는 데이터 엔지니어링 파이프라인을 위한 평면 2D 테이블로 변환합니다.
 
-## Why Flatten?
+## 왜 평탄화가 필요한가?
 
-ASM is semantically rich but hierarchical. Many systems need flat tables:
-- LIMS import (Benchling, STARLIMS, LabWare)
-- Excel/CSV analysis
-- Database loading
-- Quick visual inspection
+ASM은 의미론적으로 풍부하지만 계층적입니다. 많은 시스템에서는 평면 테이블이 필요합니다:
+- LIMS 가져오기 (Benchling, STARLIMS, LabWare)
+- Excel/CSV 분석
+- 데이터베이스 로딩
+- 빠른 시각적 검사
 
-## Flattening Strategy
+## 평탄화 전략
 
-### Core Principle
-Each **measurement** becomes one **row**. Metadata is repeated per row.
+### 핵심 원칙
+각 **측정값**은 하나의 **행**이 됩니다. 메타데이터는 행마다 반복됩니다.
 
-### What's Excluded
-The flattening intentionally **omits top-level ASM metadata** such as:
-- `$asm.manifest` (model version, schema URIs)
-- Root-level fields outside the technique aggregate document
+### 제외되는 항목
+평탄화 과정에서는 다음과 같은 **최상위 ASM 메타데이터**를 의도적으로 **생략**합니다:
+- `$asm.manifest` (모델 버전, 스키마 URI)
+- 기법 집계 문서 외부의 루트 수준 필드
 
-This keeps the output focused on experimental data. If you need schema version tracking for compliance or audit purposes, consider storing the original ASM JSON alongside the flattened CSV, or modify the flattening script to include these fields.
+이를 통해 출력을 실험 데이터에 집중합니다. 규정 준수 또는 감사 목적으로 스키마 버전 추적이 필요한 경우, 원본 ASM JSON을 평탄화된 CSV와 함께 저장하거나 평탄화 스크립트를 수정하여 이러한 필드를 포함시키는 것을 고려하세요.
 
-### Hierarchy to Columns
+### 계층 구조에서 컬럼으로
 ```
 ASM Hierarchy                    → Flat Column
 ─────────────────────────────────────────────────
 device-system-document.
   device-identifier              → instrument_serial_number
   model-number                   → instrument_model
-  
+
 measurement-aggregate-document.
   analyst                        → analyst
   measurement-time               → measurement_datetime
-  
+
 measurement-document[].
   sample-identifier              → sample_id
   viable-cell-density.value      → viable_cell_density
@@ -41,20 +41,20 @@ measurement-document[].
   viability.value                → viability_percent
 ```
 
-## Column Naming Convention
+## 컬럼 명명 규칙
 
-Use snake_case with descriptive suffixes:
+설명적 접미사가 포함된 snake_case를 사용합니다:
 
-| ASM Field | Flat Column |
+| ASM 필드 | 평면 컬럼 |
 |-----------|-------------|
 | `viable-cell-density` | `viable_cell_density` |
-| `.value` | `_value` (or omit if obvious) |
+| `.value` | `_value` (명확한 경우 생략 가능) |
 | `.unit` | `_unit` |
 | `measurement-time` | `measurement_datetime` |
 
-## Example: Cell Counting
+## 예시: 세포 계수
 
-### ASM Input (simplified)
+### ASM 입력 (간소화)
 ```json
 {
   "cell-counting-aggregate-document": {
@@ -84,16 +84,16 @@ Use snake_case with descriptive suffixes:
 }
 ```
 
-### Flattened Output
+### 평탄화된 출력
 ```csv
 sample_id,viable_cell_density,viable_cell_density_unit,viability_percent,analyst,measurement_datetime,instrument_serial_number,instrument_model
 Sample_A,2500000,(cell/mL),95.2,jsmith,2024-01-15T10:30:00Z,VCB001,Vi-CELL BLU
 Sample_B,1800000,(cell/mL),88.7,jsmith,2024-01-15T10:30:00Z,VCB001,Vi-CELL BLU
 ```
 
-## Example: Plate Reader
+## 예시: 플레이트 리더
 
-### ASM Input (simplified)
+### ASM 입력 (간소화)
 ```json
 {
   "plate-reader-aggregate-document": {
@@ -111,7 +111,7 @@ Sample_B,1800000,(cell/mL),88.7,jsmith,2024-01-15T10:30:00Z,VCB001,Vi-CELL BLU
 }
 ```
 
-### Flattened Output
+### 평탄화된 출력
 ```csv
 plate_id,well_position,absorbance,absorbance_unit
 ELISA_001,A1,0.125,mAU
@@ -119,12 +119,12 @@ ELISA_001,A2,0.892,mAU
 ELISA_001,A3,1.456,mAU
 ```
 
-## Handling Data Cubes
+## 데이터 큐브 처리
 
-Data cubes (time series, spectra) need special handling:
+데이터 큐브(시계열, 스펙트럼)는 특별한 처리가 필요합니다:
 
-### Option 1: Expand to rows
-Each point becomes a row:
+### 옵션 1: 행으로 확장
+각 데이터 포인트가 하나의 행이 됩니다:
 ```csv
 sample_id,time_seconds,absorbance
 Sample_A,0,0.100
@@ -132,37 +132,37 @@ Sample_A,60,0.125
 Sample_A,120,0.150
 ```
 
-### Option 2: Wide format
-Measurements as columns:
+### 옵션 2: 넓은 형식
+측정값을 컬럼으로 배치합니다:
 ```csv
 sample_id,abs_0s,abs_60s,abs_120s
 Sample_A,0.100,0.125,0.150
 ```
 
-### Option 3: JSON array in cell
-Keep as array (some systems support this):
+### 옵션 3: 셀 내 JSON 배열
+배열로 유지합니다 (일부 시스템에서 지원):
 ```csv
 sample_id,absorbance_timeseries
 Sample_A,"[0.100,0.125,0.150]"
 ```
 
-## Standard Column Sets by Technique
+## 기법별 표준 컬럼 세트
 
-### Cell Counting
+### 세포 계수
 ```
 sample_id, viable_cell_density, viable_cell_density_unit, total_cell_count,
 viability_percent, average_cell_diameter, average_cell_diameter_unit,
 analyst, measurement_datetime, instrument_serial_number
 ```
 
-### Spectrophotometry
+### 분광광도법
 ```
 sample_id, wavelength_nm, absorbance, pathlength_cm, concentration,
 concentration_unit, a260_a280_ratio, a260_a230_ratio,
 analyst, measurement_datetime, instrument_serial_number
 ```
 
-### Plate Reader / ELISA
+### 플레이트 리더 / ELISA
 ```
 plate_id, well_position, sample_type, sample_id, absorbance, absorbance_unit,
 concentration, concentration_unit, dilution_factor, cv_percent,
@@ -176,7 +176,7 @@ quantity, quantity_unit, amplification_efficiency,
 analyst, measurement_datetime, instrument_serial_number
 ```
 
-## Python Implementation
+## Python 구현
 
 ```python
 import json
@@ -185,43 +185,43 @@ import pandas as pd
 def flatten_asm(asm_dict, technique="cell-counting"):
     """
     Flatten ASM JSON to pandas DataFrame.
-    
+
     Args:
         asm_dict: Parsed ASM JSON
         technique: ASM technique type
-        
+
     Returns:
         pandas DataFrame with one row per measurement
     """
     rows = []
-    
+
     # Get aggregate document
     agg_key = f"{technique}-aggregate-document"
     agg_doc = asm_dict.get(agg_key, {})
-    
+
     # Extract device info
     device = agg_doc.get("device-system-document", {})
     device_info = {
         "instrument_serial_number": device.get("device-identifier"),
         "instrument_model": device.get("model-number")
     }
-    
+
     # Get technique documents
     doc_key = f"{technique}-document"
     for doc in agg_doc.get(doc_key, []):
         meas_agg = doc.get("measurement-aggregate-document", {})
-        
+
         # Extract common metadata
         common = {
             "analyst": meas_agg.get("analyst"),
             "measurement_datetime": meas_agg.get("measurement-time"),
             **device_info
         }
-        
+
         # Extract each measurement
         for meas in meas_agg.get("measurement-document", []):
             row = {**common}
-            
+
             # Flatten measurement fields
             for key, value in meas.items():
                 if isinstance(value, dict) and "value" in value:
@@ -232,9 +232,9 @@ def flatten_asm(asm_dict, technique="cell-counting"):
                         row[f"{col}_unit"] = value["unit"]
                 else:
                     row[key.replace("-", "_")] = value
-            
+
             rows.append(row)
-    
+
     return pd.DataFrame(rows)
 
 # Usage
@@ -245,10 +245,10 @@ df = flatten_asm(asm, "cell-counting")
 df.to_csv("flattened_output.csv", index=False)
 ```
 
-## LIMS Import Considerations
+## LIMS 가져오기 시 고려사항
 
-When importing flattened data into a LIMS:
-- Match column names to your LIMS schema field names
-- Use ISO 8601 date format for timestamps
-- Ensure sample IDs match existing LIMS sample identifiers
-- Check if your LIMS expects units in separate columns or embedded in values
+평탄화된 데이터를 LIMS에 가져올 때:
+- 컬럼 이름을 LIMS 스키마 필드 이름과 일치시키세요
+- 타임스탬프에는 ISO 8601 날짜 형식을 사용하세요
+- 샘플 ID가 기존 LIMS 샘플 식별자와 일치하는지 확인하세요
+- LIMS에서 단위를 별도 컬럼으로 기대하는지 값에 포함시키는지 확인하세요

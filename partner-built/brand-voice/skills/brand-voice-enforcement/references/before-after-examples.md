@@ -1,12 +1,12 @@
-# Before/After Content Examples
+# 콘텐츠 적용 전/후 예시
 
-Concrete examples showing how brand voice enforcement transforms generic content into on-brand output. Each example shows the generic version, the enforced version, and annotations explaining what changed and why.
+브랜드 보이스 적용이 일반 콘텐츠를 온브랜드 결과물로 어떻게 변환하는지 보여주는 구체적인 예시입니다. 각 예시는 일반 버전, 적용 후 버전, 그리고 무엇이 왜 변경되었는지 설명하는 주석을 보여줍니다.
 
-These examples use a fictional B2B SaaS company for illustration. During enforcement, replace all specifics (data points, product names, metrics) with data from the user's actual brand guidelines and context.
+이 예시들은 설명을 위해 가상의 B2B SaaS 회사를 사용합니다. 적용 시에는 모든 구체적 사항(데이터 포인트, 제품 이름, 지표)을 사용자의 실제 브랜드 가이드라인과 맥락의 데이터로 대체합니다.
 
-## Cold Outreach Email
+## 콜드 아웃리치 이메일
 
-### Before (Generic)
+### 적용 전 (일반)
 ```
 Subject: Quick question about your sales process
 
@@ -22,7 +22,7 @@ Best,
 [Sender]
 ```
 
-### After (Brand Voice Enforced)
+### 적용 후 (브랜드 보이스 적용)
 ```
 Subject: [Company] is leaving pipeline on the table
 
@@ -41,18 +41,18 @@ Worth 15 minutes to see if the numbers apply to [Company]?
 [Sender]
 ```
 
-### What Changed
-- **Voice: Confident** — leads with a bold claim and specific data (not "I think our product could be")
-- **Voice: Data-driven** — concrete numbers (23%, 18%, $12M) replace vague "more productive"
-- **Voice: Direct** — gets to the point immediately, no "I wanted to reach out"
-- **Tone: Energy HIGH** — active language, short sentences, urgency
-- **Tone: Formality MEDIUM** — professional but conversational
-- **Tone: Technical depth LOW** — outcomes and impact, not feature descriptions
-- **Terminology**: "buying signals" and "pipeline" (industry-specific but accessible to VP Sales)
+### 변경 사항
+- **보이스: 자신감** — 대담한 주장과 구체적 데이터로 시작 ("I think our product could be"가 아님)
+- **보이스: 데이터 중심** — 구체적 수치(23%, 18%, $12M)로 모호한 "more productive" 대체
+- **보이스: 직접적** — 즉시 요점으로 이동, "I wanted to reach out" 없음
+- **톤: 에너지 높음** — 능동적 언어, 짧은 문장, 긴급함
+- **톤: 격식도 중간** — 전문적이지만 대화체
+- **톤: 기술적 깊이 낮음** — 기능 설명이 아닌 결과와 영향
+- **용어**: "buying signals"과 "pipeline" (업계 특화 용어이지만 VP Sales에게 접근 가능)
 
-## Follow-Up Email
+## 후속 이메일
 
-### Before (Generic)
+### 적용 전 (일반)
 ```
 Hi [Name],
 
@@ -65,7 +65,7 @@ Thanks,
 [Sender]
 ```
 
-### After (Brand Voice Enforced)
+### 적용 후 (브랜드 보이스 적용)
 ```
 Hi [Name],
 
@@ -82,17 +82,17 @@ The report is attached if you'd rather dig in yourself first.
 [Sender]
 ```
 
-### What Changed
-- **Voice: Data-driven** — new value in every touch (benchmark data), not just "following up"
-- **Voice: Approachable** — offers two paths (call or self-serve) without pressure
-- **Voice: Confident** — shares proprietary insights, positions as expert
-- **Tone: Energy MEDIUM** — informative, not pushy
-- **Tone: Formality MEDIUM** — professional but not stiff
-- **Key principle applied**: "Add new value each touch" — no empty follow-ups
+### 변경 사항
+- **보이스: 데이터 중심** — 단순한 "following up"이 아닌 매 접촉마다 새로운 가치(벤치마크 데이터)
+- **보이스: 친근함** — 압박 없이 두 가지 경로(통화 또는 셀프서비스) 제공
+- **보이스: 자신감** — 독자적 인사이트 공유, 전문가로 포지셔닝
+- **톤: 에너지 중간** — 정보 전달, 강요하지 않음
+- **톤: 격식도 중간** — 전문적이지만 딱딱하지 않음
+- **적용된 핵심 원칙**: "매 접촉마다 새로운 가치 추가" — 빈 후속 메일 없음
 
-## Enterprise Proposal Executive Summary
+## 기업 제안서 요약문
 
-### Before (Generic)
+### 적용 전 (일반)
 ```
 We are pleased to submit this proposal for your consideration. Our
 company offers a comprehensive AI solution that can help improve your
@@ -100,7 +100,7 @@ sales team's performance. We believe our platform is the best choice
 for organizations looking to modernize their sales operations.
 ```
 
-### After (Brand Voice Enforced)
+### 적용 후 (브랜드 보이스 적용)
 ```
 [Company] processes 2,400 leads per quarter with a 12-person sales team.
 Current pipeline-to-close conversion sits at 18% — below the 24% benchmark
@@ -114,24 +114,24 @@ the 3-5 daily actions most likely to advance each deal. Typical results:
 Implementation takes 3 weeks. ROI breaks even at week 6.
 ```
 
-### What Changed
-- **Voice: Data-driven** — opens with the client's own metrics, not "we are pleased"
-- **Voice: Direct** — no filler language, every sentence carries information
-- **Voice: Confident** — specific outcomes with numbers, clear implementation timeline
-- **Tone: Formality HIGH** — structured, precise language
-- **Tone: Energy MEDIUM** — measured confidence, not hype
-- **Tone: Technical depth HIGH** — specific features (buying signals, tech stack analysis), ROI math
+### 변경 사항
+- **보이스: 데이터 중심** — "we are pleased"가 아닌 고객의 지표로 시작
+- **보이스: 직접적** — 군더더기 언어 없음, 모든 문장이 정보를 전달
+- **보이스: 자신감** — 수치가 포함된 구체적 결과, 명확한 구현 일정
+- **톤: 격식도 높음** — 구조화된 정확한 언어
+- **톤: 에너지 중간** — 절제된 자신감, 과장 없음
+- **톤: 기술적 깊이 높음** — 구체적 기능(buying signals, tech stack 분석), ROI 계산
 
-## LinkedIn Post
+## LinkedIn 포스트
 
-### Before (Generic)
+### 적용 전 (일반)
 ```
 Excited to announce our new feature! We've been working hard on this
 and we think it's going to change the way sales teams work. Check out
 the link below to learn more! #sales #AI #innovation
 ```
 
-### After (Brand Voice Enforced)
+### 적용 후 (브랜드 보이스 적용)
 ```
 The average sales rep spends 4.2 hours/day on tasks that don't close deals.
 
@@ -146,26 +146,26 @@ Early results from beta: 23% fewer lost deals from delayed follow-up.
 Link in comments.
 ```
 
-### What Changed
-- **Voice: Data-driven** — opens with a statistic, not "excited to announce"
-- **Voice: Confident** — specific research (50,000 activities, 200 teams)
-- **Voice: Innovative** — describes what's new without hype
-- **Voice: NOT hype-driven** — no "change the way sales teams work", replaced with measurable outcomes
-- **Tone: Formality LOW-MEDIUM** — casual enough for LinkedIn, professional enough for B2B
-- **Tone: Energy HIGH** — short sentences, bold opening stat
-- **Tone: Technical depth LOW** — outcomes-focused, accessible to any reader
-- **Terminology**: Avoided "revolutionary" and "game-changing" (prohibited terms)
+### 변경 사항
+- **보이스: 데이터 중심** — "excited to announce"가 아닌 통계로 시작
+- **보이스: 자신감** — 구체적 연구(50,000개 활동, 200개 팀)
+- **보이스: 혁신적** — 과장 없이 새로운 것을 설명
+- **보이스: 과장하지 않음** — "change the way sales teams work"를 측정 가능한 결과로 대체
+- **톤: 격식도 낮음-중간** — LinkedIn에 적합한 캐주얼함, B2B에 적합한 전문성
+- **톤: 에너지 높음** — 짧은 문장, 대담한 시작 통계
+- **톤: 기술적 깊이 낮음** — 결과 중심, 모든 독자에게 접근 가능
+- **용어**: "revolutionary"와 "game-changing" 회피 (금지 용어)
 
-## Internal Slack Message
+## 내부 Slack 메시지
 
-### Before (Generic)
+### 적용 전 (일반)
 ```
 Hey team, just a reminder that we should all be using the approved
 messaging when talking to prospects. Please refer to the brand
 guidelines document for more information.
 ```
 
-### After (Brand Voice Enforced)
+### 적용 후 (브랜드 보이스 적용)
 ```
 Heads up — we updated the competitive positioning section in the brand
 guidelines. Two big changes:
@@ -176,19 +176,19 @@ guidelines. Two big changes:
 Updated doc is pinned in #sales-enablement. Questions? Tag me.
 ```
 
-### What Changed
-- **Voice: Direct** — specific changes, not vague "please refer to"
-- **Voice: Data-driven** — concrete differentiators with numbers
-- **Voice: Approachable** — casual, helpful tone appropriate for Slack
-- **Tone: Formality LOW** — contractions, short sentences, "tag me"
-- **Tone: Energy MEDIUM** — informative without being overly enthusiastic
-- **Key principle**: Internal comms can be less polished, but voice attributes still apply
+### 변경 사항
+- **보이스: 직접적** — 모호한 "please refer to"가 아닌 구체적 변경 사항
+- **보이스: 데이터 중심** — 수치가 포함된 구체적 차별화 요소
+- **보이스: 친근함** — Slack에 적합한 캐주얼하고 도움이 되는 톤
+- **톤: 격식도 낮음** — 축약형, 짧은 문장, "tag me"
+- **톤: 에너지 중간** — 지나치게 열정적이지 않은 정보 전달
+- **핵심 원칙**: 내부 커뮤니케이션은 덜 다듬어져도 되지만 보이스 속성은 여전히 적용됩니다
 
-## Using These Examples
+## 이 예시 활용법
 
-When enforcing brand voice, reference the relevant content type example to calibrate:
-1. Match the content type to the closest example above
-2. Note which voice attributes are most active for that type
-3. Apply the tone settings (formality, energy, technical depth)
-4. Check "We Are Not" boundaries — make sure content doesn't cross them
-5. Verify terminology compliance (preferred terms used, prohibited terms absent)
+브랜드 보이스를 적용할 때 관련 콘텐츠 유형 예시를 참조하여 보정합니다:
+1. 콘텐츠 유형을 위의 가장 가까운 예시에 매칭
+2. 해당 유형에 가장 활발한 보이스 속성 기록
+3. 톤 설정 적용 (격식도, 에너지, 기술적 깊이)
+4. "우리는 ~이 아님" 경계 확인 — 콘텐츠가 이를 넘지 않는지 확인
+5. 용어 준수 확인 (선호 용어 사용, 금지 용어 없음)

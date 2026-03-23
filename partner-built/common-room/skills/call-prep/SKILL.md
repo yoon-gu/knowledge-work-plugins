@@ -1,137 +1,137 @@
 ---
 name: call-prep
-description: "Prepare for a customer or prospect call using Common Room signals. Triggers on 'prep me for my call with [company]', 'prepare for a meeting with [company]', 'what should I know before talking to [company]', or any call preparation request."
+description: "Common Room 신호를 사용하여 고객 또는 잠재 고객 통화를 준비합니다. '[회사]와의 통화 준비해줘', '[회사]와의 미팅 준비해줘', '[회사]와 얘기하기 전에 알아야 할 것', 또는 기타 통화 준비 요청에서 트리거됩니다."
 ---
 
-# Call Prep
+# 통화 준비
 
-Produce a complete, scannable call prep brief by combining account research, contact research, and signal synthesis from Common Room.
+Common Room의 계정 조사, 연락처 조사, 신호 합성을 결합하여 완전하고 쉽게 훑어볼 수 있는 통화 준비 브리핑을 작성합니다.
 
-## Prep Process
+## 준비 프로세스
 
-### Step 1: Identify the Account and Attendees
+### 1단계: 계정 및 참석자 확인
 
-Parse what the user has provided:
-- **Company name** — required; look up the account in Common Room
-- **Attendee names** — optional; if provided, research each one
+사용자가 제공한 내용을 파싱합니다:
+- **회사 이름** — 필수; Common Room에서 계정 조회
+- **참석자 이름** — 선택 사항; 제공된 경우 각각 조사
 
-**Calendar lookup:** If a `~~calendar` connector is available, search for upcoming meetings with the named company to automatically surface attendee names, meeting time, and any meeting notes or agenda. Use this to fill gaps the user didn't provide.
+**캘린더 조회:** `~~calendar` 커넥터가 사용 가능한 경우, 해당 회사와의 예정된 미팅을 검색하여 참석자 이름, 미팅 시간, 미팅 메모나 의제를 자동으로 찾아냅니다. 이를 사용하여 사용자가 제공하지 않은 공백을 채웁니다.
 
-If neither attendees nor a calendar match can be found, ask: "Who will be on the call from [Company]? I can research each attendee to make your prep more useful."
+참석자나 캘린더 매칭 결과가 모두 없으면 묻습니다: "[회사]에서 누가 통화에 참석하나요? 각 참석자를 조사하면 준비가 더 유용해집니다."
 
-### Step 2: Run Account Research
+### 2단계: 계정 조사 실행
 
-Use the account-research skill process to build a full account snapshot. For call prep, prioritize:
-- Recent product signals (what are they doing in the product right now?)
-- Open opportunities or renewal timeline
-- Any risk signals (declining usage, support tickets, churned seats)
-- Key recent events (funding, executive change, new hire)
+account-research 스킬 프로세스를 사용하여 전체 계정 스냅샷을 구축합니다. 통화 준비의 경우 우선순위:
+- 최근 제품 신호 (현재 제품에서 무엇을 하고 있는지?)
+- 오픈 기회 또는 갱신 일정
+- 위험 신호 (사용 감소, 지원 티켓, 이탈된 시트)
+- 주요 최근 이벤트 (펀딩, 임원 변경, 신규 채용)
 
-When reviewing activity history, prioritize Gong and call recording activities — these provide direct context about previous conversations. Do not filter out call recordings by activity origin.
+활동 이력을 검토할 때 Gong 및 통화 녹음 활동에 우선순위를 두세요 — 이전 대화에 대한 직접적인 컨텍스트를 제공합니다. 활동 출처별로 통화 녹음을 필터링하지 마세요.
 
-### Step 3: Run Contact Research for Each Attendee
+### 3단계: 각 참석자에 대한 연락처 조사 실행
 
-For each external attendee, use the contact-research skill process. For call prep, focus on:
-- Role and influence in the buying process
-- Their personal activity and engagement history
-- Any recent signals that suggest their current mood/priorities
-- Spark persona classification if available
+각 외부 참석자에 대해 contact-research 스킬 프로세스를 사용합니다. 통화 준비의 경우 집중:
+- 구매 프로세스에서의 역할과 영향력
+- 개인 활동 및 참여 이력
+- 현재 기분/우선순위를 시사하는 최근 신호
+- 사용 가능한 경우 Spark 페르소나 분류
 
-### Step 4: Synthesize Talking Points and Objectives
+### 4단계: 토킹 포인트 및 목표 합성
 
-Based on the combined account and contact research:
-- Identify the **call objective** (e.g., discovery, demo, expansion conversation, renewal, QBR)
-- Generate **3–5 tailored talking points** grounded in specific signal data
-- Anticipate **2–3 likely objections or topics** the customer may raise
-- Suggest a **recommended outcome** for the call
+결합된 계정 및 연락처 조사를 기반으로:
+- **통화 목표** 식별 (예: 탐색, 데모, 확장 대화, 갱신, QBR)
+- 특정 신호 데이터에 기반한 **3-5개 맞춤 토킹 포인트** 생성
+- 고객이 제기할 수 있는 **2-3개 예상 이의 또는 주제** 예측
+- 통화의 **권장 결과** 제안
 
-When the user's company context is available (see `references/my-company-context.md`), tailor talking points to the user's product and value proposition.
+사용자의 회사 컨텍스트가 사용 가능한 경우 (`references/my-company-context.md` 참조), 사용자의 제품과 가치 제안에 맞게 토킹 포인트를 조정합니다.
 
-### Step 5: Recency Check (Web Search)
+### 5단계: 최신성 확인 (웹 검색)
 
-After gathering all Common Room data, run a quick recency check to catch anything that happened since the last CR data sync. This is supplementary — CR data drives the prep; web search only adds recency.
+모든 Common Room 데이터를 수집한 후, 마지막 CR 데이터 동기화 이후에 발생한 사항을 포착하기 위해 빠른 최신성 확인을 실행합니다. 이는 보충적입니다 — CR 데이터가 준비를 주도하고, 웹 검색은 최신성만 추가합니다.
 
-**Company news:** Search `"[company name]" news` filtered to the last 14 days. Look for funding announcements, product launches, leadership changes, layoffs, partnerships, or press coverage.
+**회사 뉴스:** `"[회사 이름]" news`로 검색, 최근 14일로 필터링. 펀딩 발표, 제품 출시, 리더십 변경, 감원, 파트너십, 언론 보도를 찾습니다.
 
-**Attendee presence:** For each external attendee, search `"[full name]" "[company name]"` — look for recent articles, LinkedIn posts, conference talks, podcasts, or published opinions.
+**참석자 존재감:** 각 외부 참석자에 대해 `"[전체 이름]" "[회사 이름]"`으로 검색 — 최근 기사, LinkedIn 게시글, 컨퍼런스 발표, 팟캐스트, 공개 의견을 찾습니다.
 
-If a company news item is significant (e.g., just raised a round, announced a major hire), flag it in Signal Highlights. Otherwise, include findings briefly — don't let web search results overshadow CR signals.
+회사 뉴스 항목이 중요한 경우 (예: 방금 라운드를 마감, 주요 채용 발표), 신호 하이라이트에 표시합니다. 그렇지 않으면 간략히 포함합니다 — 웹 검색 결과가 CR 신호를 압도하지 않도록 합니다.
 
-## Output Format
+## 출력 형식
 
-The output adapts to how much data Common Room returned. Only include sections where you have real data. Never fill a section with invented details.
+출력은 Common Room이 반환한 데이터 양에 따라 조정됩니다. 실제 데이터가 있는 섹션만 포함합니다. 섹션을 지어낸 세부 사항으로 채우지 마세요.
 
-### When data is rich (multiple field groups returned, activity history, scores, signals):
+### 데이터가 풍부한 경우 (여러 필드 그룹 반환, 활동 이력, 점수, 신호):
 
 ```
-## Call Prep: [Company] — [Date/Time if known]
+## 통화 준비: [회사] — [날짜/시간 알려진 경우]
 
-**Meeting Context**
-[Attendees, meeting type, and any known agenda]
-
----
-
-### Company Snapshot
-[4–6 bullets: key account status, signals, and recent activity]
+**미팅 컨텍스트**
+[참석자, 미팅 유형, 알려진 의제]
 
 ---
 
-### Attendee Profiles
-
-**[Attendee Name] — [Title]**
-[3–4 bullets: role, recent activity, Spark persona if available, personal hook]
-
-[Repeat for each attendee]
+### 회사 스냅샷
+[4-6개 항목: 핵심 계정 상태, 신호, 최근 활동]
 
 ---
 
-### Signal Highlights
-[Top 3 signals most relevant to this specific call]
+### 참석자 프로필
+
+**[참석자 이름] — [직함]**
+[3-4개 항목: 역할, 최근 활동, 사용 가능한 경우 Spark 페르소나, 개인 훅]
+
+[각 참석자에 대해 반복]
 
 ---
 
-### Talking Points
-1. [Point tied to a specific signal]
-2. [Point tied to a specific signal]
-3. [Point tied to a specific signal]
+### 신호 하이라이트
+[이 특정 통화에 가장 관련된 상위 3개 신호]
 
-### Likely Topics / Objections to Prepare For
-- [Topic or objection + suggested response]
-- [Topic or objection + suggested response]
+---
 
-### Recommended Call Outcome
-[1–2 sentences: what success looks like for this meeting]
+### 토킹 포인트
+1. [특정 신호와 연결된 포인트]
+2. [특정 신호와 연결된 포인트]
+3. [특정 신호와 연결된 포인트]
+
+### 예상 주제/준비할 이의
+- [주제 또는 이의 + 제안 응답]
+- [주제 또는 이의 + 제안 응답]
+
+### 권장 통화 결과
+[1-2문장: 이 미팅의 성공은 어떤 모습인지]
 ```
 
-### When data is sparse (few fields returned, no activity, null sparkSummary):
+### 데이터가 부족한 경우 (반환된 필드가 적고, 활동 없고, sparkSummary가 null):
 
 ```
-## Call Prep: [Company] — [Date/Time if known]
+## 통화 준비: [회사] — [날짜/시간 알려진 경우]
 
-**Data available:** [List exactly what Common Room returned — e.g., "Name, title, email, two tags. No activity history, no scores, no Spark data."]
+**가용한 데이터:** [Common Room이 반환한 것을 정확히 나열 — 예: "이름, 직함, 이메일, 태그 2개. 활동 이력 없음, 점수 없음, Spark 데이터 없음."]
 
-### What I Found
-[Only the fields actually returned, presented as-is]
+### 발견된 내용
+[실제로 반환된 필드만 있는 그대로 제시]
 
-### Web Search Results
-[Findings from web search on the company and attendees — or "No significant results"]
+### 웹 검색 결과
+[회사 및 참석자에 대한 웹 검색 결과 — 또는 "주목할 만한 결과 없음"]
 
-### Suggested Next Steps
-- I can pull [specific field groups] from Common Room if available
-- I can run deeper web searches on [specific topics]
-- You may want to check Common Room directly for [what's missing]
+### 제안 다음 단계
+- 사용 가능한 경우 Common Room에서 [특정 필드 그룹]을 가져올 수 있습니다
+- [특정 주제]에 대해 더 깊은 웹 검색을 실행할 수 있습니다
+- Common Room에서 직접 [누락된 것]을 확인하는 것이 좋습니다
 ```
 
-Do not generate a full call prep brief from sparse data. A short honest output is always better than a long fabricated one.
+부족한 데이터에서 전체 통화 준비 브리핑을 생성하지 마세요. 짧고 정직한 출력이 길고 지어낸 출력보다 항상 낫습니다.
 
-## Quality Standards
+## 품질 기준
 
-- Ground every talking point in a real signal — no generic filler
-- Keep the brief tight — it should be readable in 5 minutes or less
-- Flag unknowns explicitly — if attendee research is thin, say so
-- Time-box the research — don't over-research at the expense of speed
-- **Never invent deal context** — no fabricated proposals, competitor comparisons, pricing, trial terms, or objections not returned by a tool call
+- 모든 토킹 포인트를 실제 신호에 기반 — 일반적 채움말 없음
+- 브리핑을 간결하게 유지 — 5분 이내에 읽을 수 있어야 함
+- 알 수 없는 것은 명시적으로 표시 — 참석자 조사가 부족하면 말하기
+- 조사에 시간 제한 — 속도를 희생하면서 과도하게 조사하지 않기
+- **거래 컨텍스트를 지어내지 않기** — 도구 호출에서 반환되지 않은 제안서, 경쟁사 비교, 가격, 트라이얼 조건, 이의를 만들어내지 않기
 
-## Reference Files
+## 참조 파일
 
-- **`references/call-types-guide.md`** — guidance for different call types (discovery, expansion, renewal, QBR) and how to tailor prep accordingly
+- **`references/call-types-guide.md`** — 다양한 통화 유형(탐색, 확장, 갱신, QBR)에 대한 지침 및 그에 따른 준비 조정 방법

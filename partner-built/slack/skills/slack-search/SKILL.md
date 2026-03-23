@@ -1,97 +1,97 @@
 ---
 name: slack-search
-description: Guidance for effectively searching Slack to find messages, files, channels, and people
+description: Slack에서 메시지, 파일, 채널, 사람을 효과적으로 검색하기 위한 지침
 ---
 
-# Slack Search
+# Slack 검색
 
-This skill provides guidance for effectively searching Slack to find messages, files, and information.
+이 스킬은 Slack에서 메시지, 파일, 정보를 효과적으로 검색하기 위한 지침을 제공합니다.
 
-## When to Use
+## 사용 시점
 
-Apply this skill whenever you need to find information in Slack — including when a user asks you to locate messages, conversations, files, or people, or when you need to gather context before answering a question about what's happening in Slack.
+Slack에서 정보를 찾아야 할 때마다 이 스킬을 적용합니다 — 사용자가 메시지, 대화, 파일, 사람을 찾도록 요청하거나, Slack에서 무슨 일이 일어나고 있는지에 대한 질문에 답하기 전에 컨텍스트를 수집해야 할 때를 포함합니다.
 
-## Search Tools Overview
+## 검색 도구 개요
 
-| Tool | Use When |
+| 도구 | 사용 시점 |
 |------|----------|
-| `slack_search_public` | Searching public channels only. Does not require user consent. |
-| `slack_search_public_and_private` | Searching all channels including private, DMs, and group DMs. Requires user consent. |
-| `slack_search_channels` | Finding channels by name or description. |
-| `slack_search_users` | Finding people by name, email, or role. |
+| `slack_search_public` | 공개 채널만 검색. 사용자 동의 불필요. |
+| `slack_search_public_and_private` | 비공개, DM, 그룹 DM을 포함한 모든 채널 검색. 사용자 동의 필요. |
+| `slack_search_channels` | 이름이나 설명으로 채널 찾기. |
+| `slack_search_users` | 이름, 이메일, 역할로 사람 찾기. |
 
-## Search Strategy
+## 검색 전략
 
-### Start Broad, Then Narrow
+### 넓게 시작한 후 좁히기
 
-1. Begin with a simple keyword or natural language question.
-2. If too many results, add filters (`in:`, `from:`, date ranges).
-3. If too few results, remove filters and try synonyms or related terms.
+1. 간단한 키워드나 자연어 질문으로 시작합니다.
+2. 결과가 너무 많으면 필터를 추가합니다 (`in:`, `from:`, 날짜 범위).
+3. 결과가 너무 적으면 필터를 제거하고 동의어나 관련 용어를 시도합니다.
 
-### Choose the Right Search Mode
+### 올바른 검색 모드 선택
 
-- **Natural language questions** (e.g., "What is the deadline for project X?") — Best for fuzzy, conceptual searches where you don't know exact keywords.
-- **Keyword search** (e.g., `project X deadline`) — Best for finding specific, exact content.
+- **자연어 질문** (예: "프로젝트 X의 마감일은?") — 정확한 키워드를 모르는 모호하고 개념적인 검색에 적합.
+- **키워드 검색** (예: `project X deadline`) — 구체적이고 정확한 콘텐츠를 찾는 데 적합.
 
-### Use Multiple Searches
+### 여러 검색 활용
 
-Don't rely on a single search. Break complex questions into smaller searches:
-- Search for the topic first
-- Then search for specific people's contributions
-- Then search in specific channels
+단일 검색에 의존하지 마세요. 복잡한 질문은 작은 검색으로 분할합니다:
+- 먼저 주제 검색
+- 그다음 특정 사람의 기여 검색
+- 그다음 특정 채널에서 검색
 
-## Search Modifiers Reference
+## 검색 수정자 참조
 
-### Location Filters
-- `in:channel-name` — Search within a specific channel
-- `in:<#C123456>` — Search in channel by ID
-- `-in:channel-name` — Exclude a channel
-- `in:<@U123456>` — Search in DMs with a user
+### 위치 필터
+- `in:channel-name` — 특정 채널 내 검색
+- `in:<#C123456>` — ID로 채널 내 검색
+- `-in:channel-name` — 채널 제외
+- `in:<@U123456>` — 사용자와의 DM 검색
 
-### User Filters
-- `from:<@U123456>` — Messages from a specific user (by ID)
-- `from:username` — Messages from a user (by Slack username)
-- `to:me` — Messages sent directly to you
+### 사용자 필터
+- `from:<@U123456>` — 특정 사용자의 메시지 (ID로)
+- `from:username` — 사용자의 메시지 (Slack 사용자 이름으로)
+- `to:me` — 나에게 직접 보낸 메시지
 
-### Content Filters
-- `is:thread` — Only threaded messages
-- `has:pin` — Pinned messages
-- `has:link` — Messages containing links
-- `has:file` — Messages with file attachments
-- `has::emoji:` — Messages with a specific reaction
+### 콘텐츠 필터
+- `is:thread` — 스레드 메시지만
+- `has:pin` — 고정된 메시지
+- `has:link` — 링크가 포함된 메시지
+- `has:file` — 파일 첨부가 있는 메시지
+- `has::emoji:` — 특정 반응이 있는 메시지
 
-### Date Filters
-- `before:YYYY-MM-DD` — Messages before a date
-- `after:YYYY-MM-DD` — Messages after a date
-- `on:YYYY-MM-DD` — Messages on a specific date
-- `during:month` — Messages during a specific month (e.g., `during:january`)
+### 날짜 필터
+- `before:YYYY-MM-DD` — 날짜 이전 메시지
+- `after:YYYY-MM-DD` — 날짜 이후 메시지
+- `on:YYYY-MM-DD` — 특정 날짜의 메시지
+- `during:month` — 특정 월의 메시지 (예: `during:january`)
 
-### Text Matching
-- `"exact phrase"` — Match an exact phrase
-- `-word` — Exclude messages containing a word
-- `wild*` — Wildcard matching (minimum 3 characters before `*`)
+### 텍스트 매칭
+- `"exact phrase"` — 정확한 구문 일치
+- `-word` — 특정 단어가 포함된 메시지 제외
+- `wild*` — 와일드카드 매칭 (`*` 앞에 최소 3자)
 
-## File Search
+## 파일 검색
 
-To search for files, use the `content_types="files"` parameter with type filters:
-- `type:images` — Image files
-- `type:documents` — Document files
-- `type:pdfs` — PDF files
-- `type:spreadsheets` — Spreadsheet files
-- `type:canvases` — Slack Canvases
+파일을 검색하려면 유형 필터와 함께 `content_types="files"` 매개변수를 사용합니다:
+- `type:images` — 이미지 파일
+- `type:documents` — 문서 파일
+- `type:pdfs` — PDF 파일
+- `type:spreadsheets` — 스프레드시트 파일
+- `type:canvases` — Slack 캔버스
 
-Example: `content_types="files" type:pdfs budget after:2025-01-01`
+예시: `content_types="files" type:pdfs budget after:2025-01-01`
 
-## Following Up on Results
+## 결과 후속 조치
 
-After finding relevant messages:
-- Use `slack_read_thread` to get the full thread context for any threaded message.
-- Use `slack_read_channel` with `oldest`/`latest` timestamps to read surrounding messages for context.
-- Use `slack_read_user_profile` to identify who a user is when their ID appears in results.
+관련 메시지를 찾은 후:
+- `slack_read_thread`를 사용하여 스레드 메시지의 전체 스레드 컨텍스트를 가져옵니다.
+- `slack_read_channel`에 `oldest`/`latest` 타임스탬프를 사용하여 맥락을 위한 주변 메시지를 읽습니다.
+- `slack_read_user_profile`을 사용하여 결과에 사용자 ID가 나타날 때 누구인지 식별합니다.
 
-## Common Pitfalls
+## 일반적인 함정
 
-- **Boolean operators don't work.** `AND`, `OR`, `NOT` are not supported. Use spaces (implicit AND) and `-` for exclusion.
-- **Parentheses don't work.** Don't try to group search terms with `()`.
-- **Search is not real-time.** Very recent messages (last few seconds) may not appear in search results. Use `slack_read_channel` for the most recent messages.
-- **Private channel access.** Use `slack_search_public_and_private` when you need to include private channels, but note this requires user consent.
+- **불리언 연산자는 작동하지 않습니다.** `AND`, `OR`, `NOT`은 지원되지 않습니다. 공백 (암시적 AND)과 제외를 위한 `-`를 사용합니다.
+- **괄호는 작동하지 않습니다.** `()`로 검색어를 그룹화하지 마세요.
+- **검색은 실시간이 아닙니다.** 매우 최근 메시지 (몇 초 이내)는 검색 결과에 나타나지 않을 수 있습니다. 가장 최근 메시지에는 `slack_read_channel`을 사용합니다.
+- **비공개 채널 접근.** 비공개 채널을 포함해야 할 때 `slack_search_public_and_private`를 사용하되, 사용자 동의가 필요하다는 점에 유의합니다.

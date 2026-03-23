@@ -1,35 +1,35 @@
-# Common Room Prospector — Usage Guide
+# Common Room Prospector — 사용 가이드
 
-## The Two Object Types (Critical)
+## 두 가지 객체 유형 (핵심)
 
-Never conflate these — they have different fields and filter sets.
+절대 혼동하지 마세요 — 다른 필드와 필터 세트를 가집니다.
 
-| | `ProspectorOrganization` (Net-New) | `Organization` (Already in CR) |
+| | `ProspectorOrganization` (신규) | `Organization` (이미 CR에 있음) |
 |---|---|---|
-| **Source** | Common Room's external data graph | CR workspace (full enrichment + signal history) |
-| **Available fields** | Company name, domain, size, industry, capital raised, revenue, location | Everything — signals, scores, CRM data, RoomieAI, community activity |
-| **Available filters** | Firmographic and technographic only | All firmographic plus signal-based, score-based, segment-based, and CRM filters |
-| **Use for** | Territory planning, top-of-funnel list building | Prioritizing warm accounts, expansion candidates, intent signals |
+| **소스** | Common Room의 외부 데이터 그래프 | CR 워크스페이스 (전체 보강 + 신호 이력) |
+| **사용 가능한 필드** | 회사 이름, 도메인, 규모, 산업, 조달 자본, 매출, 위치 | 모든 것 — 신호, 점수, CRM 데이터, RoomieAI, 커뮤니티 활동 |
+| **사용 가능한 필터** | 기업 정보 및 기술 정보만 | 모든 기업 정보 + 신호 기반, 점수 기반, 세그먼트 기반, CRM 필터 |
+| **용도** | 테리토리 계획, 톱 오브 퍼널 목록 구축 | 따뜻한 계정 우선순위 지정, 확장 후보, 의도 신호 |
 
-## Deciding Which Object Type to Use
+## 어떤 객체 유형을 사용할지 결정
 
-| User says... | Likely object type |
-|-------------|-------------------|
-| "Which of my accounts are showing buying signals?" | `Organization` |
-| "Find fintech companies in London I haven't talked to" | `ProspectorOrganization` |
-| "Find new companies matching our ICP" | `ProspectorOrganization` |
-| "Show accounts that haven't engaged in 90 days" | `Organization` |
-| Ambiguous — could apply to both | Ask: "Are you looking for net-new companies, or filtering accounts already in your workspace?" |
+| 사용자가 말하는 것... | 적합한 객체 유형 |
+|-------------------|----------------|
+| "내 계정 중 구매 신호를 보이는 것은?" | `Organization` |
+| "런던의 핀테크 회사 중 아직 연락하지 않은 곳 찾아줘" | `ProspectorOrganization` |
+| "우리 ICP에 맞는 새 회사 찾아줘" | `ProspectorOrganization` |
+| "90일간 참여하지 않은 계정 보여줘" | `Organization` |
+| 모호 — 양쪽 모두 적용 가능 | 묻기: "신규 회사를 찾으시는 건가요, 아니면 이미 워크스페이스에 있는 계정을 필터링하시는 건가요?" |
 
-## Iterative Refinement
+## 반복적 세분화
 
-- Start with the user's initial criteria
-- For large results (50+), return count first: "I found 500 results. Want to narrow by size or tech stack?"
-- Accept follow-up refinements as filter adjustments — not a fresh search
-- Suggest relaxing criteria if results are fewer than 5
+- 사용자의 초기 기준으로 시작
+- 큰 결과 (50+)의 경우, 먼저 수만 반환: "[N]개 결과를 찾았습니다. 규모나 기술 스택으로 범위를 좁히시겠습니까?"
+- 후속 세분화를 필터 조정으로 수용 — 새로운 검색이 아님
+- 5개 미만의 결과면 하나의 기준 완화를 제안
 
-## Common Pitfalls
+## 일반적 함정
 
-- **Conflating object types** — Never mix ProspectorOrganization and Organization results in the same list.
-- **Not scoping to "My Segments"** — When querying Organization records, scope to the user's segments by default.
-- **Over-filtering** — If under 5 results, suggest relaxing one criterion.
+- **객체 유형 혼동** — 같은 목록에서 ProspectorOrganization과 Organization 결과를 절대 혼합하지 않기.
+- **"내 세그먼트"로 범위 미지정** — Organization 레코드를 쿼리할 때 기본적으로 사용자의 세그먼트로 범위 지정.
+- **과도한 필터링** — 5개 미만의 결과면 하나의 기준 완화를 제안.

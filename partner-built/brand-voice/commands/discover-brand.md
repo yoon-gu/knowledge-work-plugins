@@ -1,24 +1,24 @@
 ---
-description: Search connected platforms for brand materials and produce a discovery report
-argument-hint: "[company name or platforms to search]"
+description: 연결된 플랫폼에서 브랜드 자료를 검색하고 탐색 보고서를 작성합니다
+argument-hint: "[회사 이름 또는 검색할 플랫폼]"
 ---
 
-Discover brand materials across the user's connected enterprise platforms. Search Notion, Confluence, Google Drive, Box, SharePoint, Figma, Gong, Granola, and Slack for brand guidelines, style guides, messaging frameworks, templates, and conversation transcripts.
+사용자의 연결된 기업 플랫폼에서 브랜드 자료를 탐색합니다. Notion, Confluence, Google Drive, Box, SharePoint, Figma, Gong, Granola, Slack에서 브랜드 가이드라인, 스타일 가이드, 메시징 프레임워크, 템플릿, 대화 트랜스크립트를 검색합니다.
 
-If $ARGUMENTS includes a company name, use it for targeted searches. If platforms are specified, limit search to those platforms.
+$ARGUMENTS에 회사 이름이 포함되어 있으면 타겟 검색에 사용합니다. 플랫폼이 지정되어 있으면 해당 플랫폼으로 검색을 제한합니다.
 
-Before doing anything else, briefly orient the user on what's about to happen: the process will search their connected platforms, produce a discovery report, and then (optionally) generate and save brand guidelines to `.claude/brand-voice-guidelines.md` in the working folder. Nothing is saved until they explicitly approve. Keep the orientation to 2-3 sentences — don't recite the full workflow.
+다른 작업을 시작하기 전에 먼저 사용자에게 어떤 일이 일어날지 간략히 안내합니다: 연결된 플랫폼을 검색하고, 탐색 보고서를 작성한 후, (선택적으로) 브랜드 가이드라인을 작업 폴더의 `.claude/brand-voice-guidelines.md`에 생성하여 저장합니다. 사용자가 명시적으로 승인할 때까지 아무것도 저장되지 않습니다. 안내는 2-3문장으로 간결하게 유지합니다 — 전체 워크플로를 나열하지 마세요.
 
-Follow the discover-brand skill instructions to:
-1. Check `.claude/brand-voice.local.md` for settings (company name, enabled platforms, search depth)
-2. Validate platform coverage (stop if no document platforms, warn if gaps)
-3. Briefly confirm scope with the user (which platforms, include transcripts?)
-4. Delegate to the discover-brand agent for autonomous 4-phase search
-5. Present the structured discovery report with sources, brand elements, conflicts, and open questions
-6. Offer next steps: generate guidelines, resolve open questions, save report, or expand search
+discover-brand 스킬 지침에 따라:
+1. `.claude/brand-voice.local.md`에서 설정을 확인합니다 (회사 이름, 활성화된 플랫폼, 검색 깊이)
+2. 플랫폼 커버리지를 검증합니다 (문서 플랫폼이 없으면 중단, 공백이 있으면 경고)
+3. 사용자에게 범위를 간략히 확인합니다 (어떤 플랫폼, 트랜스크립트 포함 여부?)
+4. discover-brand 에이전트에 자율적 4단계 검색을 위임합니다
+5. 소스, 브랜드 요소, 충돌, 미해결 질문이 포함된 구조화된 탐색 보고서를 제시합니다
+6. 다음 단계를 제안합니다: 가이드라인 생성, 미해결 질문 해결, 보고서 저장, 검색 확장
 
-**Platform validation:**
-- If **no platforms** are connected, inform the user which MCP servers the plugin supports (Notion, Atlassian Confluence, Box, Figma, Gong, Granola, Microsoft 365) and that Google Drive and Slack are available as native Claude integrations.
-- If **no document platforms** (Notion, Confluence, Google Drive, Box, Microsoft 365) are connected — only supplementary platforms like Slack, Gong, Granola, or Figma — stop and tell the user: "You don't have any document storage platforms connected. Brand guidelines and style guides almost always live on Google Drive, SharePoint, Notion, Confluence, or Box. Please connect at least one before running discovery."
-- If **no primary file storage** (Google Drive, Microsoft 365, Box) is connected, warn: "None of your primary file storage platforms are connected. Brand documents frequently live on these. Discovery will proceed but results may have significant gaps."
-- If **only one platform** is connected, warn: "Discovery works best with 2+ platforms for cross-source validation. Results from a single platform will have lower confidence scores."
+**플랫폼 검증:**
+- **플랫폼이 연결되지 않은 경우**, 플러그인이 지원하는 MCP 서버(Notion, Atlassian Confluence, Box, Figma, Gong, Granola, Microsoft 365)를 사용자에게 알리고, Google Drive와 Slack은 네이티브 Claude 통합으로 사용 가능하다고 안내합니다.
+- **문서 플랫폼이 연결되지 않은 경우** (Notion, Confluence, Google Drive, Box, Microsoft 365) — Slack, Gong, Granola, Figma 같은 보조 플랫폼만 연결된 경우 — 중단하고 사용자에게 알립니다: "문서 저장 플랫폼이 연결되어 있지 않습니다. 브랜드 가이드라인과 스타일 가이드는 거의 항상 Google Drive, SharePoint, Notion, Confluence 또는 Box에 있습니다. 탐색을 실행하기 전에 최소 하나를 연결해 주세요."
+- **기본 파일 저장소가 연결되지 않은 경우** (Google Drive, Microsoft 365, Box), 경고합니다: "기본 파일 저장 플랫폼이 연결되어 있지 않습니다. 브랜드 문서는 이러한 플랫폼에 자주 보관됩니다. 탐색을 진행하지만 결과에 상당한 공백이 있을 수 있습니다."
+- **플랫폼이 하나만 연결된 경우**, 경고합니다: "탐색은 교차 소스 검증을 위해 2개 이상의 플랫폼에서 가장 잘 작동합니다. 단일 플랫폼의 결과는 신뢰도 점수가 더 낮을 수 있습니다."

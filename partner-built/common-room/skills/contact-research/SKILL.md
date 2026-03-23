@@ -1,129 +1,129 @@
 ---
 name: contact-research
-description: "Research a specific person using Common Room data. Triggers on 'who is [name]', 'look up [email]', 'research [contact]', 'is [name] a warm lead', or any contact-level question."
+description: "Common Room 데이터를 사용하여 특정 인물을 조사합니다. '[이름] 누구야', '[이메일] 찾아봐', '[연락처] 조사해', '[이름]이 따뜻한 리드야?', 또는 기타 연락처 수준 질문에서 트리거됩니다."
 ---
 
-# Contact Research
+# 연락처 조사
 
-Retrieve a comprehensive contact profile from Common Room. Supports lookup by email, social handle, or name + company. Returns enriched data including activity history, Spark, scores, website visits, and CRM fields.
+Common Room에서 포괄적인 연락처 프로필을 조회합니다. 이메일, 소셜 핸들, 이름 + 회사로 조회를 지원합니다. 활동 이력, Spark, 점수, 웹사이트 방문, CRM 필드를 포함한 보강된 데이터를 반환합니다.
 
-## Step 1: Locate the Contact
+## 1단계: 연락처 찾기
 
-Common Room supports multiple lookup methods — use whichever the user has provided:
+Common Room은 여러 조회 방법을 지원합니다 — 사용자가 제공한 것을 사용:
 
-| What the user gives | Lookup method |
-|---------------------|--------------|
-| Email address | Look up by email (most reliable) |
-| LinkedIn, Twitter/X, or GitHub handle | Look up by social handle — specify handle type explicitly |
-| Name + company | Identity resolution by name + org domain; present matches if ambiguous |
-| Name only | Search by name; if multiple matches, show a brief list and ask the user to confirm |
+| 사용자가 제공한 것 | 조회 방법 |
+|-------------------|----------|
+| 이메일 주소 | 이메일로 조회 (가장 신뢰성 높음) |
+| LinkedIn, Twitter/X 또는 GitHub 핸들 | 소셜 핸들로 조회 — 핸들 유형을 명시적으로 지정 |
+| 이름 + 회사 | 이름 + 조직 도메인으로 ID 해결; 모호한 경우 매칭 결과 제시 |
+| 이름만 | 이름으로 검색; 여러 매칭이 있으면 간략한 목록을 보여주고 사용자에게 확인 요청 |
 
-If no match is found, respond: "Common Room doesn't have a record for this person." Do not speculate or fabricate profile data.
+매칭이 없으면 응답: "Common Room에 이 사람의 기록이 없습니다." 프로필 데이터를 추측하거나 지어내지 마세요.
 
-## Step 2: Fetch Contact Fields
+## 2단계: 연락처 필드 가져오기
 
-Use the Common Room object catalog to see available field groups and their contents. For full profiles, request all groups. For targeted questions, request only what's relevant.
+Common Room 객체 카탈로그를 사용하여 사용 가능한 필드 그룹과 내용을 확인합니다. 전체 프로필의 경우 모든 그룹을 요청합니다. 타겟 질문의 경우 관련된 것만 요청합니다.
 
-**Key field groups to know about:**
-- **Scores** — always return as raw values or percentiles, never labels
-- **Recent activity** — use `Contact Initiated` filter (last 60 days) for their actions, not your team's
-- **Website visits** — total count + specific pages (last 12 weeks)
-- **Spark** — retrieve all Sparks when tracking engagement evolution over time
+**알아야 할 핵심 필드 그룹:**
+- **점수** — 항상 원시 값 또는 백분위수로 반환, 절대 레이블이 아님
+- **최근 활동** — 그들의 행동을 위해 `Contact Initiated` 필터 사용 (최근 60일), 당신 팀의 행동이 아님
+- **웹사이트 방문** — 총 방문 수 + 특정 페이지 (최근 12주)
+- **Spark** — 시간에 따른 참여 변화를 추적할 때 모든 Spark 조회
 
-## Step 3: Run Spark Enrichment (If Available)
+## 3단계: Spark 보강 실행 (사용 가능한 경우)
 
-If Spark is available, use it. Spark provides:
-- Professional background and job history
-- Social presence and influence signals
-- Persona classification: Champion, Economic Buyer, Technical Evaluator, End User, or Gatekeeper
-- Inferred role in the buying process
+Spark가 사용 가능하면 사용합니다. Spark가 제공하는 것:
+- 직업 경력 및 이력
+- 소셜 존재감 및 영향력 신호
+- 페르소나 분류: Champion, Economic Buyer, Technical Evaluator, End User, Gatekeeper
+- 구매 프로세스에서의 추론된 역할
 
-If Spark is unavailable but real activity data exists (recent actions, website visits, community engagement), infer a persona from those signals. If neither Spark nor activity data is available, classify as Unknown — do not guess a persona from title alone.
+Spark가 불가하지만 실제 활동 데이터가 있으면 (최근 행동, 웹사이트 방문, 커뮤니티 참여) 해당 신호에서 페르소나를 추론합니다. Spark도 활동 데이터도 없으면 Unknown으로 분류합니다 — 직함만으로 페르소나를 추측하지 마세요.
 
-Retrieve **all Sparks** (not just the most recent) when the user wants to understand how this contact's engagement has evolved over time.
+시간에 따른 연락처의 참여 변화를 이해하고 싶을 때 **모든 Spark**을 조회합니다 (가장 최근 것만이 아님).
 
-## Step 4: Assess Account Context
+## 4단계: 계정 컨텍스트 평가
 
-Pull an abbreviated account snapshot for this contact's parent company. Note:
-- Open opportunities, expansion signals, or churn risk at the account level
-- Whether other contacts at this company are also active
-- How this person's engagement compares to their colleagues
+이 연락처의 모회사에 대한 간략한 계정 스냅샷을 가져옵니다. 기록:
+- 계정 수준의 오픈 기회, 확장 신호, 이탈 위험
+- 이 회사의 다른 연락처도 활동적인지
+- 이 사람의 참여가 동료와 비교하여 어떤지
 
-## Step 5: Identify Conversation Angles
+## 5단계: 대화 앵글 식별
 
-Based on activity and signals, surface the strongest 2–3 hooks:
-- A recent `Contact Initiated` activity (community post, product event, support ticket)
-- A specific web page they visited recently — especially if it signals evaluation intent
-- A job change, promotion, or company news
-- Their Spark persona and what that suggests about communication style
-- Their role in a known active deal
+활동 및 신호를 기반으로 가장 강력한 2-3개 훅을 제시합니다:
+- 최근 `Contact Initiated` 활동 (커뮤니티 게시글, 제품 이벤트, 지원 티켓)
+- 최근 방문한 특정 웹 페이지 — 특히 평가 의도를 나타내는 경우
+- 이직, 승진, 회사 뉴스
+- Spark 페르소나와 커뮤니케이션 스타일에 대한 시사점
+- 알려진 활성 거래에서의 역할
 
-## Output Format
+## 출력 형식
 
-Only include sections where data was actually returned. Omit sections with no data rather than filling them with guesses.
+데이터가 실제로 반환된 섹션만 포함합니다. 데이터가 없는 섹션은 추측으로 채우기보다 생략합니다.
 
-**When data is rich:**
+**데이터가 풍부한 경우:**
 
 ```
-## [Contact Name] — Profile
+## [연락처 이름] — 프로필
 
-**Overview**
-[2 sentences: who they are, their role, and relationship status]
+**개요**
+[2문장: 누구인지, 역할, 관계 상태]
 
-**Details**
-- Title: [title]
-- Company: [company]
-- Email: [email]
+**세부 정보**
+- 직함: [직함]
+- 회사: [회사]
+- 이메일: [이메일]
 - LinkedIn: [URL]
-- Other profiles: [Twitter/X, GitHub, CRM link if available]
+- 기타 프로필: [Twitter/X, GitHub, CRM 링크 가능한 경우]
 
-**Scores** [If scores returned]
-[All scores as raw values or percentiles]
+**점수** [점수가 반환된 경우]
+[모든 점수를 원시 값 또는 백분위수로]
 
-**Recent Activity** (last 60 days) [If activity returned]
-[3–5 bullets with dates]
+**최근 활동** (최근 60일) [활동이 반환된 경우]
+[날짜와 함께 3-5개 항목]
 
-**Website Visits** (last 12 weeks) [If visit data exists]
-[Total visit count + list of pages visited]
+**웹사이트 방문** (최근 12주) [방문 데이터가 있는 경우]
+[총 방문 수 + 방문한 페이지 목록]
 
-**Spark Profile** [If Spark data is non-null]
-[Persona type, background summary, influence signals]
+**Spark 프로필** [Spark 데이터가 null이 아닌 경우]
+[페르소나 유형, 배경 요약, 영향력 신호]
 
-**Segments** [If segments returned]
-[List of segment names this contact belongs to]
+**세그먼트** [세그먼트가 반환된 경우]
+[이 연락처가 속하는 세그먼트 이름 목록]
 
-**Account Context**
-[1–2 sentences on their company's status]
+**계정 컨텍스트**
+[회사 상태에 대한 1-2문장]
 
-**Conversation Starters**
-[2–3 specific, signal-backed openers]
+**대화 스타터**
+[2-3개 구체적이고 신호에 기반한 오프너]
 ```
 
-**When data is sparse (e.g., only name, title, email, tags returned; sparkSummary is null):**
+**데이터가 부족한 경우 (예: 이름, 직함, 이메일, 태그만 반환; sparkSummary가 null):**
 
 ```
-## [Contact Name] — Profile (Limited Data)
+## [연락처 이름] — 프로필 (제한된 데이터)
 
-**Data available:** [List exactly what Common Room returned]
+**가용한 데이터:** [Common Room이 반환한 것을 정확히 나열]
 
-[Present only the returned fields]
+[반환된 필드만 제시]
 
-**Web Search**
-[Any findings from searching their name + company]
+**웹 검색**
+[이름 + 회사 검색 결과]
 
-**Note:** Common Room has limited data on this contact. No activity history, scores, or Spark profile available. I can run deeper web searches or look up their company for additional context.
+**참고:** Common Room에 이 연락처에 대한 데이터가 제한적입니다. 활동 이력, 점수, Spark 프로필이 없습니다. 더 깊은 웹 검색을 실행하거나 추가 컨텍스트를 위해 회사를 조회할 수 있습니다.
 ```
 
-Do not generate conversation starters, persona inferences, or engagement assessments from sparse data. These require real signals.
+부족한 데이터에서 대화 스타터, 페르소나 추론, 참여 평가를 생성하지 마세요. 실제 신호가 필요합니다.
 
-## Quality Standards
+## 품질 기준
 
-- Lookup must use the correct method for the input type — don't guess on email vs. handle
-- Scores as raw/percentile only — never labels
-- `Contact Initiated` activity (last 60 days) is the primary engagement signal — lead with it
-- If Spark is unavailable, say so — don't fabricate a persona from title alone
-- Flag any contact where the most recent activity is older than 30 days
+- 조회는 입력 유형에 맞는 올바른 방법을 사용 — 이메일 vs. 핸들을 추측하지 않기
+- 점수는 원시/백분위수만 — 절대 레이블이 아님
+- `Contact Initiated` 활동 (최근 60일)이 주요 참여 신호 — 이것으로 시작
+- Spark가 불가하면 말하기 — 직함만으로 페르소나를 지어내지 않기
+- 가장 최근 활동이 30일 이상 지난 연락처 표시
 
-## Reference Files
+## 참조 파일
 
-- **`references/contact-signals-guide.md`** — full field descriptions, Spark persona guide, and conversation starter principles
+- **`references/contact-signals-guide.md`** — 전체 필드 설명, Spark 페르소나 가이드, 대화 스타터 원칙

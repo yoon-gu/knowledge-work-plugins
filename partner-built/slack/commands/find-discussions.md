@@ -1,15 +1,15 @@
 ---
-description: Find discussions about a specific topic across Slack channels
+description: Slack 채널 전체에서 특정 주제에 대한 토론을 찾습니다
 ---
 
-Given the topic provided in $ARGUMENTS:
+$ARGUMENTS에 제공된 주제를 기반으로:
 
-1. Use the `slack_search_public` tool to search for messages matching the topic. Use the topic as a natural language question first for semantic results.
-2. If semantic results are sparse, follow up with a keyword search using key terms from the topic.
-3. For the most relevant results, use `slack_read_thread` to fetch full thread conversations so you capture the complete discussion context.
-4. Present the results organized by relevance:
-   - For each discussion found, show: the channel name, who started it, a brief summary of the conversation, and the date.
-   - Group related discussions together if they span multiple channels.
-   - Highlight any conclusions, decisions, or unresolved questions.
-5. Limit output to the top 5-10 most relevant discussions to keep results manageable.
-6. If no results are found, suggest alternative search terms or broader queries the user could try.
+1. `slack_search_public` 도구를 사용하여 주제와 일치하는 메시지를 검색합니다. 시맨틱 결과를 위해 먼저 자연어 질문으로 주제를 사용합니다.
+2. 시맨틱 결과가 부족하면 주제에서 핵심 용어를 사용하여 키워드 검색으로 후속 조치합니다.
+3. 가장 관련성 높은 결과에 대해 `slack_read_thread`를 사용하여 전체 스레드 대화를 가져와 완전한 토론 맥락을 포착합니다.
+4. 관련성 순으로 결과를 정리하여 제시합니다:
+   - 발견된 각 토론에 대해: 채널 이름, 시작한 사람, 대화 요약, 날짜를 표시합니다.
+   - 여러 채널에 걸친 관련 토론은 그룹화합니다.
+   - 결론, 결정 사항, 미해결 질문을 강조합니다.
+5. 결과를 관리 가능하게 유지하기 위해 가장 관련성 높은 5-10개 토론으로 제한합니다.
+6. 결과가 없으면 사용자가 시도할 수 있는 대안 검색어나 더 넓은 쿼리를 제안합니다.
