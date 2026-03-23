@@ -1,41 +1,41 @@
 ---
 name: user-research
-description: Plan, conduct, and synthesize user research. Trigger with "user research plan", "interview guide", "usability test", "survey design", "research questions", or when the user needs help with any aspect of understanding their users through research.
+description: 사용자 리서치를 계획하고, 수행하고, 종합합니다. "user research plan", "interview guide", "usability test", "survey design", "research questions" 같은 요청이 있거나, 리서치를 통해 사용자를 이해하는 전 과정에서 도움이 필요할 때 사용하세요.
 ---
 
 # User Research
 
-Help plan, execute, and synthesize user research studies.
+사용자 리서치 연구를 계획, 실행, 종합하는 데 도움을 줍니다.
 
-## Research Methods
+## 리서치 방법
 
 | Method | Best For | Sample Size | Time |
 |--------|----------|-------------|------|
-| User interviews | Deep understanding of needs and motivations | 5-8 | 2-4 weeks |
-| Usability testing | Evaluating a specific design or flow | 5-8 | 1-2 weeks |
-| Surveys | Quantifying attitudes and preferences | 100+ | 1-2 weeks |
-| Card sorting | Information architecture decisions | 15-30 | 1 week |
-| Diary studies | Understanding behavior over time | 10-15 | 2-8 weeks |
-| A/B testing | Comparing specific design choices | Statistical significance | 1-4 weeks |
+| 사용자 인터뷰 | 니즈와 동기를 깊이 이해할 때 | 5-8 | 2-4주 |
+| 사용성 테스트 | 특정 디자인이나 흐름을 평가할 때 | 5-8 | 1-2주 |
+| 설문조사 | 태도와 선호를 수치화할 때 | 100명 이상 | 1-2주 |
+| 카드 소팅 | 정보 구조 결정을 할 때 | 15-30명 | 1주 |
+| 다이어리 스터디 | 시간에 따른 행동을 이해할 때 | 10-15명 | 2-8주 |
+| A/B 테스트 | 특정 디자인 선택지를 비교할 때 | 통계적 유의성 | 1-4주 |
 
-## Interview Guide Structure
+## 인터뷰 가이드 구조
 
-1. **Warm-up** (5 min): Build rapport, explain the session
-2. **Context** (10 min): Understand their current workflow
-3. **Deep dive** (20 min): Explore the specific topic
-4. **Reaction** (10 min): Show concepts or prototypes
-5. **Wrap-up** (5 min): Anything we missed? Thank them.
+1. **도입** (5분): 라포를 쌓고 세션을 설명합니다
+2. **맥락 파악** (10분): 현재 작업 흐름을 이해합니다
+3. **심층 탐색** (20분): 특정 주제를 자세히 살펴봅니다
+4. **반응 확인** (10분): 콘셉트나 프로토타입을 보여줍니다
+5. **마무리** (5분): 빠뜨린 내용이 있는지 확인하고 감사 인사를 전합니다
 
-## Analysis Framework
+## 분석 프레임워크
 
-- **Affinity mapping**: Group observations into themes
-- **Impact/effort matrix**: Prioritize findings
-- **Journey mapping**: Visualize the user experience over time
-- **Jobs to be done**: Understand what users are hiring your product to do
+- **어피니티 매핑**: 관찰 내용을 주제별로 묶습니다
+- **영향도/노력도 매트릭스**: 발견 사항의 우선순위를 정합니다
+- **저니 맵핑**: 시간에 따른 사용자 경험을 시각화합니다
+- **Jobs to be done**: 사용자가 제품에 맡기려는 일을 이해합니다
 
-## Deliverables
+## 산출물
 
-- Research plan (objectives, methods, timeline, participants)
-- Interview guide (questions, probes, activities)
-- Synthesis report (themes, insights, recommendations)
-- Highlight reel (key quotes and observations)
+- 리서치 계획서(목표, 방법, 일정, 참가자)
+- 인터뷰 가이드(질문, 추가 질문, 활동)
+- 종합 보고서(주제, 인사이트, 추천 사항)
+- 하이라이트 릴(핵심 인용과 관찰 내용)

@@ -1,32 +1,32 @@
 ---
 name: tech-debt
-description: Identify, categorize, and prioritize technical debt. Trigger with "tech debt", "technical debt audit", "what should we refactor", "code health", or when the user asks about code quality, refactoring priorities, or maintenance backlog.
+description: 기술 부채를 식별, 분류, 우선순위화합니다. "tech debt", "technical debt audit", "what should we refactor", "code health" 같은 요청이 있거나, 코드 품질, 리팩터링 우선순위, 유지보수 백로그에 대해 물을 때 사용하세요.
 ---
 
 # Tech Debt Management
 
-Systematically identify, categorize, and prioritize technical debt.
+기술 부채를 체계적으로 식별하고 분류하며 우선순위를 정합니다.
 
-## Categories
+## 분류
 
 | Type | Examples | Risk |
 |------|----------|------|
-| **Code debt** | Duplicated logic, poor abstractions, magic numbers | Bugs, slow development |
-| **Architecture debt** | Monolith that should be split, wrong data store | Scaling limits |
-| **Test debt** | Low coverage, flaky tests, missing integration tests | Regressions ship |
-| **Dependency debt** | Outdated libraries, unmaintained dependencies | Security vulns |
-| **Documentation debt** | Missing runbooks, outdated READMEs, tribal knowledge | Onboarding pain |
-| **Infrastructure debt** | Manual deploys, no monitoring, no IaC | Incidents, slow recovery |
+| **코드 부채** | 중복 로직, 나쁜 추상화, 매직 넘버 | 버그, 개발 속도 저하 |
+| **아키텍처 부채** | 분리해야 할 모놀리식, 잘못된 데이터 저장소 | 확장 한계 |
+| **테스트 부채** | 낮은 커버리지, 불안정한 테스트, 누락된 통합 테스트 | 회귀가 배포됨 |
+| **의존성 부채** | 오래된 라이브러리, 유지보수되지 않는 의존성 | 보안 취약점 |
+| **문서화 부채** | 부족한 런북, 오래된 README, 암묵지 | 온보딩 어려움 |
+| **인프라 부채** | 수동 배포, 모니터링 부재, IaC 없음 | 인시던트, 느린 복구 |
 
-## Prioritization Framework
+## 우선순위 프레임워크
 
 Score each item on:
-- **Impact**: How much does it slow the team down? (1-5)
-- **Risk**: What happens if we don't fix it? (1-5)
-- **Effort**: How hard is the fix? (1-5, inverted — lower effort = higher priority)
+- **영향도**: 팀 속도를 얼마나 늦추는가? (1-5)
+- **위험도**: 고치지 않으면 무엇이 일어나는가? (1-5)
+- **노력도**: 수정이 얼마나 어려운가? (1-5, 역산 - 노력도가 낮을수록 우선순위가 높음)
 
 Priority = (Impact + Risk) x (6 - Effort)
 
 ## Output
 
-Produce a prioritized list with estimated effort, business justification for each item, and a phased remediation plan that can be done alongside feature work.
+각 항목의 예상 노력, 비즈니스 근거, 그리고 기능 작업과 병행할 수 있는 단계적 개선 계획이 포함된 우선순위 목록을 작성합니다.

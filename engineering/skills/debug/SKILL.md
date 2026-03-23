@@ -1,14 +1,14 @@
 ---
 name: debug
-description: Structured debugging session — reproduce, isolate, diagnose, and fix. Trigger with an error message or stack trace, "this works in staging but not prod", "something broke after the deploy", or when behavior diverges from expected and the cause isn't obvious.
-argument-hint: "<error message or problem description>"
+description: 재현, 분리, 진단, 수정을 순서대로 진행하는 구조화된 디버깅 세션입니다. 오류 메시지나 스택 트레이스가 있거나, "staging에서는 되는데 prod에서는 안 돼요", "배포 후에 뭔가 깨졌어요" 같은 상황일 때, 또는 동작이 기대와 다르고 원인이 명확하지 않을 때 사용하세요.
+argument-hint: "<오류 메시지 또는 문제 설명>"
 ---
 
 # /debug
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 낯선 플레이스홀더가 보이거나 연결된 도구를 확인해야 한다면 [CONNECTORS.md](../../CONNECTORS.md)를 참고하세요.
 
-Run a structured debugging session to find and fix issues systematically.
+문제를 체계적으로 찾고 해결하기 위해 구조화된 디버깅 세션을 진행합니다.
 
 ## Usage
 
@@ -16,80 +16,80 @@ Run a structured debugging session to find and fix issues systematically.
 /debug $ARGUMENTS
 ```
 
-## How It Works
+## 동작 방식
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                       DEBUG                                        │
 ├─────────────────────────────────────────────────────────────────┤
-│  Step 1: REPRODUCE                                                │
-│  ✓ Understand the expected vs. actual behavior                   │
-│  ✓ Identify exact reproduction steps                             │
-│  ✓ Determine scope (when did it start? who is affected?)        │
+│  1단계: 재현                                                   │
+│  ✓ 기대 동작과 실제 동작을 이해합니다                          │
+│  ✓ 정확한 재현 단계를 찾습니다                                 │
+│  ✓ 영향 범위를 파악합니다(언제 시작됐는지, 누가 영향을 받는지)│
 │                                                                    │
-│  Step 2: ISOLATE                                                   │
-│  ✓ Narrow down the component, service, or code path             │
-│  ✓ Check recent changes (deploys, config changes, dependencies) │
-│  ✓ Review logs and error messages                                │
+│  2단계: 분리                                                   │
+│  ✓ 컴포넌트, 서비스, 코드 경로를 좁혀 갑니다                  │
+│  ✓ 최근 변경 사항(배포, 설정 변경, 의존성)을 확인합니다       │
+│  ✓ 로그와 오류 메시지를 검토합니다                             │
 │                                                                    │
-│  Step 3: DIAGNOSE                                                  │
-│  ✓ Form hypotheses and test them                                 │
-│  ✓ Trace the code path                                           │
-│  ✓ Identify root cause (not just symptoms)                      │
+│  3단계: 진단                                                   │
+│  ✓ 가설을 세우고 검증합니다                                     │
+│  ✓ 코드 경로를 추적합니다                                       │
+│  ✓ 증상만이 아니라 근본 원인을 식별합니다                       │
 │                                                                    │
-│  Step 4: FIX                                                       │
-│  ✓ Propose a fix with explanation                                │
-│  ✓ Consider side effects and edge cases                          │
-│  ✓ Suggest tests to prevent regression                           │
+│  4단계: 수정                                                   │
+│  ✓ 설명과 함께 해결책을 제안합니다                              │
+│  ✓ 부작용과 엣지 케이스를 고려합니다                           │
+│  ✓ 회귀를 막기 위한 테스트를 제안합니다                        │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## What I Need From You
+## 필요한 정보
 
-Tell me about the problem. Any of these help:
-- Error message or stack trace
-- Steps to reproduce
-- What changed recently
-- Logs or screenshots
-- Expected vs. actual behavior
+문제에 대해 알려주세요. 아래 정보가 있으면 특히 도움이 됩니다:
+- 오류 메시지 또는 스택 트레이스
+- 재현 단계
+- 최근 변경 사항
+- 로그 또는 스크린샷
+- 기대 동작과 실제 동작
 
 ## Output
 
 ```markdown
 ## Debug Report: [Issue Summary]
 
-### Reproduction
-- **Expected**: [What should happen]
-- **Actual**: [What happens instead]
-- **Steps**: [How to reproduce]
+### 재현
+- **기대**: [무엇이 일어나야 하는지]
+- **실제**: [대신 무엇이 일어나는지]
+- **단계**: [재현 방법]
 
-### Root Cause
-[Explanation of why the bug occurs]
+### 근본 원인
+[버그가 발생하는 이유에 대한 설명]
 
-### Fix
-[Code changes or configuration fixes needed]
+### 수정
+[필요한 코드 변경 또는 설정 수정]
 
-### Prevention
-- [Test to add]
-- [Guard to put in place]
+### 재발 방지
+- [추가할 테스트]
+- [넣어둘 가드]
 ```
 
-## If Connectors Available
+## 연결 도구가 있는 경우
 
-If **~~monitoring** is connected:
-- Pull logs, error rates, and metrics around the time of the issue
-- Show recent deploys and config changes that may correlate
+**~~monitoring**이 연결되어 있으면:
+- 문제 발생 시점 전후의 로그, 오류율, 지표를 가져옵니다
+- 연관 있을 수 있는 최근 배포와 설정 변경을 보여줍니다
 
-If **~~source control** is connected:
-- Identify recent commits and PRs that touched affected code paths
-- Check if the issue correlates with a specific change
+**~~source control**이 연결되어 있으면:
+- 영향을 받는 코드 경로를 건드린 최근 커밋과 PR을 찾습니다
+- 특정 변경과 이슈가 연관되는지 확인합니다
 
-If **~~project tracker** is connected:
-- Search for related bug reports or known issues
-- Create a ticket for the fix once identified
+**~~project tracker**가 연결되어 있으면:
+- 관련 버그 리포트나 알려진 이슈를 검색합니다
+- 원인이 확인되면 수정 티켓을 생성합니다
 
-## Tips
+## 팁
 
-1. **Share error messages exactly** — Don't paraphrase. The exact text matters.
-2. **Mention what changed** — Recent deploys, dependency updates, and config changes are top suspects.
-3. **Include context** — "This works in staging but not prod" or "Only affects large payloads" narrows things fast.
+1. **오류 메시지는 그대로 공유하세요** — 바꾸어 말하지 마세요. 정확한 문구가 중요합니다.
+2. **무엇이 바뀌었는지 알려주세요** — 최근 배포, 의존성 업데이트, 설정 변경이 가장 유력한 원인입니다.
+3. **맥락을 함께 주세요** — "staging에서는 되고 prod에서는 안 됩니다" 또는 "큰 페이로드에서만 발생합니다" 같은 정보가 범위를 빠르게 좁혀 줍니다.

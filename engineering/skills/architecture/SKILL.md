@@ -1,14 +1,14 @@
 ---
 name: architecture
-description: Create or evaluate an architecture decision record (ADR). Use when choosing between technologies (e.g., Kafka vs SQS), documenting a design decision with trade-offs and consequences, reviewing a system design proposal, or designing a new component from requirements and constraints.
-argument-hint: "<decision or system to design>"
+description: 아키텍처 의사결정 기록(ADR)을 작성하거나 평가합니다. 기술 선택(Kafka vs SQS 등), 트레이드오프와 결과가 있는 설계 결정 문서화, 시스템 설계 제안 검토, 요구사항과 제약을 바탕으로 새 컴포넌트 설계가 필요할 때 사용하세요.
+argument-hint: "<의사결정 또는 설계할 시스템>"
 ---
 
 # /architecture
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 낯선 플레이스홀더가 보이거나 연결된 도구를 확인해야 한다면 [CONNECTORS.md](../../CONNECTORS.md)를 참고하세요.
 
-Create an Architecture Decision Record (ADR) or evaluate a system design.
+아키텍처 의사결정 기록(ADR)을 작성하거나 시스템 설계를 평가합니다.
 
 ## Usage
 
@@ -18,68 +18,68 @@ Create an Architecture Decision Record (ADR) or evaluate a system design.
 
 ## Modes
 
-**Create an ADR**: "Should we use Kafka or SQS for our event bus?"
-**Evaluate a design**: "Review this microservices proposal"
-**System design**: "Design the notification system for our app"
+**ADR 작성**: "이벤트 버스에 Kafka와 SQS 중 무엇을 써야 할까요?"
+**설계 평가**: "이 마이크로서비스 제안을 검토해 주세요"
+**시스템 설계**: "우리 앱의 알림 시스템을 설계해 주세요"
 
-See the **system-design** skill for detailed frameworks on requirements gathering, scalability analysis, and trade-off evaluation.
+요구사항 수집, 확장성 분석, 트레이드오프 평가를 위한 상세 프레임워크는 **system-design** 스킬을 참고하세요.
 
-## Output — ADR Format
+## 출력 - ADR 형식
 
 ```markdown
 # ADR-[number]: [Title]
 
 **Status:** Proposed | Accepted | Deprecated | Superseded
-**Date:** [Date]
-**Deciders:** [Who needs to sign off]
+**Date:** [날짜]
+**Deciders:** [승인해야 하는 사람]
 
 ## Context
-[What is the situation? What forces are at play?]
+[상황은 무엇인가요? 어떤 제약과 압력이 작용하고 있나요?]
 
 ## Decision
-[What is the change we're proposing?]
+[우리가 제안하는 변경은 무엇인가요?]
 
-## Options Considered
+## 검토한 विकल्प
 
 ### Option A: [Name]
 | Dimension | Assessment |
 |-----------|------------|
 | Complexity | [Low/Med/High] |
-| Cost | [Assessment] |
-| Scalability | [Assessment] |
-| Team familiarity | [Assessment] |
+| Cost | [평가] |
+| Scalability | [평가] |
+| Team familiarity | [평가] |
 
-**Pros:** [List]
-**Cons:** [List]
+**장점:** [목록]
+**단점:** [목록]
 
 ### Option B: [Name]
-[Same format]
+[동일한 형식]
 
-## Trade-off Analysis
-[Key trade-offs between options with clear reasoning]
+## 트레이드오프 분석
+[옵션 간 핵심 트레이드오프를 명확한 근거와 함께 설명]
 
-## Consequences
-- [What becomes easier]
-- [What becomes harder]
-- [What we'll need to revisit]
+## 결과
+- [더 쉬워지는 것]
+- [더 어려워지는 것]
+- [다시 검토해야 할 것]
 
-## Action Items
-1. [ ] [Implementation step]
-2. [ ] [Follow-up]
+## 실행 항목
+1. [ ] [구현 단계]
+2. [ ] [후속 작업]
 ```
 
-## If Connectors Available
+## 연결 도구가 있는 경우
 
-If **~~knowledge base** is connected:
-- Search for prior ADRs and design docs
-- Find relevant technical context
+**~~knowledge base**가 연결되어 있으면:
+- 이전 ADR과 설계 문서를 검색합니다
+- 관련 기술 맥락을 찾습니다
 
-If **~~project tracker** is connected:
-- Link to related epics and tickets
-- Create implementation tasks
+**~~project tracker**가 연결되어 있으면:
+- 관련 에픽과 티켓을 연결합니다
+- 구현 작업을 생성합니다
 
-## Tips
+## 팁
 
-1. **State constraints upfront** — "We need to ship in 2 weeks" or "Must handle 10K rps" shapes the answer.
-2. **Name your options** — Even if you're leaning one way, I'll give a more balanced analysis with explicit alternatives.
-3. **Include non-functional requirements** — Latency, cost, team expertise, and maintenance burden matter as much as features.
+1. **제약을 먼저 밝히세요** — "2주 안에 출시해야 한다"거나 "초당 1만 요청을 처리해야 한다"는 식의 조건이 답을 좌우합니다.
+2. **옵션에 이름을 붙이세요** — 한쪽으로 기울어져 있어도, 명시적인 대안을 둬야 더 균형 잡힌 분석이 가능합니다.
+3. **비기능 요구사항을 포함하세요** — 지연 시간, 비용, 팀 숙련도, 유지보수 부담도 기능만큼 중요합니다.

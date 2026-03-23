@@ -1,33 +1,33 @@
 ---
 name: testing-strategy
-description: Design test strategies and test plans. Trigger with "how should we test", "test strategy for", "write tests for", "test plan", "what tests do we need", or when the user needs help with testing approaches, coverage, or test architecture.
+description: 테스트 전략과 테스트 계획을 설계합니다. "how should we test", "test strategy for", "write tests for", "test plan", "what tests do we need" 같은 요청이 있거나, 테스트 접근 방식, 커버리지, 테스트 아키텍처에 도움이 필요할 때 사용하세요.
 ---
 
 # Testing Strategy
 
-Design effective testing strategies balancing coverage, speed, and maintenance.
+커버리지, 속도, 유지보수성의 균형을 맞춘 효과적인 테스트 전략을 설계합니다.
 
-## Testing Pyramid
+## 테스트 피라미드
 
 ```
-        /  E2E  \         Few, slow, high confidence
-       / Integration \     Some, medium speed
-      /    Unit Tests  \   Many, fast, focused
+        /  E2E  \         적지만 느리고 신뢰도 높음
+       / 통합 테스트 \     일부, 중간 속도
+      /   단위 테스트  \   많고, 빠르고, 집중적
 ```
 
-## Strategy by Component Type
+## 컴포넌트 유형별 전략
 
-- **API endpoints**: Unit tests for business logic, integration tests for HTTP layer, contract tests for consumers
-- **Data pipelines**: Input validation, transformation correctness, idempotency tests
-- **Frontend**: Component tests, interaction tests, visual regression, accessibility
-- **Infrastructure**: Smoke tests, chaos engineering, load tests
+- **API 엔드포인트**: 비즈니스 로직용 단위 테스트, HTTP 계층용 통합 테스트, 소비자용 계약 테스트
+- **데이터 पाइ프라인**: 입력 검증, 변환 정확성, 멱등성 테스트
+- **프런트엔드**: 컴포넌트 테스트, 상호작용 테스트, 시각 회귀, 접근성
+- **인프라**: 스모크 테스트, 카오스 엔지니어링, 부하 테스트
 
-## What to Cover
+## 무엇을 커버할지
 
-Focus on: business-critical paths, error handling, edge cases, security boundaries, data integrity.
+집중할 부분: 비즈니스 핵심 경로, 오류 처리, 엣지 케이스, 보안 경계, 데이터 무결성.
 
-Skip: trivial getters/setters, framework code, one-off scripts.
+건너뛸 부분: 자명한 getter/setter, 프레임워크 코드, 일회성 스크립트.
 
 ## Output
 
-Produce a test plan with: what to test, test type for each area, coverage targets, and example test cases. Identify gaps in existing coverage.
+무엇을 테스트할지, 영역별 테스트 유형, 커버리지 목표, 예시 테스트 케이스가 포함된 테스트 계획을 작성합니다. 기존 커버리지의 빈틈도 식별하세요.

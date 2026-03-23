@@ -1,49 +1,49 @@
 ---
 name: documentation
-description: Write and maintain technical documentation. Trigger with "write docs for", "document this", "create a README", "write a runbook", "onboarding guide", or when the user needs help with any form of technical writing — API docs, architecture docs, or operational runbooks.
+description: 기술 문서를 작성하고 유지합니다. "write docs for", "document this", "create a README", "write a runbook", "onboarding guide" 같은 요청이 있거나, API 문서, 아키텍처 문서, 운영 런북 등 어떤 형태의 기술 문서 작성이 필요할 때 사용하세요.
 ---
 
 # Technical Documentation
 
-Write clear, maintainable technical documentation for different audiences and purposes.
+다양한 대상과 목적에 맞는 명확하고 유지보수하기 쉬운 기술 문서를 작성합니다.
 
-## Document Types
+## 문서 유형
 
 ### README
-- What this is and why it exists
-- Quick start (< 5 minutes to first success)
-- Configuration and usage
-- Contributing guide
+- 이것이 무엇이고 왜 필요한지
+- 빠른 시작(첫 성공까지 5분 이내)
+- 설정과 사용 방법
+- 기여 가이드
 
 ### API Documentation
-- Endpoint reference with request/response examples
-- Authentication and error codes
-- Rate limits and pagination
-- SDK examples
+- 요청/응답 예시가 포함된 엔드포인트 레퍼런스
+- 인증과 오류 코드
+- 속도 제한과 페이지네이션
+- SDK 예시
 
 ### Runbook
-- When to use this runbook
-- Prerequisites and access needed
-- Step-by-step procedure
-- Rollback steps
-- Escalation path
+- 이 런북을 언제 사용하는지
+- 필요한 사전 조건과 접근 권한
+- 단계별 절차
+- 롤백 절차
+- 에스컬레이션 경로
 
 ### Architecture Doc
-- Context and goals
-- High-level design with diagrams
-- Key decisions and trade-offs
-- Data flow and integration points
+- 맥락과 목표
+- 다이어그램이 포함된 상위 수준 설계
+- 주요 결정과 트레이드오프
+- 데이터 흐름과 통합 지점
 
 ### Onboarding Guide
-- Environment setup
-- Key systems and how they connect
-- Common tasks with walkthroughs
-- Who to ask for what
+- 환경 설정
+- 핵심 시스템과 연결 방식
+- 일반적인 작업과 단계별 안내
+- 무엇을 누구에게 물어봐야 하는지
 
-## Principles
+## 원칙
 
-1. **Write for the reader** — Who is reading this and what do they need?
-2. **Start with the most useful information** — Don't bury the lede
-3. **Show, don't tell** — Code examples, commands, screenshots
-4. **Keep it current** — Outdated docs are worse than no docs
-5. **Link, don't duplicate** — Reference other docs instead of copying
+1. **독자를 위해 쓰세요** — 누가 읽고 있으며 무엇이 필요한지 생각합니다.
+2. **가장 유용한 정보부터 시작하세요** — 핵심을 뒤에 묻어 두지 마세요.
+3. **말로만 설명하지 말고 보여 주세요** — 코드 예시, 명령어, 스크린샷을 활용하세요.
+4. **최신 상태를 유지하세요** — 오래된 문서는 없는 것보다 더 나쁩니다.
+5. **복사하지 말고 연결하세요** — 다른 문서를 참조하고 중복은 피합니다.

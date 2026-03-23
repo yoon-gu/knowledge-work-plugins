@@ -1,14 +1,14 @@
 ---
 name: code-review
-description: Review code changes for security, performance, and correctness. Trigger with a PR URL or diff, "review this before I merge", "is this code safe?", or when checking a change for N+1 queries, injection risks, missing edge cases, or error handling gaps.
-argument-hint: "<PR URL, diff, or file path>"
+description: 보안, 성능, 정확성 관점에서 코드 변경을 검토합니다. PR URL이나 diff가 있을 때, "review this before I merge", "is this code safe?" 같은 요청이 있을 때, 또는 N+1 쿼리, 주입 위험, 빠진 엣지 케이스, 오류 처리 공백을 점검할 때 사용하세요.
+argument-hint: "<PR URL, diff, 또는 파일 경로>"
 ---
 
 # /code-review
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 낯선 플레이스홀더가 보이거나 연결된 도구를 확인해야 한다면 [CONNECTORS.md](../../CONNECTORS.md)를 참고하세요.
 
-Review code changes with a structured lens on security, performance, correctness, and maintainability.
+보안, 성능, 정확성, 유지보수성을 구조적으로 살펴 코드 변경을 검토합니다.
 
 ## Usage
 
@@ -16,103 +16,103 @@ Review code changes with a structured lens on security, performance, correctness
 /code-review <PR URL or file path>
 ```
 
-Review the provided code changes: @$1
+제공된 코드 변경을 검토합니다: @$1
 
-If no specific file or URL is provided, ask what to review.
+특정 파일이나 URL이 없으면 무엇을 검토할지 물어보세요.
 
-## How It Works
+## 동작 방식
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                      CODE REVIEW                                   │
 ├─────────────────────────────────────────────────────────────────┤
-│  STANDALONE (always works)                                       │
-│  ✓ Paste a diff, PR URL, or point to files                      │
-│  ✓ Security audit (OWASP top 10, injection, auth)               │
-│  ✓ Performance review (N+1, memory leaks, complexity)           │
-│  ✓ Correctness (edge cases, error handling, race conditions)    │
-│  ✓ Style (naming, structure, readability)                        │
-│  ✓ Actionable suggestions with code examples                    │
+│  독립 실행형(항상 동작)                                           │
+│  ✓ diff, PR URL, 파일을 붙여넣기                                 │
+│  ✓ 보안 감사(OWASP Top 10, 주입, 인증)                          │
+│  ✓ 성능 검토(N+1, 메모리 누수, 복잡도)                           │
+│  ✓ 정확성(엣지 케이스, 오류 처리, 레이스 컨디션)                 │
+│  ✓ 스타일(이름, 구조, 가독성)                                    │
+│  ✓ 코드 예시가 포함된 실행 가능한 제안                           │
 ├─────────────────────────────────────────────────────────────────┤
-│  SUPERCHARGED (when you connect your tools)                      │
-│  + Source control: Pull PR diff automatically                    │
-│  + Project tracker: Link findings to tickets                     │
-│  + Knowledge base: Check against team coding standards           │
+│  고급 기능(도구를 연결했을 때)                                   │
+│  + 소스 제어: PR diff를 자동으로 가져오기                        │
+│  + 프로젝트 추적기: 발견 사항을 티켓에 연결                     │
+│  + 지식 베이스: 팀 코딩 표준과 대조                              │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## Review Dimensions
+## 검토 항목
 
 ### Security
 - SQL injection, XSS, CSRF
-- Authentication and authorization flaws
-- Secrets or credentials in code
-- Insecure deserialization
-- Path traversal
+- 인증 및 권한 부여 결함
+- 코드에 포함된 비밀 정보나 자격 증명
+- 안전하지 않은 역직렬화
+- 경로 탐색
 - SSRF
 
 ### Performance
 - N+1 queries
 - Unnecessary memory allocations
-- Algorithmic complexity (O(n²) in hot paths)
-- Missing database indexes
-- Unbounded queries or loops
-- Resource leaks
+- 알고리즘 복잡도(핫 패스에서 O(n²))
+- 누락된 데이터베이스 인덱스
+- 제한 없는 쿼리나 루프
+- 리소스 누수
 
 ### Correctness
-- Edge cases (empty input, null, overflow)
-- Race conditions and concurrency issues
-- Error handling and propagation
-- Off-by-one errors
+- 엣지 케이스(빈 입력, null, 오버플로)
+- 레이스 컨디션과 동시성 문제
+- 오류 처리와 전파
+- 오프바이원 오류
 - Type safety
 
 ### Maintainability
-- Naming clarity
-- Single responsibility
-- Duplication
-- Test coverage
-- Documentation for non-obvious logic
+- 명확한 이름
+- 단일 책임
+- 중복
+- 테스트 커버리지
+- 자명하지 않은 로직에 대한 문서화
 
 ## Output
 
 ```markdown
 ## Code Review: [PR title or file]
 
-### Summary
-[1-2 sentence overview of the changes and overall quality]
+### 요약
+[변경 사항과 전반적 품질에 대한 1-2문장 개요]
 
-### Critical Issues
+### 치명적 문제
 | # | File | Line | Issue | Severity |
 |---|------|------|-------|----------|
 | 1 | [file] | [line] | [description] | 🔴 Critical |
 
-### Suggestions
+### 제안 사항
 | # | File | Line | Suggestion | Category |
 |---|------|------|------------|----------|
-| 1 | [file] | [line] | [description] | Performance |
+| 1 | [file] | [line] | [description] | 성능 |
 
-### What Looks Good
-- [Positive observations]
+### 좋은 점
+- [긍정적인 관찰]
 
-### Verdict
-[Approve / Request Changes / Needs Discussion]
+### 판정
+[승인 / 변경 요청 / 추가 논의 필요]
 ```
 
-## If Connectors Available
+## 연결 도구가 있는 경우
 
-If **~~source control** is connected:
-- Pull the PR diff automatically from the URL
-- Check CI status and test results
+**~~source control**이 연결되어 있으면:
+- URL에서 PR diff를 자동으로 가져옵니다
+- CI 상태와 테스트 결과를 확인합니다
 
-If **~~project tracker** is connected:
-- Link findings to related tickets
-- Verify the PR addresses the stated requirements
+**~~project tracker**가 연결되어 있으면:
+- 발견 사항을 관련 티켓에 연결합니다
+- PR이 명시된 요구사항을 해결하는지 확인합니다
 
-If **~~knowledge base** is connected:
-- Check changes against team coding standards and style guides
+**~~knowledge base**가 연결되어 있으면:
+- 변경 사항을 팀 코딩 표준과 스타일 가이드에 대조합니다
 
-## Tips
+## 팁
 
-1. **Provide context** — "This is a hot path" or "This handles PII" helps me focus.
-2. **Specify concerns** — "Focus on security" narrows the review.
-3. **Include tests** — I'll check test coverage and quality too.
+1. **맥락을 알려주세요** — "이건 핫 패스입니다" 또는 "PII를 다룹니다"라고 알려주면 초점을 맞추기 쉽습니다.
+2. **우려 사항을 지정하세요** — "보안에 집중해 주세요"라고 하면 검토 범위를 좁힐 수 있습니다.
+3. **테스트도 포함하세요** — 테스트 커버리지와 품질도 함께 살펴봅니다.

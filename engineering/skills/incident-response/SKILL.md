@@ -1,14 +1,14 @@
 ---
 name: incident-response
-description: Run an incident response workflow — triage, communicate, and write postmortem. Trigger with "we have an incident", "production is down", an alert that needs severity assessment, a status update mid-incident, or when writing a blameless postmortem after resolution.
-argument-hint: "<incident description or alert>"
+description: 인시던트 대응 워크플로를 진행합니다. 트리아지, 커뮤니케이션, 포스트모템 작성이 필요할 때 사용하세요. "we have an incident", "production is down", 심각도 판단이 필요한 알림, 인시던트 중간 상태 업데이트, 해결 후 비난 없는 포스트모템 작성에 적합합니다.
+argument-hint: "<인시던트 설명 또는 알림>"
 ---
 
 # /incident-response
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 낯선 플레이스홀더가 보이거나 연결된 도구를 확인해야 한다면 [CONNECTORS.md](../../CONNECTORS.md)를 참고하세요.
 
-Manage an incident from detection through postmortem.
+탐지부터 포스트모템까지 인시던트를 관리합니다.
 
 ## Usage
 
@@ -19,140 +19,140 @@ Manage an incident from detection through postmortem.
 ## Modes
 
 ```
-/incident-response new [description]     # Start a new incident
-/incident-response update [status]       # Post a status update
-/incident-response postmortem            # Generate postmortem from incident data
+/incident-response new [description]     # 새 인시던트 시작
+/incident-response update [status]       # 상태 업데이트 게시
+/incident-response postmortem            # 인시던트 데이터로 포스트모템 생성
 ```
 
-If no mode is specified, ask what phase the incident is in.
+모드가 지정되지 않으면 인시던트가 어느 단계인지 물어보세요.
 
-## How It Works
+## 동작 방식
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    INCIDENT RESPONSE                               │
 ├─────────────────────────────────────────────────────────────────┤
-│  Phase 1: TRIAGE                                                  │
-│  ✓ Assess severity (SEV1-4)                                     │
-│  ✓ Identify affected systems and users                          │
-│  ✓ Assign roles (IC, comms, responders)                         │
+│  1단계: 트리아지                                               │
+│  ✓ 심각도(SEV1-4) 평가                                        │
+│  ✓ 영향을 받는 시스템과 사용자 식별                           │
+│  ✓ 역할 지정(IC, 커뮤니케이션 담당, 대응자)                  │
 │                                                                    │
-│  Phase 2: COMMUNICATE                                              │
-│  ✓ Draft internal status update                                  │
-│  ✓ Draft customer communication (if needed)                     │
-│  ✓ Set up war room and cadence                                   │
+│  2단계: 커뮤니케이션                                           │
+│  ✓ 내부 상태 업데이트 초안 작성                                │
+│  ✓ 필요 시 고객 커뮤니케이션 초안 작성                         │
+│  ✓ 워룸과 업데이트 주기 설정                                   │
 │                                                                    │
-│  Phase 3: MITIGATE                                                 │
-│  ✓ Document mitigation steps taken                               │
-│  ✓ Track timeline of events                                      │
-│  ✓ Confirm resolution                                            │
+│  3단계: 완화                                                   │
+│  ✓ 취한 완화 조치 문서화                                       │
+│  ✓ 이벤트 타임라인 추적                                        │
+│  ✓ 해결 여부 확인                                              │
 │                                                                    │
-│  Phase 4: POSTMORTEM                                               │
-│  ✓ Blameless postmortem document                                 │
-│  ✓ Timeline reconstruction                                       │
-│  ✓ Root cause analysis (5 whys)                                  │
-│  ✓ Action items with owners                                      │
+│  4단계: 포스트모템                                             │
+│  ✓ 비난 없는 포스트모템 문서                                   │
+│  ✓ 타임라인 재구성                                             │
+│  ✓ 근본 원인 분석(5 Whys)                                      │
+│  ✓ 담당자가 있는 실행 항목                                    │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## Severity Classification
+## 심각도 분류
 
 | Level | Criteria | Response Time |
 |-------|----------|---------------|
-| SEV1 | Service down, all users affected | Immediate, all-hands |
-| SEV2 | Major feature degraded, many users affected | Within 15 min |
-| SEV3 | Minor feature issue, some users affected | Within 1 hour |
-| SEV4 | Cosmetic or low-impact issue | Next business day |
+| SEV1 | 서비스 중단, 모든 사용자 영향 | 즉시, 전원 대응 |
+| SEV2 | 주요 기능 저하, 많은 사용자 영향 | 15분 이내 |
+| SEV3 | 경미한 기능 문제, 일부 사용자 영향 | 1시간 이내 |
+| SEV4 | 외관상 문제 또는 영향이 낮은 이슈 | 다음 영업일 |
 
-## Communication Guidance
+## 커뮤니케이션 가이드
 
-Provide clear, factual updates at regular cadence. Include: what's happening, who's affected, what we're doing, when the next update is.
+정해진 주기로 명확하고 사실 기반의 업데이트를 제공합니다. 포함할 내용: 현재 상황, 영향을 받는 대상, 우리가 하고 있는 일, 다음 업데이트 시점.
 
-## Output — Status Update
+## 출력 - 상태 업데이트
 
 ```markdown
 ## Incident Update: [Title]
 **Severity:** SEV[1-4] | **Status:** Investigating | Identified | Monitoring | Resolved
-**Impact:** [Who/what is affected]
-**Last Updated:** [Timestamp]
+**Impact:** [누가/무엇이 영향을 받는지]
+**Last Updated:** [타임스탬프]
 
-### Current Status
-[What we know now]
+### 현재 상태
+[지금까지 확인한 내용]
 
-### Actions Taken
-- [Action 1]
-- [Action 2]
+### 취한 조치
+- [조치 1]
+- [조치 2]
 
-### Next Steps
-- [What's happening next and ETA]
+### 다음 단계
+- [다음에 할 일과 예상 시각]
 
-### Timeline
+### 타임라인
 | Time | Event |
 |------|-------|
 | [HH:MM] | [Event] |
 ```
 
-## Output — Postmortem
+## 출력 - 포스트모템
 
 ```markdown
 ## Postmortem: [Incident Title]
-**Date:** [Date] | **Duration:** [X hours] | **Severity:** SEV[X]
-**Authors:** [Names] | **Status:** Draft
+**Date:** [날짜] | **Duration:** [X시간] | **Severity:** SEV[X]
+**Authors:** [이름] | **Status:** 초안
 
-### Summary
-[2-3 sentence plain-language summary]
+### 요약
+[2-3문장 분량의 쉬운 설명 요약]
 
-### Impact
-- [Users affected]
-- [Duration of impact]
-- [Business impact if quantifiable]
+### 영향
+- [영향을 받은 사용자]
+- [영향 지속 시간]
+- [수치화 가능하다면 비즈니스 영향]
 
-### Timeline
+### 타임라인
 | Time (UTC) | Event |
 |------------|-------|
 | [HH:MM] | [Event] |
 
-### Root Cause
-[Detailed explanation of what caused the incident]
+### 근본 원인
+[인시던트를 일으킨 원인에 대한 상세 설명]
 
 ### 5 Whys
-1. Why did [symptom]? → [Because...]
-2. Why did [cause 1]? → [Because...]
-3. Why did [cause 2]? → [Because...]
-4. Why did [cause 3]? → [Because...]
-5. Why did [cause 4]? → [Root cause]
+1. 왜 [증상]이 발생했나요? → [왜냐하면...]
+2. 왜 [원인 1]이 발생했나요? → [왜냐하면...]
+3. 왜 [원인 2]가 발생했나요? → [왜냐하면...]
+4. 왜 [원인 3]이 발생했나요? → [왜냐하면...]
+5. 왜 [원인 4]가 발생했나요? → [근본 원인]
 
-### What Went Well
-- [Things that worked]
+### 잘한 점
+- [효과가 있었던 것]
 
-### What Went Poorly
-- [Things that didn't work]
+### 아쉬웠던 점
+- [효과가 없었던 것]
 
-### Action Items
+### 실행 항목
 | Action | Owner | Priority | Due Date |
 |--------|-------|----------|----------|
-| [Action] | [Person] | P0/P1/P2 | [Date] |
+| [Action] | [담당자] | P0/P1/P2 | [Date] |
 
-### Lessons Learned
-[Key takeaways for the team]
+### 교훈
+[팀이 가져갈 핵심 교훈]
 ```
 
-## If Connectors Available
+## 연결 도구가 있는 경우
 
-If **~~monitoring** is connected:
-- Pull alert details and metrics
-- Show graphs of affected metrics
+**~~monitoring**이 연결되어 있으면:
+- 알림 세부 정보와 지표를 가져옵니다
+- 영향을 받은 지표의 그래프를 보여줍니다
 
-If **~~incident management** is connected:
-- Create or update incident in PagerDuty/Opsgenie
-- Page on-call responders
+**~~incident management**가 연결되어 있으면:
+- PagerDuty/Opsgenie에서 인시던트를 생성하거나 업데이트합니다
+- 온콜 대응자에게 페이징합니다
 
-If **~~chat** is connected:
-- Post status updates to incident channel
-- Create war room channel
+**~~chat**이 연결되어 있으면:
+- 인시던트 채널에 상태 업데이트를 게시합니다
+- 워룸 채널을 생성합니다
 
-## Tips
+## 팁
 
-1. **Start writing immediately** — Don't wait for complete information. Update as you learn more.
-2. **Keep updates factual** — What we know, what we've done, what's next. No speculation.
-3. **Postmortems are blameless** — Focus on systems and processes, not individuals.
+1. **즉시 작성하기 시작하세요** — 정보가 완전해질 때까지 기다리지 마세요. 알게 되는 대로 업데이트합니다.
+2. **업데이트는 사실만 담으세요** — 우리가 아는 것, 한 것, 다음에 할 것. 추측은 넣지 않습니다.
+3. **포스트모템은 비난 없이** — 개인이 아니라 시스템과 프로세스에 초점을 맞춥니다.

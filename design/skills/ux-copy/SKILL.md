@@ -1,14 +1,14 @@
 ---
 name: ux-copy
-description: Write or review UX copy — microcopy, error messages, empty states, CTAs. Trigger with "write copy for", "what should this button say?", "review this error message", or when naming a CTA, wording a confirmation dialog, filling an empty state, or writing onboarding text.
-argument-hint: "<context or copy to review>"
+description: UX 카피를 작성하거나 검토합니다. 마이크로카피, 오류 메시지, 빈 상태, CTA를 다룰 때, 또는 "write copy for", "what should this button say?", "review this error message" 같은 요청이 있을 때 사용하세요.
+argument-hint: "<검토할 맥락 또는 카피>"
 ---
 
 # /ux-copy
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 낯선 플레이스홀더가 보이거나 연결된 도구를 확인해야 한다면 [CONNECTORS.md](../../CONNECTORS.md)를 참고하세요.
 
-Write or review UX copy for any interface context.
+어떤 인터페이스 맥락이든 UX 카피를 작성하거나 검토합니다.
 
 ## Usage
 
@@ -16,92 +16,92 @@ Write or review UX copy for any interface context.
 /ux-copy $ARGUMENTS
 ```
 
-## What I Need From You
+## 필요한 정보
 
-- **Context**: What screen, flow, or feature?
-- **User state**: What is the user trying to do? How are they feeling?
-- **Tone**: Formal, friendly, playful, reassuring?
-- **Constraints**: Character limits, platform guidelines?
+- **맥락**: 어떤 화면, 흐름, 기능인가요?
+- **사용자 상태**: 사용자는 무엇을 하려 하나요? 어떤 감정 상태인가요?
+- **톤**: 격식 있게, 친근하게, 장난스럽게, 안심시키는 느낌 중 어떤가요?
+- **제약**: 글자 수 제한, 플랫폼 가이드라인이 있나요?
 
-## Principles
+## 원칙
 
-1. **Clear**: Say exactly what you mean. No jargon, no ambiguity.
-2. **Concise**: Use the fewest words that convey the full meaning.
-3. **Consistent**: Same terms for the same things everywhere.
-4. **Useful**: Every word should help the user accomplish their goal.
-5. **Human**: Write like a helpful person, not a robot.
+1. **명확성**: 의도한 바를 정확히 말합니다. 전문용어와 모호함은 피합니다.
+2. **간결성**: 의미를 온전히 전달하는 최소한의 단어를 사용합니다.
+3. **일관성**: 같은 대상에는 어디서나 같은 용어를 씁니다.
+4. **유용성**: 모든 단어가 사용자의 목표 달성에 도움이 되어야 합니다.
+5. **사람다움**: 로봇이 아니라 도움이 되는 사람처럼 씁니다.
 
-## Copy Patterns
+## 카피 패턴
 
 ### CTAs
-- Start with a verb: "Start free trial", "Save changes", "Download report"
-- Be specific: "Create account" not "Submit"
-- Match the outcome to the label
+- 동사로 시작하세요: "무료 체험 시작", "변경 사항 저장", "보고서 다운로드"
+- 구체적으로 쓰세요: "제출"보다 "계정 만들기"
+- 라벨과 결과가 일치해야 합니다
 
 ### Error Messages
-Structure: What happened + Why + How to fix
-- "Payment declined. Your card was declined by your bank. Try a different card or contact your bank."
+구조: 무슨 일이 있었는지 + 왜 그런지 + 어떻게 해결하는지
+- "결제가 거절되었습니다. 은행에서 카드 승인을 거절했습니다. 다른 카드를 사용하거나 은행에 문의하세요."
 
 ### Empty States
-Structure: What this is + Why it's empty + How to start
-- "No projects yet. Create your first project to start collaborating with your team."
+구조: 무엇인지 + 왜 비어 있는지 + 어떻게 시작하는지
+- "아직 프로젝트가 없습니다. 첫 프로젝트를 만들어 팀과 협업을 시작하세요."
 
 ### Confirmation Dialogs
-- Make the action clear: "Delete 3 files?" not "Are you sure?"
-- Describe consequences: "This can't be undone"
-- Label buttons with the action: "Delete files" / "Keep files" not "OK" / "Cancel"
+- 동작을 분명히 하세요: "파일 3개를 삭제하시겠습니까?"처럼 쓰고 "확실합니까?"는 피합니다
+- 결과를 설명하세요: "이 작업은 되돌릴 수 없습니다"
+- 버튼에는 동작을 라벨링하세요: "삭제" / "유지"처럼 쓰고 "확인" / "취소"만 쓰지 마세요
 
 ### Tooltips
-- Concise, helpful, never obvious
+- 간결하고 유용해야 하며, 너무 자명하면 안 됩니다
 
 ### Loading States
-- Set expectations, reduce anxiety
+- 기대를 명확히 하고 불안을 줄입니다
 
 ### Onboarding
-- Progressive disclosure, one concept at a time
+- 점진적 공개 방식으로, 한 번에 하나의 개념만 보여줍니다
 
-## Voice and Tone
+## 보이스와 톤
 
-Adapt tone to context:
-- **Success**: Celebratory but not over the top
-- **Error**: Empathetic and helpful
-- **Warning**: Clear and actionable
-- **Neutral**: Informative and concise
+맥락에 맞게 톤을 조정하세요:
+- **성공**: 축하하되 과하지 않게
+- **오류**: 공감하고 도움이 되게
+- **경고**: 명확하고 실행 가능하게
+- **중립**: 정보 중심이고 간결하게
 
 ## Output
 
 ```markdown
 ## UX Copy: [Context]
 
-### Recommended Copy
+### 추천 카피
 **[Element]**: [Copy]
 
-### Alternatives
+### 대안
 | Option | Copy | Tone | Best For |
 |--------|------|------|----------|
-| A | [Copy] | [Tone] | [When to use] |
-| B | [Copy] | [Tone] | [When to use] |
-| C | [Copy] | [Tone] | [When to use] |
+| A | [카피] | [톤] | [언제 쓰는지] |
+| B | [카피] | [톤] | [언제 쓰는지] |
+| C | [카피] | [톤] | [언제 쓰는지] |
 
-### Rationale
-[Why this copy works — user context, clarity, action-orientation]
+### 근거
+[이 카피가 왜 효과적인지 - 사용자 맥락, 명확성, 행동 유도 관점]
 
-### Localization Notes
-[Anything translators should know — idioms to avoid, character expansion, cultural context]
+### 현지화 노트
+[번역자가 알아두면 좋은 것 - 피해야 할 관용구, 글자 수 증가 가능성, 문화적 맥락]
 ```
 
-## If Connectors Available
+## 연결 도구가 있는 경우
 
-If **~~knowledge base** is connected:
-- Pull your brand voice guidelines and content style guide
-- Check for existing copy patterns and terminology standards
+**~~knowledge base**가 연결되어 있으면:
+- 브랜드 보이스 가이드와 콘텐츠 스타일 가이드를 가져옵니다
+- 기존 카피 패턴과 용어 기준을 확인합니다
 
-If **~~design tool** is connected:
-- View the screen context in Figma to understand the full user flow
-- Check character limits and layout constraints from the design
+**~~design tool**가 연결되어 있으면:
+- Figma에서 화면 맥락을 확인해 전체 사용자 흐름을 파악합니다
+- 디자인상의 글자 수 제한과 레이아웃 제약을 확인합니다
 
-## Tips
+## 팁
 
-1. **Be specific about context** — "Error message when payment fails" is better than "error message."
-2. **Share your brand voice** — "We're professional but warm" helps me match your tone.
-3. **Consider the user's emotional state** — Error messages need empathy. Success messages can celebrate.
+1. **맥락을 구체적으로 알려주세요** — "error message"보다 "결제가 실패했을 때 표시할 오류 메시지"가 더 좋습니다.
+2. **브랜드 보이스를 공유하세요** — "전문적이지만 따뜻한 톤"이라고 알려주면 톤을 맞추기 쉽습니다.
+3. **사용자의 감정 상태를 고려하세요** — 오류 메시지는 공감이 필요하고, 성공 메시지는 축하해도 좋습니다.
