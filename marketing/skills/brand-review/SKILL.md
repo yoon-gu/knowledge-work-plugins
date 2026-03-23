@@ -1,276 +1,276 @@
 ---
 name: brand-review
-description: Review content against your brand voice, style guide, and messaging pillars, flagging deviations by severity with specific before/after fixes. Use when checking a draft before it ships, when auditing copy for voice consistency and terminology, or when screening for unsubstantiated claims, missing disclaimers, and other legal flags.
+description: 콘텐츠를 브랜드 보이스, 스타일 가이드, 메시징 기둥과 비교해 검토하고, 이탈 사항을 심각도별로 표시하며, 구체적인 전/후 수정안을 제시합니다. 배포 전 초안을 점검할 때, 보이스 일관성과 용어를 감사할 때, 또는 근거 없는 주장, 누락된 고지, 기타 법적 플래그를 점검할 때 사용합니다.
 argument-hint: "<content to review>"
 ---
 
-# Brand Review
+# 브랜드 검토
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 자리표시자가 보이거나 어떤 도구가 연결되어 있는지 확인해야 한다면 [CONNECTORS.md](../../CONNECTORS.md)를 참고하세요.
 
-Review marketing content against brand voice, style guidelines, and messaging standards. Flag deviations and provide specific improvement suggestions.
+마케팅 콘텐츠를 브랜드 보이스, 스타일 가이드라인, 메시징 기준과 비교해 검토합니다. 이탈 사항을 표시하고 구체적인 개선 제안을 제공합니다.
 
-## Trigger
+## 트리거
 
-User runs `/brand-review` or asks to review, check, or audit content against brand guidelines.
+사용자가 `/brand-review`를 실행하거나, 콘텐츠를 브랜드 가이드라인과 비교해 검토·점검·감사해 달라고 요청할 때.
 
-## Inputs
+## 입력
 
-1. **Content to review** — accept content in any of these forms:
-   - Pasted directly into the conversation
-   - A file path or ~~knowledge base reference (e.g. Notion page, shared doc)
-   - A URL to a published page
-   - Multiple pieces for batch review
+1. **검토할 콘텐츠** - 다음 형식 모두를 수용합니다.
+   - 대화에 직접 붙여넣은 내용
+   - 파일 경로나 ~~knowledge base 참조(예: Notion 페이지, 공유 문서)
+   - 게시된 페이지 URL
+   - 일괄 검토용 여러 조각
 
-2. **Brand guidelines source** (determined automatically):
-   - If a brand style guide is configured in local settings, use it automatically
-   - If not configured, ask: "Do you have a brand style guide or voice guidelines I should review against? You can paste them, share a file, or describe your brand voice. Otherwise, I'll do a general review for clarity, consistency, and professionalism."
+2. **브랜드 가이드라인 출처**(자동 결정)
+   - 로컬 설정에 브랜드 스타일 가이드가 구성되어 있으면 자동으로 사용합니다.
+   - 구성되어 있지 않으면 다음과 같이 묻습니다. "검토 기준으로 삼을 브랜드 스타일 가이드나 보이스 지침이 있나요? 붙여넣거나, 파일을 공유하거나, 브랜드 보이스를 설명해 주셔도 됩니다. 그렇지 않다면 명확성, 일관성, 전문성에 대한 일반 검토를 하겠습니다."
 
-## Review Process
+## 검토 절차
 
-### With Brand Guidelines Configured
+### 브랜드 가이드라인이 구성된 경우
 
-Evaluate the content against each of these dimensions:
+다음 각 차원을 기준으로 콘텐츠를 평가합니다.
 
-#### Voice and Tone
-- Does the content match the defined brand voice attributes?
-- Is the tone appropriate for the content type and audience?
-- Are there shifts in voice that feel inconsistent?
-- Flag specific sentences or phrases that deviate with an explanation of why
+#### 보이스와 톤
+- 콘텐츠가 정의된 브랜드 보이스 속성과 맞나요?
+- 톤이 콘텐츠 유형과 대상에 적절한가요?
+- 일관되지 않게 느껴지는 보이스 변화가 있나요?
+- 이탈하는 특정 문장이나 구를 이유와 함께 표시합니다.
 
-#### Terminology and Language
-- Are preferred brand terms used correctly?
-- Are any "avoid" terms or phrases present?
-- Is jargon level appropriate for the target audience?
-- Are product names, feature names, and branded terms used correctly (capitalization, formatting)?
+#### 용어와 언어
+- 선호하는 브랜드 용어가 올바르게 사용되었나요?
+- 피해야 할 용어나 구문이 있나요?
+- 전문 용어 수준이 대상에게 적절한가요?
+- 제품명, 기능명, 브랜드 용어가 올바른 표기(대소문자, 서식)로 사용되었나요?
 
-#### Messaging Pillars
-- Does the content align with defined messaging pillars or value propositions?
-- Are claims consistent with approved messaging?
-- Is the content reinforcing or contradicting brand positioning?
+#### 메시징 기둥
+- 콘텐츠가 정의된 메시징 기둥 또는 가치 제안과 맞나요?
+- 주장이 승인된 메시지와 일치하나요?
+- 콘텐츠가 브랜드 포지셔닝을 강화하나요, 아니면 반박하나요?
 
-#### Style Guide Compliance
-- Grammar and punctuation per style guide (e.g., Oxford comma, title case vs. sentence case)
-- Formatting conventions (headers, lists, emphasis)
-- Number formatting, date formatting
-- Acronym usage (defined on first use?)
+#### 스타일 가이드 준수
+- 스타일 가이드에 따른 문법과 구두점(예: 옥스퍼드 콤마, 제목식 vs 문장식 대문자)
+- 서식 규칙(헤더, 목록, 강조)
+- 숫자 형식, 날짜 형식
+- 약어 사용(처음 등장할 때 정의되었는지)
 
-### Without Brand Guidelines (Generic Review)
+### 브랜드 가이드라인이 없는 경우(일반 검토)
 
-Evaluate the content for:
+다음 항목을 기준으로 콘텐츠를 평가합니다.
 
-#### Clarity
-- Is the main message clear within the first paragraph?
-- Are sentences concise and easy to understand?
-- Is the structure logical and easy to follow?
-- Are there ambiguous statements or unclear references?
+#### 명확성
+- 첫 문단 안에 핵심 메시지가 분명한가요?
+- 문장이 간결하고 이해하기 쉬운가요?
+- 구조가 논리적이고 따라가기 쉬운가요?
+- 모호한 표현이나 불분명한 참조가 있나요?
 
-#### Consistency
-- Is the tone consistent throughout?
-- Are terms used consistently (no switching between synonyms for the same concept)?
-- Is formatting consistent (headers, lists, capitalization)?
+#### 일관성
+- 톤이 전체적으로 일관되나요?
+- 같은 개념에 대해 용어를 일관되게 사용하나요?
+- 서식이 일관되나요(헤더, 목록, 대문자 표기)?
 
-#### Professionalism
-- Is the content free of typos, grammatical errors, and awkward phrasing?
-- Is the tone appropriate for the intended audience?
-- Are claims supported or substantiated?
+#### 전문성
+- 오타, 문법 오류, 어색한 표현이 없나요?
+- 톤이 의도한 대상에게 적절한가요?
+- 주장이 뒷받침되거나 입증되었나요?
 
-### Legal and Compliance Flags (Always Checked)
+### 법적 및 컴플라이언스 플래그(항상 확인)
 
-Regardless of whether brand guidelines are configured, flag:
-- **Unsubstantiated claims** — superlatives ("best", "fastest", "only") without evidence or qualification
-- **Missing disclaimers** — financial claims, health claims, or guarantees that may need legal disclaimers
-- **Comparative claims** — comparisons to competitors that could be challenged
-- **Regulatory language** — content that may need compliance review (financial services, healthcare, etc.)
-- **Testimonial issues** — quotes or endorsements without attribution or disclosure
-- **Copyright concerns** — content that appears to be closely paraphrased from other sources
+브랜드 가이드라인 유무와 관계없이 다음을 표시합니다.
+- **근거 없는 주장** - 증거나 단서 없이 최상급 표현("best", "fastest", "only")
+- **누락된 고지** - 법적 고지가 필요할 수 있는 금융/건강 관련 주장이나 보장
+- **비교 주장** - 경쟁사와의 비교로 도전받을 수 있는 내용
+- **규제 관련 문구** - 컴플라이언스 검토가 필요할 수 있는 콘텐츠(금융 서비스, 헬스케어 등)
+- **추천사 문제** - 출처 표시나 공개 없이 인용문이나 추천을 사용하는 경우
+- **저작권 우려** - 다른 출처를 너무 가깝게 의역한 것으로 보이는 콘텐츠
 
-## Brand Voice Reference
+## 브랜드 보이스 참고
 
-Use these frameworks to evaluate content against brand standards or to help the user document their brand voice.
+이 프레임워크를 사용해 콘텐츠를 브랜드 기준에 맞춰 평가하거나, 사용자가 브랜드 보이스를 문서화하도록 돕습니다.
 
-### Brand Voice Documentation Framework
+### 브랜드 보이스 문서화 프레임워크
 
-A complete brand voice document should cover these areas:
+완전한 브랜드 보이스 문서는 다음 영역을 다뤄야 합니다.
 
-1. **Brand Personality** — Define the brand as if it were a person. Example: "If our brand were a person, they would be a knowledgeable colleague who explains complex things simply, celebrates your wins genuinely, and never talks down to you."
-2. **Voice Attributes** — 3-5 attributes that define how the brand communicates, each defined with what it means in practice, what it does NOT mean (to prevent misinterpretation), and an example.
-3. **Audience Awareness** — Who the brand is speaking to (primary and secondary), what they care about, their level of expertise, and how they expect to be addressed.
-4. **Core Messaging Pillars** — 3-5 key themes the brand consistently communicates, the hierarchy of these messages, and how each pillar connects to audience needs.
-5. **Tone Spectrum** — How the voice adapts across contexts while remaining recognizably the same brand.
-6. **Style Rules** — Specific grammar, formatting, and language rules.
-7. **Terminology** — Preferred and avoided terms.
+1. **브랜드 개성** - 브랜드를 사람처럼 정의합니다. 예: "우리 브랜드가 사람이라면, 복잡한 내용을 쉽게 설명하고, 당신의 성과를 진심으로 축하하며, 절대 깔보지 않는 유능한 동료일 것입니다."
+2. **보이스 속성** - 브랜드의 커뮤니케이션 방식을 정의하는 3-5개 속성. 각 속성은 실무에서 의미하는 바, 의미하지 않는 바(오해 방지), 예시로 정의합니다.
+3. **대상 인식** - 브랜드가 누구에게 말하는지(주요 대상과 보조 대상), 그들이 무엇을 중요하게 여기는지, 숙련도, 어떤 방식으로 불리길 기대하는지.
+4. **핵심 메시징 기둥** - 브랜드가 일관되게 전달하는 3-5개 핵심 주제, 메시지의 위계, 각 기둥이 대상의 필요와 어떻게 연결되는지.
+5. **톤 스펙트럼** - 보이스가 맥락에 따라 어떻게 조정되면서도 동일한 브랜드로 인식되는지.
+6. **스타일 규칙** - 구체적인 문법, 서식, 언어 규칙.
+7. **용어** - 선호 용어와 피해야 할 용어.
 
-### Voice Attribute Spectrums
+### 보이스 속성 스펙트럼
 
-When defining or evaluating brand voice, position attributes on a spectrum:
+브랜드 보이스를 정의하거나 평가할 때는 속성을 스펙트럼 위에 놓습니다.
 
-| Spectrum | One End | Other End |
+| 스펙트럼 | 한쪽 끝 | 다른 쪽 끝 |
 |----------|---------|-----------|
-| Formality | Formal, institutional | Casual, conversational |
-| Authority | Expert, authoritative | Peer-level, collaborative |
-| Emotion | Warm, empathetic | Direct, matter-of-fact |
-| Complexity | Technical, precise | Simple, accessible |
-| Energy | Bold, energetic | Calm, measured |
-| Humor | Playful, witty | Serious, earnest |
-| Innovation | Cutting-edge, forward-looking | Established, proven |
+| 격식 | 공식적, 제도적 | 캐주얼, 대화체 |
+| 권위 | 전문가적, 권위적 | 동료 수준, 협업적 |
+| 감정 | 따뜻함, 공감 | 직설적, 사실 중심 |
+| 복잡도 | 기술적, 정밀함 | 단순함, 접근성 |
+| 에너지 | 대담함, 활기 | 차분함, 절제됨 |
+| 유머 | 장난기, 재치 | 진지함, 성실함 |
+| 혁신성 | 최첨단, 미래지향적 | 검증됨, 확립됨 |
 
-For each chosen attribute, document it in this format:
+선택한 각 속성은 다음 형식으로 문서화합니다.
 
 **[Attribute name]**
-- **We are**: [what this means in practice]
-- **We are not**: [common misinterpretation to avoid]
-- **This sounds like**: [example sentence demonstrating the attribute]
-- **This does NOT sound like**: [example sentence violating the attribute]
+- **우리는**: [실무에서 이것이 의미하는 바]
+- **우리는 아니다**: [피해야 할 흔한 오해]
+- **이렇게 들립니다**: [속성을 보여 주는 예문]
+- **이렇게 들리지 않습니다**: [속성을 위반하는 예문]
 
 Example:
 
 **Approachable**
-- **We are**: friendly, clear, jargon-free, welcoming to beginners and experts alike
-- **We are not**: dumbed-down, overly casual, or lacking substance
-- **This sounds like**: "Here's how to get started — it takes about five minutes."
-- **This does NOT sound like**: "Yo! This is super easy, even a noob can do it lol."
+- **우리는**: 친절하고, 명확하며, 전문용어가 없고, 초보자와 전문가 모두를 환영합니다
+- **우리는 아니다**: 지나치게 단순화되었거나, 과도하게 캐주얼하거나, 내용이 빈약한 것
+- **이렇게 들립니다**: "시작하는 방법은 이렇습니다. 약 5분 정도 걸립니다."
+- **이렇게 들리지 않습니다**: "야! 이거 완전 쉽고 초보도 ㅋㅋ 할 수 있음."
 
-### Tone Adaptation Across Channels and Contexts
+### 채널과 맥락에 따른 톤 조정
 
-The brand voice stays consistent, but tone adapts to context. Tone is the emotional inflection applied to the voice.
+브랜드 보이스는 일관되지만, 톤은 맥락에 맞게 조정됩니다. 톤은 보이스에 적용되는 감정적 억양입니다.
 
-#### Tone by Channel
+#### 채널별 톤
 
-| Channel | Tone Adaptation | Example |
+| 채널 | 톤 조정 | 예시 |
 |---------|----------------|---------|
-| Blog | Informative, conversational, educational | "Let's walk through how this works and why it matters for your team." |
-| Social media (LinkedIn) | Professional, thought-provoking, concise | "Three things we learned from running 50 campaigns this quarter." |
-| Social media (Twitter/X) | Punchy, direct, sometimes witty | "Your landing page has 3 seconds. Make them count." |
-| Email marketing | Personal, helpful, action-oriented | "We put together something we think you'll find useful." |
-| Sales collateral | Confident, benefit-driven, specific | "Teams using our platform reduce reporting time by 40%." |
-| Support/Help docs | Clear, patient, step-by-step | "If you see this error, here's how to fix it." |
-| Press release | Formal, factual, newsworthy | "The company today announced the launch of..." |
-| Error messages | Empathetic, helpful, blame-free | "Something went wrong on our end. We're looking into it." |
+| 블로그 | 정보 제공적, 대화체, 교육적 | "이게 어떻게 작동하는지, 왜 팀에 중요한지 함께 살펴보겠습니다." |
+| 소셜 미디어(LinkedIn) | 전문적, 생각을 자극, 간결함 | "이번 분기에 50개의 캠페인을 운영하면서 배운 세 가지." |
+| 소셜 미디어(Twitter/X) | 짧고 강렬함, 직설적, 때로는 재치 있음 | "랜딩 페이지엔 3초가 있습니다. 그 시간을 꽉 채우세요." |
+| 이메일 마케팅 | 개인적, 도움 중심, 행동 유도 | "유용하다고 느끼실 만한 내용을 준비했습니다." |
+| 세일즈 자료 | 자신감 있고, 혜택 중심, 구체적 | "우리 플랫폼을 사용하는 팀은 보고 시간을 40% 줄입니다." |
+| 지원/도움말 문서 | 명확하고, 인내심 있고, 단계별 | "이 오류가 보이면 이렇게 해결하세요." |
+| 보도자료 | 공식적, 사실 중심, 뉴스 가치 있음 | "회사는 오늘 ...의 출시를 발표했습니다." |
+| 오류 메시지 | 공감적, 도움 중심, 책임 전가 없음 | "문제가 발생했습니다. 현재 원인을 확인하고 있습니다." |
 
-#### Tone by Situation
+#### 상황별 톤
 
-| Situation | Tone Adaptation |
+| 상황 | 톤 조정 |
 |-----------|----------------|
-| Product launch | Excited, confident, forward-looking |
-| Incident or outage | Transparent, empathetic, accountable |
-| Customer success story | Celebratory, specific, crediting the customer |
-| Thought leadership | Authoritative, nuanced, evidence-based |
-| Onboarding | Welcoming, encouraging, clear |
-| Bad news (price increase, deprecation) | Honest, respectful, solution-oriented |
-| Competitive comparison | Confident but fair, fact-based, not disparaging |
+| 제품 출시 | 기대감 있고, 자신감 있으며, 미래 지향적 |
+| 사고나 장애 | 투명하고, 공감하며, 책임감 있음 |
+| 고객 성공 사례 | 축하하는 톤, 구체적, 고객 공로를 인정 |
+| 업계 리더십 | 권위 있고, 뉘앙스가 있으며, 근거 중심 |
+| 온보딩 | 환영하는, 격려하는, 명확한 |
+| 나쁜 소식(가격 인상, 중단) | 솔직하고, 존중하며, 해결책 지향 |
+| 경쟁 비교 | 자신감 있지만 공정하며, 사실 기반이고, 비난하지 않음 |
 
-#### Tone Adaptation Rule
-The voice attributes remain fixed. Tone dials them up or down based on context. For example, if a brand is "bold and warm":
-- In a product launch, dial up boldness
-- In an incident response, dial up warmth
-- Neither attribute disappears; the balance shifts
+#### 톤 조정 규칙
+보이스 속성은 고정되어 있습니다. 톤은 맥락에 따라 강약을 조절합니다. 예를 들어 브랜드가 "대담하고 따뜻하다"면:
+- 제품 출시에서는 대담함을 더 높입니다.
+- 사고 대응에서는 따뜻함을 더 높입니다.
+- 어느 속성도 사라지지 않고, 균형만 달라집니다.
 
-### Style Guide Enforcement
+### 스타일 가이드 준수
 
-#### Grammar and Mechanics
-Document and enforce these choices consistently:
+#### 문법과 기계적 규칙
+다음 선택 사항을 일관되게 문서화하고 적용합니다.
 
-| Rule | Options | Example |
-|------|---------|---------|
-| Oxford comma | Yes / No | "fast, reliable, and secure" vs. "fast, reliable and secure" |
-| Sentence case vs. title case (headings) | Sentence / Title | "How to get started" vs. "How to Get Started" |
-| Contractions | Use / Avoid | "we're" vs. "we are" |
-| Em dash spacing | No spaces / Spaces | "this—and more" vs. "this — and more" |
-| Numbers | Spell out 1-9, numerals 10+ / Always numerals | "five features" vs. "5 features" |
-| Percent | % / percent | "50%" vs. "50 percent" |
-| Date format | Month DD, YYYY / DD/MM/YYYY / etc. | "January 15, 2025" |
-| Time format | 12-hour / 24-hour | "3:00 PM" vs. "15:00" |
-| Lists | Periods / No periods on fragments | "Set up your account." vs. "Set up your account" |
+| 규칙 | 선택지 | 예시 |
+|------|---------|-------|
+| 옥스퍼드 콤마 | 사용 / 미사용 | "fast, reliable, and secure" vs. "fast, reliable and secure" |
+| 헤더 대소문자(문장식 vs 제목식) | Sentence / Title | "How to get started" vs. "How to Get Started" |
+| 축약형 | 사용 / 회피 | "we're" vs. "we are" |
+| em 대시 간격 | 공백 없음 / 공백 있음 | "this—and more" vs. "this — and more" |
+| 숫자 | 1-9는 문자, 10+는 숫자 / 항상 숫자 | "five features" vs. "5 features" |
+| 퍼센트 | % / percent | "50%" vs. "50 percent" |
+| 날짜 형식 | Month DD, YYYY / DD/MM/YYYY / 등 | "January 15, 2025" |
+| 시간 형식 | 12시간 / 24시간 | "3:00 PM" vs. "15:00" |
+| 목록 | 문장에는 마침표 / 조각에는 마침표 없음 | "Set up your account." vs. "Set up your account" |
 
-#### Formatting Conventions
-- Heading hierarchy (when to use H1, H2, H3)
-- Bold and italic usage (bold for emphasis, italic for titles/terms)
-- Link text (descriptive vs. "click here" — always descriptive)
-- Image alt text requirements
-- Code formatting (for technical brands)
-- Callout or highlight box usage
+#### 서식 규칙
+- 헤더 계층(H1, H2, H3 사용 시점)
+- 굵게와 기울임 사용(강조는 굵게, 제목/용어는 기울임)
+- 링크 텍스트(설명형 vs "click here" - 항상 설명형)
+- 이미지 alt 텍스트 요구사항
+- 코드 서식(기술 브랜드용)
+- 콜아웃 또는 강조 박스 사용
 
-#### Punctuation and Emphasis
-- Exclamation mark policy (limited use, never more than one)
-- Ellipsis usage (avoid in most professional contexts)
-- ALL CAPS policy (avoid; use bold for emphasis instead)
-- Emoji usage by channel (professional channels: minimal or none; social: where appropriate)
+#### 구두점과 강조
+- 느낌표 정책(제한적으로 사용, 한 번에 하나 이상 금지)
+- 말줄임표 사용(대부분의 전문 맥락에서는 피함)
+- 전체 대문자 정책(피함; 대신 굵게로 강조)
+- 채널별 이모지 사용(전문 채널은 최소 또는 없음, 소셜은 적절할 때)
 
-### Terminology Management
+### 용어 관리
 
-#### Preferred Terms
+#### 선호 용어
 
-Maintain a list of preferred terms and their incorrect alternatives:
+선호 용어와 잘못된 대안을 목록으로 유지합니다.
 
-| Use This | Not This | Notes |
+| 이렇게 쓰기 | 이렇게 쓰지 않기 | 메모 |
 |----------|----------|-------|
-| sign up (verb) | signup (verb) | "signup" is the noun form |
-| log in (verb) | login (verb) | "login" is the noun/adjective form |
-| set up (verb) | setup (verb) | "setup" is the noun/adjective form |
-| email | e-mail | No hyphen |
-| website | web site | One word |
-| data is (singular) | data are | Unless the publication requires plural |
+| sign up (동사) | signup (동사) | "signup"은 명사형입니다 |
+| log in (동사) | login (동사) | "login"은 명사/형용사형입니다 |
+| set up (동사) | setup (동사) | "setup"은 명사/형용사형입니다 |
+| email | e-mail | 하이픈 없음 |
+| website | web site | 한 단어 |
+| data is (단수) | data are | 출판물에서 복수형을 요구하지 않는 한 |
 
-#### Product and Feature Names
-- Official capitalization for product names
-- When to use the full product name vs. shorthand
-- Whether to use "the" before product names
-- How to handle versioning in copy
-- Trademark and registration symbols (when required and when to omit)
+#### 제품 및 기능 이름
+- 제품명 공식 대소문자 표기
+- 전체 제품명과 약칭을 언제 사용할지
+- 제품명 앞에 "the"를 붙일지 여부
+- 카피에서 버전 표기를 어떻게 처리할지
+- 상표 및 등록 기호(필요할 때와 생략할 때)
 
-#### Inclusive Language
-- Use gender-neutral language (they/them for unknown individuals)
-- Avoid ableist language ("crazy", "blind spot", "lame")
-- Use person-first language where appropriate
-- Avoid culturally specific idioms that may not translate
-- Use "simple" or "straightforward" instead of "easy" (what is easy varies by person)
+#### 포용적 언어
+- 성중립 언어 사용(모르는 개인은 they/them)
+- 능력주의적 표현 회피("crazy", "blind spot", "lame")
+- 필요한 곳에서는 사람 중심 언어 사용
+- 번역되지 않을 수 있는 문화 특유의 관용구 회피
+- "easy" 대신 "simple" 또는 "straightforward" 사용(무엇이 쉬운지는 사람마다 다름)
 
-#### Industry Jargon Management
-- Define which technical terms the audience understands without explanation
-- List jargon that should always be defined or replaced with plain language
-- Specify which acronyms need to be spelled out on first use
-- Audience-specific glossary for terms that mean different things to different readers
+#### 업계 전문용어 관리
+- 대상이 설명 없이 이해하는 기술 용어를 정의합니다.
+- 항상 정의하거나 쉬운 말로 바꿔야 하는 용어를 나열합니다.
+- 처음 등장할 때 풀어써야 하는 약어를 지정합니다.
+- 독자마다 의미가 다른 용어에 대한 대상별 용어집을 둡니다.
 
-#### Competitor and Category Terms
-- How to refer to your product category (use your preferred framing)
-- How to refer to competitors (by name or generically)
-- Terms competitors have coined that you should avoid (to prevent reinforcing their positioning)
-- Your preferred differentiation language
+#### 경쟁사 및 카테고리 용어
+- 제품 카테고리를 어떻게 부를지(선호하는 프레이밍 사용)
+- 경쟁사를 어떻게 부를지(이름으로 또는 일반적으로)
+- 경쟁사가 만든 용어 중 피해야 할 것(그들의 포지셔닝을 강화하지 않기 위해)
+- 선호하는 차별화 표현
 
-## Output Format
+## 출력 형식
 
-Present the review as:
+검토는 다음과 같이 제시합니다.
 
-### Summary
-- Overall assessment: how well the content aligns with brand standards (or general quality)
-- 1-2 sentence summary of the biggest strengths
-- 1-2 sentence summary of the most important improvements
+### 요약
+- 전체 평가: 콘텐츠가 브랜드 기준(또는 일반 품질)과 얼마나 잘 맞는지
+- 가장 큰 강점에 대한 1-2문장 요약
+- 가장 중요한 개선점에 대한 1-2문장 요약
 
-### Detailed Findings
+### 상세 발견 사항
 
-For each issue found, provide:
+발견된 각 이슈마다 다음을 제공합니다.
 
-| Issue | Location | Severity | Suggestion |
+| 이슈 | 위치 | 심각도 | 제안 |
 |-------|----------|----------|------------|
 
-Where severity is:
-- **High** — contradicts brand voice, contains compliance risk, or significantly undermines messaging
-- **Medium** — inconsistent with guidelines but not damaging
-- **Low** — minor style or preference issue
+심각도는 다음과 같습니다.
+- **High** - 브랜드 보이스와 충돌하거나, 컴플라이언스 위험을 포함하거나, 메시지를 크게 약화시킴
+- **Medium** - 가이드라인과 불일치하지만 치명적이지 않음
+- **Low** - 사소한 스타일 또는 선호 문제
 
-### Revised Sections
+### 수정 섹션
 
-For the top 3-5 highest-severity issues, provide a before/after showing the original text and a suggested revision.
+가장 심각한 3-5개 이슈에 대해서는 원문과 제안 수정안을 보여 주는 before/after를 제공합니다.
 
-### Legal/Compliance Flags
+### 법적/컴플라이언스 플래그
 
-List any legal or compliance concerns separately with recommended actions.
+법적 또는 컴플라이언스 우려사항은 권장 조치와 함께 별도로 나열합니다.
 
-## After Review
+## 검토 후
 
-Ask: "Would you like me to:
-- Revise the full content with these suggestions applied?
-- Focus on fixing just the high-severity issues?
-- Review additional content against the same guidelines?
-- Help you document your brand voice for future reviews?"
+다음과 같이 묻습니다. "원하시면 제가:
+- 이 제안을 반영해 전체 내용을 수정할까요?
+- 심각도 높은 이슈만 고칠까요?
+- 같은 가이드라인으로 추가 콘텐츠를 검토할까요?
+- 향후 검토를 위해 브랜드 보이스를 문서화하는 걸 도와드릴까요?"

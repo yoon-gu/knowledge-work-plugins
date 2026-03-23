@@ -1,42 +1,42 @@
-# Create an Asset
+# 자산 만들기
 
-**For Sales Teams Everywhere**
+**모든 영업팀을 위해**
 
-Generate professional, customer-ready sales assets in minutes. No design skills required.
-
----
-
-## What It Does
-
-This skill creates tailored sales assets by asking you about:
-1. **Your prospect** — who they are, what you've discussed
-2. **Your audience** — who's viewing, what they care about
-3. **Your purpose** — what you want to achieve
-4. **Your format** — how you want to present it
-
-Then it researches, writes, designs, and builds a polished asset you can share with customers.
+몇 분 안에 고객에게 바로 보여줄 수 있는 전문적인 영업 자산을 생성합니다. 디자인 기술은 필요 없습니다.
 
 ---
 
-## Supported Formats
+## 하는 일
 
-| Format | Best For | Output |
+이 스킬은 다음을 물어봐 맞춤형 영업 자산을 만듭니다.
+1. **잠재 고객** — 누구인지, 무엇을 논의했는지
+2. **대상** — 누가 보고 있는지, 무엇을 중요하게 보는지
+3. **목적** — 무엇을 달성하고 싶은지
+4. **형식** — 어떻게 प्रस्तुत할지
+
+그다음 조사, 작성, 디자인, 빌드를 거쳐 고객과 공유할 수 있는 세련된 자산을 만듭니다.
+
+---
+
+## 지원 형식
+
+| 형식 | 적합한 용도 | 출력 |
 |--------|----------|--------|
-| **Interactive Landing Page** | Exec meetings, value prop presentations | Multi-tab page with demos and calculators |
-| **Deck-Style** | Formal presentations, large audiences | Linear slides with navigation |
-| **One-Pager** | Leave-behinds, quick summaries | Single-scroll executive summary |
-| **Workflow / Architecture Demo** | Technical deep-dives, POC proposals | Interactive diagram with animated flow |
+| **인터랙티브 랜딩 페이지** | 임원 미팅, 가치 제안 발표 | 데모와 계산기가 있는 멀티탭 페이지 |
+| **덱 스타일** | 공식 발표, 큰 청중 | 내비게이션이 있는 선형 슬라이드 |
+| **원페이저** | 남겨두는 자료, 빠른 요약 | 한 번에 스크롤되는 요약본 |
+| **워크플로 / 아키텍처 데모** | 기술 심층 분석, POC 제안 | 애니메이션 흐름이 있는 인터랙티브 다이어그램 |
 
 ---
 
-## Quick Start
+## 빠른 시작
 
-### Option 1: Simple prompt
+### 옵션 1: 간단한 프롬프트
 ```
 Create an asset for Acme Corp
 ```
 
-### Option 2: With context
+### 옵션 2: 맥락 포함
 ```
 Create an asset for Acme Corp. I met with their VP Engineering
 last week - they're struggling with slow release cycles and
@@ -44,7 +44,7 @@ want to improve developer productivity. This is for a follow-up
 with their technical team.
 ```
 
-### Option 3: Workflow demo
+### 옵션 3: 워크플로 데모
 ```
 I want to mock up a workflow showing how a customer would use
 our product to automate their invoice processing. The flow is:
@@ -54,38 +54,38 @@ against their ERP → flags exceptions for human review.
 
 ---
 
-## What Gets Created
+## 생성되는 것
 
-### Interactive Landing Page
-- Tabbed navigation
-- Company metrics and research
-- Use case demos
-- ROI calculator
-- Professional dark theme with prospect's brand colors
+### 인터랙티브 랜딩 페이지
+- 탭 내비게이션
+- 회사 지표와 조사 결과
+- 사용 사례 데모
+- ROI 계산기
+- 잠재 고객의 브랜드 색상을 사용한 전문적인 다크 테마
 
-### Deck-Style
-- Title slide with both logos
-- Agenda
-- Content slides (one message per slide)
-- Summary and next steps
-- Speaker notes included
+### 덱 스타일
+- 양쪽 로고가 있는 제목 슬라이드
+- 아젠다
+- 내용 슬라이드(한 슬라이드에 한 메시지)
+- 요약과 다음 단계
+- 발표자 노트 포함
 
-### One-Pager
-- Hero statement
-- 3 key value points
-- Proof point
-- Clear CTA
+### 원페이저
+- 핵심 문구
+- 3개의 핵심 가치 포인트
+- 증거 포인트
+- 명확한 CTA
 
-### Workflow Demo
-- Visual component nodes
-- Animated data flow
-- Step-by-step walkthrough
-- Play/pause/step controls
-- Sample data at each stage
+### 워크플로 데모
+- 시각적 구성 요소 노드
+- 애니메이션 데이터 흐름
+- 단계별 안내
+- 재생/일시정지/단계 제어
+- 각 단계의 샘플 데이터
 
 ---
 
-## The Process
+## 프로세스
 
 ```
 1. You provide context (prospect, audience, purpose)
@@ -103,67 +103,67 @@ against their ERP → flags exceptions for human review.
 
 ---
 
-## Sharing Your Asset
+## 자산 공유하기
 
-The output is a self-contained HTML file. Share it by:
+출력물은 독립형 HTML 파일입니다. 공유 방법:
 
-- **Static hosting**: Upload to Netlify, Vercel, GitHub Pages, or any web host
-- **Password protect**: Most hosts offer simple password protection
-- **Direct share**: Email the HTML file — it works offline
-- **Embed**: iframe it into other pages or portals
-
----
-
-## Tips for Best Results
-
-### Provide Rich Context
-The more you share about past conversations, pain points, and stakeholder concerns, the more tailored the asset will be.
-
-### Upload Transcripts
-If you have call recordings, meeting notes, or email threads, upload them. The skill will extract key quotes and priorities.
-
-### Be Specific About Audience
-"Technical team" is good. "IT architects evaluating our security model" is better.
-
-### Iterate Freely
-First draft not quite right? Just say what to change. Colors, sections, messaging, flow — all adjustable.
+- **정적 호스팅**: Netlify, Vercel, GitHub Pages 또는 다른 웹 호스트에 업로드
+- **비밀번호 보호**: 대부분의 호스트가 간단한 비밀번호 보호를 제공합니다
+- **직접 공유**: HTML 파일을 이메일로 보내세요. 오프라인에서도 작동합니다
+- **임베드**: 다른 페이지나 포털에 iframe으로 삽입
 
 ---
 
-## Examples
+## 더 좋은 결과를 위한 팁
 
-| Scenario | Format | Key Features |
+### 풍부한 맥락 제공
+이전 대화, 고통 지점, 이해관계자 우려에 대해 더 많이 공유할수록 자산이 더 맞춤화됩니다.
+
+### 녹취록 업로드
+통화 녹음, 미팅 노트, 이메일 스레드가 있다면 업로드하세요. 이 스킬이 핵심 인용문과 우선순위를 추출합니다.
+
+### 대상은 구체적으로
+"기술팀"도 좋지만 "보안 모델을 평가하는 IT 아키텍트"가 더 좋습니다.
+
+### 자유롭게 반복
+첫 초안이 마음에 들지 않나요? 무엇을 바꿀지 말해 주세요. 색상, 섹션, 메시지, 흐름 모두 조정 가능합니다.
+
+---
+
+## 예시
+
+| 시나리오 | 형식 | 주요 기능 |
 |----------|--------|--------------|
-| Post-discovery exec meeting | Interactive page | ROI calculator, their stated priorities, case studies |
-| Technical architecture review | Workflow demo | System diagram, data flows, integration points |
-| Board presentation leave-behind | One-pager | Strategic alignment, key metrics, clear CTA |
-| Large stakeholder meeting | Deck-style | Linear narrative, one point per slide, appendix |
+| Discovery 이후 임원 미팅 | 인터랙티브 페이지 | ROI 계산기, 그들이 말한 우선순위, 사례 연구 |
+| 기술 아키텍처 검토 | 워크플로 데모 | 시스템 다이어그램, 데이터 흐름, 통합 지점 |
+| 이사회 발표용 자료 | 원페이저 | 전략적 정렬, 핵심 지표, 명확한 CTA |
+| 대규모 이해관계자 미팅 | 덱 스타일 | 선형 서사, 슬라이드당 한 포인트, 부록 |
 
 ---
 
 ## FAQ
 
-**Q: Does it work for any product/company?**
-A: Yes. The skill detects what you're selling from your email domain and researches accordingly.
+**Q: 어떤 제품/회사에도 작동하나요?**
+A: 네. 이 스킬은 이메일 도메인에서 무엇을 판매하는지 감지하고 그에 맞게 조사합니다.
 
-**Q: How does it know my prospect's brand colors?**
-A: It extracts them from the prospect's website or brand guidelines. You can adjust after.
+**Q: 잠재 고객의 브랜드 색상은 어떻게 알죠?**
+A: 잠재 고객의 웹사이트나 브랜드 가이드라인에서 추출합니다. 이후 조정할 수 있습니다.
 
-**Q: Can I use my company's branding instead?**
-A: Yes — after the first build, just ask to switch to your brand colors.
+**Q: 대신 우리 회사 브랜딩을 사용할 수 있나요?**
+A: 네. 첫 빌드 후 브랜드 색상 변경만 요청하면 됩니다.
 
-**Q: What if the research is wrong?**
-A: Flag it and provide corrections. The skill will regenerate with accurate info.
+**Q: 조사가 틀리면 어떻게 하나요?**
+A: 표시하고 수정 내용을 알려 주세요. 이 스킬이 정확한 정보로 다시 생성합니다.
 
-**Q: Can I export as PDF?**
-A: Yes — ask for a print-optimized version and use your browser's print-to-PDF.
-
----
-
-## Support
-
-Questions or feedback? This skill is part of the public sales skills collection.
+**Q: PDF로 내보낼 수 있나요?**
+A: 네. 인쇄 최적화 버전을 요청하고 브라우저의 PDF로 인쇄를 사용하세요.
 
 ---
 
-*Built for salespeople who'd rather sell than design slides.*
+## 지원
+
+질문이나 피드백이 있나요? 이 스킬은 공개 영업 스킬 컬렉션의 일부입니다.
+
+---
+
+*슬라이드 디자인보다 판매에 더 집중하고 싶은 영업인을 위해 만들어졌습니다.*

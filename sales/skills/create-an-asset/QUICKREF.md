@@ -1,6 +1,6 @@
-# Create an Asset — Quick Reference
+# 자산 만들기 - 빠른 참고
 
-## Invoke
+## 호출
 ```
 /create-an-asset
 /create-an-asset [CompanyName]
@@ -9,43 +9,43 @@
 
 ---
 
-## Inputs at a Glance
+## 입력 한눈에 보기
 
-| Input | What to Provide |
+| 입력 | 제공할 내용 |
 |-------|-----------------|
-| **(a) Prospect** | Company, contacts, deal stage, pain points, transcripts |
-| **(b) Audience** | Exec / Technical / Ops / Mixed + what they care about |
-| **(c) Purpose** | Intro / Follow-up / Deep-dive / Alignment / POC / Close |
-| **(d) Format** | Landing page / Deck / One-pager / Workflow demo |
+| **(a) 잠재 고객** | 회사, 연락처, 딜 단계, 고통 지점, 녹취록 |
+| **(b) 대상** | 임원 / 기술 / 운영 / 혼합 + 무엇을 중요하게 보는지 |
+| **(c) 목적** | 소개 / 후속 / 심층 / 정렬 / POC / 종료 |
+| **(d) 형식** | 랜딩 페이지 / 덱 / 원페이저 / 워크플로 데모 |
 
 ---
 
-## Format Picker
+## 형식 선택기
 
-| If you need... | Choose... |
+| 필요할 때... | 선택... |
 |----------------|-----------|
-| Impressive multi-tab experience | **Interactive landing page** |
-| Something to present in a meeting | **Deck-style** |
-| Quick summary to leave behind | **One-pager** |
-| Visual of how systems connect | **Workflow demo** |
+| 인상적인 멀티탭 경험 | **인터랙티브 랜딩 페이지** |
+| 미팅에서 발표할 자료 | **덱 스타일** |
+| 남겨둘 간단한 요약 | **원페이저** |
+| 시스템 연결 방식의 시각화 | **워크플로 데모** |
 
 ---
 
-## Sample Prompts
+## 샘플 프롬프트
 
-**Basic:**
+**기본:**
 ```
 Create an asset for Acme Corp
 ```
 
-**With context:**
+**맥락 포함:**
 ```
 Create an asset for Acme Corp. They're a manufacturing company
 struggling with supply chain visibility. Met with their COO
 last week. Need something for the exec team.
 ```
 
-**Workflow demo:**
+**워크플로 데모:**
 ```
 Mock up a workflow for Centric Brands showing how they'd use
 our product to monitor contract compliance. Components: our AI,
@@ -54,25 +54,25 @@ their Snowflake warehouse, and scanned PDF contracts.
 
 ---
 
-## After It's Built
+## 생성 후
 
-| Want to... | Say... |
+| 하고 싶은 일 | 이렇게 말하세요 |
 |------------|--------|
-| Change colors | "Use our brand colors instead" |
-| Add a section | "Add a section on security" |
-| Shorten it | "Make it more concise" |
-| Fix something | "The CEO's name is wrong, it's Jane Smith" |
-| Get PDF | "Give me a print-friendly version" |
+| 색상 변경 | "우리 브랜드 색상을 사용해 줘" |
+| 섹션 추가 | "보안에 대한 섹션을 추가해 줘" |
+| 더 짧게 | "더 간결하게 만들어 줘" |
+| 수정 | "CEO 이름이 틀렸어. Jane Smith야" |
+| PDF 받기 | "인쇄 친화적인 버전으로 줘" |
 
 ---
 
-## Output
+## 출력
 
-- Self-contained HTML file
-- Works offline
-- Host anywhere (Netlify, Vercel, GitHub Pages, etc.)
-- Password-protect via your hosting provider
+- 독립형 HTML 파일
+- 오프라인에서도 작동
+- 어디서든 호스팅 가능(Netlify, Vercel, GitHub Pages 등)
+- 호스팅 제공자를 통해 비밀번호 보호 가능
 
 ---
 
-*That's it. Provide context → answer questions → get asset → iterate.*
+*그게 전부입니다. 맥락을 주면 → 질문에 답하고 → 자산을 만들고 → 반복하면 됩니다.*

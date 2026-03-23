@@ -1,91 +1,91 @@
 ---
 name: task-management
-description: Simple task management using a shared TASKS.md file. Reference this when the user asks about their tasks, wants to add/complete tasks, or needs help tracking commitments.
+description: 공유 `TASKS.md` 파일을 사용하는 간단한 작업 관리입니다. 사용자가 작업을 묻거나, 작업을 추가/완료하고 싶어 하거나, 약속을 추적하는 데 도움이 필요할 때 참조합니다.
 user-invocable: false
 ---
 
-# Task Management
+# 작업 관리
 
-Tasks are tracked in a simple `TASKS.md` file that both you and the user can edit.
+작업은 당신과 사용자가 모두 편집할 수 있는 간단한 `TASKS.md` 파일에 추적됩니다.
 
-## File Location
+## 파일 위치
 
-**Always use `TASKS.md` in the current working directory.**
+**항상 현재 작업 디렉터리의 `TASKS.md`를 사용합니다.**
 
-- If it exists, read/write to it
-- If it doesn't exist, create it with the template below
+- 이미 있으면 읽고/씁니다.
+- 없으면 아래 템플릿으로 만듭니다.
 
-## Dashboard Setup (First Run)
+## 대시보드 설정(첫 실행)
 
-A visual dashboard is available for managing tasks and memory. **On first interaction with tasks:**
+작업과 기억을 관리할 수 있는 시각적 대시보드를 사용할 수 있습니다. **작업을 처음 다룰 때는:**
 
-1. Check if `dashboard.html` exists in the current working directory
-2. If not, copy it from `${CLAUDE_PLUGIN_ROOT}/skills/dashboard.html` to the current working directory
-3. Inform the user: "I've added the dashboard. Run `/productivity:start` to set up the full system."
+1. 현재 작업 디렉터리에 `dashboard.html`이 있는지 확인합니다.
+2. 없으면 `${CLAUDE_PLUGIN_ROOT}/skills/dashboard.html`에서 현재 작업 디렉터리로 복사합니다.
+3. 사용자에게 알립니다. "대시보드를 추가했습니다. 전체 시스템 설정을 위해 `/productivity:start`를 실행하세요."
 
-The task board:
-- Reads and writes to the same `TASKS.md` file
-- Auto-saves changes
-- Watches for external changes (syncs when you edit via CLI)
-- Supports drag-and-drop reordering of tasks and sections
+작업 보드는 다음을 지원합니다.
+- 같은 `TASKS.md` 파일을 읽고 씁니다.
+- 변경 사항을 자동 저장합니다.
+- 외부 변경을 감시합니다(CLI에서 수정하면 동기화).
+- 작업과 섹션의 드래그 앤 드롭 재정렬을 지원합니다.
 
-## Format & Template
+## 형식 및 템플릿
 
-When creating a new TASKS.md, use this exact template (without example tasks):
+새 `TASKS.md`를 만들 때는 이 정확한 템플릿을 사용합니다(예시 작업 없이).
 
 ```markdown
-# Tasks
+# 작업
 
-## Active
+## 진행 중
 
-## Waiting On
+## 대기 중
 
-## Someday
+## 언젠가
 
-## Done
+## 완료
 ```
 
-Task format:
+작업 형식:
 - `- [ ] **Task title** - context, for whom, due date`
 - Sub-bullets for additional details
 - Completed: `- [x] ~~Task~~ (date)`
 
-## How to Interact
+## 상호작용 방법
 
-**When user asks "what's on my plate" / "my tasks":**
-- Read TASKS.md
-- Summarize Active and Waiting On sections
-- Highlight anything overdue or urgent
+**사용자가 "what's on my plate" / "my tasks"라고 묻는 경우:**
+- TASKS.md를 읽습니다.
+- 진행 중과 대기 중 섹션을 요약합니다.
+- 기한이 지났거나 긴급한 항목을 강조합니다.
 
-**When user says "add a task" / "remind me to":**
-- Add to Active section with `- [ ] **Task**` format
-- Include context if provided (who it's for, due date)
+**사용자가 "add a task" / "remind me to"라고 말하는 경우:**
+- 진행 중 섹션에 `- [ ] **작업**` 형식으로 추가합니다.
+- 제공된 맥락(누구를 위한 것인지, 마감일)을 포함합니다.
 
-**When user says "done with X" / "finished X":**
-- Find the task
-- Change `[ ]` to `[x]`
-- Add strikethrough: `~~task~~`
-- Add completion date
-- Move to Done section
+**사용자가 "done with X" / "finished X"라고 말하는 경우:**
+- 작업을 찾습니다.
+- `[ ]`를 `[x]`로 바꿉니다.
+- 취소선을 추가합니다: `~~작업~~`
+- 완료 날짜를 추가합니다.
+- 완료 섹션으로 옮깁니다.
 
-**When user asks "what am I waiting on":**
-- Read the Waiting On section
-- Note how long each item has been waiting
+**사용자가 "what am I waiting on"이라고 묻는 경우:**
+- 대기 중 섹션을 읽습니다.
+- 각 항목이 얼마나 오래 대기 중인지 기록합니다.
 
-## Conventions
+## 규칙
 
-- **Bold** the task title for scannability
-- Include "for [person]" when it's a commitment to someone
-- Include "due [date]" for deadlines
-- Include "since [date]" for waiting items
-- Sub-bullets for additional context
-- Keep Done section for ~1 week, then clear old items
+- 가독성을 위해 작업 제목을 **굵게** 표시합니다.
+- 누군가에게 하는 약속이면 "for [person]"을 포함합니다.
+- 마감일은 "due [date]"로 적습니다.
+- 대기 항목은 "since [date]"를 포함합니다.
+- 추가 맥락은 하위 글머리표를 사용합니다.
+- 완료 섹션은 약 1주일 유지한 뒤 오래된 항목을 지웁니다.
 
-## Extracting Tasks
+## 작업 추출
 
-When summarizing meetings or conversations, offer to add extracted tasks:
-- Commitments the user made ("I'll send that over")
-- Action items assigned to them
-- Follow-ups mentioned
+회의나 대화를 요약할 때는 추출한 작업을 추가할지 제안합니다.
+- 사용자가 한 약속("I'll send that over")
+- 사용자에게 할당된 실행 항목
+- 언급된 후속 조치
 
-Ask before adding - don't auto-add without confirmation.
+추가하기 전에 반드시 물어보세요. 확인 없이 자동 추가하지 않습니다.

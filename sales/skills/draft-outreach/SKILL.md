@@ -1,298 +1,294 @@
 ---
 name: draft-outreach
-description: Research a prospect then draft personalized outreach. Uses web research by default, supercharged with enrichment and CRM. Trigger with "draft outreach to [person/company]", "write cold email to [prospect]", "reach out to [name]".
+description: 잠재 고객을 조사한 뒤 개인화된 아웃리치를 작성합니다. 기본적으로 웹 검색을 사용하며, 보강 도구와 CRM을 연결하면 더 강력해집니다. "draft outreach to [person/company]", "write cold email to [prospect]", "reach out to [name]"을 입력하면 트리거됩니다.
 ---
 
-# Draft Outreach
+# 아웃리치 초안
 
-Research first, then draft. This skill never sends generic outreach - it always researches the prospect first to personalize the message. Works standalone with web search, supercharged when you connect your tools.
+먼저 조사하고, 그다음 작성합니다. 이 스킬은 절대 일반적인 아웃리치를 보내지 않습니다. 항상 먼저 잠재 고객을 조사해 메시지를 개인화합니다. 웹 검색으로 단독 사용 가능하며, 도구를 연결하면 더 강력해집니다.
 
-## Connectors (Optional)
+## 연결 도구(선택)
 
-| Connector | What It Adds |
+| 연결 도구 | 추가되는 내용 |
 |-----------|--------------|
-| **Enrichment** | Verified email, phone, background details |
-| **CRM** | Prior relationship context, existing contacts |
-| **Email** | Create draft directly in your inbox |
+| **Enrichment** | 검증된 이메일, 전화번호, 배경 정보 |
+| **CRM** | 이전 관계 맥락, 기존 연락처 |
+| **Email** | 받은편지함에 바로 초안 생성 |
 
-> **No connectors?** Web research works great. I'll output the email text for you to copy.
+> **연결 도구가 없나요?** 웹 조사만으로도 충분히 잘 작동합니다. 복사할 수 있도록 이메일 텍스트를 출력합니다.
 
----
-
-## How It Works
+## 작동 방식
 
 ```
 +------------------------------------------------------------------+
-|                      DRAFT OUTREACH                               |
+|                      아웃리치 초안                               |
 |                                                                   |
-|  Step 1: RESEARCH (always happens first)                         |
-|  - Web search (default)                                           |
-|  - + Enrichment (if enrichment tools connected)                  |
-|  - + CRM (if CRM connected)                                      |
+|  1단계: 조사(항상 먼저)                                          |
+|  - 웹 검색(기본)                                                 |
+|  - + Enrichment(보강 도구가 연결된 경우)                         |
+|  - + CRM(CRM이 연결된 경우)                                      |
 |                                                                   |
-|  Step 2: DRAFT (based on research)                               |
-|  - Personalized opening (from research)                          |
-|  - Relevant hook (their priorities)                              |
-|  - Clear CTA                                                      |
+|  2단계: 작성(조사 기반)                                          |
+|  - 개인화된 오프닝(조사 결과)                                    |
+|  - 관련 훅(그들의 우선순위)                                      |
+|  - 명확한 CTA                                                    |
 |                                                                   |
-|  Step 3: DELIVER (based on connectors)                           |
-|  - Email draft (if email connected)                              |
-|  - Copy for LinkedIn (always)                                    |
-|  - Output to user (always)                                        |
+|  3단계: 전달(연결 도구 기반)                                     |
+|  - 이메일 초안(이메일이 연결된 경우)                             |
+|  - LinkedIn용 문구(항상)                                         |
+|  - 사용자에게 출력(항상)                                         |
 +------------------------------------------------------------------+
 ```
 
----
-
-## Output Format
+## 출력 형식
 
 ```markdown
-# Outreach Draft: [Person] @ [Company]
-**Generated:** [Date] | **Research Sources:** [Web, Enrichment, CRM]
+# 아웃리치 초안: [Person] @ [Company]
+**생성일:** [Date] | **조사 출처:** [Web, Enrichment, CRM]
 
 ---
 
-## Research Summary
+## 조사 요약
 
-**Target:** [Name], [Title] at [Company]
-**Hook:** [Why reaching out now - the personalized angle]
-**Goal:** [What you want from this outreach]
-
----
-
-## Email Draft
-
-**To:** [email if known, or "find email" note]
-**Subject:** [Personalized subject line]
+**대상:** [Name], [Title] at [Company]
+**훅:** [왜 지금 연락하는지 - 개인화된 각도]
+**목표:** [이 아웃리치에서 원하는 것]
 
 ---
 
-[Email body]
+## 이메일 초안
+
+**받는 사람:** [이메일이 있으면, 없으면 "find email" 메모]
+**제목:** [개인화된 제목]
 
 ---
 
-**Subject Line Alternatives:**
-1. [Option 2]
-2. [Option 3]
+[이메일 본문]
 
 ---
 
-## LinkedIn Message (if no email)
-
-**Connection Request (< 300 chars):**
-[Short, no-pitch connection request]
-
-**Follow-up Message (after connected):**
-[Value-first message]
+**제목 대안:**
+1. [옵션 2]
+2. [옵션 3]
 
 ---
 
-## Why This Approach
+## LinkedIn 메시지(이메일이 없을 경우)
 
-| Element | Based On |
+**연결 요청(< 300자):**
+[짧고 피치 없는 연결 요청]
+
+**후속 메시지(연결 후):**
+[가치 우선 메시지]
+
+---
+
+## 왜 이 접근법인가
+
+| 요소 | 근거 |
 |---------|----------|
-| Opening | [Research finding that makes it personal] |
-| Hook | [Their priority/pain point] |
-| Proof | [Relevant customer story] |
-| CTA | [Low-friction ask] |
+| 오프닝 | [개인화되게 만드는 조사 결과] |
+| 훅 | [그들의 우선순위/고통 지점] |
+| 증거 | [관련 고객 사례] |
+| CTA | [부담이 적은 요청] |
 
 ---
 
-## Email Draft Status
+## 이메일 초안 상태
 
-[Draft created - check ~~email]
-[Email not connected - copy email above]
-[No email found - use LinkedIn approach]
-
----
-
-## Follow-up Sequence (Optional)
-
-**Day 3 - Follow-up 1:**
-[Short, new angle]
-
-**Day 7 - Follow-up 2:**
-[Different value prop]
-
-**Day 14 - Break-up:**
-[Final attempt]
-```
+[초안 생성됨 - ~~email 확인]
+[이메일 미연결 - 위 이메일 복사]
+[이메일을 찾지 못함 - LinkedIn 방식 사용]
 
 ---
 
-## Execution Flow
+## 후속 시퀀스(선택)
 
-### Step 1: Parse Request
+**3일차 - 후속 1:**
+[짧은 새 각도]
 
-```
-Input patterns:
-- "draft outreach to John Smith at Acme" → Person + company
-- "write cold email to Acme's CTO" → Role + company
-- "reach out to sarah@acme.com" → Email provided
-- "LinkedIn message to [LinkedIn URL]" → Profile provided
-```
+**7일차 - 후속 2:**
+[다른 가치 제안]
 
-### Step 2: Research First (Always)
-
-**Use research-prospect skill internally:**
-```
-1. Web search for company + person
-2. If Enrichment connected: Get verified contact info, background
-3. If CRM connected: Check for prior relationship
+**14일차 - 마지막 시도:**
+[최종 시도]
 ```
 
-**Must find before drafting:**
-- Who they are (title, background)
-- What the company does
-- Recent news or trigger
-- Personalization hook
+---
 
-### Step 3: Identify Hook
+## 실행 흐름
+
+### 1단계: 요청 파싱
 
 ```
-Priority order for hooks:
-1. Trigger event (funding, hiring, news) → Most timely
-2. Mutual connection → Social proof
-3. Their content (post, article, talk) → Shows you did research
-4. Company initiative → Relevant to their priorities
-5. Role-based pain point → Least personal but still relevant
+입력 패턴:
+- "draft outreach to John Smith at Acme" → 사람 + 회사
+- "write cold email to Acme's CTO" → 역할 + 회사
+- "reach out to sarah@acme.com" → 이메일 제공됨
+- "LinkedIn message to [LinkedIn URL]" → 프로필 제공됨
 ```
 
-### Step 4: Draft Message
+### 2단계: 먼저 조사(항상)
 
-**Email Structure (AIDA):**
+**내부적으로 research-prospect 스킬 사용:**
 ```
-SUBJECT: [Personalized, <50 chars, no spam words]
-
-[Opening: Personal hook - shows you researched them]
-
-[Interest: Their problem/opportunity in 1-2 sentences]
-
-[Desire: Brief proof point - similar company result]
-
-[Action: Clear, low-friction CTA]
-
-[Signature]
+1. 회사와 사람에 대한 웹 검색
+2. Enrichment가 연결된 경우: 검증된 연락처 정보, 배경 가져오기
+3. CRM이 연결된 경우: 이전 관계 확인
 ```
 
-**LinkedIn Connection Request (<300 chars):**
+**작성 전에 반드시 찾아야 할 것:**
+- 그들이 누구인지(직함, 배경)
+- 회사가 하는 일
+- 최근 뉴스 또는 트리거
+- 개인화 훅
+
+### 3단계: 훅 식별
+
 ```
-Hi [Name], [Mutual connection/shared interest/genuine compliment].
+훅의 우선순위:
+1. 트리거 이벤트(투자 유치, 채용, 뉴스) → 가장 시의적
+2. 상호 연결고리 → 사회적 증거
+3. 그들의 콘텐츠(게시물, 글, 발표) → 조사했음을 보여 줌
+4. 회사 이니셔티브 → 그들의 우선순위와 관련
+5. 역할 기반 고통 지점 → 덜 개인적이지만 여전히 관련
+```
+
+### 4단계: 메시지 작성
+
+**이메일 구조(AIDA):**
+```
+SUBJECT: [개인화, <50자, 스팸 단어 없음]
+
+[오프닝: 개인화 훅 - 조사했다는 점을 보여줌]
+
+[관심: 그들의 문제/기회를 1-2문장으로]
+
+[욕구: 짧은 증거 - 비슷한 회사의 결과]
+
+[행동: 명확하고 부담 없는 CTA]
+
+[서명]
+```
+
+**LinkedIn 연결 요청(<300자):**
+```
+Hi [Name], [상호 연결/공통 관심사/진심 어린 칭찬].
 Would love to connect. [No pitch]
 ```
 
-**LinkedIn Follow-up Message:**
+**LinkedIn 후속 메시지:**
 ```
-Thanks for connecting! [Value-first: insight, article, observation]
+Thanks for connecting! [가치 우선: 인사이트, 기사, 관찰]
 
-[Soft transition to why you reached out]
+[왜 연락했는지로 부드럽게 전환]
 
-[Question, not pitch]
+[피치가 아닌 질문]
 ```
 
-### Step 5: Create Email Draft
+### 5단계: 이메일 초안 생성
 
 ```
-If email connector available:
-1. Create draft with to, subject, body
-2. Return draft link
-3. Note: "Draft created - review and send"
+이메일 연결이 있으면:
+1. 받는 사람, 제목, 본문으로 초안 생성
+2. 초안 링크 반환
+3. "Draft created - review and send" 메모
 
-If not available:
-1. Output email text
-2. Note: "Copy to your email client"
+연결이 없으면:
+1. 이메일 텍스트 출력
+2. "Copy to your email client" 메모
 ```
 
 ---
 
-## Capability by Connector
+## 연결 도구별 기능
 
-| Capability | Web Only | + Enrichment | + CRM | + Email |
+| 기능 | 웹만 | + Enrichment | + CRM | + Email |
 |------------|----------|--------------|-------|---------|
-| Personalized opening | Basic | Deep | With history | Same |
-| Verified email | No | Yes | Yes | Yes |
-| Background details | Public only | Full | Full | Full |
-| Prior relationship | No | No | Yes | Yes |
-| Auto-create draft | No | No | No | Yes |
+| 개인화된 오프닝 | 기본 | 깊이 있음 | 이력 포함 | 동일 |
+| 검증된 이메일 | 아니오 | 예 | 예 | 예 |
+| 배경 정보 | 공개 정보만 | 전체 | 전체 | 전체 |
+| 이전 관계 | 아니오 | 아니오 | 예 | 예 |
+| 자동 초안 생성 | 아니오 | 아니오 | 아니오 | 예 |
 
 ---
 
-## Message Templates by Scenario
+## 시나리오별 메시지 템플릿
 
-### Cold Outreach (No Prior Relationship)
+### 콜드 아웃리치(이전 관계 없음)
 
 ```
-Subject: [Their initiative] + [your angle]
+Subject: [그들의 이니셔티브] + [당신의 각도]
 
 Hi [Name],
 
-[Personal hook based on research - news, content, mutual connection].
+[조사 기반 개인화 훅 - 뉴스, 콘텐츠, 상호 연결].
 
-[1 sentence on their likely challenge based on role/company].
+[역할/회사 기반으로 추정한 1문장 문제].
 
-[Brief proof: "We helped [Similar Company] achieve [Result]".]
+[짧은 증거: "비슷한 회사에서 [결과]를 달성했습니다".]
 
-Worth a 15-min call to see if relevant?
+관련이 있는지 15분 정도 이야기해 볼 수 있을까요?
 
 [Signature]
 ```
 
-### Warm Outreach (Have Met / Mutual Connection)
+### 웜 아웃리치(만난 적 있음 / 상호 연결고리)
 
 ```
 Subject: Following up from [context]
 
 Hi [Name],
 
-[Reference to how you know them / who connected you].
+[어떻게 알게 되었는지 / 누가 소개했는지].
 
-[Why reaching out now - their trigger].
+[왜 지금 연락하는지 - 트리거].
 
-[Specific value you can offer].
+[제공할 수 있는 구체적 가치].
 
 [CTA]
 ```
 
-### Re-Engagement (Went Dark)
+### 재접촉(응답 없음)
 
 ```
-Subject: [Short, curiosity-driven]
+Subject: [짧고 호기심을 자극하는 제목]
 
 Hi [Name],
 
-[Acknowledge time passed without being guilt-trippy].
+[시간이 지난 것을 비난 없이 인정].
 
-[New reason to reconnect - their news or your news].
+[다시 연락할 새로운 이유 - 그들의 뉴스 또는 우리의 뉴스].
 
-[Simple question to re-open dialogue].
+[대화를 다시 여는 간단한 질문].
 
 [Signature]
 ```
 
-### Post-Event Follow-up
+### 이벤트 후 후속
 
 ```
 Subject: Great meeting you at [Event]
 
 Hi [Name],
 
-[Specific memory from conversation].
+[대화에서의 구체적인 기억].
 
-[Value-add: article, intro, resource related to what you discussed].
+[가치 추가: 이야기한 내용과 관련된 기사, 소개, 자료].
 
-[Soft CTA for next conversation].
+[다음 대화를 위한 부드러운 CTA].
 ```
 
 ---
 
-## Email Style Guidelines
+## 이메일 스타일 가이드
 
-1. **Be concise but informative** — Get to the point quickly. Busy people skim.
-2. **No markdown formatting** — Never use asterisks, bold (**text**), or other markdown. Write plain text that looks natural in any email client.
-3. **Short paragraphs** — 2-3 sentences max per paragraph. White space is your friend.
-4. **Simple lists** — If listing items, use plain dashes. No fancy formatting.
+1. **간결하지만 정보성 있게** — 핵심에 빨리 도달하세요. 바쁜 사람들은 훑어봅니다.
+2. **마크다운 형식 금지** — 별표, 굵게(**text**)나 기타 마크다운을 쓰지 마세요. 어떤 이메일 클라이언트에서도 자연스러운 일반 텍스트로 쓰세요.
+3. **짧은 문단** — 문단당 최대 2-3문장. 여백은 당신의 친구입니다.
+4. **단순한 목록** — 항목을 나열할 때는 단순한 대시를 사용하세요. 화려한 형식은 금지입니다.
 
-**Good:**
+**좋은 예:**
 ```
 Here's what I can share:
 - Case study from a similar company
@@ -300,7 +296,7 @@ Here's what I can share:
 - Quick demo if helpful
 ```
 
-**Bad:**
+**나쁜 예:**
 ```
 **What I Can Offer:**
 - **Case study** from a similar company
@@ -309,55 +305,55 @@ Here's what I can share:
 
 ---
 
-## What NOT to Do
+## 하지 말아야 할 것
 
-**Generic openers:**
+**평범한 시작 문구:**
 - "I hope this email finds you well"
 - "I'm reaching out because..."
 - "I wanted to introduce myself"
 
-**Feature dumps:**
-- Long paragraphs about your product
-- Multiple value props at once
-- No clear CTA
+**기능 나열:**
+- 제품에 대한 긴 문단
+- 여러 가치 제안을 한꺼번에
+- 명확한 CTA 없음
 
-**Fake personalization:**
-- "I noticed you work at [Company]" (obviously)
-- "Congrats on your role" (without context)
+**가짜 개인화:**
+- "I noticed you work at [Company]"(당연한 내용)
+- "Congrats on your role"(맥락 없이)
 
-**Markdown in emails:**
-- Using **bold** or *italic* asterisks
-- Headers or formatted lists that won't render
+**이메일에서 마크다운 사용:**
+- **굵게**나 *기울임* 별표 사용
+- 렌더링되지 않을 헤더나 형식화된 목록
 
-**Instead:**
-- Lead with something specific you learned
-- One clear value prop
-- One clear ask
-- Plain text formatting only
-
----
-
-## Channel Selection
-
-```
-IF verified email available:
-  → Email preferred (higher response rate)
-  → Also provide LinkedIn backup
-
-IF no email:
-  → LinkedIn connection request
-  → Follow-up message template for after connection
-
-IF warm intro possible:
-  → Suggest mutual connection outreach first
-```
+**대신:**
+- 조사로 알게 된 구체적인 내용으로 시작
+- 하나의 명확한 가치 제안
+- 하나의 명확한 요청
+- 일반 텍스트 형식만 사용
 
 ---
 
-## Company Configuration [CUSTOMIZE]
+## 채널 선택
+
+```
+검증된 이메일이 있으면:
+  → 이메일 우선(응답률이 더 높음)
+  → LinkedIn 백업도 함께 제공
+
+이메일이 없으면:
+  → LinkedIn 연결 요청
+  → 연결 후 후속 메시지 템플릿
+
+따뜻한 소개가 가능하면:
+  → 먼저 상호 연결을 통한 아웃리치를 제안
+```
+
+---
+
+## 회사 설정 [CUSTOMIZE]
 
 ```markdown
-## Outreach Settings
+## 아웃리치 설정
 
 - My name: [Your Name]
 - My title: [Your Title]
@@ -384,17 +380,17 @@ IF warm intro possible:
 
 ---
 
-## Example
+## 예시
 
-**Input:** "draft outreach to the Head of Engineering at Notion"
+**입력:** "draft outreach to the Head of Engineering at Notion"
 
-**Research finds:**
+**조사 결과:**
 - Name: David Tibbitts
 - Recent news: Notion launched AI features
 - Hiring: 5 ML engineer roles open
 - Background: Ex-Facebook, Stanford CS
 
-**Output:**
+**출력:**
 
 ```markdown
 # Outreach Draft: David Tibbitts @ Notion

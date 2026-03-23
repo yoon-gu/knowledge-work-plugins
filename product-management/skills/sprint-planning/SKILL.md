@@ -1,94 +1,94 @@
 ---
 name: sprint-planning
-description: Plan a sprint — scope work, estimate capacity, set goals, and draft a sprint plan. Use when kicking off a new sprint, sizing a backlog against team availability (accounting for PTO and meetings), deciding what's P0 vs. stretch, or handling carryover from the last sprint.
+description: 스프린트를 계획합니다. 작업 범위를 정하고, 용량을 추정하며, 목표를 설정하고, 스프린트 계획을 초안 작성합니다. 새 스프린트를 시작할 때, 팀 가용성(PTO와 회의 포함)에 맞춰 백로그를 산정할 때, 무엇이 P0인지 스트레치인지 결정할 때, 이전 스프린트의 이월 작업을 처리할 때 사용합니다.
 argument-hint: "[sprint name or date range]"
 ---
 
 # /sprint-planning
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 자리표시자가 보이거나 어떤 도구가 연결되어 있는지 확인해야 한다면 [CONNECTORS.md](../../CONNECTORS.md)를 참고하세요.
 
-Plan a sprint by scoping work, estimating capacity, and setting clear goals.
+작업 범위를 정하고, 용량을 추정하고, 명확한 목표를 설정해 스프린트를 계획합니다.
 
-## Usage
+## 사용법
 
 ```
 /sprint-planning $ARGUMENTS
 ```
 
-## How It Works
+## 작동 방식
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    SPRINT PLANNING                                 │
+│                    스프린트 계획                                  │
 ├─────────────────────────────────────────────────────────────────┤
-│  STANDALONE (always works)                                       │
-│  ✓ Define sprint goals and success criteria                     │
-│  ✓ Estimate team capacity (accounting for PTO, meetings)        │
-│  ✓ Scope and prioritize backlog items                           │
-│  ✓ Identify dependencies and risks                              │
-│  ✓ Generate sprint plan document                                │
+│  독립 실행(항상 작동)                                             │
+│  ✓ 스프린트 목표와 성공 기준 정의                                │
+│  ✓ 팀 용량 추정(PTO, 회의 반영)                                  │
+│  ✓ 백로그 항목 범위 설정과 우선순위 지정                         │
+│  ✓ 의존성과 위험 식별                                            │
+│  ✓ 스프린트 계획 문서 생성                                       │
 ├─────────────────────────────────────────────────────────────────┤
-│  SUPERCHARGED (when you connect your tools)                      │
-│  + Project tracker: Pull backlog, create sprint, assign items   │
-│  + Calendar: Account for PTO and meetings in capacity           │
-│  + Chat: Share sprint plan with the team                        │
+│  강화 모드(도구를 연결하면)                                       │
+│  + 프로젝트 추적기: 백로그 가져오기, 스프린트 생성, 항목 배정   │
+│  + 캘린더: 용량에 PTO와 회의 반영                                │
+│  + 채팅: 스프린트 계획을 팀과 공유                               │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## What I Need From You
+## 필요한 정보
 
-- **Team**: Who's on the team and their availability this sprint?
-- **Sprint length**: How many days/weeks?
-- **Backlog**: What's prioritized? (Pull from tracker, paste, or describe)
-- **Carryover**: Anything unfinished from last sprint?
-- **Dependencies**: Anything blocked on other teams?
+- **팀**: 이번 스프린트에 누가 있고, 각자의 가용성은 어떤가요?
+- **스프린트 기간**: 며칠/몇 주인가요?
+- **백로그**: 우선순위가 어떻게 되나요? (추적기에서 가져오거나, 붙여넣거나, 설명)
+- **이월 작업**: 지난 스프린트에서 끝나지 않은 것이 있나요?
+- **의존성**: 다른 팀에 막힌 것이 있나요?
 
-## Output
+## 출력
 
 ```markdown
-## Sprint Plan: [Sprint Name]
-**Dates:** [Start] — [End] | **Team:** [X] engineers
-**Sprint Goal:** [One clear sentence about what success looks like]
+## 스프린트 계획: [스프린트 이름]
+**기간:** [시작] — [종료] | **팀:** [X]명 엔지니어
+**스프린트 목표:** [성공이 어떤 모습인지 한 문장]
 
-### Capacity
-| Person | Available Days | Allocation | Notes |
+### 용량
+| 사람 | 사용 가능 일수 | 배분 | 메모 |
 |--------|---------------|------------|-------|
-| [Name] | [X] of [Y] | [X] points/hours | [PTO, on-call, etc.] |
-| **Total** | **[X]** | **[X] points** | |
+| [이름] | [Y]일 중 [X]일 | [X] 포인트/시간 | [PTO, 온콜 등] |
+| **합계** | **[X]** | **[X] 포인트** | |
 
-### Sprint Backlog
-| Priority | Item | Estimate | Owner | Dependencies |
+### 스프린트 백로그
+| 우선순위 | 항목 | 추정치 | 담당자 | 의존성 |
 |----------|------|----------|-------|--------------|
-| P0 | [Must ship] | [X] pts | [Person] | [None / Blocked by X] |
-| P1 | [Should ship] | [X] pts | [Person] | [None] |
-| P2 | [Stretch] | [X] pts | [Person] | [None] |
+| P0 | [반드시 배포] | [X] pts | [사람] | [없음 / X에 의해 차단] |
+| P1 | [배포해야 함] | [X] pts | [사람] | [없음] |
+| P2 | [스트레치] | [X] pts | [사람] | [없음] |
 
-### Planned Capacity: [X] points | Sprint Load: [X] points ([X]% of capacity)
+### 계획 용량: [X] 포인트 | 스프린트 부하: [X] 포인트([X]%의 용량)
 
-### Risks
-| Risk | Impact | Mitigation |
+### 위험
+| 위험 | 영향 | 완화책 |
 |------|--------|------------|
-| [Risk] | [What happens] | [What to do] |
+| [위험] | [무슨 일이 생기는지] | [어떻게 할지] |
 
-### Definition of Done
-- [ ] Code reviewed and merged
-- [ ] Tests passing
-- [ ] Documentation updated (if applicable)
-- [ ] Product sign-off
+### 완료 기준
+- [ ] 코드 리뷰 및 병합 완료
+- [ ] 테스트 통과
+- [ ] 문서 업데이트(해당 시)
+- [ ] 제품 승인
 
-### Key Dates
-| Date | Event |
+### 주요 일정
+| 날짜 | 이벤트 |
 |------|-------|
-| [Date] | Sprint start |
-| [Date] | Mid-sprint check-in |
-| [Date] | Sprint end / Demo |
-| [Date] | Retro |
+| [날짜] | 스프린트 시작 |
+| [날짜] | 중간 점검 |
+| [날짜] | 스프린트 종료 / 데모 |
+| [날짜] | 회고 |
 ```
 
-## Tips
+## 팁
 
-1. **Leave buffer** — Plan to 70-80% capacity. You will get interrupts.
-2. **One clear sprint goal** — If you can't state it in one sentence, the sprint is unfocused.
-3. **Identify stretch items** — Know what to cut if things take longer than expected.
-4. **Carry over honestly** — If something didn't ship, understand why before re-committing.
+1. **여유를 남기세요** — 70-80% 용량으로 계획하세요. 중간에 끼어드는 일이 생깁니다.
+2. **명확한 스프린트 목표 하나** — 한 문장으로 설명할 수 없다면 스프린트가 초점이 흐립니다.
+3. **스트레치 항목을 식별하세요** — 예상보다 오래 걸리면 무엇을 자를지 알아두세요.
+4. **솔직하게 이월하세요** — 무엇인가 배포되지 않았다면, 다시 약속하기 전에 왜 그랬는지 이해하세요.

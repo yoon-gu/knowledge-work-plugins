@@ -1,216 +1,216 @@
 ---
 name: legal-response
-description: Generate a response to a common legal inquiry using configured templates, with built-in escalation checks for situations that shouldn't use a templated reply. Use when responding to data subject requests, litigation hold notices, vendor legal questions, NDA requests from business teams, or subpoenas.
+description: 구성된 템플릿을 사용해 일반적인 법률 문의에 대한 응답을 생성합니다. 템플릿 응답을 쓰면 안 되는 상황에 대한 에스컬레이션 점검도 포함됩니다. 데이터 주체 요청, 소송 보존 통지, 벤더 법률 문의, 비즈니스 팀의 NDA 요청, 소환장 대응에 사용할 수 있습니다.
 argument-hint: "[inquiry-type]"
 ---
 
-# /legal-response -- Generate Response from Templates
+# /legal-response -- 템플릿에서 응답 생성
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 자리표시자가 보이거나 어떤 도구가 연결되어 있는지 확인해야 한다면 [CONNECTORS.md](../../CONNECTORS.md)를 참고하세요.
 
-Generate a response to a common legal inquiry using configured templates. Customizes the response with specific details and includes escalation triggers for situations that should not use a templated response.
+구성된 템플릿을 사용해 일반적인 법률 문의에 대한 응답을 생성합니다. 구체적인 세부사항으로 응답을 맞춤화하고, 템플릿 응답을 쓰면 안 되는 상황에 대한 에스컬레이션 트리거를 포함합니다.
 
-**Important**: This command assists with legal workflows but does not provide legal advice. Generated responses should be reviewed by qualified legal professionals before being sent, especially for regulated communications.
+**중요**: 이 명령은 법률 워크플로를 돕지만 법률 자문을 제공하지는 않습니다. 생성된 응답은, 특히 규제 대상 커뮤니케이션의 경우, 발송 전에 자격을 갖춘 법률 전문가의 검토를 받아야 합니다.
 
-## Invocation
+## 호출
 
 ```
 /legal-response [inquiry-type]
 ```
 
-Common inquiry types:
-- `dsr` or `data-subject-request` -- Data subject access/deletion/correction requests
-- `hold` or `discovery-hold` -- Litigation hold notices
-- `vendor` or `vendor-question` -- Vendor legal questions
-- `nda` or `nda-request` -- NDA requests from business teams
-- `privacy` or `privacy-inquiry` -- Privacy-related questions
-- `subpoena` -- Subpoena or legal process responses
-- `insurance` -- Insurance claim notifications
-- `custom` -- Use a custom template
+일반적인 문의 유형:
+- `dsr` 또는 `data-subject-request` -- 데이터 주체의 열람/삭제/정정 요청
+- `hold` 또는 `discovery-hold` -- 소송 보존 통지
+- `vendor` 또는 `vendor-question` -- 벤더 법률 문의
+- `nda` 또는 `nda-request` -- 비즈니스 팀의 NDA 요청
+- `privacy` 또는 `privacy-inquiry` -- 개인정보 관련 문의
+- `subpoena` -- 소환장 또는 법적 절차 대응
+- `insurance` -- 보험 청구 통지
+- `custom` -- 사용자 지정 템플릿 사용
 
-If no inquiry type is provided, ask the user what type of response they need and show available categories.
+문의 유형이 제공되지 않으면, 어떤 응답이 필요한지 묻고 사용 가능한 범주를 보여 주세요.
 
-## Workflow
+## 워크플로
 
-### Step 1: Identify Inquiry Type
+### 1단계: 문의 유형 식별
 
-Accept the inquiry type from the user. If the type is ambiguous, show available categories and ask for clarification.
+사용자로부터 문의 유형을 받습니다. 유형이 애매하면 사용 가능한 범주를 보여 주고 명확히 해 달라고 요청합니다.
 
-### Step 2: Load Template
+### 2단계: 템플릿 불러오기
 
-Look for templates in local settings (e.g., `legal.local.md` or a templates directory).
+로컬 설정(예: `legal.local.md` 또는 템플릿 디렉터리)에서 템플릿을 찾습니다.
 
-**If templates are configured:**
-- Load the appropriate template for the inquiry type
-- Identify required variables (recipient name, dates, specific details)
+**템플릿이 구성되어 있다면:**
+- 문의 유형에 맞는 적절한 템플릿을 불러옵니다.
+- 필요한 변수(받는 사람 이름, 날짜, 구체적 세부사항)를 식별합니다.
 
-**If no templates are configured:**
-- Inform the user that no templates were found for this inquiry type
-- Offer to help create a template (see Template Creation Guide below)
-- Provide a reasonable default response structure based on the inquiry type
+**템플릿이 구성되어 있지 않다면:**
+- 이 문의 유형에 대한 템플릿을 찾지 못했다고 사용자에게 알립니다.
+- 템플릿 작성 지원을 제안합니다(아래 템플릿 작성 가이드 참고).
+- 문의 유형에 맞는 합리적인 기본 응답 구조를 제공합니다.
 
-### Step 3: Check Escalation Triggers
+### 3단계: 에스컬레이션 트리거 확인
 
-Before generating any response, evaluate whether this situation has characteristics that should NOT use a templated response.
+어떤 응답을 생성하기 전에, 이 상황이 템플릿 응답을 사용하면 안 되는 특성을 갖는지 평가합니다.
 
-#### Universal Escalation Triggers (Apply to All Categories)
-- The matter involves potential litigation or regulatory investigation
-- The inquiry is from a regulator, government agency, or law enforcement
-- The response could create a binding legal commitment or waiver
-- The matter involves potential criminal liability
-- Media attention is involved or likely
-- The situation is unprecedented (no prior handling by the team)
-- Multiple jurisdictions are involved with conflicting requirements
-- The matter involves executive leadership or board members
+#### 공통 에스컬레이션 트리거(모든 범주에 적용)
+- 사안에 잠재적 소송 또는 규제 조사 가능성이 있음
+- 문의가 규제기관, 정부 기관, 법 집행 기관에서 옴
+- 응답이 구속력 있는 법적 약정이나 권리 포기를 만들 수 있음
+- 사안에 잠재적 형사 책임이 포함됨
+- 언론의 주목을 받았거나 받을 가능성이 있음
+- 전례가 없음(팀이 이전에 처리한 적이 없음)
+- 상충하는 요구사항이 있는 여러 관할권이 관련됨
+- 사안에 임원진 또는 이사회 구성원이 관여함
 
-#### Data Subject Request Escalation Triggers
-- Request involves a minor's data, or is from/on behalf of a minor
-- Request is from a regulatory authority (not an individual)
-- Request involves data that is subject to a litigation hold
-- Requester is a current or former employee with an active dispute or HR matter
-- Request scope is unusually broad or appears to be a fishing expedition
-- Request involves data processed in a jurisdiction with unique requirements
-- Request involves special category data (health, biometric, genetic)
+#### 데이터 주체 요청 에스컬레이션 트리거
+- 요청이 미성년자의 데이터와 관련되거나, 미성년자를 대신한 요청임
+- 요청이 개인이 아니라 규제 당국에서 옴
+- 요청이 소송 보존 대상 데이터와 관련됨
+- 요청자가 현재 또는 전직 직원이며, 진행 중인 분쟁 또는 HR 사안이 있음
+- 요청 범위가 비정상적으로 넓거나 정보 탐색성 요청처럼 보임
+- 고유한 요구사항이 있는 관할권에서 처리된 데이터와 관련됨
+- 특별 범주 데이터(건강, 생체, 유전)가 포함됨
 
-#### Discovery Hold Escalation Triggers
-- The matter involves potential criminal liability
-- The preservation scope is unclear, disputed, or potentially overbroad
-- There are questions about whether certain data is within scope
-- Prior holds for the same or related matter exist
-- The hold may affect ongoing business operations significantly
-- Hold conflicts with regulatory deletion requirements
-- Custodian objects to the hold scope
+#### 소송 보존 에스컬레이션 트리거
+- 사안에 잠재적 형사 책임이 포함됨
+- 보존 범위가 불명확하거나, 이견이 있거나, 지나치게 광범위할 가능성이 있음
+- 특정 데이터가 범위에 포함되는지 여부에 대한 질문이 있음
+- 동일하거나 관련된 사안에 대한 이전 보존 지시가 존재함
+- 보존 지시가 진행 중인 비즈니스 운영에 큰 영향을 줄 수 있음
+- 보존 지시가 규제상 삭제 요구와 충돌함
+- 보유자가 보존 범위에 이의를 제기함
 
-#### Vendor Question Escalation Triggers
-- The question involves a dispute or potential breach
-- The vendor is threatening litigation or termination
-- The question involves regulatory compliance (not just contract terms)
-- The response could create a binding commitment or waiver
-- Response could affect ongoing negotiation
+#### 벤더 문의 에스컬레이션 트리거
+- 문의가 분쟁 또는 잠재적 위반과 관련됨
+- 벤더가 소송 또는 계약 종료를 위협함
+- 문의가 단순한 계약 조건이 아니라 규제 준수와 관련됨
+- 응답이 구속력 있는 약정이나 권리 포기를 만들 수 있음
+- 응답이 진행 중인 협상에 영향을 줄 수 있음
 
-#### NDA Request Escalation Triggers
-- The counterparty is a competitor
-- The NDA involves government classified information
-- The business context suggests the NDA is for a potential M&A transaction
-- The request involves unusual subject matter (AI training data, biometric data, etc.)
+#### NDA 요청 에스컬레이션 트리거
+- 상대방이 경쟁사임
+- NDA가 정부 기밀 정보를 다룸
+- 비즈니스 맥락상 잠재적 M&A 거래용 NDA로 보임
+- 요청이 특이한 주제(AI 학습 데이터, 생체 데이터 등)를 다룸
 
-#### Subpoena / Legal Process Escalation Triggers
-- **ALWAYS requires counsel review** (templates are starting points only)
-- Privilege issues identified
-- Third-party data involved
-- Cross-border production issues
-- Unreasonable timeline
+#### 소환장 / 법적 절차 에스컬레이션 트리거
+- **항상 변호사 검토가 필요합니다**(템플릿은 시작점일 뿐입니다)
+- 특권 문제를 식별함
+- 제3자 데이터가 포함됨
+- 국경 간 제출 문제
+- 비현실적인 일정
 
-**When an escalation trigger is detected:**
-1. **Stop**: Do not generate a templated response
-2. **Alert**: Inform the user that an escalation trigger has been detected
-3. **Explain**: Describe which trigger was detected and why it matters
-4. **Recommend**: Suggest the appropriate escalation path (senior counsel, outside counsel, specific team member)
-5. **Offer**: Provide a draft for counsel review (clearly marked as "DRAFT - FOR COUNSEL REVIEW ONLY") rather than a final response
+**에스컬레이션 트리거가 감지되면:**
+1. **중단**: 템플릿 응답을 생성하지 않습니다.
+2. **알림**: 에스컬레이션 트리거가 감지되었다고 사용자에게 알립니다.
+3. **설명**: 어떤 트리거가 감지되었는지, 왜 중요한지 설명합니다.
+4. **권고**: 적절한 에스컬레이션 경로(선임 변호사, 외부 변호사, 특정 팀원)를 제안합니다.
+5. **제안**: 최종 응답 대신 변호사 검토용 초안임을 명확히 표시한 초안을 제공합니다.
 
-### Step 4: Gather Specific Details
+### 4단계: 구체적 세부사항 수집
 
-Prompt the user for the details needed to customize the response:
+응답을 맞춤화하는 데 필요한 세부사항을 사용자에게 요청합니다.
 
-**Data Subject Request:**
-- Requester name and contact information
-- Type of request (access, deletion, correction, portability, opt-out)
-- What data is involved
-- Applicable regulation (GDPR, CCPA, CPRA, other)
-- Response deadline
+**데이터 주체 요청:**
+- 요청자 이름 및 연락처
+- 요청 유형(열람, 삭제, 정정, 이동, 옵트아웃)
+- 관련 데이터
+- 적용 규정(GDPR, CCPA, CPRA, 기타)
+- 응답 기한
 
-**Discovery Hold:**
-- Matter name and reference number
-- Custodians (who needs to preserve)
-- Scope of preservation (date range, data types, systems)
-- Outside counsel contact
-- Effective date
+**소송 보존:**
+- 사안 이름과 참조 번호
+- 보유 대상자(누가 보존해야 하는지)
+- 보존 범위(기간, 데이터 유형, 시스템)
+- 외부 변호사 연락처
+- 발효일
 
-**Vendor Question:**
-- Vendor name
-- Reference agreement (if applicable)
-- Specific question being addressed
-- Relevant contract provisions
+**벤더 문의:**
+- 벤더 이름
+- 참조 계약(해당하는 경우)
+- 답변해야 할 구체적 질문
+- 관련 계약 조항
 
-**NDA Request:**
-- Requesting business team and contact
-- Counterparty name
-- Purpose of the NDA
-- Mutual or unilateral
-- Any special requirements
+**NDA 요청:**
+- 요청하는 비즈니스 팀과 연락처
+- 상대방 이름
+- NDA 목적
+- 상호인지 단방향인지
+- 특별 요구사항
 
-### Step 5: Generate Response
+### 5단계: 응답 생성
 
-Populate the template with the gathered details. Ensure the response:
-- Uses appropriate tone (professional, clear, not overly legalistic for business audiences)
-- Includes all required legal elements for the response type
-- References specific dates, deadlines, and obligations
-- Provides clear next steps for the recipient
-- Includes appropriate disclaimers or caveats
+수집한 세부사항으로 템플릿을 채웁니다. 응답은 다음을 만족해야 합니다.
+- 적절한 톤을 사용해야 합니다(전문적이고 명확하며, 비즈니스 대상에게 지나치게 법률 용어 중심적이지 않아야 함)
+- 응답 유형에 필요한 모든 법적 요소를 포함해야 합니다.
+- 구체적인 날짜, 기한, 의무를 언급해야 합니다.
+- 받는 사람에게 명확한 다음 단계를 제공해야 합니다.
+- 적절한 면책 문구 또는 단서를 포함해야 합니다.
 
-Present the draft response to the user for review before sending.
+전송 전에 검토할 수 있도록 초안을 사용자에게 제시합니다.
 
-#### Customization Guidelines
+#### 맞춤화 가이드라인
 
-**Required customization** — Every templated response MUST be customized with:
-- Correct names, dates, and reference numbers
-- Specific facts of the situation
-- Applicable jurisdiction and regulation
-- Correct response deadlines based on when the inquiry was received
-- Appropriate signature block and contact information
+**필수 맞춤화** — 모든 템플릿 응답은 반드시 다음 항목으로 맞춤화해야 합니다.
+- 정확한 이름, 날짜, 참조 번호
+- 상황의 구체적 사실
+- 적용 관할권과 규정
+- 문의 접수 시점에 따른 정확한 응답 기한
+- 적절한 서명 블록과 연락처
 
-**Tone adjustment** — Adjust tone based on:
-- **Audience**: Internal vs. external, business vs. legal, individual vs. regulatory authority
-- **Relationship**: New counterparty vs. existing partner vs. adversarial party
-- **Sensitivity**: Routine inquiry vs. contentious matter vs. regulatory investigation
-- **Urgency**: Standard timeline vs. expedited response needed
+**톤 조정** — 다음 요소에 따라 톤을 조정합니다.
+- **대상**: 내부 vs 외부, 비즈니스 vs 법무, 개인 vs 규제 당국
+- **관계**: 신규 상대방 vs 기존 파트너 vs 대립적 상대방
+- **민감도**: 일반 문의 vs 분쟁성 사안 vs 규제 조사
+- **긴급성**: 일반 일정 vs 신속 응답 필요
 
-**Jurisdiction-specific adjustments:**
-- Verify that cited regulations are correct for the requester's jurisdiction
-- Adjust timelines to match applicable law
-- Include jurisdiction-specific rights information
-- Use jurisdiction-appropriate legal terminology
+**관할권별 조정:**
+- 인용한 규정이 요청자의 관할권에 맞는지 확인합니다.
+- 기한을 적용 법률에 맞게 조정합니다.
+- 관할권별 권리 정보를 포함합니다.
+- 관할권에 맞는 법률 용어를 사용합니다.
 
-### Step 6: Template Creation (If No Template Exists)
+### 6단계: 템플릿 생성(템플릿이 없을 때)
 
-If the user wants to create a new template, walk through the Template Creation Guide (see below) and present the finished template for review. Suggest the user save the approved template to their local settings for future use.
+사용자가 새 템플릿을 만들고 싶어 하면, 아래 템플릿 작성 가이드를 따라가며 완성된 템플릿을 검토용으로 제시합니다. 승인된 템플릿은 나중에 재사용할 수 있도록 로컬 설정에 저장하라고 제안합니다.
 
-## Response Categories
+## 응답 범주
 
-### 1. Data Subject Requests (DSRs)
+### 1. 데이터 주체 요청(DSR)
 
-**Sub-categories**:
-- Acknowledgment of receipt
-- Identity verification request
-- Fulfillment response (access, deletion, correction)
-- Partial denial with explanation
-- Full denial with explanation
-- Extension notification
+**하위 범주**:
+- 접수 확인
+- 신원 확인 요청
+- 이행 응답(열람, 삭제, 정정)
+- 부분 거절 및 설명
+- 전체 거절 및 설명
+- 기한 연장 통지
 
-**Key template elements**:
-- Reference to applicable regulation (GDPR, CCPA, etc.)
-- Specific timeline for response
-- Identity verification requirements
-- Rights of the data subject (including right to complain to supervisory authority)
-- Contact information for follow-up
+**핵심 템플릿 요소**:
+- 적용 규정(GDPR, CCPA 등) 참조
+- 응답에 대한 구체적 일정
+- 신원 확인 요건
+- 데이터 주체의 권리(감독기관에 불만 제기할 권리 포함)
+- 후속 문의를 위한 연락처
 
-**Example template structure**:
+**예시 템플릿 구조**:
 ```
-Subject: Your Data [Access/Deletion/Correction] Request - Reference {{request_id}}
+제목: 귀하의 데이터 [열람/삭제/정정] 요청 - 참조 {{request_id}}
 
-Dear {{requester_name}},
+{{requester_name}} 님께,
 
-We have received your request dated {{request_date}} to [access/delete/correct] your personal data under [applicable regulation].
+{{request_date}} 자 귀하의 개인 데이터를 [열람/삭제/정정]해 달라는 요청을 [적용 규정]에 따라 접수했습니다.
 
-[Acknowledgment / verification request / fulfillment details / denial basis]
+[접수 확인 / 신원 확인 요청 / 이행 세부사항 / 거절 근거]
 
-We will respond substantively by {{response_deadline}}.
+{{response_deadline}}까지 실질적으로 답변드리겠습니다.
 
-[Contact information]
-[Rights information]
+[연락처]
+[권리 정보]
 ```
 
-### 2. Discovery Holds (Litigation Holds)
+### 2. 소송 보존(Litigation Hold)
 
 **Sub-categories**:
 - Initial hold notice to custodians
@@ -218,220 +218,220 @@ We will respond substantively by {{response_deadline}}.
 - Hold modification (scope change)
 - Hold release
 
-**Key template elements**:
-- Matter name and reference number
-- Clear preservation obligations
-- Scope of preservation (date range, data types, systems, communication types)
-- Prohibition on spoliation
-- Contact for questions
-- Acknowledgment requirement
+**핵심 템플릿 요소**:
+- 사안 이름과 참조 번호
+- 명확한 보존 의무
+- 보존 범위(기간, 데이터 유형, 시스템, 커뮤니케이션 유형)
+- 증거 훼손 금지
+- 문의 연락처
+- 수신 확인 요구
 
-**Example template structure**:
+**예시 템플릿 구조**:
 ```
-Subject: LEGAL HOLD NOTICE - {{matter_name}} - Action Required
+제목: 법적 보존 통지 - {{matter_name}} - 조치 필요
 
-PRIVILEGED AND CONFIDENTIAL
-ATTORNEY-CLIENT COMMUNICATION
+특권 및 기밀
+변호사-의뢰인 간 커뮤니케이션
 
-Dear {{custodian_name}},
+{{custodian_name}} 님께,
 
-You are receiving this notice because you may possess documents, communications, or data relevant to the matter referenced above.
+위에 언급된 사안과 관련된 문서, 커뮤니케이션 또는 데이터를 보유하고 있을 수 있어 이 통지를 받으셨습니다.
 
-PRESERVATION OBLIGATION:
-Effective immediately, you must preserve all documents and electronically stored information (ESI) related to:
-- Subject matter: {{hold_scope}}
-- Date range: {{start_date}} to present
-- Document types: {{document_types}}
+보존 의무:
+즉시 효력이 발생하며, 다음과 관련된 모든 문서와 전자 저장 정보(ESI)를 보존해야 합니다.
+- 주제: {{hold_scope}}
+- 기간: {{start_date}}부터 현재까지
+- 문서 유형: {{document_types}}
 
-DO NOT delete, destroy, modify, or discard any potentially relevant materials.
+잠재적으로 관련 있는 자료를 삭제, 파기, 수정 또는 폐기하지 마십시오.
 
-[Specific instructions for systems, email, chat, local files]
+[시스템, 이메일, 채팅, 로컬 파일에 대한 구체적 지침]
 
-Please acknowledge receipt of this notice by {{acknowledgment_deadline}}.
+{{acknowledgment_deadline}}까지 이 통지를 받았음을 확인해 주십시오.
 
-Contact {{legal_contact}} with any questions.
+질문이 있으면 {{legal_contact}}에게 문의하십시오.
 ```
 
-### 3. Privacy Inquiries
+### 3. 개인정보 문의
 
-**Sub-categories**:
-- Cookie/tracking inquiry responses
-- Privacy policy questions
-- Data sharing practice inquiries
-- Children's data inquiries
-- Cross-border transfer questions
+**하위 범주**:
+- 쿠키/추적 문의 응답
+- 개인정보처리방침 질문
+- 데이터 공유 관행 문의
+- 아동 데이터 문의
+- 국경 간 이전 질문
 
-**Key template elements**:
-- Reference to the organization's privacy notice
-- Specific answers based on current practices
-- Links to relevant privacy documentation
-- Contact information for the privacy team
+**핵심 템플릿 요소**:
+- 조직의 개인정보 고지 참조
+- 현재 관행에 기반한 구체적 답변
+- 관련 개인정보 문서 링크
+- 개인정보 팀 연락처
 
-### 4. Vendor Legal Questions
+### 4. 벤더 법률 문의
 
-**Sub-categories**:
-- Contract status inquiry response
-- Amendment request response
-- Compliance certification requests
-- Audit request responses
-- Insurance certificate requests
+**하위 범주**:
+- 계약 상태 문의 응답
+- 수정 요청 응답
+- 준수 인증 요청
+- 감사 요청 응답
+- 보험 증명서 요청
 
-**Key template elements**:
-- Reference to the applicable agreement
-- Specific response to the vendor's question
-- Any required caveats or limitations
-- Next steps and timeline
+**핵심 템플릿 요소**:
+- 적용 계약 참조
+- 벤더 질문에 대한 구체적 답변
+- 필요한 유의사항이나 한계
+- 다음 단계와 일정
 
-### 5. NDA Requests
+### 5. NDA 요청
 
-**Sub-categories**:
-- Sending the organization's standard form NDA
-- Accepting a counterparty's NDA (with markup)
-- Declining an NDA request with explanation
-- NDA renewal or extension
+**하위 범주**:
+- 조직의 표준 NDA 서식 발송
+- 상대방 NDA 수락(수정 표시 포함)
+- NDA 요청 거절 및 설명
+- NDA 갱신 또는 연장
 
-**Key template elements**:
-- Purpose of the NDA
-- Standard terms summary
-- Execution instructions
-- Timeline expectations
+**핵심 템플릿 요소**:
+- NDA 목적
+- 표준 조건 요약
+- 서명 지침
+- 일정 기대치
 
-### 6. Subpoena / Legal Process
+### 6. 소환장 / 법적 절차
 
-**Sub-categories**:
-- Acknowledgment of receipt
-- Objection letter
-- Request for extension
-- Compliance cover letter
+**하위 범주**:
+- 접수 확인
+- 이의 제기 서신
+- 기한 연장 요청
+- 이행용 커버 레터
 
-**Key template elements**:
-- Case reference and jurisdiction
-- Specific objections (if any)
-- Preservation confirmation
-- Timeline for compliance
-- Privilege log reference (if applicable)
+**핵심 템플릿 요소**:
+- 사건 참조 및 관할권
+- 구체적 이의(있는 경우)
+- 보존 확인
+- 이행 일정
+- 특권 로그 참조(해당 시)
 
-**Critical note**: Subpoena responses almost always require individualized counsel review. Templates serve as starting frameworks, not final responses.
+**중요 참고**: 소환장 대응은 거의 항상 개별화된 변호사 검토가 필요합니다. 템플릿은 최종 응답이 아니라 시작 프레임워크입니다.
 
-### 7. Insurance Notifications
+### 7. 보험 통지
 
-**Sub-categories**:
-- Initial claim notification
-- Supplemental information
-- Reservation of rights response
+**하위 범주**:
+- 초기 청구 통지
+- 보충 정보
+- 권리 유보 응답
 
-**Key template elements**:
-- Policy number and coverage period
-- Description of the matter or incident
-- Timeline of events
-- Requested coverage confirmation
+**핵심 템플릿 요소**:
+- 보험증권 번호와 보장 기간
+- 사안 또는 사고 설명
+- 사건 진행 경과
+- 요청된 보장 확인
 
-## Template Management Methodology
+## 템플릿 관리 방법론
 
-### Template Organization
+### 템플릿 구성
 
-Templates should be organized by category and maintained in the team's local settings. Each template should include:
+템플릿은 범주별로 정리하고 팀의 로컬 설정에 유지해야 합니다. 각 템플릿에는 다음이 포함되어야 합니다.
 
-1. **Category**: The type of inquiry the template addresses
-2. **Template name**: A descriptive identifier
-3. **Use case**: When this template is appropriate
-4. **Escalation triggers**: When this template should NOT be used
-5. **Required variables**: Information that must be customized for each use
-6. **Template body**: The response text with variable placeholders
-7. **Follow-up actions**: Standard steps after sending the response
-8. **Last reviewed date**: When the template was last verified for accuracy
+1. **범주**: 템플릿이 다루는 문의 유형
+2. **템플릿 이름**: 설명적인 식별자
+3. **사용 사례**: 이 템플릿이 적절한 경우
+4. **에스컬레이션 트리거**: 이 템플릿을 사용하면 안 되는 경우
+5. **필수 변수**: 매번 맞춤화해야 하는 정보
+6. **템플릿 본문**: 변수 자리표시자가 포함된 응답 텍스트
+7. **후속 조치**: 응답 발송 후의 표준 단계
+8. **마지막 검토일**: 정확성을 마지막으로 확인한 시점
 
-### Template Lifecycle
+### 템플릿 수명주기
 
-1. **Creation**: Draft template based on best practices and team input
-2. **Review**: Legal team review and approval of template content
-3. **Publication**: Add to template library with metadata
-4. **Use**: Generate responses using the template
-5. **Feedback**: Track when templates are modified during use to identify improvement opportunities
-6. **Update**: Revise templates when laws, policies, or best practices change
-7. **Retirement**: Archive templates that are no longer applicable
+1. **생성**: 모범 사례와 팀 의견을 바탕으로 초안 작성
+2. **검토**: 법무팀이 템플릿 내용을 검토하고 승인
+3. **게시**: 메타데이터와 함께 템플릿 라이브러리에 추가
+4. **사용**: 템플릿으로 응답 생성
+5. **피드백**: 사용 중 수정된 시점을 기록해 개선 기회를 식별
+6. **업데이트**: 법률, 정책, 모범 사례가 바뀌면 수정
+7. **종료**: 더 이상 적용되지 않는 템플릿은 보관
 
-## Template Creation Guide
+## 템플릿 작성 가이드
 
-When helping users create new templates:
+사용자가 새 템플릿을 만들도록 도울 때는 다음을 따릅니다.
 
-### 1. Define the Use Case
-- What type of inquiry does this address?
-- How frequently does this come up?
-- Who is the typical audience?
-- What is the typical urgency level?
+### 1. 사용 사례 정의
+- 어떤 유형의 문의를 다루나요?
+- 얼마나 자주 발생하나요?
+- 일반적인 대상은 누구인가요?
+- 일반적인 긴급도는 어느 정도인가요?
 
-### 2. Identify Required Elements
-- What information must be included in every response?
-- What regulatory requirements apply?
-- What organizational policies govern this type of response?
+### 2. 필요한 요소 식별
+- 모든 응답에 반드시 포함되어야 하는 정보는 무엇인가요?
+- 어떤 규제 요구사항이 적용되나요?
+- 이 응답 유형을 관장하는 조직 정책은 무엇인가요?
 
-### 3. Define Variables
-- What changes with each use? (names, dates, specifics)
-- What stays the same? (legal requirements, standard language)
-- Use clear variable names: `{{requester_name}}`, `{{response_deadline}}`, `{{matter_reference}}`
+### 3. 변수 정의
+- 매번 무엇이 바뀌나요? (이름, 날짜, 세부사항)
+- 무엇이 그대로인가요? (법적 요구사항, 표준 문구)
+- 명확한 변수 이름을 사용합니다: `{{requester_name}}`, `{{response_deadline}}`, `{{matter_reference}}`
 
-### 4. Draft the Template
-- Write in clear, professional language
-- Avoid unnecessary legal jargon for business audiences
-- Include all legally required elements
-- Add placeholders for all variable content
-- Include a subject line template if for email use
+### 4. 템플릿 초안 작성
+- 명확하고 전문적인 언어로 작성합니다.
+- 비즈니스 대상에게 불필요한 법률 용어는 피합니다.
+- 법적으로 필요한 모든 요소를 포함합니다.
+- 모든 가변 내용에 자리표시자를 넣습니다.
+- 이메일용이라면 제목 템플릿도 포함합니다.
 
-### 5. Define Escalation Triggers
-- What situations should NOT use this template?
-- What characteristics indicate the matter needs individualized attention?
-- Be specific: vague triggers are not useful
+### 5. 에스컬레이션 트리거 정의
+- 어떤 상황에서는 이 템플릿을 사용하면 안 되나요?
+- 어떤 특성이 개별화된 주의가 필요함을 나타내나요?
+- 구체적으로 작성해야 합니다. 모호한 트리거는 쓸모가 없습니다.
 
-### 6. Add Metadata
-- Template name and category
-- Version number and last reviewed date
-- Author and approver
-- Follow-up actions checklist
+### 6. 메타데이터 추가
+- 템플릿 이름과 범주
+- 버전 번호와 마지막 검토일
+- 작성자와 승인자
+- 후속 조치 체크리스트
 
-### Template Format
+### 템플릿 형식
 
 ```markdown
-## Template: {{template_name}}
-**Category**: {{category}}
-**Version**: {{version}} | **Last Reviewed**: {{date}}
-**Approved By**: {{approver}}
+## 템플릿: {{template_name}}
+**범주**: {{category}}
+**버전**: {{version}} | **마지막 검토**: {{date}}
+**승인자**: {{approver}}
 
-### Use When
+### 사용할 때
 - [Condition 1]
 - [Condition 2]
 
-### Do NOT Use When (Escalation Triggers)
+### 사용하지 말아야 할 때(에스컬레이션 트리거)
 - [Trigger 1]
 - [Trigger 2]
 
-### Variables
-| Variable | Description | Example |
+### 변수
+| 변수 | 설명 | 예시 |
 |---|---|---|
-| {{var1}} | [what it is] | [example value] |
-| {{var2}} | [what it is] | [example value] |
+| {{var1}} | [무엇인지] | [예시 값] |
+| {{var2}} | [무엇인지] | [예시 값] |
 
-### Subject Line
-[Subject template with {{variables}}]
+### 제목
+[{{variables}}가 포함된 제목 템플릿]
 
-### Body
-[Response body with {{variables}}]
+### 본문
+[{{variables}}가 포함된 응답 본문]
 
-### Follow-Up Actions
-1. [Action 1]
-2. [Action 2]
+### 후속 조치
+1. [조치 1]
+2. [조치 2]
 
-### Notes
-[Any special instructions for users of this template]
+### 참고
+[이 템플릿 사용자를 위한 특별 지침]
 ```
 
-## Output Format
+## 출력 형식
 
 ```
-## Generated Response: [Inquiry Type]
+## 생성된 응답: [문의 유형]
 
-**To**: [recipient]
-**Subject**: [subject line]
+**받는 사람**: [recipient]
+**제목**: [subject line]
 
 ---
 
@@ -439,19 +439,19 @@ When helping users create new templates:
 
 ---
 
-### Escalation Check
-[Confirmation that no escalation triggers were detected, OR flagged triggers with recommendations]
+### 에스컬레이션 확인
+[에스컬레이션 트리거가 발견되지 않았다는 확인 또는 감지된 트리거와 권고]
 
-### Follow-Up Actions
-1. [Post-send actions]
-2. [Calendar reminders to set]
-3. [Tracking or logging requirements]
+### 후속 조치
+1. [발송 후 조치]
+2. [설정할 캘린더 알림]
+3. [추적 또는 기록 요건]
 ```
 
-## Notes
+## 참고
 
-- Always present the draft response for user review before suggesting it be sent
-- If connected to email via MCP, offer to create a draft email with the response
-- Track response deadlines and offer to set calendar reminders
-- For regulated responses (DSRs, subpoenas), always note the applicable deadline and regulatory requirements
-- Templates should be living documents; suggest updates when the user modifies a templated response, so the template can be improved over time
+- 발송을 제안하기 전에 항상 초안을 사용자 검토용으로 제시합니다.
+- MCP로 이메일이 연결되어 있으면, 응답 내용을 담은 이메일 초안을 만들 수 있다고 제안합니다.
+- 응답 기한을 추적하고 캘린더 알림을 설정하라고 제안합니다.
+- 규제 대상 응답(DSR, 소환장 등)은 항상 적용 기한과 규제 요구사항을 명시합니다.
+- 템플릿은 살아 있는 문서여야 합니다. 사용자가 템플릿 응답을 수정하면 템플릿을 함께 개선할 수 있도록 업데이트를 제안합니다.

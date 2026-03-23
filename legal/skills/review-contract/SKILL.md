@@ -1,358 +1,358 @@
 ---
 name: review-contract
-description: Review a contract against your organization's negotiation playbook — flag deviations, generate redlines, provide business impact analysis. Use when reviewing vendor or customer agreements, when you need clause-by-clause analysis against standard positions, or when preparing a negotiation strategy with prioritized redlines and fallback positions.
+description: 조직의 협상 플레이북에 비춰 계약서를 검토합니다. 이탈 조항을 표시하고, 레드라인을 생성하며, 비즈니스 영향 분석을 제공합니다. 벤더 또는 고객 계약을 검토할 때, 표준 포지션과 조항별 분석이 필요할 때, 우선순위가 있는 레드라인과 대안 입장을 담은 협상 전략을 준비할 때 사용합니다.
 argument-hint: "<contract file or text>"
 ---
 
-# /review-contract -- Contract Review Against Playbook
+# /review-contract -- 플레이북 기반 계약 검토
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 자리표시자가 보이거나 어떤 도구가 연결되어 있는지 확인해야 한다면 [CONNECTORS.md](../../CONNECTORS.md)를 참고하세요.
 
-Review a contract against your organization's negotiation playbook. Analyze each clause, flag deviations, generate redline suggestions, and provide business impact analysis.
+조직의 협상 플레이북에 비춰 계약서를 검토합니다. 각 조항을 분석하고, 이탈 사항을 표시하며, 레드라인 제안을 생성하고, 비즈니스 영향 분석을 제공합니다.
 
-**Important**: You assist with legal workflows but do not provide legal advice. All analysis should be reviewed by qualified legal professionals before being relied upon.
+**중요**: 이 도구는 법률 워크플로를 돕지만 법률 자문을 제공하지는 않습니다. 모든 분석은 신뢰하기 전에 자격을 갖춘 법률 전문가의 검토를 받아야 합니다.
 
-## Invocation
+## 호출
 
 ```
 /review-contract <contract file or URL>
 ```
 
-Review the contract: @$1
+계약서를 검토합니다: @$1
 
-## Workflow
+## 워크플로
 
-### Step 1: Accept the Contract
+### 1단계: 계약서 수령
 
-Accept the contract in any of these formats:
-- **File upload**: PDF, DOCX, or other document format
-- **URL**: Link to a contract in your CLM, cloud storage (e.g., Box, Egnyte, SharePoint), or other document system
-- **Pasted text**: Contract text pasted directly into the conversation
+다음 형식 중 어떤 것이든 계약서를 수령합니다.
+- **파일 업로드**: PDF, DOCX, 또는 기타 문서 형식
+- **URL**: CLM, 클라우드 저장소(예: Box, Egnyte, SharePoint), 또는 다른 문서 시스템에 있는 계약서 링크
+- **붙여넣은 텍스트**: 대화창에 직접 붙여넣은 계약서 본문
 
-If no contract is provided, prompt the user to supply one.
+계약서가 제공되지 않았다면, 사용자에게 제공해 달라고 요청합니다.
 
-### Step 2: Gather Context
+### 2단계: 맥락 수집
 
-Ask the user for context before beginning the review:
+검토를 시작하기 전에 사용자에게 맥락을 묻습니다.
 
-1. **Which side are you on?** (vendor/supplier, customer/buyer, licensor, licensee, partner -- or other)
-2. **Deadline**: When does this need to be finalized? (Affects prioritization of issues)
-3. **Focus areas**: Any specific concerns? (e.g., "data protection is critical", "we need flexibility on term", "IP ownership is the key issue")
-4. **Deal context**: Any relevant business context? (e.g., deal size, strategic importance, existing relationship)
+1. **어느 편인가요?** (벤더/공급자, 고객/구매자, 라이선서, 라이선시, 파트너, 또는 기타)
+2. **마감일**: 언제까지 확정되어야 하나요? (이슈 우선순위에 영향을 줌)
+3. **중점 영역**: 특별히 걱정되는 부분이 있나요? (예: "데이터 보호가 중요하다", "기간에 유연성이 필요하다", "IP 소유권이 핵심 이슈다")
+4. **딜 맥락**: 관련 비즈니스 맥락이 있나요? (예: 거래 규모, 전략적 중요도, 기존 관계)
 
-If the user provides partial context, proceed with what you have and note assumptions.
+사용자가 일부 정보만 주면, 가진 정보로 진행하되 가정은 명시합니다.
 
-### Step 3: Load the Playbook
+### 3단계: 플레이북 불러오기
 
-Look for the organization's contract review playbook in local settings (e.g., `legal.local.md` or similar configuration files).
+로컬 설정(예: `legal.local.md` 또는 유사한 설정 파일)에서 조직의 계약 검토 플레이북을 찾습니다.
 
-The playbook should define:
-- **Standard positions**: The organization's preferred terms for each major clause type
-- **Acceptable ranges**: Terms that can be agreed to without escalation
-- **Escalation triggers**: Terms that require senior counsel review or outside counsel involvement
+플레이북에는 다음이 정의되어 있어야 합니다.
+- **표준 포지션**: 각 주요 조항 유형에 대한 조직의 선호 조건
+- **허용 범위**: 에스컬레이션 없이 합의 가능한 조건
+- **에스컬레이션 트리거**: 선임 변호사 검토 또는 외부 변호사 관여가 필요한 조건
 
-**If no playbook is configured:**
-- Inform the user that no playbook was found
-- Offer two options:
-  1. Help the user set up their playbook (walk through defining positions for key clauses)
-  2. Proceed with a generic review using widely-accepted commercial standards as the baseline
-- If proceeding generically, clearly note that the review is based on general commercial standards, not the organization's specific positions
+**플레이북이 구성되어 있지 않다면:**
+- 플레이북을 찾지 못했다고 사용자에게 알립니다.
+- 두 가지 옵션을 제안합니다.
+  1. 플레이북 설정을 돕기(주요 조항의 포지션을 정의하는 과정을 함께 진행)
+  2. 널리 통용되는 상업 기준을 기준으로 일반 검토를 진행
+- 일반 검토를 진행한다면, 이것이 조직의 특정 포지션이 아니라 일반 상업 기준에 기반한 검토임을 분명히 밝힙니다.
 
-### Step 4: Clause-by-Clause Analysis
+### 4단계: 조항별 분석
 
-Apply the following review process:
+다음 검토 과정을 적용합니다.
 
-1. **Identify the contract type**: SaaS agreement, professional services, license, partnership, procurement, etc. The contract type affects which clauses are most material.
-2. **Determine the user's side**: Vendor, customer, licensor, licensee, partner. This fundamentally changes the analysis (e.g., limitation of liability protections favor different parties).
-3. **Read the entire contract** before flagging issues. Clauses interact with each other (e.g., an uncapped indemnity may be partially mitigated by a broad limitation of liability).
-4. **Analyze each material clause** against the playbook position.
-5. **Consider the contract holistically**: Are the overall risk allocation and commercial terms balanced?
+1. **계약 유형 식별**: SaaS 계약, 전문 서비스, 라이선스, 파트너십, 조달 등. 계약 유형에 따라 더 중요한 조항이 달라집니다.
+2. **사용자 측면 결정**: 벤더, 고객, 라이선서, 라이선시, 파트너. 이는 분석을 근본적으로 바꿉니다(예: 책임 제한은 어느 쪽을 더 보호하는지가 달라짐).
+3. **이슈를 표시하기 전에 계약 전체를 읽습니다.** 조항은 서로 영향을 줍니다(예: 무제한 배상은 넓은 책임 제한으로 일부 상쇄될 수 있음).
+4. **주요 조항마다** 플레이북 포지션과 비교해 분석합니다.
+5. **계약을 전체적으로 고려**합니다. 전체적인 위험 배분과 상업 조건이 균형적인가요?
 
-Analyze the contract systematically, covering at minimum:
+최소한 다음 항목은 체계적으로 분석합니다.
 
-| Clause Category | Key Review Points |
+| 조항 범주 | 핵심 검토 포인트 |
 |----------------|-------------------|
-| **Limitation of Liability** | Cap amount, carveouts, mutual vs. unilateral, consequential damages |
-| **Indemnification** | Scope, mutual vs. unilateral, cap, IP infringement, data breach |
-| **IP Ownership** | Pre-existing IP, developed IP, work-for-hire, license grants, assignment |
-| **Data Protection** | DPA requirement, processing terms, sub-processors, breach notification, cross-border transfers |
-| **Confidentiality** | Scope, term, carveouts, return/destruction obligations |
-| **Representations & Warranties** | Scope, disclaimers, survival period |
-| **Term & Termination** | Duration, renewal, termination for convenience, termination for cause, wind-down |
-| **Governing Law & Dispute Resolution** | Jurisdiction, venue, arbitration vs. litigation |
-| **Insurance** | Coverage requirements, minimums, evidence of coverage |
-| **Assignment** | Consent requirements, change of control, exceptions |
-| **Force Majeure** | Scope, notification, termination rights |
-| **Payment Terms** | Net terms, late fees, taxes, price escalation |
+| **책임 제한** | 한도 금액, 예외 조항, 상호인지 단방향인지, 간접손해 |
+| **배상** | 범위, 상호인지 단방향인지, 한도, IP 침해, 데이터 유출 |
+| **IP 소유권** | 기존 IP, 개발 IP, 업무상 저작물(work-for-hire), 라이선스 부여, 양도 |
+| **데이터 보호** | DPA 필요 여부, 처리 조건, 하위 처리자, 침해 통지, 국경 간 이전 |
+| **비밀유지** | 범위, 기간, 예외 조항, 반환/파기 의무 |
+| **진술 및 보증** | 범위, 면책 조항, 존속 기간 |
+| **계약 기간 및 종료** | 기간, 갱신, 편의상 종료, 사유에 의한 종료, 종료 정리 |
+| **준거법 및 분쟁 해결** | 관할권, 재판지, 중재 vs 소송 |
+| **보험** | 보장 요건, 최소 기준, 보장 증빙 |
+| **양도** | 동의 요건, 지배권 변경, 예외 |
+| **불가항력** | 범위, 통지, 종료 권리 |
+| **지급 조건** | 순지급일, 연체료, 세금, 가격 인상 |
 
-For each clause, assess against the playbook (or generic standards) and note whether it is present, absent, or unusual.
+각 조항마다 플레이북(또는 일반 기준)과 비교해, 존재하는지/없는지/특이한지 기록합니다.
 
-#### Detailed Clause Guidance
+#### 조항별 세부 지침
 
-##### Limitation of Liability
+##### 책임 제한
 
-**Key elements to review:**
-- Cap amount (fixed dollar amount, multiple of fees, or uncapped)
-- Whether the cap is mutual or applies differently to each party
-- Carveouts from the cap (what liabilities are uncapped)
-- Whether consequential, indirect, special, or punitive damages are excluded
-- Whether the exclusion is mutual
-- Carveouts from the consequential damages exclusion
-- Whether the cap applies per-claim, per-year, or aggregate
+**검토할 핵심 요소:**
+- 한도 금액(고정 금액, 수수료의 배수, 또는 무제한)
+- 한도가 상호적인지, 당사자별로 다르게 적용되는지
+- 한도 제외 항목(어떤 책임이 무제한인지)
+- 결과적, 간접, 특별, 징벌적 손해가 제외되는지
+- 제외가 상호적인지
+- 결과적 손해 제외의 예외 조항
+- 한도가 청구별, 연간별, 또는 총합 기준인지
 
-**Common issues:**
-- Cap set at a fraction of fees paid (e.g., "fees paid in the prior 3 months" on a low-value contract)
-- Asymmetric carveouts favoring the drafter
-- Broad carveouts that effectively eliminate the cap (e.g., "any breach of Section X" where Section X covers most obligations)
-- No consequential damages exclusion for one party's breaches
+**흔한 문제:**
+- 한도가 지불한 수수료의 일부로 설정됨(예: 저액 계약에서 "직전 3개월간 지불한 수수료")
+- 작성자에게 유리한 비대칭 예외 조항
+- 사실상 한도를 무력화하는 광범위한 예외(예: "X조 위반"이 대부분 의무를 포괄하는 경우)
+- 한쪽 당사자의 위반에 대해 결과적 손해 제외가 없음
 
-##### Indemnification
+##### 배상
 
-**Key elements to review:**
-- Whether indemnification is mutual or unilateral
-- Scope: what triggers the indemnification obligation (IP infringement, data breach, bodily injury, breach of reps and warranties)
-- Whether indemnification is capped (often subject to the overall liability cap, or sometimes uncapped)
-- Procedure: notice requirements, right to control defense, right to settle
-- Whether the indemnitee must mitigate
-- Relationship between indemnification and the limitation of liability clause
+**검토할 핵심 요소:**
+- 배상이 상호적인지 단방향인지
+- 범위: 배상 의무를 유발하는 것(IP 침해, 데이터 유출, 인적 피해, 진술·보증 위반 등)
+- 배상에 한도가 있는지(보통 전체 책임 한도에 따르거나, 때로는 무제한)
+- 절차: 통지 요건, 방어 통제권, 합의권
+- 피배상자가 손실 완화 의무를 지는지
+- 배상 조항과 책임 제한 조항의 관계
 
-**Common issues:**
-- Unilateral indemnification for IP infringement when both parties contribute IP
-- Indemnification for "any breach" (too broad; essentially converts the liability cap to uncapped liability)
-- No right to control defense of claims
-- Indemnification obligations that survive termination indefinitely
+**흔한 문제:**
+- 양측이 모두 IP를 제공하는데도 IP 침해에 대한 단방향 배상
+- "모든 위반"에 대한 배상(너무 광범위해 사실상 책임 한도를 무제한으로 바꿈)
+- 청구 방어를 통제할 권리가 없음
+- 종료 후 무기한 존속하는 배상 의무
 
-##### Intellectual Property
+##### 지식재산권
 
-**Key elements to review:**
-- Ownership of pre-existing IP (each party should retain their own)
-- Ownership of IP developed during the engagement
-- Work-for-hire provisions and their scope
-- License grants: scope, exclusivity, territory, sublicensing rights
-- Open source considerations
-- Feedback clauses (grants on suggestions or improvements)
+**검토할 핵심 요소:**
+- 기존 IP 소유권(각 당사자가 자신의 권리를 유지해야 함)
+- 계약 수행 중 개발된 IP의 소유권
+- 업무상 저작물 조항과 그 범위
+- 라이선스 부여: 범위, 독점성, 지역, 재라이선스 권리
+- 오픈소스 고려사항
+- 피드백 조항(제안이나 개선안에 대한 권리 부여)
 
-**Common issues:**
-- Broad IP assignment that could capture the customer's pre-existing IP
-- Work-for-hire provisions extending beyond the deliverables
-- Unrestricted feedback clauses granting perpetual, irrevocable licenses
-- License scope broader than needed for the business relationship
+**흔한 문제:**
+- 고객의 기존 IP까지 포착할 수 있는 광범위한 IP 양도
+- 인도물 범위를 넘어서 확장되는 업무상 저작물 조항
+- 영구적이고 취소 불가능한 라이선스를 부여하는 무제한 피드백 조항
+- 비즈니스 관계에 필요한 것보다 넓은 라이선스 범위
 
-##### Data Protection
+##### 데이터 보호
 
-**Key elements to review:**
-- Whether a Data Processing Agreement/Addendum (DPA) is required
-- Data controller vs. data processor classification
-- Sub-processor rights and notification obligations
-- Data breach notification timeline (72 hours for GDPR)
-- Cross-border data transfer mechanisms (SCCs, adequacy decisions, binding corporate rules)
-- Data deletion or return obligations on termination
-- Data security requirements and audit rights
-- Purpose limitation for data processing
+**검토할 핵심 요소:**
+- 데이터 처리 계약/부속서(DPA) 필요 여부
+- 데이터 컨트롤러 vs 데이터 프로세서 분류
+- 하위 처리자 권리와 통지 의무
+- 데이터 침해 통지 기한(GDPR의 72시간)
+- 국경 간 데이터 이전 메커니즘(SCC, 적정성 결정, 구속력 있는 기업 규칙)
+- 종료 시 데이터 삭제 또는 반환 의무
+- 데이터 보안 요구사항과 감사 권리
+- 데이터 처리 목적 제한
 
-**Common issues:**
-- No DPA when personal data is being processed
-- Blanket authorization for sub-processors without notification
-- Breach notification timeline longer than regulatory requirements
-- No cross-border transfer protections when data moves internationally
-- Inadequate data deletion provisions
+**흔한 문제:**
+- 개인정보를 처리하는데 DPA가 없음
+- 통지 없이 하위 처리자를 광범위하게 허용
+- 규제 요구보다 긴 침해 통지 기한
+- 데이터가 국제적으로 이동할 때 국경 간 이전 보호가 없음
+- 불충분한 데이터 삭제 조항
 
-##### Term and Termination
+##### 기간 및 종료
 
-**Key elements to review:**
-- Initial term and renewal terms
-- Auto-renewal provisions and notice periods
-- Termination for convenience: available? notice period? early termination fees?
-- Termination for cause: cure period? what constitutes cause?
-- Effects of termination: data return, transition assistance, survival clauses
-- Wind-down period and obligations
+**검토할 핵심 요소:**
+- 초기 기간과 갱신 조건
+- 자동 갱신 조항과 통지 기간
+- 편의상 종료: 가능한지, 통지 기간은 얼마인지, 조기 종료 수수료가 있는지
+- 사유에 의한 종료: 시정 기간, 어떤 것이 사유인지
+- 종료의 효과: 데이터 반환, 전환 지원, 존속 조항
+- 종료 정리 기간과 의무
 
-**Common issues:**
-- Long initial terms with no termination for convenience
-- Auto-renewal with short notice windows (e.g., 30-day notice for annual renewal)
-- No cure period for termination for cause
-- Inadequate transition assistance provisions
-- Survival clauses that effectively extend the agreement indefinitely
+**흔한 문제:**
+- 편의상 종료가 없는 긴 초기 기간
+- 짧은 통지 기간의 자동 갱신(예: 연간 갱신에 30일 통지)
+- 사유에 의한 종료에 시정 기간이 없음
+- 불충분한 전환 지원 조항
+- 사실상 계약을 무기한 연장하는 존속 조항
 
-##### Governing Law and Dispute Resolution
+##### 준거법 및 분쟁 해결
 
-**Key elements to review:**
-- Choice of law (governing jurisdiction)
-- Dispute resolution mechanism (litigation, arbitration, mediation first)
-- Venue and jurisdiction for litigation
-- Arbitration rules and seat (if arbitration)
-- Jury waiver
-- Class action waiver
-- Prevailing party attorney's fees
+**검토할 핵심 요소:**
+- 법 선택(준거 관할권)
+- 분쟁 해결 방식(소송, 중재, 먼저 조정)
+- 소송의 재판지와 관할권
+- 중재 규칙과 중재지(중재인 경우)
+- 배심 재판 포기
+- 집단 소송 포기
+- 승소 당사자 변호사 비용
 
-**Common issues:**
-- Unfavorable jurisdiction (unusual or remote venue)
-- Mandatory arbitration with rules favorable to the drafter
-- Waiver of jury trial without corresponding protections
-- No escalation process before formal dispute resolution
+**흔한 문제:**
+- 불리한 관할권(이례적이거나 먼 재판지)
+- 작성자에게 유리한 규칙의 강제 중재
+- 이에 상응하는 보호 없이 배심 재판 포기
+- 정식 분쟁 해결 전에 에스컬레이션 절차가 없음
 
-### Step 5: Flag Deviations
+### 5단계: 이탈 사항 표시
 
-Classify each deviation from the playbook using a three-tier system:
+플레이북에서 벗어나는 각 사항을 3단계 체계로 분류합니다.
 
-#### GREEN -- Acceptable
+#### GREEN -- 허용 가능
 
-The clause aligns with or is better than the organization's standard position. Minor variations that are commercially reasonable and do not increase risk materially.
+해당 조항이 조직의 표준 포지션과 같거나 더 좋습니다. 상업적으로 합리적이고 위험을 크게 높이지 않는 사소한 차이입니다.
 
-**Examples:**
-- Liability cap at 18 months of fees when standard is 12 months (better for the customer)
-- Mutual NDA term of 2 years when standard is 3 years (shorter but reasonable)
-- Governing law in a well-established commercial jurisdiction close to the preferred one
+**예시:**
+- 표준이 12개월인데 책임 한도가 18개월치 수수료인 경우(고객에게 더 유리)
+- 표준이 3년인데 상호 NDA 기간이 2년인 경우(더 짧지만 합리적)
+- 선호하는 관할권과 가까운 잘 정립된 상업 관할권의 준거법
 
-**Action**: Note for awareness. No negotiation needed.
+**조치**: 참고용으로 기록합니다. 협상은 필요하지 않습니다.
 
-#### YELLOW -- Negotiate
+#### YELLOW -- 협상 필요
 
-The clause falls outside the standard position but within a negotiable range. The term is common in the market but not the organization's preference. Requires attention and likely negotiation, but not escalation.
+해당 조항이 표준 포지션 밖이지만 협상 가능한 범위 안에 있습니다. 시장에서는 흔하지만 조직의 선호는 아닙니다. 주의와 협상이 필요하지만 에스컬레이션은 아닙니다.
 
-**Examples:**
-- Liability cap at 6 months of fees when standard is 12 months (below standard but negotiable)
-- Unilateral indemnification for IP infringement when standard is mutual (common market position but not preferred)
-- Auto-renewal with 60-day notice when standard is 90 days
-- Governing law in an acceptable but not preferred jurisdiction
+**예시:**
+- 표준이 12개월인데 책임 한도가 6개월치 수수료인 경우(표준보다 낮지만 협상 가능)
+- 표준이 상호인데 IP 침해에 대한 단방향 배상인 경우(시장에서는 흔하지만 선호하지 않음)
+- 표준이 90일인데 60일 통지의 자동 갱신
+- 수용 가능하지만 선호하지는 않는 관할권의 준거법
 
-**Action**: Generate specific redline language. Provide fallback position. Estimate business impact of accepting vs. negotiating.
-- **Include**: Specific redline language to bring the term back to standard position
-- **Include**: Fallback position if the counterparty pushes back
-- **Include**: Business impact of accepting as-is vs. negotiating
+**조치**: 구체적인 레드라인 문구를 생성합니다. 대안 입장을 제시합니다. 그대로 수용할 때와 협상할 때의 비즈니스 영향을 추정합니다.
+- **포함**: 조건을 표준 포지션으로 되돌리는 구체적 레드라인 문구
+- **포함**: 상대방이 반발할 때의 대안 입장
+- **포함**: 그대로 수용했을 때와 협상했을 때의 비즈니스 영향
 
-#### RED -- Escalate
+#### RED -- 에스컬레이션
 
-The clause falls outside acceptable range, triggers a defined escalation criterion, or poses material risk. Requires senior counsel review, outside counsel involvement, or business decision-maker sign-off.
+해당 조항이 허용 범위를 벗어나거나, 정의된 에스컬레이션 기준을 트리거하거나, 중대한 위험을 초래합니다. 선임 변호사 검토, 외부 변호사 관여, 또는 비즈니스 의사결정자의 승인 서명이 필요합니다.
 
-**Examples:**
-- Uncapped liability or no limitation of liability clause
-- Unilateral broad indemnification with no cap
-- IP assignment of pre-existing IP
-- No DPA offered when personal data is processed
-- Unreasonable non-compete or exclusivity provisions
-- Governing law in a problematic jurisdiction with mandatory arbitration
+**예시:**
+- 책임 한도가 없거나 책임 제한 조항이 없는 경우
+- 한도 없는 단방향 광범위 배상
+- 기존 IP에 대한 IP 양도
+- 개인정보를 처리하는데 DPA가 없는 경우
+- 불합리한 경업금지 또는 독점 조항
+- 강제 중재가 있는 문제적 관할권의 준거법
 
-**Action**: Explain the specific risk. Provide market-standard alternative language. Estimate exposure. Recommend escalation path.
-- **Include**: Why this is a RED flag (specific risk)
-- **Include**: What the standard market position looks like
-- **Include**: Business impact and potential exposure
-- **Include**: Recommended escalation path
+**조치**: 구체적 위험을 설명합니다. 시장 표준 대체 문구를 제시합니다. 노출 위험을 추정합니다. 에스컬레이션 경로를 권고합니다.
+- **포함**: 왜 RED 플래그인지(구체적 위험)
+- **포함**: 표준 시장 포지션은 어떤 모습인지
+- **포함**: 비즈니스 영향과 잠재적 노출
+- **포함**: 권고되는 에스컬레이션 경로
 
-### Step 6: Generate Redline Suggestions
+### 6단계: 레드라인 제안 생성
 
-For each YELLOW and RED deviation, provide:
-- **Current language**: Quote the relevant contract text
-- **Suggested redline**: Specific alternative language
-- **Rationale**: Brief explanation suitable for sharing with the counterparty
-- **Priority**: Whether this is a must-have or nice-to-have in negotiation
+YELLOW 및 RED 이탈마다 다음을 제공합니다.
+- **현재 문구**: 관련 계약 문구를 인용
+- **제안 레드라인**: 구체적인 대체 문구
+- **이유**: 상대방과 공유할 수 있는 간단한 설명
+- **우선순위**: 협상에서 반드시 필요한지, 있으면 좋은지
 
-#### Redline Generation Best Practices
+#### 레드라인 생성 모범 사례
 
-When generating redline suggestions:
+레드라인 제안을 생성할 때는 다음을 따릅니다.
 
-1. **Be specific**: Provide exact language, not vague guidance. The redline should be ready to insert.
-2. **Be balanced**: Propose language that is firm on critical points but commercially reasonable. Overly aggressive redlines slow negotiations.
-3. **Explain the rationale**: Include a brief, professional rationale suitable for sharing with the counterparty's counsel.
-4. **Provide fallback positions**: For YELLOW items, include a fallback position if the primary ask is rejected.
-5. **Prioritize**: Not all redlines are equal. Indicate which are must-haves and which are nice-to-haves.
-6. **Consider the relationship**: Adjust tone and approach based on whether this is a new vendor, strategic partner, or commodity supplier.
+1. **구체적으로 작성**: 모호한 지침이 아니라 정확한 문구를 제시합니다. 바로 삽입할 수 있어야 합니다.
+2. **균형 있게 작성**: 중요한 지점에서는 단호하지만 상업적으로 합리적인 문구를 제안합니다. 지나치게 공격적인 레드라인은 협상을 늦춥니다.
+3. **이유를 설명**: 상대방 변호사와 공유해도 무방한 짧고 전문적인 이유를 포함합니다.
+4. **대안 입장 제공**: YELLOW 항목에는 주요 요청이 거절될 때의 대안 입장을 넣습니다.
+5. **우선순위 지정**: 모든 레드라인이 같지 않습니다. 반드시 필요한 항목과 있으면 좋은 항목을 구분합니다.
+6. **관계 고려**: 신규 벤더인지, 전략적 파트너인지, 범용 공급자인지에 따라 톤과 접근을 조정합니다.
 
-#### Redline Format
+#### 레드라인 형식
 
-For each redline:
+각 레드라인마다:
 ```
-**Clause**: [Section reference and clause name]
-**Current language**: "[exact quote from the contract]"
-**Proposed redline**: "[specific alternative language with additions in bold and deletions struck through conceptually]"
-**Rationale**: [1-2 sentences explaining why, suitable for external sharing]
-**Priority**: [Must-have / Should-have / Nice-to-have]
-**Fallback**: [Alternative position if primary redline is rejected]
-```
-
-### Step 7: Business Impact Summary
-
-Provide a summary section covering:
-- **Overall risk assessment**: High-level view of the contract's risk profile
-- **Top 3 issues**: The most important items to address
-- **Negotiation strategy**: Recommended approach (which issues to lead with, what to concede)
-- **Timeline considerations**: Any urgency factors affecting the negotiation approach
-
-#### Negotiation Priority Framework
-
-When presenting redlines, organize by negotiation priority:
-
-**Tier 1 -- Must-Haves (Deal Breakers)**
-Issues where the organization cannot proceed without resolution:
-- Uncapped or materially insufficient liability protections
-- Missing data protection requirements for regulated data
-- IP provisions that could jeopardize core assets
-- Terms that conflict with regulatory obligations
-
-**Tier 2 -- Should-Haves (Strong Preferences)**
-Issues that materially affect risk but have negotiation room:
-- Liability cap adjustments within range
-- Indemnification scope and mutuality
-- Termination flexibility
-- Audit and compliance rights
-
-**Tier 3 -- Nice-to-Haves (Concession Candidates)**
-Issues that improve the position but can be conceded strategically:
-- Preferred governing law (if alternative is acceptable)
-- Notice period preferences
-- Minor definitional improvements
-- Insurance certificate requirements
-
-**Negotiation strategy**: Lead with Tier 1 items. Trade Tier 3 concessions to secure Tier 2 wins. Never concede on Tier 1 without escalation.
-
-### Step 8: CLM Routing (If Connected)
-
-If a Contract Lifecycle Management system is connected via MCP:
-- Recommend the appropriate approval workflow based on contract type and risk level
-- Suggest the correct routing path (e.g., standard approval, senior counsel, outside counsel)
-- Note any required approvals based on contract value or risk flags
-
-If no CLM is connected, skip this step.
-
-## Output Format
-
-Structure the output as:
-
-```
-## Contract Review Summary
-
-**Document**: [contract name/identifier]
-**Parties**: [party names and roles]
-**Your Side**: [vendor/customer/etc.]
-**Deadline**: [if provided]
-**Review Basis**: [Playbook / Generic Standards]
-
-## Key Findings
-
-[Top 3-5 issues with severity flags]
-
-## Clause-by-Clause Analysis
-
-### [Clause Category] -- [GREEN/YELLOW/RED]
-**Contract says**: [summary of the provision]
-**Playbook position**: [your standard]
-**Deviation**: [description of gap]
-**Business impact**: [what this means practically]
-**Redline suggestion**: [specific language, if YELLOW or RED]
-
-[Repeat for each major clause]
-
-## Negotiation Strategy
-
-[Recommended approach, priorities, concession candidates]
-
-## Next Steps
-
-[Specific actions to take]
+**조항**: [섹션 참조와 조항 이름]
+**현재 문구**: "[계약서의 정확한 인용문]"
+**제안 레드라인**: "[추가분은 굵게, 삭제분은 개념적으로 취소선 처리한 구체적 대체 문구]"
+**이유**: [외부 공유에 적합한 1-2문장 설명]
+**우선순위**: [Must-have / Should-have / Nice-to-have]
+**대안**: [주요 레드라인이 거절될 경우의 대안 입장]
 ```
 
-## Notes
+### 7단계: 비즈니스 영향 요약
 
-- If the contract is in a language other than English, note this and ask if the user wants a translation or review in the original language
-- For very long contracts (50+ pages), offer to focus on the most material sections first and then do a complete review
-- Always remind the user that this analysis should be reviewed by qualified legal counsel before being relied upon for legal decisions
+다음 항목을 담은 요약 섹션을 제공합니다.
+- **전체 위험 평가**: 계약의 위험 프로필에 대한 고수준 관점
+- **상위 3개 이슈**: 가장 먼저 다뤄야 할 항목
+- **협상 전략**: 권장 접근 방식(무엇을 먼저 제시할지, 무엇을 양보할지)
+- **일정 고려사항**: 협상 방식에 영향을 주는 긴급성 요소
+
+#### 협상 우선순위 체계
+
+레드라인을 제시할 때는 협상 우선순위별로 정리합니다.
+
+**Tier 1 -- 반드시 필요한 항목(딜 브레이커)**
+조직이 해결 없이 진행할 수 없는 이슈:
+- 무제한이거나 실질적으로 부족한 책임 보호
+- 규제 대상 데이터에 대한 데이터 보호 요건 누락
+- 핵심 자산을 위태롭게 할 수 있는 IP 조항
+- 규제 의무와 충돌하는 조건
+
+**Tier 2 -- 있어야 하는 항목(강한 선호)**
+위험에 실질적으로 영향을 주지만 협상 여지가 있는 이슈:
+- 범위 내 책임 한도 조정
+- 배상 범위와 상호성
+- 종료 유연성
+- 감사 및 준수 권리
+
+**Tier 3 -- 있으면 좋은 항목(양보 가능 후보)**
+포지션을 개선하지만 전략적으로 양보할 수 있는 이슈:
+- 선호하는 준거법(대체안이 수용 가능하다면)
+- 통지 기간 선호
+- 사소한 정의 개선
+- 보험 증명서 요건
+
+**협상 전략**: Tier 1 항목부터 제시합니다. Tier 3 양보를 통해 Tier 2 승리를 확보합니다. 에스컬레이션 없이 Tier 1은 절대 양보하지 않습니다.
+
+### 8단계: CLM 라우팅(연결된 경우)
+
+MCP로 Contract Lifecycle Management 시스템이 연결되어 있다면:
+- 계약 유형과 위험 수준에 따라 적절한 승인 워크플로를 권고합니다.
+- 올바른 라우팅 경로(예: 표준 승인, 선임 변호사, 외부 변호사)를 제안합니다.
+- 계약 금액이나 위험 플래그에 따른 필요한 승인 사항을 기록합니다.
+
+CLM이 연결되어 있지 않다면 이 단계는 건너뜁니다.
+
+## 출력 형식
+
+출력은 다음과 같이 구성합니다.
+
+```
+## 계약 검토 요약
+
+**문서**: [계약 이름/식별자]
+**당사자**: [당사자 이름과 역할]
+**귀하의 측**: [벤더/고객/기타]
+**마감일**: [제공된 경우]
+**검토 기준**: [플레이북 / 일반 기준]
+
+## 주요 발견 사항
+
+[심각도 플래그가 있는 상위 3-5개 이슈]
+
+## 조항별 분석
+
+### [조항 범주] -- [GREEN/YELLOW/RED]
+**계약 문구**: [조항 요약]
+**플레이북 포지션**: [조직의 기준]
+**이탈 사항**: [격차 설명]
+**비즈니스 영향**: [실무적으로 의미하는 바]
+**레드라인 제안**: [YELLOW 또는 RED일 때의 구체적 문구]
+
+[주요 조항마다 반복]
+
+## 협상 전략
+
+[권장 접근 방식, 우선순위, 양보 후보]
+
+## 다음 단계
+
+[취해야 할 구체적 조치]
+```
+
+## 참고
+
+- 계약서가 영어 이외의 언어라면 이를 명시하고, 사용자가 번역을 원하는지 원문 언어로 검토를 원하는지 물어봅니다.
+- 매우 긴 계약서(50페이지 이상)라면, 먼저 가장 중요한 섹션에 집중하고 그다음 전체 검토를 진행하겠다고 제안합니다.
+- 이 분석은 법적 결정을 내리기 전에 반드시 자격 있는 법률 전문가의 검토를 받아야 한다고 항상 상기시킵니다.

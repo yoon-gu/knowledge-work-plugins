@@ -1,323 +1,220 @@
 ---
 name: memory-management
-description: Two-tier memory system that makes Claude a true workplace collaborator. Decodes shorthand, acronyms, nicknames, and internal language so Claude understands requests like a colleague would. CLAUDE.md for working memory, memory/ directory for the full knowledge base.
+description: Claude를 진짜 업무 동료로 만들어 주는 2단계 기억 시스템입니다. 약어, 별명, 내부 언어를 해독해 Claude가 동료처럼 요청을 이해하도록 합니다. 작업 기억은 CLAUDE.md, 전체 지식 베이스는 memory/ 디렉터리입니다.
 user-invocable: false
 ---
 
-# Memory Management
+# 기억 관리
 
-Memory makes Claude your workplace collaborator - someone who speaks your internal language.
+기억은 Claude를 당신의 업무 동료로 만듭니다. 내부 언어를 함께 쓰는 사람처럼요.
 
-## The Goal
+## 목표
 
-Transform shorthand into understanding:
-
-```
-User: "ask todd to do the PSR for oracle"
-              ↓ Claude decodes
-"Ask Todd Martinez (Finance lead) to prepare the Pipeline Status Report
- for the Oracle Systems deal ($2.3M, closing Q2)"
-```
-
-Without memory, that request is meaningless. With memory, Claude knows:
-- **todd** → Todd Martinez, Finance lead, prefers Slack
-- **PSR** → Pipeline Status Report (weekly sales doc)
-- **oracle** → Oracle Systems deal, not the company
-
-## Architecture
+약어를 이해로 바꿉니다.
 
 ```
-CLAUDE.md          ← Hot cache (~30 people, common terms)
+사용자: "ask todd to do the PSR for oracle"
+              ↓ Claude가 해독합니다
+"Todd Martinez(Finance lead)에게 Oracle Systems 거래($2.3M, Q2 마감)의
+ Pipeline Status Report를 준비해 달라고 요청하세요"
+```
+
+기억이 없으면 이 요청은 의미가 없습니다. 기억이 있으면 Claude는 다음을 압니다.
+- **todd** → Todd Martinez, Finance lead, Slack 선호
+- **PSR** → Pipeline Status Report(주간 세일즈 문서)
+- **oracle** → 회사가 아니라 Oracle Systems 거래
+
+## 아키텍처
+
+```
+CLAUDE.md          ← 핫 캐시(~30명, 흔한 용어)
 memory/
-  glossary.md      ← Full decoder ring (everything)
-  people/          ← Complete profiles
-  projects/        ← Project details
-  context/         ← Company, teams, tools
+  glossary.md      ← 전체 해독표(모든 것)
+  people/          ← 전체 프로필
+  projects/        ← 프로젝트 세부 정보
+  context/         ← 회사, 팀, 도구
 ```
 
-**CLAUDE.md (Hot Cache):**
-- Top ~30 people you interact with most
-- ~30 most common acronyms/terms
-- Active projects (5-15)
-- Your preferences
-- **Goal: Cover 90% of daily decoding needs**
+**CLAUDE.md (핫 캐시):**
+- 가장 자주 상호작용하는 상위 약 30명
+- 가장 흔한 약어/용어 약 30개
+- 활성 프로젝트(5-15개)
+- 당신의 선호
+- **목표: 일상적인 해독 수요의 90%를 커버**
 
-**memory/glossary.md (Full Glossary):**
-- Complete decoder ring - everyone, every term
-- Searched when something isn't in CLAUDE.md
-- Can grow indefinitely
+**memory/glossary.md (전체 용어집):**
+- 완전한 해독표 - 모든 사람, 모든 용어
+- CLAUDE.md에 없을 때 검색
+- 무한히 확장 가능
 
 **memory/people/, projects/, context/:**
-- Rich detail when needed for execution
-- Full profiles, history, context
+- 실행에 필요할 때 풍부한 세부 정보
+- 전체 프로필, 이력, 맥락
 
-## Lookup Flow
+## 조회 흐름
 
 ```
-User: "ask todd about the PSR for phoenix"
+사용자: "ask todd about the PSR for phoenix"
 
-1. Check CLAUDE.md (hot cache)
+1. CLAUDE.md 확인(핫 캐시)
    → Todd? ✓ Todd Martinez, Finance
    → PSR? ✓ Pipeline Status Report
    → Phoenix? ✓ DB migration project
 
-2. If not found → search memory/glossary.md
-   → Full glossary has everyone/everything
+2. 없으면 → memory/glossary.md를 검색
+   → 전체 용어집에 모든 사람/모든 것이 있음
 
-3. If still not found → ask user
-   → "What does X mean? I'll remember it."
+3. 그래도 없으면 → 사용자에게 질문
+   → "X가 무슨 뜻인가요? 기억해 두겠습니다."
 ```
 
-This tiered approach keeps CLAUDE.md lean (~100 lines) while supporting unlimited scale in memory/.
+이 단계적 접근은 CLAUDE.md를 가볍게 유지(~100줄)하면서 memory/에서 무한한 확장을 지원합니다.
 
-## File Locations
+## 파일 위치
 
-- **Working memory:** `CLAUDE.md` in current working directory
-- **Deep memory:** `memory/` subdirectory
+- **작업 기억:** 현재 작업 디렉터리의 `CLAUDE.md`
+- **심층 기억:** `memory/` 하위 디렉터리
 
-## Working Memory Format (CLAUDE.md)
+## 작업 기억 형식(CLAUDE.md)
 
-Use tables for compactness. Target ~50-80 lines total.
+간결하게 표를 사용합니다. 전체 50-80줄을 목표로 합니다.
 
 ```markdown
-# Memory
+# 기억
 
-## Me
-[Name], [Role] on [Team]. [One sentence about what I do.]
+## 나
+[이름], [팀]의 [역할].
 
-## People
-| Who | Role |
+## 사람
+| 누구 | 역할 |
 |-----|------|
 | **Todd** | Todd Martinez, Finance lead |
-| **Sarah** | Sarah Chen, Engineering (Platform) |
+| **Sarah** | Sarah Chen, Engineering(Platform) |
 | **Greg** | Greg Wilson, Sales |
-→ Full list: memory/glossary.md, profiles: memory/people/
+→ 전체 목록: memory/glossary.md, 프로필: memory/people/
 
-## Terms
-| Term | Meaning |
+## 용어
+| 용어 | 의미 |
 |------|---------|
 | PSR | Pipeline Status Report |
-| P0 | Drop everything priority |
-| standup | Daily 9am sync |
-→ Full glossary: memory/glossary.md
+| P0 | 모든 걸 제쳐두는 우선순위 |
+| standup | 매일 오전 9시 싱크 |
+→ 전체 용어집: memory/glossary.md
 
-## Projects
-| Name | What |
+## 프로젝트
+| 이름 | 내용 |
 |------|------|
-| **Phoenix** | DB migration, Q2 launch |
-| **Horizon** | Mobile app redesign |
-→ Details: memory/projects/
+| **Phoenix** | DB 마이그레이션, Q2 출시 |
+| **Horizon** | 모바일 앱 리디자인 |
+→ 세부 정보: memory/projects/
 
-## Preferences
-- 25-min meetings with buffers
-- Async-first, Slack over email
-- No meetings Friday afternoons
+## 선호
+- 버퍼가 있는 25분 회의
+- 비동기 우선, 이메일보다 Slack
+- 금요일 오후 회의 없음
 ```
 
-## Deep Memory Format (memory/)
+## 심층 기억 형식(memory/)
 
-**memory/glossary.md** - The decoder ring:
+**memory/glossary.md** - 해독표:
 ```markdown
-# Glossary
+# 용어집
 
-Workplace shorthand, acronyms, and internal language.
+업무 약어, 내부 용어, 내부 언어.
 
-## Acronyms
-| Term | Meaning | Context |
+## 약어
+| 용어 | 의미 | 맥락 |
 |------|---------|---------|
-| PSR | Pipeline Status Report | Weekly sales doc |
-| OKR | Objectives & Key Results | Quarterly planning |
-| P0/P1/P2 | Priority levels | P0 = drop everything |
+| PSR | Pipeline Status Report | 주간 세일즈 문서 |
+| OKR | Objectives & Key Results | 분기 계획 |
+| P0/P1/P2 | 우선순위 수준 | P0 = 모든 걸 제쳐둠 |
 
-## Internal Terms
-| Term | Meaning |
+## 내부 용어
+| 용어 | 의미 |
 |------|---------|
-| standup | Daily 9am sync in #engineering |
-| the migration | Project Phoenix database work |
-| ship it | Deploy to production |
-| escalate | Loop in leadership |
+| standup | #engineering에서 하는 매일 오전 9시 싱크 |
+| the migration | Project Phoenix의 데이터베이스 작업 |
+| ship it | 프로덕션에 배포 |
+| escalate | 리더십을 끌어들이다 |
 
-## Nicknames → Full Names
-| Nickname | Person |
+## 별명 → 정식 이름
+| 별명 | 사람 |
 |----------|--------|
-| Todd | Todd Martinez (Finance) |
-| T | Also Todd Martinez |
+| Todd | Todd Martinez(Finance) |
+| T | 역시 Todd Martinez |
 
-## Project Codenames
-| Codename | Project |
-|----------|---------|
-| Phoenix | Database migration |
-| Horizon | New mobile app |
+## 프로젝트 코드명
+| 코드명 | 프로젝트 |
+|----------|--------|
+| Phoenix | 데이터베이스 마이그레이션 |
+| Horizon | 새 모바일 앱 |
 ```
 
 **memory/people/{name}.md:**
 ```markdown
 # Todd Martinez
 
-**Also known as:** Todd, T
-**Role:** Finance Lead
-**Team:** Finance
-**Reports to:** CFO (Michael Chen)
+**다른 이름:** Todd, T
+**역할:** Finance Lead
+**팀:** Finance
+**보고 대상:** CFO(Michael Chen)
 
-## Communication
-- Prefers Slack DM
-- Quick responses, very direct
-- Best time: mornings
+## 커뮤니케이션
+- Slack DM 선호
+- 응답이 빠르고 매우 직설적
+- 최적 시간: 아침
 
-## Context
-- Handles all PSRs and financial reporting
-- Key contact for deal approvals over $500k
-- Works closely with Sales on forecasting
+## 맥락
+- 모든 PSR과 재무 보고를 담당
+- $500k를 넘는 딜 승인 핵심 연락처
+- Sales와 예측에서 긴밀히 협업
 
-## Notes
-- Cubs fan, likes talking baseball
+## 메모
+- Cubs 팬, 야구 이야기 좋아함
 ```
 
 **memory/projects/{name}.md:**
 ```markdown
 # Project Phoenix
 
-**Codename:** Phoenix
-**Also called:** "the migration"
-**Status:** Active, launching Q2
+**코드명:** Phoenix
+**다른 이름:** "the migration"
+**상태:** 진행 중, Q2 출시
 
-## What It Is
-Database migration from legacy Oracle to PostgreSQL.
+## 무엇인가
+기존 Oracle에서 PostgreSQL로의 데이터베이스 마이그레이션.
 
-## Key People
-- Sarah - tech lead
-- Todd - budget owner
-- Greg - stakeholder (sales impact)
+## 핵심 인물
+- Sarah - 기술 리드
+- Todd - 예산 담당
+- Greg - 이해관계자(세일즈 영향)
 
-## Context
-$1.2M budget, 6-month timeline. Critical path for Horizon project.
+## 맥락
+$1.2M 예산, 6개월 일정. Horizon 프로젝트의 핵심 경로.
 ```
 
 **memory/context/company.md:**
 ```markdown
-# Company Context
+# 회사 맥락
 
-## Tools & Systems
-| Tool | Used for | Internal name |
+## 도구 및 시스템
+| 도구 | 용도 | 내부 이름 |
 |------|----------|---------------|
 | Slack | Communication | - |
 | Asana | Engineering tasks | - |
 | Salesforce | CRM | "SF" or "the CRM" |
-| Notion | Docs/wiki | - |
+| Notion | 문서/위키 | - |
 
-## Teams
-| Team | What they do | Key people |
+## 팀
+| 팀 | 하는 일 | 핵심 인물 |
 |------|--------------|------------|
-| Platform | Infrastructure | Sarah (lead) |
-| Finance | Money stuff | Todd (lead) |
-| Sales | Revenue | Greg |
+| Platform | 인프라 | Sarah(리드) |
+| Finance | 돈 관련 업무 | Todd(리드) |
+| Sales | 매출 | Greg |
 
-## Processes
-| Process | What it means |
+## 프로세스
+| 프로세스 | 의미 |
 |---------|---------------|
-| Weekly sync | Monday 10am all-hands |
-| Ship review | Thursday deploy approval |
+| 주간 싱크 | 월요일 오전 10시 전체 회의 |
+| 배포 검토 | 목요일 배포 승인 |
 ```
-
-## How to Interact
-
-### Decoding User Input (Tiered Lookup)
-
-**Always** decode shorthand before acting on requests:
-
-```
-1. CLAUDE.md (hot cache)     → Check first, covers 90% of cases
-2. memory/glossary.md        → Full glossary if not in hot cache
-3. memory/people/, projects/ → Rich detail when needed
-4. Ask user                  → Unknown term? Learn it.
-```
-
-Example:
-```
-User: "ask todd to do the PSR for oracle"
-
-CLAUDE.md lookup:
-  "todd" → Todd Martinez, Finance ✓
-  "PSR" → Pipeline Status Report ✓
-  "oracle" → (not in hot cache)
-
-memory/glossary.md lookup:
-  "oracle" → Oracle Systems deal ($2.3M) ✓
-
-Now Claude can act with full context.
-```
-
-### Adding Memory
-
-When user says "remember this" or "X means Y":
-
-1. **Glossary items** (acronyms, terms, shorthand):
-   - Add to memory/glossary.md
-   - If frequently used, add to CLAUDE.md Quick Glossary
-
-2. **People:**
-   - Create/update memory/people/{name}.md
-   - Add to CLAUDE.md Key People if important
-   - **Capture nicknames** - critical for decoding
-
-3. **Projects:**
-   - Create/update memory/projects/{name}.md
-   - Add to CLAUDE.md Active Projects if current
-   - **Capture codenames** - "Phoenix", "the migration", etc.
-
-4. **Preferences:** Add to CLAUDE.md Preferences section
-
-### Recalling Memory
-
-When user asks "who is X" or "what does X mean":
-
-1. Check CLAUDE.md first
-2. Check memory/ for full detail
-3. If not found: "I don't know what X means yet. Can you tell me?"
-
-### Progressive Disclosure
-
-1. Load CLAUDE.md for quick parsing of any request
-2. Dive into memory/ when you need full context for execution
-3. Example: drafting an email to todd about the PSR
-   - CLAUDE.md tells you Todd = Todd Martinez, PSR = Pipeline Status Report
-   - memory/people/todd-martinez.md tells you he prefers Slack, is direct
-
-## Bootstrapping
-
-Use `/productivity:start` to initialize by scanning your chat, calendar, email, and documents. Extracts people, projects, and starts building the glossary.
-
-## Conventions
-
-- **Bold** terms in CLAUDE.md for scannability
-- Keep CLAUDE.md under ~100 lines (the "hot 30" rule)
-- Filenames: lowercase, hyphens (`todd-martinez.md`, `project-phoenix.md`)
-- Always capture nicknames and alternate names
-- Glossary tables for easy lookup
-- When something's used frequently, promote it to CLAUDE.md
-- When something goes stale, demote it to memory/ only
-
-## What Goes Where
-
-| Type | CLAUDE.md (Hot Cache) | memory/ (Full Storage) |
-|------|----------------------|------------------------|
-| Person | Top ~30 frequent contacts | glossary.md + people/{name}.md |
-| Acronym/term | ~30 most common | glossary.md (complete list) |
-| Project | Active projects only | glossary.md + projects/{name}.md |
-| Nickname | In Key People if top 30 | glossary.md (all nicknames) |
-| Company context | Quick reference only | context/company.md |
-| Preferences | All preferences | - |
-| Historical/stale | ✗ Remove | ✓ Keep in memory/ |
-
-## Promotion / Demotion
-
-**Promote to CLAUDE.md when:**
-- You use a term/person frequently
-- It's part of active work
-
-**Demote to memory/ only when:**
-- Project completed
-- Person no longer frequent contact
-- Term rarely used
-
-This keeps CLAUDE.md fresh and relevant.

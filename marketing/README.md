@@ -1,62 +1,62 @@
-# Marketing Plugin
+# 마케팅 플러그인
 
-A marketing plugin primarily designed for [Cowork](https://claude.com/product/cowork), Anthropic's agentic desktop application — though it also works in Claude Code. Content creation, campaign planning, brand voice management, competitive analysis, and performance reporting.
+[Cowork](https://claude.com/product/cowork)를 위해 주로 설계된 마케팅 플러그인입니다. Anthropic의 에이전트형 데스크톱 애플리케이션이지만 Claude Code에서도 작동합니다. 콘텐츠 제작, 캠페인 기획, 브랜드 보이스 관리, 경쟁 분석, 성과 보고를 지원합니다.
 
-## Installation
+## 설치
 
 ```bash
 claude plugins add knowledge-work-plugins/marketing
 ```
 
-## Commands
+## 명령
 
-| Command | Description |
+| 명령 | 설명 |
 |---|---|
-| `/draft-content` | Draft blog posts, social media, email newsletters, landing pages, press releases, and case studies |
-| `/campaign-plan` | Generate a full campaign brief with objectives, channels, content calendar, and success metrics |
-| `/brand-review` | Review content against your brand voice, style guide, and messaging pillars |
-| `/competitive-brief` | Research competitors and generate a positioning and messaging comparison |
-| `/performance-report` | Build a marketing performance report with key metrics, trends, and optimization recommendations |
-| `/seo-audit` | Run a comprehensive SEO audit — keyword research, on-page analysis, content gaps, technical checks, and competitor comparison |
-| `/email-sequence` | Design and draft multi-email sequences for nurture flows, onboarding, drip campaigns, and more |
+| `/draft-content` | 블로그 글, 소셜 미디어, 이메일 뉴스레터, 랜딩 페이지, 보도자료, 사례 연구 초안을 작성합니다 |
+| `/campaign-plan` | 목표, 채널, 콘텐츠 캘린더, 성공 지표를 포함한 완전한 캠페인 브리프를 생성합니다 |
+| `/brand-review` | 콘텐츠를 브랜드 보이스, 스타일 가이드, 메시징 기둥과 비교해 검토합니다 |
+| `/competitive-brief` | 경쟁사를 조사하고 포지셔닝 및 메시지 비교를 생성합니다 |
+| `/performance-report` | 핵심 지표, 추세, 최적화 권고를 포함한 마케팅 성과 보고서를 만듭니다 |
+| `/seo-audit` | 키워드 조사, 온페이지 분석, 콘텐츠 격차, 기술 점검, 경쟁사 비교를 포함한 종합 SEO 감사를 실행합니다 |
+| `/email-sequence` | 넛지 흐름, 온보딩, 드립 캠페인 등을 위한 다중 이메일 시퀀스를 설계하고 초안을 작성합니다 |
 
-## Skills
+## 스킬
 
-| Skill | Description |
+| 스킬 | 설명 |
 |---|---|
-| `content-creation` | Content type templates, writing best practices by channel, SEO fundamentals, headline formulas, and CTA guidance |
-| `campaign-planning` | Campaign frameworks, channel selection, content calendar creation, budget allocation, and success metrics |
-| `brand-voice` | Brand voice documentation, voice attributes, tone adaptation, style guide enforcement, and terminology management |
-| `competitive-analysis` | Competitive research methodology, messaging comparison, content gap analysis, positioning, and battlecard creation |
-| `performance-analytics` | Key metrics by channel, reporting templates, trend analysis, attribution modeling, and optimization frameworks |
+| `content-creation` | 콘텐츠 유형 템플릿, 채널별 글쓰기 모범 사례, SEO 기초, 제목 공식, CTA 지침 |
+| `campaign-planning` | 캠페인 프레임워크, 채널 선택, 콘텐츠 캘린더 작성, 예산 배분, 성공 지표 |
+| `brand-voice` | 브랜드 보이스 문서화, 보이스 속성, 톤 조정, 스타일 가이드 준수, 용어 관리 |
+| `competitive-analysis` | 경쟁 조사 방법론, 메시지 비교, 콘텐츠 격차 분석, 포지셔닝, 배틀카드 생성 |
+| `performance-analytics` | 채널별 핵심 지표, 보고서 템플릿, 추세 분석, 어트리뷰션 모델링, 최적화 프레임워크 |
 
-## Example Workflows
+## 예시 워크플로
 
-### Drafting a Blog Post
+### 블로그 글 초안 작성
 
 ```
 > /draft-content
-Type: blog post
-Topic: How AI is transforming B2B marketing
-Audience: Marketing directors at mid-market SaaS companies
-Key messages: AI saves time on repetitive tasks, improves personalization, requires human oversight
-Tone: Authoritative but approachable
-Length: 1200 words
+유형: 블로그 글
+주제: AI가 B2B 마케팅을 어떻게 바꾸고 있는가
+대상: 중견 SaaS 회사의 마케팅 디렉터
+핵심 메시지: AI는 반복 작업 시간을 줄이고, 개인화를 개선하며, 사람의 검토가 필요하다
+톤: 권위 있지만 접근하기 쉬움
+길이: 1200단어
 ```
 
-Claude will generate a structured blog post draft with an engaging headline, introduction with a hook, organized sections, SEO-optimized subheadings, and a clear call to action.
+Claude는 매력적인 헤드라인, 훅이 있는 도입부, 정돈된 섹션, SEO에 최적화된 소제목, 명확한 행동 유도 문구를 갖춘 구조화된 블로그 초안을 생성합니다.
 
 ### Planning a Campaign
 
 ```
 > /campaign-plan
-Goal: Drive 500 signups for our new product launch
-Audience: Technical decision-makers at enterprise companies
-Timeline: 6 weeks
-Budget range: $20,000-$30,000
+목표: 새 제품 출시로 500건의 가입 유도
+대상: 엔터프라이즈 기업의 기술 의사결정자
+일정: 6주
+예산 범위: $20,000-$30,000
 ```
 
-Claude will produce a campaign brief covering objectives, audience segmentation, key messages, channel strategy, a week-by-week content calendar, and KPIs to track.
+Claude는 목표, 대상 세분화, 핵심 메시지, 채널 전략, 주차별 콘텐츠 캘린더, 추적할 KPI를 포함한 캠페인 브리프를 작성합니다.
 
 ### Reviewing Content Against Brand Guidelines
 
@@ -65,25 +65,25 @@ Claude will produce a campaign brief covering objectives, audience segmentation,
 [paste your draft content]
 ```
 
-If your brand style guide is configured in local settings, Claude will check your content against voice, tone, terminology, and messaging pillars. If not configured, Claude will ask about your guidelines or provide a generic review for clarity, consistency, and professionalism.
+브랜드 스타일 가이드가 로컬 설정에 구성되어 있다면, Claude가 보이스, 톤, 용어, 메시징 기둥을 기준으로 콘텐츠를 검토합니다. 구성되어 있지 않다면, 가이드라인을 물어보거나 명확성, 일관성, 전문성에 대한 일반 검토를 제공합니다.
 
-## Configuration
+## 설정
 
-Configure your brand voice, style guide, and target personas in a local settings file for personalized output. This allows commands like `/draft-content` and `/brand-review` to automatically apply your brand standards without prompting each time.
+개인화된 출력을 위해 브랜드 보이스, 스타일 가이드, 타깃 페르소나를 로컬 설정 파일에 구성하세요. 이렇게 하면 `/draft-content`와 `/brand-review` 같은 명령이 매번 묻지 않고 브랜드 기준을 자동으로 적용합니다.
 
-## MCP Integrations
+## MCP 연동
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](CONNECTORS.md).
+> 익숙하지 않은 자리표시자가 보이거나 어떤 도구가 연결되어 있는지 확인해야 한다면 [CONNECTORS.md](CONNECTORS.md)를 참고하세요.
 
-This plugin works with the following MCP servers:
+이 플러그인은 다음 MCP 서버와 함께 작동합니다.
 
-- **Slack** — Share drafts, reports, and briefs with your team
-- **Canva** — Create and edit design assets
-- **Figma** — Access design files and brand assets
-- **HubSpot** — Pull campaign data, manage contacts, and track marketing automation
-- **Amplitude** — Pull product analytics and user behavior data for performance reporting
-- **Notion** — Access briefs, style guides, and campaign documents
-- **Ahrefs** — SEO keyword research, backlink analysis, and site audits
-- **Similarweb** — Competitive traffic analysis and market benchmarking
-- **Klaviyo** — Draft and review email marketing sequences and campaigns
-- **Supermetrics** — Pull marketing data from multiple platforms for analytics and reporting
+- **Slack** — 팀과 초안, 보고서, 브리프를 공유합니다
+- **Canva** — 디자인 자산을 생성하고 편집합니다
+- **Figma** — 디자인 파일과 브랜드 자산에 접근합니다
+- **HubSpot** — 캠페인 데이터를 가져오고, 연락처를 관리하며, 마케팅 자동화를 추적합니다
+- **Amplitude** — 성과 보고를 위해 제품 분석과 사용자 행동 데이터를 가져옵니다
+- **Notion** — 브리프, 스타일 가이드, 캠페인 문서에 접근합니다
+- **Ahrefs** — SEO 키워드 조사, 백링크 분석, 사이트 감사를 수행합니다
+- **Similarweb** — 경쟁 트래픽 분석과 시장 벤치마킹을 수행합니다
+- **Klaviyo** — 이메일 마케팅 시퀀스와 캠페인의 초안을 작성하고 검토합니다
+- **Supermetrics** — 분석과 보고를 위해 여러 플랫폼의 마케팅 데이터를 가져옵니다

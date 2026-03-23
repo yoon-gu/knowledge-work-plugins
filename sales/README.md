@@ -1,124 +1,124 @@
-# Sales Plugin
+# Sales 플러그인
 
-A sales productivity plugin primarily designed for [Cowork](https://claude.com/product/cowork), Anthropic's agentic desktop application — though it also works in Claude Code. Helps with prospecting, outreach, pipeline management, call preparation, and deal strategy. Works with any sales team — standalone with web search and your input, supercharged when you connect your CRM, email, and other tools.
+[Cowork](https://claude.com/product/cowork)를 위해 주로 설계된 영업 생산성 플러그인입니다. Anthropic의 에이전틱 데스크톱 애플리케이션용으로 만들었지만 Claude Code에서도 작동합니다. 잠재 고객 발굴, 아웃리치, 파이프라인 관리, 통화 준비, 딜 전략을 돕습니다. 어떤 영업팀과도 함께 사용할 수 있으며, 웹 검색과 사용자 입력만으로도 단독 사용 가능하고 CRM, 이메일, 기타 도구를 연결하면 더 강력해집니다.
 
-## Installation
+## 설치
 
 ```bash
 claude plugins add knowledge-work-plugins/sales
 ```
 
-## Commands
+## 명령
 
-Explicit workflows you invoke with a slash command:
+슬래시 명령으로 호출하는 명시적 워크플로입니다.
 
-| Command | Description |
+| 명령 | 설명 |
 |---|---|
-| `/call-summary` | Process call notes or transcript — extract action items, draft follow-up, generate internal summary |
-| `/forecast` | Generate a weighted sales forecast — upload CSV or describe your pipeline, set quota, get projections |
-| `/pipeline-review` | Analyze pipeline health — prioritize deals, flag risks, get weekly action plan |
+| `/call-summary` | 통화 메모나 녹취록을 처리합니다. 액션 아이템을 추출하고, 후속 초안을 작성하고, 내부 요약을 생성합니다. |
+| `/forecast` | 가중 영업 예측을 생성합니다. CSV를 업로드하거나 파이프라인을 설명하고, 할당량을 설정하면 전망을 얻을 수 있습니다. |
+| `/pipeline-review` | 파이프라인 건전성을 분석합니다. 딜 우선순위를 정하고, 리스크를 표시하고, 주간 실행 계획을 얻습니다. |
 
-All commands work **standalone** (paste notes, upload CSV, or describe your situation) and get **supercharged** with MCP connectors.
+모든 명령은 **단독으로**도 작동합니다. 메모를 붙여넣거나, CSV를 업로드하거나, 상황을 설명하면 됩니다. MCP 커넥터를 연결하면 **더 강력해집니다**.
 
-## Skills
+## 스킬
 
-Domain knowledge Claude uses automatically when relevant:
+Claude가 관련 있을 때 자동으로 사용하는 도메인 지식입니다.
 
-| Skill | Description |
+| 스킬 | 설명 |
 |---|---|
-| `account-research` | Research a company or person — web search for company intel, key contacts, recent news, hiring signals |
-| `call-prep` | Prepare for sales calls — account context, attendee research, suggested agenda, discovery questions |
-| `daily-briefing` | Prioritized daily sales briefing — meetings, pipeline alerts, email priorities, suggested actions |
-| `draft-outreach` | Research-first outreach — research the prospect, then draft personalized email and LinkedIn messages |
-| `competitive-intelligence` | Research competitors — product comparison, pricing intel, recent releases, differentiation matrix, sales talk tracks |
-| `create-an-asset` | Generate custom sales assets — landing pages, decks, one-pagers, workflow demos tailored to your prospect |
+| `account-research` | 회사나 사람을 조사합니다. 회사 인텔, 핵심 연락처, 최근 뉴스, 채용 신호를 웹 검색합니다. |
+| `call-prep` | 영업 통화를 준비합니다. 계정 맥락, 참석자 조사, 제안 아젠다, 발견 질문을 제공합니다. |
+| `daily-briefing` | 우선순위가 반영된 일일 영업 브리핑을 제공합니다. 미팅, 파이프라인 알림, 이메일 우선순위, 제안 행동을 담습니다. |
+| `draft-outreach` | 조사 우선 아웃리치를 만듭니다. 잠재 고객을 조사한 뒤 개인화된 이메일과 LinkedIn 메시지를 작성합니다. |
+| `competitive-intelligence` | 경쟁사를 조사합니다. 제품 비교, 가격 정보, 최근 출시, 차별화 매트릭스, 영업용 토크 트랙을 만듭니다. |
+| `create-an-asset` | 맞춤형 영업 자산을 생성합니다. 잠재 고객에 맞춘 랜딩 페이지, 덱, 원페이저, 워크플로 데모를 만듭니다. |
 
-## Example Workflows
+## 예시 워크플로
 
-### After a Call
+### 통화 후
 
 ```
 /call-summary
 ```
 
-Paste your notes or transcript. Get a structured summary, action items with owners, and a draft follow-up email. If CRM is connected, offers to log the activity and create tasks.
+메모나 녹취록을 붙여넣으세요. 구조화된 요약, 담당자가 포함된 액션 아이템, 후속 이메일 초안을 받을 수 있습니다. CRM이 연결되어 있으면 활동 기록과 작업 생성도 제안합니다.
 
-### Weekly Forecast
+### 주간 예측
 
 ```
 /forecast
 ```
 
-Upload a CSV export from your CRM (or paste your deals). Tell me your quota and timeline. Get a weighted forecast with best/likely/worst scenarios, commit vs. upside breakdown, and gap analysis.
+CRM에서 CSV를 내보내 업로드하거나 딜을 붙여넣으세요. 목표와 기간을 알려 주면 최상/가능/최악 시나리오가 포함된 가중 예측, 커밋 vs. 업사이드 구분, 갭 분석을 받을 수 있습니다.
 
-### Pipeline Review
+### 파이프라인 검토
 
 ```
 /pipeline-review
 ```
 
-Upload a CSV or describe your pipeline. Get a health score, deal prioritization, risk flags (stale deals, past close dates, single-threaded), and a weekly action plan.
+CSV를 업로드하거나 파이프라인을 설명하세요. 건전성 점수, 딜 우선순위, 리스크 플래그(오래된 딜, 지난 종료일, 단일 접점), 주간 실행 계획을 받을 수 있습니다.
 
-### Researching a Prospect
+### 잠재 고객 조사
 
-Just ask naturally:
+자연스럽게 물어보면 됩니다.
 ```
 Research Acme Corp before my call tomorrow
 ```
 
-The `account-research` skill triggers automatically and gives you company overview, key contacts, recent news, and recommended approach.
+`account-research` 스킬이 자동으로 실행되어 회사 개요, 핵심 연락처, 최근 뉴스, 권장 접근 방식을 제공합니다.
 
-### Drafting Outreach
+### 아웃리치 초안 작성
 
 ```
 Draft an email to the VP of Engineering at TechStart
 ```
 
-The `draft-outreach` skill researches the prospect first, then generates personalized outreach with multiple angles.
+`draft-outreach` 스킬이 먼저 잠재 고객을 조사한 뒤, 여러 각도의 개인화된 아웃리치 문안을 생성합니다.
 
-### Competitive Intel
+### 경쟁 인텔
 
 ```
 How do we compare to Competitor X?
 ```
 
-The `competitive-intelligence` skill researches both companies and builds a differentiation matrix with talk tracks.
+`competitive-intelligence` 스킬이 양쪽 회사를 조사하고, 차별화 매트릭스와 토크 트랙을 만듭니다.
 
-## Standalone + Supercharged
+## 단독 사용 + 강화 사용
 
-Every command and skill works without any integrations:
+모든 명령과 스킬은 통합 없이도 작동합니다.
 
-| What You Can Do | Standalone | Supercharged With |
+| 할 수 있는 일 | 단독 사용 | 연결 시 강화 |
 |-----------------|------------|-------------------|
-| Process call notes | Paste notes/transcript | Transcripts MCP (e.g. Gong, Fireflies) |
-| Forecast pipeline | Upload CSV, paste deals | CRM MCP |
-| Review pipeline | Upload CSV, describe deals | CRM MCP |
-| Research prospects | Web search | Enrichment MCP (e.g. Clay, ZoomInfo) |
-| Prep for calls | Describe meeting | CRM, Email, Calendar MCPs |
-| Draft outreach | Web search + your context | CRM, Email MCPs |
-| Competitive intel | Web search | CRM (win/loss data), Docs (battlecards) |
+| 통화 메모 처리 | 메모/녹취록 붙여넣기 | Transcripts MCP(예: Gong, Fireflies) |
+| 파이프라인 예측 | CSV 업로드, 딜 붙여넣기 | CRM MCP |
+| 파이프라인 검토 | CSV 업로드, 딜 설명 | CRM MCP |
+| 잠재 고객 조사 | 웹 검색 | Enrichment MCP(예: Clay, ZoomInfo) |
+| 통화 준비 | 미팅 설명 | CRM, Email, Calendar MCP |
+| 아웃리치 초안 작성 | 웹 검색 + 사용자 맥락 | CRM, Email MCP |
+| 경쟁 인텔 | 웹 검색 | CRM(win/loss 데이터), Docs(battlecards) |
 
-## MCP Integrations
+## MCP 통합
 
 > If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](CONNECTORS.md).
 
-Connect your tools for a richer experience:
+더 풍부한 사용 경험을 위해 도구를 연결하세요.
 
-| Category | Examples | What It Enables |
+| 범주 | 예시 | 가능해지는 일 |
 |---|---|---|
-| **CRM** | HubSpot, Close | Pipeline data, account history, contact records |
-| **Transcripts** | Fireflies, Gong, Chorus | Call recordings, transcripts, key moments |
-| **Enrichment** | Clay, ZoomInfo, Apollo | Company and contact data enrichment |
-| **Chat** | Slack, Teams | Internal discussions, colleague intel |
+| **CRM** | HubSpot, Close | 파이프라인 데이터, 계정 이력, 연락처 기록 |
+| **Transcripts** | Fireflies, Gong, Chorus | 통화 녹음, 녹취록, 핵심 순간 |
+| **Enrichment** | Clay, ZoomInfo, Apollo | 회사 및 연락처 데이터 보강 |
+| **Chat** | Slack, Teams | 내부 논의, 동료 인텔 |
 
-See [CONNECTORS.md](CONNECTORS.md) for the full list of supported integrations, including email, calendar, and additional CRM options.
+[CONNECTORS.md](CONNECTORS.md)에서 이메일, 캘린더, 추가 CRM 옵션을 포함한 전체 지원 통합 목록을 확인하세요.
 
-## Settings
+## 설정
 
-Create a `settings.local.json` file to personalize:
+개인화를 위해 `settings.local.json` 파일을 만드세요.
 
-- **Cowork**: Save it in any folder you've shared with Cowork (via the folder picker). The plugin finds it automatically.
-- **Claude Code**: Save it at `sales/.claude/settings.local.json`.
+- **Cowork**: Cowork와 공유한 폴더(폴더 선택기를 통해)에 저장하세요. 플러그인이 자동으로 찾습니다.
+- **Claude Code**: `sales/.claude/settings.local.json`에 저장하세요.
 
 ```json
 {
@@ -143,4 +143,4 @@ Create a `settings.local.json` file to personalize:
 }
 ```
 
-The plugin will ask you for this information interactively if it's not configured.
+구성이 되어 있지 않으면 플러그인이 이 정보를 대화식으로 요청합니다.
