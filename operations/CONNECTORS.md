@@ -1,14 +1,14 @@
 # Connectors
 
-## How tool references work
+## 도구 참조 방식
 
-Plugin files use `~~category` as a placeholder for whatever tool the user connects in that category. For example, `~~ITSM` might mean ServiceNow, Zendesk, or any other service management tool with an MCP server.
+플러그인 파일은 `~~category`를 해당 카테고리에서 사용자가 연결하는 도구의 플레이스홀더로 사용합니다. 예를 들어, `~~ITSM`은 ServiceNow, Zendesk, 또는 MCP 서버가 있는 다른 서비스 관리 도구를 의미할 수 있습니다.
 
-Plugins are **tool-agnostic** — they describe workflows in terms of categories (ITSM, project tracker, knowledge base, etc.) rather than specific products. The `.mcp.json` pre-configures specific MCP servers, but any MCP server in that category works.
+플러그인은 **도구에 종속되지 않습니다** — 특정 제품이 아닌 카테고리(ITSM, 프로젝트 트래커, 지식 베이스 등) 기준으로 워크플로우를 설명합니다. `.mcp.json`은 특정 MCP 서버를 미리 구성하지만, 해당 카테고리의 모든 MCP 서버를 사용할 수 있습니다.
 
-## Connectors for this plugin
+## 이 플러그인의 Connectors
 
-| Category | Placeholder | Included servers | Other options |
+| 카테고리 | 플레이스홀더 | 포함된 서버 | 기타 옵션 |
 |----------|-------------|-----------------|---------------|
 | Calendar | `~~calendar` | Google Calendar | Microsoft 365 |
 | Chat | `~~chat` | Slack | Microsoft Teams |
