@@ -1,7 +1,7 @@
 ---
 name: draft-offer
-description: Draft an offer letter with comp details and terms. Use when a candidate is ready for an offer, assembling a total comp package (base, equity, signing bonus), writing the offer letter text itself, or prepping negotiation guidance for the hiring manager.
-argument-hint: "<role and level>"
+description: 보상 세부 정보와 조건이 포함된 오퍼 레터 초안을 작성합니다. 후보자에게 오퍼를 제시할 준비가 되었을 때, 총 보상 패키지(기본급, 주식, 사이닝 보너스)를 구성할 때, 오퍼 레터 본문을 작성할 때, 또는 채용 관리자를 위한 협상 가이던스를 준비할 때 사용하세요.
+argument-hint: "<역할 및 레벨>"
 ---
 
 # /draft-offer
@@ -30,38 +30,38 @@ argument-hint: "<role and level>"
 ## 출력 결과
 
 ```markdown
-## Offer Letter Draft: [Role] — [Level]
+## Offer Letter Draft: [역할] — [레벨]
 
-### Compensation Package
-| Component | Details |
+### 보상 패키지
+| 항목 | 세부 내용 |
 |-----------|---------|
-| **Base Salary** | $[X]/year |
-| **Equity** | [X shares/units], [vesting schedule] |
-| **Signing Bonus** | $[X] (if applicable) |
-| **Target Bonus** | [X]% of base (if applicable) |
-| **Total First-Year Comp** | $[X] |
+| **기본급** | $[X]/년 |
+| **주식** | [X shares/units], [베스팅 일정] |
+| **사이닝 보너스** | $[X] (해당하는 경우) |
+| **목표 보너스** | 기본급의 [X]% (해당하는 경우) |
+| **첫 해 총 보상** | $[X] |
 
-### Terms
-- **Start Date**: [Date]
-- **Reports To**: [Manager]
-- **Location**: [Office / Remote / Hybrid]
-- **Employment Type**: [Full-time, Exempt]
+### 조건
+- **시작일**: [날짜]
+- **보고 대상**: [관리자]
+- **근무 형태**: [사무실 / 원격 / 하이브리드]
+- **고용 형태**: [정규직, 면제 직원]
 
-### Benefits Summary
-[Key benefits highlights relevant to the candidate]
+### 복리후생 요약
+[후보자에게 관련 있는 주요 복리후생 내용]
 
-### Offer Letter Text
+### 오퍼 레터 본문
 
-Dear [Candidate Name],
+Dear [후보자 이름],
 
-We are pleased to offer you the position of [Title] at [Company]...
+We are pleased to offer you the position of [직함] at [회사명]...
 
-[Complete offer letter text]
+[전체 오퍼 레터 내용]
 
-### Notes for Hiring Manager
-- [Negotiation guidance if needed]
-- [Comp band context]
-- [Any flags or considerations]
+### 채용 관리자 메모
+- [필요 시 협상 가이던스]
+- [보상 밴드 맥락]
+- [주의 사항 또는 고려 사항]
 ```
 
 ## 커넥터 사용 시

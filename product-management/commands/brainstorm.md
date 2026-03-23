@@ -1,120 +1,120 @@
 ---
-description: Brainstorm a product idea, problem space, or strategic question with a sharp thinking partner
-argument-hint: "<topic, problem, or idea to explore>"
+description: 날카로운 사고 파트너와 함께 제품 아이디어, 문제 공간, 또는 전략적 질문을 브레인스토밍합니다
+argument-hint: "<탐색할 주제, 문제, 또는 아이디어>"
 ---
 
 # /brainstorm
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../CONNECTORS.md).
+> 익숙하지 않은 자리 표시자가 보이거나 어떤 도구가 연결되어 있는지 확인이 필요한 경우 [CONNECTORS.md](../CONNECTORS.md)를 참조하세요.
 
-Brainstorm a product topic with a sharp, opinionated thinking partner. This is a conversation, not a deliverable — the goal is to push thinking further than the PM would get alone.
+날카롭고 의견이 명확한 사고 파트너와 함께 제품 주제를 브레인스토밍합니다. 이것은 결과물이 아닌 대화입니다 — PM 혼자서는 도달하지 못할 수준까지 사고를 밀어붙이는 것이 목표입니다.
 
-## Usage
+## 사용법
 
 ```
 /brainstorm $ARGUMENTS
 ```
 
-## How It Works
+## 작동 방식
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
 │                      BRAINSTORM                                │
 ├────────────────────────────────────────────────────────────────┤
-│  STANDALONE (always works)                                     │
-│  ✓ Explore problem spaces and opportunity areas                │
-│  ✓ Generate and challenge product ideas                        │
-│  ✓ Stress-test assumptions and strategies                      │
-│  ✓ Apply PM frameworks (HMW, JTBD, First Principles, etc.)    │
-│  ✓ Capture key ideas, next steps, and open questions           │
+│  단독 사용 (항상 작동)                                          │
+│  ✓ 문제 공간 및 기회 영역 탐색                                  │
+│  ✓ 제품 아이디어 생성 및 검증                                   │
+│  ✓ 가정 및 전략 스트레스 테스트                                 │
+│  ✓ PM 프레임워크 적용 (HMW, JTBD, First Principles 등)         │
+│  ✓ 핵심 아이디어, 다음 단계, 미해결 질문 포착                   │
 ├────────────────────────────────────────────────────────────────┤
-│  SUPERCHARGED (when you connect your tools)                    │
-│  + Knowledge base: Pull prior research, specs, and decisions   │
-│  + Analytics: Ground ideas in actual usage data                │
-│  + Project tracker: Check what has been tried before           │
-│  + Chat: Review recent team discussions for context            │
+│  강화 사용 (도구 연결 시)                                       │
+│  + 지식 베이스: 이전 리서치, 스펙, 의사결정 내용 가져오기       │
+│  + 분석 도구: 실제 사용 데이터로 아이디어 근거 마련             │
+│  + 프로젝트 트래커: 이전에 시도한 내용 확인                     │
+│  + 채팅: 최근 팀 논의에서 컨텍스트 검토                         │
 └────────────────────────────────────────────────────────────────┘
 ```
 
-## Workflow
+## 워크플로
 
-### 1. Understand the Starting Point
+### 1. 출발점 파악
 
-The PM might bring any of these — identify which one and adapt:
+PM은 다음 중 어떤 것이든 가져올 수 있습니다 — 어떤 것인지 파악하고 적응하세요:
 
-- **A problem**: "Our users drop off during onboarding" — start in problem exploration mode
-- **A half-formed idea**: "What if we added a marketplace?" — start in assumption testing mode
-- **A broad question**: "How should we think about AI in our product?" — start in strategy exploration mode
-- **A constraint to work around**: "We need to grow without adding headcount" — start in solution ideation mode
-- **A vague instinct**: "Something feels off about our pricing" — start in problem exploration mode
+- **문제**: "사용자가 온보딩 중에 이탈합니다" — 문제 탐색 모드로 시작
+- **반쯤 형성된 아이디어**: "마켓플레이스를 추가하면 어떨까요?" — 가정 검증 모드로 시작
+- **광범위한 질문**: "제품에서 AI를 어떻게 생각해야 할까요?" — 전략 탐색 모드로 시작
+- **극복해야 할 제약**: "인력 증원 없이 성장해야 합니다" — 솔루션 아이디어 도출 모드로 시작
+- **막연한 직감**: "가격 책정에 뭔가 문제가 있는 것 같습니다" — 문제 탐색 모드로 시작
 
-Ask one clarifying question to frame the session, then dive in. Do not front-load a list of questions. The conversation should feel like two PMs at a whiteboard, not an intake form.
+세션의 틀을 잡기 위해 명확화 질문을 하나 하고 바로 시작하세요. 앞서 질문 목록을 쌓아두지 마세요. 대화는 두 명의 PM이 화이트보드 앞에 있는 것처럼 느껴져야 하며, 입력 양식이 되어서는 안 됩니다.
 
-### 2. Pull Context (if available)
+### 2. 컨텍스트 가져오기 (가능한 경우)
 
-If **~~knowledge base** is connected:
-- Search for prior research, specs, or decision documents related to the topic
-- Surface relevant user research findings or customer feedback
-- Find previous brainstorming notes or exploration documents
+**~~knowledge base**가 연결된 경우:
+- 주제와 관련된 이전 리서치, 스펙, 또는 의사결정 문서 검색
+- 관련 사용자 리서치 결과 또는 고객 피드백 발굴
+- 이전 브레인스토밍 노트 또는 탐색 문서 찾기
 
-If **~~product analytics** is connected:
-- Pull relevant usage data, adoption metrics, or behavioral patterns
-- Ground the brainstorm in real numbers rather than assumptions
+**~~product analytics**가 연결된 경우:
+- 관련 사용 데이터, 채택 지표, 또는 행동 패턴 가져오기
+- 가정이 아닌 실제 수치로 브레인스토밍 근거 마련
 
-If **~~project tracker** is connected:
-- Check if similar ideas have been explored, attempted, or shelved before
-- Look for related tickets, epics, or strategic themes
+**~~project tracker**가 연결된 경우:
+- 유사한 아이디어가 탐색되었거나, 시도되었거나, 보류된 적이 있는지 확인
+- 관련 티켓, 에픽, 또는 전략적 테마 찾기
 
-If **~~chat** is connected:
-- Search for recent team discussions on the topic
-- Surface relevant customer conversations or feedback threads
+**~~chat**이 연결된 경우:
+- 주제에 관한 최근 팀 논의 검색
+- 관련 고객 대화 또는 피드백 스레드 발굴
 
-If these tools are not connected, work entirely from what the PM provides. Do not ask them to connect tools.
+이러한 도구가 연결되어 있지 않으면 PM이 제공하는 내용만으로 작업하세요. 도구를 연결하도록 요청하지 마세요.
 
-### 3. Run the Session
+### 3. 세션 진행
 
-See the **product-brainstorming** skill for detailed guidance on brainstorming modes, frameworks, and session structure.
+**product-brainstorming** 스킬에서 브레인스토밍 모드, 프레임워크, 세션 구조에 대한 자세한 안내를 확인하세요.
 
-**Key behaviors:**
-- Be a sparring partner, not a scribe. React to ideas. Push back. Build on them. Suggest alternatives.
-- Match the PM's energy. If they are excited about a direction, explore it before challenging it.
-- Use frameworks when they help, not as a checklist. If "How Might We" unlocks new thinking, use it. If the conversation is already flowing, do not interrupt with a framework.
-- Push past the first idea. If the PM anchors on a solution early, acknowledge it, then ask for 3 more.
-- Name what you see. If the PM is solutioning before defining the problem, say so. If they are stuck in feature parity thinking, call it out.
-- Shift between divergent and convergent thinking. Open up when exploring. Narrow down when the PM has enough options on the table.
-- Keep the conversation moving. Do not let it stall on one idea. If a thread is exhausted, prompt a new angle.
+**핵심 행동 방식:**
+- 기록자가 아닌 토론 파트너가 되세요. 아이디어에 반응하세요. 반박하세요. 발전시키세요. 대안을 제시하세요.
+- PM의 에너지에 맞추세요. PM이 특정 방향에 흥분해 있다면, 도전하기 전에 먼저 함께 탐색하세요.
+- 프레임워크는 도움이 될 때 사용하되, 체크리스트로 사용하지 마세요. "How Might We"가 새로운 사고를 여는 데 도움이 된다면 사용하세요. 대화가 이미 흘러가고 있다면 프레임워크로 방해하지 마세요.
+- 첫 번째 아이디어를 넘어서세요. PM이 솔루션에 일찍 고착된다면, 인정하고 3개 더 요청하세요.
+- 보이는 것을 명명하세요. PM이 문제를 정의하기 전에 솔루션을 찾고 있다면 그렇게 말하세요. 기능 동등성 사고에 갇혀 있다면 지적하세요.
+- 발산적 사고와 수렴적 사고 사이를 전환하세요. 탐색할 때는 열어두세요. PM이 충분한 옵션을 가졌을 때는 좁혀가세요.
+- 대화를 계속 진행하세요. 한 아이디어에서 멈추지 마세요. 한 실마리가 소진되면 새로운 각도를 제시하세요.
 
-**Session rhythm:**
-1. **Frame** — What are we exploring? What do we already know? What would a good outcome look like?
-2. **Diverge** — Generate ideas. Follow tangents. No judgment yet.
-3. **Provoke** — Challenge assumptions. Bring in unexpected perspectives. Play devil's advocate.
-4. **Converge** — What are the strongest 2-3 ideas? What makes them interesting?
-5. **Capture** — Document what emerged and what to do next.
+**세션 리듬:**
+1. **프레임** — 무엇을 탐색하고 있나요? 우리가 이미 알고 있는 것은? 좋은 결과는 어떤 모습인가요?
+2. **발산** — 아이디어를 생성하세요. 접선을 따라가세요. 아직 판단하지 마세요.
+3. **도전** — 가정에 의문을 제기하세요. 예상치 못한 관점을 가져오세요. 반론을 펼치세요.
+4. **수렴** — 가장 강한 2-3개의 아이디어는 무엇인가요? 무엇이 흥미롭게 만드나요?
+5. **포착** — 무엇이 나왔는지, 다음에 할 것을 문서화하세요.
 
-### 4. Close the Session
+### 4. 세션 마무리
 
-When the conversation reaches a natural stopping point, offer a concise summary:
+대화가 자연스러운 마무리 지점에 도달하면 간결한 요약을 제공하세요:
 
-- **Key ideas** that emerged (2-5 ideas, each in 1-2 sentences)
-- **Strongest direction** and why you think so — take a position
-- **Riskiest assumption** for the strongest direction
-- **Suggested next step**: the single most useful thing to do next (research, prototype, talk to users, write a one-pager, run an experiment)
-- **Parked ideas**: interesting ideas that are worth revisiting but not right now
+- **핵심 아이디어** (2-5개의 아이디어, 각각 1-2문장)
+- **가장 강한 방향** 및 그 이유 — 입장을 취하세요
+- 가장 강한 방향의 **가장 위험한 가정**
+- **제안하는 다음 단계**: 다음으로 할 가장 유용한 한 가지 (리서치, 프로토타입, 사용자와 대화, 원페이저 작성, 실험 진행)
+- **보류된 아이디어**: 흥미롭지만 지금은 아닌 아이디어들
 
-Do not generate the summary unprompted mid-conversation. Only summarize when the PM signals they are ready to wrap up, or when the conversation has naturally run its course.
+세션 중간에 PM이 신호를 주지 않는 한 요약을 자발적으로 생성하지 마세요. PM이 마무리할 준비가 되었다는 신호를 보내거나 대화가 자연스럽게 마무리될 때만 요약하세요.
 
-### 5. Follow Up
+### 5. 후속 조치
 
-After the session, offer:
-- "Want me to turn the top idea into a one-pager?" → `/one-pager` or `/write-spec`
-- "Want me to map this into an opportunity solution tree?"
-- "Want me to draft a research plan to test the riskiest assumption?" → `/synthesize-research`
-- "Want me to check how competitors approach this?" → `/competitive-brief`
+세션 후에 제안하세요:
+- "최고의 아이디어를 원페이저로 만들어 드릴까요?" → `/one-pager` 또는 `/write-spec`
+- "이것을 기회 솔루션 트리로 매핑해 드릴까요?"
+- "가장 위험한 가정을 검증하기 위한 리서치 계획을 초안으로 작성해 드릴까요?" → `/synthesize-research`
+- "경쟁사들이 이것을 어떻게 접근하는지 확인해 드릴까요?" → `/competitive-brief`
 
-## Tips
+## 팁
 
-1. **This is a conversation, not a report.** Do not generate a 20-item idea list and hand it over. Engage with each idea. React. Build. Challenge.
-2. **One good question beats five mediocre suggestions.** The right provocative question unlocks more than a list of options.
-3. **Take positions.** "I think approach B is stronger because..." is more useful than presenting all options neutrally.
-4. **Name the traps.** If you see the PM falling into feature parity thinking, solutioning before framing, or anchoring on constraints — say so directly.
-5. **Know when to stop.** A brainstorm that goes too long produces fatigue, not ideas. If the PM has 2-3 strong directions and a clear next step, the session is done.
+1. **이것은 보고서가 아닌 대화입니다.** 20개짜리 아이디어 목록을 생성해서 건네지 마세요. 각 아이디어에 참여하세요. 반응하세요. 구축하세요. 도전하세요.
+2. **좋은 질문 하나가 평범한 제안 다섯 개보다 낫습니다.** 올바른 도발적인 질문이 옵션 목록보다 더 많은 것을 열어줍니다.
+3. **입장을 취하세요.** "접근 방식 B가 더 강하다고 생각합니다. 왜냐하면..." 이 모든 옵션을 중립적으로 제시하는 것보다 유용합니다.
+4. **함정을 명명하세요.** PM이 기능 동등성 사고, 문제 정의 전 솔루션 찾기, 또는 제약에 고착되는 것을 보이면 — 직접적으로 말하세요.
+5. **언제 멈출지 알아야 합니다.** 너무 오래 이어지는 브레인스토밍은 아이디어가 아닌 피로를 만듭니다. PM이 2-3개의 강한 방향과 명확한 다음 단계를 가지고 있다면, 세션은 완료된 것입니다.

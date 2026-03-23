@@ -1,44 +1,44 @@
 ---
 name: compliance-tracking
-description: Track compliance requirements and audit readiness. Trigger with "compliance", "audit prep", "SOC 2", "ISO 27001", "GDPR", "regulatory requirement", or when the user needs help tracking, preparing for, or documenting compliance activities.
+description: 컴플라이언스 요건을 추적하고 감사 준비 상태를 관리합니다. "컴플라이언스", "감사 준비", "SOC 2", "ISO 27001", "GDPR", "규제 요건", 또는 사용자가 컴플라이언스 활동을 추적, 준비, 문서화할 때 활성화됩니다.
 ---
 
-# Compliance Tracking
+# 컴플라이언스 추적
 
-Help track compliance requirements, prepare for audits, and maintain regulatory readiness.
+컴플라이언스 요건을 추적하고, 감사를 준비하며, 규제 준비 상태를 유지합니다.
 
-## Common Frameworks
+## 주요 프레임워크
 
-| Framework | Focus | Key Requirements |
+| 프레임워크 | 초점 | 주요 요건 |
 |-----------|-------|-----------------|
-| SOC 2 | Service organizations | Security, availability, processing integrity, confidentiality, privacy |
-| ISO 27001 | Information security | Risk assessment, security controls, continuous improvement |
-| GDPR | Data privacy (EU) | Consent, data rights, breach notification, DPO |
-| HIPAA | Healthcare data (US) | PHI protection, access controls, audit trails |
-| PCI DSS | Payment card data | Encryption, access control, vulnerability management |
+| SOC 2 | 서비스 조직 | 보안, 가용성, 처리 무결성, 기밀성, 개인정보 |
+| ISO 27001 | 정보 보안 | 리스크 평가, 보안 통제, 지속적 개선 |
+| GDPR | 데이터 프라이버시 (EU) | 동의, 데이터 권리, 침해 통지, DPO |
+| HIPAA | 의료 데이터 (US) | PHI 보호, 접근 통제, 감사 추적 |
+| PCI DSS | 결제 카드 데이터 | 암호화, 접근 통제, 취약점 관리 |
 
-## Compliance Tracking Components
+## 컴플라이언스 추적 구성 요소
 
-### Control Inventory
-- Map controls to framework requirements
-- Document control owners and evidence
-- Track control effectiveness
+### 통제 목록
+- 통제를 프레임워크 요건에 매핑
+- 통제 소유자 및 증거 문서화
+- 통제 효과성 추적
 
-### Audit Calendar
-- Upcoming audit dates and deadlines
-- Evidence collection timelines
-- Remediation deadlines
+### 감사 캘린더
+- 예정된 감사 날짜 및 마감일
+- 증거 수집 타임라인
+- 시정 조치 마감일
 
-### Evidence Management
-- What evidence is needed for each control
-- Where evidence is stored
-- When evidence was last collected
+### 증거 관리
+- 각 통제에 필요한 증거
+- 증거 저장 위치
+- 증거 최종 수집 시기
 
-### Gap Analysis
-- Requirements vs. current state
-- Prioritized remediation plan
-- Timeline to compliance
+### 갭 분석
+- 요건 vs. 현재 상태
+- 우선순위가 정해진 시정 계획
+- 컴플라이언스 달성까지의 타임라인
 
-## Output
+## 출력
 
-Produce compliance status dashboards, gap analyses, audit prep checklists, and evidence collection plans.
+컴플라이언스 상태 대시보드, 갭 분석, 감사 준비 체크리스트, 증거 수집 계획을 작성합니다.

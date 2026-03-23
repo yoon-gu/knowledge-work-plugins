@@ -1,248 +1,248 @@
 ---
 name: customer-escalation
-description: Package an escalation for engineering, product, or leadership with full context. Use when a bug needs engineering attention beyond normal support, multiple customers report the same issue, a customer is threatening to churn, or an issue has sat unresolved past its SLA.
-argument-hint: "<issue summary> [customer name]"
+description: 엔지니어링, 제품, 또는 리더십을 위한 에스컬레이션을 전체 컨텍스트와 함께 패키징합니다. 버그가 일반 지원 범위를 넘어 엔지니어링 주의가 필요한 경우, 여러 고객이 동일한 문제를 보고하는 경우, 고객이 이탈을 고려하는 경우, 또는 SLA를 초과하여 미해결 상태인 경우에 사용하세요.
+argument-hint: "<이슈 요약> [고객 이름]"
 ---
 
 # /customer-escalation
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 낯선 자리 표시자가 보이거나 연결된 도구를 확인해야 하는 경우 [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Package a support issue into a structured escalation brief for engineering, product, or leadership. Gathers context, structures reproduction steps, assesses business impact, and identifies the right escalation target.
+지원 이슈를 엔지니어링, 제품, 또는 리더십을 위한 구조화된 에스컬레이션 브리프로 패키징합니다. 컨텍스트를 수집하고, 재현 단계를 구조화하며, 비즈니스 영향을 평가하고, 올바른 에스컬레이션 대상을 식별합니다.
 
-## Usage
+## 사용법
 
 ```
-/customer-escalation <issue description> [customer name or account]
+/customer-escalation <이슈 설명> [고객 이름 또는 계정]
 ```
 
-Examples:
+예시:
 - `/customer-escalation API returning 500 errors intermittently for Acme Corp`
 - `/customer-escalation Data export is missing rows — 3 customers reported this week`
 - `/customer-escalation SSO login loop affecting all Enterprise customers`
 - `/customer-escalation Customer threatening to churn over missing audit log feature`
 
-## Workflow
+## 워크플로우
 
-### 1. Understand the Issue
+### 1. 이슈 파악
 
-Parse the input and determine:
+입력을 분석하여 다음을 결정합니다:
 
-- **What's broken or needed**: The core technical or product issue
-- **Who's affected**: Specific customer(s), segment, or all users
-- **How long**: When did this start? How long has the customer been waiting?
-- **What's been tried**: Any troubleshooting or workarounds attempted
-- **Why escalate now**: What makes this need attention beyond normal support
+- **무엇이 문제인지 또는 필요한지**: 핵심적인 기술적 또는 제품 이슈
+- **누가 영향을 받는지**: 특정 고객, 세그먼트, 또는 모든 사용자
+- **기간**: 언제 시작되었나? 고객이 얼마나 기다렸나?
+- **시도된 것**: 수행된 문제 해결 조치 또는 임시 해결 방법
+- **왜 지금 에스컬레이션하는지**: 일반 지원 범위를 넘어 주의가 필요한 이유
 
-Use the "When to Escalate vs. Handle in Support" criteria below to confirm this warrants escalation.
+아래의 "에스컬레이션 vs. 지원 내 처리" 기준을 사용하여 에스컬레이션이 필요한지 확인하세요.
 
-### 2. Gather Context
+### 2. 컨텍스트 수집
 
-Pull together relevant information from available sources:
+사용 가능한 소스에서 관련 정보를 모읍니다:
 
-- **~~support platform**: Related tickets, timeline of communications, previous troubleshooting
-- **~~CRM** (if connected): Account details, key contacts, previous escalations
-- **~~chat**: Internal discussions about this issue, similar reports from other customers
-- **~~project tracker** (if connected): Related bug reports or feature requests, engineering status
-- **~~knowledge base**: Known issues or workarounds, relevant documentation
+- **~~support platform**: 관련 티켓, 커뮤니케이션 타임라인, 이전 문제 해결 내용
+- **~~CRM** (연결된 경우): 계정 세부 정보, 주요 연락처, 이전 에스컬레이션
+- **~~chat**: 이 이슈에 대한 내부 논의, 다른 고객의 유사 보고
+- **~~project tracker** (연결된 경우): 관련 버그 리포트 또는 기능 요청, 엔지니어링 현황
+- **~~knowledge base**: 알려진 이슈 또는 임시 해결 방법, 관련 문서
 
-### 3. Assess Business Impact
+### 3. 비즈니스 영향 평가
 
-Using the impact dimensions below, quantify:
+아래의 영향 차원을 사용하여 수치화합니다:
 
-- **Breadth**: How many customers/users affected? Growing?
-- **Depth**: Blocked vs. inconvenienced?
-- **Duration**: How long has this been going on?
-- **Revenue**: ARR at risk? Pending deals affected?
-- **Time pressure**: Hard deadline?
+- **범위**: 영향을 받는 고객/사용자 수는? 증가하고 있나?
+- **깊이**: 완전히 차단되었나, 아니면 불편한 수준인가?
+- **기간**: 이 문제가 얼마나 지속되고 있나?
+- **수익**: ARR이 위험한가? 진행 중인 거래에 영향이 있나?
+- **시간 압박**: 엄격한 마감 기한이 있나?
 
-### 4. Determine Escalation Target
+### 4. 에스컬레이션 대상 결정
 
-Using the escalation tiers below, identify the right target: L2 Support, Engineering, Product, Security, or Leadership.
+아래의 에스컬레이션 단계를 사용하여 올바른 대상을 식별합니다: L2 지원, 엔지니어링, 제품, 보안, 또는 리더십.
 
-### 5. Structure Reproduction Steps (for bugs)
+### 5. 재현 단계 구조화 (버그의 경우)
 
-If the issue is a bug, follow the reproduction step best practices below to document clear repro steps with environment details and evidence.
+이슈가 버그인 경우, 아래의 재현 단계 모범 사례에 따라 환경 세부 정보 및 증거와 함께 명확한 재현 단계를 문서화하세요.
 
-### 6. Generate Escalation Brief
+### 6. 에스컬레이션 브리프 생성
 
 ```
-## ESCALATION: [One-line summary]
+## ESCALATION: [한 줄 요약]
 
 **Severity:** [Critical / High / Medium]
 **Target team:** [Engineering / Product / Security / Leadership]
-**Reported by:** [Your name/team]
-**Date:** [Today's date]
+**Reported by:** [담당자 이름/팀]
+**Date:** [오늘 날짜]
 
 ### Impact
-- **Customers affected:** [Who and how many]
-- **Workflow impact:** [What they can't do]
-- **Revenue at risk:** [If applicable]
-- **Time in queue:** [How long this has been an issue]
+- **Customers affected:** [누가, 몇 명]
+- **Workflow impact:** [할 수 없는 작업]
+- **Revenue at risk:** [해당 시]
+- **Time in queue:** [이슈가 발생한 기간]
 
 ### Issue Description
-[Clear, concise description of the problem — 3-5 sentences]
+[문제에 대한 명확하고 간결한 설명 — 3-5문장]
 
 ### What's Been Tried
-1. [Troubleshooting step and result]
-2. [Troubleshooting step and result]
-3. [Troubleshooting step and result]
+1. [문제 해결 단계 및 결과]
+2. [문제 해결 단계 및 결과]
+3. [문제 해결 단계 및 결과]
 
 ### Reproduction Steps
-[If applicable — follow the format below]
-1. [Step]
-2. [Step]
-3. [Step]
+[해당 시 — 아래 형식을 따르세요]
+1. [단계]
+2. [단계]
+3. [단계]
 Expected: [X]
 Actual: [Y]
-Environment: [Details]
+Environment: [세부 정보]
 
 ### Customer Communication
-- **Last update to customer:** [Date and what was communicated]
-- **Customer expectation:** [What they're expecting and by when]
-- **Escalation risk:** [Will they escalate further if not resolved by X?]
+- **Last update to customer:** [날짜 및 전달된 내용]
+- **Customer expectation:** [고객의 기대 사항 및 기한]
+- **Escalation risk:** [X까지 해결되지 않으면 추가 에스컬레이션할 가능성]
 
 ### What's Needed
-- [Specific ask — "investigate root cause", "prioritize fix",
-  "make product decision on X", "approve exception for Y"]
-- **Deadline:** [When this needs resolution or an update]
+- [구체적인 요청 — "근본 원인 조사", "수정 우선순위 지정",
+  "X에 대한 제품 결정", "Y에 대한 예외 승인"]
+- **Deadline:** [해결 또는 업데이트가 필요한 시점]
 
 ### Supporting Context
-- [Related tickets or links]
-- [Internal discussion threads]
-- [Documentation or logs]
+- [관련 티켓 또는 링크]
+- [내부 토론 스레드]
+- [문서 또는 로그]
 ```
 
-### 7. Offer Next Steps
+### 7. 다음 단계 제안
 
-After generating the escalation:
-- "Want me to post this in a ~~chat channel for the target team?"
-- "Should I update the customer with an interim response?"
-- "Want me to set a follow-up reminder to check on this?"
-- "Should I draft a customer-facing update with the current status?"
+에스컬레이션 생성 후:
+- "대상 팀의 ~~chat 채널에 이 내용을 게시할까요?"
+- "고객에게 중간 응답을 업데이트할까요?"
+- "이 건에 대한 후속 알림을 설정할까요?"
+- "현재 상태로 고객용 업데이트를 초안 작성할까요?"
 
 ---
 
-## When to Escalate vs. Handle in Support
+## 에스컬레이션 vs. 지원 내 처리
 
-### Handle in Support When:
-- The issue has a documented solution or known workaround
-- It's a configuration or setup issue you can resolve
-- The customer needs guidance or training, not a fix
-- The issue is a known limitation with a documented alternative
-- Previous similar tickets were resolved at the support level
+### 지원 내에서 처리할 때:
+- 이슈에 문서화된 해결책 또는 알려진 임시 해결 방법이 있는 경우
+- 해결할 수 있는 구성 또는 설정 문제인 경우
+- 고객이 수정이 아닌 안내 또는 교육이 필요한 경우
+- 이슈가 문서화된 대안이 있는 알려진 제한 사항인 경우
+- 이전에 유사한 티켓이 지원 수준에서 해결된 경우
 
-### Escalate When:
-- **Technical**: Bug confirmed and needs a code fix, infrastructure investigation needed, data corruption or loss
-- **Complexity**: Issue is beyond support's ability to diagnose, requires access support doesn't have, involves custom implementation
-- **Impact**: Multiple customers affected, production system down, data integrity at risk, security concern
-- **Business**: High-value customer at risk, SLA breach imminent or occurred, customer requesting executive involvement
-- **Time**: Issue has been open beyond SLA, customer has been waiting unreasonably long, normal support channels aren't progressing
-- **Pattern**: Same issue reported by 3+ customers, recurring issue that was supposedly fixed, increasing severity over time
+### 에스컬레이션할 때:
+- **기술적**: 코드 수정이 필요한 버그 확인, 인프라 조사 필요, 데이터 손상 또는 손실
+- **복잡성**: 지원팀의 진단 능력 초과, 지원팀이 접근할 수 없는 리소스 필요, 커스텀 구현 관련
+- **영향**: 여러 고객 영향, 프로덕션 시스템 다운, 데이터 무결성 위험, 보안 우려
+- **비즈니스**: 고가치 고객 위험, SLA 위반 임박 또는 발생, 고객이 임원 개입 요청
+- **시간**: SLA를 초과하여 열려 있는 이슈, 고객이 비합리적으로 오래 기다린 경우, 일반 지원 채널이 진전되지 않는 경우
+- **패턴**: 동일한 이슈를 3명 이상의 고객이 보고, 수정되었다고 했으나 재발하는 이슈, 시간이 지날수록 심각해지는 경우
 
-## Escalation Tiers
+## 에스컬레이션 단계
 
-### L1 → L2 (Support Escalation)
-**From:** Frontline support
-**To:** Senior support / technical support specialists
-**When:** Issue requires deeper investigation, specialized product knowledge, or advanced troubleshooting
-**What to include:** Ticket summary, steps already tried, customer context
+### L1 → L2 (지원 에스컬레이션)
+**발신:** 1선 지원
+**수신:** 시니어 지원 / 기술 지원 전문가
+**시기:** 더 깊은 조사, 전문화된 제품 지식, 또는 고급 문제 해결이 필요한 경우
+**포함 사항:** 티켓 요약, 이미 시도한 단계, 고객 컨텍스트
 
-### L2 → Engineering
-**From:** Senior support
-**To:** Engineering team (relevant product area)
-**When:** Confirmed bug, infrastructure issue, needs code change, requires system-level investigation
-**What to include:** Full reproduction steps, environment details, logs or error messages, business impact, customer timeline
+### L2 → 엔지니어링
+**발신:** 시니어 지원
+**수신:** 엔지니어링 팀 (관련 제품 영역)
+**시기:** 확인된 버그, 인프라 이슈, 코드 변경 필요, 시스템 수준 조사 필요
+**포함 사항:** 전체 재현 단계, 환경 세부 정보, 로그 또는 오류 메시지, 비즈니스 영향, 고객 타임라인
 
-### L2 → Product
-**From:** Senior support
-**To:** Product management
-**When:** Feature gap causing customer pain, design decision needed, workflow doesn't match customer expectations, competing customer needs require prioritization
-**What to include:** Customer use case, business impact, frequency of request, competitive pressure (if known)
+### L2 → 제품
+**발신:** 시니어 지원
+**수신:** 제품 관리
+**시기:** 고객 불만을 야기하는 기능 부재, 디자인 결정 필요, 워크플로우가 고객 기대와 불일치, 경쟁하는 고객 요구 사항의 우선순위 결정 필요
+**포함 사항:** 고객 사용 사례, 비즈니스 영향, 요청 빈도, 경쟁 압박 (알려진 경우)
 
-### Any → Security
-**From:** Any support tier
-**To:** Security team
-**When:** Potential data exposure, unauthorized access, vulnerability report, compliance concern
-**What to include:** What was observed, who/what is potentially affected, immediate containment steps taken, urgency assessment
-**Note:** Security escalations bypass normal tier progression — escalate immediately regardless of your level
+### 모든 티어 → 보안
+**발신:** 모든 지원 티어
+**수신:** 보안 팀
+**시기:** 잠재적 데이터 노출, 무단 접근, 취약점 보고, 컴플라이언스 우려
+**포함 사항:** 관찰된 내용, 잠재적으로 영향을 받는 대상, 취해진 즉각적인 격리 조치, 긴급도 평가
+**참고:** 보안 에스컬레이션은 일반 단계를 우회합니다 — 레벨에 관계없이 즉시 에스컬레이션하세요
 
-### Any → Leadership
-**From:** Any tier (usually L2 or manager)
-**To:** Support leadership, executive team
-**When:** High-revenue customer threatening churn, SLA breach on critical account, cross-functional decision needed, exception to policy required, PR or legal risk
-**What to include:** Full business context, revenue at risk, what's been tried, specific decision or action needed, deadline
+### 모든 티어 → 리더십
+**발신:** 모든 티어 (일반적으로 L2 또는 매니저)
+**수신:** 지원 리더십, 임원팀
+**시기:** 이탈을 위협하는 고수익 고객, 중요 계정의 SLA 위반, 교차 기능적 결정 필요, 정책 예외 필요, PR 또는 법적 위험
+**포함 사항:** 전체 비즈니스 컨텍스트, 위험한 수익, 시도된 내용, 필요한 구체적 결정 또는 조치, 마감 기한
 
-## Business Impact Assessment
+## 비즈니스 영향 평가
 
-When escalating, quantify impact where possible:
+에스컬레이션 시 가능한 경우 영향을 수치화하세요:
 
-### Impact Dimensions
+### 영향 차원
 
-| Dimension | Questions to Answer |
+| 차원 | 답해야 할 질문 |
 |-----------|-------------------|
-| **Breadth** | How many customers/users are affected? Is it growing? |
-| **Depth** | How severely are they impacted? Blocked vs. inconvenienced? |
-| **Duration** | How long has this been going on? How long until it's critical? |
-| **Revenue** | What's the ARR at risk? Are there pending deals affected? |
-| **Reputation** | Could this become public? Is it a reference customer? |
-| **Contractual** | Are SLAs being breached? Are there contractual obligations? |
+| **범위** | 영향을 받는 고객/사용자 수는? 증가하고 있나? |
+| **깊이** | 영향이 얼마나 심각한가? 차단 vs. 불편? |
+| **기간** | 얼마나 지속되고 있나? 언제 위기가 되나? |
+| **수익** | 위험한 ARR은? 영향받는 진행 중인 거래가 있나? |
+| **평판** | 공개될 수 있나? 레퍼런스 고객인가? |
+| **계약** | SLA가 위반되고 있나? 계약 의무가 있나? |
 
-### Severity Shorthand
+### 심각도 요약
 
-- **Critical**: Production down, data at risk, security breach, or multiple high-value customers affected. Needs immediate attention.
-- **High**: Major functionality broken, key customer blocked, SLA at risk. Needs same-day attention.
-- **Medium**: Significant issue with workaround, important but not urgent business impact. Needs attention this week.
+- **Critical**: 프로덕션 다운, 데이터 위험, 보안 위반, 또는 여러 고가치 고객 영향. 즉각적인 주의 필요.
+- **High**: 주요 기능 중단, 핵심 고객 차단, SLA 위험. 당일 주의 필요.
+- **Medium**: 임시 해결 방법이 있는 중요한 이슈, 중요하지만 긴급하지 않은 비즈니스 영향. 이번 주 내 주의 필요.
 
-## Writing Reproduction Steps
+## 재현 단계 작성
 
-Good reproduction steps are the single most valuable thing in a bug escalation. Follow these practices:
+좋은 재현 단계는 버그 에스컬레이션에서 가장 가치 있는 정보입니다. 다음 방법을 따르세요:
 
-1. **Start from a clean state**: Describe the starting point (account type, configuration, permissions)
-2. **Be specific**: "Click the Export button in the top-right of the Dashboard page" not "try to export"
-3. **Include exact values**: Use specific inputs, dates, IDs — not "enter some data"
-4. **Note the environment**: Browser, OS, account type, feature flags, plan level
-5. **Capture the frequency**: Always reproducible? Intermittent? Only under certain conditions?
-6. **Include evidence**: Screenshots, error messages (exact text), network logs, console output
-7. **Note what you've ruled out**: "Tested in Chrome and Firefox — same behavior" "Not account-specific — reproduced on test account"
+1. **초기 상태에서 시작**: 시작 지점 설명 (계정 유형, 구성, 권한)
+2. **구체적으로 작성**: "내보내기 시도"가 아닌 "Dashboard 페이지 오른쪽 상단의 Export 버튼 클릭"
+3. **정확한 값 포함**: "일부 데이터 입력"이 아닌 구체적인 입력값, 날짜, ID 사용
+4. **환경 기록**: 브라우저, OS, 계정 유형, 기능 플래그, 플랜 수준
+5. **빈도 확인**: 항상 재현 가능? 간헐적? 특정 조건에서만?
+6. **증거 포함**: 스크린샷, 오류 메시지 (정확한 텍스트), 네트워크 로그, 콘솔 출력
+7. **배제된 사항 기록**: "Chrome과 Firefox에서 테스트 — 동일한 동작" "계정 특정적이지 않음 — 테스트 계정에서 재현됨"
 
-## Follow-up Cadence After Escalation
+## 에스컬레이션 후 후속 조치 주기
 
-Don't escalate and forget. Maintain ownership of the customer relationship.
+에스컬레이션하고 잊지 마세요. 고객 관계의 소유권을 유지하세요.
 
-| Severity | Internal Follow-up | Customer Update |
+| 심각도 | 내부 후속 조치 | 고객 업데이트 |
 |----------|-------------------|-----------------|
-| **Critical** | Every 2 hours | Every 2-4 hours (or per SLA) |
-| **High** | Every 4 hours | Every 4-8 hours |
-| **Medium** | Daily | Every 1-2 business days |
+| **Critical** | 2시간마다 | 2-4시간마다 (또는 SLA에 따라) |
+| **High** | 4시간마다 | 4-8시간마다 |
+| **Medium** | 매일 | 1-2 영업일마다 |
 
-### Follow-up Actions
-- Check with the receiving team for progress
-- Update the customer even if there's no new information ("We're still investigating — here's what we know so far")
-- Adjust severity if the situation changes (better or worse)
-- Document all updates in the ticket for audit trail
-- Close the loop when resolved: confirm with customer, update internal tracking, capture learnings
+### 후속 조치 행동
+- 수신 팀에 진행 상황 확인
+- 새로운 정보가 없어도 고객에게 업데이트 ("여전히 조사 중입니다 — 현재까지 파악한 내용은 다음과 같습니다")
+- 상황이 변하면 (좋아지거나 나빠지거나) 심각도 조정
+- 감사 추적을 위해 티켓에 모든 업데이트 문서화
+- 해결 시 루프 종료: 고객 확인, 내부 추적 업데이트, 교훈 포착
 
-## De-escalation
+## 에스컬레이션 해제
 
-Not every escalation stays escalated. De-escalate when:
-- Root cause is found and it's a support-resolvable issue
-- A workaround is found that unblocks the customer
-- The issue resolves itself (but still document root cause)
-- New information changes the severity assessment
+모든 에스컬레이션이 에스컬레이션 상태를 유지하는 것은 아닙니다. 다음 경우 에스컬레이션을 해제하세요:
+- 근본 원인이 발견되고 지원으로 해결 가능한 이슈인 경우
+- 고객을 차단 해제하는 임시 해결 방법이 발견된 경우
+- 이슈가 스스로 해결된 경우 (하지만 근본 원인은 여전히 문서화)
+- 새로운 정보가 심각도 평가를 변경하는 경우
 
-When de-escalating:
-- Notify the team you escalated to
-- Update the ticket with the resolution
-- Inform the customer of the resolution
-- Document what was learned for future reference
+에스컬레이션을 해제할 때:
+- 에스컬레이션한 팀에 알림
+- 해결책으로 티켓 업데이트
+- 고객에게 해결 사항 알림
+- 향후 참조를 위해 배운 내용 문서화
 
-## Escalation Best Practices
+## 에스컬레이션 모범 사례
 
-1. Always quantify impact — vague escalations get deprioritized
-2. Include reproduction steps for bugs — this is the #1 thing engineering needs
-3. Be clear about what you need — "investigate" vs. "fix" vs. "decide" are different asks
-4. Set and communicate a deadline — urgency without a deadline is ambiguous
-5. Maintain ownership of the customer relationship even after escalating the technical issue
-6. Follow up proactively — don't wait for the receiving team to come to you
-7. Document everything — the escalation trail is valuable for pattern detection and process improvement
+1. 항상 영향을 수치화하세요 — 모호한 에스컬레이션은 우선순위에서 밀립니다
+2. 버그에 대한 재현 단계를 포함하세요 — 엔지니어링이 가장 필요로 하는 정보입니다
+3. 필요한 것을 명확히 하세요 — "조사", "수정", "결정"은 다른 요청입니다
+4. 마감 기한을 설정하고 전달하세요 — 마감 기한 없는 긴급함은 모호합니다
+5. 기술 이슈를 에스컬레이션한 후에도 고객 관계의 소유권을 유지하세요
+6. 능동적으로 후속 조치하세요 — 수신 팀이 먼저 연락하기를 기다리지 마세요
+7. 모든 것을 문서화하세요 — 에스컬레이션 추적은 패턴 감지 및 프로세스 개선에 중요합니다

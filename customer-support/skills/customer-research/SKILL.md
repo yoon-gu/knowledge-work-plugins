@@ -1,252 +1,252 @@
 ---
 name: customer-research
-description: Multi-source research on a customer question or topic with source attribution. Use when a customer asks something you need to look up, investigating whether a bug has been reported before, checking what was previously told to a specific account, or gathering background before drafting a response.
-argument-hint: "<question or topic>"
+description: 출처 귀속이 포함된 고객 질문 또는 주제에 대한 다중 소스 조사. 고객이 찾아봐야 할 내용을 묻는 경우, 이전에 버그가 보고된 적 있는지 조사하는 경우, 특정 계정에 이전에 무엇이 전달되었는지 확인하는 경우, 또는 응답 초안 작성 전 배경 조사가 필요한 경우에 사용하세요.
+argument-hint: "<질문 또는 주제>"
 ---
 
 # /customer-research
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 낯선 자리 표시자가 보이거나 연결된 도구를 확인해야 하는 경우 [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Multi-source research on a customer question, product topic, or account-related inquiry. Synthesizes findings from all available sources with clear attribution and confidence scoring.
+고객 질문, 제품 주제, 또는 계정 관련 문의에 대한 다중 소스 조사. 명확한 출처 귀속 및 신뢰도 점수와 함께 모든 사용 가능한 소스에서 발견 사항을 종합합니다.
 
-## Usage
-
-```
-/customer-research <question or topic>
-```
-
-## Workflow
-
-### 1. Parse the Research Request
-
-Identify what type of research is needed:
-- **Customer question**: Something a customer has asked that needs an answer (e.g., "Does our product support SSO with Okta?")
-- **Issue investigation**: Background on a reported problem (e.g., "Has this bug been reported before? What's the known workaround?")
-- **Account context**: History with a specific customer (e.g., "What did we tell Acme Corp last time they asked about this?")
-- **Topic research**: General topic relevant to support work (e.g., "Best practices for webhook retry logic")
-
-Before searching, clarify what you're actually trying to find:
-- Is this a factual question with a definitive answer?
-- Is this a contextual question requiring multiple perspectives?
-- Is this an exploratory question where the scope is still being defined?
-- Who is the audience for the answer (internal team, customer, leadership)?
-
-### 2. Search Available Sources
-
-Search systematically through the source tiers below, adapting to what is connected. Don't stop at the first result — cross-reference across sources.
-
-**Tier 1 — Official Internal Sources (highest confidence):**
-- ~~knowledge base (if connected): product docs, runbooks, FAQs, policy documents
-- ~~cloud storage: internal documents, specs, guides, past research
-- Product roadmap (internal-facing): feature timelines, priorities
-
-**Tier 2 — Organizational Context:**
-- ~~CRM notes: account notes, activity history, previous answers, opportunity details
-- ~~support platform (if connected): previous resolutions, known issues, workarounds
-- Meeting notes: previous discussions, decisions, commitments
-
-**Tier 3 — Team Communications:**
-- ~~chat: search for the topic in relevant channels; check if teammates have discussed or answered this before
-- ~~email: search for previous correspondence on this topic
-- Calendar notes: meeting agendas and post-meeting notes
-
-**Tier 4 — External Sources:**
-- Web search: official documentation, blog posts, community forums
-- Public knowledge bases, help centers, release notes
-- Third-party documentation: integration partners, complementary tools
-
-**Tier 5 — Inferred or Analogical (use when direct sources don't yield answers):**
-- Similar situations: how similar questions were handled before
-- Analogous customers: what worked for comparable accounts
-- General best practices: industry standards and norms
-
-### 3. Synthesize Findings
-
-Compile results into a structured research brief:
+## 사용법
 
 ```
-## Research: [Question/Topic]
+/customer-research <질문 또는 주제>
+```
+
+## 워크플로우
+
+### 1. 조사 요청 분석
+
+필요한 조사 유형을 파악합니다:
+- **고객 질문**: 고객이 질문한 내용에 대한 답변 필요 (예: "우리 제품이 Okta SSO를 지원하나요?")
+- **이슈 조사**: 보고된 문제에 대한 배경 (예: "이 버그가 이전에 보고된 적 있나? 알려진 임시 해결 방법은?")
+- **계정 컨텍스트**: 특정 고객과의 이력 (예: "지난번에 Acme Corp에 이 문제에 대해 무엇을 알려줬나?")
+- **주제 조사**: 지원 업무와 관련된 일반 주제 (예: "webhook 재시도 로직의 모범 사례")
+
+검색하기 전에 실제로 찾으려는 것을 명확히 하세요:
+- 명확한 답변이 있는 사실적인 질문인가?
+- 여러 관점이 필요한 맥락적 질문인가?
+- 범위가 아직 정의되지 않은 탐색적 질문인가?
+- 답변의 대상자는 누구인가 (내부 팀, 고객, 리더십)?
+
+### 2. 사용 가능한 소스 검색
+
+아래의 소스 티어를 통해 체계적으로 검색하고, 연결된 것에 맞게 조정하세요. 첫 번째 결과에서 멈추지 말고 소스 간에 교차 참조하세요.
+
+**1티어 — 공식 내부 소스 (가장 높은 신뢰도):**
+- ~~knowledge base (연결된 경우): 제품 문서, 런북, FAQ, 정책 문서
+- ~~cloud storage: 내부 문서, 사양, 가이드, 이전 조사
+- 제품 로드맵 (내부용): 기능 타임라인, 우선순위
+
+**2티어 — 조직 컨텍스트:**
+- ~~CRM 노트: 계정 노트, 활동 이력, 이전 답변, 기회 세부 정보
+- ~~support platform (연결된 경우): 이전 해결 사항, 알려진 이슈, 임시 해결 방법
+- 회의 노트: 이전 논의, 결정, 약속
+
+**3티어 — 팀 커뮤니케이션:**
+- ~~chat: 관련 채널에서 주제 검색; 동료가 이전에 논의하거나 답변한 적 있는지 확인
+- ~~email: 이 주제에 대한 이전 서신 검색
+- 캘린더 노트: 회의 안건 및 회의 후 메모
+
+**4티어 — 외부 소스:**
+- 웹 검색: 공식 문서, 블로그 게시물, 커뮤니티 포럼
+- 공개 지식 베이스, 헬프 센터, 릴리스 노트
+- 서드파티 문서: 통합 파트너, 보완 도구
+
+**5티어 — 추론 또는 유추 (직접 소스에서 답변을 얻지 못한 경우 사용):**
+- 유사한 상황: 이전에 유사한 질문이 어떻게 처리되었는지
+- 유사한 고객: 비슷한 계정에서 효과적이었던 것
+- 일반 모범 사례: 업계 표준 및 규범
+
+### 3. 발견 사항 종합
+
+결과를 구조화된 조사 브리프로 컴파일합니다:
+
+```
+## Research: [질문/주제]
 
 ### Answer
-[Clear, direct answer to the question — lead with the bottom line]
+[명확하고 직접적인 답변 — 핵심을 먼저]
 
 **Confidence:** [High / Medium / Low]
-[Explain what drives the confidence level]
+[신뢰도 수준을 결정하는 이유 설명]
 
 ### Key Findings
 
 **From [Source 1]:**
-- [Finding with specific detail]
-- [Finding with specific detail]
+- [구체적인 세부 정보가 있는 발견 사항]
+- [구체적인 세부 정보가 있는 발견 사항]
 
 **From [Source 2]:**
-- [Finding with specific detail]
+- [구체적인 세부 정보가 있는 발견 사항]
 
 ### Context & Nuance
-[Any caveats, edge cases, or additional context that matters]
+[중요한 주의 사항, 엣지 케이스, 또는 추가 컨텍스트]
 
 ### Sources
-1. [Source name/link] — [what it contributed]
-2. [Source name/link] — [what it contributed]
-3. [Source name/link] — [what it contributed]
+1. [소스 이름/링크] — [기여한 내용]
+2. [소스 이름/링크] — [기여한 내용]
+3. [소스 이름/링크] — [기여한 내용]
 
 ### Gaps & Unknowns
-- [What couldn't be confirmed]
-- [What might need verification from a subject matter expert]
+- [확인할 수 없었던 내용]
+- [주제 전문가의 검증이 필요할 수 있는 내용]
 
 ### Recommended Next Steps
-- [Action if the answer needs to go to a customer]
-- [Action if further research is needed]
-- [Who to consult for verification if needed]
+- [답변이 고객에게 전달될 경우의 조치]
+- [추가 조사가 필요한 경우의 조치]
+- [필요한 경우 검증을 위해 상담할 사람]
 ```
 
-### 4. Handle Insufficient Sources
+### 4. 소스가 부족한 경우 처리
 
-If no connected sources yield results:
+연결된 소스에서 결과를 얻지 못한 경우:
 
-- Perform web research on the topic
-- Ask the user for internal context:
-  - "I couldn't find this in connected sources. Do you have internal docs or knowledge base articles about this?"
-  - "Has your team discussed this topic before? Any ~~chat channels I should check?"
-  - "Is there a subject matter expert who would know the answer?"
-- Be transparent about limitations:
-  - "This answer is based on web research only — please verify against your internal documentation before sharing with the customer."
-  - "I found a possible answer but couldn't confirm it from an authoritative internal source."
+- 주제에 대한 웹 조사 수행
+- 사용자에게 내부 컨텍스트 요청:
+  - "연결된 소스에서 찾을 수 없었습니다. 이 내용에 대한 내부 문서나 지식 베이스 문서가 있나요?"
+  - "팀에서 이 주제를 논의한 적 있나요? 확인해야 할 ~~chat 채널이 있나요?"
+  - "답을 알 수 있는 주제 전문가가 있나요?"
+- 제한 사항을 투명하게 전달:
+  - "이 답변은 웹 조사에만 기반합니다 — 고객과 공유하기 전에 내부 문서를 참조하여 검증하세요."
+  - "가능한 답변을 찾았지만 권위 있는 내부 소스에서 확인할 수 없었습니다."
 
-### 5. Customer-Facing Considerations
+### 5. 고객 대응 고려 사항
 
-If the research is to answer a customer question:
+조사가 고객 질문에 답하기 위한 것이라면:
 
-- Flag if the answer involves product roadmap, pricing, legal, or security topics that may need review
-- Note if the answer differs from what may have been communicated previously
-- Suggest appropriate caveats for the customer-facing response
-- Offer to draft the customer response: "Want me to draft a response to the customer based on these findings?"
+- 답변에 제품 로드맵, 가격, 법적, 또는 보안 주제가 포함되어 검토가 필요한 경우 표시
+- 답변이 이전에 전달된 내용과 다른 경우 기록
+- 고객 대응에 적합한 주의 사항 제안
+- 고객 응답 초안 작성 제안: "이 발견 사항을 기반으로 고객에게 응답을 초안할까요?"
 
-### 6. Knowledge Capture
+### 6. 지식 포착
 
-After research is complete, suggest capturing the knowledge:
+조사가 완료된 후 지식 포착을 제안합니다:
 
-- "Should I save these findings to your knowledge base for future reference?"
-- "Want me to create a FAQ entry based on this research?"
-- "This might be worth documenting — should I draft a runbook entry?"
+- "향후 참조를 위해 이 발견 사항을 지식 베이스에 저장할까요?"
+- "이 조사를 기반으로 FAQ 항목을 만들까요?"
+- "문서화할 가치가 있는 내용입니다 — 런북 항목으로 초안 작성할까요?"
 
-This helps build institutional knowledge and reduces duplicate research effort across the team.
+이는 조직의 지식을 축적하고 팀 전체의 중복 조사 노력을 줄이는 데 도움이 됩니다.
 
 ---
 
-## Source Prioritization and Confidence
+## 소스 우선순위 및 신뢰도
 
-### Confidence by Source Tier
+### 소스 티어별 신뢰도
 
-| Tier | Source Type | Confidence | Notes |
+| 티어 | 소스 유형 | 신뢰도 | 참고 |
 |------|-------------|------------|-------|
-| 1 | Official internal docs, KB, policies | **High** | Trust unless clearly outdated — check dates |
-| 2 | CRM, support tickets, meeting notes | **Medium-High** | May be subjective or incomplete |
-| 3 | Chat, email, calendar notes | **Medium** | Informal, may be out of context or speculative |
-| 4 | Web, forums, third-party docs | **Low-Medium** | May not reflect your specific situation |
-| 5 | Inference, analogies, best practices | **Low** | Clearly flag as inference, not fact |
+| 1 | 공식 내부 문서, KB, 정책 | **High** | 명확하게 구식이 아닌 한 신뢰 — 날짜 확인 |
+| 2 | CRM, 지원 티켓, 회의 노트 | **Medium-High** | 주관적이거나 불완전할 수 있음 |
+| 3 | 채팅, 이메일, 캘린더 노트 | **Medium** | 비공식적이며, 맥락 외이거나 추측일 수 있음 |
+| 4 | 웹, 포럼, 서드파티 문서 | **Low-Medium** | 특정 상황을 반영하지 않을 수 있음 |
+| 5 | 추론, 유추, 모범 사례 | **Low** | 명확하게 추론으로 표시 (사실이 아님) |
 
-### Confidence Levels
+### 신뢰도 수준
 
-Always assign and communicate a confidence level:
+항상 신뢰도 수준을 지정하고 전달하세요:
 
-**High Confidence:**
-- Answer confirmed by official documentation or authoritative source
-- Multiple sources corroborate the same answer
-- Information is current (verified within a reasonable timeframe)
-- "I'm confident this is accurate based on [source]."
+**High Confidence (높은 신뢰도):**
+- 공식 문서 또는 권위 있는 소스에서 답변 확인됨
+- 여러 소스가 동일한 답변을 뒷받침함
+- 정보가 최신 (합리적인 기간 내에 검증됨)
+- "이 내용은 [소스]를 기반으로 정확하다고 확신합니다."
 
-**Medium Confidence:**
-- Answer found in informal sources (chat, email) but not official docs
-- Single source without corroboration
-- Information may be slightly outdated but likely still valid
-- "Based on [source], this appears to be the case, but I'd recommend confirming with [team/person]."
+**Medium Confidence (중간 신뢰도):**
+- 비공식 소스 (채팅, 이메일)에서 발견되었지만 공식 문서는 아님
+- 검증 없는 단일 소스
+- 정보가 약간 구식일 수 있지만 여전히 유효할 가능성 높음
+- "[소스]에 따르면, 이 경우인 것 같지만 [팀/담당자]에게 확인하는 것이 좋겠습니다."
 
-**Low Confidence:**
-- Answer is inferred from related information
-- Sources are outdated or potentially unreliable
-- Contradictory information found across sources
-- "I wasn't able to find a definitive answer. Based on [context], my best assessment is [answer], but this should be verified before sharing with the customer."
+**Low Confidence (낮은 신뢰도):**
+- 관련 정보에서 추론된 답변
+- 소스가 구식이거나 잠재적으로 신뢰할 수 없음
+- 소스 간에 모순되는 정보 발견됨
+- "명확한 답변을 찾을 수 없었습니다. [컨텍스트]에 기반하여 최선의 평가는 [답변]이지만, 고객과 공유하기 전에 검증해야 합니다."
 
-**Unable to Determine:**
-- No relevant information found in any source
-- Question requires specialized knowledge not available in sources
-- "I couldn't find information about this. I recommend reaching out to [suggested expert/team] for a definitive answer."
+**Unable to Determine (판단 불가):**
+- 어떤 소스에서도 관련 정보를 찾지 못함
+- 질문이 소스에서 사용할 수 없는 전문 지식 필요
+- "이 내용에 대한 정보를 찾을 수 없었습니다. 확실한 답변을 위해 [추천 전문가/팀]에 문의하는 것이 좋겠습니다."
 
-### Handling Contradictions
+### 모순 처리
 
-When sources disagree:
-1. Note the contradiction explicitly
-2. Identify which source is more authoritative or more recent
-3. Present both perspectives with context
-4. Recommend how to resolve the discrepancy
-5. If going to a customer: use the most conservative/cautious answer until resolved
+소스 간에 의견이 다를 때:
+1. 모순을 명시적으로 기록
+2. 어느 소스가 더 권위 있거나 최신인지 파악
+3. 컨텍스트와 함께 두 관점 모두 제시
+4. 불일치를 해결하는 방법 권장
+5. 고객에게 전달할 경우: 해결될 때까지 가장 보수적/신중한 답변 사용
 
-## When to Escalate vs. Answer Directly
+## 직접 답변 vs. 에스컬레이션
 
-### Answer Directly When:
-- Official documentation clearly addresses the question
-- Multiple reliable sources corroborate the answer
-- The question is factual and non-sensitive
-- The answer doesn't involve commitments, timelines, or pricing
-- You've answered similar questions before with confirmed accuracy
+### 직접 답변할 때:
+- 공식 문서가 질문을 명확하게 다루는 경우
+- 여러 신뢰할 수 있는 소스가 답변을 뒷받침하는 경우
+- 질문이 사실적이고 민감하지 않은 경우
+- 답변이 약속, 타임라인, 또는 가격을 포함하지 않는 경우
+- 이전에 유사한 질문에 확인된 정확성으로 답변한 경우
 
-### Escalate or Verify When:
-- The answer involves product roadmap commitments or timelines
-- Pricing, legal terms, or contract-specific questions
-- Security, compliance, or data handling questions
-- The answer could set a precedent or create expectations
-- You found contradictory information in sources
-- The question involves a specific customer's custom configuration
-- The answer requires specialized expertise you don't have
-- The customer is at risk and the wrong answer could exacerbate the situation
+### 에스컬레이션 또는 검증할 때:
+- 답변이 제품 로드맵 약속 또는 타임라인을 포함하는 경우
+- 가격, 법적 조건, 또는 계약별 질문
+- 보안, 컴플라이언스, 또는 데이터 처리 질문
+- 답변이 선례를 설정하거나 기대를 형성할 수 있는 경우
+- 소스에서 모순된 정보를 발견한 경우
+- 질문이 특정 고객의 커스텀 구성을 포함하는 경우
+- 답변이 보유하지 않은 전문 지식을 필요로 하는 경우
+- 고객이 위험하고 잘못된 답변이 상황을 악화시킬 수 있는 경우
 
-### Escalation Path:
-1. **Subject matter expert**: For technical or domain-specific questions
-2. **Product team**: For roadmap, feature, or capability questions
-3. **Legal/compliance**: For terms, privacy, security, or regulatory questions
-4. **Billing/finance**: For pricing, invoice, or payment-related questions
-5. **Engineering**: For custom configurations, bugs, or technical root causes
-6. **Leadership**: For strategic decisions, exceptions, or high-stakes situations
+### 에스컬레이션 경로:
+1. **주제 전문가**: 기술적 또는 도메인별 질문
+2. **제품 팀**: 로드맵, 기능, 또는 역량 질문
+3. **법무/컴플라이언스**: 약관, 개인정보, 보안, 또는 규제 질문
+4. **청구/재무**: 가격, 인보이스, 또는 결제 관련 질문
+5. **엔지니어링**: 커스텀 구성, 버그, 또는 기술적 근본 원인
+6. **리더십**: 전략적 결정, 예외, 또는 높은 위험 상황
 
-## Research Documentation for Team Knowledge Base
+## 팀 지식 베이스를 위한 조사 문서화
 
-After completing research, capture the knowledge for future use.
+조사 완료 후 향후 사용을 위해 지식을 포착하세요.
 
-### When to Document:
-- Question has come up before or likely will again
-- Research took significant effort to compile
-- Answer required synthesizing multiple sources
-- Answer corrects a common misunderstanding
-- Answer involves nuance that's easy to get wrong
+### 언제 문서화할지:
+- 질문이 이전에 나온 적 있거나 다시 나올 가능성이 높은 경우
+- 조사를 컴파일하는 데 상당한 노력이 들었던 경우
+- 답변이 여러 소스를 종합하는 것을 필요로 했던 경우
+- 답변이 일반적인 오해를 수정하는 경우
+- 답변이 쉽게 틀릴 수 있는 미묘함을 포함하는 경우
 
-### Documentation Format:
+### 문서화 형식:
 ```
-## [Question/Topic]
+## [질문/주제]
 
-**Last Verified:** [date]
-**Confidence:** [level]
+**Last Verified:** [날짜]
+**Confidence:** [수준]
 
 ### Answer
-[Clear, direct answer]
+[명확하고 직접적인 답변]
 
 ### Details
-[Supporting detail, context, and nuance]
+[지원 세부 정보, 컨텍스트, 및 미묘함]
 
 ### Sources
-[Where this information came from]
+[이 정보가 어디서 나왔는지]
 
 ### Related Questions
-[Other questions this might help answer]
+[이 내용이 도움이 될 수 있는 다른 질문들]
 
 ### Review Notes
-[When to re-verify, what might change this answer]
+[재검증 시점, 이 답변을 변경할 수 있는 것]
 ```
 
-### Knowledge Base Hygiene:
-- Date-stamp all entries
-- Flag entries that reference specific product versions or features
-- Review and update entries quarterly
-- Archive entries that are no longer relevant
-- Tag entries for searchability (by topic, product area, customer segment)
+### 지식 베이스 위생:
+- 모든 항목에 날짜 스탬프
+- 특정 제품 버전 또는 기능을 참조하는 항목 표시
+- 분기별 항목 검토 및 업데이트
+- 더 이상 관련 없는 항목 보관
+- 검색 가능성을 위해 항목에 태그 (주제, 제품 영역, 고객 세그먼트별)

@@ -1,82 +1,82 @@
 ---
 name: process-doc
-description: Document a business process — flowcharts, RACI, and SOPs. Use when formalizing a process that lives in someone's head, building a RACI to clarify who owns what, writing an SOP for a handoff or audit, or capturing the exceptions and edge cases of how work actually gets done.
-argument-hint: "<process name or description>"
+description: 비즈니스 프로세스 문서화 — 플로우차트, RACI, SOP. 누군가의 머릿속에만 있는 프로세스를 공식화할 때, 누가 무엇을 소유하는지 명확히 하기 위한 RACI를 작성할 때, 인수인계나 감사를 위한 SOP를 작성할 때, 또는 업무가 실제로 처리되는 예외 사항과 엣지 케이스를 포착할 때 사용하세요.
+argument-hint: "<프로세스 이름 또는 설명>"
 ---
 
 # /process-doc
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 하는 경우 [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Document a business process as a complete standard operating procedure (SOP).
+비즈니스 프로세스를 완전한 표준 운영 절차(SOP)로 문서화합니다.
 
-## Usage
+## 사용법
 
 ```
 /process-doc $ARGUMENTS
 ```
 
-## How It Works
+## 작동 방식
 
-Walk me through the process — describe it, paste existing docs, or just tell me the name and I'll ask the right questions. I'll produce a complete SOP.
+프로세스를 안내해 주세요 — 설명하거나, 기존 문서를 붙여넣거나, 이름만 알려주시면 적절한 질문을 드립니다. 완전한 SOP를 작성해 드립니다.
 
-## Output
+## 출력
 
 ```markdown
-## Process Document: [Process Name]
-**Owner:** [Person/Team] | **Last Updated:** [Date] | **Review Cadence:** [Quarterly/Annually]
+## Process Document: [프로세스 이름]
+**담당자:** [인원/팀] | **최종 업데이트:** [날짜] | **검토 주기:** [분기별/연간]
 
-### Purpose
-[Why this process exists and what it accomplishes]
+### 목적
+[이 프로세스가 존재하는 이유와 달성하는 것]
 
-### Scope
-[What's included and excluded]
+### 범위
+[포함되는 것과 제외되는 것]
 
-### RACI Matrix
-| Step | Responsible | Accountable | Consulted | Informed |
+### RACI 매트릭스
+| 단계 | Responsible | Accountable | Consulted | Informed |
 |------|------------|-------------|-----------|----------|
-| [Step] | [Who does it] | [Who owns it] | [Who to ask] | [Who to tell] |
+| [단계] | [수행자] | [소유자] | [문의 대상] | [공유 대상] |
 
-### Process Flow
-[ASCII flowchart or step-by-step description]
+### 프로세스 흐름
+[ASCII 플로우차트 또는 단계별 설명]
 
-### Detailed Steps
+### 세부 단계
 
-#### Step 1: [Name]
-- **Who**: [Role]
-- **When**: [Trigger or timing]
-- **How**: [Detailed instructions]
-- **Output**: [What this step produces]
+#### 1단계: [이름]
+- **담당**: [역할]
+- **시기**: [트리거 또는 타이밍]
+- **방법**: [세부 지침]
+- **산출물**: [이 단계의 결과물]
 
-#### Step 2: [Name]
-[Same format]
+#### 2단계: [이름]
+[동일한 형식]
 
-### Exceptions and Edge Cases
-| Scenario | What to Do |
+### 예외 및 엣지 케이스
+| 시나리오 | 처리 방법 |
 |----------|-----------|
-| [Exception] | [How to handle it] |
+| [예외] | [처리 방법] |
 
-### Metrics
-| Metric | Target | How to Measure |
+### 지표
+| 지표 | 목표 | 측정 방법 |
 |--------|--------|----------------|
-| [Metric] | [Target] | [Method] |
+| [지표] | [목표] | [방법] |
 
-### Related Documents
-- [Link to related process or policy]
+### 관련 문서
+- [관련 프로세스 또는 정책 링크]
 ```
 
-## If Connectors Available
+## 커넥터 사용 가능 시
 
-If **~~knowledge base** is connected:
-- Search for existing process documentation to update rather than duplicate
-- Publish the completed SOP to your wiki
+**~~knowledge base**가 연결된 경우:
+- 중복 작성 대신 업데이트할 기존 프로세스 문서 검색
+- 완성된 SOP를 위키에 게시
 
-If **~~project tracker** is connected:
-- Link the process to related projects and workflows
-- Create tasks for process improvement action items
+**~~project tracker**가 연결된 경우:
+- 관련 프로젝트 및 워크플로우에 프로세스 연결
+- 프로세스 개선 액션 아이템에 대한 작업 생성
 
-## Tips
+## 팁
 
-1. **Start messy** — You don't need a perfect description. Tell me how it works today and I'll structure it.
-2. **Include the exceptions** — "Usually we do X, but sometimes Y" is the most valuable part to document.
-3. **Name the people** — Even if roles change, knowing who does what today helps get the process right.
+1. **완벽하지 않아도 시작하세요** — 완벽한 설명이 필요하지 않습니다. 현재 작동 방식을 알려주시면 구조화해 드립니다.
+2. **예외를 포함하세요** — "보통은 X를 하지만 때로는 Y"가 문서화할 때 가장 가치 있는 부분입니다.
+3. **담당자를 명시하세요** — 역할이 바뀌더라도, 오늘 누가 무엇을 하는지 알면 프로세스를 올바르게 파악하는 데 도움이 됩니다.

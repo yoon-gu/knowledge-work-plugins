@@ -1,40 +1,40 @@
 ---
 name: risk-assessment
-description: Identify, assess, and mitigate operational risks. Trigger with "what are the risks", "risk assessment", "risk register", "what could go wrong", or when the user is evaluating risks associated with a project, vendor, process, or decision.
+description: 운영 리스크를 식별, 평가, 완화합니다. "리스크가 무엇인가요", "리스크 평가", "리스크 레지스터", "무엇이 잘못될 수 있나요", 또는 사용자가 프로젝트, 벤더, 프로세스, 의사결정과 관련된 리스크를 평가할 때 활성화됩니다.
 ---
 
-# Risk Assessment
+# 리스크 평가
 
-Systematically identify, assess, and plan mitigations for operational risks.
+운영 리스크를 체계적으로 식별, 평가하고 완화 계획을 수립합니다.
 
-## Risk Assessment Matrix
+## 리스크 평가 매트릭스
 
-| | Low Impact | Medium Impact | High Impact |
+| | 낮은 영향 | 중간 영향 | 높은 영향 |
 |---|-----------|---------------|-------------|
-| **High Likelihood** | Medium | High | Critical |
-| **Medium Likelihood** | Low | Medium | High |
-| **Low Likelihood** | Low | Low | Medium |
+| **높은 발생 가능성** | 보통 | 높음 | 심각 |
+| **중간 발생 가능성** | 낮음 | 보통 | 높음 |
+| **낮은 발생 가능성** | 낮음 | 낮음 | 보통 |
 
-## Risk Categories
+## 리스크 카테고리
 
-- **Operational**: Process failures, staffing gaps, system outages
-- **Financial**: Budget overruns, vendor cost increases, revenue impact
-- **Compliance**: Regulatory violations, audit findings, policy breaches
-- **Strategic**: Market changes, competitive threats, technology shifts
-- **Reputational**: Customer impact, public perception, partner relationships
-- **Security**: Data breaches, access control failures, third-party vulnerabilities
+- **운영**: 프로세스 장애, 인력 공백, 시스템 중단
+- **재무**: 예산 초과, 벤더 비용 증가, 매출 영향
+- **컴플라이언스**: 규제 위반, 감사 지적, 정책 위반
+- **전략**: 시장 변화, 경쟁 위협, 기술 전환
+- **평판**: 고객 영향, 대중 인식, 파트너 관계
+- **보안**: 데이터 침해, 접근 통제 실패, 서드파티 취약점
 
-## Risk Register Format
+## 리스크 레지스터 형식
 
-For each risk, document:
-- **Description**: What could happen
-- **Likelihood**: High / Medium / Low
-- **Impact**: High / Medium / Low
-- **Risk Level**: Critical / High / Medium / Low
-- **Mitigation**: What we're doing to reduce likelihood or impact
-- **Owner**: Who is responsible for managing this risk
-- **Status**: Open / Mitigated / Accepted / Closed
+각 리스크에 대해 문서화:
+- **설명**: 무슨 일이 일어날 수 있는지
+- **발생 가능성**: 높음 / 보통 / 낮음
+- **영향**: 높음 / 보통 / 낮음
+- **리스크 수준**: 심각 / 높음 / 보통 / 낮음
+- **완화**: 발생 가능성 또는 영향을 줄이기 위해 하는 것
+- **소유자**: 이 리스크 관리 책임자
+- **상태**: 열림 / 완화됨 / 수용됨 / 닫힘
 
-## Output
+## 출력
 
-Produce a prioritized risk register with specific, actionable mitigations. Focus on risks that are controllable and material.
+구체적이고 실행 가능한 완화 방안이 포함된 우선순위가 정해진 리스크 레지스터를 작성합니다. 통제 가능하고 중요한 리스크에 집중합니다.

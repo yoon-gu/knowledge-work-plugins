@@ -1,77 +1,77 @@
 ---
 name: status-report
-description: Generate a status report with KPIs, risks, and action items. Use when writing a weekly or monthly update for leadership, summarizing project health with green/yellow/red status, surfacing risks and decisions that need stakeholder attention, or turning a pile of project tracker activity into a readable narrative.
-argument-hint: "[weekly | monthly | quarterly] [project or team]"
+description: KPI, 리스크, 액션 아이템이 포함된 상태 보고서를 생성합니다. 리더십을 위한 주간 또는 월간 업데이트 작성 시, 초록/노란/빨간 상태로 프로젝트 건강도를 요약할 때, 이해관계자 주의가 필요한 리스크와 의사결정을 표면화할 때, 또는 프로젝트 트래커 활동을 읽기 쉬운 내러티브로 전환할 때 사용하세요.
+argument-hint: "[weekly | monthly | quarterly] [프로젝트 또는 팀]"
 ---
 
 # /status-report
 
-> If you see unfamiliar placeholders or need to check which tools are connected, see [CONNECTORS.md](../../CONNECTORS.md).
+> 익숙하지 않은 플레이스홀더가 보이거나 연결된 도구를 확인해야 하는 경우 [CONNECTORS.md](../../CONNECTORS.md)를 참조하세요.
 
-Generate a polished status report for leadership or stakeholders. See the **risk-assessment** skill for risk matrix frameworks and severity definitions.
+리더십 또는 이해관계자를 위한 완성도 높은 상태 보고서를 생성합니다. 리스크 매트릭스 프레임워크 및 심각도 정의는 **risk-assessment** skill을 참조하세요.
 
-## Usage
+## 사용법
 
 ```
 /status-report $ARGUMENTS
 ```
 
-## Output
+## 출력
 
 ```markdown
-## Status Report: [Project/Team] — [Period]
-**Author:** [Name] | **Date:** [Date]
+## Status Report: [프로젝트/팀] — [기간]
+**작성자:** [이름] | **날짜:** [날짜]
 
-### Executive Summary
-[3-4 sentence overview — what's on track, what needs attention, key wins]
+### 경영진 요약
+[3-4문장 개요 — 순조로운 것, 주의가 필요한 것, 주요 성과]
 
-### Overall Status: 🟢 On Track / 🟡 At Risk / 🔴 Off Track
+### 전반적 상태: 🟢 순조롭게 진행 중 / 🟡 위험 / 🔴 지연
 
-### Key Metrics
-| Metric | Target | Actual | Trend | Status |
+### 주요 지표
+| 지표 | 목표 | 실적 | 추세 | 상태 |
 |--------|--------|--------|-------|--------|
-| [KPI] | [Target] | [Actual] | [up/down/flat] | 🟢/🟡/🔴 |
+| [KPI] | [목표] | [실적] | [상승/하락/유지] | 🟢/🟡/🔴 |
 
-### Accomplishments This Period
-- [Win 1]
-- [Win 2]
+### 이번 기간 성과
+- [성과 1]
+- [성과 2]
 
-### In Progress
-| Item | Owner | Status | ETA | Notes |
+### 진행 중
+| 항목 | 담당자 | 상태 | 예정일 | 비고 |
 |------|-------|--------|-----|-------|
-| [Item] | [Person] | [Status] | [Date] | [Context] |
+| [항목] | [인원] | [상태] | [날짜] | [맥락] |
 
-### Risks and Issues
-| Risk/Issue | Impact | Mitigation | Owner |
+### 리스크 및 이슈
+| 리스크/이슈 | 영향 | 완화 방안 | 담당자 |
 |------------|--------|------------|-------|
-| [Risk] | [Impact] | [What we're doing] | [Who] |
+| [리스크] | [영향] | [하고 있는 것] | [담당자] |
 
-### Decisions Needed
-| Decision | Context | Deadline | Recommended Action |
+### 필요한 의사결정
+| 의사결정 | 맥락 | 마감일 | 권고 조치 |
 |----------|---------|----------|--------------------|
-| [Decision] | [Why it matters] | [When] | [What I recommend] |
+| [의사결정] | [중요한 이유] | [시기] | [권고 사항] |
 
-### Next Period Priorities
-1. [Priority 1]
-2. [Priority 2]
-3. [Priority 3]
+### 다음 기간 우선순위
+1. [우선순위 1]
+2. [우선순위 2]
+3. [우선순위 3]
 ```
 
-## If Connectors Available
+## 커넥터 사용 가능 시
 
-If **~~project tracker** is connected:
-- Pull project status, completed items, and upcoming milestones automatically
-- Identify at-risk items and overdue tasks
+**~~project tracker**가 연결된 경우:
+- 프로젝트 상태, 완료 항목, 예정 마일스톤 자동 조회
+- 위험 항목 및 기한 초과 작업 식별
 
-If **~~chat** is connected:
-- Scan recent team discussions for decisions and blockers to include
-- Offer to post the finished report to a channel
+**~~chat**이 연결된 경우:
+- 포함할 의사결정 및 블로커를 위해 최근 팀 대화 스캔
+- 완성된 보고서를 채널에 게시하는 기능 제공
 
-If **~~calendar** is connected:
-- Reference key meetings and decisions from the reporting period
+**~~calendar**가 연결된 경우:
+- 보고 기간의 주요 회의 및 의사결정 참조
 
-## Tips
+## 팁
 
-1. **Lead with the headline** — Busy leaders read the first 3 lines. Make them count.
-2. **Be honest about risks** — Surfacing issues early builds trust. Surprises erode it.
-3. **Make decisions easy** — For each decision needed, provide context and a recommendation.
+1. **헤드라인으로 시작하세요** — 바쁜 리더는 첫 3줄을 읽습니다. 중요하게 만드세요.
+2. **리스크에 솔직하세요** — 이슈를 조기에 표면화하면 신뢰가 쌓입니다. 갑작스러운 문제는 신뢰를 떨어뜨립니다.
+3. **의사결정을 쉽게 만드세요** — 필요한 각 의사결정에 대해 맥락과 권고사항을 제공하세요.
