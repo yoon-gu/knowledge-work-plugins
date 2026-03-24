@@ -271,7 +271,7 @@ def build(plugins):
         data.append({
             'name': p['name'], 'nameKo': name_ko, 'ver': p['version'], 'desc': desc_ko,
             'author': p['author'], 'partner': p['is_partner'],
-            'readme': p.get('readme', ''), 'skills': skills,
+            'rel': p['rel'], 'readme': p.get('readme', ''), 'skills': skills,
         })
     js = json.dumps(data, ensure_ascii=False)
     js = js.replace('</script>', '<\\/script>')
@@ -334,7 +334,8 @@ transition:border-color .2s,transform .2s,box-shadow .2s}}
 .card:hover{{border-color:var(--bd2);transform:translateY(-2px);box-shadow:0 6px 32px rgba(0,0,0,.3)}}
 .card.pt{{border-color:rgba(255,184,108,.12)}}.card.pt:hover{{border-color:rgba(255,184,108,.28)}}
 .ch{{padding:20px 20px 0;display:flex;align-items:center;justify-content:space-between;gap:10px}}
-.cn{{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:500}}
+.cn{{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:500;color:var(--t);text-decoration:none}}
+.cn:hover{{color:var(--ac)}}
 .cn-ko{{font-family:'Outfit',sans-serif;font-size:13px;font-weight:400;color:var(--td)}}
 .cm{{display:flex;gap:5px}}
 .tg{{font-size:11px;padding:2px 9px;border-radius:100px;font-weight:500}}
@@ -545,9 +546,10 @@ function card(p){{
   if(!p.skills.length) sk='<div class="ce">MCP 서버 전용 (스킬 없음)</div>';
   else sk='<div class="stags">'+p.skills.map((s,si)=>
     `<span class="st" data-p="${{pi}}" data-s="${{si}}">${{esc(s.label||s.name)}}</span>`).join('')+'</div>';
+  const ghUrl='https://github.com/yoon-gu/knowledge-work-plugins/tree/main/'+p.rel;
   const nameLabel=p.nameKo?esc(p.name)+' <span class="cn-ko">('+esc(p.nameKo)+')</span>':esc(p.name);
   const readmeBtn=p.readme?`<span class="rbtn" data-pi="${{pi}}">README</span>`:'';
-  return `<div class="card${{c}}"><div class="ch"><span class="cn">${{nameLabel}}</span>
+  return `<div class="card${{c}}"><div class="ch"><a class="cn" href="${{ghUrl}}" target="_blank">${{nameLabel}}</a>
     <div class="cm">${{readmeBtn}}<span class="tg tv">v${{p.ver}}</span>
     ${{p.partner?`<span class="tg tp">${{esc(p.author)}}</span>`:''}}</div></div>
     <div class="cd">${{esc(p.desc)}}</div>
