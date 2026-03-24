@@ -300,12 +300,12 @@ width:700px;height:500px;background:radial-gradient(ellipse,rgba(196,161,255,.05
 .htag{{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
 color:var(--acd);padding:5px 14px;border-radius:100px;border:1px solid rgba(196,161,255,.15);
 background:rgba(196,161,255,.06);margin-bottom:24px}}
-h1{{font-family:'DM Serif Text',serif;font-size:clamp(2.2rem,5vw,3.6rem);font-weight:400;
+h1{{font-family:'Outfit',sans-serif;font-size:clamp(2.2rem,5vw,3.6rem);font-weight:700;
 line-height:1.15;letter-spacing:-.02em;margin-bottom:14px}}
-h1 em{{font-style:italic;color:var(--ac)}}
+h1 em{{font-style:normal;color:var(--ac);font-weight:700}}
 .hdesc{{font-size:16px;color:var(--td);font-weight:300;max-width:520px;margin:0 auto 32px}}
 .hstats{{display:flex;justify-content:center;gap:40px}}
-.hs-n{{font-family:'DM Serif Text',serif;font-size:28px}}
+.hs-n{{font-family:'Outfit',sans-serif;font-size:28px;font-weight:700}}
 .hs-l{{font-size:11px;color:var(--tm);letter-spacing:.08em;text-transform:uppercase}}
 
 .bar{{position:sticky;top:0;z-index:100;padding:14px 32px;
