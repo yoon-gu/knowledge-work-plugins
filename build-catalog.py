@@ -188,6 +188,27 @@ def find_plugins():
             if os.path.exists(readme_file):
                 with open(readme_file, 'r') as f:
                     readme_content = f.read()
+            # 플러그인 루트 파일 수집
+            TEXT_EXT = {'.md','.json','.py','.txt','.yml','.yaml','.toml','.cfg','.sh','.js','.ts'}
+            root_files = []
+            for rf in sorted(os.listdir(root)):
+                rfp = os.path.join(root, rf)
+                if os.path.isfile(rfp):
+                    ext = os.path.splitext(rf)[1].lower()
+                    content_str = ''
+                    if ext in TEXT_EXT:
+                        with open(rfp, 'r', errors='replace') as f:
+                            content_str = f.read()
+                    root_files.append({'name': rf, 'content': content_str, 'dir': False})
+                elif os.path.isdir(rfp) and rf not in ('skills', '.claude-plugin', '__pycache__'):
+                    root_files.append({'name': rf + '/', 'content': '', 'dir': True})
+            # .claude-plugin/plugin.json도 추가
+            root_files.append({'name': '.claude-plugin/', 'content': '', 'dir': True})
+            pjson_content = ''
+            with open(pjson, 'r') as f:
+                pjson_content = f.read()
+            root_files.append({'name': '  .claude-plugin/plugin.json', 'content': pjson_content, 'dir': False})
+
             plugin = {
                 'name': meta.get('name', ''),
                 'version': meta.get('version', ''),
@@ -196,6 +217,7 @@ def find_plugins():
                 'is_partner': 'partner-built' in root,
                 'rel': rel,
                 'readme': readme_content,
+                'root_files': root_files,
                 'skills': [],
             }
             skills_dir = os.path.join(root, 'skills')
@@ -271,7 +293,8 @@ def build(plugins):
         data.append({
             'name': p['name'], 'nameKo': name_ko, 'ver': p['version'], 'desc': desc_ko,
             'author': p['author'], 'partner': p['is_partner'],
-            'rel': p['rel'], 'readme': p.get('readme', ''), 'skills': skills,
+            'rel': p['rel'], 'readme': p.get('readme', ''),
+            'rootFiles': p.get('root_files', []), 'skills': skills,
         })
     js = json.dumps(data, ensure_ascii=False)
     js = js.replace('</script>', '<\\/script>')
@@ -535,8 +558,11 @@ function draw(){{
   $('out').querySelectorAll('.st').forEach(el=>{{
     el.onclick=()=>openPanel(P[+el.dataset.p],P[+el.dataset.p].skills[+el.dataset.s]);
   }});
-  $('out').querySelectorAll('.rbtn').forEach(el=>{{
+  $('out').querySelectorAll('.rbtn:not(.fbtn)').forEach(el=>{{
     el.onclick=e=>{{e.stopPropagation();showContent(P[+el.dataset.pi].readme,'README.md');}};
+  }});
+  $('out').querySelectorAll('.fbtn').forEach(el=>{{
+    el.onclick=e=>{{e.stopPropagation();openPluginFiles(P[+el.dataset.pi]);}};
   }});
 }}
 
@@ -549,11 +575,53 @@ function card(p){{
   const ghUrl='https://github.com/yoon-gu/knowledge-work-plugins/tree/main/'+p.rel;
   const nameLabel=p.nameKo?esc(p.name)+' <span class="cn-ko">('+esc(p.nameKo)+')</span>':esc(p.name);
   const readmeBtn=p.readme?`<span class="rbtn" data-pi="${{pi}}">README</span>`:'';
+  const folderBtn=p.rootFiles.length?`<span class="rbtn fbtn" data-pi="${{pi}}">폴더</span>`:'';
   return `<div class="card${{c}}"><div class="ch"><a class="cn" href="${{ghUrl}}" target="_blank">${{nameLabel}}</a>
-    <div class="cm">${{readmeBtn}}<span class="tg tv">v${{p.ver}}</span>
+    <div class="cm">${{folderBtn}}${{readmeBtn}}<span class="tg tv">v${{p.ver}}</span>
     ${{p.partner?`<span class="tg tp">${{esc(p.author)}}</span>`:''}}</div></div>
     <div class="cd">${{esc(p.desc)}}</div>
     <div class="cs"><div class="cst">스킬 &middot; ${{p.skills.length}}개</div>${{sk}}</div></div>`;
+}}
+
+function renderFileTree(files){{
+  let o='<ul class="ftree">';
+  files.forEach((f,fi)=>{{
+    const raw=f.name.trimStart();
+    const isSub=f.name.startsWith('  ');
+    const isDir=f.dir;
+    const isMd=raw.endsWith('.md');
+    const hasContent=!isDir&&f.content;
+    const ic=isDir?'fi-dir':isMd?'fi-md':'';
+    const cls=[isSub?'sub':'',hasContent?'mdlink':''].filter(Boolean).join(' ');
+    const dattr=hasContent?` data-fi="${{fi}}" data-fname="${{esc(raw)}}"`:'';
+    const svg=isDir
+      ?`<svg class="fi fi-dir" viewBox="0 0 24 24"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>`
+      :`<svg class="fi ${{ic}}" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`;
+    o+=`<li class="${{cls}}"${{dattr}}>${{svg}}${{esc(raw)}}</li>`;
+  }});
+  o+='</ul>';
+  return o;
+}}
+
+function bindFileClicks(files){{
+  $('pb').querySelectorAll('.mdlink').forEach(el=>{{
+    el.onclick=()=>{{
+      const fi=+el.dataset.fi;
+      showContent(files[fi].content,el.dataset.fname);
+    }};
+  }});
+}}
+
+function openPluginFiles(plugin){{
+  $('ppb').textContent=plugin.name;
+  $('pnm').textContent=plugin.nameKo||'파일';
+  let o=`<div class="ppath">${{esc(plugin.rel)}}/</div>`;
+  o+=`<div class="pdlbl">파일 구조</div>`;
+  o+=renderFileTree(plugin.rootFiles);
+  $('pb').innerHTML=o;
+  bindFileClicks(plugin.rootFiles);
+  $('ov').classList.add('open');$('pn').classList.add('open');
+  document.body.style.overflow='hidden';
 }}
 
 function openPanel(plugin,skill){{
@@ -562,31 +630,11 @@ function openPanel(plugin,skill){{
   let o=`<div class="ppath">skills/${{esc(skill.dir)}}/</div>`;
   if(skill.desc) o+=`<div class="pdlbl">설명</div><div class="pdtxt">${{esc(skill.desc)}}</div>`;
   if(skill.files.length){{
-    o+=`<div class="pdlbl">파일 구조</div><ul class="ftree">`;
-    skill.files.forEach((f,fi)=>{{
-      const raw=f.name.trimStart();
-      const isSub=f.name.startsWith('  ');
-      const isDir=f.dir;
-      const isMd=raw.endsWith('.md');
-      const hasContent=!isDir&&f.content;
-      const ic=isDir?'fi-dir':isMd?'fi-md':'';
-      const cls=[isSub?'sub':'',hasContent?'mdlink':''].filter(Boolean).join(' ');
-      const dattr=hasContent?` data-fi="${{fi}}" data-fname="${{esc(raw)}}"`:'';
-      const svg=isDir
-        ?`<svg class="fi fi-dir" viewBox="0 0 24 24"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>`
-        :`<svg class="fi ${{ic}}" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`;
-      o+=`<li class="${{cls}}"${{dattr}}>${{svg}}${{esc(raw)}}</li>`;
-    }});
-    o+='</ul>';
+    o+=`<div class="pdlbl">파일 구조</div>`;
+    o+=renderFileTree(skill.files);
   }}
   $('pb').innerHTML=o;
-  $('pb').querySelectorAll('.mdlink').forEach(el=>{{
-    el.onclick=()=>{{
-      const fi=+el.dataset.fi;
-      const f=skill.files[fi];
-      showContent(f.content,el.dataset.fname);
-    }};
-  }});
+  bindFileClicks(skill.files);
   $('ov').classList.add('open');$('pn').classList.add('open');
   document.body.style.overflow='hidden';
 }}
